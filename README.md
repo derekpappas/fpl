@@ -1,1 +1,1 @@
-A chip specificaation laguage compiler
+A chip specification laguage compiler
