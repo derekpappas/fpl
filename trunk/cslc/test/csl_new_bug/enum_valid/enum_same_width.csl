@@ -1,0 +1,8 @@
+//Monica
+
+csl_enum e1{
+  a1=6,
+  a2=6,
+  a3=6
+};
+

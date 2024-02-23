@@ -1,0 +1,17 @@
+csl_register_file rf{
+  rf(){
+  }
+};
+
+csl_memory_map mp{
+  mp(){
+  }
+};
+
+csl_unit top{
+  rf rf;
+  rf top1;
+  //  mp mp;
+  top(){
+  }
+};

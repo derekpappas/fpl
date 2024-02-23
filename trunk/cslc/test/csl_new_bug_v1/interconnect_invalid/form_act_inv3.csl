@@ -1,0 +1,14 @@
+//oanab
+//25 mar 2008
+//formal to actual - port and signal with different widths
+
+csl_unit u1 {
+  csl_port x(input,6,2);
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_signal s(6,4);
+  u1 u10(.x(s));
+  u2 () {}
+};

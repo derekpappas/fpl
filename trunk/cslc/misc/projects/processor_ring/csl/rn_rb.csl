@@ -1,0 +1,13 @@
+//oanab
+//21 feb 2008
+//receive buffer - used by the processor to receive messages
+
+
+csl_unit rb0 {
+  ifc_au_wr_out au_rb_wr_en_st0;  // write enable input
+  ifc_rn_msg rn_msg_st0;          // input message
+  ifc_rn_msg rb_msg_st1;          // output message
+  rb0 () {
+    rb_msg_st1.reverse();
+  }
+};

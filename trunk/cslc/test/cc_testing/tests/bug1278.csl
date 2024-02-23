@@ -1,0 +1,11 @@
+//the u instance has the same name with the current scope - top
+csl_unit u{
+ u(){}
+};
+
+csl_unit top{
+ u u;
+ u top;//here is an error
+ top(){}
+};
+

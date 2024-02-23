@@ -1,0 +1,17 @@
+//oanab
+//25 mar 2008
+
+csl_register counter {
+  counter () {
+    set_type(counter);
+    set_width(4);
+    add_logic(count_direction,up);
+    add_logic(end_value,8);
+  }
+};
+
+csl_unit u {
+  csl_signal rst,en,data(4),clk;
+  counter counter(.reset_(rst),.enable(en),.clock(clk),.reg_out(data));
+  u () {}
+};

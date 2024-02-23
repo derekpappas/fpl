@@ -1,0 +1,132 @@
+csl_enum mj {
+	jo,
+	ha,
+	tr,
+	nh,
+	lo,
+	po,
+	ox,
+	xv,
+	hf
+};
+csl_enum ll {
+	qo,
+	on,
+	dg,
+	qs,
+	kd,
+	ev,
+	sm,
+	wo,
+	em,
+	vp,
+	bn,
+	gq
+};
+csl_enum lf {
+	os,
+	mc,
+	hf,
+	qx,
+	st,
+	gk,
+	os,
+	pt
+};
+csl_isa_instruction_format ck{
+    ck( ){
+     set_width( 4);
+     generate_decoder( lv);
+  }
+}
+;
+csl_isa ns{
+    ns( ){
+     set_decoder_name( "yo");
+     set_decoder_out_name_prefix( "lf");
+     set_decoder_out_name_suffix( "ga");
+     generate_decoder( wqiylv);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo jf{
+   jf( ){
+     add_logic( wr_words, 1);
+     add_logic( almost_full, 8);
+     add_logic( output_rd_addr);
+  }
+}
+;
+csl_memory_map_page ve{
+    ve( ){
+     get_address_increment( );
+     set_next_address( 1);
+     set_access_rights( none, access_read_write);
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 1);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page ym{
+  ve qv;
+  ve jc;
+    ym( ){
+     get_address_increment( );
+     get_upper_bound( );
+     set_data_word_width( 6);
+     set_aligment( 1);
+     get_aligment( );
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page kj{
+  ym ap;
+  ve bk;
+  ym rs;
+  ve lb;
+  ym pv;
+    kj( ){
+     add_address_range( 9, 1);
+     set_address_increment( 1);
+     get_address_increment( );
+     set_aligment( 5);
+     get_aligment( );
+     set_endianess( big_endian);
+  }
+}
+;
+csl_memory_map cg{
+    cg( ){
+     auto_gen_memory_map( );
+     set_top_unit( iylv);
+.add_to_memory_map( access_read); 
+     set_type( hierach);
+     set_data_word_width( 9);
+     get_data_word_width( );
+     set_prefix( rg);
+     set_suffix( rb);
+  }
+}
+;
+csl_register eh{
+    eh( ){
+     set_type( CTL);
+     add_logic( serial_input);
+     add_logic( rd_en);
+     reset_value( 7);
+     clear_value( 9);
+     add_logic( gray_output);
+     set_count_amount( 1);
+     set_count_direction( 4);
+     set_end_value( 1);
+     add_logic( cnt_dir_signal);
+     get_cnt_dir_signal( );
+     add_logic( dec_signal);
+  }
+}
+;

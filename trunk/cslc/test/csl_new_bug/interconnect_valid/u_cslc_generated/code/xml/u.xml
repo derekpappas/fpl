@@ -1,0 +1,14 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u">
+<instantiation type = "mem">
+<instance name="mem1">
+data_w8addr_w4</instance>
+</instantiation>
+<instantiation type = "mem">
+<instance name="mem2">
+data_w32addr_w16</instance>
+</instantiation>
+</unit>
+</design>

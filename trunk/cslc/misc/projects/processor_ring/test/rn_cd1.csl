@@ -1,0 +1,25 @@
+//oanab
+//11 ian 2008
+//Command Bus Decoder
+
+csl_register ppl0{
+  ppl0(){
+    set_width(8);
+    set_type(register);
+  }
+};
+
+csl_unit cd1 {
+  ifc_cer_ cer_;
+  ifc_ctrl cp_st0;
+  ifc_ctrl cp_st1;
+  //units
+  ppl0 cp0(.reg_in(cp_st0),.reg_out(cp_st1));  // connecting port with interface?!!!
+  // clock, reset and enable to be connected with autorouter
+  cd1 () {
+    cp_st1.reverse();
+  }
+};
+
+
+

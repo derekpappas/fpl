@@ -1,0 +1,51 @@
+./csl_csv_gen.pl -f msi_phase_1.csv -i msi_phase_1.ifc.lib.csl -d msi_phase_1.hier 
+cslc msi_phase_1.ifc.lib.csl generated/msi_phase_1.csl
+
+
+Auto CSL generation
+This is a gui prototype. Enter the interface or signal once and it gets added to all the
+correct places in the sencder/receiver.
+with the spreadsheet we can code complex design in a very short period of time
+we can build hierarchical designs with multiple spreadsheets
+
+CSL interface library
+================================================================================
+This file contains the definitions of the CSL interfaces.
+The program should check that the interfaces used in the spreadsheet
+exist in the CSl interface library.
+
+Connectivity spreadsheet
+================================================================================
+The lefthand column and the upper row contain the same set of instance names.
+The cells contain the interfaces.
+The perl program reads the spreadsheet and creates the CSL code.
+The interface appears at the intersection of the from/to unit instances.
+
+In the spreadsheet cells the user adds different csl objects.
+connection: ifc(<from_instance_name>, <to_instance_name>, <actual_name>)
+Whatever goes between two blocks can be added:
+we can put csl_port, 
+
+The interface is placed in the sender and receiver and reversed in the receiver
+The connection is added to a global list which is then added to the top level
+
+The interface is moved from the cell to both the sender and the receiver
+the spreadsheet generates a csv file which is read by the Perl program
+which generates csl interconnect code
+
+Hierarchy file
+================================================================================
+the hier file contains the design hierarchy
+when the design hierarchy is read in a map is constructed with the name of each instance and the HID path to the instance
+when the connection list is read then each instance name in the connection list pair
+is converted to the HID path and added to the root unit constructor.
+
+
+
+
+
+
+
+
+
+

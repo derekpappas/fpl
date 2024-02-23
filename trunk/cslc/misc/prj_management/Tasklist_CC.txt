@@ -1,0 +1,90 @@
+			--== CC's Action item list ==--
+
+IP = In progress
+Finished tasks are on top.
+
+
+				== YOTERRA ==
+
+- Check machines for RAM need
+	DONE (10-01-2008)
+- Configure the machine at Hurricane Electric to act as Demo machine
+	DONE (16-01-2008)
+- Copy new "crawler2" database to the machine @HE
+	DONE (21-07-2008)
+- Investigate and fix poor quality of Skype/VoIP transmission
+	DONE (23-01-2008)
+- Install luntbuild @ yoterra
+	DONE (2007)
+- Configure Yoterra project to work with Lucene
+	DONE (23-01-2008)
+- Configure Directory Indexing for static pages on the demo machine
+	Obsolete (25-01-2008)
+- Configure Yoterra v2.0 demo on the machine @HE
+	DONE (28-01-2008)
+- Update HE machine with latest demo version
+	DONE (30-01-2008)
+- Set up directory browsing of the static pages on the HE machine
+	DONE (04-02-2008)
+- Calculate cost effectiveness between Amazon EC2/SC3 and Server colocation in USA
+	Not started
+- Configure YO Luntbuild to run PA/W3Gen/TFW
+	Started, stalled
+- Configure Lucene
+	Started, IP
+- Profile response times to user requests in the server.
+	Started, IP
+- Set up page generation on the HE machine to save upload times.
+	Not started
+- Check computer configuration sent by Derek for HE Rack
+	Started, IP
+- Search for a "Google Analytics"-like perl implementation for tracking site visitors
+	Started, IP
+- Design workflow for yoterra. Set up "assembly line"/"water dams" strategy instead of the current "dump truck" strategy.
+	Not started.
+
+				== FPL ==
+
+- Fix build machine crashes
+	DONE (12-01-2008)
+- Install Boost v1.34.1
+	DONE (22-01-2008)
+- Fix luntbuild/regression script failure condition
+	DONE (25-01-2008)
+- Investigate and fix graphic card driver issues
+	DONE (24-01-2008)
+- "Play poker" with the RAM memory at FPL so that all workstations have at least 2GB of memory
+	DONE (24-01-2008)
+- Update SVN server to latest version
+	DONE (31-01-2008)
+- Check reliability on RDS/Astral connection
+	DONE (31-01-2008)
+	Obs: RDS is stable at times but generally sucks. No Astral at FPL. All important traffic goes through RTC
+- Request (AndreiB) : Verilog compiler (and simulator)? available on Linux (suggestion: Modelsim for Linux)
+	DONE (31-01-2008)
+	Obs: Installed Wine-0.9.54 in order to run ModelSim for Windows on Linux
+- Fix alsamixer
+	DONE (31-01-2008)
+	Obs: Detailed info has been sent to company e-mail.
+	Obs2: Implemented sudo version (04-02-2008)
+- Setup new computer farm @ ASA Computers to run distributed regressions using generated tests
+	Started, IP
+- CSIM Makefiles. (talk with AB)
+	Started, IP
+- Inspect analyze_lang_manuals.pl. Convince CA to drop LaTeX idea.
+	Not started
+- Call RTC Tech and have them fix the phone line for static
+	Not started
+
+			== Other/Common ==
+
+- Buy headphones for both offices
+	DONE (24-01-2008)
+- Added vacation.fplsrl.com / vacation.yosrl.com.
+	DONE (04-02-2008)
+	Obs: New addresses: https://vacation.fplsrl.com:2000 and https://vacation.fplsrl.com:2000 from OUTSIDE the office.
+	Obs2: Old addresses still work.
+- Buy UPSes
+	Not started
+- Implement Login/Logout mechanism in vacation tool.
+	Not started

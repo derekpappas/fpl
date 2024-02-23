@@ -1,0 +1,23 @@
+//author: Ines
+//test03: csl_signal signal_object_name([signal_data_type,]upper_limit,lower_limit);
+
+
+csl_unit test {
+
+  //csl_signal sgn18();                   //illegal
+  csl_signal sgn19(2,0);                  //legal
+  //csl_signal_                           //illegal
+  //csl_signal sgn20(a,b);                //PASSED without error <- FIXED
+  csl_bitrange c(2), d(4);                //legal
+  //csl_signal sgn21(wire,c,d);           //PASSED without error <- FIXED 
+  csl_signal sgn22(reg, 2, 0);            //legal
+  csl_signal sgn23( 6, 0);            //legal(PASSED without error)
+  csl_signal sgn24(6,0);                  //legal
+  csl_signal sgn100(wire,100000000,99999999), sgn101(100000000,99999999);
+
+  test() {
+    sgn19 = sgn22;
+    sgn23 = sgn24;
+    sgn100 = sgn101;
+  }
+};

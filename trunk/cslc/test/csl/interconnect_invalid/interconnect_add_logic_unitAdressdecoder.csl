@@ -1,0 +1,8 @@
+csl_unit u{
+  csl_port x(input,2), y(output, 3);
+  u(){}};
+csl_unit top{
+  u u1;
+  top(){
+    u1.add_logic(x, y);
+  }};

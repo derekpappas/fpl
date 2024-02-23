@@ -1,0 +1,59 @@
+//Monica
+//13 November 2007
+
+csl_interface ifc1{
+  csl_port stim_d(input), exp_d(output),ds_d(output);
+  ifc1(){}
+};
+csl_interface ifc2{
+  csl_port stim_v(input), exp_v(output), ds_v(output);
+  ifc2(){ }
+};
+
+csl_unit dut{
+  ifc1 ifc11;
+  ifc2 ifc21;
+  csl_port clk(input);
+  dut(){
+    clk.set_attr(clock);
+}
+};
+
+csl_unit a {
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(output);
+  csl_port p4(output);
+  csl_port p5(input);
+  csl_port p6(output);
+  csl_port p7(output);
+  dut dut1(.ifc11.stim_d(p1),.ifc21.stim_v(p2),.ifc11.exp_d(p3),.ifc21.exp_v(p4),.clk(p5),.ifc11.ds_d(p6),.ifc21.ds_v(p7));
+  a (){}
+};
+
+csl_vector stim{
+
+  stim(){
+    set_unit_name(dut);
+    set_direction(input);
+    exclusion_list(ifc21.stim_v);
+  }
+};
+
+csl_vector exp{
+  exp(){
+  set_unit_name(dut);
+  set_direction(output);
+  exclusion_list(ifc11.ds_d);
+  exclusion_list(ifc21.ds_v);
+  }
+};
+csl_testbench tb{
+  dut dut;
+  csl_signal clk(reg);
+  
+tb(){
+  clk.set_attr(clock);
+  add_logic(clock,clk,10, ns);
+ }
+};  

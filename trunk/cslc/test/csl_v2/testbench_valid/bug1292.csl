@@ -1,0 +1,62 @@
+// define the unit to be tested
+
+csl_register_file rf_m{
+  rf_m(){
+    set_width(16);
+    set_depth(16);
+  }
+};
+csl_unit dut{
+  rf_m rf;  
+ csl_port stim_p(input), exp_p(output);
+  csl_port clk_p(input);
+  dut(){
+    clk_p.set_attr(clock);
+  }
+};
+
+csl_state_data sd_s {
+  sd_s() {
+    //    set_mem_instance_name(rf);
+    set_vc_header_comment("State data for register file");
+    set_version(1);
+    set_radix(hex);
+    set_vc_max_number_of_valid_transactions(10);
+    set_vc_max_number_of_mismatches(2);
+  }
+};
+
+csl_vector v_stim_rf {
+  v_stim_rf(){
+    set_unit_name(dut);
+    set_direction(input);
+    set_vc_header_comment("Stimulus vector for register file");
+    set_version(1);
+    set_radix(bin);
+    // sev_vc_max_number_of_valid_transactions(sd_s.get_vc_max_number_of_valid_transactions());
+    // set_vc_max_number_of_mismatches(sd_s.get_vc_max_number_of_mismatches());
+  }
+  };
+
+  csl_vector v_expect_rf{
+    v_expect_rf(){
+      set_unit_name(dut);
+      set_direction(output);    
+      set_vc_header_comment("Expected vector from register file");
+      set_version(1);
+      set_radix(bin);
+      // sev_vc_max_number_of_valid_transactions(sd_s.get_vc_max_number_of_valid_transactions());
+      //set_vc_max_number_of_mismatches(sd_s.get_vc_max_number_of_mismatches());
+    }
+  };
+csl_testbench rf_tb {
+  csl_signal clk_tb;
+  dut dut;
+  rf_tb(){
+    clk_tb.set_attr(clock);
+    add_logic(clock,clk_tb,10,ns);
+    add_logic(generate_waves,"alu_tb_waves",fsdb);
+    set_testbench_verilog_filename("alu_tb1");
+    add_logic(simulation_timeout_counter, 500);
+  }
+};

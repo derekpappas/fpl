@@ -1,0 +1,44 @@
+//csl_signal signal_object_name([signal_data_type,]bitrange_object_name); example 
+//(from old  csl_interconnect.fm docs) modified after the new sintax
+//monicah
+//26 July 2007
+
+csl_bitrange br(1,4);
+csl_unit phase_detect{
+	csl_port feed_p(input), clk_p(input),  dif_p(output);
+	phase_detect(){
+	}
+};
+csl_unit ctrl_block{
+	csl_port dif_sgn(input), ctrl_sgn(output);
+	ctrl_block(){
+	}
+};
+
+csl_unit delay{
+	csl_port in(input);
+	csl_port ctrl_sgn(input);
+	csl_port cal(input);
+	csl_port out(output);
+	delay(){
+	}
+};
+csl_unit calibration_circ{
+  
+	csl_port out(input, br);
+	csl_port cal(output, br);
+	calibration_circ(){
+	}
+};
+csl_unit delay_line{
+	csl_signal feed_sgn, dif_sgn, clk_sgn, ctrl_sgn, out, cal;
+	phase_detect pd(.feed_p(feed_sgn), .clk_p(clk_sgn), .dif_p(dif_sgn));
+	ctrl_block cb(.dif_sgn(dif_sgn), .ctrl_sgn(ctrl_sgn));
+	delay del1(.in(clk_sgn), .ctrl_sgn(ctrl_sgn[1]), .cal(cal[1]), .out(out[1]));
+	delay del2(.in(out[1]), .ctrl_sgn(ctrl_sgn[2]), .cal(cal[2]), .out(out[2]));
+	delay del3(.in(out[2]), .ctrl_sgn(ctrl_sgn[3]), .cal(cal[3]), .out(out[3]));
+	delay del4(.in(out[3]), .ctrl_sgn(ctrl_sgn[4]), .cal(cal[4]), .out(out[4]));
+   	calibration_circ cal_circ(.out(out), .cal(cal));
+	delay_line(){
+	}
+};

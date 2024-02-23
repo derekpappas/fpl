@@ -1,0 +1,8 @@
+//danielt
+//november 07,2007
+
+csl_unit u{
+  csl_signal s1,s2,s3;
+  csl_list list2(s1,s2,s3);
+  u(){}
+};

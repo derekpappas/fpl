@@ -1,0 +1,25 @@
+// this test is illegal because we set the enum in the parent field
+// and then set the same field to an enum in the child
+
+csl_enum e {
+  a = 1,
+  b,
+  c
+};
+
+csl_field f1{
+  f1(){
+    set_width(32);
+    set_enum(e);
+  }
+};
+
+csl_field f2{
+  f1 f1_0;
+  f2(){
+    set_width(32);
+    f1_0.set_enum(e); // this is illegal because the num is already set
+  }
+};
+
+

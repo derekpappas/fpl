@@ -1,0 +1,159 @@
+csl_enum cu {
+	vr = 68,
+	kl = 89,
+	ot = 23,
+	cy = 20,
+	ee = 53,
+	vv = 39,
+	ai = 8,
+	jq = 24
+};
+csl_enum xb {
+	qq = 93,
+	sl = 94,
+	fc = 21,
+	qi = 49,
+	xq = 40,
+	ma = 26,
+	nk = 2
+};
+csl_enum uy {
+	vj = 72,
+	sb = 94,
+	ly = 96,
+	hh = 4,
+	uh = 6,
+	rh = 3,
+	ap = 22,
+	kq = 19,
+	ge = 21,
+	cm = 9,
+	gv = 29,
+	ug = 93,
+	mj = 47,
+	jd = 2,
+	ue = 9,
+	es = 19,
+	py = 80,
+	tb = 38,
+	yd = 66
+};
+csl_isa_instruction_format el{
+    el( ){
+     set_width( 0);
+     generate_decoder( qybg);
+  }
+}
+;
+csl_isa_instruction ky : el{
+    ky( ){
+    set_asm_mnemonic( wg);
+  }
+}
+;
+csl_isa mv{
+  ky rx;
+  ky br;
+  ky bu;
+  ky wa;
+  ky se;
+  ky rm;
+  ky au;
+  ky tf;
+  ky ay;
+  ky cn;
+  ky dc;
+    mv( ){
+     set_decoder_out_name_suffix( "ni");
+  }
+}
+;
+csl_fifo yo{
+   yo( ){
+     add_logic( stall_rd_side);
+  }
+}
+;
+csl_memory_map_page ix{
+    ix( ){
+     get_address_increment( );
+     set_next_address( 0);
+     get_next_address( );
+     add_reserved_address_range( 4, 6);
+     set_endianess( little_endianbig_endian);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page rv{
+    rv( ){
+     add_reserved_address_range( 6, 7);
+     get_lower_bound( );
+     set_data_word_width( 7);
+     get_data_word_wodth( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page jg{
+  ix py;
+  rv bn;
+  ix ia;
+  rv rg;
+  rv un;
+    jg( ){
+     set_address_increment( 1);
+     set_access_rights( access_write, access_read_write);
+     add( ixrv);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map ra{
+  ix wy;
+  rv ik;
+  ix rv;
+  rv kf;
+    ra( ){
+     auto_gen_memory_map( );
+     set_top_unit( bg);
+     set_type( page);
+ixjg.set_access_rights_enum( jg); 
+     set_data_word_width( 9);
+     get_data_word_width( );
+     set_prefix( mu);
+     get_prefix( );
+     set_suffix( lp);
+  }
+}
+;
+csl_register we{
+    we( ){
+     set_type( CNT);
+     add_logic( serial_output);
+     add_logic( wr_en);
+     init_value( 9);
+     reset_value( 4);
+     clear_value( 2);
+     set_lock_enable_bit( 2);
+     set_count_direction( 6);
+     set_end_value( 6);
+     add_logic( cnt_dir_signal);
+     add_logic( inc_signal);
+  }
+}
+;
+csl_register nn{
+    nn( ){
+     set_width( 2);
+     set_depth( 4);
+     get_depth( );
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 1);
+  }
+}
+;

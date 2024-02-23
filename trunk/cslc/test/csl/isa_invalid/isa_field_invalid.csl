@@ -1,0 +1,22 @@
+
+//illegal: isa_field_invalid because the isa_fields doesn't have set the type, and the root_format doesn't exist
+ 
+csl_enum e_field{
+    ADD = 0,
+    SUB = 1
+};
+
+csl_isa_field op(2, e_field);
+csl_isa_field field(2);
+
+csl_isa_element format{
+    op op_i;
+    field field_i;
+    format(){
+       set_width(4);            
+       set_position(op_i, 2);
+       set_next(op_i,field_i);
+       op_i.set_increment_address(12);  
+       //set_increment_addr works with mm
+    }
+};

@@ -1,0 +1,27 @@
+//oanab
+//24 oct 2007
+//the address range for the mem map page is
+// not specified
+
+csl_fifo f{
+  f(){
+    set_width(32);
+    set_depth(64);
+  }
+};
+csl_unit u{
+  f f;
+  u(){}
+};
+csl_memory_map_page mpg{
+  mpg(){
+    add(u.f,"fifo",20);
+  }
+};
+  csl_memory_map mmap{
+    mpg mpg;  
+  mmap(){
+      set_data_word_width(16);
+    }
+  };
+

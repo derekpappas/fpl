@@ -1,0 +1,11 @@
+# This is the input test file for COmExprValReal class
+# <> means obligatory
+# [] means optional
+# Syntax: ( <1..2> <NUMBER_NON_EXPONENT> [NUMBER_EXPONENT] <RETURN_NON_EXPONENT> <RETURN_EXPONENT> <RETURN_VALUE> <RETURN_IS_CONSTANT> )
+# This test has two possible syntaxis:
+# 1 constructor without exponent
+# 2 constructor with exponent
+# examples:
+
+(1 20 20 1 20 1)
+(2 20 2 20 2 2000 1)

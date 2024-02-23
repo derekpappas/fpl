@@ -1,0 +1,16 @@
+//oanab
+//6 may 2008
+
+csl_unit a {
+  csl_signal s;
+  a () {
+    do_not_gen_rtl();
+    gen_unique_rtl_modules();
+  }
+};
+
+csl_unit b {
+  a a0;
+  a a1;
+  b () {}
+};

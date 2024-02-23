@@ -1,0 +1,6 @@
+`ifndef sb250
+  `define sb250
+`endif
+
+`include "CY7C1212H_PL_SCD.v"
+

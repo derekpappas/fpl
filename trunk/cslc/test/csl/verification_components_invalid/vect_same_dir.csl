@@ -1,0 +1,34 @@
+//oanab
+//27 oct 2007
+//both the stim end exp vectors have output as direction
+
+csl_unit dut{
+  csl_port clk(input);
+  csl_port stim_i(input),exp_o(output);
+  dut(){ 
+    clk.set_attr(clock);
+}
+};
+
+csl_vector stim{
+  stim(){
+    set_unit_name(dut);
+    set_direction(output);  // the direction should be input
+  }
+};
+
+csl_vector exp{
+  exp(){
+    set_unit_name(dut);
+    set_direction(output);
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+  dut dut_1;
+  tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,200,ps);
+  }
+};

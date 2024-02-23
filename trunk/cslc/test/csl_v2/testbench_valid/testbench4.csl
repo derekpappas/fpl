@@ -1,0 +1,157 @@
+//cghaba
+//October 2007
+
+// circuit computes A*x+B*y where A and B are constants 
+// stored in registers 
+
+csl_bitrange br_d(0,16);
+csl_bitrange br_2d(0,32);
+
+
+csl_interface ifc_d_in {
+  csl_port op1(input,br_d);
+  csl_port op2(input,br_d);
+  ifc_d_in(){
+}
+};
+
+csl_interface ifc_2d_in {
+  csl_port op1(input,br_2d);
+  csl_port op2(input,br_2d);
+  ifc_2d_in(){
+  }
+};
+
+csl_interface ifc_2d_out {
+  csl_port res(output,br_2d);
+  ifc_2d_out(){
+  }
+};
+
+// define unit types in the design to be tested
+
+csl_register_file r_m{
+  r_m(){
+    set_width(16);
+    set_depth(1);
+  }
+};
+
+
+csl_unit u_mult {
+  ifc_d_in ifc_in;
+  ifc_2d_out ifc_out;
+  u_mult(){
+}
+};
+
+csl_unit u_add {
+  ifc_2d_in ifc_in;
+  ifc_2d_out ifc_out;
+  u_add(){
+  }
+};
+
+csl_unit u_top {
+  csl_signal mx(br_d), my(br_d), am(br_d), bm(br_d); 
+  csl_signal m1a(br_2d), m2a(br_2d), az(br_2d);
+
+  ifc_d_in ifc_xy, ifc_ab;
+  ifc_2d_out ifc_out;
+
+  r_m r_ma(.data_in(ifc_ab.op1),.data_out(am));       
+  r_m r_mb(.data_in(ifc_ab.op2),.data_out(bm));
+  u_mult mult1(.ifc_in.op1(am),.ifc_in.op2(mx),.ifc_out(m1a));
+  u_mult mult2(.ifc_in.op1(bm),.ifc_in.op2(my),.ifc_out(m2a));
+  u_add adder(.ifc_in.op1(m1a),.ifc_in.op2(m2a),.ifc_out(ifc_out));
+  u_top(){
+  }
+};
+
+csl_testbench axby_tb {
+    u_top u_top_dut;
+    csl_signal clk_tb;
+    axby_tb(){
+      add_logic(clock,clk_tb,10,ns);
+      add_logic(generate_waves,"alu_tb_waves",fsdb);
+      set_testbench_verilog_filename("alu_tb1");
+      add_logic(simulation_timeout_counter, 500);
+    }
+};
+/*
+csl_state_data sd_ra {
+  sd_ra() {
+    set_mem_instance_name(u_top.r_ma);
+    set_vc_header_comment("State data for A register");
+    set_version(1);
+    set_radix(hex);
+    set_vc_max_number_of_valid_transactions(10);
+    set_vc_max_number_of_mismatches(2);
+  }
+};
+
+
+csl_state_data sd_rb {
+  sd_rb() {
+    set_mem_instance_name(axby_tb.u_top_dut.r_mb);
+    set_vc_header_comment("State data for B register");
+    set_version(1);
+    set_radix(hex);
+    set_vc_max_number_of_valid_transactions(10);
+    set_vc_max_number_of_mismatches(2);
+  }
+};
+
+*/
+csl_vector v_stim_rf {
+
+  v_stim_rf(){
+    set_unit_name(u_top);
+    set_direction(input);
+    set_vc_header_comment("Stimulus vector for top unit");
+    set_version(1);
+    set_radix(bin);
+    set_vc_max_number_of_valid_transactions(10);
+    set_vc_max_number_of_mismatches(2);
+  }
+  };
+
+  csl_vector v_expect_mult1{
+    v_expect_mult1(){
+      set_unit_name(u_top);
+      set_direction(output);    
+      include_only(u_top.mult1.ifc_out);
+      set_vc_header_comment("Expected vector from multiplier 1");
+      set_version(1);
+      set_radix(bin);
+      set_vc_max_number_of_valid_transactions(10);
+      set_vc_max_number_of_mismatches(2);
+    }
+  };
+
+
+  csl_vector v_expect_mult2{
+    v_expect_mult2(){
+      set_unit_name(u_top);
+      set_direction(output);
+      include_only(u_top.mult2.ifc_out);
+      set_vc_header_comment("Expected vector from multiplier 2");
+      set_version(1);
+      set_radix(bin);
+      //  sev_vc_max_number_of_valid_transactions(sd_ra.get_vc_max_number_of_valid_transactions());
+      set_vc_max_number_of_mismatches(10);
+    }
+  };
+
+
+  csl_vector v_expect_top{
+    v_expect_top(){
+      set_unit_name(u_top);
+      set_direction(output);    
+      set_vc_header_comment("Expected vector from multiplier 1");
+      set_version(1);
+      set_radix(bin);
+      //  sev_vc_max_number_of_valid_transactions(sd_ra.get_vc_max_number_of_valid_transactions());
+      set_vc_max_number_of_mismatches(10);
+    }
+  };

@@ -1,0 +1,56 @@
+// Author: cghaba
+// November 28, 2007
+
+csl_bitrange br_d(7,0);
+csl_bitrange br_sel(1,0);
+
+csl_unit u_alu{
+  csl_port cclk(input);
+  csl_port p_cin(input);
+  csl_port p_op1(input,br_d);
+  csl_port p_op2(input,br_d);
+  csl_port p_res(output,reg, br_d);
+  csl_port p_cout(output, reg);
+  csl_port p_sel(input,br_sel);
+  u_alu(){
+    //    p_dout=p_op1+p_op2;
+    cclk.set_attr(clock);
+  }
+};
+csl_unit a {
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(input,8);
+  csl_port p4(output,8);
+  csl_port p5(input,8);
+  csl_port p6(output);
+  csl_port p7(input,2);
+  u_alu dut1(.cclk(p1),.p_cin(p2),.p_op1(p5),.p_op2(p3),.p_res(p4),.p_cout(p6),.p_sel(p7));
+  a (){}
+};
+
+
+csl_vector v_stim{
+  v_stim(){
+    set_unit_name(u_alu);
+    set_direction(input);
+    set_vc_output_filename("alu_stim");
+  }
+};
+
+csl_vector v_expect{
+  v_expect(){
+    set_unit_name(u_alu);
+    set_direction(output);
+    set_vc_output_filename("alu_expect");
+  }
+};
+
+csl_testbench tb_alu{
+  csl_signal cclk(reg);
+  u_alu alu(.cclk(cclk));
+  tb_alu(){
+    cclk.set_attr(clock);
+    add_logic(clock,cclk,100,ps);
+  }
+};

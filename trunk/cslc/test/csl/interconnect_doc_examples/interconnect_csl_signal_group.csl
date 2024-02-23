@@ -1,0 +1,29 @@
+csl_interface ifc1 {
+  csl_port x(input), y(input), z(output);
+  ifc1(){}
+};
+csl_interface ifc2 {
+  csl_port x(output), y(output), z(input);
+  ifc2(){}
+};
+csl_unit u1{
+  ifc1 ifc11;
+  u1(){}
+};
+csl_unit u2{
+  ifc2 ifc22;
+  u2(){}
+};
+
+
+csl_signal_group sg{
+  csl_signal x, y, z;
+  sg(){}
+};
+
+csl_unit top{
+  sg sg1;
+   u1 u1( .ifc11(sg1));
+   u2 u2( .ifc22(sg1));
+  top(){ }
+};

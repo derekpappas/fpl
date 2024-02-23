@@ -1,0 +1,49 @@
+//isa_field_obj_name.get_enum_item(enum_item_name)
+
+csl_enum e_op{ 
+  ALU, 
+  MOV, 
+    BR
+};
+
+csl_isa_field f_op{
+  f_op(){
+    set_width(2);
+    set_enum(e_op);
+    set_type(opcode);
+  }
+};
+csl_isa_field f_op2{
+ f_op2(){
+    set_width(3);
+    set_enum(e_op);
+    set_type(opcode);
+  }
+};
+
+
+csl_isa_element isa { 
+  isa() { 
+    set_type(root_format); 
+    set_width(32); 
+  }
+};
+
+csl_isa_element f1: isa { 
+  f_op f_op; 
+  f1() { 
+    set_type(instr_format); 
+    set_position(f_op, 30); 
+    f_op.set_enum_item(MOV); 
+  }
+}; 
+
+csl_isa_element f2: f1 { 
+  f_op2 f_op2; 
+  f2() { 
+    set_type(instr_format); 
+    set_position(f_op2, 20); 
+    f_op2.set_enum_item(f_op.get_enum_item()); 
+  }
+}; 
+

@@ -1,0 +1,24 @@
+ module new TOP v
+  load symbol unitX v HIERBOX \
+      port A in \
+      port B in port C in port D out
+  load symbol unitY v HIERBOX \
+      port A in port B in port C in port D out
+  load symbol unitZ v HIERBOX \
+      port A in port B in port C in port D out
+  load inst x unitX v
+  load inst x.y unitY v
+  load inst x.y.z unitZ v
+
+  load net a -hierPin x A -pin x.y A
+  load net b -hierPin x B -pin x.y B
+  load net c -hierPin x C -pin x.y C
+  load net d -hierPin x D -pin x.y D
+
+  load net a -hierPin x.y A -pin x.y.z A
+  load net b -hierPin x.y B -pin x.y.z B
+  load net c -hierPin x.y C -pin x.y.z C
+  load net d -hierPin x.y D -pin x.y.z D
+
+  loadhier .
+  show

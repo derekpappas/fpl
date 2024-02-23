@@ -1,0 +1,18 @@
+//oanab
+//18 ian 2008
+//illegal to use connect for 2 ports in the same instance
+
+csl_unit u1 {
+  csl_port x1(input,4),x2(output,4);
+  u1 () {}
+};
+
+csl_unit u {
+  csl_signal y1(wire),y2(wire);
+  u1 u1_0;
+  u1 u1_1;
+  u () {
+    u1_0.x1.connect(u1_0.x2); // x1 and x2 from the same instance u1_0
+    u1_1.x2.connect(y1);
+}
+};

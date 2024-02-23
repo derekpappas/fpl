@@ -1,0 +1,10 @@
+//author: Ines
+//testing: csl_multi_dim_bitrange obj_name(multi_dim_br_obj);
+//         - param multi dimensional br object - copy constructor;
+
+
+csl_multi_dim_bitrange obj_name(10);
+
+csl_multi_dim_bitrange obj_name1(bla);
+
+csl_multi_dim_bitrange obj_name2( );

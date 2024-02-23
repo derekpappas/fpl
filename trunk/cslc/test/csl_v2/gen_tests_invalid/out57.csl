@@ -1,0 +1,136 @@
+csl_enum oe {
+	so,
+	og,
+	bq,
+	vs,
+	vi,
+	kj,
+	io,
+	bo,
+	hy,
+	wg
+};
+csl_enum ak {
+	oi,
+	uf,
+	yw,
+	mn,
+	di,
+	fr
+};
+csl_enum qi {
+	km,
+	bh,
+	uo,
+	sf,
+	dt,
+	vk,
+	vt,
+	tx,
+	ei,
+	jb,
+	pi
+};
+csl_isa_instruction_format tu{
+    tu( ){
+     set_width( 7);
+  }
+}
+;
+csl_isa_instruction kx : tu{
+    kx( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa_instruction wt : tu{
+    wt( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa vw{
+    vw( ){
+     set_decoder_out_name_prefix( "ys");
+     set_decoder_out_name_suffix( "nl");
+     generate_decoder( or);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo bl{
+   bl( ){
+     add_logic( depth_extend, 8);
+  }
+}
+;
+csl_memory_map_page vm{
+    vm( ){
+     set_access_rights( none, none);
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 0);
+     set_endianess( little_endian);
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page ed{
+  vm fe;
+  vm dq;
+    ed( ){
+     add_address_range( 4, 5);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page vo{
+    vo( ){
+     add_address_range( 5, 9);
+     set_next_address( 1);
+     get_next_address( );
+     set_access_rights( none, access_write);
+     add_reserved_address_range( 9, 0);
+     add( bl, "gw", 4);
+     add( vm);
+     get_lower_bound( );
+     get_data_word_wodth( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map pf{
+    pf( ){
+     auto_gen_memory_map( );
+     set_top_unit( vxslmo);
+     set_type( hierach);
+vm.set_access_rights_enum( vm); 
+     set_data_word_width( 9);
+     get_data_word_width( );
+     set_suffix( di);
+  }
+}
+;
+csl_register ax{
+    ax( ){
+     set_type( EVNT);
+     get_atributes( );
+     add_logic( serial_output);
+     add_logic( wr_en);
+     init_value( 0);
+     add_logic( gray_output);
+     set_count_amount( 1);
+     set_end_value( 3);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register np{
+    np( ){
+     set_width( 2);
+     add_logic( read_valid);
+     create_rtl_module( );
+  }
+}
+;

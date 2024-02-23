@@ -1,0 +1,22 @@
+//oanab
+//3 ian 2008
+
+csl_signal_group sg1{
+  csl_signal a,b,c;
+  sg1() {}
+};
+
+csl_signal_group sg2{
+  csl_signal x,y(5),z;
+  sg1 sg;
+  sg2() {}
+};
+
+csl_unit u{
+  sg2 sg2;
+  u() {
+    sg2.x.set_type(wire);
+    sg2.sg.a.set_type(reg);
+    sg2.y = {sg2.x,sg2.z,sg2.sg.a,sg2.sg.b,sg2.sg.c};
+  }
+};

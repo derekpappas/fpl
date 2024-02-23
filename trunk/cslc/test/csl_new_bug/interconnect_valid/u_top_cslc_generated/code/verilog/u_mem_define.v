@@ -1,0 +1,17 @@
+`ifndef INC_GUARD_u_mem
+`define INC_GUARD_u_mem
+
+`define P_P_DATA_IN_UPPER_INDEX  (data-1)
+`define P_P_DATA_IN_LOWER_INDEX  (0)
+`define P_P_DATA_IN_WIDTH  (data)
+`define P_P_DATA_IN_RANGE `P_P_DATA_IN_UPPER_INDEX:`P_P_DATA_IN_LOWER_INDEX
+`define P_P_ADDR_UPPER_INDEX  (addr-1)
+`define P_P_ADDR_LOWER_INDEX  (0)
+`define P_P_ADDR_WIDTH  (addr)
+`define P_P_ADDR_RANGE `P_P_ADDR_UPPER_INDEX:`P_P_ADDR_LOWER_INDEX
+`define P_P_DATA_OUT_UPPER_INDEX  (data-1)
+`define P_P_DATA_OUT_LOWER_INDEX  (0)
+`define P_P_DATA_OUT_WIDTH  (data)
+`define P_P_DATA_OUT_RANGE `P_P_DATA_OUT_UPPER_INDEX:`P_P_DATA_OUT_LOWER_INDEX
+
+`endif

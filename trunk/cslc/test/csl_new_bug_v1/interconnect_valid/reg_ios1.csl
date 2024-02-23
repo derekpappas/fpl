@@ -1,0 +1,21 @@
+//oanab
+//31 may 2008
+
+csl_interface ifc {
+  csl_port p(input);
+  ifc () {}
+};
+
+csl_unit a {
+  csl_signal clk;
+  //  csl_signal rst,enable;
+  ifc ifc0;
+  a () {
+    clk.set_attr(clock);
+    //  rst.set_attr(reset);
+    //   enable.set_attr(en);
+    ifc0.set_clock(clk);
+    ifc0.register_ios(input,.reset(rst),3,.en(enable));
+    ifc0.p = clk;
+  }
+};

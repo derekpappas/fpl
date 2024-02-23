@@ -1,0 +1,24 @@
+//illegal: adding a unit to a memory map page that does not exist
+//andreim
+ 
+csl_register_file rf1{
+        rf1(){
+            set_width(64); set_depth(4);
+        }
+};
+
+csl_memory_map_page page0{
+	page0(){
+		add_address_range(0,3);
+		set_endianess(big_endian);
+		set_data_word_width(64);
+	}
+};
+
+csl_memory_map mm{
+	page1 page_1(rf1);       // page1 does not exist
+	mm(){
+	set_type(flat);
+  set_data_word_width(128);
+  }
+};

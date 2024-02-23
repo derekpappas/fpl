@@ -1,0 +1,36 @@
+//
+
+csl_unit dut{
+  csl_port stim_i(input),exp_o(output);
+  csl_port clk(input);
+  csl_signal s1,s2,clk1;
+  dut(){
+    clk.set_attr(clock);
+    stim_i = s2;
+    s1 = exp_o;
+    clk = clk1;
+ }
+};
+csl_signal trigg(wire);
+csl_vector stim{
+  stim(){
+    set_unit_name(dut);
+    set_direction(input);
+    set_vc_start_generation_trigger(trigg);
+    set_vc_max_cycles(100);
+  }
+};
+csl_vector exp{
+  exp(){
+    set_unit_name(dut);
+    set_direction(output);      
+ }
+};
+csl_testbench tb{
+csl_signal clk(reg);
+dut dut_1(.clk(clk));
+tb(){
+  clk.set_attr(clock);
+  add_logic(clock,clk,100,ps);
+}
+};

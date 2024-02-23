@@ -1,0 +1,117 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="chip">
+<port name="p_clock" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="p_reset" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="p_enable" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="p_data_in" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+<port name="p_data_out" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="p_stall_chip" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<interface name="ifc_pclm" >
+<port name="p_unitOut" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="p_unitIn" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifc_lmid" >
+<port name="p_unitOut" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="p_unitIn" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifc_idrf" >
+<port name="p_unitOut" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="p_unitIn" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifc_rfalu" >
+<port name="p_unitOut" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="p_unitIn" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<signal name="sgn_clk" offset="0" upper="0" lower="0" type = "wire" attr = "clk"/>
+<signal name="sgn_reset" offset="0" upper="0" lower="0" type = "wire" attr = "rst"/>
+<signal name="sgn_stall" offset="0" upper="0" lower="0" type = "wire" attr = "stall"/>
+<instantiation type = "u_pc">
+<instance name="pc">
+<f2a formal = "ifc_pc.p_clk" actual = "sgn_clk" />
+<f2a formal = "ifc_pc.p_rst" actual = "sgn_reset" />
+<f2a formal = "ifc_pc.p_stall" actual = "sgn_stall" />
+<f2a formal = "ifc_unit_pc_r" actual = "ifc_pclm" />
+</instance>
+</instantiation>
+<instantiation type = "u_im">
+<instance name="im">
+<f2a formal = "ifc_im.p_clk" actual = "sgn_clk" />
+<f2a formal = "ifc_im.p_rst" actual = "sgn_reset" />
+<f2a formal = "ifc_im.p_stall" actual = "sgn_stall" />
+<f2a formal = "ifc_unit_im_l.p_unitIn" actual = "p_data_in" />
+<f2a formal = "ifc_unit_im_l.p_unitOut" actual = "p_data_out" />
+<f2a formal = "ifc_unit_im_r" actual = "ifc_lmid" />
+</instance>
+</instantiation>
+<instantiation type = "u_id">
+<instance name="id">
+<f2a formal = "ifc_id.p_clk" actual = "sgn_clk" />
+<f2a formal = "ifc_id.p_rst" actual = "sgn_reset" />
+<f2a formal = "ifc_id.p_stall" actual = "sgn_stall" />
+<f2a formal = "ifc_unit_id_l.p_unitIn" actual = "p_data_in" />
+<f2a formal = "ifc_unit_id_l.p_unitOut" actual = "p_data_out" />
+<f2a formal = "ifc_unit_id_r" actual = "ifc_idrf" />
+</instance>
+</instantiation>
+<instantiation type = "u_rf">
+<instance name="rf">
+<f2a formal = "ifc_rf.p_clk" actual = "sgn_clk" />
+<f2a formal = "ifc_rf.p_rst" actual = "sgn_reset" />
+<f2a formal = "ifc_rf.p_stall" actual = "sgn_stall" />
+<f2a formal = "ifc_unit_rf_l.p_unitIn" actual = "p_data_in" />
+<f2a formal = "ifc_unit_rf_l.p_unitOut" actual = "p_data_out" />
+<f2a formal = "ifc_unit_rf_r" actual = "ifc_rfalu" />
+</instance>
+</instantiation>
+<instantiation type = "u_alu">
+<instance name="alu">
+<f2a formal = "ifc_alu.p_clk" actual = "sgn_clk" />
+<f2a formal = "ifc_alu.p_rst" actual = "sgn_reset" />
+<f2a formal = "ifc_alu.p_stall" actual = "sgn_stall" />
+<f2a formal = "ifc_unit_alu_l.p_unitIn" actual = "p_data_in" />
+<f2a formal = "ifc_unit_alu_l.p_unitOut" actual = "p_data_out" />
+<f2a formal = "ifc_unit_alu_r.p_unitIn" actual = "p_data_in" />
+<f2a formal = "ifc_unit_alu_r.p_unitOut" actual = "p_data_out" />
+</instance>
+</instantiation>
+<instantiation type = "pc_reg">
+<instance name="pc_reg">
+<f2a formal = "clock" actual = "p_clock" />
+<f2a formal = "enable" actual = "p_enable" />
+<f2a formal = "reg_in" actual = "p_data_in" />
+<f2a formal = "reg_out" actual = "p_data_out" />
+<f2a formal = "reset_" actual = "p_reset" />
+</instance>
+</instantiation>
+<instantiation type = "rf_reg">
+<instance name="rf_reg">
+<f2a formal = "clock" actual = "p_clock" />
+<f2a formal = "enable" actual = "p_enable" />
+<f2a formal = "reg_in" actual = "p_data_in" />
+<f2a formal = "reg_out" actual = "p_data_out" />
+<f2a formal = "reset_" actual = "p_reset" />
+</instance>
+</instantiation>
+<instantiation type = "alu_reg">
+<instance name="alu_reg">
+<f2a formal = "clock" actual = "p_clock" />
+<f2a formal = "enable" actual = "p_enable" />
+<f2a formal = "reg_in" actual = "p_data_in" />
+<f2a formal = "reg_out" actual = "p_data_out" />
+<f2a formal = "reset_" actual = "p_reset" />
+</instance>
+</instantiation>
+<instantiation type = "r_shr">
+<instance name="r_shr">
+<f2a formal = "clock" actual = "p_clock" />
+<f2a formal = "enable" actual = "p_enable" />
+<f2a formal = "reg_in" actual = "p_data_in" />
+<f2a formal = "reg_out" actual = "p_data_out" />
+<f2a formal = "reset_" actual = "p_reset" />
+</instance>
+</instantiation>
+<assign-stmt lhs="sgn_stall" rhs="p_stall_chip"/>
+</unit>
+</design>

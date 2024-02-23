@@ -1,0 +1,39 @@
+//csl_signal signal_object_name0(signal_object_name1); example 
+//(from old csl_interconnect.fm docs) modified after the new sintax
+//monicah
+//30 August 2007
+
+csl_unit comparator1{
+	csl_port y(input), z1(input),  t1(output);
+	comparator1(){
+	}
+};
+csl_unit comparator2{
+	csl_port x(input), z2(input),  t2(output);
+	comparator2(){
+	}
+};
+csl_unit u{
+	csl_port p_z1(input),  p_z2(input), p_t1(output), p_t2(output);
+	csl_signal x(wire,4), y(x), z1(x), z2(x), t1(x), t2(x);
+  	comparator1 comparator1_i(.z1(z1), .y(y));
+  	comparator2 comparator2_i(.z2(z2), .x(x));
+	u(){				
+	}
+};
+
+  csl_unit ref{
+  	csl_port x(output);
+  	csl_port y(input);
+  	ref(){
+  	}
+  };
+  
+  csl_unit top{
+    comparator1 comp1;
+    comparator2 comp2;
+    u u0;
+    ref ref;
+    top(){}
+  };
+  

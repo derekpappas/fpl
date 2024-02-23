@@ -1,0 +1,133 @@
+csl_enum yg {
+	ej = 1,
+	lx = 59,
+	cs = 34,
+	id = 66,
+	fk = 21,
+	br = 92,
+	wq = 84,
+	hh = 89,
+	xk = 23,
+	rc = 76,
+	an = 7
+};
+csl_enum xf {
+	ry = 82,
+	uy = 28,
+	ft = 34,
+	hj = 41,
+	fs = 93,
+	jh = 57,
+	os = 15,
+	kt = 65,
+	fn = 92,
+	oc = 4,
+	hv = 26,
+	mf = 81,
+	ie = 64,
+	hi = 52,
+	rh = 98,
+	nm = 4,
+	il = 58,
+	nn = 38
+};
+csl_enum fv {
+	an,
+	qj,
+	uf,
+	ci,
+	cj,
+	xq
+};
+csl_isa_instruction_format py{
+    py( ){
+     set_width( 2);
+     generate_decoder( oqvdwmdd);
+  }
+}
+;
+csl_isa dh{
+    dh( ){
+     set_decoder_name( "mo");
+     set_decoder_out_name_prefix( "bh");
+     set_decoder_out_name_suffix( "tg");
+     generate_decoder( oqvddd);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo lp{
+   lp( ){
+     add_logic( width_extend, 0);
+     add_logic( stall_rd_side);
+     add_logic( wr_credit);
+  }
+}
+;
+csl_memory_map_page cw{
+    cw( ){
+     add_address_range( 5, 1);
+     set_address_increment( 6);
+     get_address_increment( );
+     set_access_rights( access_read, none);
+     add_reserved_address_range( 0, 5);
+     add( lp, "sl");
+     get_upper_bound( );
+  }
+}
+;
+csl_memory_map_page gt{
+    gt( ){
+     add_address_range( 4, 1);
+     get_address_increment( );
+     add_reserved_address_range( 1, 9);
+     get_upper_bound( );
+     set_aligment( 7);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page pw{
+    pw( ){
+     get_upper_bound( );
+     set_data_word_width( 8);
+     get_aligment( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map wd{
+  cw wy;
+  gt re;
+  pw pi;
+  pw aj;
+    wd( ){
+     auto_gen_memory_map( );
+     set_top_unit( vdwmdd);
+cwgt.add_to_memory_map( access_read_write); 
+cwgt.set_access_rights_enum( cwgt); 
+     set_data_word_width( 4);
+     get_data_word_width( );
+  }
+}
+;
+csl_register px{
+    px( ){
+     init_value( 8);
+     set_lock_enable_bit( 3);
+     add_logic( gray_output);
+     set_start_value( 2);
+     add_logic( cnt_dir_signal);
+  }
+}
+;
+csl_register qf{
+    qf( ){
+     set_width( 7);
+     get_width( );
+     create_rtl_module( );
+     set_const_value( 8);
+  }
+}
+;

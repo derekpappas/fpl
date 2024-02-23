@@ -1,0 +1,145 @@
+csl_enum wc {
+	bl = 3,
+	wt = 63,
+	du = 57,
+	he = 93,
+	kp = 82
+};
+csl_enum kp {
+	ri = 92,
+	lc = 5,
+	dh = 23,
+	oq = 60,
+	lm = 23,
+	un = 48,
+	qe = 91,
+	yh = 82,
+	ev = 38,
+	kh = 76,
+	jh = 75,
+	en = 3,
+	en = 33,
+	tq = 11,
+	de = 5
+};
+csl_enum iu {
+	mu,
+	ar,
+	eo,
+	kp,
+	dg,
+	fu,
+	me,
+	er,
+	do,
+	bo
+};
+csl_isa_instruction_format lq{
+    lq( ){
+     set_width( 2);
+     generate_decoder( geai);
+  }
+}
+;
+csl_isa_instruction ix : lq{
+    ix( ){
+    set_asm_mnemonic( ss);
+  }
+}
+;
+csl_isa_instruction da : lq{
+    da( ){
+    set_asm_mnemonic( csl_list "tl", "ke", "hd", "yd");
+  }
+}
+;
+csl_isa qt{
+    qt( ){
+     set_decoder_name( "rg");
+     set_decoder_out_name_prefix( "wy");
+     set_decoder_out_name_suffix( "rf");
+     generate_decoder( jtvr);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo yy{
+   yy( ){
+     add_logic( sync_fifo);
+     add_logic( parallel_input, all);
+     add_logic( credit);
+  }
+}
+;
+csl_memory_map_page kk{
+    kk( ){
+     set_next_address( 1);
+     get_upper_bound( );
+     set_data_word_width( 0);
+     set_aligment( 2);
+     get_aligment( );
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page xf{
+    xf( ){
+     add_address_range( 8, 5);
+     get_address_increment( );
+     set_next_address( 3);
+     get_next_address( );
+     set_access_rights( access_read_write, access_read);
+     add_reserved_address_range( 9, 9);
+     get_upper_bound( );
+     set_data_word_width( 5);
+     get_data_word_wodth( );
+     set_aligment( 1);
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page ed{
+    ed( ){
+     add_address_range( 3, 1);
+     set_address_increment( 9);
+     get_address_increment( );
+     set_next_address( 9);
+     get_next_address( );
+     set_aligment( 0);
+     get_aligment( );
+     set_endianess( big_endianlittle_endian);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map wl{
+    wl( ){
+     auto_gen_memory_map( );
+     set_top_unit( geai);
+kkxf.set_access_rights_enum( ed); 
+     set_data_word_width( 0);
+     get_data_word_width( );
+  }
+}
+;
+csl_register qd{
+    qd( ){
+     set_type( DFF);
+     set_address( wl, );
+     constant( 5);
+     add_logic( serial_output);
+     reset_value( 4);
+     set_lock_enable_bit( 8);
+     stop_at_end_value( );
+     add_logic( cnt_dir_signal);
+  }
+}
+;
+csl_register ej{
+    ej( ){
+  }
+}
+;

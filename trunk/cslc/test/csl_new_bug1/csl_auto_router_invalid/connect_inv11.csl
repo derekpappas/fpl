@@ -1,0 +1,22 @@
+//oanab
+//1 feb 2008
+//signal and port have different widths
+
+csl_interface ifc {
+  csl_port x(input),y(output,3);
+  ifc () {}
+};
+
+csl_unit u {
+  ifc ifc;
+  u () {}
+};
+
+csl_unit top {
+  u u;
+  csl_signal s;
+  top () {
+    u.ifc.y.connect(s); // s and y have different widths
+    s.set_width(2);
+  }
+};

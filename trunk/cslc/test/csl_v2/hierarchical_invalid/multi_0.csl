@@ -1,0 +1,124 @@
+// Author : CristiL
+//
+// multi hierarchies
+
+csl_bitrange bitrange(32);
+
+csl_interface interfaceA {
+
+ csl_port portA0(input);
+
+  interfaceA() {
+     
+    portA0.set_bitrange(bitrange);
+
+  }
+
+};
+
+csl_interface interfaceB {
+
+  interfaceB interfaceB0;
+  
+  interfaceB() {
+  }
+
+};
+
+csl_enum enumA {
+  a=0,
+  b=1
+};
+
+csl_field fieldA {
+
+  fieldA() {
+    set_enum(enumA);
+  }
+
+};
+
+csl_field fieldB {
+  
+  fieldA fieldA0;
+
+  fieldB() {
+  }        
+
+};
+
+csl_signal_group signalGroupA {
+
+  csl_signal signalA0(wire,32);
+
+  signalGroupA() {
+    signalA0.set_bitrange(bitrange);
+  }
+
+};
+
+csl_signal_group signalGroupB {
+  
+  signalGroupA signalGroupA0;
+
+  signalGroupB signalGroupB0;
+  
+  signalGroupB() {
+  }
+
+};
+
+//   
+//                                              unitTop
+//       _________________________________________|_____________________________________
+//      /              |                       |                                        \
+//     |               |                       |                                         |
+//  signalA1        fieldB0                interfaceB0                             signalGroupB0   
+//     |               |                       |                                         |                                       
+//     |               |                       |                             ____________|_____________           
+//  fieldB0         fieldA0                interfaceA0                      /                          \                 
+//     |               |                       |                           |                            |     
+//     |               |                  _____|_____                 signalGroupA0                signalGroupB0          
+//  fieldA0          enumA               /           \                     |                            | 
+//     |                                |             |              ______|______                      |
+//     |                             bitrange       portA0          /             \                signalGroupA0
+//   enumA                                            |            |               |                    |                        
+//                                                    |         bitrange        signalA0          ______|______           
+//                                                 bitrange                        |             /             \     
+//                                                                                 |            |               |    
+//                                                                              bitrange     bitrange        signalA0
+//                                                                                                              |    
+//                                                                                                              |    
+//                                                                                                           bitrange                 
+
+csl_unit unitTop {
+  
+  signalGroupB signalGroupB0;
+
+  interfaceB   interfaceB0;
+
+  fieldB fieldB0;
+
+  csl_signal signalA1(wire,32);
+  
+   
+  unitTop() {
+
+    //  signalA1.set_field(fieldB0);    
+
+    //  signalA1.fieldB0.fieldA0.set_enum(fieldB0.fieldA0.get_enum());
+
+    interfaceB0.interfaceA0.bitrange.set_msb(2);
+    
+    interfaceB0.interfaceA0.portA0.bitrange.set_msb(3);
+
+    signalGroupB0.signalGroupA0.bitrange.set_lsb(4);
+    
+    signalGroupB0.signalGroupA0.signalA0.bitrange.set_lsb(5);
+
+    signalGroupB0.signalGroupB0.signalGroupA0.bitrange.set_lsb(4);
+
+    signalGroupB0.signalGroupB0.signalGroupA0.signalA0.bitrange.set_lsb(8);
+
+  }
+};

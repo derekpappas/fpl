@@ -1,0 +1,22 @@
+// ILLEGAL TEST - because I called set_next cmd without call
+// set_field_position, and the params are wrongs. 
+
+csl_field fa{
+   fa(){
+     set_width(3);
+   }
+ };
+
+csl_field f1{
+  fa fa_1;
+  f1(){
+  }
+};
+
+csl_field f2{
+  f1 f1_1;
+  f2(){
+   set_width(32);
+    f1_1.set_next(f1_1.fa_1, f1_1.fa_1);
+  }
+};

@@ -1,0 +1,36 @@
+//Petronela
+//the add_logic cmds  must be called inside the constructor not for a fifo instance
+csl_fifo f1{
+  f1(){
+    set_width(24);
+    set_depth(10);
+  //  set_physical_implentation(FFA);
+    
+  }
+};
+ 
+csl_fifo f2{
+  f2(){
+    set_width(12);
+    set_depth(10);
+  }
+};
+
+csl_unit u1{
+  f1 f1;
+  f2 f2;
+  u1(){
+    f1.add_logic(priority_bypass);
+    f1.add_logic(sync_fifo);
+    f1.add_logic(depth_extend,8);
+    f1.add_logic(width_extend,6);
+    f1.add_logic(wr_hold,9);
+    f1.set_prefix("abc");
+    f2.add_logic(parallel_output,all);
+    f2.add_logic(parallel_input,all);
+    f2.add_logic(rd_words,0,29);
+    f2.add_logic(wr_words,0,32);
+    f2.add_logic(sram_rd);
+    f2.add_logic(sram_wr);
+  }
+};

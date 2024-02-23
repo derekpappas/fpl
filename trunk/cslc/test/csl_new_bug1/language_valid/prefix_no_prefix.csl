@@ -1,0 +1,34 @@
+     // costelc
+// no_prefix()  methods    
+csl_interface ifc1{
+  csl_port p1_ifc1(input,8); 
+  csl_port p2_ifc1(output,8);
+  ifc1() {
+    no_prefix();          
+  }
+};
+
+csl_interface ifc2{
+  csl_port p1_ifc2(input,8); 
+  csl_port p2_ifc2(output,8);
+  ifc1 ifc1;
+  ifc2() {
+    set_prefix("");       
+}
+};
+
+csl_interface ifc3{
+  csl_port p1_ifc3(input,8); 
+  csl_port p2_ifc3(output,8);
+  ifc2 ifc2;
+  ifc3() {}
+};
+  
+csl_unit top{
+  ifc3 ifc30;
+  ifc3 ifc31;                
+ top(){  
+    ifc30 = ifc31;
+  }
+};
+

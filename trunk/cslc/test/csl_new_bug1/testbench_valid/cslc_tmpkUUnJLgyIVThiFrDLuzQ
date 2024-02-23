@@ -1,0 +1,50 @@
+# "/opt/he_fpl_svn/fpl_repo/cslc/test/csl_new_bug1/testbench_valid/./bug_unfil2.csl" 1
+
+
+csl_enum width{
+  data_w=8
+    };
+csl_register reg1{
+  reg1(){
+    set_type(register);
+    set_width(8);
+
+  }
+};
+
+csl_unit u_dut{
+  csl_port p_clk(input);
+  csl_port p_data_in(input,8);
+  csl_port p_data_out(output,data_w);
+  csl_port p_enable(input);
+  csl_port p_reset(input);
+  csl_signal s_data(8);
+
+  reg1 reg11(.reg_in(p_data_in),.reg_out(s_data),.reset_(p_reset),.enable(p_enable),.clock(p_clk));
+  reg1 reg12(.reg_in(s_data),.reg_out(p_data_out),.reset_(p_reset),.enable(p_enable),.clock(p_clk));
+  u_dut(){
+    p_clk.set_attr(clock);
+  }};
+
+csl_vector stim_vec{
+  stim_vec(){
+    set_unit_name(u_dut);
+    set_direction(input);
+  }};
+csl_vector exp_vec{
+  exp_vec(){
+    set_unit_name(u_dut);
+    set_direction(output);
+  }};
+
+csl_testbench tb_reg{
+  csl_signal p_clk(reg);
+
+  u_dut dut(.p_clk(p_clk));
+  tb_reg(){
+    p_clk.set_attr(clock);
+    add_logic(clock,p_clk,10,ns);
+    add_logic(generate_report);
+    set_testbench_verilog_filename("my_test");
+  }
+};

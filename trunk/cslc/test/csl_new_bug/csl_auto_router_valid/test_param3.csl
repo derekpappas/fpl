@@ -1,0 +1,27 @@
+//Monica
+// 10.03.2009
+
+csl_interface ifca {
+  csl_parameter w5(19);
+  csl_port p_ifc5(output,w5);  //error here when csl_parameter is used
+ // csl_port p_ifc5(output,19); --in this case there is no eror
+  ifca() {
+  }
+ };
+
+ csl_interface ifcb {
+  csl_port p_ifc5(input,19);
+  ifcb() {
+  }
+ };
+
+ csl_unit unit_a {
+   ifca ifcai;
+   unit_a(){
+  }
+   };
+ csl_unit unit_b {
+   ifca ifcai;
+   unit_a a0(.ifcai(ifcai));
+   unit_b(){}
+   };

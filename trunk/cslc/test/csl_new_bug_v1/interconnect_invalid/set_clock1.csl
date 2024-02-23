@@ -1,0 +1,19 @@
+//oanab
+//10 july 2008
+
+csl_register reg {
+  reg () {
+    set_width(18);
+    set_type(register);
+    //   set_clock(clk);
+  }
+};
+
+csl_unit a {
+  csl_port clk(input);
+  reg reg0;
+  a () {
+    clk.set_attr(clock);
+    reg0.set_clock(clk);
+   }
+};

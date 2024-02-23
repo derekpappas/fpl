@@ -1,0 +1,8 @@
+# This is the input test file for COmExprValInt class
+# <> means obligatoty
+# [] means optional
+# Syntax: ( <NUMBER_STRING> <NUMBER_BASE> <NUMBER_SIZE> <RETURN_VALUE> <IS_CONST> )
+# examples:
+
+( 123 3 32 123 1)
+( 100 1 32 4 1)

@@ -1,0 +1,15 @@
+g++  -I/opt/tools/systemc/systemc-2.2.0/objdir/include/ \
+-I$WORK/trunk/src/cdom/ \
+-I/opt/tools/systemc/systemc-2.2.0/objdir/include \
+-I/opt/tools/systemc/scv/scv-1.0p2-sysc2.2/src/ \
+-I/opt/tools/systemc/systemc-2.2.0/src/sysc/tracing/ 
+-c $WORK/trunk/src/cdom/SystemCVectorWriterTrace.cpp  
+
+g++ main.cpp SystemCVectorWriterTrace.o \
+-I/opt/tools/systemc/systemc-2.2.0/objdir/include/ \
+-L/opt/tools/systemc/systemc-2.2.0/objdir/lib-linux64/ -lsystemc \
+-I$WORK/trunk/src/cdom/ \
+-I/opt/tools/systemc/systemc-2.2.0/objdir/include \
+-I/opt/tools/systemc/scv/scv-1.0p2-sysc2.2/src/ \
+-I /opt/tools/systemc/systemc-2.2.0/src/sysc/tracing/
+

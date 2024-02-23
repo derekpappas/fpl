@@ -1,0 +1,883 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="GENERATOR" content="Quadralay WebWorks Publisher Standard Edition 7.0.6.1257">
+<meta name="TEMPLATEBASE" content="Dynamic HTML Standard Edition">
+<meta name="LASTUPDATED" content="09/10/07 12:20:53">
+<link rel="StyleSheet" href="standard.css" type="text/css" media="screen">
+<title>1.1 CSL Auto Router Command Summary  </title>
+</head>
+
+<body background="images/backgrnd.gif">
+
+<table width="331" border="0" align="right" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><a href="csl_language.html"><img src="images/navtoc.gif" width="84" height="23"
+    border="0" alt="TOC"> </a></td>
+    <td><a href="csl_fifo.html"><img src="images/navprev.gif" width="81" height="23"
+    border="0" alt="PREV"> </a></td>
+    <td><a href="csl_verification_components.html"><img src="images/navnext.gif" width="81" height="23"
+    border="0" alt="NEXT"> </a></td>
+    <td><a href="CmdBookLOF.html"><img src="images/navidx.gif" width="85" height="23"
+    border="0" alt="INDEX"> </a></td>
+  </tr>
+</table>
+
+<p><img src="images/wwplogo.gif" width="122" height="63" alt="Put your logo here!"></p>
+<hr align="left">
+
+<blockquote>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 2pt; margin-left: 0pt; margin-right: 0pt; margin-top: 6pt; text-align: justify; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="623583"> </a>CHAPTER 1   CSL Auto Router<br>
+</div>
+<p class="Body">
+  <a name="616217"> </a>
+</p>
+<p class="Body">
+  <a name="647475"> </a>All rights reservedCopyright  ©2006 Fastpath Logic, Inc. Copying in any form without the expressed written permission of Fastpath Logic, Inc is prohibited
+</p>
+<p class="Body">
+  <a name="646718"> </a>
+</p>
+<p class="Body">
+  <a name="657741"> </a>
+</p>
+<p class="Body">
+  <a name="657770"> </a>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <caption><a name="846249"> </a><div class="TableTitle">TABLE 1.1  Chapter Overview</div></caption>
+  <tr>
+    <td><a name="846251"> </a><div class="CellBody"><a href="csl_auto_router.html#795465">&#160;1.1  CSL Auto Router Command Summary</a></div></td>
+  </tr>
+  <tr>
+    <td><a name="846253"> </a><div class="CellBody"><a href="csl_auto_router.html#797037">&#160;1.2  CSL Auto Router Commands</a></div></td>
+  </tr>
+</table>
+
+
+
+
+</p>
+<h2 class="Heading1">
+  <a name="795465"> </a>1.1  CSL Auto Router Command Summary
+</h2>
+<p class="Body">
+  <a name="744992"> </a>Unit: autoconnect
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="745000"> </a><a href="csl_auto_router.html#797039">unit_object_name.set_auto_router(ar_flag);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="744990"> </a><a href="csl_auto_router.html#789092">unit_object_name.auto_connect_filter(auto_connect_filter_enum);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789716"> </a><a href="csl_auto_router.html#789196">connection_object_name0.connect(connection_object_name1);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789720"> </a><a href="csl_auto_router.html#789533">connect(connection_object_name0,connection_object_name1);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789724"> </a><a href="csl_auto_router.html#789602">connection_object_name.connect({.formal_connection_object_name( actual_connection_object_name)}+);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="797035"> </a><a href="csl_auto_router.html#791269">autorouter_connect_bus_to_split_bus(ON|OFF);</a><br>
+</div>
+<h2 class="Heading1">
+  <a name="797037"> </a>1.2  CSL Auto Router Commands
+</h2>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="797039"> </a><span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">unit_object_name</span>.<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">set_auto_router(</span><span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">ar_flag</span><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">)</span>;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789096"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="789097"> </a>The <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">ar_flag</span> can be <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">on</span> or <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">off.</span>If <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">ar_flag</span> is <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">off</span>,the auto_router doesn't autoconnect the ports from that unit.If <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">ar_flag</span>  is <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">on</span>,it does.By default the <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">ar_flag</span>  is <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">on</span>.
+</p>
+<p class="Body">
+  <a name="847669"> </a>                                                                                                   [ <a href="csl_auto_router.html#795465"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Auto Router Command Summary</span></a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>]
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789098"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="789099"> </a>In the example below the unit named top contains three instances of the unit A.This unit can communicate to the outside through the input port p Because we have set to off  the auto_router for a1,the auto_router will connect only the ports from a0 and a2. 
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 5pt; margin-left: 72pt; margin-right: 0pt; margin-top: 5pt; text-align: justify; text-decoration: none; text-indent: -72pt; text-transform: none; vertical-align: baseline">
+<a name="789117"> </a>FIGURE 1.1  Figure before autorouting<br clear="all" /><table align="left"><tr><td><img src="images/csl_auto_router5.gif" height="84" width="432" align="left" border="0" hspace="0" vspace="0">
+</td></tr></table><br clear="all"> and after autorouting<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789120"> </a>CSL code:<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789121"> </a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789123"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_unit</span> a{<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846328"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_port</span> p(input, 4);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789124"> </a>a(){}<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846335"> </a>};<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846340"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_unit</span> top{<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846348"> </a>a a1;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846349"> </a>a a2;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846350"> </a>a a0;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789127"> </a>top(){<br>
+</div>
+<div style="color: #0000ff;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789129"> </a>a1.<span style="color: #0000ff;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">set_auto_router</span>(off);<br>
+</div>
+<a name="846375"> </a><div class="CellBody"><span style="color: #000000;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">   </span><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">auto_connect_filter(</span>CSL_CONNECT_PORTS_BY_NAME <span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span></div><div style="color: #0000ff;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789133"> </a><span style="color: #000000;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">}</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846357"> </a>};<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789135"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">Verilog</span> code:<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="797081"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789092"> </a><span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">unit_object_name</span><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">.auto_connect_filter(</span>auto_connect_filter_enum<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="737038"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="732603"> </a>Filters can be setup within a unit hierarchy and can be then passed as arguments to <span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">auto_connect_filter()</span> to achieve more control or impose restrictions over the auto connect process
+</p>
+<p class="Body">
+  <a name="785068"> </a>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <caption><a name="785106"> </a><div class="TableTitle">TABLE 1.2  Auto connect enums</div></caption>
+  <tr bgcolor="#CCCCCC">
+    <th><a name="785110"> </a><div class="CellHeading">Enum</div></th>
+    <th><a name="785112"> </a><div class="CellHeading">Description</div></th>
+  </tr>
+  <tr>
+    <td><a name="785114"> </a><div class="CellBody">CSL_CONNECT BY_NAME</div></td>
+    <td><a name="785116"> </a><div class="CellBody">Connects interfaces, signal groups, signals and ports by name</div></td>
+  </tr>
+  <tr>
+    <td><a name="785118"> </a><div class="CellBody">CSL_CONNECT_PORTS_BY_NAME </div></td>
+    <td><a name="785120"> </a><div class="CellBody">Connects ports by name</div></td>
+  </tr>
+  <tr>
+    <td><a name="789163"> </a><div class="CellBody">CSL_CONNECT_SIGNALS_BY_NAME</div></td>
+    <td><a name="789165"> </a><div class="CellBody">Connect signals and signal groups by name <span style="color: #ff0000;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">(is this feasible?</span>)</div></td>
+  </tr>
+  <tr>
+    <td><a name="789159"> </a><div class="CellBody">CSL_CONNECT_INTERFACES_BY_NAME</div></td>
+    <td><a name="789161"> </a><div class="CellBody">Connect interfaces by name</div></td>
+  </tr>
+  <tr>
+    <td><a name="785122"> </a><div class="CellBody">CSL_CONNECT_FUNCTION</div></td>
+    <td><a name="785124"> </a><div class="CellBody">Connects units, instances, interfaces, signal groups, signals by function connect()</div></td>
+  </tr>
+  <tr>
+    <td><a name="785126"> </a><div class="CellBody">VERILOG_CONNECT_BY_NAME</div></td>
+    <td><a name="785128"> </a><div class="CellBody">Connect only Verilog modules/instances/ports within the design</div></td>
+  </tr>
+  <tr>
+    <td><a name="789175"> </a><div class="CellBody">VERILOG_CONNECT_PORTS_BY_NAME</div></td>
+    <td><a name="789177"> </a><div class="CellBody">Connect only Verilog ports within the design</div></td>
+  </tr>
+  <tr>
+    <td><a name="785134"> </a><div class="CellBody">ALL_CONNECT_BY_NAME </div></td>
+    <td><a name="785136"> </a><div class="CellBody">Connect both CSL and Verilog connection objects</div></td>
+  </tr>
+  <tr>
+    <td><a name="788926"> </a><div class="CellBody">CREATE_NEW_ENDPOINT_PORTS</div></td>
+    <td><a name="788928"> </a><div class="CellBody">Connection objects which do not exist in a scope are infered to be ports. A new port objecft is generated in the scope.</div><a name="789182"> </a><div class="CellBody">isn't this already being done above ?</div></td>
+  </tr>
+</table>
+
+
+
+
+</p>
+<p class="Body">
+  <a name="847699"> </a>                       
+</p>
+<p class="Body">
+  <a name="847716"> </a>                                                                                                   [ <a href="csl_auto_router.html#795465"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Auto Router Command Summary</span></a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>]
+</p>
+<p class="Body">
+  <a name="847711"> </a>
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847691"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="847649"> </a>In this example two units <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">a0</span> and <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">a1</span> are connected by interfaces named <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">ifc</span>.
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 5pt; margin-left: 72pt; margin-right: 0pt; margin-top: 5pt; text-align: justify; text-decoration: none; text-indent: -72pt; text-transform: none; vertical-align: baseline">
+<a name="732605"> </a>FIGURE 1.2  <br clear="all" /><table align="left"><tr><td><img src="images/csl_auto_router2.gif" height="78" width="150" align="left" border="0" hspace="0" vspace="0">
+</td></tr></table><br clear="all"><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="732606"> </a>CSL code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846528"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_interface</span> ifc{<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846529"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_port</span> a(input, 4),b(input, 4);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846530"> </a>ifc(){}<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846526"> </a>      };<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846511"> </a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846539"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_unit</span> a{<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846535"> </a>ifc ifc;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846512"> </a>a(){}<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846514"> </a>};<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846515"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_unit</span> top{<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846516"> </a>a a0;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846517"> </a>a a1;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846519"> </a>top(){<br>
+</div>
+<div style="color: #0000ff;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846520"> </a><span style="color: #0000ff;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">auto_connect_filter(</span>CSL_CONNECT_BY_NAME <span style="color: #0000ff;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #0000ff;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846522"> </a><span style="color: #000000;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">}</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="846523"> </a>};<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="732608"> </a>V<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">erilog</span> code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="732599"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789196"> </a>connection_object_name0<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">.connect</span>(connection_object_name1);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789197"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="789198"> </a>All elements in the table below are objects (except elements that start with "list_of").
+</p>
+<p class="Body">
+  <a name="789199"> </a>The signal connection is used to create connections between signals. The signals can be ports or local signals. Connections to ports create the formal to actual mapping between the the port name and signal in the upper level unit. Note that actual names are really expressions. The types of expressions supported for the actual expressions are as follows:
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 2pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789200"> </a>	 signal<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 2pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789201"> </a>	 signal with bit range<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 2pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789202"> </a>	 expression (boolean operation on signals)<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 2pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789203"> </a>	 concatentation<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 2pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789204"> </a>	 signal name change <br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 2pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789205"> </a>	 constant<br>
+</div>
+<p class="Body">
+  <a name="789209"> </a>The table <a href="csl_auto_router.html#789213">Table&#160;1.3</a> contains the list of connection objects and the allowed connections between connection object types.
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <caption><a name="789213"> </a><div class="TableTitle">TABLE 1.3  Valid connections between connection objects</div></caption>
+  <tr>
+    <td><a name="789233"> </a><div class="CellBody">Nr</div></td>
+    <td><a name="789235"> </a><div class="CellBody">LHS \ RHS</div></td>
+    <td><a name="789237"> </a><div class="CellBody">1</div><a name="789238"> </a><div class="CellBody">s</div></td>
+    <td><a name="789240"> </a><div class="CellBody">2</div><a name="789241"> </a><div class="CellBody">sg</div></td>
+    <td><a name="789243"> </a><div class="CellBody">3</div><a name="789244"> </a><div class="CellBody">p</div></td>
+    <td><a name="789246"> </a><div class="CellBody">4</div><a name="789247"> </a><div class="CellBody">ifc</div></td>
+    <td><a name="789249"> </a><div class="CellBody">5</div><a name="789250"> </a><div class="CellBody">u</div></td>
+    <td><a name="789252"> </a><div class="CellBody">6</div><a name="789253"> </a><div class="CellBody">ui</div></td>
+    <td><a name="789255"> </a><div class="CellBody">7</div><a name="789256"> </a><div class="CellBody">sc</div></td>
+    <td><a name="789258"> </a><div class="CellBody">8</div><a name="789259"> </a><div class="CellBody">e</div></td>
+  </tr>
+  <tr>
+    <td><a name="789261"> </a><div class="CellBody">1</div></td>
+    <td><a name="789263"> </a><div class="CellBody">signal</div></td>
+    <td><a name="789265"> </a><div class="CellBody">X</div></td>
+    <td><a name="789267"> </a><div class="CellBody">-</div></td>
+    <td><a name="789269"> </a><div class="CellBody">X</div></td>
+    <td><a name="789271"> </a><div class="CellBody">X</div></td>
+    <td><a name="789273"> </a><div class="CellBody">X</div></td>
+    <td><a name="789275"> </a><div class="CellBody">X</div></td>
+    <td><a name="789277"> </a><div class="CellBody">X</div></td>
+    <td><a name="789279"> </a><div class="CellBody">X</div></td>
+  </tr>
+  <tr>
+    <td><a name="789281"> </a><div class="CellBody">2</div></td>
+    <td><a name="789283"> </a><div class="CellBody">signal group</div></td>
+    <td><a name="789285"> </a><div class="CellBody">-</div></td>
+    <td><a name="789287"> </a><div class="CellBody">X</div></td>
+    <td><a name="789289"> </a><div class="CellBody">-</div></td>
+    <td><a name="789291"> </a><div class="CellBody">X</div></td>
+    <td><a name="789293"> </a><div class="CellBody">X</div></td>
+    <td><a name="789295"> </a><div class="CellBody">X</div></td>
+    <td><a name="789297"> </a><div class="CellBody">X</div></td>
+    <td><a name="789299"> </a><div class="CellBody">-</div></td>
+  </tr>
+  <tr>
+    <td><a name="789301"> </a><div class="CellBody">3</div></td>
+    <td><a name="789303"> </a><div class="CellBody">port</div></td>
+    <td><a name="789305"> </a><div class="CellBody">X</div></td>
+    <td><a name="789307"> </a><div class="CellBody">-</div></td>
+    <td><a name="789309"> </a><div class="CellBody">X</div></td>
+    <td><a name="789311"> </a><div class="CellBody">X</div></td>
+    <td><a name="789313"> </a><div class="CellBody">X</div></td>
+    <td><a name="789315"> </a><div class="CellBody">X</div></td>
+    <td><a name="789317"> </a><div class="CellBody">X</div></td>
+    <td><a name="789319"> </a><div class="CellBody">X</div></td>
+  </tr>
+  <tr>
+    <td><a name="789321"> </a><div class="CellBody">4</div></td>
+    <td><a name="789323"> </a><div class="CellBody">interface</div></td>
+    <td><a name="789325"> </a><div class="CellBody">-</div></td>
+    <td><a name="789327"> </a><div class="CellBody">X</div></td>
+    <td><a name="789329"> </a><div class="CellBody">-</div></td>
+    <td><a name="789331"> </a><div class="CellBody">X</div></td>
+    <td><a name="789333"> </a><div class="CellBody">X*</div></td>
+    <td><a name="789335"> </a><div class="CellBody">X*</div></td>
+    <td><a name="789337"> </a><div class="CellBody">X*</div></td>
+    <td><a name="789339"> </a><div class="CellBody">-</div></td>
+  </tr>
+  <tr>
+    <td><a name="789341"> </a><div class="CellBody">5</div></td>
+    <td><a name="789343"> </a><div class="CellBody">unit</div></td>
+    <td><a name="789345"> </a><div class="CellBody">X</div></td>
+    <td><a name="789347"> </a><div class="CellBody">X</div></td>
+    <td><a name="789349"> </a><div class="CellBody">X</div></td>
+    <td><a name="789351"> </a><div class="CellBody">X</div></td>
+    <td><a name="789353"> </a><div class="CellBody">X</div></td>
+    <td><a name="789355"> </a><div class="CellBody">X</div></td>
+    <td><a name="789357"> </a><div class="CellBody">X</div></td>
+    <td><a name="789359"> </a><div class="CellBody">X</div></td>
+  </tr>
+  <tr>
+    <td><a name="789361"> </a><div class="CellBody">6</div></td>
+    <td><a name="789363"> </a><div class="CellBody">unit instance</div></td>
+    <td><a name="789365"> </a><div class="CellBody">X</div></td>
+    <td><a name="789367"> </a><div class="CellBody">X</div></td>
+    <td><a name="789369"> </a><div class="CellBody">X</div></td>
+    <td><a name="789371"> </a><div class="CellBody">X</div></td>
+    <td><a name="789373"> </a><div class="CellBody">X</div></td>
+    <td><a name="789375"> </a><div class="CellBody">X</div></td>
+    <td><a name="789377"> </a><div class="CellBody">X</div></td>
+    <td><a name="789379"> </a><div class="CellBody">X</div></td>
+  </tr>
+  <tr>
+    <td><a name="789381"> </a><div class="CellBody">7</div></td>
+    <td><a name="789383"> </a><div class="CellBody">signal concat</div></td>
+    <td><a name="789385"> </a><div class="CellBody">X</div></td>
+    <td><a name="789387"> </a><div class="CellBody">X</div></td>
+    <td><a name="789389"> </a><div class="CellBody">-</div></td>
+    <td><a name="789391"> </a><div class="CellBody">X</div></td>
+    <td><a name="789393"> </a><div class="CellBody">X</div></td>
+    <td><a name="789395"> </a><div class="CellBody">X</div></td>
+    <td><a name="789397"> </a><div class="CellBody">X</div></td>
+    <td><a name="789399"> </a><div class="CellBody">X</div></td>
+  </tr>
+  <tr>
+    <td><a name="789401"> </a><div class="CellBody">8</div></td>
+    <td><a name="789403"> </a><div class="CellBody">expr</div></td>
+    <td><a name="789405"> </a><div class="CellBody">-</div></td>
+    <td><a name="789407"> </a><div class="CellBody">-</div></td>
+    <td><a name="789409"> </a><div class="CellBody">-</div></td>
+    <td><a name="789411"> </a><div class="CellBody">-</div></td>
+    <td><a name="789413"> </a><div class="CellBody">-</div></td>
+    <td><a name="789415"> </a><div class="CellBody">-</div></td>
+    <td><a name="789417"> </a><div class="CellBody">-</div></td>
+    <td><a name="789419"> </a><div class="CellBody">-</div></td>
+  </tr>
+</table>
+
+
+
+
+</p>
+<p class="Body">
+  <a name="789420"> </a>x? = to be discussed
+</p>
+<p class="Body">
+  <a name="789421"> </a>Connection needs support for signal subranges and expressions 
+</p>
+<p class="Body">
+  <a name="789422"> </a>The following may not be needed anymore
+</p>
+<p class="Body">
+  <a name="789423"> </a>Coonect can be used to `link' signals, ports, groups of signals, or unit interfaces (when connect is apllied to unit names it's still the interfaces of those units that get connected)
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789424"> </a>signal_name.connect(signal_name);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789425"> </a>port_name.connect(port_name);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789426"> </a>group_of_signals.connect(group_of_signals);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789427"> </a>interface.connect(interface);<br>
+</div>
+<p class="Body">
+  <a name="789428"> </a>unit_name.connect(unit_name);
+</p>
+<p class="Body">
+  <a name="847726"> </a>                                                                                                   [ <a href="csl_auto_router.html#795465"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Auto Router Command Summary</span></a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>]
+</p>
+<p class="Body">
+  <a name="847721"> </a>
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789429"> </a>Example :  <br>
+</div>
+<p class="Body">
+  <a name="847089"> </a>In the figure below ports p, q from diferent units are connected.
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 5pt; margin-left: 72pt; margin-right: 0pt; margin-top: 5pt; text-align: justify; text-decoration: none; text-indent: -72pt; text-transform: none; vertical-align: baseline">
+<a name="789454"> </a>FIGURE 1.3  <br clear="all" /><table align="left"><tr><td><img src="images/csl_auto_routera.gif" height="76" width="136" align="left" border="0" hspace="0" vspace="0">
+</td></tr></table><br clear="all"><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789456"> </a>CSL code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847095"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_unit</span> a0{<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847097"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_port</span> p(input)<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847119"> </a>a0(){}<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847098"> </a>};<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847122"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_unit</span> a1{<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847123"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_port</span> q(input)<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847124"> </a>a1(){}<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847125"> </a>};<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847120"> </a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847099"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_unit</span> top{<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847100"> </a>a0 a0;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847101"> </a>a1 a1;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847102"> </a>top(){<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847103"> </a><span style="color: #0000ff;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">ao.p.</span><span style="color: #0000ff;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">connect(</span><span style="color: #0000ff;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">a1.q</span><span style="color: #0000ff;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">)</span><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span><br>
+</div>
+<div style="color: #0000ff;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847104"> </a><span style="color: #000000;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">}</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847105"> </a>};<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789472"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">Verilog</span> code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789473"> </a>//AV<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789474"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">module</span> top<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789475"> </a>    <span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">wire</span> y,z<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789476"> </a>    ab a1<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">(</span>y<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789477"> </a>    ab b1<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">(</span>y<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789478"> </a>    c c1<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">(</span>z<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789479"> </a>    d d1<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">(</span>z<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789480"> </a>endmodule<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789481"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">module</span> ab<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">(</span>y<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789482"> </a>    <span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">inout</span> y<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789483"> </a>endmodule<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789484"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">module</span> c<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">(</span>z<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789485"> </a>    <span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">inout</span> z<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789486"> </a>endmodule<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789487"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">module</span> d<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">(</span>z<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789488"> </a>    <span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">inout</span> z<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789489"> </a>    <span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">wire</span> t<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789490"> </a>    <span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">assign</span> t <span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">= </span>z<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789491"> </a>endmodule<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789492"> </a><br>
+</div>
+<p class="Body">
+  <a name="789494"> </a>.
+</p>
+<p class="Body">
+  <a name="789531"> </a>
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789533"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">connect(</span><span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">connection_object_name0</span>,<span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">connection_object_name1</span><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789534"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="789535"> </a>Global connect function.
+</p>
+<p class="Body">
+  <a name="847738"> </a>                                                                                                   [ <a href="csl_auto_router.html#795465"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Auto Router Command Summary</span></a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>]
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789536"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="847650"> </a>In this example are connected two signals with the same name <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline"> sgn</span> from different units <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">a</span> and<span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline"> top </span>or<span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline"> b </span>and <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">top</span>.
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 5pt; margin-left: 72pt; margin-right: 0pt; margin-top: 5pt; text-align: justify; text-decoration: none; text-indent: -72pt; text-transform: none; vertical-align: baseline">
+<a name="789561"> </a>FIGURE 1.4  <br clear="all" /><table align="left"><tr><td><img src="images/csl_auto_router3.gif" height="64" width="169" align="left" border="0" hspace="0" vspace="0">
+</td></tr></table><br clear="all"><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789563"> </a>CSL code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847182"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_unit</span> ab{<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847183"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_signal</span> sgn(wire,4)<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847184"> </a>ab(){}<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847185"> </a>};<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847191"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_unit</span> top{<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847192"> </a>a a;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847193"> </a>a b;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847204"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_signal</span> sgn(wire,4)<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847194"> </a>top(){<br>
+</div>
+<div style="color: #0000ff;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847195"> </a><span style="color: #0000ff;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">connect(</span>sgn,a.sgn<span style="color: #0000ff;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #0000ff;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847209"> </a><span style="color: #0000ff;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">connect(</span>sgn,b.sgn<span style="color: #0000ff;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #0000ff;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847196"> </a><span style="color: #000000;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">}</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847197"> </a>};<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789579"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">Verilog</span> code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789581"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">module</span> top<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789582"> </a>    <span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">wire</span> sgn<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789583"> </a>    ab a<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">(</span>y<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789584"> </a>    ab b<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">(</span>y<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789585"> </a>    endmodule<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789588"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">module</span> ab<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">(</span>sgn<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789589"> </a>    <span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">inout</span> sgn<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789590"> </a>endmodule<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789599"> </a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789600"> </a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789602"> </a><span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">connection_object_name.</span><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">connect(</span>{<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">.</span><span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">f</span><span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">ormal_connection_object_name</span><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">(</span><span style="color: #000000;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline"> </span><span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">actual_connection_object_name</span><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">)</span>}+<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789603"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="789604"> </a>Connections are specified by <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">formal_connection_object_name </span>and <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">actual_connection_object_name</span> which can be ports or interfaces; <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">connection_object_name</span><span style="color: #000000;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>can be a unit, instance or interface.
+</p>
+<p class="Body">
+  <a name="847747"> </a>                                                                                                   [ <a href="csl_auto_router.html#795465"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Auto Router Command Summary</span></a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>]
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789605"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="847659"> </a>In this example are connected two ports . The port <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">x</span> from unit<span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline"> a</span> and the port <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">y</span> from unit <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">b.</span> 
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 5pt; margin-left: 72pt; margin-right: 0pt; margin-top: 5pt; text-align: justify; text-decoration: none; text-indent: -72pt; text-transform: none; vertical-align: baseline">
+<a name="789630"> </a>FIGURE 1.5  <br clear="all" /><table align="left"><tr><td><img src="images/csl_auto_router4.gif" height="65" width="246" align="left" border="0" hspace="0" vspace="0">
+</td></tr></table><br clear="all"><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789632"> </a>CSL code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847247"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_unit</span> a{<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847248"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_port</span> x(output)<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847249"> </a>a(){}<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847250"> </a>};<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847251"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_unit</span> b{<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847252"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_port</span> y(input)<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847253"> </a>b(){}<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847254"> </a>};<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847256"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_unit</span> top{<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847257"> </a>a a;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847258"> </a>b b;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847259"> </a>top(){<br>
+</div>
+<div style="color: #0000ff;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847260"> </a>a.<span style="color: #0000ff;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">connect(.</span>x(b.y<span style="color: #0000ff;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">));</span><br>
+</div>
+<div style="color: #0000ff;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847261"> </a><span style="color: #000000;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">}</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847262"> </a>};<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="847245"> </a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789648"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">Verilog </span>code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789650"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">module</span> top<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789651"> </a>    a a<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">(</span>z<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789655"> </a>    b b<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">(</span>z<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789656"> </a>endmodule<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789660"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">module</span> a<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">(</span>z<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789661"> </a>    <span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">output</span> x<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789662"> </a>endmodule<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789663"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">module</span> b<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">(</span>z<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789664"> </a>    <span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">input</span> y<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="789665"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">endmodule</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="791269"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">autorouter_connect_bus_to_split_bus</span>(ON|OFF);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="791270"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="791271"> </a>convert the bus into strings ??
+</p>
+<p class="Body">
+  <a name="847759"> </a>                                                                                                   [ <a href="csl_auto_router.html#795465"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Auto Router Command Summary</span></a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>]
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="791272"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="791273"> </a>x[1:0]
+</p>
+<p class="Body">
+  <a name="791274"> </a>x[1] becomes x_1 and x[0] becomes x_0
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 5pt; margin-left: 72pt; margin-right: 0pt; margin-top: 5pt; text-align: justify; text-decoration: none; text-indent: -72pt; text-transform: none; vertical-align: baseline">
+<a name="791338"> </a>FIGURE 1.6  <br clear="all" /><table align="left"><tr><td><img src="images/csl_auto_router6.gif" height="105" width="439" align="left" border="0" hspace="0" vspace="0">
+</td></tr></table><br clear="all"><br>
+</div>
+<p class="Body">
+  <a name="791357"> </a>//commands
+</p>
+<p class="Body">
+  <a name="792889"> </a>- turn {on/off} (port,signal,interface) inference - specified for or what can be inferred
+</p>
+<p class="Body">
+  <a name="792890"> </a>- connect by (name,function) {on/off}
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="793001"> </a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="797991"> </a><br>
+</div>
+</blockquote>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1">
+    <a href="http://www.webworks.com"><img src="images/webworks.gif" width="150" height="20" border="0"></a><br>
+    Quadralay Corporation<br>
+    http://www.webworks.com<br>
+    Voice: (512) 719-3399<br>
+    Fax: (512) 719-3606<br>
+    <a href="mailto:sales@webworks.com">sales@webworks.com</a><br>
+    </font></td>
+  </tr>
+</table>
+
+<table width="331" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><a href="csl_language.html"><img src="images/navtoc.gif" width="84" height="23" border="0"
+    alt="TOC"> </a></td>
+    <td><a href="csl_fifo.html"><img src="images/navprev.gif" width="81" height="23" border="0"
+    alt="PREV"> </a></td>
+    <td><a href="csl_verification_components.html"><img src="images/navnext.gif" width="81" height="23" border="0"
+    alt="NEXT"> </a></td>
+    <td><a href="CmdBookLOF.html"><img src="images/navidx.gif" width="85" height="23" border="0"
+    alt="INDEX"> </a></td>
+  </tr>
+</table>
+
+</body>
+</html>

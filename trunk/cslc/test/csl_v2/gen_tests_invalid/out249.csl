@@ -1,0 +1,136 @@
+csl_enum tk {
+	cx = 13,
+	no = 55,
+	wk = 32,
+	xs = 44,
+	po = 1,
+	av = 53,
+	li = 95
+};
+csl_enum yn {
+	tq,
+	mg,
+	cg,
+	dn,
+	ke,
+	du
+};
+csl_enum ly {
+	go = 44,
+	xv = 92,
+	fw = 47,
+	gf = 65,
+	pv = 88,
+	up = 93,
+	sg = 48,
+	yt = 12,
+	wu = 60,
+	nj = 91,
+	dp = 76,
+	ph = 80,
+	dd = 27,
+	nj = 18,
+	xy = 19,
+	ig = 85,
+	pi = 17
+};
+csl_isa_instruction_format xk{
+    xk( ){
+     set_width( 0);
+  }
+}
+;
+csl_isa jt{
+    jt( ){
+     set_decoder_name( "im");
+     set_decoder_out_name_prefix( "al");
+     set_decoder_out_name_suffix( "cm");
+     generate_decoder( tvie);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo cl{
+   cl( ){
+     set_dimension( 3, 0);
+     set_physical_implementation( SRAM);
+     add_logic( rd_credit);
+  }
+}
+;
+csl_memory_map_page pn{
+    pn( ){
+     set_address_increment( 2);
+     get_address_increment( );
+     set_next_address( 0);
+     get_next_address( );
+     set_access_rights( access_write, access_read_write);
+     add_reserved_address_range( 2, 2);
+     get_upper_bound( );
+     set_data_word_width( 4);
+     get_data_word_wodth( );
+     set_aligment( 2);
+     set_endianess( little_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page xv{
+  pn wb;
+  pn hp;
+    xv( ){
+     add_address_range( 6, 0);
+     set_next_address( 7);
+     get_next_address( );
+     add_reserved_address_range( 6, 7);
+     get_data_word_wodth( );
+     set_aligment( 8);
+     set_endianess( big_endian);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page hu{
+    hu( ){
+     add_address_range( 1, 4);
+     get_address_increment( );
+     get_next_address( );
+     add_reserved_address_range( 2, 8);
+     add( xv);
+     get_lower_bound( );
+     set_aligment( 0);
+     get_aligment( );
+     set_endianess( big_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map at{
+  xv rs;
+  hu uh;
+  xv ag;
+    at( ){
+  }
+}
+;
+csl_register tf{
+    tf( ){
+     set_atribute( shadow);
+     add_logic( neg_output);
+     clear_value( 1);
+     set_count_direction( 4);
+     set_end_value( 9);
+     set_start_value( 57);
+     stop_at_end_value( );
+  }
+}
+;
+csl_register ug{
+    ug( ){
+     add_logic( read_valid);
+     set_const_value( 3);
+  }
+}
+;

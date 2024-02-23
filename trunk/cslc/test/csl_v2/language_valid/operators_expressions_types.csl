@@ -1,0 +1,68 @@
+// CristiL
+//
+// TODO : MORE
+
+csl_unit unitTop {
+
+  const int a = 5;
+  const int b = 43434;
+  unitTop(){}
+
+//   int c;
+//   float f;
+//   double d;
+
+//   bool flag;
+//   bool state;
+  
+//   unitTop() {
+    
+//     //  Arithmetic testing     
+//     //  +
+//     c = a + b;
+//     //  -
+//     c = a - b;
+//     //  *
+//     d = a * b;
+//     //  /
+//     d = a / b;
+
+//     //  Operator testing
+//     //  ==
+//     flag = (b == c);    
+//     //  !=
+//     flag = (b != c);    
+//     //  | |
+//     flag = (b | | c);
+//     //   <
+//     flag = (b < c);
+//     //   >
+//     flag = (b > c);
+//     //   <=
+//     flag = (b <= c)
+//     //   >=
+//     flag = (b >= c);
+//     //   <
+//     flag = (b | | c);
+//     //   !
+//     flag = !state;
+
+//     //  Expression testing
+//     //  &
+//     c = a & b;
+//     //  |
+//     c = a | b;
+//     //  ^ 
+//     c = a ^ b;
+//     //  <<
+//     c = a << b;
+//     //  >>
+//     c = a >> b;
+//     //  ?:
+//     c = (flag)?a:b;
+//   }
+  
+};
+
+
+

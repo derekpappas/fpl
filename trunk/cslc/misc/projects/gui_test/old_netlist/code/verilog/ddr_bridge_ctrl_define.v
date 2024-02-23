@@ -1,0 +1,9 @@
+`ifndef INC_GUARD_ddr_bridge_ctrl
+`define INC_GUARD_ddr_bridge_ctrl
+
+`define IFC_DC_DB_P_DUMMY5_UPPER_INDEX  0
+`define IFC_DC_DB_P_DUMMY5_LOWER_INDEX  0
+`define IFC_DC_DB_P_DUMMY5_WIDTH  1
+`define IFC_DC_DB_P_DUMMY5_RANGE `IFC_DC_DB_P_DUMMY5_UPPER_INDEX:`IFC_DC_DB_P_DUMMY5_LOWER_INDEX
+
+`endif

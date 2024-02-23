@@ -1,0 +1,1 @@
+`define OC8051_ALU_PCS 1

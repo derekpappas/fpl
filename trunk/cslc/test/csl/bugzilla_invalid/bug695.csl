@@ -1,0 +1,5 @@
+csl_unit abc { 
+abc (){} 
+csl_signal signal_name; 
+signal_name.set_number_of_dimensions( 23 );
+};

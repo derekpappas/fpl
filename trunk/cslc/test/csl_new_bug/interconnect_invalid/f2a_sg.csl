@@ -1,0 +1,14 @@
+csl_signal_group sg1{
+  csl_signal s1(8);
+sg1(){}
+};
+csl_unit u1{
+sg1 sg1;
+u1(){}
+};
+
+csl_unit u2{
+  csl_port p1(output,8);
+u1 u1(.sg1(p1));
+u2(){}
+};

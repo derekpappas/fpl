@@ -1,0 +1,11 @@
+csl_memory_map_page mpage ;
+csl_memory_map mmap{
+	mpage mpage0;
+	mmap(){
+		set_data_word_width(32);
+		set_suffix("mem");
+	}
+};
+
+csl_unit top {
+};

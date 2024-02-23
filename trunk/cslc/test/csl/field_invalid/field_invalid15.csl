@@ -1,0 +1,20 @@
+//Petronela
+csl_enum e {
+  RD,
+  WR,
+  EN
+};
+csl_field f{  
+  f(){
+  set_enum(e);
+  set_enum_item(NOP);//enum_item NOP doesn't exist
+  set_width(3);
+  }
+};
+csl_field ff{
+  ff(){
+  set_width(8);
+  set_value(6);
+  }
+};
+

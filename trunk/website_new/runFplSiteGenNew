@@ -1,0 +1,28 @@
+#!/bin/bash
+
+cd src
+ant clean
+ant
+cd ..
+
+# hack-fix source code to take env var
+mkdir /opt/tmp
+
+export LIBS_DIR=libs
+export FPL_SITE_JAR=${LIBS_DIR}/fplsite.jar
+export THIRD_PARTY_LIBS_DIR=$LIBS_DIR/3rdParty
+export ANTLR_RUNTIME_JAR=${THIRD_PARTY_LIBS_DIR}/antlr/antlr-3.1.1-runtime.jar
+export ANTLR_JAR=${THIRD_PARTY_LIBS_DIR}/antlr/antlr-3.1.1.jar
+export STRING_TEMPLATE_JAR=${THIRD_PARTY_LIBS_DIR}/stringtemplate/stringtemplate-3.2.jar
+
+export TEMPLATE_DIR=${WORK}/../website_new/templates
+echo "TEMPLATE_DIR = $TEMPLATE_DIR"
+
+export CMD="java -XX:+HeapDumpOnOutOfMemoryError  -Xms512m -Xmx512m -cp .:${FPL_SITE_JAR}:${ANTLR_JAR}:${STRING_TEMPLATE_JAR} com.fpl.fplsite.string_template.RunGenerateSite"
+echo "cmd = " ${CMD}
+
+${CMD}
+
+echo "CP THE imagesfpl and cssfpl to the /opt/tmp/<generated directory!!!!!!!>"
+/bin/cp -fr $WORK/../website_new/imagesfpl/*{gif,png} /opt/tmp/imagesfpl/
+/bin/cp -fr $WORK/../website_new/cssfpl/* /opt/tmp/cssfpl/

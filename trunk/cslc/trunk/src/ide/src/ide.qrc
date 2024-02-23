@@ -1,0 +1,44 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>images/about.png</file>
+    <file>images/bracket.png</file>
+    <file>images/cascade.png</file>
+    <file>images/close.png</file>
+    <file>images/closeall.png</file>
+    <file>images/copy.png</file>
+    <file>images/cross.png</file>
+    <file>images/cursor.png</file>
+    <file>images/cut.png</file>
+    <file>images/dir.png</file>
+    <file>images/exportpdf.png</file>
+    <file>images/exit.png</file>
+    <file>images/find.png</file>
+    <file>images/font.png</file>
+    <file>images/goto.png</file>
+    <file>images/indent.png</file>
+    <file>images/next.png</file>
+    <file>images/new.png</file>
+    <file>images/open.png</file>
+    <file>images/options.png</file>
+    <file>images/paste.png</file>
+    <file>images/print.png</file>
+    <file>images/previous.png</file>
+    <file>images/qt.png</file>
+    <file>images/redo.png</file>
+    <file>images/replace.png</file>
+    <file>images/run.png</file>
+    <file>images/stop.png</file>
+    <file>images/save.png</file>
+    <file>images/saveas.png</file>
+    <file>images/switch.png</file>
+    <file>images/tile.png</file>
+    <file>images/undo.png</file>
+    <file>images/unindent.png</file>
+    <file>images/zoomin.png</file>
+    <file>images/zoomout.png</file>
+    <file>images/wrap.png</file>
+    <file>lang/csl_list.txt</file>
+    <file>lang/cpp_list.txt</file>
+    <file>lang/verilog_list.txt</file>
+</qresource>
+</RCC>

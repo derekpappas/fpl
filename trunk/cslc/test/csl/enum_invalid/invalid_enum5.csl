@@ -1,0 +1,5 @@
+csl_enum e{
+  RD=0,
+  WR=1 ///missing  , 
+  NOP=2
+};

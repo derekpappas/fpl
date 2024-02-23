@@ -1,0 +1,169 @@
+//include keywords in titles
+title_home = Yoterra.com - Now you can search products from all brands, buy them from any store, compare them and their prices and find your best match.
+title_signIn = Yoterra.com - Sign In
+title_yourAccount = Yoterra.com - Your Account
+title_newsletter = Yoterra.com - Newsletter
+title_help = Yoterra.com - Help
+title_list = Yoterra.com - Product List
+title_details = Yoterra.com - Details Product
+title = Pride And Prejudice - Books and Entertainment - Yoterra.com
+//header and footer menus
+home = Home
+signIn = Sign In
+yourAccount = Your Account
+yourLists = Your Lists
+bookmarkPage = Bookmark Page!
+newsletter = Newsletter
+help = Help
+aboutYoterra = About Yoterra.com
+contactUs = Contact Us
+privacyPolicy = Privacy Policy
+userAgreement = User Agreement
+conditionsOfUse = Conditions Of Use
+investorRelations = Investor Relations
+merchantLogIn = Merchant Log In
+jobs = Jobs
+press = Press
+
+//categories menu
+allSubcategories = All Subcategories
+allCategories = All Categories
+booksAndEntertainment = Books And Entertainment
+
+//narrow your search
+narrowYourSearch = General Narrow Criteria
+//TODO
+narrowYourSearchParticular = Particular Narrow Criteria
+format = Format
+hardcover = Hardcover
+paperback = Paperback
+audiobook = Audiobook
+publisher = Publisher
+language = Language
+relatedSearch = Retated Search
+
+location = Location
+model = Model
+brand = Brand
+stores = Top Stores
+
+//rowLeft 
+sortBy = Sort By
+bestMatch = Best Match
+priceLow_High = Price Low-High
+priceHigh_Low = Price High - Low
+product_Rating = Product Rating
+itemsOnSale = Products On Sale
+manufacturerAZ = Manufacturer A-Z
+manufacturerZA = Manufacturer Z-A
+retailerAZ = Store A-Z
+retailerZA = Store Z-A
+distributorAZ = Distributor A-Z
+distributorZA = Distributor Z-A
+productsPerPage = Products Per Page
+page = Page
+of = of
+productInformation = Product Information
+price = Price
+rating = Ratings
+manufacturer = Manufacturer
+retailer = Store
+distributor = Distributor
+
+//rowDbrLeft
+modelno = Product No 
+model_name = Product Name
+more = More
+emailToAFriend = Email to a Friend 
+comparetoBestProducts = Compare to Best Products
+comparePrices = Price Comparison
+
+//rowDbrListView
+productComparison = Product Comparison
+deals = Deals
+find_more_about = Find more about this product at
+priceIn = Price In
+//TODO
+moreDetails = More Details
+lessDetails = Less Details
+store = Store
+
+// detailsBody
+description = Description
+weight = Weight
+size = Size
+color = Color
+sponsoredLinks = Sponsored Links
+//TODO
+zoom = Zoom
+otherColors = Other Colors
+accessories = Accessories
+similarProducts = Similar Products
+mostSearched = Most Searched Products
+
+//Email to a Friend
+yourName = Your Name
+requiredFields = Required Fields
+yourEmailAddress = Your Email Address
+sendtoEmailAddress = Send To Email Address
+toSend = (To send to more than one person, separate individual addresses with a comma.)
+yourPersonalNote = Your Personal Note
+
+//Newsletter
+NEWSLETTERS = NEWSLETTERS
+subscribe = Subscribe
+unsubscribe = Unsubscribe
+choose_which  = Choose which free newsletter(s) you'd like to receive (you may select more than one)
+new_yodaily = NEW! YoDaily
+make_your = Make your search a treat with our daily guide by selecting any of the subcategories.
+subvategories = Subcategories
+selectAll = Select All
+new_yomonthly = NEW! YoMonthly
+updates_on = Updates on products in each of the selected subcategories are received monthly.
+emailNotice = NEW! Email Notice
+asSoonAs = As soon as updates on the selected product are available they will be sent to you by email.
+productId = Product Id
+REQUIRED_INFORMATION = REQUIRED INFORMATION
+email = E-mail
+confirm = Confirm
+we_do = We do not share personal information with any third party without your permission. For more details, please read our
+
+//Sign In Page
+REGISTERED = REGISTERED USER SIGN IN
+alreadyRegistered = If you're already registered with Yoterra.com, please Sign In.
+username = Username/E-mail address
+password = Password
+caseSensitive = Password is case sensitive.
+forgotPassword = Forgot your password?
+NOT_REGISTERED = NOT REGISTERED YET?
+registerWithYoterra = Becoming a registered user is fast and FREE. Just fill out the registration form and have access to our convenient site features. For more informations check out 
+benefits = Benefits of registration.
+
+//switch view menu 
+switchViews = Switch View
+listView = List View
+detailedListView = Detailed List View
+thumbnailView = Thumbnail View
+databaseRecords = Database Records
+userdefined = User-defined
+
+//list of countries globally used
+us = United States
+france = France
+uk = UK
+romania = Romania
+
+//TODO
+//list of languages globally used
+english = English
+french = French
+italian =Italian
+spanish = Spanish
+russian = Russian
+
+//list of currencies globally used
+euro = &euro;
+pound = &pound;
+yen = &yen;
+cent = &cent;
+usdollar = &#36;

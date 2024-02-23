@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+  <project name="CSL_Warn_Error" default="debug">
+
+<!-- !!!Modify: projectDir, srcList, driverList, libraryName, dependencies and linker settings !!! -->
+
+    <target name="setDebugFlag">
+      <property name="debugFlag" value="yes"/>
+    </target>
+    
+    <target name="setCoverageFlag">
+      <property name="coverageFlag" value="yes"/>
+    </target>
+
+    <target name="setWallFlag">
+      <property name="wallFlag" value="yes"/>
+    </target>
+
+    <property name="projectDir" value="csl_xml_warn_error"/>
+
+
+    <!-- the setDebug flag is set when this target is called -->
+    <target name="debug" depends="setDebugFlag,doDependencies,doBuild"/>
+
+    <!-- location of the sources directory -->
+    <property name="srcDirPath" value="."/>
+    
+    <!-- the list of objects(sources) -->
+    <property name="libSrcList" value="we_logic.cpp"/>
+    <property name="binSrcList" value="warn_err.cpp WESAXHandlers.cpp"/>
+
+    <!-- the list of drivers(sources) for WarnErr -->
+    <property name="driverList" value="WE_Driver"/>
+
+    <!-- the list of sources for CSLC_Errors -->
+    <property name="errorsSourcesList" value="CSLC_Errors.cpp"/>
+
+    <!-- the name of sources of CSLC_Errors library -->
+    <property name="cslcErrorsLibraryName" value="CSLC_Errors"/>
+
+    <!-- relative path to build_utils -->
+    <property name="scriptsPath" value="../../build_utils"/>
+    
+    <!-- compiles the executables using the WarnErr library and each driver file -->
+    <target name="buildDrivers" depends="">
+      <foreach list="${driverList}" delimiter="," param="driverFileName" target="compileDriverBinary" inheritall="true">
+      </foreach>
+    </target>
+
+    <!-- WE library name -->
+    <property name="libraryName"   value="WE_Library"/>
+    <property name="binaryName"    value="warnerr"/>
+    
+    <!-- needed for cpptask aditional module -->
+    <taskdef resource="cpptasks.tasks"/>
+    <typedef resource="cpptasks.types"/> 
+    <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+
+    <!-- calls external ANT script for retrieving the build path for testing general dependencies -->
+    <target name="doDependencies" unless="NoDeps">
+      <echo message="Geting General Dependencies" level="verbose"/>
+      <antfetch dir="${scriptsPath}" antfile="dependencies1.xml" inheritAll="true" inheritRefs="true" return="platformTypeOut,binDir,libDir" target="generalDependencies">
+      </antfetch>
+    </target>
+
+    <target name="removeBinaries" depends="">
+      <delete>
+        <fileset dir="${binDir}/${projectDir}" casesensitive="yes">
+	  <include name="**/*"/>
+	  <exclude name="libCSLC_Errors.a"/> <!-- FIX ME! -->
+	</fileset>
+      </delete>
+    </target>
+ 
+    <target name="compile">
+      <cc outfile="${binDir}/${projectDir}/${libraryName}" outtype="static">
+        <compiler name="g++">
+          <fileset dir="${srcDirPath}" casesensitive="YES" includes="${libSrcList}"/>
+          <compilerarg value="-g" if="debugFlag"/>
+          <compilerarg value="-I/opt/local/include"/>
+
+          <compilerarg value="-fprofile-arcs -ftest-coverage" if="coverageFlag"/>
+          <compilerarg value="-Wall" location="end" if="wallFlag"/>
+	  <compilerarg value="-D__RELEASE_VERSION" location="end" if="releaseFlag"/>
+        </compiler>
+        <linker name="g++">
+	  <libset libs="stdc++"/>
+	</linker>
+      </cc>
+    </target>
+
+    <target name="compileBinary">
+      <cc outfile="${binDir}/${projectDir}/${binaryName}">
+        <compiler name="g++">
+          <fileset dir="${srcDirPath}" casesensitive="YES" includes="${binSrcList}"/>
+          <compilerarg value="-g" if="debugFlag"/>
+          <compilerarg value="-fprofile-arcs -ftest-coverage" if="coverageFlag"/>
+          <compilerarg value="-I/opt/local/include/xercesc"/>
+          <compilerarg value="-I/opt/local/include"/>
+          <compilerarg value="-Wall" location="end" if="wallFlag"/>
+	  <compilerarg value="-D__RELEASE_VERSION" location="end" if="release"/>
+        </compiler>
+        <linker name="g++">
+	  <libset libs="stdc++"/>
+    	  <libset dir="/opt/local/lib" libs="xerces-c"/>
+	</linker>
+      </cc>
+    </target>
+    
+    <!-- compile test library -->
+    <target name="compileCslcErrorsLib" depends="">
+      <cc outfile="${binDir}/${projectDir}/${cslcErrorsLibraryName}" outtype="static">
+        <compiler name="g++">
+	  <fileset dir="${srcDirPath}" casesensitive="YES" includes="${errorsSourcesList}"/>
+	  <compilerarg value="-g" if="debugFlag"/>
+	  <compilerarg value="-fprofile-arcs -ftest-coverage" if="coverageFlag"/>
+          <compilerarg value="-I/opt/local/include/xercesc"/>
+          <compilerarg value="-I/opt/local/include"/>
+	  <compilerarg value="-Wall" location="end" if="wallFlag"/>
+	  <compilerarg value="-D__RELEASE_VERSION" location="end" if="release"/>
+	</compiler>
+        <linker name="g++">
+	  <libset libs="stdc++"/>
+	  <libset dir="${binDir}/${projectDir}" libs="${WELibraryName}"/>
+	</linker>
+      </cc>
+      </target>
+      
+    <!-- compiles executables using the WE_ibrary and a driver file -->
+    <target name="compileDriverBinary">
+      <cc outfile="${binDir}/${projectDir}/${driverFileName}">
+        <compiler name="g++">
+          <fileset dir="${srcDirPath}" casesensitive="yes" includes="${driverFileName}.cpp"/>
+	  <compilerarg value="-g" if="debugFlag"/>
+	  <compilerarg value="-fprofile-arcs -ftest-coverage" location="end" if="coverageFlag"/>
+	  <compilerarg value="-D__RELEASE_VERSION" location="end" if="release"/>
+	</compiler>
+	<linker name="g++">
+<!--	  <libset dir="${libDir}" libs="xerces-c"/> -->
+	  <libset dir="/opt/local/lib" libs="xerces-c"/>
+	  <libset dir="${binDir}/${projectDir}" libs="WE_Library,gcov"/>
+	  <linkerarg value="-static" if="static"/>
+        </linker>
+      </cc>
+    </target>
+    
+    <target name="checkErrLib">
+	<uptodate property="ErrLibIsUp2Date" targetfile="${binDir}/${projectDir}/lib${cslcErrorsLibraryName}.a">
+	    <srcfiles dir="${srcDirPath}" includes="csl_warn_error.xml"/>
+	</uptodate>
+    </target>
+    
+    <target name="genErrorsCode" unless="ErrLibIsUp2Date">
+	<delete>
+	    <fileset dir="${srcDirPath}">
+	    <include name="CSLC_Errors.*"/>
+	    </fileset>
+	</delete>
+	<exec executable="${binDir}/${projectDir}/${binaryName}">
+	    <arg line="csl_warn_error.xml CSLC_Errors.h"/>
+	</exec>
+    </target>
+
+    <!-- default target name: triggers all other targets -->
+    <target name="errors" depends="doDependencies,compile,compileBinary,genErrorsCode,compileCslcErrorsLib"/>
+    
+    <target name="doErrors" depends="checkErrLib,errors" if="debugFlag"/>
+    
+    <!-- builds without testing dependencies(to be called from the project root) -->
+    <target name="doBuild" depends="doDependencies,doErrors,compile"/>
+    
+    <!-- builds the drivers -->
+    <target name="drivers" depends="doDependencies,buildDrivers"/>
+
+    <!-- to be called from the src and not from the root -->
+    <target name="clean" depends="doDependencies,removeBinaries"/>
+
+</project>

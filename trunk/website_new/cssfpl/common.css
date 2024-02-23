@@ -1,0 +1,90 @@
+
+.shiftcontainer{
+position: relative;
+left: 5px; /*Number should match -left shadow depth below*/
+top: 5px; /*Number should match -top shadow depth below*/
+}
+
+.shadowcontainer{
+width: 500px; /* container width*/
+background-color: #d1cfd0;
+}
+
+.shadowcontainer .innerdiv{
+background: url(/imagesfpl/boxtop.jpg) repeat-x top left;
+/* Add container height here if desired */
+background-color: #eee;
+border: 1px solid gray;
+padding: 6px;
+position: relative;
+left: -5px; /*shadow depth*/
+top: -5px; /*shadow depth*/
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********************/
+/* White box        */
+/********************/
+/*.whiteBox.results { 
+  position: relative;
+}
+.whiteBox .boxHeader { 
+  background: url(../imagesfpl/whiteBox_tl.gif) no-repeat 0px 0px;
+  height: 8px;
+}
+.whiteBox .boxHeader .boxCorner {
+  font-size: 1px;
+  height: 8px;
+  background: url(../imagesfpl/whiteBox_tr.gif) no-repeat right 0px;
+}
+.whiteBox .boxContent {
+  background: white url(../imagesfpl/whiteBox_ml.gif) repeat-y 0px 0px;
+  padding-left: 6px;
+}
+.whiteBox .boxContent .boxContentInner {
+  background: transparent url(../imagesfpl/whiteBox_mr.gif) repeat-y right 0px;
+  padding: 1px 15px 1px 0;
+}
+.whiteBox .boxFooter {
+  background: url(../imagesfpl/whiteBox_bl.gif) no-repeat left bottom;
+  height: 10px;
+}
+.whiteBox .boxFooter .boxCorner {
+  font-size: 1px;
+  height: 10px;
+  background: url(../imagesfpl/whiteBox_br.gif) no-repeat right bottom;
+}*/
+
+
+
+
+
+
+
+
+

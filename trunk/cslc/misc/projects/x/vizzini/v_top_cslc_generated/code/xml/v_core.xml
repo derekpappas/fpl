@@ -1,0 +1,955 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="v_core">
+<interface name="gpio_connect_a0" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gpio_connect_a1" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gpio_connect_a2" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gpio_connect_a3" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gpio_connect_a4" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gpio_connect_a5" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="u1_modem" >
+<port name="rx" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="tx" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<interface name="gp0" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp1" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp2" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp3" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp4" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp5" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+</interface>
+<interface name="u2_modem" >
+<port name="rx" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="tx" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<interface name="gp0" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp1" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp2" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp3" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp4" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp5" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+</interface>
+<interface name="u3_modem" >
+<port name="rx" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="tx" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<interface name="gp0" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp1" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp2" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp3" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp4" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp5" >
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+</interface>
+<interface name="usb" >
+<port name="rpu1_en" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="rpu2_en" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="data_in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="force_se0" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="drv_enable" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="suspend" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="se_dp" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="enable_se" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="se_dn" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="data_out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="strobe" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="enable_diff" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<signalgroup name="ram_ufm">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write_en" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="addr" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="write_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="read_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="ram_upm">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write_en" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="addr" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="write_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="read_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="ram_utm">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write_en" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="addr" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="write_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="read_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="umf_ufm">
+<signal name="drop_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="drop_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="drop_src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="drop_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="drop_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="add_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="add_dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="add_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="uf0_ut0">
+<signal name="drop_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="drop_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="drop_src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="drop_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="drop_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="add_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="add_dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="add_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="uf1_ut1">
+<signal name="drop_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="drop_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="drop_src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="drop_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="drop_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="add_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="add_dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="add_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="uf2_ut2">
+<signal name="drop_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="drop_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="drop_src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="drop_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="drop_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="add_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="add_dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="add_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="uf3_ut3">
+<signal name="drop_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="drop_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="drop_src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="drop_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="drop_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="add_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="add_dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="add_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="fic_i2c">
+<signal name="drop_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="drop_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="drop_src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="drop_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="drop_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="add_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="add_dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="add_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="prf_upm">
+<signal name="drop_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="drop_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="drop_src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="drop_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="drop_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="add_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="add_dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="add_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="trf_utm">
+<signal name="drop_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="drop_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="drop_src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="drop_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="drop_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="add_type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="add_dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="add_addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="add_ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="trf_prf">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="age" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="12-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="prf_ffl">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="age" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="12-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="ffl_umf">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="age" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="12-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="umf_fic">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="age" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="12-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="fic_uf0">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="age" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="12-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="uf0_uf1">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="age" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="12-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="uf1_uf2">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="age" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="12-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="uf2_uf3">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="age" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="12-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="uf3_trf">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="age" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="src_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="dst_nid" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="addr" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="12-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="ufm_ffr">
+<signal name="write_en" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="addr" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="write_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="read_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="ffr_upm">
+<signal name="write_en" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="addr" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="write_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+<signal name="read_data" offset="0" upper="12-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="tp_bus">
+<signalgroup name="t2p">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="length" offset="0" upper="6-1" lower="0" type = "wire"/>
+<signal name="endpoint" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="p2t">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="length" offset="0" upper="6-1" lower="0" type = "wire"/>
+<signal name="endpoint" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+</signalgroup>
+<signalgroup name="phy_rx">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="cmd" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="phy_tx">
+<signal name="valid" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="cmd" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "fab">
+<instance name="proto_fab">
+<f2a formal = "fabric.add_addr" actual = "prf_upm.add_addr" />
+<f2a formal = "fabric.add_data" actual = "prf_upm.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "prf_upm.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "prf_upm.add_ready" />
+<f2a formal = "fabric.add_type" actual = "prf_upm.add_type" />
+<f2a formal = "fabric.add_valid" actual = "prf_upm.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "prf_upm.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "prf_upm.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "prf_upm.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "prf_upm.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "prf_upm.drop_valid" />
+<f2a formal = "fabric_in.addr" actual = "trf_prf.addr" />
+<f2a formal = "fabric_in.age" actual = "trf_prf.age" />
+<f2a formal = "fabric_in.data" actual = "trf_prf.data" />
+<f2a formal = "fabric_in.dst_nid" actual = "trf_prf.dst_nid" />
+<f2a formal = "fabric_in.src_nid" actual = "trf_prf.src_nid" />
+<f2a formal = "fabric_in.type" actual = "trf_prf.type" />
+<f2a formal = "fabric_in.valid" actual = "trf_prf.valid" />
+<f2a formal = "fabric_out.addr" actual = "prf_ffl.addr" />
+<f2a formal = "fabric_out.age" actual = "prf_ffl.age" />
+<f2a formal = "fabric_out.data" actual = "prf_ffl.data" />
+<f2a formal = "fabric_out.dst_nid" actual = "prf_ffl.dst_nid" />
+<f2a formal = "fabric_out.src_nid" actual = "prf_ffl.src_nid" />
+<f2a formal = "fabric_out.type" actual = "prf_ffl.type" />
+<f2a formal = "fabric_out.valid" actual = "prf_ffl.valid" />
+</instance>
+</instantiation>
+<instantiation type = "usb_phy">
+<instance name="usb_phy_">
+<f2a formal = "phy_rx.cmd" actual = "phy_rx.cmd" />
+<f2a formal = "phy_rx.data" actual = "phy_rx.data" />
+<f2a formal = "phy_rx.ready" actual = "phy_rx.ready" />
+<f2a formal = "phy_rx.valid" actual = "phy_rx.valid" />
+<f2a formal = "phy_tx.cmd" actual = "phy_tx.cmd" />
+<f2a formal = "phy_tx.data" actual = "phy_tx.data" />
+<f2a formal = "phy_tx.ready" actual = "phy_tx.ready" />
+<f2a formal = "phy_tx.valid" actual = "phy_tx.valid" />
+<f2a formal = "usb.data_in" actual = "usb.data_in" />
+<f2a formal = "usb.data_out" actual = "usb.data_out" />
+<f2a formal = "usb.drv_enable" actual = "usb.drv_enable" />
+<f2a formal = "usb.enable_diff" actual = "usb.enable_diff" />
+<f2a formal = "usb.enable_se" actual = "usb.enable_se" />
+<f2a formal = "usb.force_se0" actual = "usb.force_se0" />
+<f2a formal = "usb.rpu1_en" actual = "usb.rpu1_en" />
+<f2a formal = "usb.rpu2_en" actual = "usb.rpu2_en" />
+<f2a formal = "usb.se_dn" actual = "usb.se_dn" />
+<f2a formal = "usb.se_dp" actual = "usb.se_dp" />
+<f2a formal = "usb.strobe" actual = "usb.strobe" />
+<f2a formal = "usb.suspend" actual = "usb.suspend" />
+</instance>
+</instantiation>
+<instantiation type = "fab">
+<instance name="uart_fab_2">
+<f2a formal = "fabric.add_addr" actual = "uf2_ut2.add_addr" />
+<f2a formal = "fabric.add_data" actual = "uf2_ut2.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "uf2_ut2.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "uf2_ut2.add_ready" />
+<f2a formal = "fabric.add_type" actual = "uf2_ut2.add_type" />
+<f2a formal = "fabric.add_valid" actual = "uf2_ut2.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "uf2_ut2.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "uf2_ut2.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "uf2_ut2.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "uf2_ut2.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "uf2_ut2.drop_valid" />
+<f2a formal = "fabric_in.addr" actual = "uf1_uf2.addr" />
+<f2a formal = "fabric_in.age" actual = "uf1_uf2.age" />
+<f2a formal = "fabric_in.data" actual = "uf1_uf2.data" />
+<f2a formal = "fabric_in.dst_nid" actual = "uf1_uf2.dst_nid" />
+<f2a formal = "fabric_in.src_nid" actual = "uf1_uf2.src_nid" />
+<f2a formal = "fabric_in.type" actual = "uf1_uf2.type" />
+<f2a formal = "fabric_in.valid" actual = "uf1_uf2.valid" />
+<f2a formal = "fabric_out.addr" actual = "uf2_uf3.addr" />
+<f2a formal = "fabric_out.age" actual = "uf2_uf3.age" />
+<f2a formal = "fabric_out.data" actual = "uf2_uf3.data" />
+<f2a formal = "fabric_out.dst_nid" actual = "uf2_uf3.dst_nid" />
+<f2a formal = "fabric_out.src_nid" actual = "uf2_uf3.src_nid" />
+<f2a formal = "fabric_out.type" actual = "uf2_uf3.type" />
+<f2a formal = "fabric_out.valid" actual = "uf2_uf3.valid" />
+</instance>
+</instantiation>
+<instantiation type = "i2c">
+<instance name="i2c_">
+<f2a formal = "fabric.add_addr" actual = "fic_i2c.add_addr" />
+<f2a formal = "fabric.add_data" actual = "fic_i2c.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "fic_i2c.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "fic_i2c.add_ready" />
+<f2a formal = "fabric.add_type" actual = "fic_i2c.add_type" />
+<f2a formal = "fabric.add_valid" actual = "fic_i2c.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "fic_i2c.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "fic_i2c.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "fic_i2c.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "fic_i2c.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "fic_i2c.drop_valid" />
+</instance>
+</instantiation>
+<instantiation type = "RAM">
+<instance name="RAM_">
+<f2a formal = "ram_bus0.addr" actual = "ram_ufm.addr" />
+<f2a formal = "ram_bus0.read_data" actual = "ram_ufm.read_data" />
+<f2a formal = "ram_bus0.ready" actual = "ram_ufm.ready" />
+<f2a formal = "ram_bus0.valid" actual = "ram_ufm.valid" />
+<f2a formal = "ram_bus0.write_data" actual = "ram_ufm.write_data" />
+<f2a formal = "ram_bus0.write_en" actual = "ram_ufm.write_en" />
+<f2a formal = "ram_bus1.addr" actual = "ram_upm.addr" />
+<f2a formal = "ram_bus1.read_data" actual = "ram_upm.read_data" />
+<f2a formal = "ram_bus1.ready" actual = "ram_upm.ready" />
+<f2a formal = "ram_bus1.valid" actual = "ram_upm.valid" />
+<f2a formal = "ram_bus1.write_data" actual = "ram_upm.write_data" />
+<f2a formal = "ram_bus1.write_en" actual = "ram_upm.write_en" />
+<f2a formal = "ram_bus2.addr" actual = "ram_utm.addr" />
+<f2a formal = "ram_bus2.read_data" actual = "ram_utm.read_data" />
+<f2a formal = "ram_bus2.ready" actual = "ram_utm.ready" />
+<f2a formal = "ram_bus2.valid" actual = "ram_utm.valid" />
+<f2a formal = "ram_bus2.write_data" actual = "ram_utm.write_data" />
+<f2a formal = "ram_bus2.write_en" actual = "ram_utm.write_en" />
+</instance>
+</instantiation>
+<instantiation type = "fab">
+<instance name="fab_i2c">
+<f2a formal = "fabric.add_addr" actual = "fic_i2c.add_addr" />
+<f2a formal = "fabric.add_data" actual = "fic_i2c.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "fic_i2c.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "fic_i2c.add_ready" />
+<f2a formal = "fabric.add_type" actual = "fic_i2c.add_type" />
+<f2a formal = "fabric.add_valid" actual = "fic_i2c.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "fic_i2c.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "fic_i2c.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "fic_i2c.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "fic_i2c.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "fic_i2c.drop_valid" />
+<f2a formal = "fabric_in.addr" actual = "umf_fic.addr" />
+<f2a formal = "fabric_in.age" actual = "umf_fic.age" />
+<f2a formal = "fabric_in.data" actual = "umf_fic.data" />
+<f2a formal = "fabric_in.dst_nid" actual = "umf_fic.dst_nid" />
+<f2a formal = "fabric_in.src_nid" actual = "umf_fic.src_nid" />
+<f2a formal = "fabric_in.type" actual = "umf_fic.type" />
+<f2a formal = "fabric_in.valid" actual = "umf_fic.valid" />
+<f2a formal = "fabric_out.addr" actual = "fic_uf0.addr" />
+<f2a formal = "fabric_out.age" actual = "fic_uf0.age" />
+<f2a formal = "fabric_out.data" actual = "fic_uf0.data" />
+<f2a formal = "fabric_out.dst_nid" actual = "fic_uf0.dst_nid" />
+<f2a formal = "fabric_out.src_nid" actual = "fic_uf0.src_nid" />
+<f2a formal = "fabric_out.type" actual = "fic_uf0.type" />
+<f2a formal = "fabric_out.valid" actual = "fic_uf0.valid" />
+</instance>
+</instantiation>
+<instantiation type = "fab">
+<instance name="uart_fab_0">
+<f2a formal = "fabric.add_addr" actual = "uf0_ut0.add_addr" />
+<f2a formal = "fabric.add_data" actual = "uf0_ut0.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "uf0_ut0.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "uf0_ut0.add_ready" />
+<f2a formal = "fabric.add_type" actual = "uf0_ut0.add_type" />
+<f2a formal = "fabric.add_valid" actual = "uf0_ut0.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "uf0_ut0.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "uf0_ut0.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "uf0_ut0.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "uf0_ut0.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "uf0_ut0.drop_valid" />
+<f2a formal = "fabric_in.addr" actual = "fic_uf0.addr" />
+<f2a formal = "fabric_in.age" actual = "fic_uf0.age" />
+<f2a formal = "fabric_in.data" actual = "fic_uf0.data" />
+<f2a formal = "fabric_in.dst_nid" actual = "fic_uf0.dst_nid" />
+<f2a formal = "fabric_in.src_nid" actual = "fic_uf0.src_nid" />
+<f2a formal = "fabric_in.type" actual = "fic_uf0.type" />
+<f2a formal = "fabric_in.valid" actual = "fic_uf0.valid" />
+<f2a formal = "fabric_out.addr" actual = "uf0_uf1.addr" />
+<f2a formal = "fabric_out.age" actual = "uf0_uf1.age" />
+<f2a formal = "fabric_out.data" actual = "uf0_uf1.data" />
+<f2a formal = "fabric_out.dst_nid" actual = "uf0_uf1.dst_nid" />
+<f2a formal = "fabric_out.src_nid" actual = "uf0_uf1.src_nid" />
+<f2a formal = "fabric_out.type" actual = "uf0_uf1.type" />
+<f2a formal = "fabric_out.valid" actual = "uf0_uf1.valid" />
+</instance>
+</instantiation>
+<instantiation type = "fifo_regs">
+<instance name="fifo_regs_">
+<f2a formal = "fifo_reg.addr" actual = "ufm_ffr.addr" />
+<f2a formal = "fifo_reg.read_data" actual = "ufm_ffr.read_data" />
+<f2a formal = "fifo_reg.write_data" actual = "ufm_ffr.write_data" />
+<f2a formal = "fifo_reg.write_en" actual = "ufm_ffr.write_en" />
+<f2a formal = "fifo_reg_bus0.addr" actual = "ffr_upm.addr" />
+<f2a formal = "fifo_reg_bus0.read_data" actual = "ffr_upm.read_data" />
+<f2a formal = "fifo_reg_bus0.write_data" actual = "ffr_upm.write_data" />
+<f2a formal = "fifo_reg_bus0.write_en" actual = "ffr_upm.write_en" />
+</instance>
+</instantiation>
+<instantiation type = "uart">
+<instance name="uart_mod3">
+<f2a formal = "fabric.add_addr" actual = "uf3_ut3.add_addr" />
+<f2a formal = "fabric.add_data" actual = "uf3_ut3.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "uf3_ut3.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "uf3_ut3.add_ready" />
+<f2a formal = "fabric.add_type" actual = "uf3_ut3.add_type" />
+<f2a formal = "fabric.add_valid" actual = "uf3_ut3.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "uf3_ut3.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "uf3_ut3.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "uf3_ut3.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "uf3_ut3.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "uf3_ut3.drop_valid" />
+<f2a formal = "modem.gp0.en" actual = "u3_modem.gp0.en" />
+<f2a formal = "modem.gp0.in" actual = "u3_modem.gp0.in" />
+<f2a formal = "modem.gp0.out" actual = "u3_modem.gp0.out" />
+<f2a formal = "modem.gp1.en" actual = "u3_modem.gp1.en" />
+<f2a formal = "modem.gp1.in" actual = "u3_modem.gp1.in" />
+<f2a formal = "modem.gp1.out" actual = "u3_modem.gp1.out" />
+<f2a formal = "modem.gp2.en" actual = "u3_modem.gp2.en" />
+<f2a formal = "modem.gp2.in" actual = "u3_modem.gp2.in" />
+<f2a formal = "modem.gp2.out" actual = "u3_modem.gp2.out" />
+<f2a formal = "modem.gp3.en" actual = "u3_modem.gp3.en" />
+<f2a formal = "modem.gp3.in" actual = "u3_modem.gp3.in" />
+<f2a formal = "modem.gp3.out" actual = "u3_modem.gp3.out" />
+<f2a formal = "modem.gp4.en" actual = "u3_modem.gp4.en" />
+<f2a formal = "modem.gp4.in" actual = "u3_modem.gp4.in" />
+<f2a formal = "modem.gp4.out" actual = "u3_modem.gp4.out" />
+<f2a formal = "modem.gp5.en" actual = "u3_modem.gp5.en" />
+<f2a formal = "modem.gp5.in" actual = "u3_modem.gp5.in" />
+<f2a formal = "modem.gp5.out" actual = "u3_modem.gp5.out" />
+<f2a formal = "modem.rx" actual = "u3_modem.rx" />
+<f2a formal = "modem.tx" actual = "u3_modem.tx" />
+</instance>
+</instantiation>
+<instantiation type = "uart">
+<instance name="uart_mod2">
+<f2a formal = "fabric.add_addr" actual = "uf2_ut2.add_addr" />
+<f2a formal = "fabric.add_data" actual = "uf2_ut2.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "uf2_ut2.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "uf2_ut2.add_ready" />
+<f2a formal = "fabric.add_type" actual = "uf2_ut2.add_type" />
+<f2a formal = "fabric.add_valid" actual = "uf2_ut2.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "uf2_ut2.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "uf2_ut2.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "uf2_ut2.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "uf2_ut2.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "uf2_ut2.drop_valid" />
+<f2a formal = "modem.gp0.en" actual = "u2_modem.gp0.en" />
+<f2a formal = "modem.gp0.in" actual = "u2_modem.gp0.in" />
+<f2a formal = "modem.gp0.out" actual = "u2_modem.gp0.out" />
+<f2a formal = "modem.gp1.en" actual = "u2_modem.gp1.en" />
+<f2a formal = "modem.gp1.in" actual = "u2_modem.gp1.in" />
+<f2a formal = "modem.gp1.out" actual = "u2_modem.gp1.out" />
+<f2a formal = "modem.gp2.en" actual = "u2_modem.gp2.en" />
+<f2a formal = "modem.gp2.in" actual = "u2_modem.gp2.in" />
+<f2a formal = "modem.gp2.out" actual = "u2_modem.gp2.out" />
+<f2a formal = "modem.gp3.en" actual = "u2_modem.gp3.en" />
+<f2a formal = "modem.gp3.in" actual = "u2_modem.gp3.in" />
+<f2a formal = "modem.gp3.out" actual = "u2_modem.gp3.out" />
+<f2a formal = "modem.gp4.en" actual = "u2_modem.gp4.en" />
+<f2a formal = "modem.gp4.in" actual = "u2_modem.gp4.in" />
+<f2a formal = "modem.gp4.out" actual = "u2_modem.gp4.out" />
+<f2a formal = "modem.gp5.en" actual = "u2_modem.gp5.en" />
+<f2a formal = "modem.gp5.in" actual = "u2_modem.gp5.in" />
+<f2a formal = "modem.gp5.out" actual = "u2_modem.gp5.out" />
+<f2a formal = "modem.rx" actual = "u2_modem.rx" />
+<f2a formal = "modem.tx" actual = "u2_modem.tx" />
+</instance>
+</instantiation>
+<instantiation type = "uart_mgr">
+<instance name="uart_mgr_">
+<f2a formal = "fabric.add_addr" actual = "umf_ufm.add_addr" />
+<f2a formal = "fabric.add_data" actual = "umf_ufm.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "umf_ufm.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "umf_ufm.add_ready" />
+<f2a formal = "fabric.add_type" actual = "umf_ufm.add_type" />
+<f2a formal = "fabric.add_valid" actual = "umf_ufm.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "umf_ufm.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "umf_ufm.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "umf_ufm.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "umf_ufm.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "umf_ufm.drop_valid" />
+<f2a formal = "fifo_reg_bus0.addr" actual = "ufm_ffr.addr" />
+<f2a formal = "fifo_reg_bus0.read_data" actual = "ufm_ffr.read_data" />
+<f2a formal = "fifo_reg_bus0.write_data" actual = "ufm_ffr.write_data" />
+<f2a formal = "fifo_reg_bus0.write_en" actual = "ufm_ffr.write_en" />
+<f2a formal = "ram_bus1.addr" actual = "ram_ufm.addr" />
+<f2a formal = "ram_bus1.read_data" actual = "ram_ufm.read_data" />
+<f2a formal = "ram_bus1.ready" actual = "ram_ufm.ready" />
+<f2a formal = "ram_bus1.valid" actual = "ram_ufm.valid" />
+<f2a formal = "ram_bus1.write_data" actual = "ram_ufm.write_data" />
+<f2a formal = "ram_bus1.write_en" actual = "ram_ufm.write_en" />
+</instance>
+</instantiation>
+<instantiation type = "jeff_uart">
+<instance name="uart_mod0">
+<f2a formal = "fabric.add_addr" actual = "uf0_ut0.add_addr" />
+<f2a formal = "fabric.add_data" actual = "uf0_ut0.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "uf0_ut0.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "uf0_ut0.add_ready" />
+<f2a formal = "fabric.add_type" actual = "uf0_ut0.add_type" />
+<f2a formal = "fabric.add_valid" actual = "uf0_ut0.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "uf0_ut0.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "uf0_ut0.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "uf0_ut0.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "uf0_ut0.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "uf0_ut0.drop_valid" />
+<f2a formal = "uart_gpio_0.en" actual = "gpio_connect_a0.en" />
+<f2a formal = "uart_gpio_0.in" actual = "gpio_connect_a0.in" />
+<f2a formal = "uart_gpio_0.out" actual = "gpio_connect_a0.out" />
+<f2a formal = "uart_gpio_1.en" actual = "gpio_connect_a1.en" />
+<f2a formal = "uart_gpio_1.in" actual = "gpio_connect_a1.in" />
+<f2a formal = "uart_gpio_1.out" actual = "gpio_connect_a1.out" />
+<f2a formal = "uart_gpio_2.en" actual = "gpio_connect_a2.en" />
+<f2a formal = "uart_gpio_2.in" actual = "gpio_connect_a2.in" />
+<f2a formal = "uart_gpio_2.out" actual = "gpio_connect_a2.out" />
+<f2a formal = "uart_gpio_3.en" actual = "gpio_connect_a3.en" />
+<f2a formal = "uart_gpio_3.in" actual = "gpio_connect_a3.in" />
+<f2a formal = "uart_gpio_3.out" actual = "gpio_connect_a3.out" />
+<f2a formal = "uart_gpio_4.en" actual = "gpio_connect_a4.en" />
+<f2a formal = "uart_gpio_4.in" actual = "gpio_connect_a4.in" />
+<f2a formal = "uart_gpio_4.out" actual = "gpio_connect_a4.out" />
+<f2a formal = "uart_gpio_5.en" actual = "gpio_connect_a5.en" />
+<f2a formal = "uart_gpio_5.in" actual = "gpio_connect_a5.in" />
+<f2a formal = "uart_gpio_5.out" actual = "gpio_connect_a5.out" />
+</instance>
+</instantiation>
+<instantiation type = "usb_protocol_mgr">
+<instance name="usb_protocol_mgr_">
+<f2a formal = "fabric.add_addr" actual = "prf_upm.add_addr" />
+<f2a formal = "fabric.add_data" actual = "prf_upm.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "prf_upm.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "prf_upm.add_ready" />
+<f2a formal = "fabric.add_type" actual = "prf_upm.add_type" />
+<f2a formal = "fabric.add_valid" actual = "prf_upm.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "prf_upm.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "prf_upm.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "prf_upm.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "prf_upm.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "prf_upm.drop_valid" />
+<f2a formal = "fifo_reg.addr" actual = "ffr_upm.addr" />
+<f2a formal = "fifo_reg.read_data" actual = "ffr_upm.read_data" />
+<f2a formal = "fifo_reg.write_data" actual = "ffr_upm.write_data" />
+<f2a formal = "fifo_reg.write_en" actual = "ffr_upm.write_en" />
+<f2a formal = "ram_bus1.addr" actual = "ram_upm.addr" />
+<f2a formal = "ram_bus1.read_data" actual = "ram_upm.read_data" />
+<f2a formal = "ram_bus1.ready" actual = "ram_upm.ready" />
+<f2a formal = "ram_bus1.valid" actual = "ram_upm.valid" />
+<f2a formal = "ram_bus1.write_data" actual = "ram_upm.write_data" />
+<f2a formal = "ram_bus1.write_en" actual = "ram_upm.write_en" />
+<f2a formal = "tp_bus.p2t.endpoint" actual = "tp_bus.p2t.endpoint" />
+<f2a formal = "tp_bus.p2t.length" actual = "tp_bus.p2t.length" />
+<f2a formal = "tp_bus.p2t.ready" actual = "tp_bus.p2t.ready" />
+<f2a formal = "tp_bus.p2t.valid" actual = "tp_bus.p2t.valid" />
+<f2a formal = "tp_bus.t2p.endpoint" actual = "tp_bus.t2p.endpoint" />
+<f2a formal = "tp_bus.t2p.length" actual = "tp_bus.t2p.length" />
+<f2a formal = "tp_bus.t2p.ready" actual = "tp_bus.t2p.ready" />
+<f2a formal = "tp_bus.t2p.valid" actual = "tp_bus.t2p.valid" />
+</instance>
+</instantiation>
+<instantiation type = "fab">
+<instance name="fab_uart_mgr">
+<f2a formal = "fabric.add_addr" actual = "umf_ufm.add_addr" />
+<f2a formal = "fabric.add_data" actual = "umf_ufm.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "umf_ufm.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "umf_ufm.add_ready" />
+<f2a formal = "fabric.add_type" actual = "umf_ufm.add_type" />
+<f2a formal = "fabric.add_valid" actual = "umf_ufm.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "umf_ufm.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "umf_ufm.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "umf_ufm.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "umf_ufm.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "umf_ufm.drop_valid" />
+<f2a formal = "fabric_in.addr" actual = "ffl_umf.addr" />
+<f2a formal = "fabric_in.age" actual = "ffl_umf.age" />
+<f2a formal = "fabric_in.data" actual = "ffl_umf.data" />
+<f2a formal = "fabric_in.dst_nid" actual = "ffl_umf.dst_nid" />
+<f2a formal = "fabric_in.src_nid" actual = "ffl_umf.src_nid" />
+<f2a formal = "fabric_in.type" actual = "ffl_umf.type" />
+<f2a formal = "fabric_in.valid" actual = "ffl_umf.valid" />
+<f2a formal = "fabric_out.addr" actual = "umf_fic.addr" />
+<f2a formal = "fabric_out.age" actual = "umf_fic.age" />
+<f2a formal = "fabric_out.data" actual = "umf_fic.data" />
+<f2a formal = "fabric_out.dst_nid" actual = "umf_fic.dst_nid" />
+<f2a formal = "fabric_out.src_nid" actual = "umf_fic.src_nid" />
+<f2a formal = "fabric_out.type" actual = "umf_fic.type" />
+<f2a formal = "fabric_out.valid" actual = "umf_fic.valid" />
+</instance>
+</instantiation>
+<instantiation type = "uart">
+<instance name="uart_mod1">
+<f2a formal = "fabric.add_addr" actual = "uf1_ut1.add_addr" />
+<f2a formal = "fabric.add_data" actual = "uf1_ut1.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "uf1_ut1.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "uf1_ut1.add_ready" />
+<f2a formal = "fabric.add_type" actual = "uf1_ut1.add_type" />
+<f2a formal = "fabric.add_valid" actual = "uf1_ut1.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "uf1_ut1.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "uf1_ut1.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "uf1_ut1.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "uf1_ut1.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "uf1_ut1.drop_valid" />
+<f2a formal = "modem.gp0.en" actual = "u1_modem.gp0.en" />
+<f2a formal = "modem.gp0.in" actual = "u1_modem.gp0.in" />
+<f2a formal = "modem.gp0.out" actual = "u1_modem.gp0.out" />
+<f2a formal = "modem.gp1.en" actual = "u1_modem.gp1.en" />
+<f2a formal = "modem.gp1.in" actual = "u1_modem.gp1.in" />
+<f2a formal = "modem.gp1.out" actual = "u1_modem.gp1.out" />
+<f2a formal = "modem.gp2.en" actual = "u1_modem.gp2.en" />
+<f2a formal = "modem.gp2.in" actual = "u1_modem.gp2.in" />
+<f2a formal = "modem.gp2.out" actual = "u1_modem.gp2.out" />
+<f2a formal = "modem.gp3.en" actual = "u1_modem.gp3.en" />
+<f2a formal = "modem.gp3.in" actual = "u1_modem.gp3.in" />
+<f2a formal = "modem.gp3.out" actual = "u1_modem.gp3.out" />
+<f2a formal = "modem.gp4.en" actual = "u1_modem.gp4.en" />
+<f2a formal = "modem.gp4.in" actual = "u1_modem.gp4.in" />
+<f2a formal = "modem.gp4.out" actual = "u1_modem.gp4.out" />
+<f2a formal = "modem.gp5.en" actual = "u1_modem.gp5.en" />
+<f2a formal = "modem.gp5.in" actual = "u1_modem.gp5.in" />
+<f2a formal = "modem.gp5.out" actual = "u1_modem.gp5.out" />
+<f2a formal = "modem.rx" actual = "u1_modem.rx" />
+<f2a formal = "modem.tx" actual = "u1_modem.tx" />
+</instance>
+</instantiation>
+<instantiation type = "fab">
+<instance name="uart_fab_3">
+<f2a formal = "fabric.add_addr" actual = "uf3_ut3.add_addr" />
+<f2a formal = "fabric.add_data" actual = "uf3_ut3.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "uf3_ut3.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "uf3_ut3.add_ready" />
+<f2a formal = "fabric.add_type" actual = "uf3_ut3.add_type" />
+<f2a formal = "fabric.add_valid" actual = "uf3_ut3.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "uf3_ut3.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "uf3_ut3.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "uf3_ut3.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "uf3_ut3.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "uf3_ut3.drop_valid" />
+<f2a formal = "fabric_in.addr" actual = "uf2_uf3.addr" />
+<f2a formal = "fabric_in.age" actual = "uf2_uf3.age" />
+<f2a formal = "fabric_in.data" actual = "uf2_uf3.data" />
+<f2a formal = "fabric_in.dst_nid" actual = "uf2_uf3.dst_nid" />
+<f2a formal = "fabric_in.src_nid" actual = "uf2_uf3.src_nid" />
+<f2a formal = "fabric_in.type" actual = "uf2_uf3.type" />
+<f2a formal = "fabric_in.valid" actual = "uf2_uf3.valid" />
+<f2a formal = "fabric_out.addr" actual = "uf3_trf.addr" />
+<f2a formal = "fabric_out.age" actual = "uf3_trf.age" />
+<f2a formal = "fabric_out.data" actual = "uf3_trf.data" />
+<f2a formal = "fabric_out.dst_nid" actual = "uf3_trf.dst_nid" />
+<f2a formal = "fabric_out.src_nid" actual = "uf3_trf.src_nid" />
+<f2a formal = "fabric_out.type" actual = "uf3_trf.type" />
+<f2a formal = "fabric_out.valid" actual = "uf3_trf.valid" />
+</instance>
+</instantiation>
+<instantiation type = "fab">
+<instance name="trans_fab">
+<f2a formal = "fabric.add_addr" actual = "trf_utm.add_addr" />
+<f2a formal = "fabric.add_data" actual = "trf_utm.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "trf_utm.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "trf_utm.add_ready" />
+<f2a formal = "fabric.add_type" actual = "trf_utm.add_type" />
+<f2a formal = "fabric.add_valid" actual = "trf_utm.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "trf_utm.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "trf_utm.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "trf_utm.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "trf_utm.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "trf_utm.drop_valid" />
+<f2a formal = "fabric_in.addr" actual = "uf3_trf.addr" />
+<f2a formal = "fabric_in.age" actual = "uf3_trf.age" />
+<f2a formal = "fabric_in.data" actual = "uf3_trf.data" />
+<f2a formal = "fabric_in.dst_nid" actual = "uf3_trf.dst_nid" />
+<f2a formal = "fabric_in.src_nid" actual = "uf3_trf.src_nid" />
+<f2a formal = "fabric_in.type" actual = "uf3_trf.type" />
+<f2a formal = "fabric_in.valid" actual = "uf3_trf.valid" />
+<f2a formal = "fabric_out.addr" actual = "trf_prf.addr" />
+<f2a formal = "fabric_out.age" actual = "trf_prf.age" />
+<f2a formal = "fabric_out.data" actual = "trf_prf.data" />
+<f2a formal = "fabric_out.dst_nid" actual = "trf_prf.dst_nid" />
+<f2a formal = "fabric_out.src_nid" actual = "trf_prf.src_nid" />
+<f2a formal = "fabric_out.type" actual = "trf_prf.type" />
+<f2a formal = "fabric_out.valid" actual = "trf_prf.valid" />
+</instance>
+</instantiation>
+<instantiation type = "usb_transaction_mgr">
+<instance name="usb_transaction_mgr_">
+<f2a formal = "fabric.add_addr" actual = "trf_utm.add_addr" />
+<f2a formal = "fabric.add_data" actual = "trf_utm.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "trf_utm.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "trf_utm.add_ready" />
+<f2a formal = "fabric.add_type" actual = "trf_utm.add_type" />
+<f2a formal = "fabric.add_valid" actual = "trf_utm.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "trf_utm.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "trf_utm.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "trf_utm.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "trf_utm.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "trf_utm.drop_valid" />
+<f2a formal = "phy_rx.cmd" actual = "phy_rx.cmd" />
+<f2a formal = "phy_rx.data" actual = "phy_rx.data" />
+<f2a formal = "phy_rx.ready" actual = "phy_rx.ready" />
+<f2a formal = "phy_rx.valid" actual = "phy_rx.valid" />
+<f2a formal = "phy_tx.cmd" actual = "phy_tx.cmd" />
+<f2a formal = "phy_tx.data" actual = "phy_tx.data" />
+<f2a formal = "phy_tx.ready" actual = "phy_tx.ready" />
+<f2a formal = "phy_tx.valid" actual = "phy_tx.valid" />
+<f2a formal = "ram_bus1.addr" actual = "ram_utm.addr" />
+<f2a formal = "ram_bus1.read_data" actual = "ram_utm.read_data" />
+<f2a formal = "ram_bus1.ready" actual = "ram_utm.ready" />
+<f2a formal = "ram_bus1.valid" actual = "ram_utm.valid" />
+<f2a formal = "ram_bus1.write_data" actual = "ram_utm.write_data" />
+<f2a formal = "ram_bus1.write_en" actual = "ram_utm.write_en" />
+<f2a formal = "tp_bus.p2t.endpoint" actual = "tp_bus.p2t.endpoint" />
+<f2a formal = "tp_bus.p2t.length" actual = "tp_bus.p2t.length" />
+<f2a formal = "tp_bus.p2t.ready" actual = "tp_bus.p2t.ready" />
+<f2a formal = "tp_bus.p2t.valid" actual = "tp_bus.p2t.valid" />
+<f2a formal = "tp_bus.t2p.endpoint" actual = "tp_bus.t2p.endpoint" />
+<f2a formal = "tp_bus.t2p.length" actual = "tp_bus.t2p.length" />
+<f2a formal = "tp_bus.t2p.ready" actual = "tp_bus.t2p.ready" />
+<f2a formal = "tp_bus.t2p.valid" actual = "tp_bus.t2p.valid" />
+</instance>
+</instantiation>
+<instantiation type = "fab_filter">
+<instance name="fab_filter_">
+<f2a formal = "fabric_in.addr" actual = "prf_ffl.addr" />
+<f2a formal = "fabric_in.age" actual = "prf_ffl.age" />
+<f2a formal = "fabric_in.data" actual = "prf_ffl.data" />
+<f2a formal = "fabric_in.dst_nid" actual = "prf_ffl.dst_nid" />
+<f2a formal = "fabric_in.src_nid" actual = "prf_ffl.src_nid" />
+<f2a formal = "fabric_in.type" actual = "prf_ffl.type" />
+<f2a formal = "fabric_in.valid" actual = "prf_ffl.valid" />
+<f2a formal = "fabric_out.addr" actual = "ffl_umf.addr" />
+<f2a formal = "fabric_out.age" actual = "ffl_umf.age" />
+<f2a formal = "fabric_out.data" actual = "ffl_umf.data" />
+<f2a formal = "fabric_out.dst_nid" actual = "ffl_umf.dst_nid" />
+<f2a formal = "fabric_out.src_nid" actual = "ffl_umf.src_nid" />
+<f2a formal = "fabric_out.type" actual = "ffl_umf.type" />
+<f2a formal = "fabric_out.valid" actual = "ffl_umf.valid" />
+</instance>
+</instantiation>
+<instantiation type = "fab">
+<instance name="uart_fab_1">
+<f2a formal = "fabric.add_addr" actual = "uf1_ut1.add_addr" />
+<f2a formal = "fabric.add_data" actual = "uf1_ut1.add_data" />
+<f2a formal = "fabric.add_dst_nid" actual = "uf1_ut1.add_dst_nid" />
+<f2a formal = "fabric.add_ready" actual = "uf1_ut1.add_ready" />
+<f2a formal = "fabric.add_type" actual = "uf1_ut1.add_type" />
+<f2a formal = "fabric.add_valid" actual = "uf1_ut1.add_valid" />
+<f2a formal = "fabric.drop_addr" actual = "uf1_ut1.drop_addr" />
+<f2a formal = "fabric.drop_data" actual = "uf1_ut1.drop_data" />
+<f2a formal = "fabric.drop_src_nid" actual = "uf1_ut1.drop_src_nid" />
+<f2a formal = "fabric.drop_type" actual = "uf1_ut1.drop_type" />
+<f2a formal = "fabric.drop_valid" actual = "uf1_ut1.drop_valid" />
+<f2a formal = "fabric_in.addr" actual = "uf0_uf1.addr" />
+<f2a formal = "fabric_in.age" actual = "uf0_uf1.age" />
+<f2a formal = "fabric_in.data" actual = "uf0_uf1.data" />
+<f2a formal = "fabric_in.dst_nid" actual = "uf0_uf1.dst_nid" />
+<f2a formal = "fabric_in.src_nid" actual = "uf0_uf1.src_nid" />
+<f2a formal = "fabric_in.type" actual = "uf0_uf1.type" />
+<f2a formal = "fabric_in.valid" actual = "uf0_uf1.valid" />
+<f2a formal = "fabric_out.addr" actual = "uf1_uf2.addr" />
+<f2a formal = "fabric_out.age" actual = "uf1_uf2.age" />
+<f2a formal = "fabric_out.data" actual = "uf1_uf2.data" />
+<f2a formal = "fabric_out.dst_nid" actual = "uf1_uf2.dst_nid" />
+<f2a formal = "fabric_out.src_nid" actual = "uf1_uf2.src_nid" />
+<f2a formal = "fabric_out.type" actual = "uf1_uf2.type" />
+<f2a formal = "fabric_out.valid" actual = "uf1_uf2.valid" />
+</instance>
+</instantiation>
+</unit>
+</design>

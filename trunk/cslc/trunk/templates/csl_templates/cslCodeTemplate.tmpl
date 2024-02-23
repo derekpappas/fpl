@@ -1,0 +1,137 @@
+//--------------------csl code ------------------------//
+<TMPL_IF has_unit>
+<TMPL_LOOP unit_predecl_loop> csl_unit <TMPL_VAR unit_name>;</TMPL_LOOP>
+</TMPL_IF>
+
+<TMPL_IF has_br>
+<TMPL_LOOP br_loop>csl_bitrange <TMPL_VAR br_name>(<TMPL_VAR num_expr>);</TMPL_LOOP>
+</TMPL_IF>
+
+
+<TMPL_IF has_sg>
+<TMPL_LOOP sg_loop>
+   csl_signal_group <TMPL_VAR sg_name>{
+   <TMPL_IF sg_has_signals>
+   <TMPL_LOOP sg_sig_loop>
+	csl_signal <TMPL_VAR sg_sig_name><TMPL_IF sg_has_stype>(<TMPL_VAR sg_sig_type><TMPL_IF sg_has_swidth>,<TMPL_VAR sg_sig_width>);<TMPL_ELSE>);</TMPL_IF>
+   	                                <TMPL_ELSE><TMPL_IF sg_has_width>(<TMPL_VAR sg_sig_width>);<TMPL_ELSE>;</TMPL_IF></TMPL_IF>   
+  </TMPL_LOOP>
+  </TMPL_IF>
+  <TMPL_IF has_sg_inst>
+  <TMPL_LOOP sg_inst_loop><TMPL_VAR sg_original_name> <TMPL_VAR sg_inst_name>;</TMPL_LOOP>
+  </TMPL_IF>
+  <TMPL_VAR sg_name>(){}
+  };
+  </TMPL_LOOP>
+  </TMPL_IF>
+
+<TMPL_IF has_ifc>
+<TMPL_LOOP ifc_loop>
+csl_interface <TMPL_VAR ifc_name>{
+	<TMPL_IF ifc_has_ports>
+	<TMPL_LOOP ifc_port_loop>
+	csl_port <TMPL_VAR ifc_port_name>(<TMPL_VAR ifc_port_dir><TMPL_IF ifc_has_type>,<TMPL_VAR ifc_port_type></TMPL_IF><TMPL_IF ifc_has_width>, <TMPL_VAR ifc_port_width></TMPL_IF>); 
+	</TMPL_LOOP>
+	</TMPL_IF>
+	<TMPL_IF has_ifc_inst>
+	<TMPL_LOOP ifc_inst_loop><TMPL_VAR ifc_original_name> <TMPL_VAR ifc_inst_name>;</TMPL_LOOP>
+	</TMPL_IF>
+<TMPL_VAR ifc_name>() {}
+};
+</TMPL_LOOP>
+
+</TMPL_IF>
+
+<TMPL_IF has_unit>
+<TMPL_LOOP unit_loop>
+csl_unit <TMPL_VAR unit_name>{
+	<TMPL_IF unit_has_ports>
+	<TMPL_LOOP unit_port_loop>
+	csl_port <TMPL_VAR port_name>(<TMPL_VAR port_dir><TMPL_IF has_ptype>, <TMPL_VAR port_type></TMPL_IF><TMPL_IF has_pwidth>, <TMPL_VAR port_width></TMPL_IF>);
+	</TMPL_LOOP>
+	</TMPL_IF>
+
+	<TMPL_IF unit_has_signals>
+	<TMPL_LOOP unit_signal_loop>
+	csl_signal <TMPL_VAR sig_name>(<TMPL_IF has_stype><TMPL_VAR sig_type></TMPL_IF><TMPL_IF has_swidth>, <TMPL_VAR sig_width></TMPL_IF>);
+	</TMPL_LOOP>
+	</TMPL_IF>
+
+	<TMPL_IF has_sg_inst>
+	<TMPL_LOOP sg_inst_loop>
+	<TMPL_VAR sg_orig_name> <TMPL_VAR sg_inst>;
+	</TMPL_LOOP>
+	</TMPL_IF>
+
+	<TMPL_IF has_ifc_inst>
+	<TMPL_LOOP ifc_inst_loop>
+	<TMPL_VAR ifc_orig_name> <TMPL_VAR ifc_inst>;
+	</TMPL_LOOP>
+	</TMPL_IF>
+
+<TMPL_IF has_f2a><TMPL_LOOP unit_f2a_inst_loop>	
+<TMPL_VAR unit_inst_name> <TMPL_VAR unit_inst><TMPL_LOOP f2a_loop><TMPL_IF __FIRST__>(.<TMPL_ELSE>       .</TMPL_IF><TMPL_VAR formal>(<TMPL_VAR actual>)<TMPL_IF __LAST__>)<TMPL_ELSE>,</TMPL_IF></TMPL_LOOP>;</TMPL_LOOP></TMPL_IF>
+
+<TMPL_VAR unit_name>()  { 
+
+ <TMPL_IF has_assignStmt>		
+ <TMPL_LOOP assign_loop> 
+ <TMPL_VAR lhs> = <TMPL_VAR rhs>; 
+ </TMPL_LOOP></TMPL_IF>
+ <TMPL_IF has_opExpr><TMPL_LOOP  ass_opExpr_loop>
+ <TMPL_VAR lhs_op> = <TMPL_VAR rhs_op>;  	
+ </TMPL_LOOP> </TMPL_IF> 
+ <TMPL_IF has_concatRhs>
+ <TMPL_LOOP  ass_concat_loop>
+ <TMPL_VAR lhs_concat> = <TMPL_VAR rhs_concat>; 	
+ </TMPL_LOOP></TMPL_IF> 
+ <TMPL_IF has_replicRhs>
+ <TMPL_LOOP  ass_replic_loop>
+ <TMPL_VAR lhs_replic> = <TMPL_VAR rhs_replic>; 	
+ </TMPL_LOOP></TMPL_IF> 
+
+ <TMPL_IF has_set_attr>
+ <TMPL_LOOP clk_loop> <TMPL_VAR clk_name>.set_attr(<TMPL_VAR clock>);
+ </TMPL_LOOP>
+ </TMPL_IF>	
+ }
+ };
+</TMPL_LOOP>
+</TMPL_IF>
+
+<TMPL_IF has_vectors>
+<TMPL_LOOP vec_loop>
+csl_vector <TMPL_VAR vec_name>{
+
+<TMPL_VAR vec_name>() {
+	set_unit_name(<TMPL_VAR dut_name>);
+	set_direction(<TMPL_VAR vec_dir>);
+	<TMPL_IF has_excl_list>	exclusion_list(<TMPL_LOOP pExcl_list> <TMPL_VAR peName><TMPL_IF __LAST__> );<TMPL_ELSE>,</TMPL_IF></TMPL_LOOP>
+	</TMPL_IF>
+	<TMPL_IF has_incl_only>	include_only(<TMPL_LOOP pIncl_list> <TMPL_VAR piName><TMPL_IF __LAST__> );<TMPL_ELSE>,</TMPL_IF></TMPL_LOOP>
+	</TMPL_IF>
+	<TMPL_IF has_set_vc_header_comment> has_vc_header_comment("<TMPL_VAR header_name>"); </TMPL_IF>
+        <TMPL_IF has_set_version> set_version (<TMPL_VAR vec_version>);</TMPL_IF>
+ 	<TMPL_IF has_set_radix> set_radix (<TMPL_VAR vec_radix>);</TMPL_IF>	
+	<TMPL_IF has_set_vc_clock> set_vc_clock (<TMPL_VAR new_clk>);</TMPL_IF>	
+	<TMPL_IF has_set_vc_reset> set_vc_reset (<TMPL_VAR rst_sig>);</TMPL_IF>	
+ 	<TMPL_IF has_set_vc_stall> set_vc_stall (<TMPL_VAR stall_sig>);</TMPL_IF>		
+	}
+};
+</TMPL_LOOP>
+</TMPL_IF>
+
+<TMPL_IF has_tb>
+csl_testbench <TMPL_VAR tb_name> {
+	<TMPL_LOOP dut_inst_loop>
+	<TMPL_VAR dut_name> <TMPL_VAR dut_inst>(.<TMPL_VAR dut_clk>(<TMPL_VAR tb_clk>));
+	</TMPL_LOOP>
+	<TMPL_LOOP tb_sig_loop> 
+	csl_signal <TMPL_VAR tb_sName>(<TMPL_IF tb_has_stype><TMPL_VAR tb_sig_type></TMPL_IF><TMPL_IF tb_has_swidth>, <TMPL_VAR tb_sig_width></TMPL_IF>);
+	</TMPL_LOOP>
+<TMPL_VAR tb_name>() {
+	<TMPL_VAR tb_clk>.set_attr(clock);
+	add_logic(clock,<TMPL_VAR tb_clk>,<TMPL_VAR period>,<TMPL_VAR timescale>);
+}
+};
+</TMPL_IF>

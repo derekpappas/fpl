@@ -1,0 +1,38 @@
+// Author : CristiL
+// Creating a hid item using fields
+
+csl_field fieldA {
+};
+
+csl_field fieldB {
+  fieldA fieldA0;
+  fieldA fieldA1;
+
+  fieldB() {
+    set_field_position(fieldA0,0);
+    set_field_position(fieldA1,1);
+   fieldA0.set_value(9);
+   fieldA1.set_value(99);
+  }
+};
+
+csl_field fieldC {
+  fieldB fieldB0;
+  fieldB fieldB1;
+
+  fieldC() {
+    set_field_position(fieldB0,0);
+    set_field_position(fieldB1,3);
+     }
+};
+
+csl_unit unitTop {
+  fieldC fieldC0;
+
+  unitTop() { 
+     //fieldC0.fieldB0.fieldA0.set_value(9);
+     //fieldC0.fieldB0.fieldA1.set_value(999);
+     //fieldC0.fieldB1.fieldA0.set_value(99);
+     //fieldC0.fieldB1.fieldA1.set_value(99999);
+  }
+};

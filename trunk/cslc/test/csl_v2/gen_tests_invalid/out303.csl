@@ -1,0 +1,139 @@
+csl_enum mj {
+	sx,
+	py,
+	ef,
+	cw,
+	ed,
+	te
+};
+csl_enum uj {
+	ed,
+	ux,
+	ar,
+	gs,
+	ds
+};
+csl_enum op {
+	gw = 75,
+	sv = 52,
+	go = 1,
+	tv = 46,
+	na = 67,
+	er = 66,
+	yk = 21,
+	uu = 0
+};
+csl_isa_instruction_format hb{
+    hb( ){
+     set_width( 8);
+     generate_decoder( ianq);
+  }
+}
+;
+csl_isa_instruction sd : hb{
+    sd( ){
+    set_asm_mnemonic( csl_list "ub", "lg", "uw");
+  }
+}
+;
+csl_isa er{
+  sd jy;
+  sd oe;
+  sd gt;
+  sd om;
+  sd ns;
+  sd gg;
+  sd hk;
+  sd nf;
+  sd oi;
+  sd pt;
+  sd we;
+  sd hs;
+  sd bg;
+  sd qo;
+    er( ){
+     set_decoder_name( "qg");
+     set_decoder_out_name_prefix( "nl");
+  }
+}
+;
+csl_fifo aq{
+   aq( ){
+     add_logic( parallel_output, all);
+  }
+}
+;
+csl_memory_map_page kw{
+    kw( ){
+     add_address_range( 5, 8);
+     set_address_increment( 8);
+     set_next_address( 2);
+     get_next_address( );
+     set_access_rights( none, access_write);
+     add_reserved_address_range( 3, 0);
+     add( aq, "lq", 1);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page cs{
+    cs( ){
+     set_address_increment( 1);
+     set_next_address( 6);
+     set_access_rights( access_read_write, access_read_write);
+     add_reserved_address_range( 1, 0);
+     get_upper_bound( );
+     set_aligment( 1);
+     get_aligment( );
+  }
+}
+;
+csl_memory_map_page or{
+    or( ){
+     add_address_range( 0, 2);
+     set_address_increment( 1);
+     get_address_increment( );
+     set_next_address( 1);
+     set_access_rights( access_write, access_write);
+     add_reserved_address_range( 2, 5);
+     add( kwcs);
+     get_upper_bound( );
+     set_data_word_width( 3);
+     get_data_word_wodth( );
+     set_aligment( 7);
+     set_endianess( little_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map fn{
+    fn( ){
+     set_data_word_width( 2);
+     set_prefix( gt);
+  }
+}
+;
+csl_register so{
+    so( ){
+     set_width( 4);
+     set_atribute( read_write);
+     constant( 1);
+     add_logic( neg_output);
+     add_logic( serial_input);
+     set_start_value( 3);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register jq{
+    jq( ){
+     set_width( 9);
+     add_logic( read_valid);
+     set_const_value( 1);
+  }
+}
+;

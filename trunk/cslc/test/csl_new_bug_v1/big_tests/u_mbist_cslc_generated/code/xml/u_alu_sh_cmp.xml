@@ -1,0 +1,74 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u_alu_sh_cmp">
+<interface name="ifc_op0" >
+<port name="op1" offset="0" upper="15" lower="0" direction = "input" type = "wire" />
+<port name="op2" offset="0" upper="15" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifc_out0" >
+<port name="o" offset="0" upper="15" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="sel_op" >
+<port name="p_sel" offset="0" upper="3" lower="0" direction = "input" type = "wire" />
+</interface>
+<port name="sham" offset="0" upper="16-1" lower="0" direction = "input" type = "wire" />
+<port name="compres" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<signal name="cin" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="cout" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="p_tomux40" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="p_tomux41" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="p_tomux42" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="p_tomux43" offset="0" upper="15" lower="0" type = "wire"/>
+<signalgroup name="tomux40">
+<signal name="p_op1" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="p_op2" offset="0" upper="15" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="tomux41">
+<signal name="p_op1" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="p_op2" offset="0" upper="15" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="tomux42">
+<signal name="p_o" offset="0" upper="15" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "u_arith">
+<instance name="u_arith0">
+<f2a formal = "cin" actual = "cin" />
+<f2a formal = "cout" actual = "cout" />
+<f2a formal = "ifc_op0" actual = "ifc_op0" />
+<f2a formal = "ifc_out0" actual = "tomux40" />
+<f2a formal = "ifc_sel0" actual = "sel_op" />
+</instance>
+</instantiation>
+<instantiation type = "u_logic">
+<instance name="u_logic0">
+<f2a formal = "ifc_op0" actual = "ifc_op0" />
+<f2a formal = "ifc_out0" actual = "tomux41" />
+<f2a formal = "ifc_sel0" actual = "sel_op" />
+</instance>
+</instantiation>
+<instantiation type = "u_cmp">
+<instance name="u_cmp0">
+<f2a formal = "ifc_op_cmp" actual = "ifc_op0" />
+<f2a formal = "res" actual = "compres" />
+</instance>
+</instantiation>
+<instantiation type = "u_sh">
+<instance name="u_sh0">
+<f2a formal = "ifc_din" actual = "ifc_op0" />
+<f2a formal = "ifc_dout" actual = "tomux42" />
+<f2a formal = "p_sham" actual = "sham" />
+</instance>
+</instantiation>
+<instantiation type = "u_mux41">
+<instance name="u_mux410">
+<f2a formal = "ifc_out0" actual = "ifc_out0" />
+<f2a formal = "in0" actual = "p_tomux40" />
+<f2a formal = "in1" actual = "p_tomux41" />
+<f2a formal = "in2" actual = "p_tomux42" />
+<f2a formal = "in3" actual = "p_tomux43" />
+<f2a formal = "sel" actual = "sel_op.p_sel" />
+</instance>
+</instantiation>
+</unit>
+</design>

@@ -1,0 +1,16 @@
+Garbage disposal
+Day ======= Employee
+
+Monday      Cleaning Lady
+Tuesday     OctavS & BogdanZ & TiberiuH
+Wednesday   CristiL & AdrianI
+Thursday    Cleaning Lady
+Friday      AndreiS & DanielT
+Saturday    AndreiM & AndreiB
+
+
+Water purchasing
+Day =============== Employee
+Whenever neccessary CAmarand & ClaudiuC
+
+filepath: svn/misc/hr/employee_schedules/chores_schedule.txt

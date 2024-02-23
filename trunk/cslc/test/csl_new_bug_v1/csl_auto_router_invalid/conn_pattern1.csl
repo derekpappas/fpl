@@ -1,0 +1,13 @@
+
+csl_unit a {
+  csl_port x(input,3);
+  a () {}
+};
+
+csl_unit b {
+  csl_signal s(3);
+  a a0;
+  b () {
+    a0.x[2:1].connect_by_pattern(s[2:2]);
+  }
+};

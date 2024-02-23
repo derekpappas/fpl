@@ -1,0 +1,23 @@
+//set_dim_width more times 
+//andreim
+//19 June 2007
+
+csl_bitrange br_br(0, 7);
+
+csl_unit u_unit1{
+	csl_signal 	sgn_sgn1,
+							sgn_sgn2(wire, 4),     
+							sgn_sgn3(reg, 0,3),  //lower & upper
+							sgn_sgn4,
+							sgn_sgn5,
+							sgn_sgn6;
+	u_unit1(){
+		sgn_sgn1.set_number_of_dimensions(4);
+	  sgn_sgn1.set_dim_width(0, 10);
+	  sgn_sgn1.set_dim_width(1, 11);
+	  sgn_sgn1.set_dim_width(2, 12);
+	  //sgn_sgn1.set_dim_width(3, sgn1.get_dim_width(2));
+	  sgn_sgn1.set_dim_width(2, br_br);
+	  sgn_sgn1.set_dim_width(2, 8);
+	}
+};

@@ -1,0 +1,44 @@
+Valex
+
+reffered documents:
+.fm file is \docs\manuals\production\csl_files\csl_clock_synch.fm
+
+document notes:
+on pag.2	- figure 1.1 and text below was duplicated on page 4: deleted duplicated figure and text.
+		- Sections: 1.3, 1.4, 1.5, 1.6; missing body text
+		- remove file names listed in  anchored frame at the beggining of the section 1.6 ?
+		
+	- in the sentence "If the clock domains are the same frquency but are out of phase wrt each other then use a negatively triggered DFF " what does "wrt" mean ? Maybe with ?
+
+on pag.4	- the sentences before "Clock domain crossing elements..." was duplicated on page 6: deleted duplicated text.
+on page 5 (top) Convert the text above "capture on the negative edge" into a figure? the same question for page 6 top
+	- figure 1.8: *4 signals don't have labels.
+		      *the signal with label "OR" must be the result of OR operation between 1st and 2nd signal probable, but i don't know which signals are used in AND operation to result "AND" signal; 
+	- table 1.2: *is incomplete.
+	- figure 1.10: *what does this represent? The signals are not labeled and the text below is incomplete.
+	- figure 1.11 was duplicated on page 13: deleted duplicated figure.
+	- figure 1.12:  *"and clk" ?
+	- figure 1.15: *blocks missing: it was redraw.
+	- figure 1.18: *on the clock signal, in the first period, the repetition of value "1" may add confusion (2 bits or 1 bit).
+	- figure 1.19, 1.20: *"qval_clk" signal is the result of OR logic between "en0" signal and "clk" signal; in the figure 1.20, when ck = 1 and en0 = 0; qval_clk = 0 (rong): this problem was fixed.
+	- figure 1.23, 1.24: *"qval_clk" signal is the result of NAND logic between "en0" signal and "clk" signal; in the figure 1.20, when en0 = 0  and ck = * (don't care); qval_clk = 0 (rong): this problem was fixed.
+	- figure 1.31: *i don't understant what is "phi0" and "phi1".
+	- figure 1.35: *the labels of the signals are "c0" and "c1", but in the figure 1.34 there not exist; maybe must be "clk0" and "clk1".
+	- figure 1.36: * input on FF have no label.
+	- in figure 1.37 i think this signals are the sames with the signals from the figure 1.36 and is a confusion about the labels of sigmals.
+	- figure 1.38: * input on FF have no label.
+	- figure 1.40: *the pin (input) for clock signal on FF is connected with the pin (input) of AND gate? where is  output?
+		       *witch pin have the label "en"?
+		       *maybe the "out" label must be at the out pin of the AND gate.
+	- figure 1.41: * the first and the last signal don't have labels.
+	- figure 1.42: * is incomplete.
+	- figure 1.43: * is incomplete.
+	- figure 1.44: * clk_out is incomplete (first half missing)?
+	- in the figure 1.46 are represented the signals from the scheme 1.45; the L block is a latch wich have a clock input without a circle; the state is changed on the rise front of clock signal? (or on the HI level (i think)), and in the fig 1.43 the en_d signal is changed on the rise front then on the fall front of clock.
+	- figure 1.47: * the FF blocks are flip-flops? If yes, whay they have more inputs/outputs?
+		       * i don't understand what this structure does.
+	- figure 1.48: * 3 signals are not labeled
+	- figure 1.4: was duplicated on page 23: deleted duplicated text.
+	- the figures and tabels form page 7 to 23 was duplicated after page 23:deleted duplicated text.
+	- figure 1.54: the pins are not labeled.
+	- the text before the figure 1.55 is incomplete.

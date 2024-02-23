@@ -1,0 +1,857 @@
+{\rtf1\ansi \deff4\deflang1033{\fonttbl{\f3\fmodern\fcharset0\fprq1 Courier{\*\falt Courier};}{\f4\froman\fcharset0\fprq2 Times New Roman;}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;
+\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;
+\red128\green128\blue128;\red192\green192\blue192;}{\stylesheet{\f4\fs20 \snext0 Normal;}{\*\cs10 \additive Default Paragraph Font;}{\s15\tqc\tx4320\tqr\tx8640 \f4\fs20 \sbasedon0\snext15 header;}{\s16\tqc\tx4320\tqr\tx8640 \f4\fs20 \sbasedon0\snext16 
+footer;}}{\info{\author Nicholas L. Pappas, Ph.D.}{\creatim\yr1910\mo2\dy1}{\revtim\yr1910\mo2\dy1}{\version1}{\edmins0}{\nofpages0}{\nofwords0}{\nofchars0}{\vern49203}}\margl1440\margr1152\margt720\margb720 
+\facingp\ftnbj\aenddoc\ftnrestart\pgnstart241\notabind\noextrasprl\sprsspbf\brkfrm\hyphcaps0 \fet0\sectd \sbknone\pgnrestart\pgnstarts241\linex576\footery480\endnhere {\headerl \pard\plain \qj\li-1440\ri-1152\sl-240\slmult0 \f4\fs20 {\f3\fs24 
+                                Computer Architecture and Design
+\par }}{\headerr \pard\plain \qj\li-1440\ri-1152\sl-240\slmult0 \f4\fs20 {\f3\fs24                                 Computer Architecture and Design
+\par }}{\footerl \pard\plain \qj\li-1440\ri-1152\sl-240\slmult0 \f4\fs20 {\f3\fs24  (C) Copyright 1991 Nicholas. L. Pappas, PhD.  910801          \chpgn 
+\par }}{\footerr \pard\plain \qj\li-1440\ri-1152\sl-240\slmult0 \f4\fs20 {\f3\fs24  (C) Copyright 1991 Nicholas. L. Pappas, PhD.  910801          \chpgn 
+\par }}{\*\pnseclvl1\pnucrm\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl2\pnucltr\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl3\pndec\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl4\pnlcltr\pnstart1\pnindent720\pnhang{\pntxta )}}
+{\*\pnseclvl5\pndec\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl6\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl7\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl8
+\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl9\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}\pard\plain \sl-240\slmult0 \f4\fs20 {\b\f3\fs24 2.8 Microprogramming}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+Our claim is that any uI can be represented by a list of microinstructions (mI) drawn from the set mALU, mMOV, mBR, mNOP in some combination.  In general we can say the microcontroller executes repetitively the fetch-execute sequence.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24                fetch_uI
+\par                execute mI list for uI just fetched
+\par                fetch_uI
+\par                execute mI list for uI just fetched
+\par                ....
+\par                and so on               
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 In fact the microcontroller does not know it executes fetch_uI.  
+\par The microcontroller knows it executes one mI after the other. Fetch_uI is simply the name of a sequence of 3 mI.  The fetch_uI "3" are executed after each mI list because each mI list ends with a branch to fetch_uI in order to fetch the next uI in the use
+r program.  This scheme requires 3 computer cycles (mI) to go to the next mI list.  This overhead is usually hidden from the user.  Later we will show the overhead can be eliminated by using a uI instruction pipeline.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Usually mI are not used explicity lik
+e we use them here.  The concept of microassembly language is not introduced.  Instead the reader is directly immersed in the programming of microinstruction fields.  We prefer to introduce the mI explicitly in microassembly language form so that we can p
+rogram in microassembly language.  Then a microassembler translating mI into 32 bit mI_words can rescue us from machine language microprogramming.  However, we will be our own microassemblers.  We will translate mIs into mI_words using pencil and paper in
+ order to acquire experience.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Microprogramming brings a significant number of concepts and considerations into play (Table 2.6).  Your keeping these points in mind as we proceed will be very useful to you.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 Table 2.6  Factors used in mI List Synthesis}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 1. uI and associated literals are stored sequentially in user
+\par    memory.
+\par 2. Where is data stored and what are the data addresses?
+\par 3. What are the address modes for source and destination?
+\par 4. What data paths does a uI require to be set up in order to
+\par    execute?
+\par 5. Use before\_after register diagrams.
+\par 6. Understand multiple precision arithmetic.
+\par 7. Create a power of 2 by adding 1 to zero and perform SLL.
+\par 8. Two address operands require read of source and destination.
+\par 9. Branches \_\_ use the "opposite" condition.  E.g. for BZ use nz.
+\par 10. Fetch_uI executes before execution of each uI's mI list.
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \page }{\b\f3\fs24 2.8.1 Designer's Programming Model}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 A typical programming model includes registers a programmer can access on a read or write basis.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The designer's programming model (figu
+re 2.12 which is repeated below) includes all registers in the user data path whereas the user's programming model does not.  The users only includes the registers shown in the uI set (table 2.1).
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+We choose to extend the concept of programming model to include immediate words such as iw and addr_abs.  Normally programming models do not include the immediate words iw and addr_abs because they are not registers in the cpu.  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Nor are the user memory words (registers) included.  This is a valid omission because memory words do not appear explicitly in operands except as addr_abs which we have included.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 Figure 2.12  Programming Models
+\par }\pard {\b\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 \page 2.8.2 uI Operands}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+Hardware registers and memory imply four combinations of uI operands.  Literals imply two more combinations.  Using the notation rs for source register, rd for destination register, s_ea for source effective address, and d_ea for destination eff
+ective address the various uI operand combinations are as follows.
+\par      
+\par      source    destination    uI examples
+\par      \_\_\_\_\_\_\_\_  \_\_\_\_\_\_\_\_\_\_\_    \_\_\_\_\_\_\_\_\_\_\_\_\_
+\par      register  register       ADD rs    rd
+\par      memory    register       ADD s_ea  rd
+\par      register  memory         ADD rs    d_ea
+\par      memory    memory         ADD s_ea  d_ea
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      literal   register       ADD iw   rd
+\par      literal   memory         ADD iw   d_ea
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 A list of registers for rs, rd is taken from the user's programming model (figure 2.12).  The special register r0 (rzero) is permanently wired to hold the value zero.  This is not register file register r}{\f3\fs24\dn60 0}
+{\f3\fs24  (a specific r}{\f3\fs24\dn60 x}{\f3\fs24  or r}{\f3\fs24\dn60 y}{\f3\fs24 ).  The 16 register file registers are pointed to by r}{\f3\fs24\dn60 x}{\f3\fs24  or r}{\f3\fs24\dn60 y}{\f3\fs24 .
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      Symbol    Registers
+\par      \_\_\_\_\_\_    \_\_\_\_\_\_\_\_\_
+\par      pc        program counter
+\par      r}{\f3\fs24\dn60 x}{\f3\fs24 , r}{\f3\fs24\dn60 y}{\f3\fs24     register file (r}{\f3\fs24\dn60 0}{\f3\fs24  to r}{\f3\fs24\dn60 F}{\f3\fs24 )
+\par      rt        rtemp
+\par      r0        rzero 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \tab (Registers used implicitly as operands are included to \tab  \tab  \tab  complete the list.)
+\par \tab sp        stack pointer
+\par      st        status 
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Address modes define the forms s_ea and d_ea can take.  The general register subscript is x or y.  Only x is shown in the list.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      s_ea, d_ea     Address Mode
+\par      \_\_\_\_\_\_\_\_\_\_     \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\par      *r}{\f3\fs24\dn60 x}{\f3\fs24             register indirect
+\par      *r}{\f3\fs24\dn60 x}{\f3\fs24 (n)         register indirect with signed offset n
+\par      *\_r}{\f3\fs24\dn60 x}{\f3\fs24            register indirect with predecrement
+\par      *r}{\f3\fs24\dn60 x}{\f3\fs24 +           register indirect with postdecrement
+\par      addr_abs       absolute addressing (target is an alias)
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \page }{\b\f3\fs24 2.8.3 mI Operands and mI_Word Fields}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+The mALU mI has five operands for example.  The operands' abstract symbols are op, sx, sy, dz, rw.  A designer writing an mI list representing a uI replaces the general symbols with specific symbols relevant to the uI being programmed in mI microassembly 
+language.  The specific symbols are shown in Table 2.7 for mMOV and mBr mI as well as the mALU mI.  Table 2.7 was constructed from an analysis of the uData Path (figure 2.11) and the CISC uI set (Table 2.1).
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+The following examples show typical mI from mI lists representing uI.  Furthermore, some of the examples show how uI operands in effect specify mI operands of that specific mI.  [At this point the examples may not be obvious.  They will be readily underst
+ood after microprogramming is discussed.]  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 XOR r}{\f3\fs24\dn60 3}{\f3\fs24  r}{\f3\fs24\dn60 F}{\f3\fs24 \tab \tab \'eb\'eb\'eb>\tab \tab mALU xor r}{\f3\fs24\dn60 x}{\f3\fs24  r}{\f3\fs24\dn60 y}{\f3\fs24  r}{\f3\fs24\dn60 y}{\f3\fs24  nop 
+\par \tab \tab \tab \tab     (mALU op  sx sy dz rw )
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 SUB iw *r}{\f3\fs24\dn60 x}{\f3\fs24  \tab \'eb\'eb\'eb>\tab \tab mMOV pc mar r
+\par \tab \tab \tab \tab     (mMOV s  dz  rw)
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 JRZ 03F2\tab \tab \'eb\'eb\'eb>\tab \tab mBR  nop nz  03F2
+\par \tab \tab \tab \tab     (mBR  bop mcc moff)
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+Any mI list is ultimately translated into mI_words that are stored in the mROM.  The first step in the translation process identifies mI_word fields specified by the mI operands.  Table 2.8 facilitates this step.  Here is how Table 2.8 was constructed.
+
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Table 2.4 defines the mI fields shown in Table 2.8.  A field definition also includes the list of hardware devices controlled by the field.  The nop is used when the field is inactive.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The mI operands s, sx and sy specify which regi
+sters are to be used as sources.  Sources implies the register outputs are connected to the x and y busses.  Table 2.4 shows that fields selx and sely select register outputs for connection to the x and y busses.  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+The mI operand dz specifies which device is the destination.  The dz operand specifies two fields: selz and ldz.  The ldz field selects the destination register for loading the result.  The selz field selects the output to be connected to the z bus.   Thi
+s is necessary because "results" originate from the alu-shifter output, the x bus, or the y bus (figure 2.12).
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+An op or bop operand specifies the operation to be performed.  They specify the aluop, sh, and bop fields as is appropiate.  The aluop field selects the ALU operation, the sh field selects the shifter operation, and the bop field selects one of five speci
+al operations.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The rw operand specifies the rw field.  The rw field selects no memory access, access to read, or access to write.  
+\par \page The mcc operand specifies the mcc field.  The mcc field is a five bit code that selects the mcc logic equation.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The moff operand specifies the moff field.  The moff field holds a number representing a relative address offset.  The offset n is calculated by the equation  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \tab moff = destination mROM address - present mROM address.
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+The next step in the translation process is to convert the hardware device names listed under the mI_word fields in Table 2.8 into uData Path control lines that implement the necessary hardware actions.  Furthermore, codes must be 
+assigned to the control lines because the fields are encoded.  In this way the mI_word becomes a binary coded machine language word.  Table 2.9 is the source of the code information.  Here is how Table 2.9 was constructed.  The code numbers are arbitrary 
+except for nop which must be zero.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Registers selected by selx and sely fields become sources when they are connected to the x and y busses.  The tri-state select lines shown in figure 2.11 connect register outputs to the x or y busses.  This is why registe
+r names are replaced by select line names in the selx and sely fields shown in Table 2.9.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+Tri-state devices select data to be loaded in the destination device.  The selz field shows the select lines to be used.  Load lines, such as ldmar, load data into the destination device.  This is why device names are replaced by load line names in the ld
+z field of Table 2.9.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The aluop and sh field operation names are replaced by codes representing those operations.  The codes are device dependent.  The codes for the devices we will use are shown in Table 2.10.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The mcc condition codes is replaced by its number as shown in Table 2.2.  The bop codes are also arbitrary.
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The mI_word formats are shown as a group in Table 2.11.  
+\par }\pard {\f3\fs24 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \page }{\b\f3\fs24 Table 2.7  Micro Assembly Language for Micro Instructions }{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24     }{\b\f3\fs24 mALU  op    sx    sy    dz    rw   }{\f3\fs24 
+\par           nop   nop   nop   nop   nop
+\par           add   st    st    st    r
+\par           addc  mem   mem   mar   w
+\par           +1    r0    r0    mbr
+\par           \_1    rx    rx    rx 
+\par           neg   ry    ry    ry   
+\par           sub   sp    sp    sp
+\par           subc  pc    pc    pc
+\par           subr  rt    rt    rt   
+\par           subrc             ir
+\par           not
+\par           \_one (all ones)
+\par           zero (all zeros)
+\par           and
+\par           or
+\par           xor
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24           rotl  (shifts)
+\par           sll
+\par           sra
+\par           srl
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24    }{\b\f3\fs24 mMOV\tab s     dz    rw   }{\f3\fs24 
+\par \tab \tab nop   nop   nop
+\par \tab \tab st    st    r
+\par \tab \tab mem   mar   w
+\par \tab \tab r0    mbr
+\par \tab \tab rx    rx
+\par \tab \tab ry    ry
+\par \tab \tab sp    sp
+\par \tab \tab pc    pc
+\par \tab \tab rt    rt
+\par \tab \tab \tab  ir
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24     mBR   bop   mcc   moff}{\f3\fs24 
+\par           nop   (1)   (2)
+\par           incpc       (3)
+\par           incsp
+\par           decsp 
+\par           setc  
+\par           clrc  
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 (1) Table 2.2 lists the coded cc which are the same as the mcc.
+\par (2) moff is explained in section 2.6.
+\par (3) moff is a 16 bit numerical offset for relative addressing
+\par }\pard {\f3\fs24 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \page }{\b\f3\fs24 Table 2.8  mI_word Fields Specified by mI Operands }{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par mALU |opc| aluop         |sh   |     |rw | ldz   |selz|sely |selx |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24       alu      nop        nop         nop  nop    alu  nop   nop
+\par                add        rotl\tab    r    st          st    st
+\par                addc       sll         w    mar         mem   mem
+\par                +1         sra              mbr         r0    r0
+\par     \tab \tab \tab -1\tab                        rx          rx    rx
+\par                neg                         ry          ry    ry
+\par                sub                         sp          sp    sp
+\par                subc       srl              pc          pc    pc
+\par                subr                        rt          rt    rt
+\par                subrc                       ir
+\par \tab \tab \tab not\tab \tab \tab \tab \tab \tab \tab \tab Note: a reg
+\par \tab \tab \tab -one (all ones)\tab \tab \tab \tab \tab can use selx
+\par \tab \tab \tab zero (all zeros)\tab \tab \tab \tab \tab or sely
+\par \tab \tab \tab and\tab \tab \tab \tab \tab \tab \tab \tab fields
+\par \tab \tab \tab or
+\par \tab \tab \tab xor
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par mMOV |opc|                           |rw | ldz   |selz|sely |selx |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24       mov                             nop  nop    xbus nop   nop
+\par                                       r    st     ybus st    st
+\par                                       w    mar         mem   mem
+\par                                            mbr         r0    r0
+\par     \tab \tab \tab \tab                        rx          rx    rx
+\par                                            ry          ry    ry
+\par                                            sp          sp    sp
+\par                                            pc          pc    pc
+\par                                            rt          rt    rt
+\par                                            ir
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24      |\_\_\_|\_\_\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par mBR  |opc|      |  mcc    | bop |adr|   moff (note 3)             |
+\par \tab |\_\_\_|\_\_\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24       br         un        nop    0 (moff active)
+\par                  (note 1)  incpc  1 (mI_start) 
+\par                            incsp  (note 2)
+\par                            decsp 
+\par                            setc
+\par                            clrc
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      (1) Table 2.2 lists the cc codes.  The mcc codes are the same.
+\par      (2) adr bit is explained in section 2.6
+\par      (3) moff is a 16 bit numerical offset for relative branches.
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \page }{\b\f3\fs24 Table 2.9  Control Line Codes for mI_Word Fields}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par mALU |opc| aluop         |sh** |     |rw | ldz   |selz|sely |selx |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 0000      (labels and     nop         nop  nop         nop   nop
+\par 0001  alu (codes in   \tab  rotl\tab    r    ldst   saz  ssty  sstx
+\par 0010      (Table 2.9      sll         w    ldmar       smemy smemx
+\par 0011                      sra              ldmbr       sr0y  sr0x
+\par 0100\tab \tab \tab \tab                        ldrx        srxy  srxx
+\par 0101                                       ldry        sryy  sryx
+\par 0110                                       ldsp        sspy  sspx
+\par 0111                      srl              ldpc        spcy  spcx
+\par 1000                                       ldrt        srty  srtx
+\par 1001                                       ldir
+\par \tab (**operands below field specify three bit sh code to shifter)
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par mMOV |opc|                           |rw | ldz   |selz|sely |selx |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 0000                                  nop  nop         nop   nop
+\par 0001                                  r    ldst        ssty  sstx
+\par 0010  mov                             w    ldmar  sxz  smemy smemx
+\par 0011                                       ldmbr  syz  sr0y  sr0x
+\par 0100                                       ldrx        srxy  srxx
+\par 0101                                       ldry        sryy  sryx
+\par 0110                                       ldsp        sspy  sspx
+\par 0111                                       ldpc        spcy  spcx
+\par 1000                                       ldrt        srty  srtx
+\par 1001                                       ldir
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      |\_\_\_|\_\_\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par mBR  |opc|      |  mcc    | bop |adr|   moff (note 3)             |
+\par \tab |\_\_\_|\_\_\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 0000             un        nop    0 (moff active)
+\par 0001             (note 1)  incpc  1 (mI_start) 
+\par 0010                       incsp  (note 2)
+\par 0011  br                   decsp 
+\par 0100                       setc
+\par 0101                       clrc
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      (1) Table 2.2 lists the coded cc which are same as the mcc.
+\par \tab     Condition codes specify 5 bit code input to mcc logic.
+\par      (2) adr bit is explained in section 2.6
+\par      (3) A 16 bit numerical offset for relative addressing
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \tab |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par mNOP\tab |opc|                                                        |
+\par \tab |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 0000  nop
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \page }{\b\f3\fs24 Table 2.10  mALU operation codes}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 code      aluop     definition
+\par \_\_\_\_\_\_\_\_  \_\_\_\_\_\_\_\_  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\par 01001101  add       y plus x                 (y = 181 a, x = 181 b)
+\par 01001111  addc      y plus x plus c (carry)
+\par 00000011  +1        y plus 1
+\par 01111101  \_1        y minus 1
+\par 00000010  neg       \_y = y'+ 1 (2's complement)
+\par 00110011  sub       y minus x = y + x'+ 1
+\par 00110111  subc      y minus x with borrow = y + x'+ c
+\par 01001010  subr      x minus y = x + y'+ 1
+\par 01001110  subrc     x minus y with borrow = x + y'+ c
+\par 10000101  not       y' (1's complement of y input)
+\par 11100101  \_one      all 1's out, ignore alu inputs
+\par 10011101  zero      all 0's out, ignore alu inputs
+\par 11011101  and       y and x
+\par 11110101  or        y or x
+\par 10110101  xor       y xor x
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 When shifting x: aluop = 11010001.  
+\par When shifting y: aluop = 11111001.
+\par 000       nop       when performing non shifting aluop
+\par 001       rotl      shift left 1 bit,  msb to lsb, msb to c
+\par 010       sll       shift left 1 bit,  0 to lsb,   msb to c 
+\par 011       sra       shift right 1 bit, msb to msb, lsb to c
+\par 111       srl       shift right 1 bit, 0 to msb,   lsb to c
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 Table 2.11  mI Word Formats}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24  1                             1 0                             0
+\par  F E D C B A 9 8 7 6 5 4 3 2 1 0 F E D C B A 9 8 7 6 5 4 3 2 1 0
+\par |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_\_\_\_|
+\par |alu| aluop         |sh   |     |rw | ldz   selz|sely   |selx   |
+\par |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_\_\_\_|
+\par |mov|                           |rw | ldz   selz|sely   |selx   |
+\par |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 |\_\_\_|\_\_\_\_\_\_\_\_\_|\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par |br |         | |  mcc    | bop |     moff                      |
+\par |\_\_\_|\_\_\_\_\_\_\_\_\_|\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par                ^\_\_adr
+\par |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par |nop|                                                           |
+\par |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Note: mNOP does nothing when executed.  mNOP is to an instruction
+\par       set what zero is to a number set.  Both are indispensible.
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \page }{\b\f3\fs24 2.8.4 mI Use the Data Paths}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+We leap ahead to write out the mI lists for fetch_uI and XOR addr_abs *ry(n) so that we can learn how mI use the uData Path.  An intimate knowledge of the uData Path is an important prerequisite to microprogramming.  Experience seems to be an effective wa
+y to acquire this knowledge.  Analysis of mI lists provides relevant experience.  Here are the lists we will analyze.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24           mem_addr  contents of word in the uI program
+\par           \_\_\_\_\_\_\_\_  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\par pc+8\_\_>   m+C       code of next uI
+\par pc+4\_\_>   m+8       n
+\par pc\_\_>     m+4       addr_abs
+\par           m         uI code for XOR addr_abs *ry(n)
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 mI#
+\par           [ fetch_uI ]
+\par 1.        mMOV pc  mar  r
+\par 2.        mMOV mem ir   nop
+\par 3.        mBR  incpc un mI_start
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \tab \tab [ XOR addr_abs *r}{\f3\fs24\dn60 y}{\f3\fs24 (n) ]
+\par 4.        mMOV pc  mar r           (addr of addr_abs to mar)
+\par 5.        mMOV mem mar r           (addr_abs to mar)
+\par 6.        mBR  incpc un 1          (skip over addr_abs)
+\par 7.        mMOV mem rtemp nop       (s data to rtemp)
+\par 8.        mMOV pc mar r            (address of n to mar)
+\par 9.        mALU add mem r}{\f3\fs24\dn60 y}{\f3\fs24   mar r \tab (n + r}{\f3\fs24\dn60 y}{\f3\fs24  to mar)
+\par 10.       mALU xor rt  mem mbr w\tab (xor to destination at ry + n)
+\par 11.       mBR  incpc un fetch_uI   (skip over n, exit to fetch_uI)
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Let us start by asking what happens when the microcontroller executes the first mI in the fetch_uI list.  The mI_words are microcoded by using the codes shown in Tables 2.9 and 2.10.
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \page }{\b\f3\fs24 1. mMOV pc mar r}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par mMOV |opc|                           |rw | ldz   |selz|sely |selx |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par      |mov|                           | r | ldmar |sxz |nop  |spcx |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par      |10 | 0000 0000  000  000       |01 | 0010  |10  |0000 |0111 |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The goal is to copy the contents of pc register into the mar register.  The microcontroller sets up the user data path.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24\ul #\tab activates\tab \tab to perform action   \tab \tab per figure}{\f3\fs24 
+\par 1\tab spcx           put pc word on x bus     \tab 2.19
+\par 2\tab sxz            transfer pc word to z bus
+\par 3\tab ldmar          store pc word in mar
+\par 4\tab r              start memory read access      2.13, 2.15
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The microcontroller sets up a path for data from pc to mar and loads mar.  Then the microcontroller moves on to execute the next mI.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 Figure 2.19  uData Path for mMOV pc mar r
+\par }\pard {\b\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 \page 2. mMOV mem ir nop}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par mMOV |opc|                           |rw | ldz   |selz|sely |selx |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par      |mov|                           |nop| ldir  |syz |smemy|nop  |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par      |10 | 0000 0000  000  000       |00 | 1001  |11  |0010 |0000 |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The goal is to read the memory word addressed by the mar and to copy it into the ir register.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24\ul #\tab activates\tab \tab to perform action   \tab \tab per figure}{\f3\fs24 
+\par 1\tab smemy          put mem word on y bus         2.20
+\par      \tab           (This is the next uI word XOR)
+\par 2\tab syz            transfer mem word to z bus
+\par 3\tab ldir           store mem word in ir          
+\par      \tab           (the XOR uI bits now feed 
+\par           \tab           the microcontroller)     2.13
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The microcontroller sets up a path for data from mem to ir and loads ir.  Then the microcontroller moves on to execute the next mI. 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 Figure 2.20  uData Path for mMOV mem ir nop
+\par }\pard {\b\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 \page 3. mBR  incpc un mI_start}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      |\_\_\_|\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par mBR  |opc|     |adr |  mcc    |bop  |   moff                      |
+\par      |\_\_\_|\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par      |br |     |mI_s|  un     |incpc| don't care because adr = 1  |
+\par      |\_\_\_|\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par      |11 |00000| 1  |  00000  | 001 |   0000 0000 0000 0000       |
+\par      |\_\_\_|\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The microcontroller selects un as the mcc_report which is always true.  Then it uses adr to select mI_start as the next address, and increments the pc.  Then the microcontroller moves on to execute the next mI. 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The goal is to increment the pc to point to the next word in the uI list, and to make an unconditional branch to the first mI in the mI list for the XOR uI just fetched.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24\ul #\tab activates\tab \tab to perform action   \tab \tab per figure}{\f3\fs24 
+\par 1\tab incpc          pc <\_\_\_ pc+4                  2.21
+\par 2\tab un             select un as mcc_report 
+\par 3\tab 1 (adr)        select mI_start as next addr  2.13
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+Incrementing the pc at this point in the sequence of events ensures that the pc always points to the next word in the uI list.  This word is the next uI or a literal such as iw or n.  In this case the XOR uI is in the next word fetched.  This is why the m
+icrocontroller branches unconditionally to the XOR mI list and executes the mI sequence that follows.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 Figure 2.21  uData Path for mBR incpc un mI_start
+\par }\pard {\b\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 \page 4. mMOV pc mar r}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par mMOV |opc|                           |rw | ldz   |selz|sely |selx |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par      |mov|                           | r | ldmar |syz |spcy |nop  |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par      |10 | 0000 0000  000  000       |01 | 0010  |11  |0111 |0000 |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24\ul #\tab activates\tab \tab to perform action   \tab \tab per figure}{\f3\fs24 
+\par 1\tab spcy           put pc word on y bus          2.19
+\par 2\tab syz            transfer pc word to z bus
+\par 3\tab ldmar          store pc word in mar
+\par 4\tab r              start memory read access      2.13, 2.15
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 5. mMOV mem mar r}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par mMOV |opc|                           |rw | ldz   |selz|sely |selx |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par      |mov|                           | r | ldmar |sxz |nop  |smemx|
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par      |10 | 0000 0000  000  000       |01 | 0010  |10  |0000 |0010 |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24\ul #\tab activates\tab \tab to perform action   \tab \tab per figure}{\f3\fs24 
+\par 1\tab smemx          put mem word on x bus         2.22
+\par 2\tab sxz            transfer mem word to z bus
+\par 3\tab ldmar          store mem word in mar
+\par 4\tab r              start memory read access      2.13, 2.15
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 Figure 2.22  uData Path for mMOV mem mar r
+\par }\pard {\b\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 \page 6. mBR  incpc un 1}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      |\_\_\_|\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par mBR  |opc|     |adr |  mcc    |bop  |   moff                      |
+\par      |\_\_\_|\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par      |br |     |moff|  un     |incpc| plus_1                      |
+\par      |\_\_\_|\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par      |11 |00000| 0  |  00000  | 001 |   0000 0000 0000 0001       |
+\par      |\_\_\_|\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24\ul #\tab activates\tab \tab to perform action   \tab \tab per figure}{\f3\fs24 
+\par 1\tab incpc          pc <\_\_\_ pc+4                  2.21
+\par 2\tab mcc code       select un as mcc_report
+\par 3\tab adr0           select mpc plus moff 
+\par      \tab           as next addr                  2.13
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 7. mMOV mem rtemp nop}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par mMOV |opc|                           |rw | ldz   |selz|sely |selx |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par      |mov|                           |nop| ldrt  |syz |smemy|nop  |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par      |10 | 0000 0000  000  000       |00 | 1000  |11  |0010 |0000 |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24\ul #\tab activates\tab \tab to perform action   \tab \tab per figure}{\f3\fs24 
+\par 1\tab smemy          put mem word on y bus         2.23
+\par 2\tab syz            transfer mem word to z bus
+\par 3\tab ldrt           store mem word in rtemp
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 Figure 2.23  uData Path for mMOV mem rt nop
+\par }\pard {\b\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 \page 8. mMOV pc mar r}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par mMOV |opc|                           |rw | ldz   |selz|sely |selx |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par      |mov|                           | r | ldmar |syz |spcy |nop  |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par      |10 | 0000 0000  000  000       |01 | 0010  |11  |0111 |0000 |
+\par      |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24\ul #\tab activates\tab \tab to perform action   \tab \tab per figure}{\f3\fs24 
+\par 1\tab spcy           put pc word on y bus          2.19
+\par 2\tab syz            transfer pc word to z bus
+\par 3\tab ldmar          store pc word in mar
+\par 4\tab r              start memory read access      2.13, 2.15
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \page }{\b\f3\fs24 9. mALU add mem r}{\b\f3\fs24\dn60 y}{\b\f3\fs24  mar r}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24        |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|--\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par mALU   |opc| aluop         | sh  |   |rw | ldz   selz|sely |selx |
+\par        |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|--\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par        |alu| add           | nop |   |r  | ldmar |saz|sryy |smemx|
+\par        |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|--\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par        |01 | 0100 1101     | 000 |000|01 | 0010  |01 |0101 |0010 |
+\par        |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|--\_|\_\_\_|\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24\ul #\tab activates\tab \tab to perform action   \tab \tab per figure}{\f3\fs24 
+\par 1\tab smemx          put mem word on x bus         2.24
+\par  \tab sryy           put ry word on y bus
+\par 2\tab add\tab \tab \tab select alu add operation
+\par \tab nop\tab \tab \tab select nop shifter operation
+\par 3\tab saz            put alu result on z bus
+\par 4\tab ldmar          store result word in mar
+\par 5\tab r              start memory read access      2.13, 2.15
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 Figure 2.24  uData Path for mALU add mem r}{\b\f3\fs24\dn60 y}{\b\f3\fs24  mar r
+\par }\pard {\b\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 \page 10. mALU add rtemp mem mbr w}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24        |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_--|\_\_\_|\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par mALU   |opc| aluop         | sh  |   |rw | ldz   selz|sely |selx |
+\par        |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_--|\_\_\_|\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par        |alu| add           | nop |   |w  | ldmbr |saz|smemy|srtx |
+\par        |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_--|\_\_\_|\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par        |01 | 0100 1101     | 000 |000|10 | 0011  |01 |0010 |1000 |
+\par        |\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_--|\_\_\_|\_\_\_\_\_\_\_|\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24\ul #\tab activates\tab \tab to perform action   \tab \tab per figure}{\f3\fs24 
+\par 1\tab srtx           put rtemp word on x bus       2.25
+\par  \tab smemy          put mem word on y bus
+\par 2\tab add\tab \tab \tab select alu add operation
+\par \tab nop\tab \tab \tab select nop shifter operation
+\par 3\tab saz            put alu result on z bus
+\par 4\tab ldmbr          store result word in mbr
+\par 5\tab w              start memory write access     2.13, 2.15
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 Figure 2.25  uData Path for mALU add rt mem mbr w
+\par }\pard {\b\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 \page 11. mBR  incpc un fetch_uI}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      |\_\_\_|\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par mBR  |opc|     |adr |  mcc    |bop  |   moff                      |
+\par      |\_\_\_|\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par      |br |     |moff|  un     |incpc|   fetch_uI minus addr of mI |
+\par      |\_\_\_|\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par      |11 |00000| 0  |  00000  | 001 |   0101 1000 0111 0111*      |
+\par      |\_\_\_|\_\_\_\_\_|\_\_\_\_|\_\_\_\_\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24\ul #\tab activates\tab \tab to perform action   \tab \tab per figure}{\f3\fs24 
+\par 1\tab incpc          pc <\_\_\_ pc+4                  2.21
+\par 2\tab mcc code       select un as mcc_report
+\par 3\tab adr0           select mpc plus moff 
+\par      \tab           as next addr                  2.13
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 *moff calculation:
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 let fetch_uI be at mPC address 0000hex
+\par let the current mBR be at address be A789
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 mPC = A789     mPC plus moff = 0000     implies moff = \_A789
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 moff = \_A789 = \_1010 0111 1000 1001
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      or moff =  0101 1000 0111 0111
+\par }\pard {\f3\fs24 
+\par }}

@@ -1,0 +1,11 @@
+
+//invalid
+
+csl_unit a{
+  b b0;
+};
+
+csl_unit b{
+  a a0;
+};
+

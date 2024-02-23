@@ -1,0 +1,19 @@
+//illegal: more fields on the same position into a format
+
+csl_isa_field op(2, e_field);
+csl_isa_field field(2);
+csl_isa_field op3(2);
+
+csl_isa_element format{
+    op op_i;
+    field field_i;
+    op3 op3_i;
+    format(){
+       set_type(instr_format);
+       set_width(6);            
+       set_position(op_i, 4);
+       set_next(op_i,field_i);
+       set_position(op3_i, 4); //position 4 has already used
+    }
+};
+

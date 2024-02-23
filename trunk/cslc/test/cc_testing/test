@@ -1,0 +1,16 @@
+#!/bin/bash
+OUTFILE="test-`date +%Y%m%d-%H%M%S`.log";
+touch $OUTFILE
+for i in `ls tests`;
+do
+	$CSLC tests/$i > x 2>&1
+	if [ "`cat x|grep -i segmentation|wc -l`" == "0" ];
+	then
+		echo $i: OK
+		echo $i: OK >> $OUTFILE
+	else
+		echo $i: FAILED
+		echo $i: FAILED >> $OUTFILE
+	fi
+	rm -f x
+done

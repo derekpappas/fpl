@@ -1,0 +1,12 @@
+//author: Ines
+//testing: csl_signal signal_object_name([signal_data_type][,width]);
+//         reg,wire,tri,trireg,triand,trior,wand,wor,supply0,supply1
+
+csl_unit u21_t10 {
+
+  csl_signal sgn21_1_t10(reg);
+  csl_signal s1;
+  u21_t10(){
+    s1 = sgn21_1_t10;
+  }
+};

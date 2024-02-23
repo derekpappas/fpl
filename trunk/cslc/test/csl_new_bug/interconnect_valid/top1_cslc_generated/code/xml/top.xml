@@ -1,0 +1,35 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="top">
+<signal name="s1" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="s2" offset="0" upper="4-1" lower="0" type = "wire"/>
+<instantiation type = "u1">
+<instance name="u1_2">
+<f2a formal = "x" actual = "s2" />
+<f2a formal = "y" actual = "s2" />
+</instance>
+</instantiation>
+<instantiation type = "u1">
+<instance name="u1_3">
+<f2a formal = "x" actual = "s2" />
+<f2a formal = "y" actual = "s2" />
+</instance>
+</instantiation>
+<instantiation type = "u2">
+<instance name="u2_1">
+<f2a formal = "a" actual = "s1" />
+<f2a formal = "b" actual = "s1" />
+<f2a formal = "c" actual = "s2" />
+</instance>
+</instantiation>
+<instantiation type = "u2">
+<instance name="u2_2">
+<f2a formal = "a" actual = " offset="0" upper="3" lower="2"/>
+s2" />
+<f2a formal = "b" actual = "s1" />
+<f2a formal = "c" actual = "s2" />
+</instance>
+</instantiation>
+</unit>
+</design>

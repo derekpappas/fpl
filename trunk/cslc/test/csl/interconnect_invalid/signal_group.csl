@@ -1,0 +1,14 @@
+//oanab
+//26 oct 2007
+//there is no signal in the signal group
+
+csl_signal_group sgr{    //sgr should contain at least a signal
+  sgr(){}
+};
+
+csl_unit u{
+  sgr sgr;
+  csl_signal clk;
+  u(){
+    clk.set_attr(clock);}
+};

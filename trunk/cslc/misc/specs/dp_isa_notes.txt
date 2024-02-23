@@ -1,0 +1,200 @@
+
+csl_signal x(9);
+        
+csl_field r(8);
+csl_field g(8);
+csl_field b(8);
+csl_field a(8);
+
+csl_field rgba {
+    r r;
+    g g;
+    b b;
+    a a;
+  rgba(){
+  }
+}
+
+csl_field packet_8rgba {
+    rgba rgba0();
+    rgba rgba1();
+    rgba rgba2();
+    rgba rgba3();
+    rgba rgba4();
+    rgba rgba5();
+    rgba rgba6();
+    rgba rgba7();
+
+  packet_8rgba(){
+
+  }
+}
+
+to reference a field in a field use hierarchical identifiers
+packet_8rgba.rgba7
+packet_8rgba.rgba7.a
+packet_8rgba.rgba7.b
+packet_8rgba.rgba7.c
+packet_8rgba.rgba7.d
+
+// enum members are identifiers that are referenced in the same scope
+csl_enum e {
+a = 0,
+b = 1,
+c = 2,
+d = 3
+}
+
+csl_field f(e); // associate enum e to field
+//         width enum
+// width is calculated based on the width required to hold the enum
+
+csl_field fx(8,    b); // associate enum value b to fx
+//           width enum
+
+
+csl_enum ops{add,sub,mul,div,sqrt};
+
+There is a relative position of a field in the field (instruction in
+this case) and there is the absolute position of the field.
+The parent field absolute coordinate system is used to set the
+position of the child fields in the parent field.
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+3322222222221111111111
+10987654321098765432109876543210 absolute field coordinate relative to the parent field
+--------------------------------
+210        654321065432106543210 local field coordinate relative to the local field
+fmt  XXXXXX       src___b             
+alu        src___a       dst____
+
+csl_field op(3,ops);
+
+csl_field srca, srcb, dst;
+
+csl_instruction alu {
+  op   op  ();    
+  srca srca();  
+  srcb srcb();  
+  dst  dst ();
+   
+  alu() {
+    set_width(32);
+   
+    // use a linked list of fields
+    set_field_position (dst, 0); // set the start position
+    set_field_position (scra, dst.get_()  ); 
+    set_field_position (scrb, srca.get_width()+srca.get_width() -1);
+
+    // there is a gap between the srca and op field
+    set_field_position(op, alu.get_width()-op.get_width()); 
+  }
+}
+
+
+csl_format alu {
+  op   op  ();    
+  srca srca();  
+  srcb srcb();  
+  dst  dst ();
+   
+  alu() {
+    set_width(32);
+   
+    // use a linked list of fields
+    set_field_position (dst, 0); // set the start position
+    set_field_position (scra, dst.get_msb(absolute)  ); 
+    set_field_position (scrb, srca.get_msb(absolute)  ); 
+
+    // there is a gap between the srca and op field
+    set_field_position(op, alu.get_width()-op.get_width()); 
+  }
+}
+
+msb = most significant bit
+absolute = use the parent field coordinate system
+local    = use the current field's local coordinate system
+
+Here s what the above field declaration looks like.
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+3322222222221111111111
+10987654321098765432109876543210
+--------------------------------
+fmt  XXXXXX       src___b             
+alu        src___a       dst____
+   op
+   op
+
+csl_instruction alu {
+  op   op  ();    
+  srca srca();  
+  srcb srcb();  
+  dst  dst ();
+   
+  alu() {
+    set_width(32);
+   
+    // use a linked list of fields so that if the size of the fields 
+    // changes the fieds will still be adjacent to each other
+    // the field widths change and there are no offests to change.
+    set_field_position (dst, 0); // set the start position
+    set_next_field (dst, scra); // dst->srca
+    set_next_field(srca, scrb); // srca->srcb
+    // there is a gap between the srca and op field
+    set_field_position(op, alu.get_width()-op.get_width()); 
+  }
+}
+                          p  p  p  p
+                          so|sn|sp|sfp
+=========================|==|==|==|=== 
+child.set_offset         |A |A |A |A 
+parent.set_next          |I |X |A |I 
+parent.set_previous      |I |A |X |I 
+parent.set_field_position|A |I |I |X 
+     
+
+csl_field a{
+  a () {
+    set_width(8);
+    set_offset(4);  
+  }
+}
+
+csl_instruction alu {
+  a a();   
+  alu() {
+    set_width(32);
+    set_field_position(a,); // error start point is 28 = 24 + 8 + 4
+                            //   field_position 24
+                            //           offset  4
+                            //====================
+                            //   start_position 28
+                            //            width  8
+                            // fld_end_position 36
+                            // fmt_end_position 32
+                            //====================
+                            // fld - fmt pos     4 // error must be <= 0
+
+  }
+}
+
+
+Code generation
+The following identifiers will generate the following code:
+packet_8rgba.rgba7
+packet_8rgba.rgba7.a
+packet_8rgba.rgba7.b
+packet_8rgba.rgba7.c
+packet_8rgba.rgba7.d
+
+this is the generated Verilog code
+wire [7:0] packet_8rgba__rgba7   ;
+wire [7:0] packet_8rgba__rgba7__a;
+wire [7:0] packet_8rgba__rgba7__b;
+wire [7:0] packet_8rgba__rgba7__c;
+wire [7:0] packet_8rgba__rgba7__d;
+
+notice that the character separator is __
+
+

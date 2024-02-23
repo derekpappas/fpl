@@ -1,0 +1,89 @@
+csl_unit z {
+  csl_port in1(input,3);
+  csl_port in2(input,8);
+  csl_port out1(output,wire,3);
+  csl_port out2(output, 8);
+ //csl_signal s_out1(3),s_out2(8),s_in1(3),s_in2(8);
+z(){
+  //s_out1 = 3'b111;	
+  //s_out2 = 8'b11110000;
+  //s_in1 = in1;
+  //s_in2 = in2;
+ // out1 = s_out1 & s_in1;
+ // out2 = s_out2 | s_in2;
+  }
+};
+
+
+csl_unit y {
+  csl_port in1(input,3);
+  csl_port in2(input,8);
+  csl_port out1(output,wire,3);
+  csl_port out2(output, 8);
+z z0(.in1(in1),.in2(in2),.out1(out1),.out2(out2));
+
+y(){
+ 
+  }
+};
+
+
+csl_unit x {
+
+    csl_port in1(input,wire,3);
+    csl_port in2(input,8);	
+    csl_port out1(output,wire,3);
+    csl_port out2(output, 8);
+    csl_port clk(input);
+    csl_signal s_clk;
+
+y y0(.in1(in1),.in2(in2),.out1(out1),.out2(out2));
+
+    x () {
+
+       clk.set_attr(clock);
+	  	
+        s_clk = clk;
+
+    }
+
+};
+
+csl_vector stim {
+
+    stim () {
+
+        set_unit_name(x);
+        set_direction(input);
+        set_vc_capture_edge_type(rise);
+	//set_radix(hex);
+    }
+
+};
+
+csl_vector exp {
+
+    exp () {
+
+        set_unit_name(x);
+        set_direction(output);
+        set_vc_capture_edge_type(rise);
+	//set_vc_header_comment("!!!!!!!");
+    }
+
+};
+
+csl_testbench tb {
+
+    x x0(.clk(clk));
+    csl_signal clk(reg);
+    tb () {
+
+        clk.set_attr(clock);
+        add_logic(clock,clk,20,ns);
+
+       // add_logic(generate_waves,"wave.vcd",vcd);
+//	add_logic(generate_report);
+    }
+
+};

@@ -1,0 +1,64 @@
+-i, --info = Prints status of each compiler phase
+--csl_info
+
+
+-a, --ast  = Pretty print AST
+--cslom_ast =  ast 4 cslom
+--cdom_ast  =  ast 4 cdom
+
+
+-s, --stage = Selects parsing stage: 0->preprocessor; 1->lexer+parser; 2->walker(treeparser)/CDOM|CSLOM; 3->adapter; 4->code gen
+--cslc_execution_stage
+      0 -> preprocessor
+      1 -> lexer + parser
+      2 -> walker
+      3 -> autorouter
+      4 -> automaper
+      5 -> adapter
+      6 -> code gen
+
+
+
+-p, --preproc = Specifies not to run preprocessor
+--cslc_pp on/off/only
+--cslc_pp_filename
+--veroilog_pp on/off/only
+--verilog_pp_filename
+
+-r, --trace
+not any more
+
+
+-e, --error = Number of errors to be reached for the compiler to stop
+--csl_maxerrors 
+
+-w, --warnings = Number of warnings to be reached for the compiler to stop
+--cslc_maxwarnings
+
+
+-I, --incdir = Include path
+--I
+
+
+
+-h, --help = Prints usage
+same
+
+
+-d, --define = Adds define directives
+--D
+
+
+--f foo.cf (new command)
+
+
+verilog commands:
+	-f
+  -y
+  -v
+  +define
+  +incdir
+  +libext
+  +libnonamehide
+  +liborder
+  +librescan

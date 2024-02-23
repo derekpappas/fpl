@@ -1,0 +1,19 @@
+<TMPL_LOOP inst = inst>
+  <TMPL_VAR unit_name = u_name> 
+	<TMPL_IF parameter = TRUE> #(
+ 	<TMPL_LOOP param_list>
+  		.<TMPL_VAR par_formal>(<TMPL_VAR par_actual>)
+ 	 	<TMPL_IF param_list !=__LAST__>, 
+ 		 <TMPL_ELSE> )
+ 		 </TMPL_IF>
+ 		
+	</TMPL_LOOP>
+	</TMPL_IF>
+<TMPL_VAR inst_name = i_name>( 
+  <TMPL_LOOP port_list = port_list> 
+	.<TMPL_VAR p_formal>(<TMPL_VAR p_actual>)
+	<TMPL_IF port_list != __LAST__>,
+        <TMPL_ELSE> );
+	</TMPL_IF>
+   </TMPL_LOOP>	
+</TMPL_LOOP>

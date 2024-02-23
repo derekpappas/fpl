@@ -1,0 +1,51 @@
+//Petronela
+
+csl_signal_group sg1{
+  csl_signal s1;
+  csl_signal s2;
+  sg1(){
+  }
+};
+
+csl_signal_group sg2{
+  csl_signal s3;
+  csl_signal s4;
+  csl_signal s5;
+  sg1 sg1inst;
+  sg2(){
+  }
+};
+csl_signal_group sg3{
+  csl_signal s7;
+  csl_signal s8;
+  sg2 sg2inst;
+  sg3(){
+  }
+};
+csl_signal_group sg4{
+  sg3 sg3inst;
+  csl_signal s9;
+  csl_signal s10;
+  csl_signal s11;
+  sg4(){
+    
+  }
+};
+
+
+csl_unit a {
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(input);
+  a (){}
+};
+csl_unit u1{
+  sg4 sg4inst;
+  a a0(.p1(sg4inst.sg3inst.sg2inst.sg1inst.s1),.p2(sg4inst.sg3inst.sg2inst.sg1inst.s2),.p3(sg4inst.sg3inst.sg2inst.s3));
+  a a1(.p1(sg4inst.sg3inst.sg2inst.s4),.p2(sg4inst.sg3inst.sg2inst.s5),.p3(sg4inst.sg3inst.s7));
+  a a2(.p1(sg4inst.sg3inst.s8),.p2(sg4inst.s9),.p3(sg4inst.s10));
+  a a3(.p1(sg4inst.s11),.p2(sg4inst.sg3inst.sg2inst.s5),.p3(sg4inst.sg3inst.s7));
+  u1(){
+      
+  }
+};

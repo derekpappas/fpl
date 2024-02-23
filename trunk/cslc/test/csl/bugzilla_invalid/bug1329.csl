@@ -1,0 +1,26 @@
+csl_fifo f1{
+  f1(){
+    set_width(1024);
+    set_depth(32);
+
+  }
+};
+
+csl_register r1{
+  r1(){
+    set_width(1024);
+  }
+};
+
+csl_unit top{
+  f1 f1_1;
+  r1 r1_1;
+};
+
+csl_memory_map_page mmp1{
+  mmp1(){
+     add_address_range(0, 2048);
+     add(top.f1_1, "f1");
+     add(top.r1_1, "r1");
+  }
+};

@@ -1,0 +1,3 @@
+//bug 588
+csl_isa_field f_disp(0,29);
+   f_disp.set_type(selector);

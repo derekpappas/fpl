@@ -1,0 +1,26 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="output.xsl"?>
+<design>
+<register  name="r_pc" > 
+ </register>
+<memory  name="m_im" > 
+ </memory>
+<register_file  name="rf" > 
+ </register_file>
+<unit  name="u_arith" > 
+ </unit>
+<unit  name="u_logic" > 
+ </unit>
+<unit  name="u_mux41" > 
+ </unit>
+<unit  name="u_cmp" > 
+ </unit>
+<unit  name="u_sh" > 
+ </unit>
+<unit  name="u_alu_sh_cmp" > 
+ </unit>
+<unit  name="u_control" > 
+ </unit>
+<unit  name="u_mbist" > 
+ </unit>
+</design>

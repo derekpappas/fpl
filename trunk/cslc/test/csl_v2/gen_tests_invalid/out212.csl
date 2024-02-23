@@ -1,0 +1,116 @@
+csl_enum cs {
+	xn,
+	qf,
+	qa
+};
+csl_enum ft {
+	gj,
+	ur,
+	tv,
+	ti,
+	ps
+};
+csl_enum hr {
+	gf = 95,
+	kn = 41,
+	aw = 33,
+	ty = 31
+};
+csl_isa_instruction_format dn{
+    dn( ){
+     generate_decoder( ejrarg);
+  }
+}
+;
+csl_isa eb{
+    eb( ){
+     set_decoder_name( "pg");
+     set_decoder_out_name_prefix( "tx");
+     set_decoder_out_name_suffix( "eh");
+     generate_decoder( ejrg);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo qf{
+   qf( ){
+     add_logic( wr_words, 3);
+     add_logic( output_wr_addr);
+     add_logic( credit);
+  }
+}
+;
+csl_memory_map_page sw{
+    sw( ){
+     add_address_range( 0, 5);
+     get_address_increment( );
+     add_reserved_address_range( 1, 2);
+     get_lower_bound( );
+     get_aligment( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page ld{
+  sw mb;
+  sw xx;
+    ld( ){
+     set_address_increment( 4);
+     set_next_address( 0);
+     get_next_address( );
+     set_data_word_width( 8);
+     get_data_word_wodth( );
+     set_endianess( big_endian);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page wj{
+  sw ls;
+  ld ow;
+    wj( ){
+     set_access_rights( access_read_write, access_read_write);
+     add( swld);
+     get_upper_bound( );
+     set_endianess( little_endianbig_endian);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map lw{
+    lw( ){
+     auto_gen_memory_map( );
+     set_top_unit( ejgcrg);
+     set_type( hierach);
+     set_data_word_width( 0);
+     get_data_word_width( );
+     set_suffix( fl);
+  }
+}
+;
+csl_register td{
+    td( ){
+     set_width( 7);
+     index_data_pair( lw);
+     set_atribute( read);
+     constant( 5);
+     add_logic( neg_output);
+     add_logic( serial_input);
+     init_value( 5);
+     reset_value( 0);
+     add_logic( gray_output);
+     set_count_direction( 5);
+     add_logic( inc_signal);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register ry{
+    ry( ){
+     add_logic( read_valid);
+     set_const_value( 9);
+     add_logic( bypass);
+  }
+}
+;

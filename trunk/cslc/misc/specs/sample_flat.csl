@@ -1,0 +1,48 @@
+csl_unit a {
+  csl_signal s0(reg, 32);
+  csl_signal s1(reg, 32);
+  csl_signal s2(reg, 32);
+  csl_signal s3(reg, 32);
+  csl_signal s4(reg, 32);
+  csl_signal s5(reg, 32);
+  csl_signal s6(reg, 32);
+  csl_signal s7(reg, 32);
+
+  a() {
+  }
+};
+csl_unit top {
+  a a0;
+  a a1;
+};
+
+csl_memory_map_page flat_page {
+  flat_page() {
+    add_address_range(0, 32);
+    add_reserved_address_range(8,15);
+    add(top.a0.s0, "A0_SO");
+    add(top.a0.s1, "A0_S1");
+    add(top.a0.s2, "A0_S2");
+    add(top.a0.s3, "A0_S3");
+    add(top.a0.s4, "A0_S4");
+    add(top.a0.s5, "A0_S5");
+    add(top.a0.s6, "A0_S6");
+    add(top.a0.s7, "A0_S7");
+    add(top.a1.s0, "A1_SO");
+    add(top.a1.s1, "A1_S1");
+    add(top.a1.s2, "A1_S2");
+    add(top.a1.s3, "A1_S3");
+    add(top.a1.s4, "A1_S4");
+    add(top.a1.s5, "A1_S5");
+    add(top.a1.s6, "A1_S6");
+    add(top.a1.s7, "A1_S7");
+  }
+};
+
+csl_memory_map mm {
+  flat_page fpage;
+  mm() {
+    set_type(flat);
+  }
+};
+

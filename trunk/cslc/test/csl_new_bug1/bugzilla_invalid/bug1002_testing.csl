@@ -1,0 +1,19 @@
+//bug 1002
+csl_bitrange br(3);
+
+csl_unit x {
+ csl_port a(input,br),b(input,br),c(input,br);
+ x() {
+
+ }
+};
+
+
+
+csl_vector vec_abc{
+ vec_abc () {
+   set_unit_name(x);     
+   set_direction(input);
+   exclusion_list(a);
+ }
+};

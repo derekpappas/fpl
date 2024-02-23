@@ -1,0 +1,186 @@
+init ;
+
+header  3 "             SystemC 2.0.1 --- Feb 28 2003 14:02:29" ;
+
+comment "ASCII WIF file produced on date:  Apr 04, 2003       15:14:55" ;
+comment "Created by              SystemC 2.0.1 --- Feb 28 2003 14:02:29" ;
+comment "Convert this file to binary WIF format using a2wif" ;
+
+type scalar "BIT" enum '0', '1' ;
+type scalar "MVL" enum '0', '1', 'X', 'Z', '?' ;
+
+declare  O0   "clock"  BIT  variable ;
+start_trace O0 ;
+declare  O1   "clear"  BIT  variable ;
+start_trace O1 ;
+declare  O2   "left_in"  BIT  variable ;
+start_trace O2 ;
+declare  O3   "right_in"  BIT  variable ;
+start_trace O3 ;
+declare  O4   "sel_op"  BIT  0 1 variable ;
+start_trace O4 ;
+declare  O5   "data_in"  BIT  0 2 variable ;
+start_trace O5 ;
+declare  O6   "usr_out"  BIT  0 2 variable ;
+start_trace O6 ;
+comment "All initial values are dumped below at time 0 sec = 0 timescale units." ;
+assign O0 '1' ;
+assign O1 '0' ;
+assign O2 '0' ;
+assign O3 '0' ;
+assign O4 "00" ;
+assign O5 "101" ;
+assign O6 "000" ;
+delta_time 1000 ;
+assign O0 '0' ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+assign O1 '1' ;
+assign O4 "11" ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+assign O6 "101" ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+assign O4 "01" ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+assign O6 "010" ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+assign O2 '1' ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+assign O6 "100" ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+assign O2 '0' ;
+assign O4 "10" ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+assign O6 "010" ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+assign O3 '1' ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+assign O6 "001" ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+assign O3 '0' ;
+assign O4 "01" ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+assign O6 "010" ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+assign O4 "11" ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+assign O6 "101" ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+assign O2 '1' ;
+assign O4 "01" ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+assign O6 "010" ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+assign O2 '0' ;
+assign O3 '1' ;
+assign O4 "10" ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+assign O6 "001" ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+assign O3 '0' ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+assign O6 "000" ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+assign O4 "01" ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+assign O4 "11" ;
+assign O5 "010" ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+assign O6 "010" ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+assign O5 "110" ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+assign O6 "110" ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+assign O1 '0' ;
+assign O4 "00" ;
+assign O5 "101" ;
+assign O6 "000" ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+
+delta_time 1000 ;
+assign O0 '1' ;
+
+delta_time 1000 ;
+assign O0 '0' ;
+

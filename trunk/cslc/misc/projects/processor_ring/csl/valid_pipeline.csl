@@ -1,0 +1,116 @@
+//Monica
+//26 mar 2008
+
+csl_enum e_data{
+  br_data=1
+    };
+
+csl_register d_reg{
+  d_reg(){
+    set_type(register);
+    set_width(br_data);
+  }
+};
+
+csl_unit v_ppl{
+  csl_port pc_en0(input),v6(output);
+  csl_port pc0(input),pc6(output);
+  csl_port cnt3(input),cnt6(output);
+
+  csl_signal br,br_c;                //unconditional branch, conditional branch 
+  csl_signal v1,v2,v3,v4,v5;         //outputs of registers
+  csl_signal v1_,v2_,v3_,v4_,v5_;    // outputs of end gates
+  csl_signal clk,reset,enable;
+ 
+  csl_signal pc1,pc2,pc3,pc4,pc5;
+  csl_signal cnt4,cnt5;
+
+  //valid bit pipeline
+  d_reg reg1(.reg_in(pc_en0),
+             .reg_out(v1),
+             .enable(enable),
+             .clock(clk),
+             .reset_(reset));
+  d_reg reg2(.reg_in(v1_),
+             .reg_out(v2),
+             .enable(enable),
+             .clock(clk),
+             .reset_(reset)); 
+  d_reg reg3(.reg_in(v2_),
+             .reg_out(v3),
+             .enable(enable),
+             .clock(clk),
+             .reset_(reset));
+  d_reg reg4(.reg_in(v3_),
+             .reg_out(v4),
+             .enable(enable),
+             .clock(clk),
+             .reset_(reset));
+  d_reg reg5(.reg_in(v4_),
+             .reg_out(v5),
+             .enable(enable),
+             .clock(clk),
+             .reset_(reset));
+  d_reg reg6(.reg_in(v5_),
+             .reg_out(v6),
+             .enable(enable),
+             .clock(clk),
+             .reset_(reset)); 
+  //pc pipeline
+  d_reg p1(.reg_in(pc0),
+           .reg_out(pc1),
+           .enable(enable),
+           .clock(clk),
+           .reset_(reset));
+  d_reg p2(.reg_in(pc1),
+           .reg_out(pc2),
+           .enable(enable),
+           .clock(clk),
+           .reset_(reset));
+  d_reg p3(.reg_in(pc2),
+           .reg_out(pc3),
+           .enable(enable),
+           .clock(clk),
+           .reset_(reset));
+  d_reg p4(.reg_in(pc3),
+           .reg_out(pc4),
+           .enable(enable),
+           .clock(clk),
+           .reset_(reset));
+  d_reg p5(.reg_in(pc4),
+           .reg_out(pc5),
+           .enable(enable),
+           .clock(clk),
+           .reset_(reset));
+  d_reg p6(.reg_in(pc5),
+           .reg_out(pc6),
+           .enable(enable),
+           .clock(clk),
+           .reset_(reset)); 
+
+  //control pipeline
+
+  d_reg c1(.reg_in(cnt3),
+           .reg_out(cnt4),
+           .enable(enable),
+           .reset_(reset),
+           .clock(clk));
+  d_reg c2(.reg_in(cnt4),
+           .reg_out(cnt5),
+           .enable(enable),
+           .reset_(reset),
+           .clock(clk));
+  d_reg c3(.reg_in(cnt5),
+           .reg_out(cnt6),
+           .enable(enable),
+           .reset_(reset),
+           .clock(clk));
+v_ppl(){
+    v1_=v1 & ~br & ~br_c;
+    v2_=v2 & ~br & ~br_c;
+    v3_=v3 & ~br & ~br_c;
+    v4_=v4 & ~br & ~br_c;
+    v5_=v5 & ~br & ~br_c;
+    clk.set_attr(clock);
+  }
+};

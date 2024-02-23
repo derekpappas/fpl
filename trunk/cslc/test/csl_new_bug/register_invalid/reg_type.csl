@@ -1,0 +1,16 @@
+//oanab
+//27 nov 2007
+//the type of the register is set after the add_logic(..) command
+
+csl_register reg{
+  reg(){
+    set_width(32);
+    add_logic(set,5); // the type of the reg should be specified before this command
+    set_type(register); 
+  }
+};
+
+csl_unit u{
+  reg reg;
+  u(){}
+};

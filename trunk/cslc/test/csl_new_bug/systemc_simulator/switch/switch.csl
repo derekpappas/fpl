@@ -1,0 +1,84 @@
+
+csl_unit a {
+  csl_port p(output,2);
+  csl_port clk(input);
+  a () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit b {
+  csl_port p(output,4);
+  csl_port clk(input);
+  b () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit c {
+  csl_port p(input);
+  csl_port clk(input);
+  c () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit d {
+  csl_port p(input,3);
+  csl_port clk(input);
+  d () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit aSwitch {
+  csl_port p_a(input,2);
+  csl_port p_b(input,4);
+  csl_port p_c(output);
+  csl_port p_d(output,3);
+  csl_port clk(input);
+  aSwitch () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit top {
+
+  csl_port clk(input);
+  a a_in(.clk(clk));
+  b b_in(.clk(clk));
+  c c_out(.clk(clk));
+  d d_out(.clk(clk));
+  aSwitch aSwitch(.clk(clk));
+
+  top () {
+    clk.set_attr(clock);
+    a_in.p.connect_by_name(aSwitch.p_a);
+    b_in.p.connect_by_name(aSwitch.p_b);
+    aSwitch.p_c.connect_by_name(c_out.p);
+    aSwitch.p_d.connect_by_name(d_out.p);
+  }
+};
+
+csl_vector stim {
+  stim () {
+    set_unit_name(aSwitch);
+    set_direction(input);
+  }
+};
+
+csl_vector exp {
+  exp () {
+    set_unit_name(aSwitch);
+    set_direction(output);
+  }
+};
+
+csl_testbench tb {
+  aSwitch aSwitch0(.clk(clk));
+  csl_signal clk(reg);
+  tb () {
+    clk.set_attr(clock);
+    add_logic(clock,clk,20,ns);
+  }
+};

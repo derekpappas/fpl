@@ -1,0 +1,30 @@
+//oanab
+//23 oct 2007 
+
+csl_unit u1{
+  u1(){
+ }
+};
+
+csl_memory_map_page mpg1{
+  mpg1(){
+    set_data_word_width(32);
+    add_address_range(10,120);
+    set_unit_name(u1); 
+  }
+};
+
+csl_memory_map_page mpg2{
+  mpg2(){
+    set_data_word_width(32);
+    add_address_range(0,9);
+    set_unit_name(u1); 
+  }
+};
+
+csl_memory_map mp{
+  mp(){
+  set_data_word_width(32);
+  set_type(hierarchical);
+  }
+};

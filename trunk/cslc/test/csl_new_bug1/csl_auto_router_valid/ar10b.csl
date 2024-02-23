@@ -1,0 +1,126 @@
+// Author: cghaba
+// Date: April 2, 2008
+
+/*
+    +--------------------------------------------------------+
+    | +---------+---------------+---------------------+      +
+    | |   +-----+----+                          +-----+----+ |
+    | |   |  +--+-+  |                          |  +--+-+  | |
+    | |   |  |    |  |                          |  |    |  | |
+  --+-+---+--+    +--+--     +-------+          |  +    +--+-+----
+    | |   |  |    |  |  \----+       +-        /+--|    |  | |
+    | |   |  +----+  |       |       | \-/----- |  +----+  | |
+    | |   |          |       |       +---\-     |          | |
+    | |   |          |     /-+       |     \-   |          | |
+    | |   |  +----+  /-----  +-------+       \- |  +----+  | |
+    | |   |  |    +--|                         \+  |    |  | |
+  --+-+---+--+    |  |                          |\-+    +--+-+----
+    | |   |  |    |  |                          |  \    |  | |
+    | |   |  +--+-+  |                          |  +--+-+  | |
+    | |   +-----+----+                          +-----+----+ |
+ ---+-+---------+--------------+----------------------+      |
+    +--------------------------------------------------------+
+
+*/
+// data and selection widths
+csl_enum e_widths{
+  D_WIDTH=8,
+  S_WIDTH=2
+    };
+
+// bitranges
+csl_bitrange br_d(D_WIDTH);
+csl_bitrange br_s(S_WIDTH);
+
+// interfaces
+csl_interface ifca{
+  csl_port pinx(input,br_d);
+  csl_port piny(input,br_d);
+  ifca(){
+  }
+};
+
+csl_signal_group sga{
+  csl_signal pinx(br_d);
+  csl_signal piny(br_d);
+  sga(){
+  }
+};
+
+csl_interface ifcresclk{
+  csl_port reset(input);
+  csl_port clock(input);
+  ifcresclk(){
+  }
+};
+
+// units
+csl_unit uu{
+
+  csl_port sel(input,br_s);
+  ifcresclk irc;  
+  ifca iin;   
+  ifca iout;
+  uu(){
+    iout.reverse();
+  }
+};       
+         
+
+csl_unit uv{
+  ifcresclk irc;
+  ifca iin1;
+  ifca iin2;
+  ifca iout1;
+  ifca iout2;
+  uv(){
+    iout1.reverse();
+    iout2.reverse();
+  }
+};
+
+
+csl_unit uxy{
+  ifcresclk irc;
+  uu ux(.irc(irc));
+  uu uy(.irc(irc));
+  uxy(){
+  }
+};
+
+// top unit
+
+csl_unit top{
+  ifcresclk irc;
+  // top ports
+  csl_port tsel(input,2);
+  //top interfaces
+  ifca ifcxin;
+  //ifca ifcyin;
+  ifca ifcxout;
+  ifca ifcyout;
+  sga sg1,sg2;
+  // unit instances
+  uxy uxy0(.irc(irc));
+  uxy uxy1(.irc(irc));
+  uv uv0(.irc(irc));
+  top(){
+    ifcxout.reverse();
+    ifcyout.reverse();
+
+    //connections made from mixed directions
+    ifcxin.connect_by_name(uxy0.ux.iin);
+    ifcxin.connect_by_name(uxy1.uy.iin);
+
+    uv0.iin1.connect_by_name(uxy0.ux.iout);
+    uv0.iin2.connect_by_name(uxy0.uy.iout);
+
+    uv0.iout1.connect_by_name(sg1);
+    uv0.iout2.connect_by_name(sg2);
+
+    uxy1.ux.iout.connect_by_name(ifcxout);
+    uxy1.uy.iout.connect_by_name(ifcyout);
+    tsel.connect_by_pattern(sel);
+  }
+};
+  

@@ -1,0 +1,39 @@
+// Author: cghaba
+// November 13, 2007
+
+    
+/*
+  - --------------------------------
+  | u_top                          |
+  |   -----    -------    -----    | 
+ -|--| u_a |--|decoder|==| u_b |===|==
+ -|--|     |--|       |==|     |===|==
+  |   -----    -------    -----    |     
+  ----------------------------------
+*/
+
+csl_unit u_a{
+  csl_port p_in(input,2);
+  csl_port p_out(output,2);
+  u_a(){
+  }
+};
+
+csl_unit u_b{
+  csl_port p_in(input,4);
+  csl_port p_out(output,4);
+  u_b(){
+  }
+};
+
+csl_unit u_top{
+  csl_port p_in(input,2);
+  csl_port p_out(output,4);
+  csl_signal s_dec_in(2);
+  csl_signal s_dec_out(4);
+  u_a ua(.p_in(p_in),.p_out(s_dec_in));
+  u_b ub(.p_in(s_dec_out),.p_out(p_out));
+  u_top(){
+    s_dec_in.generate_decoder(s_dec_out);
+  }
+};

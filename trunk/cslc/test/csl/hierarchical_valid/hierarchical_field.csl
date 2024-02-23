@@ -1,0 +1,23 @@
+//danielt
+//28.11.2007
+
+csl_enum e{
+  a=0
+};
+csl_field f{
+  f(){
+set_width(2);
+  }
+};
+csl_field f1{
+  f f;
+  f1(){
+    set_width(5);
+  }
+};
+csl_unit u{
+  f1 f1;
+  u(){
+    f1.f.set_enum(e);
+  }
+};

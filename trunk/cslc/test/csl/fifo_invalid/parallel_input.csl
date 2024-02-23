@@ -1,0 +1,7 @@
+csl_fifo fifo_a{
+  fifo_a(){
+    set_width(24);
+    set_depth(4);
+    set_parallel_input(all);// illegal cmd
+  }
+};

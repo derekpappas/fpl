@@ -1,0 +1,18 @@
+//oanab
+//24 mar 2008
+//interface - interface concatenation
+
+csl_interface ifc {
+  csl_port y1(output,2),y2(output,3),y3(output,4);
+  ifc () {}
+};
+
+csl_unit u3 {
+  csl_port x(input,9);
+  ifc ifc0;
+  ifc ifc1;
+  u3 () {
+    x={ifc0.y3,ifc1.y2,ifc0.y1};
+    ifc1.y3 = {ifc1.y1,ifc0.y2[1:0]};
+  }
+};

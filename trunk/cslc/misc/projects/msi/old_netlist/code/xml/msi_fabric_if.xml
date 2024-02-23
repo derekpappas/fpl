@@ -1,0 +1,15 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="msi_fabric_if">
+<interface name="lb" >
+<port name="dummy2" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="fab_add" >
+<port name="bus80" offset="0" upper="79" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="fab_drop" >
+<port name="bus80" offset="0" upper="79" lower="0" direction = "output" type = "wire" />
+</interface>
+</unit>
+</design>

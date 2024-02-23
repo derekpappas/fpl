@@ -1,0 +1,16 @@
+csl_enum e {
+  a,
+  b,
+  c
+};
+
+csl_field f1{
+  f1(){
+    set_enum(e);
+  }
+};
+
+
+
+
+

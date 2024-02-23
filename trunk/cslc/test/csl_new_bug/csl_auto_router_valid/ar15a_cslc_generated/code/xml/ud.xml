@@ -1,0 +1,17 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="ud">
+<port name="pdin" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="pdout1" offset="0" upper="16-1" lower="0" direction = "output" type = "wire" />
+<port name="pdout2" offset="0" upper="3-1" lower="0" direction = "output" type = "wire" />
+<interface name="ifcin" >
+<port name="hw" offset="0" upper="16-1" lower="0" direction = "input" type = "wire" />
+<port name="w" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifcrc" >
+<port name="reset" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="clock" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+</unit>
+</design>

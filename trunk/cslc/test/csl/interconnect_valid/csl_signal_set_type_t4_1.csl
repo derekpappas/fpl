@@ -1,0 +1,72 @@
+//author: Monica
+//purpose: testing scope and signal declaration
+
+csl_bitrange br1(5);
+csl_bitrange br2(4,0);
+csl_bitrange br3(6,0);
+
+csl_unit u1 {
+  csl_signal s1; 
+  csl_signal s2;
+  csl_signal s4(5,0);
+  csl_signal s5(30,25);
+  csl_signal s6(5);
+  csl_signal s7(wire,5);
+  csl_signal s8(wire,5);
+  csl_signal s9(wire, 5, 0);
+  csl_signal s10(reg, 5, 0);
+  //with type, bitrange and name
+  csl_signal s14(wire, br1);
+  csl_signal s15(reg, br2);
+  csl_signal s16(wire, br3);
+  //with type, range and name
+  csl_signal s17(wire, 7);
+  csl_signal s18(reg, 5);
+  //with type and name
+  csl_signal s20(wire);
+  csl_signal s21(reg);
+  u1(){
+    s1 = s2;
+    s4 = s5;
+    s6 = s7;
+    s9 = s10;
+    s14 = s15;
+    s16 = s17;
+    s8 = s18;
+    s20 = s21;
+  }
+};
+
+csl_unit u2 {
+  csl_signal s1; 
+  csl_signal s2;
+  csl_signal s4(5,0);
+  csl_signal s5(24,19);
+  csl_signal s6(5);
+  csl_signal s8(reg,5);
+  csl_signal s9(wire, 5, 0);
+  csl_signal s10(reg, 5, 0);
+  u2 () {
+    s1 = s2;
+    s4 = s5;
+    s6 = s8;
+    s9 = s10;
+  }
+};
+
+csl_unit u3 {
+
+  csl_signal s11(wire, br1);
+  csl_signal s12(reg, br2);
+
+  u3() {
+    s11 =s12;
+  }
+};
+csl_unit top{
+
+  u1 u1;
+  u2 u2;
+  u3 u3;
+  top(){}
+};

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+LIMIT=14
+
+for ((a=1; a <= LIMIT ; a++))  # Double parentheses, and "LIMIT" with no "$".
+do
+#  echo -n "$a "
+echo ssh  dist_regress@fpl64-$a.fplsrl.com -p 22 "rm /home/dist_regress/svn_done_*"
+done 

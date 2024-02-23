@@ -1,0 +1,22 @@
+//bug 772
+csl_unit u_unit1{
+        csl_signal      sgn_sgn1,
+                        sgn_sgn2(wire, 4),     
+                        sgn_sgn3(reg, 0,3),  //lower & upper
+                        sgn_sgn4,
+                        sgn_sgn5,
+                        sgn_sgn6;
+
+csl_list signal_grup (sgn_sgn1,sgn_sgn2,sgn_sgn6);
+        u_unit1(){                                                              
+        }
+};
+
+csl_unit u_top{
+        u_unit1 unit1;
+//        csl_port p_in;
+
+        u_top(){                
+        bla.set_unit_id(1);     
+  }
+};

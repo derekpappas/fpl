@@ -1,0 +1,33 @@
+csl_isa_field op(3);
+op.set_type(opcode);
+
+csl_isa_field rd(4);
+rd.set_type(constant);
+
+csl_isa_field rs(4);
+rs.set_type(constant);
+
+csl_isa_element isa_root{
+  isa_root(){
+    set_type(root_format);
+ set_width(16);
+  }
+};
+
+csl_isa_element format: isa_root{
+  op op;
+  rs rs;
+  rd rd;
+     format() {
+      set_type(instr_format);
+      set_position(op, 13);
+      set_next(op,rd);
+      set_next(rd,rs);
+      rd.set_value(10);
+      rs.set_value(rd.get_value());
+    }
+};
+
+
+csl_unit top {
+};

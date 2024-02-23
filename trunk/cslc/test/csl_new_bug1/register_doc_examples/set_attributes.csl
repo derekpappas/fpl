@@ -1,0 +1,29 @@
+//danielt
+//november 07,2007
+
+csl_register regA{
+  regA(){
+    set_type(register);
+    set_width(32);
+    set_attributes(rd);
+}
+};
+
+csl_unit u{
+csl_signal rst,en,clk,data(32);
+regA regA(.reset_(rst),.enable(en),.clock(clk),.reg_in(data),.reg_out(data));
+u(){}
+};
+
+csl_memory_map_page mpage{
+  mpage(){
+    add_address_range(0,300);
+    set_unit_name(u);
+  }
+};
+
+csl_memory_map mmap{
+mmap(){
+    set_type(hierarchical);
+}
+};

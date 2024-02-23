@@ -1,0 +1,32 @@
+//oanab
+//14 aug 2008
+
+csl_interface ifc11 {
+  csl_port ps_m105(output,6);
+  csl_port ps_n105(inout,3);
+  ifc11 () {
+  }
+};
+
+csl_signal_group sg11 {
+  csl_signal ps_m105(6);
+  csl_signal ps_n105(3);
+  sg11 () {
+  }
+};
+
+csl_unit a4 {
+  sg11 sg11_1;
+  a4 () {
+  }
+};
+
+csl_unit b4 {
+  a4 a4_0;
+  ifc11 ifc11_1;
+  b4 () {
+    a4_0.sg11_1.set_suffix("sgj");
+    a4_0.sg11_1.connect_by_name(ifc11_1);  // sg---ifc (CP)
+  }
+};
+

@@ -1,0 +1,34 @@
+//
+
+csl_unit dut{
+  csl_port stim_in(input), stim_v(input),exp_out(output),exp_v(output);
+  csl_port clk(input);
+  csl_signal cl;
+  dut(){
+  clk.set_attr(clock);
+  cl = clk;
+  stim_v = stim_in;
+  exp_out = exp_v;
+}
+};
+csl_vector stim_vec{
+  stim_vec(){
+    set_unit_name(dut);
+    set_direction(input);
+    set_vc_capture_edge_type(fall);
+  }
+};
+csl_vector exp_vec{
+  exp_vec(){
+   set_unit_name(dut);
+   set_direction(output);
+}
+};
+csl_testbench tb{
+csl_signal clk(reg);
+dut dut_1(.clk(clk));
+tb(){
+  clk.set_attr(clock);
+  add_logic(clock,clk,100,ps);
+}
+};

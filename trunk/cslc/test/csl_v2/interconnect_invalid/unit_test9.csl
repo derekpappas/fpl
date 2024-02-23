@@ -1,0 +1,10 @@
+//Petronela
+csl_unit a{
+  csl_signal s1(wire);
+  csl_signal s2(wire,4,9);
+  a(){
+    s1.set_offset(4);
+    s1.set_width(s2.get_width()); 
+    s2.set_attr(enn);//error this isn't a csl_signal_attr
+  }
+};

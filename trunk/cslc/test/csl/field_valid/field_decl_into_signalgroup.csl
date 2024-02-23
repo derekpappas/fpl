@@ -1,0 +1,10 @@
+// Author: cghaba
+// November 7, 2007
+
+csl_signal_group sg_a{
+  csl_field f_a(3);
+  csl_signal s_a1;
+  csl_signal s_a2(f_a);
+  sg_a(){
+    }
+};

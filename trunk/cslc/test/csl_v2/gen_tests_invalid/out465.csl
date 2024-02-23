@@ -1,0 +1,161 @@
+csl_enum ir {
+	re,
+	on,
+	ln,
+	by,
+	om,
+	ef,
+	tk,
+	wt,
+	ds,
+	lv,
+	gc,
+	ch,
+	ax
+};
+csl_enum be {
+	ak = 24,
+	vr = 66,
+	qn = 75
+};
+csl_enum id {
+	bj,
+	es,
+	wi,
+	as,
+	ux,
+	ox,
+	sa,
+	ty,
+	ex,
+	hf,
+	wk,
+	ly,
+	wi
+};
+csl_isa_instruction_format ya{
+    ya( ){
+     set_width( 8);
+     generate_decoder( lefu);
+  }
+}
+;
+csl_isa_instruction ho : ya{
+    ho( ){
+    set_asm_mnemonic( nf);
+  }
+}
+;
+csl_isa_instruction xb : ya{
+    xb( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa fa{
+  ho vy;
+  xb he;
+  xb cd;
+  xb ro;
+  ho ix;
+  ho es;
+  xb cg;
+  xb yj;
+  ho ih;
+  ho qp;
+  xb yp;
+  ho ju;
+  xb py;
+  ho li;
+  ho ny;
+  xb di;
+  xb br;
+  ho hi;
+  ho jn;
+  ho ku;
+  xb yt;
+    fa( ){
+     set_decoder_name( "pj");
+     set_decoder_out_name_suffix( "uw");
+  }
+}
+;
+csl_fifo ww{
+   ww( ){
+     add_logic( programable_depth, 4);
+     add_logic( depth_extend, 6);
+  }
+}
+;
+csl_memory_map_page uf{
+    uf( ){
+     set_next_address( 7);
+     get_aligment( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page dm{
+    dm( ){
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page pt{
+  dm uf;
+  uf qy;
+  dm re;
+    pt( ){
+     add_address_range( 5, 6);
+     set_next_address( 7);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 4);
+     get_aligment( );
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map jj{
+  uf li;
+  dm gg;
+  pt jv;
+  dm vh;
+  pt vo;
+  uf im;
+  dm ex;
+    jj( ){
+     auto_gen_memory_map( );
+     set_top_unit( fclefu);
+     set_type( flat);
+     set_suffix( ax);
+     get_suffix( );
+  }
+}
+;
+csl_register xr{
+    xr( ){
+     set_width( 4);
+     index_data_pair( jj);
+     set_atribute( read_write);
+     constant( 3);
+     add_logic( serial_input);
+     add_logic( rd_en);
+     add_logic( wr_en);
+     init_value( 6);
+     add_logic( gray_output);
+     set_end_value( 2);
+     set_start_value( 6);
+     add_logic( cnt_dir_signal);
+     add_logic( inc_signal);
+  }
+}
+;
+csl_register gb{
+    gb( ){
+     create_rtl_module( );
+  }
+}
+;

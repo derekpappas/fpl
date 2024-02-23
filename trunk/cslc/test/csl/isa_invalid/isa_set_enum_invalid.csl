@@ -1,0 +1,36 @@
+//illegal: set_enum_item
+
+csl_enum e_field{
+    ADD = 0,
+    SUB = 1
+};
+
+csl_isa_field op(2, e_field);
+csl_isa_field field(2);
+
+csl_isa_element format{
+    field op_i;
+    field field_i;
+    format(){
+	set_type(instr_format);
+       set_width(4);            
+       set_position(op_i, 2);
+       set_next(op_i,field_i);
+       op.set_enum_item(SUB);
+    }
+};
+
+csl_isa_element add1 : format{
+     add1(){
+	set_type(instr);
+         op.set_enum_item(ADD);  
+     // set_enum_item should work with instanciated field
+     }
+};
+
+csl_isa_element sub1 : format{  
+     sub1(){
+	set_type(instr);
+          op.set_enum_item(MUL);   // MUL does not exist
+     }
+};

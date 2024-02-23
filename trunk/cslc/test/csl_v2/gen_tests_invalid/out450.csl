@@ -1,0 +1,154 @@
+csl_enum kn {
+	ye,
+	iy,
+	av,
+	kk,
+	jy,
+	tj,
+	nf,
+	yg
+};
+csl_enum hj {
+	oi
+};
+csl_enum jt {
+	ei = 26,
+	kc = 80,
+	ex = 6,
+	fo = 11,
+	le = 78,
+	uu = 79,
+	fu = 86,
+	sr = 2,
+	fc = 98,
+	qb = 51
+};
+csl_isa_instruction_format hj{
+    hj( ){
+     set_width( 2);
+     generate_decoder( jtntsl);
+  }
+}
+;
+csl_isa_instruction lq : hj{
+    lq( ){
+    set_asm_mnemonic( csl_list "dc", "vf", "uq", "sw", "ne", "sw", "gs");
+  }
+}
+;
+csl_isa_instruction iq : hj{
+    iq( ){
+    set_asm_mnemonic( csl_list "tm", "mh", "sg", "gc", "bn", "gp", "sx", "qx", "yg");
+  }
+}
+;
+csl_isa ea{
+  iq or;
+  lq ys;
+  iq nl;
+  lq kc;
+  iq nd;
+  iq lu;
+  lq ux;
+  lq xp;
+  iq me;
+  lq sy;
+  iq du;
+  lq rf;
+  lq ev;
+  iq ym;
+  lq ni;
+  iq qt;
+  iq oo;
+  lq om;
+  lq qr;
+  lq kr;
+    ea( ){
+     set_decoder_name( "pr");
+     set_decoder_out_name_suffix( "yh");
+     print( isa.txt);
+  }
+}
+;
+csl_fifo tf{
+   tf( ){
+     add_logic( width_extend, 8);
+     add_logic( iq);
+     add_logic( parallel_input, all);
+     add_logic( output_rd_addr);
+  }
+}
+;
+csl_memory_map_page mc{
+    mc( ){
+     add_address_range( 2, 7);
+     get_address_increment( );
+     get_next_address( );
+     add_reserved_address_range( 7, 4);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 0);
+     get_data_word_wodth( );
+     set_aligment( 9);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page yq{
+    yq( ){
+     add_address_range( 2, 6);
+     set_next_address( 1);
+     set_access_rights( access_read_write, none);
+     add_reserved_address_range( 0, 6);
+     set_aligment( 7);
+     get_aligment( );
+     set_endianess( little_endianbig_endian);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page mx{
+    mx( ){
+     get_next_address( );
+     set_access_rights( none, access_read_write);
+     add( tf, "en");
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map fn{
+  yq pd;
+  mx yv;
+  yq iu;
+  yq dt;
+  mx ry;
+    fn( ){
+     set_top_unit( jtexntsl);
+     set_type( page);
+yq.set_access_rights_enum( mcyq); 
+  }
+}
+;
+csl_register ar{
+    ar( ){
+     set_width( 6);
+     set_atribute( read);
+     add_logic( neg_output);
+     add_logic( rd_en);
+     add_logic( wr_en);
+     reset_value( 6);
+     set_end_value( 7);
+     add_logic( cnt_dir_signal);
+  }
+}
+;
+csl_register ha{
+    ha( ){
+     set_depth( 6);
+     create_rtl_module( );
+     set_const_value( 7);
+  }
+}
+;

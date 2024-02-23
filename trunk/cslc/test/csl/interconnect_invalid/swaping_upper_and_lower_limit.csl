@@ -1,0 +1,18 @@
+//should not swapping upper and lower limit
+//andreim
+//20 June 2007
+
+csl_bitrange br_bitrange(0, 7);
+csl_unit u_unit1{
+	csl_signal 	sgn_sgn1,
+							sgn_sgn2(wire, 4),     
+							sgn_sgn3(reg, 3,0),  
+							//should not swapping upper and lower limit
+							sgn_sgn4,
+							sgn_sgn5,
+							sgn_sgn6;
+	csl_port p_p1;
+	u_unit1(){
+
+	}
+};

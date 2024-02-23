@@ -1,0 +1,7 @@
+csl_memory_map mm{
+  //  page1 page_1(rf1);
+  //     page1 page_1(rf2); 
+        mm(){
+        set_type(bla);  // invalid type
+        }
+};

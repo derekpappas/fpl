@@ -1,0 +1,61 @@
+//oanab
+//17 mar 2008
+//Loop Back Test Controller (ltc)
+
+csl_unit tcr {
+  csl_signal test_sel(3);
+  csl_signal data(32);
+  csl_signal data_out_test_bus(32);
+  tcr () {}
+};
+
+csl_unit dec {
+  csl_signal test_sel(3);
+  sg_ltc selects;
+  csl_include(file_verilog,"pr_ltc_dec");
+  dec () {}
+};
+
+csl_register reg_x {
+  reg_x () {
+    set_width(32);
+    set_type(register);
+  }
+};
+
+csl_register reg_y {
+  reg_y () {
+    set_width(32);
+    set_type(register);
+  }
+};
+
+csl_unit comp {
+  csl_signal data_x(32);
+  csl_signal data_y(32);
+  csl_signal output;
+  comp () {
+    output = (data_x & data_y);
+  }
+};
+
+csl_unit ltc {
+  csl_port data_in_test_bus(input,32);
+  csl_port data_out_test_bus(output,32);
+  ifc_ltc selects;
+  csl_signal test_sel(3);
+  csl_signal data(32);
+  csl_signal data_x(32),data_y(32);
+  csl_signal output;
+  tcr tcr(.data(data),
+	  .test_sel(test_sel),
+	  .data_out_test_bus(data_out_test_bus));
+  dec dec(.test_sel(test_sel),
+	  .selects(selects));
+  reg_x reg_x; //(.reg_in(data),.reg_out(data_x)); 
+  reg_y reg_y; //(.reg_in(data_in_test_bus),.reg_out(data_y));
+  comp comp(.data_x(data_x),
+	    .data_y(data_y),
+	    .output(output));
+  ltc () {}
+};

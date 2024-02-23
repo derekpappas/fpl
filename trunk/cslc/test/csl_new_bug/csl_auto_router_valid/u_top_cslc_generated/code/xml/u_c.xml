@@ -1,0 +1,19 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u_c">
+<port name="ar_p_t_in_p_a_in" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="ar_p_t_out1_p_a_out" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<instantiation type = "u_a">
+<instance name="a">
+<f2a formal = "p_a_in" actual = "ar_p_t_in_p_a_in" />
+<f2a formal = "p_a_out" actual = "ar_p_t_out1_p_a_out" />
+</instance>
+</instantiation>
+<instantiation type = "u_b">
+<instance name="b">
+<f2a formal = "p_b_in" actual = "ar_p_t_in_p_a_in" />
+</instance>
+</instantiation>
+</unit>
+</design>

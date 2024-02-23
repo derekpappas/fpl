@@ -1,0 +1,13 @@
+csl_memory_map_page mpage_0 {
+};
+csl_memory_map_page mpage_1 {
+};
+csl_memory_map mmap{
+  mpage_0 mpage_0;
+  mpage_1 mpage_1;
+	mmap(){
+		set_type(hierarchical);
+		mpage_0.set_symbol_max_length(10);
+		mpage_1.set_symbol_max_length(mpage_0.get_symbol_max_length()+10);
+	}
+};

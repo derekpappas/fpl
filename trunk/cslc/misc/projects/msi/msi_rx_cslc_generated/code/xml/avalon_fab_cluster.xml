@@ -1,0 +1,31 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="avalon_fab_cluster">
+<interface name="af_if_fab" >
+<port name="bus80" offset="0" upper="79" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="df_af_fab" >
+<port name="bus80" offset="0" upper="79" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ab_nina_lb" >
+<port name="dummy3" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<signalgroup name="af_ab_lba">
+<signal name="dummy2" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "msi_fabric_if">
+<instance name="avalon_fab">
+<f2a formal = "fab_add.bus80" actual = "af_if_fab.bus80" />
+<f2a formal = "fab_drop.bus80" actual = "df_af_fab.bus80" />
+<f2a formal = "lba.dummy2" actual = "af_ab_lba.dummy2" />
+</instance>
+</instantiation>
+<instantiation type = "avalon_bridge">
+<instance name="avalon_bridge">
+<f2a formal = "lb.dummy3" actual = "ab_nina_lb.dummy3" />
+<f2a formal = "lba.dummy2" actual = "af_ab_lba.dummy2" />
+</instance>
+</instantiation>
+</unit>
+</design>

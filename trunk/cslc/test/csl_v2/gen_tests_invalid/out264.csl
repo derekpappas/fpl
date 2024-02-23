@@ -1,0 +1,139 @@
+csl_enum rn {
+	dv,
+	cx,
+	lj,
+	dd,
+	re,
+	fr,
+	pg,
+	aw,
+	xv,
+	fr,
+	wk,
+	oy,
+	ta
+};
+csl_enum tp {
+	al,
+	df,
+	hh,
+	fv,
+	si,
+	yk,
+	pg,
+	ff,
+	nh,
+	en,
+	dk,
+	fc,
+	ww,
+	cr,
+	wv,
+	jy,
+	ho,
+	gq,
+	wl,
+	op,
+	vo
+};
+csl_isa_instruction_format il{
+    il( ){
+     set_width( 3);
+     generate_decoder( hd);
+  }
+}
+;
+csl_isa_instruction nu : il{
+    nu( ){
+    set_asm_mnemonic( csl_list "pl", "lq", "yn", "pt", "ox", "oj");
+  }
+}
+;
+csl_isa_instruction fq : il{
+    fq( ){
+    set_asm_mnemonic( csl_list "tv");
+  }
+}
+;
+csl_isa_instruction fl : il{
+    fl( ){
+    set_asm_mnemonic( csl_list "ra", "hy", "sm", "ka", "ir", "xd", "of");
+  }
+}
+;
+csl_isa ku{
+    ku( ){
+     set_decoder_name( "vn");
+     set_decoder_out_name_prefix( "jh");
+     set_decoder_out_name_suffix( "jj");
+     generate_decoder( bk);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo iv{
+   iv( ){
+  }
+}
+;
+csl_memory_map_page fv{
+    fv( ){
+     get_address_increment( );
+     set_access_rights( none, access_read_write);
+     add_reserved_address_range( 7, 8);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_endianess( little_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page jf{
+  fv ln;
+    jf( ){
+     get_next_address( );
+     set_access_rights( access_read, access_read);
+     add_reserved_address_range( 7, 5);
+     get_upper_bound( );
+     get_aligment( );
+  }
+}
+;
+csl_memory_map_page tp{
+  fv dc;
+    tp( ){
+     add_address_range( 7, 6);
+     get_address_increment( );
+     set_next_address( 1);
+     get_next_address( );
+     set_access_rights( access_write, access_read_write);
+     add_reserved_address_range( 3, 3);
+     add( iv, "ft");
+     get_lower_bound( );
+     set_data_word_width( 6);
+     get_data_word_wodth( );
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map ri{
+    ri( ){
+     auto_gen_memory_map( );
+     set_top_unit( awpi);
+jf.set_access_rights_enum( jf); 
+     set_data_word_width( 1);
+  }
+}
+;
+csl_register nh{
+    nh( ){
+     set_width( 4);
+     add_logic( read_valid);
+     set_const_value( 4);
+  }
+}
+;

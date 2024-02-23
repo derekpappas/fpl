@@ -1,0 +1,22 @@
+//Derek
+// the start count is less than the end count and therefor the counter
+// will never count
+
+csl_register r4{
+  r4(){
+    set_width(37);
+    add_logic(count_amount, 3);
+    add_logic(start_value, 21);
+    add_logic(cnt_dir_signal);
+    add_logic(dec_signal);
+    add_logic(end_value, 5);
+  }
+};
+
+csl_unit u1{
+  r4 r4;
+
+  u1(){
+    
+  }
+};

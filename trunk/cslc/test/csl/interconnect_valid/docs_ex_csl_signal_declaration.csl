@@ -1,0 +1,27 @@
+//csl_signal signal_object_name example (from csl_interconnect.fm docs) modified after the new sintax
+//andreim
+//29 June 2007
+
+csl_unit ref{
+	csl_port ref_out(output, 8);
+	ref(){
+	}
+};
+csl_unit comp{
+	csl_port ref_in(input,8);
+	csl_port data_in(input,8);
+	csl_port p_valid(output);
+	comp(){
+	}
+};
+
+csl_unit check{
+	csl_port p_valid(output);
+	csl_port data(input,8);
+	csl_signal ref_data;
+	ref ref_i(.ref_out(ref_data));
+	comp comp_i(.ref_in(ref_data),.data_in(data),.p_valid(p_valid));
+	check(){
+		ref_data.set_width(8);
+	}
+};

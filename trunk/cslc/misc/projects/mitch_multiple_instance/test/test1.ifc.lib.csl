@@ -1,0 +1,16 @@
+
+csl_interface ifca {
+  csl_port p_x(input);
+  csl_port p_y(output);
+  ifca () {}
+};
+
+csl_interface ifcb {
+  csl_port p_a(output);
+  csl_port p_b(input);
+  csl_port p_c(output);
+  ifcb () {}
+};
+
+
+

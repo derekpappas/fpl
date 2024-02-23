@@ -1,0 +1,18 @@
+//author: Ines
+//testing: csl_bitrange obj_name(num_expr, num_expr);
+//         - param lower - lower bound of the bitrange;
+//         - param upper - upper bound of the bitrange; 
+
+
+csl_bitrange obj_name(10);
+
+csl_bitrange obj_name1(, 10);
+
+csl_unit u1{
+  csl_signal s1;
+  csl_signal s2;
+  u1(){
+    s1.set_bitrange(obj_name);
+    s2.set_bitrange(obj_name1);  
+  }
+};

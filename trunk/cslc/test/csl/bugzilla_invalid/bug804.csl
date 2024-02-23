@@ -1,0 +1,8 @@
+//bug 804
+csl_enum op_enum{
+        CALL = string_value,
+        SETHI_Branches = 0,
+        Arithmetic = 2,
+        Logical = 3
+};
+

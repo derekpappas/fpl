@@ -1,0 +1,16 @@
+# This is the input test file for CTestParam class
+# <> means obligatory
+# [] means optional
+# {} means group
+# *x means this should repeat x times
+# Syntax: ( <MODULE_TEST> <PARAM_NAME> <EXPRESSION_TYPE> <EXPRESSION_TEST> <1..4> [PARAM_TYPE] [BITRANGE_TEST] [IS_SIGNED] )
+# 1 - 0 add to constructor
+# 2 - PARAM_TYPE add to cosntructor
+# 3 - 2 + bitRange add to constructor
+# 4 - 3 + IS_SIGNED add to constructor
+# examples:
+
+( ( n gigi n 0 0 ) param1 COmExprValInt ( 100 1 32 4 1 ) 1 )
+( ( n gigi n 0 0 ) param1 COmExprValInt ( 100 1 32 4 1 ) 2 1 )
+( ( n gigi n 0 0 ) param1 COmExprValInt ( 100 1 32 4 1 ) 3 0 ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) )
+( ( n gigi n 0 0 ) param1 COmExprValInt ( 100 1 32 4 1 ) 4 1 ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 1 )

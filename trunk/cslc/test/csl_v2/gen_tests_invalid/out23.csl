@@ -1,0 +1,136 @@
+csl_enum ud {
+	pj = 56,
+	tc = 48,
+	nc = 29,
+	dy = 68,
+	tc = 93,
+	ew = 26,
+	qo = 2,
+	nh = 4
+};
+csl_enum yf {
+	td = 10,
+	xy = 11,
+	ay = 23,
+	nw = 87,
+	oh = 36,
+	el = 44,
+	nt = 35,
+	uh = 34,
+	vk = 28,
+	mb = 41
+};
+csl_enum mg {
+	fq,
+	fx,
+	is,
+	gj,
+	xc,
+	ox,
+	do,
+	wq,
+	nl,
+	xt
+};
+csl_isa_instruction_format ev{
+    ev( ){
+     set_width( 5);
+     generate_decoder( umjhlvxr);
+  }
+}
+;
+csl_isa wy{
+    wy( ){
+     set_decoder_name( "gx");
+     generate_decoder( jhlv);
+  }
+}
+;
+csl_fifo kp{
+   kp( ){
+     add_logic( pushback);
+  }
+}
+;
+csl_memory_map_page gi{
+    gi( ){
+     set_address_increment( 0);
+     get_address_increment( );
+     set_next_address( 3);
+     get_next_address( );
+     set_access_rights( access_read_write, access_read);
+     get_data_word_wodth( );
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page kc{
+    kc( ){
+     set_address_increment( 4);
+     set_next_address( 6);
+     get_next_address( );
+     set_access_rights( access_read_write, none);
+     add( gi);
+     get_upper_bound( );
+     get_data_word_wodth( );
+     get_aligment( );
+     set_endianess( little_endianbig_endian);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page od{
+  gi la;
+  kc dt;
+  kc gy;
+    od( ){
+     add_address_range( 8, 6);
+     set_address_increment( 0);
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_read_write, access_read);
+     add( kc);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_aligment( );
+     set_endianess( big_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map ro{
+    ro( ){
+     set_top_unit( umjhlv);
+     set_type( flat);
+gi.set_access_rights_enum( od); 
+     set_data_word_width( 0);
+     get_data_word_width( );
+     set_prefix( jq);
+     get_prefix( );
+     set_suffix( kh);
+  }
+}
+;
+csl_register qg{
+    qg( ){
+     add_logic( serial_output);
+     add_logic( wr_en);
+     add_logic( gray_output);
+     set_count_amount( 9);
+     add_logic( inc_signal);
+  }
+}
+;
+csl_register mk{
+    mk( ){
+     set_width( 2);
+     create_rtl_module( );
+     add_logic( bypass);
+  }
+}
+;

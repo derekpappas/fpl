@@ -1,0 +1,120 @@
+csl_enum ou {
+	if = 26,
+	cm = 10,
+	sk = 47,
+	vv = 5
+};
+csl_enum fy {
+	fg = 57,
+	pr = 50,
+	ur = 75,
+	qa = 23
+};
+csl_enum sh {
+	uw,
+	ou,
+	ro,
+	mq,
+	xb,
+	mj,
+	jq,
+	xc,
+	bt,
+	xi
+};
+csl_isa_instruction_format ce{
+    ce( ){
+     set_width( 7);
+     generate_decoder( fwqywa);
+  }
+}
+;
+csl_isa jq{
+    jq( ){
+     set_decoder_name( "uf");
+     set_decoder_out_name_prefix( "ex");
+     set_decoder_out_name_suffix( "xd");
+     generate_decoder( fwycwa);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo rg{
+   rg( ){
+     add_logic( depth_extend, 2);
+     add_logic( almost_full, 2);
+  }
+}
+;
+csl_memory_map_page xc{
+    xc( ){
+     set_next_address( 4);
+     set_access_rights( access_write, access_read);
+     get_data_word_wodth( );
+  }
+}
+;
+csl_memory_map_page wj{
+    wj( ){
+     add_address_range( 4, 7);
+     set_address_increment( 2);
+     get_address_increment( );
+     set_access_rights( none, none);
+     add_reserved_address_range( 7, 3);
+     add( rg, "nv", 6);
+     get_lower_bound( );
+     set_data_word_width( 9);
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page ri{
+    ri( ){
+     set_next_address( 6);
+     add_reserved_address_range( 6, 0);
+     get_lower_bound( );
+     set_data_word_width( 1);
+     set_aligment( 6);
+     get_aligment( );
+     set_endianess( little_endian);
+  }
+}
+;
+csl_memory_map ch{
+  wj nl;
+  wj rq;
+  ri qt;
+    ch( ){
+     auto_gen_memory_map( );
+     set_top_unit( ycqy);
+xc.     set_type( page);
+xc.set_access_rights_enum( xcri); 
+  }
+}
+;
+csl_register fv{
+    fv( ){
+     set_width( 8);
+     set_atribute( read);
+     add_logic( wr_en);
+     init_value( 1);
+     reset_value( 3);
+     clear_value( 4);
+     add_logic( gray_output);
+     set_end_value( 1);
+     add_logic( cnt_dir_signal);
+  }
+}
+;
+csl_register wx{
+    wx( ){
+     set_width( 9);
+     get_width( );
+     add_logic( read_valid);
+     create_rtl_module( );
+     add_logic( bypass);
+  }
+}
+;

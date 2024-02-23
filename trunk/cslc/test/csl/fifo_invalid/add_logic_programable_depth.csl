@@ -1,0 +1,7 @@
+csl_fifo fifo_name {
+fifo_name(){
+set_depth(16);
+//size_sgn input signal controlls the depth of the fifo
+add_logic(programable_depth,1);
+set_width(4);}
+};:

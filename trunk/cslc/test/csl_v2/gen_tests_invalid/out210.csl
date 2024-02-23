@@ -1,0 +1,126 @@
+csl_enum hx {
+	sy = 92,
+	kx = 66,
+	vp = 72,
+	sg = 9,
+	la = 16,
+	ve = 64,
+	jy = 16,
+	hi = 16,
+	au = 97,
+	ox = 15,
+	vm = 52,
+	im = 32,
+	ve = 99
+};
+csl_enum dg {
+	hk = 23,
+	ed = 45,
+	lq = 21,
+	bh = 55,
+	gv = 36,
+	ps = 28,
+	vm = 2,
+	yh = 86,
+	lg = 49,
+	qn = 59
+};
+csl_enum dh {
+	my,
+	uw,
+	os,
+	dr,
+	ak,
+	dg,
+	pq,
+	xs,
+	yg,
+	oo,
+	yn
+};
+csl_isa jl{
+    jl( ){
+     generate_decoder( dxdfhs);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo xv{
+   xv( ){
+     add_logic( width_extend, 3);
+     add_logic( rd_words, 4);
+     add_logic( almost_full, 4);
+  }
+}
+;
+csl_memory_map_page dl{
+    dl( ){
+     set_address_increment( 0);
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_write, access_write);
+     set_data_word_width( 2);
+     get_data_word_wodth( );
+     set_aligment( 6);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page mw{
+    mw( ){
+     get_next_address( );
+     add_reserved_address_range( 9, 7);
+     add( xv, "fh");
+     add( dl);
+  }
+}
+;
+csl_memory_map_page sd{
+    sd( ){
+     add_address_range( 9, 0);
+     set_address_increment( 0);
+     get_address_increment( );
+     set_next_address( 6);
+     get_next_address( );
+     set_access_rights( access_read, access_read_write);
+     add_reserved_address_range( 2, 2);
+     get_data_word_wodth( );
+     get_aligment( );
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map pb{
+    pb( ){
+     auto_gen_memory_map( );
+     set_type( page);
+     set_suffix( vc);
+  }
+}
+;
+csl_register xj{
+    xj( ){
+     index_data_pair( pb, 9);
+     set_atribute( shadow);
+     add_logic( serial_input);
+     add_logic( rd_en);
+     add_logic( wr_en);
+     reset_value( 6);
+     set_lock_enable_bit( 4);
+     get_lock_enable_bit( );
+     add_logic( gray_output);
+     set_count_direction( 7);
+     stop_at_end_value( );
+     get_cnt_dir_signal( );
+     add_logic( inc_signal);
+  }
+}
+;
+csl_register ex{
+    ex( ){
+     add_logic( read_valid);
+  }
+}
+;

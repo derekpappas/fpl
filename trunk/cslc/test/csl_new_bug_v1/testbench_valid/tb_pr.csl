@@ -1,0 +1,135 @@
+//Monica
+//12 feb 2008
+// send a message between three processors (from first to last)
+
+csl_bitrange br_msg(83);
+
+csl_unit u_in{
+  csl_port p_in(input,br_msg);
+  csl_port p_out(output,br_msg);
+  csl_port p_tocpu(output,br_msg);
+  csl_port p_clk(input);
+  csl_signal s_msg(br_msg);  //for message transmission--> input to output port
+  csl_signal clk1;
+  u_in(){
+    s_msg=p_in;
+    p_out=s_msg;
+    p_tocpu = s_msg;
+    p_clk = clk1;
+ }
+};
+
+csl_unit u_dly{
+  csl_port p_in(input,br_msg);
+  csl_port p_out(output,br_msg);
+  csl_port p_clk(input);
+  csl_signal s_msg(br_msg);
+  u_dly(){
+    s_msg=p_in;
+    p_out=s_msg;
+   
+  }};
+
+csl_unit u_out{
+  csl_port p_in(input,br_msg);
+  csl_port p_out(output,br_msg);
+  csl_port p_fromcpu(input,br_msg);
+  csl_port p_sel(input);
+  csl_port p_clk(input);
+  
+  u_out(){
+    p_out=(p_sel)? p_in : p_fromcpu;
+ }
+};
+
+csl_unit u_cpu{
+  csl_port p_in(input,br_msg);
+  csl_port p_out(output,br_msg);
+  csl_port p_clk(input);
+  csl_signal s_msg(br_msg);
+   u_cpu(){
+     s_msg=p_in;
+     p_out=s_msg;
+}
+};
+
+// processor node
+csl_unit u_pr{
+  csl_port p_in(input,br_msg);
+  csl_port p_clk(input);
+  csl_port p_out(output,br_msg);
+
+  csl_signal s_in_dly(br_msg);
+  csl_signal s_dly_out(br_msg);
+  csl_signal s_in_cpu(br_msg);
+  csl_signal s_cpu_out(br_msg);
+  csl_signal p_sel;
+
+  u_in in(.p_in(p_in),
+          .p_out(s_in_dly),
+          .p_tocpu(s_in_cpu),
+          .p_clk(p_clk));
+  u_dly dly(.p_in(s_in_dly),
+            .p_out(s_dly_out),
+            .p_clk(p_clk));
+  u_out u_out(.p_in(s_dly_out),
+              .p_out(p_out),
+              .p_sel(p_sel),
+              .p_clk(p_clk),
+              .p_fromcpu(s_cpu_out));
+  u_cpu cpu(.p_in(s_in_cpu),
+            .p_out(s_cpu_out),
+            .p_clk(p_clk));
+
+   u_pr(){
+     p_clk.set_attr(clock);
+     p_sel=1;    
+   
+}
+};
+
+// DUT unit
+csl_unit top_pr{
+  csl_port p_in(input,br_msg);
+  csl_port p_clk(input);
+  csl_port p_out(output,br_msg);
+
+  csl_signal s_12(br_msg);
+  csl_signal s_23(br_msg);
+
+  u_pr pr1(.p_in(p_in),        //first processor    
+           .p_out(s_12),
+           .p_clk(p_clk));
+  u_pr pr2(.p_in(s_12),      //second processor
+           .p_out(s_23),
+           .p_clk(p_clk));
+  u_pr pr3(.p_in(s_23),      //third processor
+           .p_out(p_out),
+           .p_clk(p_clk));
+
+  top_pr(){
+    p_clk.set_attr(clock);}
+};
+
+// stim vector 
+csl_vector stim_vec{
+   stim_vec(){
+    set_unit_name(top_pr);
+    set_direction(input);
+  }};
+
+//expected vector
+csl_vector exp_vec{
+  exp_vec(){
+    set_unit_name(top_pr);
+    set_direction(output);
+  }};
+
+// testbench 
+csl_testbench tb_pr{
+  csl_signal p_clk(reg);
+  top_pr top_pr(.p_clk(p_clk));            // instance of DUT
+  tb_pr(){
+    p_clk.set_attr(clock);
+    add_logic(clock,p_clk,10,ps);
+  }};

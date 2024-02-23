@@ -1,0 +1,51 @@
+Valex
+
+csl_warr, err vha_errors
+
+3 dupa 6
+tab1.3
+csl compiler category
+csl_pareser verilog_ tree walker
+ csl to cdom transformation//now paste what you have just written'
+reffered documents:
+.fm file is \docs\manuals\production\csl_files\csl_warn_error.fm
+
+document notes:
+
+on page 1:	* the tabel 1.1, with Chapter Overview, is empty: completed with Cross-Reference
+
+Subchapter 1.1:	* missing the sentences.
+
+Subchapter 1.5:	* "W and error message..." W must be warning: coplete the word
+
+Tabel 1.2:	* on line number 1 i think at phe Phase description must be completed with warnings (Design warnings)
+		* on line number 2, missing a Phase description; i think is Design errors
+
+Subchapter 1.7 csl_clock tree grammar: there is a enumeration; maybe should be and a  description for this terms.
+
+Table 1.3:	* after this tab. there is a sentence: "Where <c> is a category number from the category table above."; about what <c>?
+
+Table 1.4: 	* on lines 10 and 11, there is "delay statement", an error/warning type with a "dely" mnemonic and the "disable statement" error/warning have same mnemonic name, i think the last one is rong.
+
+Table 1.5:	* this tab. is incomplete; the first column with the Category label is empty, second column is incomplete.
+
+		* that represent Phase, w/e and t?
+		* some lines are duplicated
+		* in the sentence: "Cannot release a partially selected NetNet" what does NetNet mean?
+		* in the sentence: "Incompatible driver driving tandem NetNet drives Net connected to multi-driven Net",  what does NetNet mean?
+		* there is a diference between "CSL message filter cslc_msg_id not found. Filter cslc_msg_id is unused.
+" and "CSL message filter cslc_msg_id can not be filtered. Filter cslc_msg_id is unused."? should be deleted one of they?
+		* there are two description identical "Found function parameter parameter" for two diferent type of warning/errors: 'task' and 'func'.
+
+		* in the sentence "Arithmetic operator RHS has one less bit than the RHS" there is a error, witch RHS must be LHS?
+
+		* after this tab. there are some enumerations. the sentence "show different ways to do things Errors" is rong, i think.
+
+cdom warrn_error mechanism:
+We have to be able to change warnings into errors, and add an error/warning
+vector to the cdom, so that we could print all of the existing errors and
+warrnings, and remove the current exception throwing mechanism each time an
+error occures
+		
+
+

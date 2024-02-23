@@ -1,0 +1,39 @@
+//int signal_object_name.get_lower_index();
+//(from old csl_interconnect.fm docs) modified after the new sintax
+// monicah
+// 26 July 2007
+
+
+
+csl_unit u1{
+	csl_port p_u1(output);
+};
+
+csl_unit u2{
+	csl_port p_u2(output);
+};
+
+csl_unit u3{
+	csl_port p_u3(output);
+};
+
+csl_unit ug{
+	csl_port p_m_in(input);
+	csl_port p_m_out(output);
+};
+
+csl_unit chip{
+	//create 4 uninitialized signal objects
+	csl_signal sig_u1(4),sig_u2,sig_u3,sig_m;
+	csl_port p_m(output);
+	ug ug0;
+	u1 u10;
+	u2 u20;
+	u3 u30;
+	chip(){
+		sig_u2.set_range(5,2);
+	    sig_u3.set_range(sig_u2.get_lower(), sig_u2.get_upper() + sig_u1.get_upper() +1);
+		sig_m.set_range(sig_u3.get_lower(), sig_u3.get_upper() + sig_u2.get_upper() +1);
+			
+	}
+};

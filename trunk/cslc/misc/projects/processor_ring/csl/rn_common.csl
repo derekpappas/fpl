@@ -1,0 +1,385 @@
+//oanab
+//13 feb 2008
+//common bitranges and message interfaces
+
+//enums 
+
+// to define constants for register, register file, counter and memory ranges
+
+csl_enum e_widths{
+    data_width=32,
+    ldata_width=64, 
+    addr_width=32,
+    ctrl_width=10,
+    burst_length=4 };
+
+// define ids 
+
+csl_enum e_ids{
+  im_id=0,      // instruction memory id
+    dm_id=1,    // data memory id
+    reg_id=2,   // registers id
+    qm_id=3     // queue manager id
+};
+
+// ring nodes base addresses
+
+csl_enum e_rn_addr {
+      a_rn1=4194304,//0x0400000,
+      a_rn2=8388608,//0x0800000,
+      a_rn3=12582912,//0x0C00000,
+      a_rn4=16777216,//0x1000000,
+      a_rn5=20971520,//0x1400000,
+      a_rn6=25165824,//0x1800000,
+      a_rn7=29360128,//0x1C00000,
+      a_rn8=33554432,//0x2000000,
+      a_rn9=37748736//0x2400000
+    };
+
+
+
+//bitranges
+
+csl_bitrange br_msg(87);      //message width
+csl_bitrange br_data(32);     //data width
+csl_bitrange br_addr(32);     //address width
+csl_bitrange br_laddr(18);    //local addres width
+csl_bitrange br_id(4);        //src and dst id width
+csl_bitrange br_blen(4);      //burst length
+csl_bitrange br_cmd(4);       //command width
+csl_bitrange br_byte_en(4);   //byte enable
+csl_bitrange br_nios2_in(98);  //nios2 in bus length
+csl_bitrange br_nios2_out(138); //nios2 out bus length
+csl_bitrange br_cpu_addr(32);   //cpu addr width
+
+
+//interfaces and signal groups
+
+
+//message outside ring node
+
+csl_signal_group sg_pr_msg {
+  csl_signal data(br_data);       //data field
+  csl_signal addr(br_addr);       //address field
+  csl_signal src_id(br_id);       //source id field
+  csl_signal dst_id(br_id);       //destination id field
+  csl_signal blen(br_blen);       //burst length field
+  csl_signal cmd(br_cmd);         //command field
+  csl_signal byte_en(br_byte_en); //byte enable field
+  csl_signal burst;               //bust bit
+  csl_signal valid;               //valid bit
+  csl_signal timeout;             //timeout bit
+  sg_pr_msg () {}
+};
+
+csl_interface ifc_pr_msg {
+  csl_port data(input,br_data);       //data field
+  csl_port addr(input,br_addr);       //address field
+  csl_port src_id(input,br_id);       //source id field
+  csl_port dst_id(input,br_id);       //destination id field
+  csl_port blen(input,br_blen);       //burst length field
+  csl_port cmd(input,br_cmd);         //command field
+  csl_port byte_en(input,br_byte_en); //byte enable field
+  csl_port burst(input);              //bust bit
+  csl_port valid(input);              //valid bit
+  csl_port timeout(input);            //timeout bit
+  ifc_pr_msg () {}
+};
+
+
+// message inside ring node
+
+csl_signal_group sg_rn_msg {
+  csl_signal data(br_data);       //data field
+  csl_signal addr(br_addr);       //address field
+  csl_signal src_id(br_id);       //source id field
+  csl_signal dst_id(br_id);       //destination id field
+  csl_signal blen(br_blen);       //burst length field
+  csl_signal cmd(br_cmd);         //command field
+  csl_signal byte_en(br_byte_en); //byte enable field
+  csl_signal burst;               //bust bit
+  csl_signal valid;               //valid bit
+  csl_signal timeout;             //timeout bit
+  csl_signal uid;                 //tests if message is for local rn
+  sg_rn_msg () {}
+};
+
+csl_interface ifc_rn_msg {
+  csl_port data(input,br_data);       //data field
+  csl_port addr(input,br_addr);       //address field
+  csl_port src_id(input,br_id);       //source id field
+  csl_port dst_id(input,br_id);       //destination id field
+  csl_port blen(input,br_blen);       //burst length field
+  csl_port cmd(input,br_cmd);         //command field
+  csl_port byte_en(input,br_byte_en); //byte enable field
+  csl_port burst(input);              //bust bit
+  csl_port valid(input);              //valid bit
+  csl_port timeout(input);            //timeout bit
+  csl_port uid(input);                //tests if message is for local rn
+  ifc_rn_msg () {}
+};
+
+//au signal group
+
+csl_signal_group sg_au {
+  csl_signal im_rd_en,
+             dm_rd_en,
+             reg_rd_en,
+             qm_rd_en,
+             im_wr_en,
+             dm_wr_en,
+             reg_wr_en,
+             qm_wr_en;
+  sg_au () {}
+};
+
+//au read output interface
+
+csl_interface ifc_au_rd_out {
+  csl_port im_rd_en(output);         //instruction memory read enable
+  csl_port dm_rd_en(output);         //data memory read enable
+  csl_port reg_rd_en(output);        //register space read enable
+  csl_port qm_rd_en(output);         //queue manager read enable
+  ifc_au_rd_out () {}
+};
+
+//au write output interface
+
+csl_interface ifc_au_wr_out {
+  csl_port im_wr_en(output);         //instruction memory write enable
+  csl_port dm_wr_en(output);         //data memory write enable
+  csl_port reg_wr_en(output);        //register space write enable
+  csl_port qm_wr_en(output);         //queue manager write enable
+  ifc_au_wr_out () {}
+};
+
+ 
+//control path 
+
+csl_signal_group sg_ctrl {
+  csl_signal slot_empty;     //slot_empty control
+  csl_signal rd;             //read control
+  csl_signal wr;             //write control
+  csl_signal burst;          //burst control
+  csl_signal rd_burst;       //read burst control
+  csl_signal wr_burst;       //write burst control
+  csl_signal dma_en;         //enable dma control
+  csl_signal pass_through;   //pass through message control
+  csl_signal rd_mux_sel;     //read mux sel control 
+  csl_signal im_en;          //enable instruction memory control
+  csl_signal dm_en;          //enable data memory control
+  csl_signal reg_en;         //enable registers control
+  sg_ctrl(){
+  }
+};
+
+csl_interface ifc_ctrl{
+  csl_port slot_empty(input);     //slot_empty control
+  csl_port rd(input);             //read control
+  csl_port wr(input);             //write control
+  csl_port burst(input);          //burst control
+  csl_port rd_burst(input);       //read burst control
+  csl_port wr_burst(input);       //write burst control
+  csl_port dma_en(input);         //enable dma control
+  csl_port pass_through(input);   //pass through message control
+  csl_port rd_mux_sel(input);     //read mux sel control 
+  csl_port im_en(input);          //enable instruction memory control
+  csl_port dm_en(input);          //enable data memory control
+  csl_port reg_en(input);         //enable registers control
+  ifc_ctrl(){
+  }
+};
+
+//flash memory inputs and outputs 
+
+csl_signal_group sg_flash {
+  csl_signal data_out(br_data); // output data
+  csl_signal cs;  // chip select
+  csl_signal oe;  // output enable
+  csl_signal we;  // write enable
+  sg_flash () {}
+};
+
+csl_interface ifc_flash {
+  csl_port addr(input,br_addr);   // input adress port
+  csl_port data_in(input,br_data);  // input data port
+  csl_port data_out(output,br_data);  // output data port
+  csl_port cs(input);             // chip select port 
+  csl_port oe(input);            // output enable port 
+  csl_port we(input);            // write enable port
+  ifc_flash () {}
+};
+
+// loopback test controller (ltc) output
+
+csl_signal_group sg_ltc {
+  csl_signal phy_ext_loopback,mac_int_loopback;
+  csl_signal mac_ext_loopback,pie_int_loopback;
+  csl_signal fpc_ppc_ext_loopback,ppc_fpc_int_loopback;
+  sg_ltc () {}
+};
+
+csl_interface ifc_ltc {
+  csl_port phy_ext_loopback(output),mac_int_loopback(output);
+  csl_port mac_ext_loopback(output),pie_int_loopback(output);
+  csl_port fpc_ppc_ext_loopback(output),ppc_fpc_int_loopback(output);
+  ifc_ltc () {}
+};
+
+// PHY - M2
+
+csl_signal_group sg_phy_mux2 {
+  csl_signal tx_er,rx_er;
+  csl_signal rx_dv,rxd(32);
+  csl_signal crs,col;
+  sg_phy_mux2 () {}
+};
+
+csl_interface ifc_phy_mux2 {
+  csl_port tx_er(input),rx_er(input);
+  csl_port rx_dv(input),rxd(input,8);
+  csl_port crs(input),col(input);
+  ifc_phy_mux2 () {}
+};
+
+// MAC - M1
+
+csl_signal_group sg_mac_mux1 {
+  csl_signal gtx_clk,rx_clk;
+  csl_signal tx_en,txd(32);
+  sg_mac_mux1 () {}
+};
+
+csl_interface ifc_mac_mux1 {
+  csl_port gtx_clk(output),rx_clk(output);
+  csl_port tx_en(output),txd(output,8);
+  ifc_mac_mux1 () {}
+};
+
+// MAC - M4
+
+csl_signal_group sg_mac_mux4 {
+  csl_signal rx_mac_ro,rx_mac_data(32);
+  csl_signal rx_mac_be(2),rx_mac_pa;
+  csl_signal rx_mac_sop,rx_mac_eop;
+  csl_signal tx_mac_wa,tx_mac_wr;
+  sg_mac_mux4 () {}
+};
+
+csl_interface ifc_mac_mux4 {
+  csl_port rx_mac_ro(input),rx_mac_data(input,32);
+  csl_port rx_mac_be(input,2),rx_mac_pa(input);
+  csl_port rx_mac_sop(input),rx_mac_eop(input);
+  csl_port tx_mac_wa(input),tx_mac_wr(output);
+  ifc_mac_mux4 () {}
+};
+
+// SYS - M3
+
+csl_signal_group sg_sys_mux3 {
+  csl_signal rx_mac_rd;
+  csl_signal tx_mac_data(32),tx_mac_be(2);
+  csl_signal tx_mac_sop,tx_mac_eop;
+  sg_sys_mux3 () {}
+};
+
+csl_interface ifc_sys_mux3 {
+  csl_port rx_mac_rd(output);
+  csl_port tx_mac_data(output,32),tx_mac_be(output,2);
+  csl_port tx_mac_sop(output),tx_mac_eop(output);
+  ifc_sys_mux3 () {}
+};
+
+
+  // interface with clock, enable and reset_ signals
+csl_interface ifc_cer_{
+  csl_port clk(input);
+  csl_port en(input);
+  csl_port reset_(input);
+  ifc_cer_(){
+  }
+};
+
+// cpu input interface
+
+csl_interface ifc_cpu_in{
+  csl_port i_read_data(input,br_data);
+  csl_port i_rd_data_valid(input);
+  csl_port i_wait_req(input);
+  csl_port d_irq(input,32);
+  csl_port d_read_data(input,br_data);
+  csl_port wait_req(input);
+  csl_port clk(input);
+  //csl_port cl_result(input,br_data); // cpu receives the result from cl
+  //csl_port cl_done(input);   // cl signals the cpu that execution is complete
+  ifc_cpu_in(){}
+};
+
+//cpu output interface
+
+csl_interface ifc_cpu_out{
+  csl_port i_addr(output,br_cpu_addr);
+  csl_port i_read(output);
+  csl_port d_addr(output,br_cpu_addr);
+  csl_port d_byte_en(output,br_byte_en);
+  csl_port d_read(output);
+  csl_port d_write(output);
+  csl_port d_write_data(output,br_data);
+  //csl_port cl_dataa(output,br_data);  // input data for cl
+  //csl_port cl_datab(output,br_data);  // input data for cl
+  //csl_port cl_start(output);         // cpu signals cl to start execution
+  //csl_port cl_n(output,8);         // select signal for extended instructions
+  //csl_port cl_a(output,5);
+  //csl_port cl_readra(output); // if low, cl reads internal rf
+  //csl_port cl_b(output,5);
+  //csl_port cl_readrb(output); // if low, cl reads internal rf
+  //csl_port cl_c(output,5);
+  //csl_port cl_writerc(output);  // if it's not asserted, cpu ignores result
+  ifc_cpu_out(){}
+};
+
+// custom logic interface 
+
+csl_interface ifc_cl {
+  csl_port dataa(input,br_data);
+  csl_port datab(input,br_data);
+  csl_port clk(input); // same clock as cpu
+  csl_port clk_en(input); // conventional clock qualifier
+  csl_port reset(input);  // same reset as cpu
+  csl_port start(input);  // cpu signals cl to start execution
+  csl_port n(input,8);   // select signal for extended instructions
+  csl_port a(input,5);  // index for internal rf
+  csl_port readra(input); // if high, operands from cpu
+  csl_port b(input,5);  // index for internal rf
+  csl_port readrb(input); // if high, operands from cpu
+  csl_port c(input,5);  // index for internal rf
+  csl_port writerc(input);  // if it's asserted, cl writes to internal rf
+  csl_port result(output,br_data); // cl sends the result to cpu
+  csl_port done(output);   // cl signals the cpu that execution is complete
+  ifc_cl () {}
+};
+
+// node input interface
+
+csl_interface ifc_node_in{
+ csl_port i_read_data(input,br_data);
+  csl_port i_rd_data_valid(input);
+  csl_port i_wait_req(input);
+  csl_port d_irq(input,32);
+  csl_port d_read_data(input,br_data);
+  csl_port wait_req(input);
+  csl_port clk(input);
+  ifc_node_in(){}
+};
+//node output interface
+
+csl_interface ifc_node_out{
+  csl_port i_addr(output,br_addr);
+  csl_port i_read(output);
+  csl_port d_addr(output,br_addr);
+  csl_port d_byte_en(output,br_byte_en);
+  csl_port d_read(output);
+  csl_port d_write(output);
+  csl_port d_write_data(output,br_data);
+  ifc_node_out(){}
+};

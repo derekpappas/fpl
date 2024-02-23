@@ -1,0 +1,24 @@
+//oanab
+//11 feb 2008
+//Unit Decoder - adds the uid to the message (uid is 1 if the message is for the local node)
+
+csl_unit UD {
+  ifc_pr_msg pr_rn_msg_in;  // input message with width 87
+  csl_signal uid;  // uid to be added to the message
+  //csl_signal s_node_match;
+  //csl_signal w1,w2,w3,w4;
+  ifc_rn_msg rn_msg_st0; // output message with width 88 (uid added)
+  UD () {
+    rn_msg_st0.reverse();
+    uid = pr_msg_in.src_id^~pr_msg_in.dst_id;
+    //w1 = (unit_id==im_id);
+    //  p_im_en = (s_node_match & w1);
+    //  w2 =(unit_id==dm_id);
+    //  p_dm_en = s_node_match & w2;
+    //  w3 =(unit_id==reg_id);
+    //  p_reg_en = s_node_match & w3;
+    //  w4 =(unit_id==qm_id);
+    //  p_qm_en = s_node_match & w4 ;
+  }
+};
+

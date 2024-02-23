@@ -1,0 +1,22 @@
+// AnamariaH
+//09.05.08
+
+
+csl_interface ifc1{
+    csl_parameter param1(6,16);
+    csl_parameter param2(8'b00000000);
+    csl_port p1(input,param1);
+    csl_port p2(input,param2);
+    ifc1(){}
+};
+
+csl_unit u{
+    ifc1 #(12,10) ifc_in;
+    ifc1 #(32,20) ifc_out;
+    csl_signal s1(22),s2(52);
+    u(){
+    ifc_out.reverse(); 
+    s1 = {ifc_in.p1,ifc_in.p2};
+    s2 = {ifc_out.p1,ifc_out.p2};
+    }
+};

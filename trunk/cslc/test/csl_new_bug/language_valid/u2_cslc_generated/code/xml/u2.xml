@@ -1,0 +1,16 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u2">
+<signalgroup name="sga1">
+name="param_x"68name="param_y"68<signal name="x1" offset="0" upper="param_y-1" lower="0" type = "wire"/>
+<signal name="x2" offset="0" upper="param_x-1" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "u1">
+<instance name="u1i">
+<f2a formal = "ifca1.x1" actual = "sga1.x1" />
+<f2a formal = "ifca1.x2" actual = "sga1.x2" />
+</instance>
+</instantiation>
+</unit>
+</design>

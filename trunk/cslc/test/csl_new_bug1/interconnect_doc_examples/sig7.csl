@@ -1,0 +1,17 @@
+//Monica
+
+csl_unit reg1{
+   csl_port  out(output,32);
+reg1(){}};
+csl_unit comp{
+   csl_port in(input, 32);
+comp(){}
+};
+csl_unit top{
+   csl_signal reg_out;
+reg1 reg1( .out(reg_out));
+comp comp( .in(reg_out));
+top(){
+  reg_out.set_range( 0, 31);
+}
+};

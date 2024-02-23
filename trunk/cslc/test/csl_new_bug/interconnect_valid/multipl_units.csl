@@ -1,0 +1,35 @@
+//oanab
+//4 ian 2008
+
+csl_unit u1 {
+  csl_port x(input,4),y(input);
+  u1 ()  {}  };
+
+csl_unit u2 {
+  u1 u1_1(.x(s),.y(s));
+  csl_signal s(4);
+  csl_port a(input,2),b(input,2),c(output);
+  u2 ()  {}  };
+
+csl_unit top {
+  csl_signal s1(2),s2(4);
+  u1 u1_2(.x(s2),.y(s2));
+  u1 u1_3(.x(s2),.y(s2));
+  u2 u2_1(.a(s1),.b(s1),.c(s2));
+  u2 u2_2(.a(s2[3:2]),.b(s1),.c(s2));
+  top () {
+    u2_1.u1_1.y.set_range(3,0);
+    u2_2.c.set_width(4);
+    u1_3.x.set_type(wire);
+  }
+};
+
+csl_unit top1{
+  csl_signal x1,x2,x3,y1,y2,y3;
+  csl_signal x,y;
+  top top;
+  top1 () {
+     x = {x1,x2,x3};
+     y = {y1,y2,y3};
+}
+};

@@ -1,0 +1,15 @@
+//oanab
+//18 mar 2008
+//type not specified for isa field f_r
+
+csl_enum ee {
+  a=0,
+    b=1 
+     }
+
+csl_isa_field f_r {
+  f_r () {
+    // isa field type should be specified here
+    set_width(2);
+  }
+};

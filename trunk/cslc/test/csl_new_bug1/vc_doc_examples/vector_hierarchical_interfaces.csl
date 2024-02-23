@@ -1,0 +1,105 @@
+// CristiL
+// vector with hierarchical interfaces in a DUT
+
+// creating 4 interfaces
+
+csl_interface ifcB {
+
+  csl_port inputB(input,32);
+
+  csl_port outputB(output,32);
+  
+};
+
+csl_interface ifcC {
+
+  csl_port inputC(input,32);
+
+  csl_port outputC(output,32);
+  
+};
+
+csl_interface ifcA {
+
+  csl_port inputA(input,32);
+
+  csl_port outputA(output,32);
+
+  ifcB ifcB0;
+                              
+  ifcC ifcC0;
+  
+};
+
+
+csl_interface ifcTop {
+
+  csl_port inputTop(input,32);
+
+  csl_port outputTop(output,32);
+
+  ifcA ifcA0;
+    
+};
+
+
+csl_unit dut {
+  
+  csl_port clk(input);
+  csl_signal clk1;  
+  ifcTop ifcTop0,ifcTop1;
+  
+  dut() {
+    clk.set_attr(clock);
+    ifcTop1.ifcA0.ifcB0 = ifcTop0.ifcA0.ifcB0;
+    ifcTop1.ifcA0.ifcC0 = ifcTop0.ifcA0.ifcC0;
+    ifcTop0.inputTop =  ifcTop1.inputTop;
+    ifcTop0.outputTop =  ifcTop1.outputTop;
+    ifcTop1.ifcA0.inputA =  ifcTop0.ifcA0.inputA;
+    ifcTop0.ifcA0.outputA =  ifcTop1.ifcA0.outputA;
+    clk = clk1;
+
+  }
+};
+
+
+// creating a hierarchy of interfaces : 
+//
+//             Top
+//              |  
+//              A
+//            /   \
+//           B     C
+//
+
+
+
+csl_vector stimvect {
+
+  stimvect() {
+
+    set_vc_name("stimulus_vector"); 
+    set_unit_name(dut); 
+    set_direction(input); 
+    set_vc_output_filename("stimulus_vector_file"); 
+    set_radix(bin); 
+
+  }
+};
+
+csl_vector exp_vec{
+  exp_vec(){
+   set_unit_name(dut);
+   set_direction(output);
+}
+};
+
+csl_testbench tb{
+csl_signal clk(reg);
+dut dut_1(.clk(clk));
+tb(){
+  clk.set_attr(clock);
+  add_logic(clock,clk,100,ps);
+
+}
+};

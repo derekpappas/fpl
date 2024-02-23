@@ -1,0 +1,12 @@
+//oanab
+//14 nov 2007
+//ff has no width set
+
+
+csl_fifo ff{
+  ff(){
+     set_depth(16);
+     // the width of the fifo should be specified here
+  }
+};
+

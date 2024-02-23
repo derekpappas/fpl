@@ -1,0 +1,37 @@
+//
+
+csl_enum acc_enum{
+USR0,
+USR1,
+USR2
+};
+
+csl_register reg{
+  reg(){
+    set_type(register);
+    set_width(8);
+  }
+};
+
+csl_unit top {
+  reg reg;
+  top(){}
+};
+
+csl_memory_map_page mpage1{
+  mpage1(){ 
+add_address_range(0,128);
+set_unit_name(top);
+ }
+};
+
+csl_memory_map mmap{
+mmap(){
+set_data_word_width(32);
+set_access_rights_enum(acc_enum);
+set_type(hierarchical);
+}
+};
+
+
+

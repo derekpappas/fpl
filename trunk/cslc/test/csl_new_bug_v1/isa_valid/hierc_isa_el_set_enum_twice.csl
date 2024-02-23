@@ -1,0 +1,59 @@
+
+csl_enum e{
+   a,
+    b
+ //   c
+};
+
+csl_isa_field f0{
+  f0(){
+    set_type(selector);
+    set_enum(e);
+  }
+};
+
+csl_isa_element f1{
+  f1(){
+    set_type(root_format);
+    set_width(16);
+  }
+};
+
+csl_isa_element f2: f1{
+  f0 f0_1;
+  f2(){
+    set_type(instr_format);
+  }
+};
+
+
+csl_isa_element f3: f2{
+  f3(){
+   
+    set_type(instr);
+    f0_1.set_enum_item(a);
+  }
+};
+
+csl_isa_element f4: f2{
+  f4(){
+   
+    set_type(instr);
+    f0_1.set_enum_item(b);
+  }
+};
+
+/*csl_isa_element f5: f2{
+  f5(){
+   
+    set_type(instr);
+    f0_1.set_enum_item(b);
+  }
+};
+csl_isa_element f6: f2{
+  f6(){
+   
+    set_type(instr);
+    f0_1.set_enum_item(c);
+  }
+}; */

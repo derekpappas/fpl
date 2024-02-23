@@ -1,0 +1,11 @@
+csl_enum tkjf1 {
+        ngyu1
+};
+
+csl_unit dpnp1{
+ csl_port oiqb1(output, tkjf1.ftsn1);
+   dpnp1() {
+  }
+};
+
+

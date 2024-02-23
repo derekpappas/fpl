@@ -1,0 +1,1048 @@
+AFTER : opt_f = mitch.csv
+CSL library filename      = mitch.ifc.lib.csl       
+Design Hierarchy filename = mitch.hier
+CSL csv filename          = mitch.csv       
+Generated CSL filename    = generated/mitch.csl
+$VAR1 = {};
+Opening hier file : mitch.hier
+HIER 0 hier line = proc_ring{proc_ring}
+HIER added inst name /proc_ring/
+stackDepth = 0 stack # = 0 stack = HASH(0x74e280)
+HIER 0 hier line = |pie_eth_dq1{pie_eth_dq1  }
+stackDepth = 1 stack # = 0 stack = HASH(0x74e280)
+instName = pie_eth_dq1 		hidPath = pie_eth_dq1
+Opening hier file : pie_eth_dq1.hier
+HIER 0 hier line = pie_eth_dq1{pie_eth_dq1  }
+stackDepth = 1 stack # = 1 stack = HASH(0x74e280) HASH(0x634380)
+instName = pie_eth_dq1 		hidPath = pie_eth_dq1
+HIER added inst name /pie_eth_dq1/
+HIER added unit name /pie_eth_dq1/
+HIER 0 hier line = |fabric_interface{fabric_interface}
+stackDepth = 2 stack # = 1 stack = HASH(0x74e280) HASH(0x634330)
+instName = fabric_interface 		hidPath = pie_eth_dq1.fabric_interface
+HIER added inst name /fabric_interface/
+HIER added unit name /fabric_interface/
+HIER 0 hier line = |fabric_add{fabric_add}
+stackDepth = 2 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x634380)
+instName = fabric_add 		hidPath = pie_eth_dq1.fabric_add
+HIER added inst name /fabric_add/
+HIER added unit name /fabric_add/
+HIER 0 hier line = |fabric_drop{fabric_drop}
+stackDepth = 2 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x817eb0)
+instName = fabric_drop 		hidPath = pie_eth_dq1.fabric_drop
+HIER added inst name /fabric_drop/
+HIER added unit name /fabric_drop/
+HIER 0 hier line = |fabric_dma{fabric_dma0}
+stackDepth = 2 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x8182d0)
+instName = fabric_dma0 		hidPath = pie_eth_dq1.fabric_dma0
+HIER added inst name /fabric_dma0/
+HIER added unit name /fabric_dma/
+HIER 0 hier line = |fabric_dma{fabric_dma1}
+stackDepth = 2 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x818320)
+instName = fabric_dma1 		hidPath = pie_eth_dq1.fabric_dma1
+HIER added inst name /fabric_dma1/
+HIER added unit name /fabric_dma/
+HIER 0 hier line = |put_dma{put_dma0}
+stackDepth = 2 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x818370)
+instName = put_dma0 		hidPath = pie_eth_dq1.put_dma0
+HIER added inst name /put_dma0/
+HIER added unit name /put_dma/
+HIER 0 hier line = |put_dma{put_dma1}
+stackDepth = 2 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x8183c0)
+instName = put_dma1 		hidPath = pie_eth_dq1.put_dma1
+HIER added inst name /put_dma1/
+HIER added unit name /put_dma/
+HIER 0 hier line = |doorbell{doorbell}
+stackDepth = 2 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x818400)
+instName = doorbell 		hidPath = pie_eth_dq1.doorbell
+HIER added inst name /doorbell/
+HIER added unit name /doorbell/
+HIER 0 hier line = |maclu{maclu}
+stackDepth = 2 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x818450)
+instName = maclu 		hidPath = pie_eth_dq1.maclu
+HIER added inst name /maclu/
+HIER added unit name /maclu/
+HIER 0 hier line = |reg{reg}
+stackDepth = 2 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x818490)
+instName = reg 		hidPath = pie_eth_dq1.reg
+HIER added inst name /reg/
+HIER added unit name /reg/
+HIER 0 hier line = |qm{qm}
+stackDepth = 2 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x8184e0)
+instName = qm 		hidPath = pie_eth_dq1.qm
+HIER added inst name /qm/
+HIER added unit name /qm/
+HIER 0 hier line = |arb{arb}
+stackDepth = 2 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x818530)
+instName = arb 		hidPath = pie_eth_dq1.arb
+HIER added inst name /arb/
+HIER added unit name /arb/
+HIER 0 hier line = |data_tcm{data_tcm}
+stackDepth = 2 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x818580)
+instName = data_tcm 		hidPath = pie_eth_dq1.data_tcm
+HIER added inst name /data_tcm/
+HIER added unit name /data_tcm/
+HIER 0 hier line = |inst_tcm{inst_tcm}
+stackDepth = 2 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x8185d0)
+instName = inst_tcm 		hidPath = pie_eth_dq1.inst_tcm
+HIER added inst name /inst_tcm/
+HIER added unit name /inst_tcm/
+HIER 0 hier line = |nios{nios}
+stackDepth = 2 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x819a50)
+instName = nios 		hidPath = pie_eth_dq1.nios
+HIER added inst name /nios/
+HIER added unit name /nios/
+HIER 0 hier line = |cil{cil}
+stackDepth = 2 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x819aa0)
+instName = cil 		hidPath = pie_eth_dq1.cil
+HIER added inst name /cil/
+HIER added unit name /cil/
+HIER added inst name /pie_eth_dq1/
+HIER added unit name /pie_eth_dq1/
+HIER 0 hier line = |pie_eth_nq01 {pie_eth_nq01 }
+stackDepth = 1 stack # = 2 stack = HASH(0x74e280) HASH(0x634330) HASH(0x819af0)
+instName = pie_eth_nq01 		hidPath = pie_eth_nq01
+HIER added inst name /pie_eth_nq01/
+HIER added unit name /pie_eth_nq01/
+HIER 0 hier line = |pie_eth_nq11 {pie_eth_nq11 }
+stackDepth = 1 stack # = 1 stack = HASH(0x74e280) HASH(0x819b40)
+instName = pie_eth_nq11 		hidPath = pie_eth_nq11
+HIER added inst name /pie_eth_nq11/
+HIER added unit name /pie_eth_nq11/
+HIER 0 hier line = |pie_aud_nq1  {pie_aud_nq1  }
+stackDepth = 1 stack # = 1 stack = HASH(0x74e280) HASH(0x817e40)
+instName = pie_aud_nq1 		hidPath = pie_aud_nq1
+HIER added inst name /pie_aud_nq1/
+HIER added unit name /pie_aud_nq1/
+HIER 0 hier line = |pie_aud_dq1  {pie_aud_dq1  }
+stackDepth = 1 stack # = 1 stack = HASH(0x74e280) HASH(0x819c00)
+instName = pie_aud_dq1 		hidPath = pie_aud_dq1
+HIER added inst name /pie_aud_dq1/
+HIER added unit name /pie_aud_dq1/
+HIER 0 hier line = |ipc          {ipc          }
+stackDepth = 1 stack # = 1 stack = HASH(0x74e280) HASH(0x819c50)
+instName = ipc 		hidPath = ipc
+HIER added inst name /ipc/
+HIER added unit name /ipc/
+HIER 0 hier line = |pie_ex_nq1   {pie_ex_nq1   }
+stackDepth = 1 stack # = 1 stack = HASH(0x74e280) HASH(0x819ca0)
+instName = pie_ex_nq1 		hidPath = pie_ex_nq1
+HIER added inst name /pie_ex_nq1/
+HIER added unit name /pie_ex_nq1/
+HIER 0 hier line = |pie_ex_dq1   {pie_ex_dq1   }
+stackDepth = 1 stack # = 1 stack = HASH(0x74e280) HASH(0x819cf0)
+instName = pie_ex_dq1 		hidPath = pie_ex_dq1
+HIER added inst name /pie_ex_dq1/
+HIER added unit name /pie_ex_dq1/
+HIER 0 hier line = |sram0        {sram0        }
+stackDepth = 1 stack # = 1 stack = HASH(0x74e280) HASH(0x819d40)
+instName = sram0 		hidPath = sram0
+HIER added inst name /sram0/
+HIER added unit name /sram0/
+stack:: HASH(0x74e280)
+stack:: HASH(0x819d90)
+Begin unitHash
+arb
+cil
+data_tcm
+doorbell
+fabric_add
+fabric_dma
+fabric_drop
+fabric_interface
+inst_tcm
+ipc
+maclu
+nios
+pie_aud_dq1
+pie_aud_nq1
+pie_eth_dq1
+pie_eth_nq01
+pie_eth_nq11
+pie_ex_dq1
+pie_ex_nq1
+proc_ring
+put_dma
+qm
+reg
+sram0
+End unitHash
+Begin instHash
+0 instHash arb
+1 instHash cil
+2 instHash data_tcm
+3 instHash doorbell
+4 instHash fabric_add
+5 instHash fabric_dma0
+6 instHash fabric_dma1
+7 instHash fabric_drop
+8 instHash fabric_interface
+9 instHash inst_tcm
+10 instHash ipc
+11 instHash maclu
+12 instHash nios
+13 instHash pie_aud_dq1
+14 instHash pie_aud_nq1
+15 instHash pie_eth_dq1
+16 instHash pie_eth_nq01
+17 instHash pie_eth_nq11
+18 instHash pie_ex_dq1
+19 instHash pie_ex_nq1
+20 instHash proc_ring
+21 instHash put_dma0
+22 instHash put_dma1
+23 instHash qm
+24 instHash reg
+25 instHash sram0
+End instHash
+instHash count = 26
+k:: pie_eth_nq11 {pie_eth_nq11 } v:: HASH(0x817e40)
+k:: pie_eth_nq01 {pie_eth_nq01 } v:: HASH(0x819b40)
+k:: pie_ex_nq1   {pie_ex_nq1   } v:: HASH(0x819cf0)
+k:: pie_aud_dq1  {pie_aud_dq1  } v:: HASH(0x819c50)
+k:: ipc          {ipc          } v:: HASH(0x819ca0)
+k:: pie_ex_dq1   {pie_ex_dq1   } v:: HASH(0x819d40)
+k:: sram0        {sram0        } v:: HASH(0x819d90)
+k:: pie_aud_nq1  {pie_aud_nq1  } v:: HASH(0x819c00)
+k:: pie_eth_dq1{pie_eth_dq1  } v:: HASH(0x634330)
+  kk:: fabric_dma{fabric_dma0} 
+  kk:: put_dma{put_dma0} 
+  kk:: fabric_dma{fabric_dma1} 
+  kk:: fabric_interface{fabric_interface} 
+  kk:: fabric_drop{fabric_drop} 
+  kk:: qm{qm} 
+  kk:: nios{nios} 
+  kk:: arb{arb} 
+  kk:: maclu{maclu} 
+  kk:: inst_tcm{inst_tcm} 
+  kk:: cil{cil} 
+  kk:: doorbell{doorbell} 
+  kk:: reg{reg} 
+  kk:: data_tcm{data_tcm} 
+  kk:: put_dma{put_dma1} 
+  kk:: fabric_add{fabric_add} 
+UnitHash k:: pie_aud_nq1
+UnitHash k:: pie_ex_dq1
+UnitHash k:: pie_aud_dq1
+UnitHash k:: inst_tcm
+UnitHash k:: doorbell
+UnitHash k:: fabric_drop
+UnitHash k:: fabric_interface
+UnitHash k:: pie_eth_nq01
+UnitHash k:: qm
+UnitHash k:: fabric_add
+UnitHash k:: fabric_dma
+UnitHash k:: sram0
+UnitHash k:: proc_ring
+UnitHash k:: pie_eth_dq1
+UnitHash k:: put_dma
+UnitHash k:: ipc
+UnitHash k:: nios
+UnitHash k:: pie_ex_nq1
+UnitHash k:: pie_eth_nq11
+UnitHash k:: cil
+UnitHash k:: reg
+UnitHash k:: arb
+UnitHash k:: maclu
+UnitHash k:: data_tcm
+keys count = 9
+key = pie_eth_nq11 {pie_eth_nq11 }
+pie_eth_nq11 {pie_eth_nq11 }
+keys count = 0
+children = 
+key = pie_eth_nq01 {pie_eth_nq01 }
+pie_eth_nq01 {pie_eth_nq01 }
+keys count = 0
+children = 
+key = pie_ex_nq1   {pie_ex_nq1   }
+pie_ex_nq1   {pie_ex_nq1   }
+keys count = 0
+children = 
+key = pie_aud_dq1  {pie_aud_dq1  }
+pie_aud_dq1  {pie_aud_dq1  }
+keys count = 0
+children = 
+key = ipc          {ipc          }
+ipc          {ipc          }
+keys count = 0
+children = 
+key = pie_ex_dq1   {pie_ex_dq1   }
+pie_ex_dq1   {pie_ex_dq1   }
+keys count = 0
+children = 
+key = sram0        {sram0        }
+sram0        {sram0        }
+keys count = 0
+children = 
+key = pie_aud_nq1  {pie_aud_nq1  }
+pie_aud_nq1  {pie_aud_nq1  }
+keys count = 0
+children = 
+key = pie_eth_dq1{pie_eth_dq1  }
+pie_eth_dq1{pie_eth_dq1  }
+keys count = 16
+key = fabric_dma{fabric_dma0}
+|fabric_dma{fabric_dma0}
+keys count = 0
+children = 
+key = put_dma{put_dma0}
+|put_dma{put_dma0}
+keys count = 0
+children = 
+key = fabric_dma{fabric_dma1}
+|fabric_dma{fabric_dma1}
+keys count = 0
+children = 
+key = fabric_interface{fabric_interface}
+|fabric_interface{fabric_interface}
+keys count = 0
+children = 
+key = fabric_drop{fabric_drop}
+|fabric_drop{fabric_drop}
+keys count = 0
+children = 
+key = qm{qm}
+|qm{qm}
+keys count = 0
+children = 
+key = nios{nios}
+|nios{nios}
+keys count = 0
+children = 
+key = arb{arb}
+|arb{arb}
+keys count = 0
+children = 
+key = maclu{maclu}
+|maclu{maclu}
+keys count = 0
+children = 
+key = inst_tcm{inst_tcm}
+|inst_tcm{inst_tcm}
+keys count = 0
+children = 
+key = cil{cil}
+|cil{cil}
+keys count = 0
+children = 
+key = doorbell{doorbell}
+|doorbell{doorbell}
+keys count = 0
+children = 
+key = reg{reg}
+|reg{reg}
+keys count = 0
+children = 
+key = data_tcm{data_tcm}
+|data_tcm{data_tcm}
+keys count = 0
+children = 
+key = put_dma{put_dma1}
+|put_dma{put_dma1}
+keys count = 0
+children = 
+key = fabric_add{fabric_add}
+|fabric_add{fabric_add}
+keys count = 0
+children = 
+children = fabric_dma0put_dma0fabric_dma1fabric_interfacefabric_dropqmniosarbmacluinst_tcmcildoorbellregdata_tcmput_dma1fabric_add
+children = pie_eth_nq11pie_eth_nq01pie_ex_nq1pie_aud_dq1ipcpie_ex_dq1sram0pie_aud_nq1pie_eth_dq1
+2 linein = "interface" "fabric_ifc" "pie_eth_dq1 " "fab_add"   "pie_eth_nq01" "fab_drop"   "rn1_rn2"
+t = "interface"
+t = "fabric_ifc"
+t = "pie_eth_dq1 "
+t = "fab_add"
+t = 
+t = 
+t = "pie_eth_nq01"
+t = "fab_drop"
+t = 
+t = 
+t = "rn1_rn2"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "fabric_ifc"
+getCellValue:: linein[2] = "pie_eth_dq1 "
+getCellValue:: linein[3] = "fab_add"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "pie_eth_nq01"
+getCellValue:: linein[7] = "fab_drop"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "rn1_rn2"
+found interface
+FROM     ADDING fun = pie_eth_dq1 fin = pie_eth_dq1 connection = fabric_ifc fab_add
+TO       ADDING tun = pie_eth_nq01 tin = pie_eth_nq01 connection = fabric_ifc fab_drop
+3 linein = "interface" "fabric_ifc" "pie_eth_nq01" "fab_add"   "pie_eth_nq11" "fab_drop"   "rn2_rn3"
+t = "interface"
+t = "fabric_ifc"
+t = "pie_eth_nq01"
+t = "fab_add"
+t = 
+t = 
+t = "pie_eth_nq11"
+t = "fab_drop"
+t = 
+t = 
+t = "rn2_rn3"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "fabric_ifc"
+getCellValue:: linein[2] = "pie_eth_nq01"
+getCellValue:: linein[3] = "fab_add"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "pie_eth_nq11"
+getCellValue:: linein[7] = "fab_drop"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "rn2_rn3"
+found interface
+FROM     ADDING fun = pie_eth_nq01 fin = pie_eth_nq01 connection = fabric_ifc fab_add
+TO       ADDING tun = pie_eth_nq11 tin = pie_eth_nq11 connection = fabric_ifc fab_drop
+4 linein = "interface" "fabric_ifc" "pie_eth_nq11" "fab_add"   "pie_aud_nq1 " "fab_drop"   "rn3_rn4"
+t = "interface"
+t = "fabric_ifc"
+t = "pie_eth_nq11"
+t = "fab_add"
+t = 
+t = 
+t = "pie_aud_nq1 "
+t = "fab_drop"
+t = 
+t = 
+t = "rn3_rn4"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "fabric_ifc"
+getCellValue:: linein[2] = "pie_eth_nq11"
+getCellValue:: linein[3] = "fab_add"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "pie_aud_nq1 "
+getCellValue:: linein[7] = "fab_drop"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "rn3_rn4"
+found interface
+FROM     ADDING fun = pie_eth_nq11 fin = pie_eth_nq11 connection = fabric_ifc fab_add
+TO       ADDING tun = pie_aud_nq1 tin = pie_aud_nq1 connection = fabric_ifc fab_drop
+5 linein = "interface" "fabric_ifc" "pie_aud_nq1 " "fab_add"   "pie_aud_dq1 " "fab_drop"   "rn4_rn5"
+t = "interface"
+t = "fabric_ifc"
+t = "pie_aud_nq1 "
+t = "fab_add"
+t = 
+t = 
+t = "pie_aud_dq1 "
+t = "fab_drop"
+t = 
+t = 
+t = "rn4_rn5"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "fabric_ifc"
+getCellValue:: linein[2] = "pie_aud_nq1 "
+getCellValue:: linein[3] = "fab_add"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "pie_aud_dq1 "
+getCellValue:: linein[7] = "fab_drop"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "rn4_rn5"
+found interface
+FROM     ADDING fun = pie_aud_nq1 fin = pie_aud_nq1 connection = fabric_ifc fab_add
+TO       ADDING tun = pie_aud_dq1 tin = pie_aud_dq1 connection = fabric_ifc fab_drop
+6 linein = "interface" "fabric_ifc" "pie_aud_dq1 " "fab_add"   "ipc" "fab_drop"   "rn5_rn6"
+t = "interface"
+t = "fabric_ifc"
+t = "pie_aud_dq1 "
+t = "fab_add"
+t = 
+t = 
+t = "ipc"
+t = "fab_drop"
+t = 
+t = 
+t = "rn5_rn6"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "fabric_ifc"
+getCellValue:: linein[2] = "pie_aud_dq1 "
+getCellValue:: linein[3] = "fab_add"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "ipc"
+getCellValue:: linein[7] = "fab_drop"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "rn5_rn6"
+found interface
+FROM     ADDING fun = pie_aud_dq1 fin = pie_aud_dq1 connection = fabric_ifc fab_add
+TO       ADDING tun = ipc tin = ipc connection = fabric_ifc fab_drop
+7 linein = "interface" "fabric_ifc" "ipc" "fab_add"   "pie_ex_nq1  " "fab_drop"   "rn6_rn7"
+t = "interface"
+t = "fabric_ifc"
+t = "ipc"
+t = "fab_add"
+t = 
+t = 
+t = "pie_ex_nq1  "
+t = "fab_drop"
+t = 
+t = 
+t = "rn6_rn7"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "fabric_ifc"
+getCellValue:: linein[2] = "ipc"
+getCellValue:: linein[3] = "fab_add"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "pie_ex_nq1  "
+getCellValue:: linein[7] = "fab_drop"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "rn6_rn7"
+found interface
+FROM     ADDING fun = ipc fin = ipc connection = fabric_ifc fab_add
+TO       ADDING tun = pie_ex_nq1 tin = pie_ex_nq1 connection = fabric_ifc fab_drop
+8 linein = "interface" "fabric_ifc" "pie_ex_nq1  " "fab_add"   "pie_ex_dq1  " "fab_drop"   "rn7_rn8"
+t = "interface"
+t = "fabric_ifc"
+t = "pie_ex_nq1  "
+t = "fab_add"
+t = 
+t = 
+t = "pie_ex_dq1  "
+t = "fab_drop"
+t = 
+t = 
+t = "rn7_rn8"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "fabric_ifc"
+getCellValue:: linein[2] = "pie_ex_nq1  "
+getCellValue:: linein[3] = "fab_add"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "pie_ex_dq1  "
+getCellValue:: linein[7] = "fab_drop"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "rn7_rn8"
+found interface
+FROM     ADDING fun = pie_ex_nq1 fin = pie_ex_nq1 connection = fabric_ifc fab_add
+TO       ADDING tun = pie_ex_dq1 tin = pie_ex_dq1 connection = fabric_ifc fab_drop
+9 linein = "interface" "fabric_ifc" "pie_ex_dq1  " "fab_add"   "sram0" "fab_drop"   "rn8_rn9"
+t = "interface"
+t = "fabric_ifc"
+t = "pie_ex_dq1  "
+t = "fab_add"
+t = 
+t = 
+t = "sram0"
+t = "fab_drop"
+t = 
+t = 
+t = "rn8_rn9"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "fabric_ifc"
+getCellValue:: linein[2] = "pie_ex_dq1  "
+getCellValue:: linein[3] = "fab_add"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "sram0"
+getCellValue:: linein[7] = "fab_drop"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "rn8_rn9"
+found interface
+FROM     ADDING fun = pie_ex_dq1 fin = pie_ex_dq1 connection = fabric_ifc fab_add
+TO       ADDING tun = sram0 tin = sram0 connection = fabric_ifc fab_drop
+10 linein = "interface" "fabric_ifc" "sram0" "fab_add"   "pie_eth_dq1 " "fab_drop"   "rn9_rn1"
+t = "interface"
+t = "fabric_ifc"
+t = "sram0"
+t = "fab_add"
+t = 
+t = 
+t = "pie_eth_dq1 "
+t = "fab_drop"
+t = 
+t = 
+t = "rn9_rn1"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "fabric_ifc"
+getCellValue:: linein[2] = "sram0"
+getCellValue:: linein[3] = "fab_add"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "pie_eth_dq1 "
+getCellValue:: linein[7] = "fab_drop"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "rn9_rn1"
+found interface
+FROM     ADDING fun = sram0 fin = sram0 connection = fabric_ifc fab_add
+TO       ADDING tun = pie_eth_dq1 tin = pie_eth_dq1 connection = fabric_ifc fab_drop
+11 linein = "interface" "sb_ifc" "cil" "sb"   "put_dma0" "sb"   "cil_pdma0"
+t = "interface"
+t = "sb_ifc"
+t = "cil"
+t = "sb"
+t = 
+t = 
+t = "put_dma0"
+t = "sb"
+t = 
+t = 
+t = "cil_pdma0"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "sb_ifc"
+getCellValue:: linein[2] = "cil"
+getCellValue:: linein[3] = "sb"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "put_dma0"
+getCellValue:: linein[7] = "sb"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "cil_pdma0"
+found interface
+FROM     ADDING fun = cil fin = cil connection = sb_ifc sb
+TO       ADDING tun = put_dma tin = put_dma0 connection = sb_ifc sb
+12 linein = "interface" "sb_ifc" "cil" "sb"   "put_dma1" "sb"   "cil_pdma1"
+t = "interface"
+t = "sb_ifc"
+t = "cil"
+t = "sb"
+t = 
+t = 
+t = "put_dma1"
+t = "sb"
+t = 
+t = 
+t = "cil_pdma1"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "sb_ifc"
+getCellValue:: linein[2] = "cil"
+getCellValue:: linein[3] = "sb"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "put_dma1"
+getCellValue:: linein[7] = "sb"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "cil_pdma1"
+found interface
+FROM NOT ADDING fun = cil fin = cil connection = sb_ifc sb
+TO   NOT ADDING tun = put_dma tin = put_dma1 connection = sb_ifc sb
+13 linein = "interface" "malt_ifc" "maclu" "malt"   "cil" "malt"   "maclu_cil"
+t = "interface"
+t = "malt_ifc"
+t = "maclu"
+t = "malt"
+t = 
+t = 
+t = "cil"
+t = "malt"
+t = 
+t = 
+t = "maclu_cil"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "malt_ifc"
+getCellValue:: linein[2] = "maclu"
+getCellValue:: linein[3] = "malt"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "cil"
+getCellValue:: linein[7] = "malt"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "maclu_cil"
+found interface
+FROM     ADDING fun = maclu fin = maclu connection = malt_ifc malt
+TO       ADDING tun = cil tin = cil connection = malt_ifc malt
+14 linein = "interface" "vrr_ifc" "doorbell" "vrr"   "cil" "vrr"   "db_cil"
+t = "interface"
+t = "vrr_ifc"
+t = "doorbell"
+t = "vrr"
+t = 
+t = 
+t = "cil"
+t = "vrr"
+t = 
+t = 
+t = "db_cil"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "vrr_ifc"
+getCellValue:: linein[2] = "doorbell"
+getCellValue:: linein[3] = "vrr"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "cil"
+getCellValue:: linein[7] = "vrr"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "db_cil"
+found interface
+FROM     ADDING fun = doorbell fin = doorbell connection = vrr_ifc vrr
+TO       ADDING tun = cil tin = cil connection = vrr_ifc vrr
+15 linein = "interface" "cdrv_ifc" "put_dma0" "cdrv"   "cil" "cdrv"   "pdma0_cil"
+t = "interface"
+t = "cdrv_ifc"
+t = "put_dma0"
+t = "cdrv"
+t = 
+t = 
+t = "cil"
+t = "cdrv"
+t = 
+t = 
+t = "pdma0_cil"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "cdrv_ifc"
+getCellValue:: linein[2] = "put_dma0"
+getCellValue:: linein[3] = "cdrv"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "cil"
+getCellValue:: linein[7] = "cdrv"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "pdma0_cil"
+found interface
+FROM     ADDING fun = put_dma fin = put_dma0 connection = cdrv_ifc cdrv
+TO       ADDING tun = cil tin = cil connection = cdrv_ifc cdrv
+16 linein = "interface" "cdrv_ifc" "put_dma1" "cdrv"   "cil" "cdrv"   "pdma1_cil"
+t = "interface"
+t = "cdrv_ifc"
+t = "put_dma1"
+t = "cdrv"
+t = 
+t = 
+t = "cil"
+t = "cdrv"
+t = 
+t = 
+t = "pdma1_cil"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "cdrv_ifc"
+getCellValue:: linein[2] = "put_dma1"
+getCellValue:: linein[3] = "cdrv"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "cil"
+getCellValue:: linein[7] = "cdrv"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "pdma1_cil"
+found interface
+FROM NOT ADDING fun = put_dma fin = put_dma1 connection = cdrv_ifc cdrv
+TO   NOT ADDING tun = cil tin = cil connection = cdrv_ifc cdrv
+17 linein = "interface" "sb_ifc" "cil" "sbfd"   "fabric_dma0" "sbfd"   "cil_fdma0"
+t = "interface"
+t = "sb_ifc"
+t = "cil"
+t = "sbfd"
+t = 
+t = 
+t = "fabric_dma0"
+t = "sbfd"
+t = 
+t = 
+t = "cil_fdma0"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "sb_ifc"
+getCellValue:: linein[2] = "cil"
+getCellValue:: linein[3] = "sbfd"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "fabric_dma0"
+getCellValue:: linein[7] = "sbfd"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "cil_fdma0"
+found interface
+FROM     ADDING fun = cil fin = cil connection = sb_ifc sbfd
+TO       ADDING tun = fabric_dma tin = fabric_dma0 connection = sb_ifc sbfd
+18 linein = "interface" "sb_ifc" "cil" "sbfd"   "fabric_dma1" "sbfd"   "cil_fdma1"
+t = "interface"
+t = "sb_ifc"
+t = "cil"
+t = "sbfd"
+t = 
+t = 
+t = "fabric_dma1"
+t = "sbfd"
+t = 
+t = 
+t = "cil_fdma1"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "sb_ifc"
+getCellValue:: linein[2] = "cil"
+getCellValue:: linein[3] = "sbfd"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "fabric_dma1"
+getCellValue:: linein[7] = "sbfd"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "cil_fdma1"
+found interface
+FROM NOT ADDING fun = cil fin = cil connection = sb_ifc sbfd
+TO   NOT ADDING tun = fabric_dma tin = fabric_dma1 connection = sb_ifc sbfd
+19 linein = "interface" "dw_ifc" "fabric_drop" "db_dw"   "doorbell" "dw"   "fd_db"
+t = "interface"
+t = "dw_ifc"
+t = "fabric_drop"
+t = "db_dw"
+t = 
+t = 
+t = "doorbell"
+t = "dw"
+t = 
+t = 
+t = "fd_db"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "dw_ifc"
+getCellValue:: linein[2] = "fabric_drop"
+getCellValue:: linein[3] = "db_dw"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "doorbell"
+getCellValue:: linein[7] = "dw"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "fd_db"
+found interface
+FROM     ADDING fun = fabric_drop fin = fabric_drop connection = dw_ifc db_dw
+TO       ADDING tun = doorbell tin = doorbell connection = dw_ifc dw
+20 linein = "interface" "dw_ifc" "fabric_drop" "dreg_dw"   "reg" "dw"   "fd_reg"
+t = "interface"
+t = "dw_ifc"
+t = "fabric_drop"
+t = "dreg_dw"
+t = 
+t = 
+t = "reg"
+t = "dw"
+t = 
+t = 
+t = "fd_reg"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "dw_ifc"
+getCellValue:: linein[2] = "fabric_drop"
+getCellValue:: linein[3] = "dreg_dw"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "reg"
+getCellValue:: linein[7] = "dw"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "fd_reg"
+found interface
+FROM     ADDING fun = fabric_drop fin = fabric_drop connection = dw_ifc dreg_dw
+TO       ADDING tun = reg tin = reg connection = dw_ifc dw
+21 linein = "interface" "adw_ifc" "fabric_drop" "maclu_adw"   "maclu" "adw"   "fd_maclu"
+t = "interface"
+t = "adw_ifc"
+t = "fabric_drop"
+t = "maclu_adw"
+t = 
+t = 
+t = "maclu"
+t = "adw"
+t = 
+t = 
+t = "fd_maclu"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "adw_ifc"
+getCellValue:: linein[2] = "fabric_drop"
+getCellValue:: linein[3] = "maclu_adw"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "maclu"
+getCellValue:: linein[7] = "adw"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "fd_maclu"
+found interface
+FROM     ADDING fun = fabric_drop fin = fabric_drop connection = adw_ifc maclu_adw
+TO       ADDING tun = maclu tin = maclu connection = adw_ifc adw
+22 linein = "interface" "adw_ifc" "fabric_drop" "qm_adw"   "qm" "dw"   "fd_qm"
+t = "interface"
+t = "adw_ifc"
+t = "fabric_drop"
+t = "qm_adw"
+t = 
+t = 
+t = "qm"
+t = "dw"
+t = 
+t = 
+t = "fd_qm"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "adw_ifc"
+getCellValue:: linein[2] = "fabric_drop"
+getCellValue:: linein[3] = "qm_adw"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "qm"
+getCellValue:: linein[7] = "dw"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "fd_qm"
+found interface
+FROM     ADDING fun = fabric_drop fin = fabric_drop connection = adw_ifc qm_adw
+TO       ADDING tun = qm tin = qm connection = adw_ifc dw
+23 linein = "interface" "adwr_ifc" "fabric_drop" "adwr"   "arb" "adwr"   "fd_arb"
+t = "interface"
+t = "adwr_ifc"
+t = "fabric_drop"
+t = "adwr"
+t = 
+t = 
+t = "arb"
+t = "adwr"
+t = 
+t = 
+t = "fd_arb"
+getCellValue:: linein[0] = "interface"
+getCellValue:: linein[1] = "adwr_ifc"
+getCellValue:: linein[2] = "fabric_drop"
+getCellValue:: linein[3] = "adwr"
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = "arb"
+getCellValue:: linein[7] = "adwr"
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = "fd_arb"
+found interface
+FROM     ADDING fun = fabric_drop fin = fabric_drop connection = adwr_ifc adwr
+TO       ADDING tun = arb tin = arb connection = adwr_ifc adwr
+fin inst pie_aud_nq1
+fin done /pie_aud_nq1/
+fin if defined fromIfcHash pie_aud_nq1
+ifcgen interfaceType     =  fabric_ifc         
+ifcgen connFromName       =  fab_add      
+fin if defined toIfcHash pie_aud_nq1
+fin inst pie_ex_dq1
+fin done /pie_ex_dq1/
+fin if defined fromIfcHash pie_ex_dq1
+ifcgen interfaceType     =  fabric_ifc         
+ifcgen connFromName       =  fab_add      
+fin if defined toIfcHash pie_ex_dq1
+fin inst pie_aud_dq1
+fin done /pie_aud_dq1/
+fin if defined fromIfcHash pie_aud_dq1
+ifcgen interfaceType     =  fabric_ifc         
+ifcgen connFromName       =  fab_add      
+fin if defined toIfcHash pie_aud_dq1
+fin inst inst_tcm
+fin done /inst_tcm/
+fin inst doorbell
+fin done /doorbell/
+fin if defined fromIfcHash doorbell
+ifcgen interfaceType     =  vrr_ifc         
+ifcgen connFromName       =  vrr      
+fin if defined toIfcHash doorbell
+fin inst fabric_drop
+fin done /fabric_drop/
+fin if defined fromIfcHash fabric_drop
+ifcgen interfaceType     =  dw_ifc         
+ifcgen connFromName       =  db_dw      
+ifcgen interfaceType     =  dw_ifc         
+ifcgen connFromName       =  dreg_dw      
+ifcgen interfaceType     =  adw_ifc         
+ifcgen connFromName       =  maclu_adw      
+ifcgen interfaceType     =  adw_ifc         
+ifcgen connFromName       =  qm_adw      
+ifcgen interfaceType     =  adwr_ifc         
+ifcgen connFromName       =  adwr      
+fin if defined toIfcHash fabric_drop
+fin inst fabric_interface
+fin done /fabric_interface/
+fin inst pie_eth_nq01
+fin done /pie_eth_nq01/
+fin if defined fromIfcHash pie_eth_nq01
+ifcgen interfaceType     =  fabric_ifc         
+ifcgen connFromName       =  fab_add      
+fin if defined toIfcHash pie_eth_nq01
+fin inst qm
+fin done /qm/
+fin if defined fromIfcHash qm
+fin if defined toIfcHash qm
+fin inst fabric_add
+fin done /fabric_add/
+fin inst put_dma1
+fin done /put_dma1/
+fin if defined fromIfcHash put_dma
+ifcgen interfaceType     =  cdrv_ifc         
+ifcgen connFromName       =  cdrv      
+fin if defined toIfcHash put_dma
+fin inst sram0
+fin done /sram0/
+fin if defined fromIfcHash sram0
+ifcgen interfaceType     =  fabric_ifc         
+ifcgen connFromName       =  fab_add      
+fin if defined toIfcHash sram0
+fin inst pie_eth_dq1
+fin done /pie_eth_dq1/
+fin if defined fromIfcHash pie_eth_dq1
+ifcgen interfaceType     =  fabric_ifc         
+ifcgen connFromName       =  fab_add      
+fin if defined toIfcHash pie_eth_dq1
+fin inst ipc
+fin done /ipc/
+fin if defined fromIfcHash ipc
+ifcgen interfaceType     =  fabric_ifc         
+ifcgen connFromName       =  fab_add      
+fin if defined toIfcHash ipc
+fin inst nios
+fin done /nios/
+fin inst put_dma0
+fin inst pie_ex_nq1
+fin done /pie_ex_nq1/
+fin if defined fromIfcHash pie_ex_nq1
+ifcgen interfaceType     =  fabric_ifc         
+ifcgen connFromName       =  fab_add      
+fin if defined toIfcHash pie_ex_nq1
+fin inst pie_eth_nq11
+fin done /pie_eth_nq11/
+fin if defined fromIfcHash pie_eth_nq11
+ifcgen interfaceType     =  fabric_ifc         
+ifcgen connFromName       =  fab_add      
+fin if defined toIfcHash pie_eth_nq11
+fin inst cil
+fin done /cil/
+fin if defined fromIfcHash cil
+ifcgen interfaceType     =  sb_ifc         
+ifcgen connFromName       =  sb      
+ifcgen interfaceType     =  sb_ifc         
+ifcgen connFromName       =  sbfd      
+fin if defined toIfcHash cil
+fin inst fabric_dma0
+fin done /fabric_dma0/
+fin if defined fromIfcHash fabric_dma
+fin if defined toIfcHash fabric_dma
+fin inst fabric_dma1
+fin inst reg
+fin done /reg/
+fin if defined fromIfcHash reg
+fin if defined toIfcHash reg
+fin inst arb
+fin done /arb/
+fin if defined fromIfcHash arb
+fin if defined toIfcHash arb
+fin inst maclu
+fin done /maclu/
+fin if defined fromIfcHash maclu
+ifcgen interfaceType     =  malt_ifc         
+ifcgen connFromName       =  malt      
+fin if defined toIfcHash maclu
+fin inst data_tcm
+fin done /data_tcm/
+fin done /proc_ring/
+
+
+## End CSL_CSV_GENGEN AutoGenerated Stuff
+

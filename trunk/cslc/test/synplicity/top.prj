@@ -1,0 +1,18 @@
+set_option -include_path "inc1;inc2;"
+
+
+#  if you are instantiating a module... it will pick up the 
+# verilog file that matches the module name... if its in the library_path
+set_option -library_path "src1;src2;"
+
+
+
+add_file -verilog "a.v"
+add_file -verilog "b.v"
+
+add_file -verilog "rtl/top.v"
+set_option -top_module "top"
+  
+set_option -vlog_std v2001
+
+  

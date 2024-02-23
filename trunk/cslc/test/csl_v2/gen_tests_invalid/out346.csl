@@ -1,0 +1,129 @@
+csl_enum vo {
+	wl = 5,
+	jt = 68,
+	jm = 81,
+	cg = 68,
+	sx = 40
+};
+csl_enum gm {
+	ca = 62,
+	ec = 75,
+	ny = 22,
+	ue = 59,
+	xf = 3,
+	ei = 32
+};
+csl_enum mu {
+	uk = 23,
+	cs = 65,
+	cc = 40,
+	el = 74,
+	vq = 72,
+	ba = 1,
+	yv = 69,
+	xf = 65,
+	ja = 33,
+	ip = 92,
+	fx = 76,
+	oc = 37
+};
+csl_isa_instruction_format ll{
+    ll( ){
+     set_width( 1);
+     generate_decoder( wbrxkb);
+  }
+}
+;
+csl_isa_instruction do : ll{
+    do( ){
+    set_asm_mnemonic( csl_list "dg", "oc", "fh", "ge", "tw", "av", "uv");
+  }
+}
+;
+csl_isa_instruction eg : ll{
+    eg( ){
+    set_asm_mnemonic( csl_list "lr", "au", "xt", "ra", "rm", "vx", "gg", "du", "po");
+  }
+}
+;
+csl_fifo vd{
+   vd( ){
+     add_logic( output_rd_addr);
+  }
+}
+;
+csl_memory_map_page cx{
+    cx( ){
+     set_address_increment( 0);
+     get_address_increment( );
+     set_next_address( 0);
+     set_access_rights( access_read_write, none);
+     add_reserved_address_range( 8, 0);
+     add( vd, "oc");
+     get_upper_bound( );
+     set_data_word_width( 4);
+  }
+}
+;
+csl_memory_map_page cb{
+    cb( ){
+     add_address_range( 7, 6);
+     set_address_increment( 0);
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_read_write, none);
+     get_lower_bound( );
+     get_aligment( );
+     set_endianess( big_endianbig_endian);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page tr{
+    tr( ){
+     add_address_range( 1, 1);
+     set_address_increment( 8);
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_read_write, access_write);
+     get_upper_bound( );
+     set_data_word_width( 1);
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map rw{
+  cx vg;
+  tr yb;
+  cx pv;
+  cb iw;
+    rw( ){
+     auto_gen_memory_map( );
+     set_top_unit( rxkb);
+     set_type( hierach);
+     set_data_word_width( 3);
+     get_data_word_width( );
+     set_prefix( eb);
+     set_suffix( pf);
+  }
+}
+;
+csl_register eb{
+    eb( ){
+     clear_value( 1);
+     set_end_value( 8);
+     set_start_value( 1);
+     add_logic( cnt_dir_signal);
+  }
+}
+;
+csl_register dd{
+    dd( ){
+     set_depth( 4);
+     get_depth( );
+     set_const_value( 1);
+     add_logic( bypass);
+  }
+}
+;

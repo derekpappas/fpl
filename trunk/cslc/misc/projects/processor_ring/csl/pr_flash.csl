@@ -1,0 +1,9 @@
+//oanab
+//9 ian 2008
+//Flash memory
+
+csl_unit FLASH {
+  ifc_flash flash_mem;
+  FLASH () {}
+};
+

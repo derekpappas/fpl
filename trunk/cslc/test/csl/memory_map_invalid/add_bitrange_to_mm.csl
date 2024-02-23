@@ -1,0 +1,25 @@
+//add object that are not supposed to be in a memory map - bitrange
+//andreim
+//16 June
+csl_bitrange br(0,15);
+csl_memory_map_page page0 {
+	page0() {
+		set_address(0,31);
+		set_endianess(big_endian);
+	}
+};
+csl_memory_map_page page1 {
+	page1() {
+		set_address(0,63);
+		set_endianess(big_endian);
+	}
+};
+
+csl_memory_map mm {
+	//br br1;
+	page1 page_1(br2);  //br  are not supposed to be in a mm
+	mm() {
+	  set_type(flat);
+	  set_data_word_width(128);
+	}
+};

@@ -1,0 +1,63 @@
+// Created : Friday 28 september 2007 15:20
+// This folder contains tests written by CristiL
+// 
+//       /hierarchical contains tests for hierarchical csl structures
+//       /hierarchical_connections contains tests for connections between hids and/or simple csl structures
+//   
+
+
+This is the connectivity map for hierarchical items
+
+ ________________________________________________
+|      |     |     |     |     |     |     |     |
+|      |  s  |  p  |  sg | ifc |  f  |  b  |  e  |     s   -  Signal
+|______|_____|_____|_____|_____|_____|_____|_____|                 
+|      |     |     |     |     |     |     |     |     sg  -  Signal Group
+|  s   |  -  |  -  |  -  |  -  |  X  |  X  |  -  |       
+|______|_____|_____|_____|_____|_____|_____|_____|     ifc -  Interface
+|      |     |     |     |     |     |     |     |
+|  p   |  -  |  -  |  -  |  -  |  -  |  X  |  -  |     f   -  Field   
+|______|_____|_____|_____|_____|_____|_____|_____|
+|      |     |     |     |     |     |     |     |     b   -  Bitrange       
+| sg   |  X  |  -  |  X  |  -  |  -  |  -  |  -  |
+|______|_____|_____|_____|_____|_____|_____|_____|     e   -  Enum       
+|      |     |     |     |     |     |     |     |
+| ifc  |  -  |  X  |  -  |  X  |  -  |  X  |  -  |       
+|______|_____|_____|_____|_____|_____|_____|_____|     
+|      |     |     |     |     |     |     |     |
+|  f   |  -  |  -  |  -  |  -  |  X  |  -  |  X  |
+|______|_____|_____|_____|_____|_____|_____|_____|
+|      |     |     |     |     |     |     |     |
+|  b   |  -  |  -  |  -  |  -  |  -  |  -  |  -  |
+|______|_____|_____|_____|_____|_____|_____|_____|
+|      |     |     |     |     |     |     |     |
+|  e   |  -  |  -  |  -  |  -  |  -  |  -  |  -  |
+|______|_____|_____|_____|_____|_____|_____|_____|
+
+ _______________________________
+|             |                 |
+|Connectivity |   Tested in     |
+|             |   file          |
+|_____________|_________________|
+|             |                 |
+| s->f        |   s_f.csl       |
+|             |                 |
+| s->b        |   s_b.csl       |
+|             |                 |
+| p->b        |   p_b.csl       |   
+|             |                 |
+| sg->s       |   sg_s.csl      |
+|             |                 |
+| sg->sg      |   sg_sg.csl     |
+|             |                 |
+| ifc->p      |   ifc_p.csl     |
+|             |                 |
+| ifc->b      |   ifc_b.csl     |
+|             |                 |
+| ifc->ifc    |   ifc_ifc.csl   |
+|             |                 |
+| f->f        |   f_f.csl       |
+|             |                 |
+| f->e        |   f_e.csl       |
+|_____________|_________________|
+

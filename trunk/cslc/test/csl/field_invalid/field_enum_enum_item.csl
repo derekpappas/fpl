@@ -1,0 +1,59 @@
+csl_enum enum1{
+  a,
+    b = 2,
+    c,
+   d = 2
+};
+
+csl_enum enum2{
+  a1,
+    b1,
+    c1 = 1,
+    d1,
+    e1,
+    f1 = 2
+    };
+
+
+csl_field field1{
+  field1(){
+    set_enum(enum1);
+  }
+};
+
+
+csl_field field2{
+  field2(){
+    set_enum(enum2);
+  }
+};
+
+csl_field field12{
+  field1 field1_1;
+  field2 field2_1;
+};
+
+// csl_field field3{
+//   field3(){
+//     set_enum_item(a);
+//   }
+// };
+
+// csl_field field4{
+//   field4(){
+//     set_enum_item(a1);
+//   }
+// };
+
+// csl_field field34{
+//   field3 field3_1;
+//   field4 field4_1;
+// };
+
+csl_field field{
+  field12 field12_1;
+  field(){
+    field12_1.set_enum_item(a);
+    field12_1.set_enum_item(a1);
+  }
+};

@@ -1,0 +1,137 @@
+csl_enum kh {
+	jk,
+	kf,
+	yy
+};
+csl_enum hc {
+	ib = 15,
+	hv = 68,
+	gq = 73,
+	dx = 7,
+	lb = 23,
+	is = 98,
+	qi = 63,
+	aq = 36,
+	qg = 58,
+	nc = 91,
+	ib = 6,
+	lt = 15,
+	lx = 28,
+	ym = 3,
+	wj = 7
+};
+csl_enum oh {
+	mw,
+	es,
+	ph,
+	tc,
+	ke,
+	wb,
+	nw,
+	ue,
+	gk,
+	io,
+	lt
+};
+csl_isa_instruction_format ur{
+    ur( ){
+     set_width( 1);
+     generate_decoder( vojkkg);
+  }
+}
+;
+csl_isa_instruction qj : ur{
+    qj( ){
+    set_asm_mnemonic( bt);
+  }
+}
+;
+csl_isa_instruction fv : ur{
+    fv( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa ei{
+    ei( ){
+     set_decoder_name( "da");
+     set_decoder_out_name_prefix( "dc");
+     set_decoder_out_name_suffix( "ng");
+     print( isa.txt);
+  }
+}
+;
+csl_fifo lc{
+   lc( ){
+     add_logic( depth_extend, 1);
+     add_logic( stall);
+     add_logic( almost_empty, 4);
+     add_logic( almost_full, 4);
+     add_logic( rd_credit);
+  }
+}
+;
+csl_memory_map_page ww{
+    ww( ){
+     add_reserved_address_range( 0, 0);
+     add( lc, "ya", );
+     get_lower_bound( );
+     get_aligment( );
+     set_endianess( big_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page ah{
+  ww cn;
+  ww mw;
+  ww dw;
+    ah( ){
+     set_next_address( 6);
+     get_next_address( );
+     get_upper_bound( );
+     set_aligment( 6);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page vt{
+  ww mj;
+  ah dt;
+  ww py;
+  ah ve;
+    vt( ){
+     add_reserved_address_range( 6, 4);
+  }
+}
+;
+csl_memory_map ui{
+    ui( ){
+     auto_gen_memory_map( );
+wwahvt.add_to_memory_map( 4); 
+wwahvt.set_access_rights_enum( ahvt); 
+     set_prefix( mr);
+     get_prefix( );
+     set_suffix( yq);
+  }
+}
+;
+csl_register xy{
+    xy( ){
+     add_logic( serial_input);
+     add_logic( serial_output);
+     clear_value( 9);
+     add_logic( gray_output);
+  }
+}
+;
+csl_register sx{
+    sx( ){
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 5);
+  }
+}
+;

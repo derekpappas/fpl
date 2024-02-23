@@ -1,0 +1,26 @@
+//costelc
+// interface - constant concatenation
+
+csl_interface ifc{
+  csl_port p1(output,8);
+  csl_port p2(output,4);
+  ifc() {}
+};
+
+csl_unit a{
+  csl_port a_in(input);
+  ifc ifc0;
+  a() {}
+};
+
+csl_unit c{
+  csl_port c_in(input,20);
+  csl_port c_out(output);
+  c() {}
+};
+
+csl_unit top {
+  a a0;
+  c c0(.c_in({8'b10001101,a0.ifc0}));
+	top() {}
+};

@@ -1,0 +1,54 @@
+//Monica
+//31 january 2008
+
+csl_unit a{
+  csl_port in(input),out(output);
+  a(){}
+};
+csl_interface ifc1{
+  csl_port p_1(input),p_2(output);
+  ifc1(){}
+};
+
+csl_unit t1{
+  csl_port in1(input),out1(output); 
+  a a1;
+  a a2;
+  a a3;
+  ifc1 ifc1;
+  t1(){
+    in1.connect_by_name(a1.in);
+    a1.out.connect_by_name(a2.in);
+    a2.out.connect_by_name(a3.in);
+    a3.out.connect_by_name(ifc1.p_2);
+   }
+};
+
+csl_interface ifc2{
+  csl_port p_1(output),p_2(input);
+  ifc2(){}
+};
+csl_unit t2{
+  a a1;
+  a a2;
+  a a3;
+  ifc2 ifc2;
+  t2(){
+    ifc2.p_2.connect_by_name(a1.in);
+    a1.out.connect_by_name(a2.in);
+    a2.out.connect_by_name(a3.in);
+    a3.out.connect_by_name(ifc2.p_1);
+  }};
+
+csl_unit ttt{
+  ifc1 ifc11;
+  ifc2 ifc22;
+  csl_signal s_in,s_out;
+  t1 t1(.ifc1(ifc11));
+  t2 t2(.ifc2(ifc22));
+  ttt(){
+    s_in.connect_by_name(t1.in1);
+    s_out.connect_by_name(t1.out1);
+    }
+};
+

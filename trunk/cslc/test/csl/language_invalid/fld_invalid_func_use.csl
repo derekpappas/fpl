@@ -1,0 +1,16 @@
+// Derek
+//
+// Can't set an enum item on a field instance outside the constructor.
+// Only can set_enum_item on a field instance inside a constructor
+
+csl_enum STATE {
+  RDY,
+  ERR
+};
+
+csl_field f2 (32);
+
+f2.set_enum_item(ERR);
+
+
+

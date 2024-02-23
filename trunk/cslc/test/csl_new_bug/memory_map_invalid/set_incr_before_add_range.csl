@@ -1,0 +1,30 @@
+//oanab
+//8 nov 2007
+//the increment is set before the address range
+
+csl_fifo f{
+  f() {
+    set_width(32);
+    set_depth(8);
+  }
+}; 
+
+csl_unit u{
+f f1;
+u(){}
+};
+
+csl_memory_map_page mpg{
+  mpg(){
+    set_address_increment(4); // the adress range should be specified first
+    add_address_range(0,128);
+    set_unit_name(u);
+  }
+};
+
+csl_memory_map mmap{
+  mpg mpg1;
+  mmap(){
+    set_type(hierarchical);
+  }
+};

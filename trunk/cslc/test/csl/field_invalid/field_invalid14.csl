@@ -1,0 +1,19 @@
+//Petronela
+csl_enum e {
+  RD,
+  WR,
+  EN
+};
+csl_field f{  
+  f(){
+  set_enum(e);
+  set_width(3);
+  }
+};
+csl_field ff{
+  ff(){
+  set_width(10);
+  set_value(dd);//error should be a numeric expression
+  }
+};
+

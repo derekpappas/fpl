@@ -1,0 +1,113 @@
+csl_enum du {
+	kj,
+	en,
+	ky,
+	kv,
+	rd,
+	ad,
+	cr,
+	id,
+	bh
+};
+csl_enum ef {
+	ro,
+	vx,
+	hx,
+	tj,
+	bw,
+	el,
+	ik,
+	bs,
+	ko,
+	oe,
+	tr,
+	jv
+};
+csl_enum jt {
+	bk,
+	bh,
+	pu,
+	wl,
+	ue,
+	lo,
+	pm
+};
+csl_isa_instruction_format jj{
+    jj( ){
+     set_width( 6);
+  }
+}
+;
+csl_isa hh{
+    hh( ){
+     set_decoder_out_name_suffix( "qw");
+  }
+}
+;
+csl_fifo ur{
+   ur( ){
+     add_logic( parallel_input, all);
+  }
+}
+;
+csl_memory_map_page dy{
+    dy( ){
+     get_address_increment( );
+     get_lower_bound( );
+     get_data_word_wodth( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page ir{
+    ir( ){
+     get_address_increment( );
+     add( ur, "kw");
+     add( dy);
+     get_upper_bound( );
+     set_data_word_width( 3);
+     get_data_word_wodth( );
+     set_aligment( 2);
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page rw{
+    rw( ){
+     set_address_increment( 4);
+     get_address_increment( );
+     get_upper_bound( );
+     set_data_word_width( 3);
+     get_data_word_wodth( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map pj{
+    pj( ){
+     auto_gen_memory_map( );
+     set_top_unit( bdiu);
+     set_type( hierach);
+     set_data_word_width( 5);
+     get_data_word_width( );
+     set_suffix( hw);
+  }
+}
+;
+csl_register bs{
+    bs( ){
+     add_logic( rd_en);
+     reset_value( 7);
+     set_count_direction( 2);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register ki{
+    ki( ){
+     set_width( 7);
+     get_width( );
+  }
+}
+;

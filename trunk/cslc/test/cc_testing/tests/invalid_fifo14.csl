@@ -1,0 +1,40 @@
+//Petronela
+//error don't instantiate a fifo in other fifos and some of the fifos don't have set_width,set_depth
+csl_fifo f1{
+  f1(){
+    set_width(32);
+    set_depth(8); 
+    add_logic(almost_full,23); 
+    add_logic(credit);
+    add_logic(output_wr_addr);
+    add_logic(output_rd_addr); 
+    set_prefix("abc"); 
+  }
+};
+csl_fifo f2{
+  f1 f1;//error
+  f2(){
+   set_physical_implementation(SRAM);
+   f1.add_logic(flow);//error
+   add_logic(rd_credit);
+   add_logic(wr_credit);
+   add_logic(sync_fifo);
+  }
+};
+csl_fifo f3{
+  f2 f2;//error
+  f3(){
+    add_logic(priority_bypass);
+    f2.set_dimensions(16,8);//error
+    add_logic(async_fifo);
+    add_logic(stall);
+  }
+};
+
+csl_unit u1{
+  f1 f10;
+  f2 f20;
+  f3 f30;
+  u1(){  
+  }
+};

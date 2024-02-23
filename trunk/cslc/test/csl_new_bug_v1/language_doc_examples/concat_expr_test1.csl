@@ -1,0 +1,18 @@
+//Monica
+// 13 may 2008
+// concat_expr in assign
+
+csl_unit u1{
+  csl_port p11(input,4);
+  csl_port p12(input,8);
+  csl_port p13(input,32);
+  csl_port p14(output,32);
+  csl_port p15(output,4);
+  csl_signal s1(44),s2(32);
+  csl_signal s3(4);
+ 
+  u1(){
+    s1 ={p12,p11,p13};
+    {p14,p15}={s2,s3};
+}
+};

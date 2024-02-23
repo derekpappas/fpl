@@ -1,0 +1,6 @@
+//memory map with no mem pages is illegal
+csl_memory_map mmap{
+  mmap(){
+  }
+};
+

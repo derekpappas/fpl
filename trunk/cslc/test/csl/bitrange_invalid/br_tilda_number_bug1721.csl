@@ -1,0 +1,10 @@
+//bug 1721
+//negative width
+csl_bitrange b1(~1);
+
+csl_unit u{
+  csl_port p(input);
+  u(){
+    p.set_bitrange(b1);
+  }
+};

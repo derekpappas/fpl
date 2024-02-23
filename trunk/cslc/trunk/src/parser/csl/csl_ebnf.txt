@@ -1,0 +1,971 @@
+HOW TO READ:
+  A|B     A or B
+  "A"     A is a keyword (appeares unaltered in the csl file)
+  (A)     group
+  [A]     A is optional (occurs zero or one time)
+  (A)?    A is optional (occurs zero or one times)
+  {A}     list of A items (contains at least one item : equivalent to (A)+)
+  (A)+    A must occur one or more times 
+  (A)*    A can occur zero or more times
+  regex   regular expression
+  //      marks a comment
+   
+
+
+GRAMMAR RULES:
+
+
+
+csl_stmt ::= csl_enum_stmt
+            |csl_create_memory_stmt
+            |csl_block_stmt                 //this is NOT in the command section of the csl_application_specific_memory.pdf.I think it should be 
+            |csl_packet_stmt
+            |csl_payload_stmt
+            |csl_field_stmt
+            |csl_clock_tree_stmt
+            |csl_sim_stmt
+            |csl_fifo_stmt
+            |csl_connect_stmt
+            |csl_unit_stmt
+            |csl_signal_stmt
+            |csl_bit_range_stmt
+            |csl_signal_group_stmt
+            |csl_interface_stmt
+            |csl_clock_stmt
+            |csl_isa_stmt
+            |csl_datapath_select_list_stmt
+            |csl_mbist_stmt
+            |csl_memory_map_stmt
+            |csl_pipeline_stmt
+            |csl_pipestage_stmt
+            |csl_register_file_stmt
+            |csl_register_stmt
+            |csl_cell_stmt
+            |csl_sram_stmt
+            |csl_testbench_stmt
+            |csl_archstatemem_stmt
+            |csl_vector_stmt
+            |csl_dut_mem_stmt
+            |csl_list_stmt
+csl_set_stmt ::= 
+            |csl_enum_set_stmt
+            |csl_create_memory_set_stmt
+            |csl_block_set_stmt
+            |csl_packet_set_stmt
+            |csl_payload_set_stmt
+            |csl_field_set_stmt
+            |csl_clock_tree_set_stmt
+            |csl_sim_set_stmt
+            |csl_fifo_set_stmt
+            |csl_connect_set_stmt
+            |csl_unit_set_stmt
+            |csl_unit_or_instance_set_stmt
+            |csl_signal_set_stmt
+            |csl_signal_or_port_set_stmt
+            |csl_instance_set_stmt
+            |csl_bit_range_set_stmt
+            |csl_signal_group_set_stmt
+            |csl_interface_set_stmt
+            |csl_clock_set_stmt
+            |csl_isa_set_stmt
+            |csl_instruction_set_stmt
+            |csl_instruction_cell_set_stmt
+            |csl_datapath_select_list_set_stmt
+            |csl_mbist_set_stmt
+            |csl_memory_map_set_stmt
+            |csl_memory_map_cell_set_stmt
+            |csl_pipeline_set_stmt
+            |csl_pipestage_set_stmt
+            |csl_register_file_set_stmt
+            |csl_register_set_stmt
+            |csl_cell_set_stmt
+            |csl_sram_set_stmt
+            |csl_testbench_set_stmt
+            |csl_archstatemem_set_stmt
+            |csl_vector_set_stmt
+            |csl_dut_mem_set_stmt
+            |csl_list_set_stmt
+csl_get_stmt ::=
+             csl_signal_get_stmt
+            |csl_bit_range_get_stmt
+            |csl_interface_get_stmt
+csl_fomal_to_actual_map ::=
+             wire_formal_to_actual_map
+            |instantiation_interface_formal_to_actual_map                             // This is not mentioned in any of the commands 
+string ::= {any_ASCII_character_except_new_line}
+
+0. EXPRESSIONS
+
+expression ::=
+              primary
+            | unary_operator primary
+            | expression binary_operator expression
+            | conditional_expression
+            | identifier
+primary ::=
+              number
+            | hierarchical_identifier [ { "[" expression "]" } "[" range_expression "]" ]
+            | concatenation
+            | multiple_concatenation
+            | function_call
+            | system_function_call
+            | ( mintypmax_expression )
+unary_operator ::=
+              + | - | ! | ~ | & | ~& | | | ~| | ^ | ~^ | ^~
+binary_operator ::=
+              + | - | * | / | % | == | != | === | !== | && | || | **
+            | < | <= | > | >= | & | | | ^ | ^~ | ~^ | >> | << | >>> | <<<                        
+conditional_expression ::= expression1 "?" expression2 ":" expression3
+hierarchical_identifier ::= { identifier [ "[" constant_expression "]" ] "." } identifier
+range_expression ::=
+              expression
+            | msb_constant_expression ":" lsb_constant_expression
+            | base_expression "+:" width_constant_expression
+            | base_expression "-:" width_constant_expression
+width_constant_expression ::= constant_expression
+msb_constant_expression ::= constant_expression
+lsb_constant_expression ::= constant_expression
+base_expression ::= expression
+concatenation ::= "{" expression { , expression } "}"
+multiple_concatenation ::= "{" constant_expression concatenation "}"
+function_call ::= hierarchical_identifier "(" expression { , expression } ")"
+system_function_call ::= system_function_identifier[ "(" expression { , expression } ")" ]
+system_function_identifier ::= $[ a-zA-Z0-9_$ ]{ [ a-zA-Z0-9_$ ] }
+mintypmax_expression ::=
+              expression
+            | expression : expression : expression
+
+
+    CONSTANT_EXPRESSIONS
+
+constant_expression ::=
+              constant_primary
+            | unary_operator constant_primary
+            | constant_expression binary_operator constant_expression
+            | constant_expression "?" constant_expression ":" constant_expression
+            | identifier
+constant_primary ::=
+              constant_concatenation
+            | constant_function_call
+            | ( constant_mintypmax_expression )
+            | constant_multiple_concatenation
+            | identifier
+            | number
+constant_concatenation ::= "{" constant_expression { , constant_expression } "}"
+constant_function_call ::= identifier "(" constant_expression { , constant_expression } ")"
+constant_mintypmax_expression ::=
+              constant_expression
+            | constant_expression : constant_expression : constant_expression
+constant_multiple_concatenation ::= "{" constant_expression constant_concatenation "}"
+
+
+
+    NUMBERS
+
+number ::=
+              decimal_number
+            | octal_number
+            | binary_number
+            | hex_number
+            | real_number
+real_number ::= 
+              unsigned_number "." unsigned_number
+            | unsigned_number [ "." unsigned_number ] exp [ sign ] unsigned_number
+exp ::= "e" | "E"
+sign ::= "+" | "-"
+decimal_number ::=
+              unsigned_number
+            | [ size ] decimal_base unsigned_number
+            | [ size ] decimal_base x_digit { _ }
+            | [ size ] decimal_base z_digit { _ }
+binary_number ::= [ size ] binary_base binary_value
+octal_number ::= [ size ] octal_base octal_value
+hex_number ::= [ size ] hex_base hex_value
+size ::= non_zero_decimal_digit { _ | decimal_digit}
+unsigned_number ::= decimal_digit { _ | decimal_digit }
+non_zero_decimal_digit ::= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+decimal_digit ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+decimal_base ::= "'"["s"|"S"]"d" | "'"["s"|"S"]"D"
+binary_base ::= "'"["s"|"S"]"b" | "'"["s"|"S"]"B"
+octal_base ::= "'"["s"|"S"]"o" | "'"["s"|"S"]"O"
+hex_base ::= "'"["s"|"S"]"h" | "'"["s"|"S"]"H"
+binary_value2 ::= binary_digit { _ | binary_digit }
+octal_value2 ::= octal_digit { _ | octal_digit }
+hex_value2 ::= hex_digit { _ | hex_digit }
+binary_digit ::= x_digit | z_digit | "0" | "1"
+octal_digit ::= x_digit | z_digit | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7"
+hex_digit ::=   x_digit | z_digit | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+              | "a" | "b" | "c" | "d" | "e" | "f" | "A" | "B" | "C" | "D" | "E" | "F"
+x_digit ::= "x" | "X"
+z_digit ::= "z" | "Z" | "?"
+
+
+
+
+
+
+
+
+
+
+1. CSL_CREATE_MEMORY
+
+csl_create_memory_stmt ::= "csl_create_mem" memory_name;
+csl_create_memory_set_stmt ::= 
+          memory_name "." "word_width" "(" number ")";
+         |memory_name "." "add_mbist"  "(" mbist_name ")";
+         |memory_name "." "frame_edge_replication" "(" on ")";
+         |memory_name "." "xy_word_size" "(" number "," number ")";
+memory_name ::= string
+mbist_name ::= string
+//number, on undefined. Is "on" a keyword?
+
+2. CSL_BLOCK
+
+csl_block_stmt ::= "csl_block" block_name;   //this is NOT in the command section of the csl_application_specific_memory.pdf.I think it should be 
+csl_block_set_stmt ::=
+          block_name "." "word_width" "(" number ")";
+         |block_name "." "wr_en" "(" write_enable_name ")";
+         |block_name "." "rd_en" "(" read_enable_name ")";
+         |block_name "." "xy_word_size" "(" number "," number ")";
+         |block_name "." "xy_bit_size" "(" number "," number ")";
+         |block_name "." "xy_num_words" "(" number "," number ")";
+         |block_name "." "xy_num_bits" "(" number "," number ")";
+         |block_name "." "size" "(" ")";
+block_name ::= string
+write_enable_name ::= string
+read_enable_name ::= string
+
+3. CSL_PACKET
+
+csl_packet_stmt ::= "csl_packet" packet_name;
+csl_packet_set_stmt ::=   
+          packet_name "." "parent_packet" "(" packet_name0 ")";
+         |packet_name "." "packet_type_field" "(" bit_range ")";
+         |packet_name "." "payload_field" "(" bit_range ")";
+         |packet_name "." "packet_type_enum" "(" [enum_list | enum[=enum]] ")";
+packet_name ::= string
+packet_name0 ::= string
+
+4. CSL_PAYLOAD
+
+csl_payload_stmt ::= "csl_payload" payload_name;
+csl_payload_set_stmt ::=
+          payload_name "." "pkt_type" "(" packet_type_enum ")";
+         |payload_name "." "field" "(" field_name ")";
+         |payload_name "." "fieldlist" "(" field_name [,field_name] ")";
+field_name ::= string
+//packet_type_enum undefined
+
+5. CSL_FIELD
+
+csl_field_stmt ::= "csl_field" field_name; 
+csl_field_set_stmt ::= 
+          field_name "." "name" "(" string ")";
+         |field_name "." "bit_range" "(" bit_range_name ")";
+bit_range_name ::= string
+//generate_mux(output,(regname cellname, input)+);   I don't know what to make of this command !
+
+6. CSL_CLOCKTREE
+
+csl_clock_tree_stmt ::= "csl_clock_tree" clocktree_name;
+csl_clock_tree_set_stmt ::=
+          clocktree_name "." "clk_en" "(" clk_en_name ")"
+         |clocktree_name "." "clk_gate" "(" clk_gate_name ")"
+         |clocktree_name "." "clk_mux" "(" clk_mux_name ")"
+         |clocktree_name "." "clk_switch" "(" clk_switch_name ")"
+         |clocktree_name "." "clk_buffer" "(" clk_buffer_name ")"
+         |clocktree_name "." "clk_pll" "(" clk_pll_name ")"
+         |clocktree_name "." "clk_div" "(" clk_div_name ")"
+         |clocktree_name "." "clk_test_clk" "(" clk_test_clk_name ")"
+         |clocktree_name "." "clk_xtal" "(" clk_xtal_name ")";
+clocktree_name ::= string
+clk_en_name ::= string
+clk_gate_name ::= string
+clk_mux_name ::= string
+clk_switch_name ::= string
+clk_buffer_name ::= string
+clk_pll_name ::= string
+clk_div_name ::= string
+clk_test_clk_name ::= string
+clk_xtal_name ::= string
+
+7. CSL_CSIM
+
+csl_sim_stmt ::= "csl_sim" sim_name;
+csl_sim_set_stmt ::= 
+          sim_name "." "compare_level" "(" unit_name ")";
+         |sim_name "." "vector" "(" vector_name ")";
+sim_name ::= string
+unit_name ::= string
+vector_name ::= string
+
+8. CSL_FIFO
+
+csl_fifo_stmt ::= "create_fifo" fifo_name;                       //shouldn't this be csl_fifo_stmt ::= "csl_fifo" fifo_name ?
+                 |fifo_arch_stmt;
+                 |fifo_status_stmt;
+                 |fifo_clk_stmt;
+                 |fifo_reset_stmt;
+                 |fifo_rd_stmt;
+                 |fifo_wr_stmt;
+                 |fifo_info_stmt;
+fifo_arch_stmt ::=
+         "fifo_arch_credit";
+        |"fifo_arch_normal";
+        |"fifo_arch_asynch_fifo";
+        |"fifo_arch_rd_credit";
+        |"fifo_arch_wr_credit";
+        |"fifo_arch_size";
+        |"fifo_arch_width";
+        |"fifo_arch_programmable_size" <signal_name>;              //What do angular braces stand for?
+        |"fifo_arch_imp_type" <implementaion_type>;
+        |"fifo_arch_input_reg" {<number_of_pipestages>};
+        |"fifo_arch_output_reg" {<number_of_pipestages>};
+        |"fifo_arch_wr_hold";
+        |"fifo_arch_sram_wr_side";
+        |"fifo_arch_sram_rd_side";
+        |"fifo_arch_high_prio_bypass" <signal_name>;
+        |"fifo_arch_connect_top_words_to_ifc" <memory_address_range>;
+        |"fifo_arch_connect_all_rd_words_to_ifc";
+fifo_status_stmt ::=
+        "fifo_status_lwm" <fifo_address>;
+       |"fifo_status_hwm" <fifo_address>;
+fifo_clk_stmt ::=
+        "fifo_clk" <clock_name>;
+       |"fifo_clk_asynch_fifo_wr_clk" <clock_name>;
+fifo_reset_stmt ::=
+        "fifo_reset_" <reset_name>;                            //Isn't something missing here?
+        |"fifo_reset_asynch_fifo_wr_reset_" <clock_name>;
+        |"fifo_reset_asynch_fifo_rd_clk" <clock_name>;
+        |"fifo_reset_asynch_fifo_rd_reset_" <clock_name>;
+fifo_rd_stmt ::=
+        "fifo_rd_cntl_empty" <signal_name>;
+        |"fifo_rd_cntl_pushback" <signal_name>;
+        |"fifo_rd_top_value" {<range>}* <signal_name>;
+        |"fifo_rd_cntl_rd_stall" <signal_name>;
+fifo_wr_stmt ::=
+        "fifo_wr_cntl_full" <signal_name>;
+       |"fifo_wr_cntl_wr_release" <signal_name>;
+fifo_info_stmt ::=
+        "fifo_info_wr_addr_to_ifc" <signal_name>;
+       |"fifo_info_rd_addr_to_ifc" <signal_name>;
+csl_fifo_set_stmt ::=
+          fifo_name "." "arch_normal" "(" ")";
+         |fifo_name "." "arch_size" "(" expression ")";
+         |fifo_name "." "arch_width" "("expression")";
+         |fifo_name "." "arch_programmable_size" "("signal_name")";
+         |fifo_name "." "arch_imp_type" "("implementation_type")";
+         |fifo_name "." "arch_asynch_fifo" "(" ")";
+         |fifo_name "." "arch_input_reg" "("{number_of_pipestages}")";
+         |fifo_name "." "arch_output_reg" "("{number_of_pipestages}")";
+         |fifo_name "." "arch_wr_hold" "(" ")";
+         |fifo_name "." "arch_high_prio_bypass" "("signal_name")";
+         |fifo_name "." "arch_connect_words_to_outputs" "("[all | signal_list]")";
+         |fifo_name "." "arch_connect_inputs_to_words" "("[all | signal_list]")";
+         |fifo_name "." "prefix_name" "("prefix_name")";
+         |fifo_name "." "clk" "("clock_name")";
+         |fifo_name "." "reset" "("reset_name")";
+         |fifo_name "." "clk_asynch_fifo_wr_clk" "("clock_name")";
+         |fifo_name "." "reset_asynch_fifo_wr_reset" "("clock_name ")";
+         |fifo_name "." "reset_asynch_fifo_rd_clk" "("clock_name")";
+         |fifo_name "." "reset_asynch_fifo_rd_reset" "("clock_name")";
+         |fifo_name "." "rd_data_out" "("expression")";
+         |fifo_name "." "rd_data_connect_top_rd_words_to_ifc" "("address_range")";
+         |fifo_name "." "rd_data_word" "("signal_name,expression")";
+         |fifo_name "." "rd_data_sram_rd_side" "(" ")";
+         |fifo_name "." "wr_data_in" "("expression")";
+         |fifo_name "." "wr_data_connect_top_wr_words_to_ifc" "("address_range")";
+         |fifo_name "." "wr_data_sram_wr_side" "(" ")";
+         |fifo_name "." "rd_cntl_pop" "("expression")";
+         |fifo_name "." "rd_cntl_pushback" "("signal_name")";
+         |fifo_name "." "rd_cntl_rd_stall" "("signal_name")";
+         |fifo_name "." "wr_cntl_push" "("expression")";
+         |fifo_name "." "wr_cntl_full" "("signal_name")";
+         |fifo_name "." "wr_cntl_wr_release" "("signal_name")";
+         |fifo_name "." "status_empty" "("signal_name")";
+         |fifo_name "." "status_lwmi" "("address")";
+         |fifo_name "." "status_hwm" "("address [,name]")";
+         |fifo_name "." "status_wr_addr_to_ifc" "("signal_name")";
+         |fifo_name "." "status_rd_addr_to_ifc" "("signal_name")";
+         |fifo_name "." "arch_credit" "(" ")";
+         |fifo_name "." "arch_rd_credit" "(" ")";
+         |fifo_name "." "arch_wr_credit" "(" ")";
+fifo_name ::= string;
+sinal_name ::= string;
+prefix_name ::= string;
+clock_name ::= string;
+reset_name ::= string;
+name ::= string;
+//expression, implementation_type, number_of_pipestages, all, address_range, address, fifo_address, range undefined
+
+9. CSL_INTERCONNECT
+
+csl_unit_stmt ::= "csl_unit" unit_object_name ";"
+                 |"scope"    unit_object_name ";"
+csl_unit_set_stmt ::= 
+          unit_object_name "." "add_instance"                                  "(" unit_object_name "," instance_object_name ")" ";"
+         |unit_object_name "." "add_port"                                      "(" ("input"|"output"|"inout") "," [bitrange ","] port_object_name ")" ";"
+         |unit_object_name "." "add_signal"                                    "(" ([("wire"|"reg") ","] [bitrange ","] signal_object_name )
+                                                                                |  signal_list_object_name
+                                                                               ")" ";"
+         |unit_object_name "." "add_module_parameter"                          "(" parameter_object_name "," default_value ")" ";"             
+         |unit_object_name "." "override_module_parameter"                     "(" parameter_object_name "," parameter_value ")" ";"        
+         |unit_object_name "." "set_unit_prefix"                               "(" prefix_string ["," ("ifc_only"|"local_only")] ")" ";" 
+         |unit_object_name "." "set_signal_prefix"                             "(" prefix_string ")" ";"
+         |unit_object_name "." "set_signal_prefix_local"                       "(" prefix_string ")" ";"
+         |unit_object_name "." "auto_connect_width_inference"                  "(" ")"   ";"
+         |unit_object_name "." "auto_connect_verilog_and_csl"                  "(" ")"   ";"
+         |unit_object_name "." "auto_connect_filter"                           "(" auto_connect_filter_enum ")"   ";"
+
+unit_object_name ::= identifier
+instance_object_name ::= identifier 
+port_object_name ::= identifier
+signal_object_name ::= identifier
+signal_list_object_name ::= identifier
+parameter_object_name ::= identifier
+prefix_string ::= identifier
+default_value ::= expression
+parameter_value ::= expression
+bitrange ::= "[" expression ":" expression "]"
+            |expression
+auto_connect_filter_enum ::= ???
+identifier ::= ALPHA (ALPHA | DIGIT | '$')*
+ALPHA ::= 'a'..'z' | 'A'..'Z' | '_' ;
+DIGIT ::= '0'..'9' ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+csl_signal_stmt ::= "csl_signal" signal_name ";"
+csl_signal_get_stmt ::=
+          [scope_name "."]signal_name "." "get_bitrange"                "(" ")" ";"
+         |signal_name "." "get_dim_bitrange"                            "(" dimmension_number ")" ";"
+
+
+
+csl_bitrange_stmt ::= "csl_bitrange" bitrange_object_name "(" (upper_limit "," lower_limit) | width_numeric_expression ")" ";"
+csl_bitrange_set_stmt ::=
+          bitrange_object_name "." "add_offset"                         "(" constant_numeric_expression ")" ";"
+         |bitrange_object_name "." "add_dim_offset"                     "(" dim "," consatant_numeric_expression ")" ";"
+         |bitrange_object_name "." "set_upper_index"                    "(" expression ")" ";"
+         |bitrange_object_name "." "set_lower_index"                    "(" expression ")" ";"
+
+
+
+
+
+
+
+csl_connect_stmt ::= "connect" signal_expression_lhs "_" signal_expression_rhs;
+signal_expression_lhs ::= signal | signal_expression_concatenation_lhs;
+signal_expression_rhs ::= signal_expression_lhs | expression;
+signal_expression_concatenation_lhs ::= "{"(signal_expression_lhs)+"}";
+csl_connect_set_stmt ::= 
+              parent_name "." "add_instance" "(" instance_name | instance_list ")";
+             |module_name "." "parameter" "(" parameter_name, default_value ")";
+             |instance_name "." "parameter_name" "(" parameter_value ")";
+             |[instance_name] "." signal_name [dimension];
+signal ::= instance_name                                // ???
+signal_name ::= ID | regex                                             
+parent_name ::= string
+module_name ::= string
+instance_name ::= ID | regex
+parameter_name ::= string
+ID ::= string
+dimension ::= range ["(" range ")"];
+//instance_list, default_value, parameter_value, range undefined
+
+csl_unit_stmt ::= "csl_unit" unit_name;
+csl_unit_set_stmt ::= 
+           unit_name "." "set_unit_prefix" "(" string ")";
+          |unit_name "." "instance" "(" instance_name ")" ;
+          |unit_name "." "instance" "(" unit_name, instance_name ")" ;
+          |unit_name "." "parameter" "(" parameter_name, default_value ")" ;
+          |unit_name "." "set_unit_prefix" "(" string ")" ;
+          |unit_name "." "instance" "(" instance_name ")" ;
+          |unit_name "." "instance" "(" unit_name, instance_name ")" ;
+          |unit_name "." "parameter" "(" parameter_name, default_value ")" ;
+          |unit_name "." "signal" "(" signal_name ")" ;
+          |unit_name "." "output" "(" signal_name ")" ;
+          |unit_name "." "inout" "(" signal_name ")" ;
+          |unit_name "." "input" "(" port_name ")" ;
+          |unit_name "." "signal_prefix" "(" string ")" ;
+          |unit_name "." "compare_level" "("  ")" ;
+          |unit_name "." "reverse" "("  ")" ;
+          |unit_name "." "signal_prefix" "(" string ")";
+          |unit_name "." "compare_level" "(" ")";
+          |unit_name "." "reverse" "(" ")";
+          |csim_unit_name "." "compare_level" "(" rtl_unit_name ")";
+          |rtl_unit_name "." "compare_level" "(" csim_unit_name ")";
+csl_signal_stmt ::= "csl_signal" csl_signal_name;
+                                              //"signal_new" "=" signal_name "." "split" "(" numeric_expression ")";
+csl_signal_set_stmt ::=
+           signal_name "." "set_width" "(" numeric_expression )";
+          |signal_name "." "set_width_x" "(" numeric_expression )";
+          |signal_name "." "set_width_y" "(" numeric_expression )";
+          |signal_name "." "set_width_z" "(" numeric_expression )";
+          |signal_name "." "set_width_dim" "(" numeric_expression )";
+          |signal_name "." "set_max_dim" "(" dimension_number )";
+          |signal_name "." "set_dim_width" "(" dimension_number, num_expr )";
+          |signal_name "." "signal_prefix" "(" string ")";
+          |signal_name "." "set_upper_index" "(" num_expr ")";
+          |signal_name "." "set_lower_index" "(" num_expr ")";
+          |signal_name "." "set_type" "(" csl_signal_type ")";
+          |signal_name "." "set_attr" "(" csl_signal_attr ")";
+          |signal_name "." "connect" "(" instance_list | unit_list ")";
+          |signal_name "." "merge" "(" merg_op "," signal_list ")";
+          |signal_name "." "invert" "(" signal_name ")";
+          |signal_name "." "buffer" "(" signal_name ")";
+          |signal_name "." "show_all_modules" "(" ")";           //show all modules the signal is connected to
+//numeric_expression, dimension_number, num_expr undefined
+csl_signal_get_stmt ::=
+           string_object "=" signal_name "." "get_unit_prefix" "(" string ")";
+          |bit_range_object "=" signal_name "." "get_bit_range" "(" ")";
+          |bit_range_object "=" signal_name "." "get_bit_range_plus_offset" "(" offset_value ")" ;
+          |int_object "=" signal_name "." "get_width" "("  ")" ;
+          |int_object "=" signal_name "." "get_width_x" "("  ")" ;
+          |int_object "=" signal_name "." "get_width_y" "("  ")" ;
+          |int_object "=" signal_name "." "get_width_z" "("  ")" ;
+          |int_object "=" signal_name "." "get_width_dim" "(" dimension_number, signal_name ")";
+          |int_object "=" signal_name "." "get_lower_index" "(" ")";
+          |int_object "=" signal_name "." "get_upper_index" "(" ")";
+          |string_object "=" signal_name "." "get_type" "(" ")";
+          |string_object "=" signal_name "." "get_attr" "(" ")";
+csl_signal_type ::= "wire" | "reg"
+csl_signal_attr ::= "wren"            //write_enable 
+                   |"en"              //enable 
+                   |"stall"           //stall
+                   |"pe"              //pipe_enable
+                   |"ps"              //pipe_stall
+                   |"ms"              //mux_select
+                   |"dec"             //decode_minterm/decode_maxterm
+                   |"tri"             //tristate
+                   |"wand"            //wired_and
+                   |"wor"             //wired_or
+                   |"clk"             //clock_signal
+                   |"rst"             //reset_signal
+csl_signal_or_port_set_stmt ::=
+           signal_name_or_port_name "." "connect" "(" signal_name_or_port_name ")";
+csl_instance_set_stmt ::=
+           instance_name "." "parameter_name" "(" parameter_value ")";
+          |instance_name "." "input" "(" input_list ")";
+          |instance_name "." "output" "(" output_list ")";
+input_list ::= signal_list                        //Is this OK?
+output_list ::= signal_list
+signal_name_or_port_name ::= string
+wire_formal_to_actual_map ::= 
+           "wire" bit_range "bar" "=" "wire" bit_range "foo";          // Initial command: wire [31:0] bar = wire [31:0] foo; Is the ebnf right?
+bit_range ::= range
+//foo [31:0] = csl_busplit (foo,4);
+//wire [31:0] bar_7, bar_6, bar_5, bar_4, bar_3, bar_2, bar_1, bar_0; (or bitblast (foo);)     What do I do with this?
+csl_unit_or_instance_set_stmt ::=
+           unit_or_instance_name "." "addSignal" "(" signal_name, bit_range ")";   //addSignal or add_signal?
+          |unit_or_instance_name "." "addSignal" "(" signal_name ")";              
+          |unit_or_instance_name "." "addSignal" "(" signal_name "," type ")";
+csl_bit_range_stmt ::= 
+           "csl_bit_range" bit_range_name "(" bit_range ")";
+          |"csl_bit_range" bit_range_name;
+          |"csl_bit_range" bit_range_name "(" number_expression ")";
+          |"csl_bit_range" bit_range_name "(" number_expression_y "," number_expression_x ")";
+          |"csl_bit_range" bit_range_name "(" number_expression_z "," number_expression_y "," number_expression_x ")";
+          |"csl_bit_range_plus_offset" bit_range_name "(" number_expresison "," offset ")";
+          |"csl_bit_range_plus_offset" bit_range_name "(" number_expression_y "," number_expression_x ","offset_x::offset_x ")";
+          |"csl_bit_range_plus_offset" bit_range_name "(" number_expression_y "," number_expression_x ","offset_y::offset_y ")";
+          |"csl_bit_range_plus_offset" bit_range_name 
+            "(" number_expression_y "," number_expression_x "," offset_y::offset_y "," offset_x::offset_x ")";
+          |"csl_bit_range_plus_offset" bit_range_name 
+            "(" number_expression_z "," number_expression_y "," number_expression_x "," offset_y::offset_y ")";
+csl_bit_range_set_stmt ::=
+           bit_range_name "." "bit_range" "(" bit_range ")";
+          |bit_range_name "." "width" "(" numeric_expression ")";
+          |bit_range_name "." "bit_range" "(" numeric_expression_x "," numeric_expression_z "," offset_z "::"offset_z ")";
+          |bit_range_name "." "bit_range_plus_offset" 
+           "(" number_expression_z "," number_expression_y "," number_expression_x "," offset_y "::"offset_y "," offset_x "::"offset_x ")";
+          |bit_range_name "." "bit_range_plus_offset" 
+           "(" number_expression_z "," number_expression_y "," number_expression_x "," offset_z "::"offset_z "," offset_x "::"offset_x ")";
+          |bit_range_name "." "bit_range_plus_offset" 
+           "(" number_expression_z "," number_expression_y "," number_expression_x "," offset_z "::"offset_z "," offset_y "::"offset_y ")";
+          |bit_range_name "." "bit_range_plus_offset" 
+           "(" number_expression_z "," number_expression_y "," number_expression_x "," offset_z "::"offset_z "," offset_y "::"offset_y "," 
+               offset_x "::"offset_x ")";                  //explain the offset_x::offset_x construct
+          |bit_range_name "." "set_msb" "(" num_expr ")";
+          |bit_range_name "." "set_lsb" "(" num_expr ")";
+          |bit_range_name "." "set_upper_index" "(" num_expr ")";
+          |bit_range_name "." "set_lower_index" "(" num_expr ")";
+csl_bit_range_get_stmt ::=
+           int_object bit_range_name "." "get_msb" "(" ")";
+          |int_object bit_range_name "." "get_lsb" "(" ")";
+          |int_object bit_range_name "." "get_lower_index" "(" ")";
+          |int_object bit_range_name "." "get_upper_index" "(" ")";
+number_expression_x ::= number_expression 
+number_expression_y ::= number_expression 
+number_expression_z ::= number_expression 
+offset_x ::= number_expression
+offset_y ::= number_expression
+offset_z ::= number_expression
+csl_signal_group_stmt ::= "csl_signal_group" signal_group_name;
+                         |"csl_signal_group" "(" lD ")";
+csl_signal_group_set_stmt ::=
+           signal_group_name "." "add_signal" "(" signal_name ")";
+          |signal_group_name "." "connect" "(" signal_name_in_group "," signal_name_to_connect_to ")";
+          |signal_group_name "." "líst" "(" signal_list ")";
+          |signal_group_name "." "add_signal" "(" signal_name ")";
+          |signal_group_name "." "delete_signal" "(" signal_name ")";
+signal_name_to_connect_to ::= signal_group_name "." signal_name_in_group;
+csl_interface_stmt ::= "csl_interface" interface_name;
+csl_interface_set_stmt ::= 
+           interface_name "." "verilog_type" "(" v_type ")";
+csl_interface_get_stmt ::=
+           port_list "=" interface_name "." "reverse" "(" ")"; //cannot be used for interfaces that have wand or wor signals
+csl_clock_set_stmt ::= "csl_clock" clock_name;
+csl_clock_set_stmt ::=
+           clock_name "." "frequency" "(" numeric_expression ")";
+          |clock_name "." "period" "(" numeric_expression ")";
+
+10. CSL_ISA
+
+csl_isa_stmt ::= "csl_isa" isa_name;
+csl_isa_set_stmt :: =
+           isa_name "." "width" "(" csl_range ")"; 
+          |isa_name "." "range_start" "(" constant_numeric_expression ")"; 
+          |isa_name "." "range_end" "(" constant_numeric_expression ")"; 
+          |isa_name "." "instruction" "(" instruction_name ")";     //that is the equivalent of a csl_instruction_stmt
+csl_instruction_set_stmt ::=
+           instruction_name "." "add_cell" "(" instruction_cell_name ")";
+csl_instructin_cell_set_stmt ::=
+           instruction_cell_name "." "opcode" "("  ")";   //this construct is also legal : instruction_name.instruction_cell_name.opcode()
+          |instruction_cell_name "." "add_opcode" "(" opcode_name, mnemonic, opcode_number ")"; 
+          |instruction_cell_name "." "datapath_select" "(" datapath_select_list_name ")"; 
+          |instruction_cell_name "." "enum" "(" enum_list ")";
+isa_name ::= string
+instruction_name ::= string
+instruction_cell_name ::= string
+opcode_name ::= string
+datapath_select_list_name ::= string
+csl_datapath_select_list_stmt ::= "csl_datapath_select_list" datapath_select_list_name; 
+csl_datapath_select_list_set_stmt ::=
+           datapath_select_list_name "." "add_element" "(" enum, signal_name, constant_numeric_expression ")"; 
+
+11. CSL_MBIST
+
+csl_mbist_stmt ::= "csl_mbist" mbist_name;
+csl_mbist_set_stmt ::= 
+           mbist_name "." "test_control" "(" tcn ")";
+          |mbist_name "." "addr_word_width" "(" numeric_expression ")";
+csl_mbist_name ::= string
+tcn ::= string                                //test_control_name
+
+12. CSL_MEMORY_MAP
+
+csl_memory_map_stmt ::= "csl_memory_map" memory_map_name;
+csl_memory_map_set_stmt ::=
+           memory_map_name "." "alignment" "(" number ")";
+          |memory_map_name "." "endianess" "(" endianess_type ")";
+          |memory_map_name "." "type" "(" memory_map_type ")";
+          |memory_map_name "." "range" "(" range ")";
+          |memory_map_name "." "attributes" "(" attribute_list ")";
+          |memory_map_name "." "type" "(" type_name ")";
+          |memory_map_name "." "group_name" "(" me_group_name ")";
+          |memory_map_name "." "abs_address" "(" number ")";
+          |memory_map_name "." "relative_address" "(" number ")";
+          |memory_map_name "." "cell" "(" memory_map_cell_name ")";
+          |memory_map_name "." "enum" "(" enum_name = value ")";
+          |memory_map_name "." "base_address" "(" address ")";
+          |memory_map_name "." "limit_address" "(" address ")";
+          |memory_map_name "." "reserved_address_range" "(" address_low, address_high ")";
+          |memory_map_name "." "memory_range_width" "(" constant_numeric_expression ")";
+          |memory_map_name "." "name_max_length" "(" length ")";
+          |memory_map_name "." "global_prefix_name" "(" name ")";
+          |memory_map_name "." "local_suffix_name" "(" name ")";
+          |memory_map_name "." "local_prefix_name" "(" name ")";
+          |memory_map_name "." "local_suffix_name" "(" name ")";
+          |memory_map_name "." "word_width" "(" numeric_expression ")";
+          |memory_map_name "." "num_words" "(" numeric_expression ")";
+          |memory_map_name "." "next_addr" "(" numeric_expression ")";
+          |memory_map_name "." "next_addr" "(" memory_map_name ")";
+          |memory_map_name "." "unit_base_addr" "(" numeric_expression ")";
+          |memory_map_name "." "addr_inc" "(" numeric_expression ")";
+          |memory_map_name "." "addr_lower_limit" "(" numeric_expression ")";
+          |memory_map_name "." "addr_upper_limit" "(" numeric_expression ")";
+          |memory_map_name "." "cell_name.attributes" "(" attribute_list ")";
+          |memory_map_name "." "cell_name.cell" "(" cell_name ")";
+          |memory_map_name "." "cell" "(" cell_name ")";
+          |memory_map_name "." "cell_range" "(" range ")";
+          |memory_map_name "." "cell_attributes" "(" attrribute_list ")";
+          |memory_map_name "." "range" "(" bit_range ")";
+          |memory_map_name "." "width" "(" constant_numeric_expression ")"
+          |memory_map_name "." "msb" "(" constant_numeric_expression ")";
+          |memory_map_name "." "lsb" "(" constant_numeric_expression ")";
+          |memory_map_name "." "init_val" "(" constant_numeric_expression ")";
+          |memory_map_name "." "set_val" "(" constant_numeric_expression ")";
+          |memory_map_name "." "reset_val" "(" constant_numeric_expression ")";
+          |memory_map_name "." "clr_val" "(" constant_numeric_expression ")";
+          |memory_map_name "." "const" "(" const_name, constant_numeric_expression ")";
+          |memory_map_name "." "subrange" "(" subrange ")";
+          |memory_map_name "." "abs_address" "(" number ")";
+          |memory_map_name "." "relative_address" "(" memory_map_name "+" numeric_expression ")";
+subrange ::=
+           subrange_name "." "width" "(" decimal_number | "(" msb "("  ")" - lsb "("  ")" ")"  ")"
+          |subrange_name "." "msb" "("  ")";
+          |subrange_name "." "lsb" "("  ")";
+          |subrange_name "." "init_val" "(" constant_numeric_expression ")";
+          |subrange_name "." "set_val" "(" constant_numeric_expression ")";
+          |subrange_name "." "const" "(" const_name, constant_numeric_expression ")";
+csl_memory_map_cell_set_attr ::=
+           memory_map_cell_name "." "type" "(" memory_map_type ")";
+          |memory_map_cell_name "." "range" "(" range ")";
+          |memory_map_cell_name "." "attributes" "(" attrribute_list ")";
+//csl_addr_alignement(<cellname> <address>);
+
+13. CSL_PIPEINE
+
+csl_pipeline_stmt ::= "csl_pipeline" pipeline_name;
+csl_pipeline_set_stmt ::= 
+           pipeline_name "." "stall" "(" stall_signal_name0 ")";
+          |pipeline_name "." "stage" "(" stage_name0 ")";
+          |pipeline_name "." "prefix" "(" PREFIX_NAME_CONV_TYPE ")";
+          |pipeline_name "." "prefix" "(" prefix_name ")";
+          |pipeline_name "." "stage_number" "(" numeric_expression ")";
+          |pipeline_name "." "total_stages" "(" numeric_expression ")";
+          |pipeline_name "." "type" "(" PIPELINE_ATTR ")";
+          |pipeline_name "." "type" "(" PIPELINE_TYPE ")";
+          |pipeline_name "." "associate_pipeline" "(" pipeline_name1 ")";
+          |pipeline_name "." "branch" "(" list_of_pipestage_names ")";
+          |pipeline_name "." "merge" "(" list_of_pipestage_names ")";
+          |pipeline_name "." "replicate" "(" new_pipeline_name ")";
+          |pipeline_name "." "ordered_list" "(" list_of_pipestage_names ")";
+          |pipeline_name "." "inline_file" "(" pipestage_name, file_name ")";
+          |pipeline_name "." "inline_code" "("  code_statements ")";
+          |pipeline_name "." "reset_init_value" "(" init_value ")";
+          |pipeline_name "." "clear_init_value" "(" init_value ")";
+          |pipeline_name "." "stall" "(" stall_signal_name0 ")";
+          |pipeline_name "." "stage" "(" stage_name0 ")";
+          |pipeline_name "." "prefix" "(" PREFIX_NAME_CONV_TYPE ")";
+          |pipeline_name "." "prefix" "(" prefix_name ")";
+          |pipeline_name "." "stage_number" "(" numeric_expression ")";
+          |pipeline_name "." "total_stages" "(" numeric_expression ")";
+          |pipeline_name "." "type" "(" PIPELINE_ATTR ")";
+          |pipeline_name "." "type" "(" PIPELINE_TYPE ")";
+          |pipeline_name "." "associate_pipeline" "(" pipeline_name1 ")";
+          |pipeline_name "." "branch" "(" list_of_pipestage_names ")";
+PREFIX_NAME_CONV_TYPE ::= "NO_PREFIX"
+                         |"PIPELINE_NAME"
+                         |"PIPESTAGE_NAME"
+                         |"PIPELINE_PIPESTAGE_NAME"
+PIPELINE_ATTR ::= "NO_STALL"
+                 |"STALL"
+PIPELINE_TYPE ::= "VALID"
+                 |"DATA"
+                 |"CONTROL"
+                 |"OTHER"
+PREFIX_NAME_CONV_TYPE ::= "NO_PREFIX"
+                         |"PIPELINE_NAME"
+                         |"PIPESTAGE_NAME"
+                         |"PIPELINE_PIPESTAGE_NAME"
+csl_pipestage_stmt ::= "csl_pipestage" pipestage_name;
+csl_pipestage_set_stmt ::=
+           pipestage_name "." "clear_init_value" "(" init_value ")";
+          |pipestage_name "." "reset_init_value" "(" init_value ")";
+
+13. CSL_REGISTER_FILE
+
+csl_register_file_stmt ::= "csl_register_file" register_file_name
+csl_register_file_set_stmt ::= 
+          register_file_name "." "width" "(" expression ")";
+         |register_file_name "." "depth" "(" expression ")";
+         |register_file_name "." "module" "("  ")";
+         |register_file_name "." "inline" "("  ")";
+         |register_file_name "." "library" "(" library_file_name ")";
+         |register_file_name "." "rd_en" "("  ")";
+         |register_file_name "." "bypass" "("   ")" ;
+         |register_file_name "." "output_reg" "(" register_field_name ")";  // this is the register declaration
+         |register_file_name "." "output_individual_reg_fields" 
+            "(" register_field_name | register_field_list | "ALL_REGS" | "ALL_REGS_FILES" ")";
+         |register_file_name "." "output_individual_reg_fields" "("  register_field_name ")";
+         |register_file_name "." "output_ff" "(" ")";
+         |register_file_name "." "input_ff" "(" ")";
+         |register_file_name "." "valid" "("  ")";
+         |register_file_name "." "event" "(" "("rd | wr | rd_wr")" "("register_field_name | "ALL_REGS" ")" ")";
+         |register_file_name "." "event" "(" register_name ")";
+         |register_file_name "." "event" "(" register_field_name] ")";
+         |register_file_name "." "out_prefix" "(" prefix [ "," "ALL_REGS" | register_field_name ] ")";
+         |register_file_name "." "out_prefix" "(" register_name ")";
+         |register_file_name "." "out_prefix" "(" register_field_name ")";
+         |register_file_name "." "in_prefix" "(" prefix, (register_name | "ALL_REGS" ")" ")";
+         |register_file_name "." "in_prefix" "(" register_name ")";
+         |register_file_name "." "in_prefix" "(" prefix, "(" register_name | "ALL_REGS" ")" ")";
+         |register_file_name "." "starting_address" "(" address_expression ")";
+         |register_file_name "." "register_group group_name" "(" [all | register_field_name] ")";
+         |register_file_name "." "valid_bit" "(" or_all_regs | register_field_name ")";
+         |register_file_name "." "read_channel" "(" [register_field_name | prefix] ")";
+         |register_file_name "." "write_channel" "(" [register_field_name | prefix] ")";
+         |register_file_name "." "connect_registers_fields_to_ios" "(" [all | register_fieldi_name] ")";
+         |register_file_name "." "do_not_connect_registers_fields_to_ios" "(" [all | register_field_name] ")";
+         |register_file_name "." "connect_input_to_registers_fields" "(" [all | register_field_name] ")";
+         |register_file_name "." "clock" "(" clock_name ")";
+         |register_file_name "." "named_register" "(" register_field_name, address ")";
+         |register_file_name "." "connect_registers_fields_to_outputs" "(" [all | register_field_name] ")";
+         |register_file_name "." "register_fields.explicitly_cleared" "(" [[register_name | register_address], signal_name] ")";
+         |register_file_name "." "register_fields.create_wr_event_list" "("  single_pulse, [all | register_field] ")";
+         |register_file_name "." "register_fields.create_rd_event_list" "("  single_pulse, [all | register_field] ")";
+         |register_file_name "." "wr_addr" "(" ID ")";
+         |register_file_name "." "rd_addr" "(" IO ")";
+         |register_file_name "." "in_prefix" "(" string ")";
+
+14. CSL_REGISTER, CSL_CELL
+
+csl_register_stmt ::= "csl_register" register_name;
+                     |"csl_register" status;  
+csl_register_set_stmt ::=
+          register_name "." "cell" "(" cell_name, bitrange, attributes ")";
+         |register_name "." "clock_name" "(" clock_name ")";
+         |register_name "." "reset_name" "(" reset_name ")";
+         |register_name "." "semaphore" "(" semaphore_signal_name ")";
+         |register_name "." "atomic" "(" semaphore_signal_name ")";
+         |register_name "." "interrupt" "("   ")";
+         |register_name "." "counter" "("   ")";
+         |register_name "." "event" "(" signal_name, register_bit_to_set ")"; 
+         |register_name "." "cell" "(" cell_name ")";
+         |status "." "cell" "(" unitx, bit_range, attributes ")";
+         |status "." "control" "(" set [6:3] csl_attr__rw ")";
+         |status "." "control" "(" [3] csl_attr__rw ")";
+         |status "." "control" "(" clr [0] csl_attr__rw ")";
+csl_cell_stmt ::= "csl_cell" cell_name ["(" number ")" | "(" bit_range ")"]; // 3 different types of constructors
+csl_set_stmt ::=                                                             // I don't know if I should use number or integer
+          cell_name "." "memory_map" "(" memory_map_name ")";
+         |cell_name "." "enum" "(" enum_name "=" value ")";
+         |cell_name "." "range" "(" range ")";
+register_name ::= string
+
+15. CSL_SRAM
+
+csl_sram_stmt ::= "csl_sram" sram_name;
+csl_sram_set_stmt ::=
+          sram_name "." "rd_clk" "(" rd_clk_name ")";
+         |sram_name "." "wr_clk" "(" wr_clk_name ")";
+         |sram_name "." "wr_clk_frequency" "(" numeric_expression ")";
+         |sram_name "." "rd_clk_frequency" "(" numeric_expression ")";
+         |sram_name "." "rd_clk_period" "(" numeric_expression ")";
+         |sram_name "." "wr_clk_period" "(" numeric_expression ")";
+         |sram_name "." "word_width" "(" numeric_expression ")";
+         |sram_name "." "wr_data" "(" address, data ")";
+         |sram_name "." "rd_data" "(" address ")";
+         |sram_name "." "num_words" "(" numeric_expression ")";
+         |sram_name "." "output_reg" "("  ")";
+         |sram_name "." "pipestages" "(" numeric_expression ")";
+         |sram_name "." "number_of_banks" "(" numeric_expression ")";
+         |sram_name "." "aspect_ratio" "(" x_numeric_expression, y_numeric_expression ")";
+         |sram_name "." "bit_cell_type" "(" cross_coupled_invertor | capacitor_cell ")";
+         |sram_name "." "smaller_decoder" "("  ")";
+         |sram_name "." "faster_access_time" "("  ")";
+         |sram_name "." "area_target" "(" x,y ")";
+         |sram_name "." "async" "("  ")";
+         |sram_name "." "asynch_design" "("  ")";
+         |sram_name "." "clocked_design" "("  ")";
+         |sram_name "." "dfm" "(" dfm_name ")";
+         |sram_name "." "async_pulse" "(" signal_name ")";
+         |sram_name "." "operating_current" "(" numeric_expression ")";
+         |sram_name "." "standby_current" "(" numeric_expression ")";
+         |sram_name "." "output_leakage_current" "(" numeric_expression ")";
+         |sram_name "." "logic_input_high_voltage" "(" numeric_expression ")";
+         |sram_name "." "logic_input_low_voltage" "(" numeric_expression ")";
+         |sram_name "." "logic_output_high_voltage" "(" numeric_expression ")";
+         |sram_name "." "logic_output_low_voltage" "(" numeric_expression ")";
+         |sram_name "." "rd_cycle_time" "(" numeric_expression ")";
+         |sram_name "." "addr_access_time" "(" numeric_expression ")";
+         |sram_name "." "cs_access_time" "(" numeric_expression ")";
+         |sram_name "." "output_hold_from_addr_change_time" "(" numeric_expression ")";
+         |sram_name "." "chip_selection_to_active_output_time" "(" numeric_expression ")";
+         |sram_name "." "chip_deselection_to_high_impedance_output_time" "(" numeric_expression ")";
+         |sram_name "." "wr_cycle_time" "(" numeric_expression ")";
+         |sram_name "." "cs_to_end_of_wr_time" "(" numeric_expression ")";
+         |sram_name "." "addr_valid_to_end_of_wr_time" "(" numeric_expression ")";
+         |sram_name "." "addr_setup_time" "(" numeric_expression ")";
+         |sram_name "." "wr_pulse_width" "(" numeric_expression ")";
+         |sram_name "." "wr_recovery_time" "(" numeric_expression ")";
+         |sram_name "." "data_valid_to_end_of_wr_time" "(" numeric_expression ")";
+         |sram_name "." "data_hold_time" "(" numeric_expression ")";
+         |sram_name "." "wr_en_to_high_output_impedance_time" "(" numeric_expression ")";
+         |sram_name "." "output_active_from_end_of_wr_time" "(" numeric_expression ")";
+
+16. CSL_TESTBENCH
+
+csl_testbench_stmt ::= "csl_testbench" testbench_name;
+csl_testbench_set_stmt ::=
+          testbench_name "." "instance" "(" instance_name ")";
+         |testbench_name "." "module_name" "(" module_name ")";
+         |testbench_name "." "clock_name" "(" clock_name ")";
+         |testbench_name "." "clock_period" "(" number_or_expression ")";
+         |testbench_name "." "reset_name" "(" reset_name ")";
+         |testbench_name "." "reset_spec" "(" start_time, stop_time ")";
+         |testbench_name "." "stall_name" "(" stall_name ")";
+         |testbench_name "." "event_name" "(" event_name, event_expression ")";
+         |testbench_name "." "tb_type" "(" diagnostic | stim_expect | serial_bus ")";
+         |testbench_name "." "gen_waves" "(" wave_type ")";
+         |testbench_name "." "vector_transport" "(" PLI | file ")";
+         |testbench_name "." "mem_element " "(" instance_name ")";
+         |testbench_name "." "mem_file" "(" file_name ")";
+         |testbench_name "." "mem_elem_init" "(" ")";
+         |testbench_name "." "clk_period " "(" real_number ")";
+csl_archstatemem_stmt ::= "csl_archstatemem" archstatemem_name;
+csl_archstatemem_set_stmt ::=
+          archstatemem "." "memory_elem_name" "(" string_name ")";
+         |archstatemem "." "filename " "(" filename ")";
+         |archstatemem "." "instance_name" "(" instance ")";
+         |archstatemem "." "clk" "(" clock_name ")";
+         |archstatemem "." "period" "(" real_number ")";
+         |archstatemem "." "event" "(" event_name ")";
+         |archstatemem "." "instance_name " "(" instance_name ")";
+csl_vector_stmt ::= "csl_vector" vector_name;
+csl_vector_set_stmt ::= 
+          vector_name "." "vec_name" "(" string ")";
+         |vector_name "." "event" "(" event_name ")";
+         |vector_name "." "vector_clock" "(" alu_clk ")";
+         |vector_name "." "vector_reset" "(" reset_name ")";
+         |vector_name "." "vector_write_event" "(" event_name ")";
+         |vector_name "." "vector_read_event" "(" event_name ")";
+         |vector_name "." "add_signal" "(" signal_name | signal_list ")";
+         |vector_name "." "vector_id" "(" number ")";
+         |vector_name "." "vector_comment" "(" string ")";
+         |vector_name "." "vector_direction" "("  in | out  ")";
+         |vector_name "." "vector_max_num" "(" numeric_expression ")";
+csl_dut_mem_stmt ::= "csl_dut_mem" csl_dut_mem_name;
+csl_dut_mem_set_stmt ::=
+          dut_mem_name "." "wait_stmt" "(" event_name ")";
+         |dut_mem_name "." "instance_name " "(" instance ")";
+         |dut_mem_name "." "memfilename" "(" file_name ")";
+         |dut_mem_name "." "meminitstring" "(" bin_or_hex_init_string ")";
+         |dut_mem_name "." "mem_ascii_radix" "(" hex_num | bin_num ")";
+         |dut_mem_name "." "mem_file_format" "(" ASCII | binary ")";
+         |dut_mem_name "." "testbench_name" "(" testbench_name ")";
+         |dut_mem_name "." "random_pid_init" "("  ")";
+
+17. CSL_COMMAND_SHELL
+
+csl_module_stmt ::= "csl_module" csl_module_name
+csl_module_set_stmt ::= 
+          csl_module_name "." "add_signal" "(" signal_name ")";
+         |csl_module_name "." "set_as_current" "(" current_scope_name ")";
+         |csl_module_name "." "add_to_hierarchy" "(" ")";
+         |csl_module_name "." "show_all_signals" "(" ")";
+
+        

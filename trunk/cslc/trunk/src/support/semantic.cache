@@ -1,0 +1,16 @@
+;; Object support/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "support/"
+  :tables (list 
+   (semanticdb-table "singleton.h"
+    :major-mode 'c-mode
+    :tags 'nil
+    :file "singleton.h"
+    :pointmax 4864
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "semantic.cache"
+  :semantic-tag-version "1.4.4"
+  :semanticdb-version "1.4.4"
+  )

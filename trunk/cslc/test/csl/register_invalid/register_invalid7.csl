@@ -1,0 +1,17 @@
+//Petronela
+csl_register rg{
+  rg(){
+    set_range(0,3);
+    set_width(16);//error is already set_range
+    set_start_value(3);
+
+  }
+};
+
+csl_unit u1{
+  rg rg;
+  u1(){
+    
+  }
+};
+

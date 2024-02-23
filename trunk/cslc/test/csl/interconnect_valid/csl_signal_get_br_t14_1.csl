@@ -1,0 +1,12 @@
+//author: Ines
+//testing: csl_unit, csl_signal
+
+csl_unit test {
+  
+csl_signal sgn61,sgn62,sgn63,sgn64;
+
+  test(){
+    sgn64 = sgn62;
+    sgn61 = sgn63;
+  }
+};

@@ -1,0 +1,359 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="GENERATOR" content="Quadralay WebWorks Publisher Standard Edition 7.0.6.1257">
+<meta name="TEMPLATEBASE" content="Dynamic HTML Standard Edition">
+<meta name="LASTUPDATED" content="09/10/07 12:20:08">
+<link rel="StyleSheet" href="standard.css" type="text/css" media="screen">
+<title>1.1 CSL Memory Command Summary  </title>
+</head>
+
+<body background="images/backgrnd.gif">
+
+<table width="331" border="0" align="right" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><a href="csl_language.html"><img src="images/navtoc.gif" width="84" height="23"
+    border="0" alt="TOC"> </a></td>
+    <td><a href="csl_memory_map.html"><img src="images/navprev.gif" width="81" height="23"
+    border="0" alt="PREV"> </a></td>
+    <td><a href="csl_isa.html"><img src="images/navnext.gif" width="81" height="23"
+    border="0" alt="NEXT"> </a></td>
+    <td><a href="CmdBookLOF.html"><img src="images/navidx.gif" width="85" height="23"
+    border="0" alt="INDEX"> </a></td>
+  </tr>
+</table>
+
+<p><img src="images/wwplogo.gif" width="122" height="63" alt="Put your logo here!"></p>
+<hr align="left">
+
+<blockquote>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 2pt; margin-left: 0pt; margin-right: 0pt; margin-top: 6pt; text-align: justify; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="623583"> </a>CHAPTER 1   CSL Memory<br>
+</div>
+<p class="Body">
+  <a name="647475"> </a>All rights reservedCopyright  ©2006 Fastpath Logic, Inc. Copying in any form without the expressed written permission of Fastpath Logic, Inc is prohibited
+</p>
+<p class="Body">
+  <a name="646718"> </a>
+</p>
+<p class="Body">
+  <a name="657741"> </a>
+</p>
+<p class="Body">
+  <a name="657765"> </a>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <caption><a name="669260"> </a><div class="TableTitle">TABLE 1.1  Chapter Outline</div></caption>
+  <tr>
+    <td><a name="669275"> </a><div class="CellBody"><a href="csl_memory.html#672511">&#160;1.1  CSL Memory Command Summary</a></div></td>
+  </tr>
+  <tr>
+    <td><a name="669280"> </a><div class="CellBody"><a href="csl_memory.html#673996">&#160;1.2  CSL Memory Commands</a></div></td>
+  </tr>
+</table>
+
+
+
+
+</p>
+<p class="Body">
+  <a name="680146"> </a>
+</p>
+<h2 class="Heading1">
+  <a name="672511"> </a>1.1  CSL Memory Command Summary
+</h2>
+<p class="Body">
+  <a name="673781"> </a>
+</p>
+<p class="Body">
+  <a name="680404"> </a>CSL Memory
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680411"> </a><a href="csl_memory.html#680317">initialize(filename);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680406"> </a><a href="csl_memory.html#680322">initialize_random_values(seed_value);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="673979"> </a><a href="csl_memory.html#680335">initialize_random(value);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680431"> </a><a href="csl_memory.html#680338">set_num_rd_ifc(numeric expression);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680299"> </a><a href="csl_memory.html#680327">set_num_wr_ifc(numeric expression);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="673981"> </a><a href="csl_memory.html#680527">add_logic(reset);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680526"> </a><a href="csl_memory.html#680542">add_logic(clock);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="673982"> </a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="673983"> </a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="673994"> </a><br>
+</div>
+<h2 class="Heading1">
+  <a name="673996"> </a>1.2  CSL Memory Commands
+</h2>
+<p class="Body">
+  <a name="674073"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Memory</span>
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680317"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">initialize</span>(filename);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680349"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="680463"> </a>Use the values in the file to initialize a memory  in the C++ simulator or a DUT memory instance in the test bench.
+</p>
+<p class="Body">
+  <a name="680602"> </a>                                                                                                           [ <a href="csl_memory.html#672511">CSL Memory Command Summary</a> ]
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680351"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="680352"> </a>//
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680347"> </a>Csl code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680523"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680524"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680525"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680348"> </a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680322"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">initialize_random_values</span>(seed_value);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680358"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="680474"> </a>Initialize each memory location in a memory with random values in the C++ simulator or a DUT memory instance in the test bench. Use the <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">seed_value</span> to initialize the random number generator.
+</p>
+<p class="Body">
+  <a name="680617"> </a>                                                                                                           [ <a href="csl_memory.html#672511">CSL Memory Command Summary</a> ]
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680360"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="680361"> </a>//
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680357"> </a>Csl code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680493"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680494"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680495"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680335"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">initialize_random</span>(value); <br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680366"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="680499"> </a>Use the same value to initialize each memory location in the memory in the C++ simulator or a DUT memory instance in the test bench.
+</p>
+<p class="Body">
+  <a name="680629"> </a>                                                                                                           [ <a href="csl_memory.html#672511">CSL Memory Command Summary</a> ]
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680369"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="680370"> </a>//
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680514"> </a>Csl code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680515"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680516"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680517"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680367"> </a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680338"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">set_num_rd_ifc</span>(numeric expression);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680375"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="680443"> </a>Sets the number of the read interfaces generated in the memory unit.
+</p>
+<p class="Body">
+  <a name="680636"> </a><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">                                                                                                           [ </span><a href="csl_memory.html#672511"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Memory Command Summary</span></a><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> ]</span>
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680378"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="680379"> </a>//
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680376"> </a>Csl code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680520"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680521"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680522"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680327"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">set_num_wr_ifc</span>(numeric expression);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680384"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="680459"> </a>Sets the number of the write interfaces generated in the memory unit.
+</p>
+<p class="Body">
+  <a name="680648"> </a><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">                                                                                                           [ </span><a href="csl_memory.html#672511"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Memory Command Summary</span></a><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> ]</span>
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680386"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="680387"> </a>//
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680538"> </a>Csl code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680539"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680540"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680541"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680527"> </a>add_logic(reset);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680544"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="680545"> </a>This is an  reset command. When the reset signal is on the low level (logic "0") the memory is filled up with 0 values, the clock signal edge doesn't matter.
+</p>
+<p class="Body">
+  <a name="680656"> </a><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">                                                                                                           [ </span><a href="csl_memory.html#672511"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Memory Command Summary</span></a><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> ]</span>
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680546"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="680547"> </a>//
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680548"> </a>Csl code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680549"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680550"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680551"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680542"> </a>add_logic(clock);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680576"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="680577"> </a>Adds a clock signal  to a memory. 
+</p>
+<p class="Body">
+  <a name="680664"> </a><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">                                                                                                           [ </span><a href="csl_memory.html#672511"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Memory Command Summary</span></a><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> ]</span>
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680578"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="680579"> </a>//
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680580"> </a>Csl code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680581"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680582"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680583"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="680574"> </a><br>
+</div>
+</blockquote>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1">
+    <a href="http://www.webworks.com"><img src="images/webworks.gif" width="150" height="20" border="0"></a><br>
+    Quadralay Corporation<br>
+    http://www.webworks.com<br>
+    Voice: (512) 719-3399<br>
+    Fax: (512) 719-3606<br>
+    <a href="mailto:sales@webworks.com">sales@webworks.com</a><br>
+    </font></td>
+  </tr>
+</table>
+
+<table width="331" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><a href="csl_language.html"><img src="images/navtoc.gif" width="84" height="23" border="0"
+    alt="TOC"> </a></td>
+    <td><a href="csl_memory_map.html"><img src="images/navprev.gif" width="81" height="23" border="0"
+    alt="PREV"> </a></td>
+    <td><a href="csl_isa.html"><img src="images/navnext.gif" width="81" height="23" border="0"
+    alt="NEXT"> </a></td>
+    <td><a href="CmdBookLOF.html"><img src="images/navidx.gif" width="85" height="23" border="0"
+    alt="INDEX"> </a></td>
+  </tr>
+</table>
+
+</body>
+</html>

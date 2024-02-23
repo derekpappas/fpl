@@ -1,0 +1,3 @@
+//is not legal to set a field like enum_item
+csl_field field(3);
+csl_enum enum{field};

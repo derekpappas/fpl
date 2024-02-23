@@ -1,0 +1,32 @@
+//oanab
+//31 ian 2008
+//ss connection between ports with same direction
+
+csl_interface ifc1 {
+  csl_port x(output,4),y(output);
+  ifc1 () {}
+};
+
+csl_interface ifc2 {
+  csl_port a(input),b(output,4);
+  ifc2 () {}
+};
+
+csl_unit u1 {
+  ifc1 ifc1;
+  csl_signal s1(wire,4),s2; 
+  u1 () {}
+};
+
+csl_unit u2 {
+  ifc2 ifc2;
+  u2 () {}
+};
+
+csl_unit u {
+  u1 u1;
+  u2 u2;
+  u () {
+    u1.ifc1.x.connect(u2.ifc2.b); //ports x and b have the same direction
+  }
+};

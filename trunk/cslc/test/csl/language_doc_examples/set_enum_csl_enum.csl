@@ -1,0 +1,13 @@
+//Monica
+csl_enum eee{
+  ADD,
+  SUB
+    };
+
+csl_field fd{
+  fd(){
+    set_width(4);
+     set_enum( eee);
+     
+  }
+};

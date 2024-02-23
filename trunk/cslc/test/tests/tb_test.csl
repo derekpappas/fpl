@@ -1,0 +1,65 @@
+csl_unit a {
+
+    csl_port in(input,wire,3);
+    csl_port in1(input,3);	
+    csl_port out(output,wire,2);
+    csl_port out2(output,wire, 4);
+    csl_port clk(input);
+    csl_signal s_in(3),s_out(2),s_out2(4),s_clk;
+    a () {
+
+        clk.set_attr(clock);
+	s_out = 2'b11;	
+        s_out2 = 4'b0111;
+        s_in = in & in1;
+       
+        out = s_out;
+	out2 = s_out2;	
+        s_clk = clk;
+
+    }
+
+};
+
+
+csl_vector stim {
+
+    stim () {
+
+        set_unit_name(a);
+        set_direction(input);
+        set_vc_capture_edge_type(rise);
+	exclusion_list(in1);	
+
+    }
+
+};
+
+csl_vector exp {
+
+    exp () {
+
+        set_unit_name(a);
+        set_direction(output);
+        set_vc_capture_edge_type(rise);
+	include_only(out2);	
+    }
+
+};
+
+
+csl_testbench tb {
+
+    a a0(.clk(clk));
+	
+    csl_signal clk(reg);
+    csl_signal rst(reg);
+    tb () {
+
+        clk.set_attr(clock);
+        add_logic(clock,clk,20,ns);
+	set_testbench_verilog_filename("testbench");
+	add_logic(generate_waves,"wave.fsdb", vcd);		
+    }
+
+};

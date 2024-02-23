@@ -1,0 +1,11 @@
+csl_register pcak1{
+    pcak1(){
+     init_value(6);
+  }
+};
+csl_memory_map_page vmpm1{
+    vmpm1(){
+     add(pcak1, "wgiy1", 1);
+     set_data_word_width(5);
+  }
+};

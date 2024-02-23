@@ -1,0 +1,10 @@
+//l_field field {
+//field() {
+//  set_offset(10);
+//}
+//
+csl_field field1{
+  field1() {
+    set_offset(10);
+  }
+};

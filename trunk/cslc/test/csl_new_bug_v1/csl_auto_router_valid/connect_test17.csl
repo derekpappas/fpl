@@ -1,0 +1,57 @@
+//Monica
+//31 january 2008
+
+csl_interface ifc1{
+  csl_port p1(output,4);
+  ifc1(){}
+};
+csl_interface ifc2{
+  csl_port p1(output,4),p2(output,2),p3(output);
+  ifc1 ifc1; 
+ ifc2(){}
+};
+csl_interface ifc3{
+  csl_port p1(output,4),p2(output,2), p4(output);
+  ifc2 ifc2; 
+ ifc3(){}
+};
+
+csl_interface ifc4{
+  csl_port p1(output,4),p2(output,2),p5(output);
+  ifc3 ifc3;
+  ifc4(){}
+};
+csl_unit a1{
+  csl_port out1(output,4),out2(output),in1(input,4),in2(input);
+  a1(){}
+};
+csl_unit a2{
+  csl_port out1(output,2),out2(output),in1(input,2),in2(input);
+  a2(){}
+};
+csl_unit a3{
+  csl_port out(output),in(input);
+  a3(){}
+};
+
+csl_unit t{
+  csl_port p1(input,4),p2(input,2),p3(input); 
+  csl_signal s1(6),s2(10);
+  a1 a1;
+  a2 a2;
+  a3 a3;
+  ifc4 ifc4;
+  t(){
+    a1.out1.connect_by_name(ifc4.p1);
+    a1.out2.connect_by_name(ifc4.p5);
+    a1.in1.connect_by_name(p1);
+    a1.in2.connect_by_name(p3);
+    a2.out1.connect_by_name(ifc4.p2);
+    a2.out2.connect_by_name(ifc4.ifc3.p4);
+    a2.in1.connect_by_name(p2);
+    a2.in2.connect_by_name(p3);
+    a3.out.connect_by_name(ifc4.ifc3.ifc2.p3);
+    a3.in.connect_by_name(p3);
+    s1 = {ifc4.ifc3.p1,ifc4.ifc3.p2};
+    s2 = {ifc4.ifc3.ifc2.p1,ifc4.ifc3.ifc2.p2,ifc4.ifc3.ifc2.ifc1.p1};
+  }};

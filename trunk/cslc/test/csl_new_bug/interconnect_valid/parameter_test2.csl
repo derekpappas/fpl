@@ -1,0 +1,23 @@
+//Monica
+csl_unit u_ff{
+  csl_parameter width(1);
+  csl_port d(input,width);
+  csl_port q(output,width);
+  csl_port reset(input),enable(input),clk(input);
+  u_ff(){
+ //   q=(reset)? d : {width{1}};
+  }
+};
+
+csl_unit u_dep{
+  csl_signal reset,enable,clk;
+  csl_signal d1(4),d2(8),d3(16); 
+  csl_signal q1(4),q2(8),q3(16);
+
+  u_ff  #(4)  ff1(.d(d1),.q(q1),.reset(reset),.enable(enable),.clk(clk));  
+  u_ff  #(8)  ff2(.d(d2),.q(q2),.reset(reset),.enable(enable),.clk(clk)); 
+  u_ff  #(16) ff3(.d(d3),.q(q3),.reset(reset),.enable(enable),.clk(clk)); 
+
+u_dep(){}
+};
+ 

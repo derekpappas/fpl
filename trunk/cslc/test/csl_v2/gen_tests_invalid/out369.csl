@@ -1,0 +1,154 @@
+csl_enum ik {
+	th,
+	sa,
+	vi,
+	xm,
+	wg,
+	qh,
+	lm,
+	wr,
+	wc,
+	rp
+};
+csl_enum wb {
+	gk,
+	lq,
+	dq,
+	un,
+	cq,
+	uw,
+	rs,
+	gp,
+	fd,
+	wv,
+	nk,
+	lk
+};
+csl_enum ck {
+	ov,
+	cl,
+	wi,
+	xl,
+	bd,
+	ew
+};
+csl_isa_instruction_format bn{
+    bn( ){
+     set_width( 4);
+  }
+}
+;
+csl_isa_instruction ue : bn{
+    ue( ){
+    set_asm_mnemonic( ga);
+  }
+}
+;
+csl_isa_instruction un : bn{
+    un( ){
+    set_asm_mnemonic( csl_list "ve", "ic", "jh", "an", "kw", "hr");
+  }
+}
+;
+csl_isa wb{
+  un gf;
+  un mw;
+  ue am;
+  un rs;
+  un ra;
+  ue tl;
+  ue gi;
+  ue fk;
+  un gw;
+  ue uy;
+  un pp;
+  un si;
+  ue ex;
+  un lw;
+  ue tb;
+  un yl;
+  ue kx;
+  un jg;
+  un co;
+  ue sk;
+  un jk;
+  ue li;
+  un bv;
+  ue up;
+  ue ue;
+  un on;
+  un wp;
+  ue ai;
+    wb( ){
+     set_decoder_name( "sp");
+     set_decoder_out_name_prefix( "qh");
+     print( isa.txt);
+  }
+}
+;
+csl_fifo ut{
+   ut( ){
+     add_logic( parallel_input, all);
+     add_logic( pushback);
+     add_logic( output_rd_addr);
+  }
+}
+;
+csl_memory_map_page qf{
+    qf( ){
+     get_address_increment( );
+     set_next_address( 1);
+     get_next_address( );
+     add_reserved_address_range( 7, 4);
+     get_upper_bound( );
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page gw{
+  qf po;
+  qf vs;
+  qf tt;
+    gw( ){
+     add_address_range( 3, 4);
+     set_address_increment( 5);
+     set_next_address( 8);
+     add_reserved_address_range( 1, 9);
+     add( ut, "jb", 5);
+     add( qf);
+     get_upper_bound( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page nw{
+    nw( ){
+     set_access_rights( access_read_write, access_read);
+     add( gw);
+     get_upper_bound( );
+     set_aligment( 9);
+     get_aligment( );
+     get_endianess( );
+  }
+}
+;
+csl_memory_map bs{
+    bs( ){
+     auto_gen_memory_map( );
+     set_top_unit( bc);
+     set_type( hierach);
+     set_data_word_width( 7);
+     get_data_word_width( );
+     set_prefix( vp);
+     set_suffix( fq);
+  }
+}
+;
+csl_register as{
+    as( ){
+     create_rtl_module( );
+     add_logic( bypass);
+  }
+}
+;

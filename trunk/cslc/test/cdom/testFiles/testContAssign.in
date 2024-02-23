@@ -1,0 +1,9 @@
+# This is the input test file for CTestContAssign class
+# <> means obligatory
+# [] means optional
+# {} means group
+# *x means this should repeat x times
+# Syntax: ( <MODULE_TEST> <SIGNAL_TYPE> <SIGNLA_TEST> <EXPRESSION_TYPE> <EXPRESSION_TEST> )
+# examples:
+
+( ( n gigi n 0 0 ) COmSignalPort ( 1 2 test 0 ) COmExprValInt ( 123 3 32 123 1 ) )

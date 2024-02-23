@@ -1,0 +1,21 @@
+//Monica
+
+csl_unit u_mem{
+  csl_parameter addr(1);
+  csl_parameter data(1);
+
+  csl_port p_data_in(input,data);
+  csl_port p_addr(input,addr);
+  csl_port p_data_out(output,data);
+
+  u_mem(){}
+};
+
+csl_unit u_top{
+  csl_signal s_data(32);
+  csl_signal s_addr(16);
+
+  u_mem #(16,32) u1(.p_data_in(s_data),.p_addr(s_addr),.p_data_out(s_data));
+
+  u_top(){}
+};

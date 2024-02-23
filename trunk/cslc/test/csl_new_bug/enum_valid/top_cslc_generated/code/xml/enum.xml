@@ -1,0 +1,19 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="enum.xsl"?>
+<design>
+<enum name="op_enum">
+<item name="CALL" value= "1"/>
+<item name="SETHI_Branches" value= "0"/>
+<item name="Arithmetic" value= "2"/>
+<item name="Logical" value= "3"/>
+</enum>
+<enum name="op2_enum">
+<item name="ILLTRAP" value= "0"/>
+<item name="BPcc" value= "1"/>
+<item name="Bicc" value= "2"/>
+<item name="BPr" value= "3"/>
+<item name="SETHINOP" value= "4"/>
+<item name="FBPfcc" value= "5"/>
+<item name="FBfcc" value= "6"/>
+</enum>
+</design>

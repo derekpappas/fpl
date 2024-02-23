@@ -1,0 +1,39 @@
+//author: Monica
+//testing: set_width,set_dim_width,set_number_of_dimensions,add_signal,add_instance
+//         set_dim_bitrange,set_type,set_range,add_signal,set_bitrange
+
+csl_unit u10_t2 {
+  csl_bitrange br10_1_t2(8,1);
+  csl_signal sgn10_1_t2;
+  csl_bitrange br10_2_t2(3,0);
+  csl_signal sgn10_2_t2;
+   
+  u10_t2(){
+    sgn10_1_t2.set_bitrange(br10_1_t2);  
+    sgn10_2_t2.set_bitrange(br10_2_t2);
+ 
+  }
+};
+
+csl_unit u11_t2 {
+  csl_signal sgn11_1_t2;
+  csl_signal sgn11_2_t2;
+  csl_signal sgn11_3_t2(7,5);
+  csl_signal sgn11_4_t2;
+  csl_signal sgn11_5_t2;
+  csl_signal sgn11_6_t2;
+  
+  u11_t2(){
+    sgn11_1_t2.set_range(3,1);
+    sgn11_2_t2.set_bitrange(sgn11_1_t2.get_bitrange());
+    sgn11_4_t2.set_bitrange(sgn11_3_t2.get_bitrange());
+    sgn11_5_t2.set_width(10);
+    sgn11_6_t2.set_bitrange(sgn11_5_t2.get_bitrange());
+  }
+};
+csl_unit top{
+  u10_t2 u1;
+  u11_t2 u2;
+
+  top(){}
+};

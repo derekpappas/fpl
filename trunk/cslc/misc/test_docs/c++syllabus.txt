@@ -1,0 +1,37 @@
+inheritance
+virtual functions
+abstract class
+constructor
+destructor
+deep deletion
+stl containers
+iterators
+difference between "at" and "[]"
+what is a predicate
+when to use private functions
+when to use assert
+when to use warn/error
+difference between assert and warn/error
+dual mode/release mode
+
+coding conventions
+       what is an interface
+       design patterns
+              - singleton
+              - visitor
+              - factory
+              - builder
+              - adapter
+when do you use ternary(if else/case)
+when is recursion bad
+streams
+exceptions
+exception handling
+pointer arithmetics
+basic algorithms
+how does the compiler work
+what does the compiler optimises
+why is multiple inheritance bad
+how do the virtual tables get constructed
+heap variables/stack
+casting, why is it dangerous(explain in terms of memory layout)

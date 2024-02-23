@@ -1,0 +1,51 @@
+//author: Monica
+//testing:  set_attr, get_attr
+
+csl_unit u3_t4 {
+
+  csl_signal sgn3_1_t4,sgn3_2_t4,sgn3_3_t4,sgn3_4_t4,sgn3_5_t4;
+  csl_signal sgn3_6_t4,sgn3_7_t4,sgn3_8_t4,sgn3_9_t4;
+  csl_signal sgn3_11_t4,sgn3_12_t4,sgn3_13_t4,sgn3_14_t4;
+  csl_signal sgn3_15_t4,sgn3_16_t4,sgn3_17_t4,sgn3_18_t4;
+  csl_signal sgn3_19_t4;
+
+  u3_t4() {
+    sgn3_1_t4.set_attr(en);
+    sgn3_2_t4.set_attr(stall);
+    sgn3_3_t4.set_attr(pe);
+    //sgn3_4_t4.set_attr(ps);
+    //sgn3_5_t4.set_attr(ms);
+    sgn3_6_t4.set_attr(decode);
+    sgn3_7_t4.set_attr(clk);
+    sgn3_8_t4.set_attr(rst);
+    sgn3_9_t4.set_attr(wr_en);
+    sgn3_11_t4.set_attr(sgn3_1_t4.get_attr());
+    sgn3_12_t4.set_attr(stall);
+    sgn3_13_t4.set_attr(pe);
+    //sgn3_14_t4.set_attr(ps);
+    //sgn3_15_t4.set_attr(ms);
+    sgn3_16_t4.set_attr(decode);
+    sgn3_17_t4.set_attr(clk);
+    sgn3_18_t4.set_attr(rst);
+    sgn3_19_t4.set_attr(wr_en);
+  }
+};
+
+csl_unit u4_t4 {
+
+csl_signal sgn4_1_t4,sgn4_2_t4,sgn4_3_t4,sgn4_4_t4,sgn4_5_t4,sgn4_6_t4,sgn4_7_t4,sgn4_8_t4,sgn4_9_t4;
+
+  u4_t4() {
+    
+    sgn4_1_t4.set_attr(u3_t4.sgn3_1_t4.get_attr());
+    sgn4_2_t4.set_attr(u3_t4.sgn3_2_t4.get_attr());
+    sgn4_3_t4.set_attr(u3_t4.sgn3_3_t4.get_attr());
+    sgn4_9_t4.set_attr(clk);
+  }
+};
+
+csl_unit top{
+  u3_t4 u1;
+  u4_t4 u2;
+  top(){}
+};

@@ -1,0 +1,30 @@
+[size] 1352 600
+[pos] -353 -1
+*-16.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+@28
+tb.clk
+tb.testbench_reset_
+@22
+tb.cycle_cnt[31:0]
+@28
+tb.a0_in_in
+tb.a0_out_out
+tb.a0_out_out_d1
+tb.a0_out_out_expect
+tb.a0_out_out_expect_d1
+tb.a0_out_out_match
+tb.a0_out_out_mismatch
+@22
+tb.exp_a0_match_count[15:0]
+tb.exp_a0_mismatch_count[15:0]
+tb.exp_a0_transaction_count[15:0]
+@28
+tb.expect_out_valid
+@22
+tb.file_mcd[31:0]
+@28
+tb.id_err
+tb.rand_valid
+tb.rd_en
+tb.stop_sim
+tb.version_err

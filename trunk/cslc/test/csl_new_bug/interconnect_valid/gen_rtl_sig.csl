@@ -1,0 +1,15 @@
+//Monica
+
+csl_signal_group sg{
+  csl_signal x_d;
+  csl_signal y_d;
+  sg(){
+ //   generate_individual_rtl_signals(off);
+  }
+};
+csl_unit u{
+  sg sg1inst;
+  u(){ 
+   sg1inst.x_d = sg1inst.y_d;
+  }
+};

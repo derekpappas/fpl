@@ -1,0 +1,34 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+
+#exceptions:
+cmp_clk.v                     skip    "missing defines - fixed"
+cmp_dram_mon.v                skip    "missing defines - fixed"
+cmp_mem.v                     skip    "missing defines - fixed"
+cmp_pcxandcpx.v               skip    "missing defines - fixed"
+cmp_top.v                     skip    "missing defines - fixed"
+ctu_clsp_clkctrl.v            skip    "missing defines - fixed"
+ctu_clsp_clkgn_fstlog.v       skip    "missing defines - fixed"
+ctu_clsp_clkgn_nstep_cnt.v    skip    "missing defines - fixed"
+ctu_clsp_creg.v               skip    "missing defines - fixed"
+icache_mutex_mon.v            skip    "missing defines - fixed"
+jbi_demux_4to16.v             skip    "module file, included in jbi_ncrd_timeout.v"
+jbi_mout.h                    skip    "header file, included in other files"
+jbi_pktout_ctlr.h             skip    "header file, included in other files"
+jbi_sct_out_queues.h          skip    "header file, included in other files"
+l1warm.v                      skip    "missing defines - fixed"
+l2warm.v                      skip    "missing defines - fixed"
+l_cache_mon.v                 skip    "missing defines - fixed"
+nc_inv_chk.v                  skip    "missing defines - fixed"
+nukeint_mon.v                 skip    "missing defines - fixed"
+pc_cmp.v                      skip    "missing defines - fixed"
+pc_muxsel_mon.v               skip    "missing defines - fixed"
+sas_tasks.v                   skip    "missing defines"
+#sas_task.v                    skip    "missing defines"
+slam_init.v                   skip    "missing defines - fixed"
+stb_ovfl_mon.v                skip    "missing defines - fixed"
+thrfsm_mon.v                  skip    "missing defines - fixed"
+trig_event.v                  skip    "missing defines - fixed"

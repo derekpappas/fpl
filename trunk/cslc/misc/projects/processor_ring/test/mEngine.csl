@@ -1,0 +1,65 @@
+csl_unit mengine {
+    me_ifc me_ifc;
+    
+    mrom mrom;
+    mdec mdec;
+
+    csl_register pc_0(6);
+    csl_register pc_1(6);
+    csl_register pc_2(6);
+
+    csl_register v_1 (1);
+    csl_register v_2 (1);
+    csl_register ir_1(32);
+    csl_register ir_2(32);
+  mengine(){
+
+    pc_0.set_type(pc);
+    //connect branch controll
+    pc_0.connect_br_en(br_2);
+    pc_0.connect_br_addr(br_addr_2);
+    
+    csl_enum op_enum{br, alu, mem};
+    ir.opcode.set_enum(op_enum);
+    csl_signal op_dec; // width is created by the gen_decoder option
+    ir.opcode.gen_decoder(op_dec );
+
+    csl_include(file_verilog, "mEngine.v");
+
+    csl_pipeline me_pipeline(4);
+    csl_pipestage fetch  (0);
+    csl_pipestage decode (1);
+    
+
+//    csl_pipestage rd_src (2);
+//    csl_pipestage execute(3);
+//   switch(br_op) {
+//     normal: pc = pc + 1;
+//     addr  : pc = addr;
+//     offset: pc = pc + offset;
+//   }
+   
+  }
+}
+
+class me_ifc : public csl_interface {
+  void csl_build{
+    add_port_list(input, 1, csl_list(clock, reset_));
+    add_port(output, 32, ir_2);
+    add_port(output,  6, pc_2);
+    add_port(output,  1, v_2 );
+  }
+}
+
+
+class mrom : public csl_memory {
+  void csl_build{
+    set_type(rom);
+    set_word_width(32);
+    set_addr_width(6);
+    set_data_sgn(ir_1);
+    set_addr_sgn(pc_0);
+  }
+}
+
+

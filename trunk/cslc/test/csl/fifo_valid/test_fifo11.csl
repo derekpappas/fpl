@@ -1,0 +1,42 @@
+//Petronela
+csl_fifo f1{
+  f1(){
+    set_width(5);
+    set_depth(6); 
+    add_logic(priority_bypass);
+    add_logic(sync_fifo);
+    add_logic(depth_extend,8);
+    add_logic(width_extend,6);
+    add_logic(wr_hold,9);
+    //    set_prefix("abc");
+  }
+};
+ 
+csl_fifo f2{
+  f2(){
+    set_width(5);
+    set_depth(8);
+    add_logic(parallel_output,all);
+    add_logic(parallel_input,all);
+    add_logic(rd_words,0,29);
+    add_logic(wr_words,0,32);
+    add_logic(sram_rd);
+    add_logic(sram_wr);
+  }
+};
+csl_unit u1{
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(output);
+  csl_port p4(output);
+  csl_port p5(output,5);
+  csl_port p6(input,5);
+  csl_port p7(input);
+  csl_port p8(input);
+  csl_port p9(output);
+  f1 ff1(.push(p1),.pop(p2),.full(p3),.empty(p4),.rd_data(p5),.wr_data(p6),.reset_(p7),.clock(p8),.valid(p9));
+  f2 ff2(.push(p1),.pop(p2),.full(p3),.empty(p4),.rd_data(p5),.wr_data(p6),.reset_(p7),.clock(p8),.valid(p9));
+  u1(){
+    
+  }
+};

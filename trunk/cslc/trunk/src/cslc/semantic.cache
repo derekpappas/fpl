@@ -1,0 +1,23 @@
+;; Object cslc/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "cslc/"
+  :tables (list 
+   (semanticdb-table "new_main.cpp"
+    :major-mode 'c++-mode
+    :tags 'nil
+    :file "new_main.cpp"
+    :pointmax 2938
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "new_cslc.cpp"
+    :major-mode 'c++-mode
+    :tags 'nil
+    :file "new_cslc.cpp"
+    :pointmax 79082
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "semantic.cache"
+  :semantic-tag-version "1.4.4"
+  :semanticdb-version "1.4.4"
+  )

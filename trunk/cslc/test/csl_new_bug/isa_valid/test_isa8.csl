@@ -1,0 +1,94 @@
+//Daniel
+
+csl_enum e_op{
+  OP_0,
+  OP_1,
+  OP_2
+};
+csl_enum e_op3{
+  OP3_0,
+  OP3_1,
+  OP3_2,
+  OP3_3
+};
+csl_isa_field op{
+  op(){
+    set_type(opcode);
+    set_width(2);
+    set_enum(e_op);
+  }
+};
+
+csl_isa_field op3{
+  op3(){
+    set_type(subopcode);
+    set_width(3);
+    set_enum(e_op3);
+  }
+};
+
+csl_isa_field rs{
+  rs(){
+  set_type(selector);
+  set_width(3);
+  }
+};
+
+csl_isa_field rd{
+  rd(){
+  set_type(selector);
+  set_width(1);
+}
+};
+
+csl_isa_element isa_root{
+  isa_root(){
+  set_type(root_format);
+  set_width(32);
+  }
+};
+
+csl_isa_element fb :isa_root{
+  op op;
+  op3 op3;
+  rd rd;
+  fb(){
+    set_type(instr_format);
+    set_position(op,29);
+    set_next(op,op3);
+    set_next(op3,rd); 
+  }
+};
+
+csl_isa_element instr1 : fb {
+  instr1 () {
+    set_type(instr);
+    op.set_enum_item(OP_0);
+    op3.set_enum_item(OP3_0);
+    op.set_mnemonic("ADD"); 
+  }
+};
+
+csl_isa_element instr2  : fb {
+  instr2 () {
+    set_type(instr);
+    op.set_enum_item(OP_1);
+    op3.set_enum_item(OP3_1);
+  }
+};
+
+csl_isa_element instr3  : fb {
+  instr3 () {
+    set_type(instr);
+    op.set_enum_item(OP_2);
+    op3.set_enum_item(OP3_2);
+  }
+};
+
+csl_isa_element instr4  : fb {
+  instr4 () {
+    set_type(instr);
+    op.set_enum_item(OP_2);
+    op3.set_enum_item(OP3_3);
+  }
+};

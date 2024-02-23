@@ -1,0 +1,45 @@
+//set_type (instr_format | instr | root_format ); 
+
+csl_enum e_op{ 
+  ALU, 
+    MOV
+};
+csl_enum e_alu{ 
+  ADD, 
+    SUB, 
+    XOR
+};
+csl_isa_field f_op{
+  f_op(){
+    set_width(2);
+    set_enum(e_op);
+    set_type(opcode);
+  }
+};
+csl_isa_field f_alu{
+  f_alu(){
+  set_width(2);
+  set_enum(e_alu);
+  set_type(opcode);
+  }
+};
+csl_isa_element isa { 
+  isa() { 
+    set_type(root_format); 
+    set_width(32);
+  }
+};
+csl_isa_element f: isa { 
+  f() { 
+    set_type(instr_format); 
+  }
+}; 
+csl_isa_element f1: f{ 
+  f1() { 
+    set_type(instr); 
+  }
+}; 
+
+
+csl_unit top {
+};

@@ -1,0 +1,16 @@
+  I shall explain to you how to skip files from being used by the regression script. To do that you need to know the name of the file, let's call it filename.v, the name of the directory where it is located, let's call it dirname (eg: v1995/altera/ , so dirname = altera).
+  Next step is to cd to that directory. If the regression was ran then a file named: dirname_regress_control was created. Otherwise you create that file. If you create that file then you must paste this at the begining:
+
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF    #pass/fail
+execute_testsuite = 1   #enable/desable testing current testsuite
+
+#exceptions:
+
+  Then for each file you want the regression to skip you add a line like:
+
+filename.v  skip  "the reason I want the file to be skiped"
+
+  Now, if you run the regression you'll see the filename under a grey line in the regression's reports. This is how you confirm that the file was skiped.

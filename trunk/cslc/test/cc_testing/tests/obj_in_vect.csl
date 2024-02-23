@@ -1,0 +1,34 @@
+//oanab
+//27 oct 2007
+//unit instantiated inside of the stim vector
+
+csl_unit u{
+  csl_port clk(input);
+  csl_port stim_i(input),exp_o(output); 
+   u(){ 
+    clk.set_attr(clock);}
+};
+
+csl_vector stim{
+  u u;            // no objects may be instantiated in a vector
+  stim(){
+    set_unit_name(u);
+    set_direction(input);
+  }
+};
+
+csl_vector exp{
+  exp(){
+    set_unit_name(u);
+    set_direction(output);
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(wire);
+  u u;
+  tb(){
+    add_logic(clock,clk,200,ps);
+    clk.set_attr(clock);
+  }
+};

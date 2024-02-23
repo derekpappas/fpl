@@ -1,0 +1,23 @@
+//oanab
+//27 oct 2007
+//there is no memory map
+
+csl_register_file rf{
+  rf(){
+    set_width(32);
+    set_depth(8);
+  }
+};
+
+csl_unit u{
+  rf rf;
+  u(){}
+};
+
+csl_memory_map_page mpg{
+  mpg(){
+    add_address_range(2,128);
+    set_unit(u);
+    add(rf);
+  }
+};

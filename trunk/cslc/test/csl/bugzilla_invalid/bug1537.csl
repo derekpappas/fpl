@@ -1,0 +1,7 @@
+// illegal because fa is an undefined field, and the field positionis negative
+
+csl_field f1{
+  f1(){
+     set_field_position(fa, -29);
+  }
+};

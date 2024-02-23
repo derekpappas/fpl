@@ -1,0 +1,12 @@
+//author: Ines
+//testing: csl_signal signal_object_name([signal_data_type,] upper_limit,lower_limit);
+//         reg,wire,tri,trireg,triand,trior,wand,wor,supply0,supply1
+
+csl_unit u21_t9 {
+
+  csl_signal sgn21_1_t9(reg);
+  csl_signal s1;
+  u21_t9() {
+    s1 = sgn21_1_t9;
+  }
+};

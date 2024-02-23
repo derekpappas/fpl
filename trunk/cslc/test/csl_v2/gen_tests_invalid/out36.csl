@@ -1,0 +1,120 @@
+csl_enum sj {
+	qk = 41,
+	ax = 88,
+	nl = 40,
+	au = 10
+};
+csl_enum da {
+	ik,
+	de
+};
+csl_enum cq {
+	jf,
+	rm,
+	dg
+};
+csl_isa_instruction_format ws{
+    ws( ){
+     set_width( 4);
+     generate_decoder( as);
+  }
+}
+;
+csl_isa rp{
+    rp( ){
+     set_decoder_name( "vx");
+     set_decoder_out_name_prefix( "tq");
+     set_decoder_out_name_suffix( "rl");
+     generate_decoder( bvdjjmas);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo yp{
+   yp( ){
+  }
+}
+;
+csl_memory_map_page ka{
+    ka( ){
+     add_address_range( 7, 3);
+     set_address_increment( 8);
+     get_address_increment( );
+     set_access_rights( access_write, access_read);
+     add_reserved_address_range( 5, 5);
+     add( yp, "ev");
+     set_data_word_width( 2);
+     set_aligment( 9);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page nn{
+  ka tp;
+  ka fq;
+    nn( ){
+     add_address_range( 3, 7);
+     get_address_increment( );
+     set_next_address( 6);
+     get_next_address( );
+     add_reserved_address_range( 8, 9);
+     get_lower_bound( );
+     get_data_word_wodth( );
+     set_aligment( 7);
+     get_aligment( );
+  }
+}
+;
+csl_memory_map_page pe{
+    pe( ){
+     add_address_range( 7, 1);
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_read, access_write);
+     add_reserved_address_range( 5, 4);
+     add( yp, "uy");
+     get_data_word_wodth( );
+     get_aligment( );
+     set_endianess( little_endian);
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map jq{
+  ka tk;
+  pe sj;
+  ka vi;
+  nn ae;
+    jq( ){
+     auto_gen_memory_map( );
+     set_type( hierach);
+nnpe.set_access_rights_enum( kann); 
+     set_data_word_width( 6);
+     get_data_word_width( );
+     set_prefix( bf);
+     get_prefix( );
+     set_suffix( wp);
+     get_suffix( );
+  }
+}
+;
+csl_register ji{
+    ji( ){
+     add_logic( neg_output);
+     reset_value( 1);
+     clear_value( 1);
+     set_lock_enable_bit( 2);
+     get_lock_enable_bit( );
+     set_count_amount( 7);
+     add_logic( cnt_dir_signal);
+  }
+}
+;
+csl_register pk{
+    pk( ){
+     create_rtl_module( );
+     set_const_value( 3);
+  }
+}
+;

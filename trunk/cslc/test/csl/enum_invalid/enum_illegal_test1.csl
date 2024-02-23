@@ -1,0 +1,7 @@
+//AV illegal - is not legal to have 2 enum item with the same name
+
+csl_enum e3{
+	a=0,
+	b=1,
+	a=2
+};

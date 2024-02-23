@@ -1,0 +1,186 @@
+csl_fifo InstrQueue {
+  InstrQueue(){
+    set_width(64);
+    set_depth(512);
+    add_logic(async_fifo);
+  }
+};
+
+csl_fifo OutputQueue {
+  OutputQueue(){
+    set_width(32);
+    set_depth(512);
+    add_logic(async_fifo);
+  }
+};
+
+csl_memory CacheMemL1 {
+  CacheMemL1(){
+    set_width(64);
+    set_depth(1024*1024*8/64); //1 MB L1 cache
+  }
+};
+
+csl_memory CacheMemL2 {
+  CacheMemL2(){
+    set_width(64);
+    set_depth(2*1024*1024*8/64); //2 MB L1 cache
+  }
+};
+
+csl_unit Decoder {
+  csl_port encodedInstr(input, 64);
+  csl_port decodedInstr(output, 128);
+};
+
+csl_unit Exec {
+  csl_port instr(input, 128);
+  csl_port output(output, 32);
+};
+
+csl_multi_dim_bitrange bus_mem_l1(2);
+  bus_mem_l1.set_dim_width(0,64);
+  bus_mem_l1.set_dim_width(1,1024*1024*8/64);
+csl_multi_dim_bitrange bus_mem_l2(2);
+  bus_mem_l2.set_dim_width(0,64);
+  bus_mem_l2.set_dim_width(1,2*1024*1024*8/64);
+
+csl_unit core {
+  csl_port address(input,9);
+  csl_port bus_in(input, bus_mem_l2);
+  csl_port bus_out(output, bus_mem_l2);
+
+  csl_signal l2_to_l1(bus_mem_l1);
+  csl_signal l1_to_l2(bus_mem_l1);
+
+  csl_signal l1_to_instr(64);
+  csl_signal instr_to_dec(64);
+  csl_signal dec_to_exec(128);
+  csl_signal exec_to_output(32);
+  csl_signal out_to_l1(32);
+  
+  Decoder proc_dec(.encodedInstr(dec_to_exec));
+  Exec proc_exec(.instr(dec_to_exec));
+  InstrQueue iq;
+  OutputQueue oq;
+  CacheMemL1 l1;
+  CacheMemL2 l2;
+};
+
+csl_unit eight_core_cluster {
+  csl_port address(input, 8*9);
+
+  csl_signal address0(9);
+  csl_signal address1(9);
+  csl_signal address2(9);
+  csl_signal address3(9);
+  csl_signal address4(9);
+  csl_signal address5(9);
+  csl_signal address6(9);
+  csl_signal address7(9);
+
+  csl_port bus_in(input, bus_mem_l2);
+  csl_port bus_out(output, bus_mem_l2);
+
+  core core0(.address(address0));
+  core core1(.address(address1));
+  core core2(.address(address2));
+  core core3(.address(address3));
+  core core4(.address(address4));
+  core core5(.address(address5));
+  core core6(.address(address6));
+  core core7(.address(address7));
+
+  CacheMemL2 l2;
+
+  eight_core_cluster() {
+    // To be added when assign stmt is implemented
+    //    address = {address0,address1,address2,address3,address4,address5,address6,address7};
+  }
+};
+
+
+csl_unit super_proc {
+  csl_port address(input,8*8*9);
+
+  csl_signal address0(8*9);
+  csl_signal address1(8*9);
+  csl_signal address2(8*9);
+  csl_signal address3(8*9);
+  csl_signal address4(8*9);
+  csl_signal address5(8*9);
+  csl_signal address6(8*9);
+  csl_signal address7(8*9);
+
+  csl_port bus_in(input, bus_mem_l2);
+  csl_port bus_out(output, bus_mem_l2);
+
+  eight_core_cluster cluster0(.address(address0));
+  eight_core_cluster cluster1(.address(address1));
+  eight_core_cluster cluster2(.address(address2));
+  eight_core_cluster cluster3(.address(address3));
+  eight_core_cluster cluster4(.address(address4));
+  eight_core_cluster cluster5(.address(address5));
+  eight_core_cluster cluster6(.address(address6));
+  eight_core_cluster cluster7(.address(address7));
+
+  CacheMemL2 l2;
+
+  super_proc() {
+    // To be added when assign stmt is implemented
+    //    address = {address0,address1,address2,address3,address4,address5,address6,address7};
+  }
+};
+
+csl_memory_map_page core_map {
+  core_map(){
+    add_address_range(0, 1023);
+    add_address_range(1024, 1024+1024*1024*8/64);
+    add_address_range(1024+(1024*1024*8/64), 1024+(2*1024*1024*8/64));
+
+    add(core.iq, "INSTR_Q");
+    add(core.oq, "OUTPUT_Q");
+    add(core.l1, "L1_CACHE");
+    add(core.l2, "L1_CACHE");
+  }
+};
+
+csl_memory_map_page cluster_map {
+  core_map page0(eight_core_cluster.core0);
+  core_map page1(eight_core_cluster.core1);
+  core_map page2(eight_core_cluster.core2);
+  core_map page3(eight_core_cluster.core3);
+  core_map page4(eight_core_cluster.core4);
+  core_map page5(eight_core_cluster.core5);
+  core_map page6(eight_core_cluster.core6);
+  core_map page7(eight_core_cluster.core7);
+  cluster_map() {
+    add_address_range(8*core_map.get_upper_bound()+1, 8*core_map.get_upper_bound()+1+(2*1024*1024*8/64));
+
+    add(eight_core_cluster.l2, "CLUSTER_CACHE");
+  }
+};
+
+csl_memory_map_page super_proc_map {
+  cluster_map clst0(super_proc.cluster0);
+  cluster_map clst1(super_proc.cluster1);
+  cluster_map clst2(super_proc.cluster2);
+  cluster_map clst3(super_proc.cluster3);
+  cluster_map clst4(super_proc.cluster4);
+  cluster_map clst5(super_proc.cluster5);
+  cluster_map clst6(super_proc.cluster6);
+  cluster_map clst7(super_proc.cluster7);
+
+  super_proc_map(){
+    add_address_range(8*core_map.get_upper_bound()+1, 8*core_map.get_upper_bound()+1+(2*1024*1024*8/64));
+
+    add(super_proc.l2, "SUPER_CACHE");
+  }
+};
+
+csl_memory_map mem_map {
+  super_proc_map map;
+  mem_map() {
+    set_type(hierarchical);
+  }
+};

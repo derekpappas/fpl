@@ -1,0 +1,17 @@
+//input_verilog_type
+//andreim
+//19 June 2007
+
+csl_unit u_unit1{
+	csl_signal 			sgn_sgn1;
+	u_unit1(){	
+	}
+};
+
+csl_unit top{
+	u_unit1  unit1;
+	top(){
+			unit1.input_verilog_type(v1995);
+	}
+};
+

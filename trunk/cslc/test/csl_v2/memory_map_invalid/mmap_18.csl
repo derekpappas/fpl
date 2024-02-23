@@ -1,0 +1,18 @@
+csl_memory_map_page mpage {
+};
+csl_memory_map mmap_0{
+  mpage mpage;
+	mmap_0(){
+		mpage.set_data_word_width(32);
+		mpage.add_address_range(0,63);
+	}
+};
+/*
+csl_memory_map mmap_1{
+  mpage mpage;
+	mmap_1(){
+		mpage.set_data_word_width(32);
+		mpage.add_address_range(mmap_0.mpage.get_lower_bound(), mmap_0.mpage.get_upper_bound());
+	}
+};
+*/

@@ -1,0 +1,27 @@
+//Petronela
+csl_enum e {
+  RD,
+  WR,
+  EN
+};
+csl_bitrange br(2);
+csl_field f{  
+  f(){
+  set_width(8);
+  set_enum(e);
+  }
+};
+/*csl_unit u1 {
+  csl_signal swhatever;
+  f f1;
+  f f2;
+  f f3;
+  u1() {
+    swhatever.set_width(3);
+    swhatever.set_bitrange(br);
+    swhatever.gen_decoder();
+  }
+};
+*/
+csl_unit top {
+};

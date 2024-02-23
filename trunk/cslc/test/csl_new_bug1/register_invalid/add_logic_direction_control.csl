@@ -1,0 +1,23 @@
+//oanab
+//7 nov 2007
+//bug - DEBUG:<AST>: unexpected AST node: <ASTNULL>
+
+csl_register cnt{
+  cnt(){
+    set_type(counter);
+    set_width(8);
+    add_logic(direction_control);
+    add_logic(start_value,128);
+    add_logic(end_value,0);
+  }
+};
+
+csl_unit u{
+  csl_port clk(input);
+  csl_signal cnt_sign;
+  cnt cnt(.cnt_dir(cnt_sign));
+  u(){
+    clk.set_attr(clock);
+  }
+};
+

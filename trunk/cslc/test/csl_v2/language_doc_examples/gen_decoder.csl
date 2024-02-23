@@ -1,0 +1,14 @@
+//Monica
+
+csl_unit u1{
+  csl_signal s1,s2,s3;
+  csl_port p1(input), p2(output);  
+u1(){}
+};
+
+csl_field fd{
+  fd(){
+    set_width(8);
+    gen_decoder(u1);
+  }
+};

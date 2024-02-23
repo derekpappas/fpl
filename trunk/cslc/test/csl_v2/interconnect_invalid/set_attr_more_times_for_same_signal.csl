@@ -1,0 +1,23 @@
+//set_attr more times for the same signal
+//andreim
+//18 June 2007
+
+csl_bitrange br_br(0,7);
+
+csl_unit u_unit1{
+	csl_signal 	sgn_sgn1,
+							sgn_sgn2(wire, 4),     
+							sgn_sgn3(reg, 0,3),  //lower & upper
+							sgn_sgn4,
+							sgn_sgn5,
+							sgn_sgn6;
+
+csl_list signal_grup (sgn_sgn1,sgn_sgn2,sgn_sgn6);
+
+u_unit1(){
+							sgn_sgn6.set_attr(clk);
+							sgn_sgn6.set_attr(rst); // sgn_sgn6 has already set the attribute
+							sgn_sgn5.set_attr(sgn_sgn6.get_attr());
+							signal_grup.set_attr(clk); //sgn_sgn6 has already set the attribute
+	}
+};

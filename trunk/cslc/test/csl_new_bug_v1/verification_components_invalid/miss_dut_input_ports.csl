@@ -1,0 +1,31 @@
+//Monica
+//13 november 2007
+// invalid test ---no input ports for stim vector on DUT
+
+csl_unit dut{
+  csl_port exp_d(output),exp_v(output),sd_d(output),ds_v(output);
+    csl_port clk(input);
+  dut(){
+    clk.set_attr(clock);
+  }
+};
+csl_vector stim{
+  stim(){
+    set_unit_name(dut);
+    set_direction(input);
+  }
+};
+csl_vector exp{
+  exp(){
+    set_unit_name(dut);
+    set_direction(output);
+  }
+};
+csl_testbench tb{
+  csl_signal clk(reg);
+  dut dut;
+  tb(){
+    clk.set_attr(clock);
+    add_logic(clock, clk, 10, ns);
+  }
+};

@@ -1,0 +1,10 @@
+//Petronela
+csl_unit a{
+  csl_signal s1(wire);
+  csl_signal s2(wire);
+  a(){
+    s1.set_offset(4);
+    s1.set_width(s2.get_upper_limit);//error missing () at the get_upper_limit
+    
+  }
+};

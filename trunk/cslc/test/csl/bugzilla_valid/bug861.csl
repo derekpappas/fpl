@@ -1,0 +1,11 @@
+//bug 861
+csl_interface ifc_low {
+ csl_port y(input);
+ ifc_low(){}
+};
+
+csl_interface ifc_high {
+ ifc_low ifc_low0;
+ csl_port x(input);
+ ifc_high(){}
+};

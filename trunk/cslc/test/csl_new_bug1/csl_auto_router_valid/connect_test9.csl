@@ -1,0 +1,26 @@
+//Monicah
+//31 january 2008
+
+csl_interface ifc1{
+  csl_port p1(input),p2(output);
+  ifc1(){}
+};
+csl_interface ifc2{
+  csl_port p1(output),p2(input);
+  ifc2(){}
+};
+csl_unit u1{
+  ifc1 ifc1;
+  u1(){}
+};
+csl_unit u2{
+  ifc2 ifc2;
+  u2(){}
+};
+csl_unit top{
+  u1 u1;
+  u2 u2;
+  top(){
+    u1.ifc1.p1.connect_by_name(u2.ifc2.p1);
+    u1.ifc1.p2.connect_by_name(u2.ifc1.p2);
+  }};

@@ -1,0 +1,16 @@
+//Monica
+//01 feb 2008
+//invalid -- connect two interfaces inside an interface scope
+
+csl_interface ifc1{
+  ifc1(){}
+};
+csl_interface ifc2{
+  ifc2(){}
+};
+csl_interface ifc3{
+  ifc1 ifc1;
+  ifc2 ifc2;
+  ifc3(){
+    ifc1.connect(ifc2);
+  }};

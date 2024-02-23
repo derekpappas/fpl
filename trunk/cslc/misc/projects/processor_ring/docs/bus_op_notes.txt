@@ -1,0 +1,311 @@
+Monday, January 21, 2008
+
+Yoterra
+9:10
+Hi Monica
+Monica Helgiu
+9:10
+Hi
+
+Yoterra
+9:10
+Are you working on the processor ring?
+Monica Helgiu
+9:10
+yes
+
+Yoterra
+9:10
+how is it going?
+Monica Helgiu
+9:10
+I have sent you some questions
+on email
+about the instructions
+
+Yoterra
+9:11
+I will download my mail. One sec
+hmm I do not see the email
+did you send it to my FPL account?
+Monica Helgiu
+9:13
+no..yoterra
+
+Yoterra
+9:14
+1.The processor that sends the message shouldn't have the id specified in
+asm?
+ Ex: send wr pr0 r1 pr1 r4 ???
+Monica Helgiu
+9:14
+yes
+it is correct?
+
+Yoterra
+9:15
+yes
+Monica Helgiu
+9:15
+oky..
+
+Yoterra
+9:15
+do we have enough bits?
+Monica Helgiu
+9:15
+for this instructionn yes
+
+Yoterra
+9:15
+2.The add,sub,...instructions can be used for more different processors or
+just in one?
+Ex: add pr1 r0 pr2 r1 pr3 r4   (source1 source2 dest)
+Monica Helgiu
+9:15
+but for DMA no
+
+Yoterra
+9:15
+Just one processor
+Monica Helgiu
+9:15
+aha..
+ok
+
+Yoterra
+9:15
+DMA is a problem because of the length?
+Monica Helgiu
+9:16
+yes
+the addr is on 24 bits
+on my schemes
+
+Yoterra
+9:16
+how many bits is each field?
+DMA may have to be two instructions
+Monica Helgiu
+9:17
+ID of processor is 4 bits, adress af register 5 bits
+
+Yoterra
+9:17
+op{3:0] id[3:0] reg[4:0] id [3:0] reg[4:0]
+which leaves 8 bits for the length
+Monica Helgiu
+9:18
+but the opcode is on 6 bits
+nios format
+Have we chage this on 4 bits?
+
+Yoterra
+9:19
+hmmm
+is there a reserved space in NIOS for user defined opcodes?
+Monica Helgiu
+9:20
+yes
+is opx
+
+Yoterra
+9:20
+and it is 6 bits?
+It really depends on how many words that people want to transfer with DMA
+Monica Helgiu
+9:21
+no..is on 10 bits
+
+Yoterra
+9:21
+you could have two ways of doing DMA
+a short DMA which is setup in one instruction and includes the burst length
+Monica Helgiu
+9:22
+yes...
+
+Yoterra
+9:22
+and a second way which first writes the burst length to the DMA engine in the other processir
+or
+and then does the DMA read or write in the next instruction
+Monica Helgiu
+9:22
+yes...
+the burst instr means that we can transfer 64 bit yes?
+
+Yoterra
+9:23
+2.The add,sub,...instructions can be used for more different processors or
+just in one?
+Ex: add pr1 r0 pr2 r1 pr3 r4   (source1 source2 dest)
+Monica Helgiu
+9:23
+but ..the data bus is 32 bits...and addr bus is 24 bits..
+
+Yoterra
+9:23
+I will ask Peter/Jeff at Design Magnitude what they want to do
+3.Just the specified instructions should be used or all the instructions
+that are used for the mbist?
+keep the processor ring separate from the MBIST
+you just need add sub branch cond
+Monica Helgiu
+9:25
+only these?
+ok
+
+Yoterra
+9:25
+yes
+keep it simple
+Monica Helgiu
+9:25
+yes..
+
+Yoterra
+9:25
+you can demonstrate that the ring can pass the messages with a simple instruction set
+Monica Helgiu
+9:26
+but how we refer to a processor...
+
+Yoterra
+9:26
+try to use the NIOS interface for your simple processor so that the Design Magnitude guys can plug in the configured NIOS processor
+Monica Helgiu
+9:26
+yes...
+
+Yoterra
+9:27
+refer to a processor?
+Do you have a spreadsheet with the instruction set?
+Monica Helgiu
+9:27
+how I can do the add instruction in processor 3 ...
+
+Yoterra
+9:28
+how many bits do you need for that one?
+op{5:0] id[3:0] reg[4:0] id [3:0] reg[4:0] id [3:0] reg[4:0]
+30 bits?
+Monica Helgiu
+9:28
+yes
+
+Yoterra
+9:29
+that works
+supports up to 16 processors
+Monica Helgiu
+9:29
+it mean that for add we have to specify the processor id?
+
+Yoterra
+9:30
+it seems possible
+Monica Helgiu
+9:30
+oky..it's easy like this
+
+Yoterra
+9:30
+yes and powerful
+Monica Helgiu
+9:30
+I understand
+
+Yoterra
+9:30
+if you need more than 16 processors you can have a hierarchical addressing scheme
+this instruction can be used for the local 16 processors in the local cluster
+you can have another instruction which can send/rcv words to/from other clusters
+say you want to put 16 processors on each FPGA and there are 4 FPGAs in the system
+then there are 4 x 16 processor clusters
+Monica Helgiu
+9:32
+yes..
+
+Yoterra
+9:32
+so you could do a local add and store the result in the local cluster
+and then use a send instruction to send the result from the local cluster to a remote cluster
+4.For the send dma instruction do we need to specify the processor id?
+Did we answer this question
+BTW you should take the DMA disucssion and clustering discussion and put it into the wiki
+Monica Helgiu
+9:37
+ok...tomorrow I will do that...
+I have to go home now
+
+Yoterra
+9:38
+can we answer your one other question
+5.What is the exact difference between read32 request and read32 response?
+read32 request
+the local processor requests a read from a remote processor
+Monica Helgiu
+9:39
+yes ..but on 32 bits?
+
+Yoterra
+9:39
+read32 response- the remote processor responds to the local processor's read request
+32 bits is sent
+Maybe i don't understand the question
+Monica Helgiu
+9:39
+aaa...ok
+32 bits is the response?
+not the read command?
+
+Yoterra
+9:40
+read32 just says what the size of the transaction is
+Monica Helgiu
+9:40
+ok..I understand now
+
+Yoterra
+9:41
+when we do a read 32 request we are requesting 32 bits of data
+fromt he remote machine
+Monica Helgiu
+9:41
+yes...it is clear now
+
+Yoterra
+9:41
+when we do a read 64 request we are requesting 64 bits of data
+please update the bus operations document with these comments
+Monica Helgiu
+9:41
+yes..but on which bus?
+data+addr?
+
+Yoterra
+9:42
+the request or the reply?
+ahhh
+look at the bus op doc
+the column header shows the bus signals
+for the bus operation
+Monica Helgiu
+9:43
+yes..I saw ....
+
+Yoterra
+9:43
+and each cell is labeled with the contents of the bus signals
+read32 response usesthe data lines to send the destination address
+that is the address in the local processor to write the read data
+does that make sense?
+Monica Helgiu
+9:44
+yep
+
+Yoterra
+9:44
+ok good night

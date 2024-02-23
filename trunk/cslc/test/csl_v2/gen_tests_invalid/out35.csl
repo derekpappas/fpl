@@ -1,0 +1,136 @@
+csl_enum ds {
+	ao,
+	bj,
+	op,
+	ii,
+	jh,
+	hm
+};
+csl_enum gn {
+	oy,
+	hb,
+	oy,
+	xy,
+	kb,
+	bs,
+	fx,
+	tl,
+	sv,
+	av,
+	fr,
+	lp,
+	aw,
+	wj
+};
+csl_enum jf {
+	wb = 69,
+	eg = 63,
+	cv = 63,
+	fa = 57,
+	us = 60,
+	dv = 62,
+	nl = 24,
+	th = 64,
+	wp = 52,
+	dw = 83,
+	li = 65,
+	oa = 5,
+	aq = 32
+};
+csl_isa_instruction_format mw{
+    mw( ){
+  }
+}
+;
+csl_isa xb{
+    xb( ){
+     set_decoder_name( "kn");
+     set_decoder_out_name_prefix( "dq");
+     set_decoder_out_name_suffix( "cs");
+     generate_decoder( jypquplm);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo hk{
+   hk( ){
+     add_logic( async_fifo);
+     add_logic( almost_empty, 2);
+     add_logic( credit);
+  }
+}
+;
+csl_memory_map_page hb{
+    hb( ){
+     add_address_range( 0, 4);
+     get_address_increment( );
+     get_next_address( );
+     add_reserved_address_range( 8, 5);
+     add( hk, "jx");
+     get_lower_bound( );
+     set_aligment( 7);
+  }
+}
+;
+csl_memory_map_page cl{
+  hb aa;
+  hb wq;
+    cl( ){
+     add_address_range( 3, 0);
+     set_address_increment( 8);
+     set_next_address( 6);
+     set_data_word_width( 9);
+     get_aligment( );
+     set_endianess( big_endianlittle_endian);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page he{
+    he( ){
+     add_address_range( 3, 5);
+     set_address_increment( 5);
+     get_address_increment( );
+     add_reserved_address_range( 0, 3);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 8);
+     set_aligment( 9);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map rt{
+    rt( ){
+     auto_gen_memory_map( );
+     set_top_unit( lm);
+     set_type( page);
+hbcl.set_access_rights_enum( hb); 
+     set_suffix( nh);
+     get_suffix( );
+  }
+}
+;
+csl_register yx{
+    yx( ){
+     set_range( {[5:3], [6:2]});
+     add_logic( serial_output);
+     set_lock_enable_bit( 8);
+     set_count_direction( 8);
+     set_end_value( 6);
+     set_start_value( 4);
+     get_cnt_dir_signal( );
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register qd{
+    qd( ){
+     set_depth( 5);
+     get_depth( );
+     add_logic( read_valid);
+     create_rtl_module( );
+     add_logic( bypass);
+  }
+}
+;

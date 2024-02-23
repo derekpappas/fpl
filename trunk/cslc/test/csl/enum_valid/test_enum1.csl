@@ -1,0 +1,11 @@
+//Petronela
+
+csl_enum e{
+  RD=0,
+  WR,
+  NOP=1,
+  EN
+};
+
+csl_unit top {
+};

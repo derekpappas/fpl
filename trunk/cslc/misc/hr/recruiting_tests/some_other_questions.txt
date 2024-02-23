@@ -1,0 +1,26 @@
+1. What class methods are automatically created by the compiler?
+
+2. What happens with the others if i explicitly define a constructor
+   with one argument?(see 1.)Are the other still implicitly created or
+   do i have to define them?
+
+3. Are there structs in c++? do they have methods? can u derive from a
+   struct? what is the difference between a class and a c++ struct?
+
+4. What is a const method? can you declare a global function with the
+   const modifier?
+
+5. What is the difference between a declaration and a
+   definition(functions and variables)
+
+6. What is a static class member, what is a global static function or
+   variable? can you declare an extern static variable?
+
+7. Why use copy constructors?
+
+8. To what values are local and global base types variables
+   initialized? How do you initialize a static member variable.
+
+9. What is the constructor initialization list?
+
+10. char* s = "a string"; How do you print the adress of "a string"?

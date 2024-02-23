@@ -1,0 +1,119 @@
+csl_enum yf {
+	um,
+	gi,
+	fx,
+	yn,
+	rn,
+	oh
+};
+csl_enum dj {
+	lo,
+	tn
+};
+csl_enum eo {
+	eb = 31,
+	mn = 17,
+	al = 31,
+	ai = 92,
+	qa = 29,
+	nl = 35
+};
+csl_isa_instruction_format sb{
+    sb( ){
+     set_width( 9);
+  }
+}
+;
+csl_isa rx{
+    rx( ){
+     set_decoder_name( "on");
+     set_decoder_out_name_prefix( "tv");
+     set_decoder_out_name_suffix( "bv");
+     generate_decoder( tv);
+  }
+}
+;
+csl_fifo bp{
+   bp( ){
+     add_logic( depth_extend, 9);
+     add_logic( stall);
+  }
+}
+;
+csl_memory_map_page vt{
+    vt( ){
+     add_address_range( 8, 3);
+     get_next_address( );
+     set_access_rights( access_read, access_read_write);
+     get_upper_bound( );
+     get_data_word_wodth( );
+  }
+}
+;
+csl_memory_map_page qr{
+  vt fd;
+  vt pb;
+  vt eb;
+    qr( ){
+     add_address_range( 9, 6);
+     get_address_increment( );
+     set_next_address( 9);
+     get_next_address( );
+     set_access_rights( access_write, none);
+     set_data_word_width( 6);
+     set_aligment( 5);
+     get_aligment( );
+     set_endianess( big_endian);
+  }
+}
+;
+csl_memory_map_page tj{
+  vt hs;
+  qr xq;
+  vt wd;
+  qr uw;
+    tj( ){
+     get_address_increment( );
+     set_next_address( 1);
+     get_next_address( );
+     set_access_rights( access_read_write, access_write);
+     add_reserved_address_range( 1, 6);
+     set_data_word_width( 0);
+     set_aligment( 9);
+     get_aligment( );
+     set_endianess( little_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map eo{
+    eo( ){
+  }
+}
+;
+csl_register ug{
+    ug( ){
+     set_range( [6:1]);
+     set_width( 2);
+     add_logic( serial_output);
+     add_logic( wr_en);
+     init_value( 7);
+     set_value( 4);
+     clear_value( 2);
+     add_logic( gray_output);
+     set_count_amount( 1);
+     set_end_value( 9);
+     add_logic( inc_signal);
+  }
+}
+;
+csl_register pr{
+    pr( ){
+     set_depth( 7);
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 7);
+  }
+}
+;

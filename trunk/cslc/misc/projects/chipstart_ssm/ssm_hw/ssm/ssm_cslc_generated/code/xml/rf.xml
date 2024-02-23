@@ -1,0 +1,15 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="rf">
+<interface name="Va2r_tap_slave_in_ifc" >
+<port name="read_data" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="ready" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="error" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="address" offset="0" upper="20-1" lower="0" direction = "output" type = "wire" />
+<port name="data" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="read" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="write" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+</unit>
+</design>

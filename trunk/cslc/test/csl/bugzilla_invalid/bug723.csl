@@ -1,0 +1,6 @@
+csl_memory_map mm{
+  //  fp fpag;
+  mm(){
+    set_type(flat);
+    set_next_address(35);//should give a error message because it isn't
+  }};

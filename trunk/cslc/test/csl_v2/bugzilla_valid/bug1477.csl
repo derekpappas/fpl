@@ -1,0 +1,12 @@
+csl_isa_field f_op{ 
+f_op(){ 
+set_width(2); 
+set_type(opcode); 
+}
+};
+csl_isa_field f_alu{
+  f_alu(){
+    set_width(f_op.get_width());
+    set_type(selector);
+  }
+};

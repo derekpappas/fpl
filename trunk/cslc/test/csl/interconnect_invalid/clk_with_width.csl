@@ -1,0 +1,18 @@
+//oanab
+//12 nov 2007
+//clk set as clock has width 1 (default)
+
+csl_unit u1{
+  csl_port clk(input,2),x(input); // width should be 1 or not specified
+  u1(){
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit u2{
+  csl_signal clk;
+  u1 u1;
+  u2(){
+    clk.set_attr(clock);
+  }
+};

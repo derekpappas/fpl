@@ -1,0 +1,128 @@
+csl_enum ri {
+	ec = 29,
+	po = 32,
+	ej = 62,
+	fm = 88,
+	xj = 89,
+	nh = 1
+};
+csl_enum no {
+	tm,
+	sm,
+	ur,
+	rj,
+	mv
+};
+csl_enum if {
+	fr,
+	ja,
+	bp,
+	cs,
+	fg,
+	ek,
+	vc,
+	vl,
+	jm,
+	af,
+	yt,
+	rv,
+	nj,
+	gb,
+	ho
+};
+csl_isa_instruction_format gm{
+    gm( ){
+     set_width( 0);
+     generate_decoder( spvrgwci);
+  }
+}
+;
+csl_isa_instruction qv : gm{
+    qv( ){
+    set_asm_mnemonic( nd);
+  }
+}
+;
+csl_memory_map_page gx{
+    gx( ){
+     set_address_increment( 9);
+     get_address_increment( );
+     set_next_address( 4);
+     set_access_rights( none, access_read_write);
+     add_reserved_address_range( 8, 9);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 5);
+     get_data_word_wodth( );
+     set_aligment( 0);
+     get_aligment( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page ud{
+  gx bs;
+  gx pl;
+    ud( ){
+     get_upper_bound( );
+     get_data_word_wodth( );
+  }
+}
+;
+csl_memory_map_page ig{
+  gx vy;
+  ud dk;
+  ud gb;
+    ig( ){
+     add_address_range( 8, 9);
+     set_address_increment( 8);
+     set_next_address( 9);
+     set_access_rights( none, access_read);
+     add_reserved_address_range( 2, 9);
+     add( gxud);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 7);
+     get_data_word_wodth( );
+     get_aligment( );
+     set_endianess( big_endian);
+  }
+}
+;
+csl_memory_map wl{
+  ud pq;
+  ig ya;
+  gx mg;
+  gx cl;
+    wl( ){
+     set_top_unit( gw);
+ig.set_access_rights_enum( gxud); 
+     set_prefix( ei);
+     get_prefix( );
+     set_suffix( hd);
+  }
+}
+;
+csl_register vn{
+    vn( ){
+     set_type( CNT);
+     set_address( wl, );
+     add_logic( neg_output);
+     add_logic( wr_en);
+     set_value( 8);
+     reset_value( 7);
+     clear_value( 4);
+     set_end_value( 7);
+     stop_at_end_value( );
+     add_logic( inc_signal);
+  }
+}
+;
+csl_register bg{
+    bg( ){
+     set_width( 5);
+     add_logic( read_valid);
+     set_const_value( 7);
+  }
+}
+;

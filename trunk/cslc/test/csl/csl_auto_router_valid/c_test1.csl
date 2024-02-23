@@ -1,0 +1,59 @@
+// costelc
+//02.Apr.2008
+
+csl_unit u_a{
+        csl_port ck(input), reset(input);
+        csl_port p_a_in(input,8);
+        csl_port p_a_out(output,8);
+        u_a() {}
+};  
+    
+csl_unit u_b{
+    	csl_port ck(input), reset(input); 
+	csl_port p_b_in(input,8);
+       	csl_port p_b_out(output,8);
+	u_b() {}
+};
+csl_unit u_c{
+	csl_port ck(input), reset(input);
+	csl_port p_c_in(input,8);
+	csl_port p_c_out(output,8);
+	u_c() {}
+};
+csl_unit u_d{
+	csl_port ck(input), reset(input);
+	csl_port p_d_in(input,8);
+	csl_port p_d_out(output,8);
+	u_d() {}
+};
+csl_unit u_bc{	 
+	csl_port ck(input), reset(input);
+	csl_port p_bc_in(input,8);
+	csl_port p_bc_out(output,8);
+	u_b b;
+	u_c c;
+	u_bc() {}
+};		
+
+csl_unit top{
+	csl_port ck1(input),reset1(input);
+	csl_port top_in(input, 8),top_in1(input,8);
+	csl_port top_out(output, 8),top_out1(output,8);
+
+	u_a a;
+	u_bc bc;
+	u_d d;
+	
+	top(){
+	ck1.connect_by_pattern(ck);
+	reset1.connect_by_pattern(reset);
+	top_in.connect_by_name (a.p_a_in);
+	a.p_a_out.connect_by_name(bc.b.p_b_in);
+	bc.b.p_b_out.connect_by_name(bc.c.p_c_in);
+	bc.c.p_c_out.connect_by_name(d.p_d_in);
+	d.p_d_out.connect_by_name (top_out);
+        top_in1.connect_by_name(bc.p_bc_in);
+        top_out1.connect_by_name(bc.p_bc_out);
+
+}
+};

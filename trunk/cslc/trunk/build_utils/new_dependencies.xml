@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="CSLC Dependencies Check" default="check.all.dependencies">
+
+  <!-- Add 'Ant-Contrib' tasks -->
+  <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+
+  <!-- Check OS architecture & name -->
+  <target name="check.os">
+    <if>
+      <contains string="${os.arch}" substring="64"/>
+      <then>
+        <property name="sys.arch" value="x86_64"/>
+      </then>
+      <else>
+        <if>
+          <contains string="${os.arch}" substring="32"/>
+          <then>
+            <property name="sys.arch" value="x86_32"/>
+          </then>
+          <else>
+            <property name="sys.arch" value="x86"/>
+          </else>
+        </if>
+      </else>
+    </if>
+
+    <switch value="${os.name}" caseinsensitive="true">
+      <case value="linux">
+        <property name="build.dir" value="${basedir}/../build/linux/${sys.arch}"/>
+      </case>
+      <case value="mac os x">
+        <property name="build.dir" value="${basedir}/../build/linux/${sys.arch}"/>
+      </case>
+      <case value="windows">
+        <property name="build.dir" value="${basedir}/../build/windows/${sys.arch}"/>
+      </case>
+      <default>
+        <fail message="Operating System not supported: '${os.name}'"/>
+      </default>
+    </switch>
+    <echo message="Build directory: ${build.dir}" level="info"/>
+  </target>
+
+  <!-- Check compiler version -->
+  <target name="check.gcc">
+    <exec executable="perl" outputproperty="gcc.version">
+      <arg line="checkGccVersion.pl"/>
+    </exec>
+    <if>
+      <not>
+        <equals arg1="${gcc.version}" arg2="1"/>
+      </not>
+      <then>
+        <fail message="gcc version lower than 3.4.x"/>
+      </then>
+    </if>
+  </target>
+
+  <!-- Check ant version -->
+  <target name="check.ant">
+    <!-- this had been introduced since ant v1.7 -->
+    <!--if>
+      <not>
+        <antversion atleast="1.7"/>
+      </not>
+      <then>
+        <fail message="ant version lower than 1.7.x: '${ant.version}'"/>
+      </then>
+    </if-->
+  </target>
+
+  <!-- Check antlr version -->
+  <target name="check.antlr">
+    <property name="antlr.dir" value="${basedir}/../antlr"/>
+    <property name="antlr.lib" value="antlr"/>
+    <property name="antlr.src" value="${antlr.dir}/lib/cpp/src"/>
+    <property name="antlr.inc" value="${antlr.src}/.."/>
+    <property name="antlr.jar" value="${antlr.dir}/antlr.jar"/>
+
+    <exec executable="${antlr.src}/compile.sh">
+      <arg line="${antlr.src}"/>
+    </exec>
+  </target>
+
+  <!-- Check boost version -->
+  <target name="check.boost">
+  </target>
+
+  <!-- Check lib dir -->
+  <target name="check.lib">
+	<exec executable="perl" outputproperty="lib.dir">
+      <arg line="getLibdir.pl"/>
+	</exec>
+	<echo message="lib dir: '${lib.dir}'" level="info"/>
+  </target>
+
+  <!-- Check all dependencies -->
+  <target name="check.all.dependencies">
+    <echo message="-------------------- Check dependencies --------------------"/>
+    <runtarget target="check.os"/>
+    <runtarget target="check.gcc"/>
+    <runtarget target="check.ant"/>
+    <runtarget target="check.antlr"/>
+    <runtarget target="check.boost"/>
+    <runtarget target="check.lib"/>
+    <echo message="-------------------- Done checking dependencies --------------------"/>
+  </target>
+
+</project>

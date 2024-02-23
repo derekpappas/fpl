@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="g++ noversion nomachine-g -ftest-coverage -I. -I/usr/local/include/boost -L/usr/local/lib -c">
+      <target file="Base.o" lastModified="12db27b2538">
+         <source file="../../../../../src/support/Base.cpp" lastModified="12db2172f60"/>
+      </target>
+      <target file="cslcCLI_Support.o" lastModified="12db27b11b0">
+         <source file="../../../../../src/support/cli/cslcCLI_Support.cpp" lastModified="12db2172f60"/>
+      </target>
+      <target file="cslcCLI.o" lastModified="12db27b1980">
+         <source file="../../../../../src/support/cli/cslcCLI.cpp" lastModified="12db2172f60"/>
+      </target>
+      <target file="SupportFunctions.o" lastModified="12db27b2150">
+         <source file="../../../../../src/support/SupportFunctions.cpp" lastModified="12db2172f60"/>
+      </target>
+      <target file="cslcCLI_Typedef.o" lastModified="12db27b09e0">
+         <source file="../../../../../src/support/cli/cslcCLI_Typedef.cpp" lastModified="12db2172f60"/>
+      </target>
+      <target file="ErrorAPI.o" lastModified="12db27b2150">
+         <source file="../../../../../src/support/ErrorAPI.cpp" lastModified="12db2172f60"/>
+      </target>
+   </processor>
+   <processor signature="ar">
+      <target file="libSupport.a" lastModified="12db27b2538">
+         <source file="cslcCLI_Typedef.o" lastModified="12db27b09e0"/>
+         <source file="cslcCLI_Support.o" lastModified="12db27b11b0"/>
+         <source file="cslcCLI.o" lastModified="12db27b1980"/>
+         <source file="ErrorAPI.o" lastModified="12db27b2150"/>
+         <source file="SupportFunctions.o" lastModified="12db27b2150"/>
+         <source file="Base.o" lastModified="12db27b2538"/>
+      </target>
+   </processor>
+</history>

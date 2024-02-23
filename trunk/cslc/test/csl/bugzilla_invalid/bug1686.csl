@@ -1,0 +1,4 @@
+//ILLEGAL TEST: because enum_item's value must be integer
+csl_enum e1{
+  a = -0.3
+};

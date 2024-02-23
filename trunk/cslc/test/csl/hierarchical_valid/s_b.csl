@@ -1,0 +1,13 @@
+// Author : CristiL
+//
+// Creating a signal which has bitrange
+
+
+csl_unit unitTop {
+  csl_bitrange bitrange0(32);
+  csl_signal   signal0(bitrange0);
+  csl_signal s1(32);
+  unitTop() {
+    signal0 = s1;
+  }
+};

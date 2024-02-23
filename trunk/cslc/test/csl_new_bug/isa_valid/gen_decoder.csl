@@ -1,0 +1,27 @@
+
+csl_isa_field op{
+  op(){
+set_type(opcode);
+ set_width(2);
+  }};
+csl_isa_element isa_root{
+  isa_root(){
+    set_type(root_format);
+    set_width(32);
+  }
+};
+csl_unit u{
+  u(){}
+};
+csl_isa_element fb:isa_root{
+  op op;
+  fb(){
+    set_type(instr_format);
+    set_position(op,30);
+   // gen_decoder(u); // command probably changed or not implemented
+  }
+};
+csl_isa_element instr: fb{
+  instr(){
+    set_type(instr);
+  }};

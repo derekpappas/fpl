@@ -1,0 +1,20 @@
+//oanab
+//24 oct 2007
+//the reserved address range starts before the 
+//set one; the data word width is smaller than 
+//the alignment
+csl_memory_map_page mpag{
+  mpag(){
+     add_address_range(125,321);
+     add_reserved_address_range(120,170);
+     set_data_word_width(32);
+     set_alignment(64);
+    }
+};
+
+csl_memory_map mmap{
+   mpag mpag1;
+   mmap(){
+      set_data_word_width(32);
+}
+};

@@ -1,0 +1,36 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="mfd_sec_cluster">
+<interface name="msf_mtf_fab" >
+<port name="bus80" offset="0" upper="79" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="mdf_msf_fab" >
+<port name="bus80" offset="0" upper="79" lower="0" direction = "input" type = "wire" />
+</interface>
+<signalgroup name="msf_msl_lba">
+<signal name="dummy2" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="msl_ms_lb">
+<signal name="dummy3" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "msi_fabric_if">
+<instance name="mfd_sec_fab">
+<f2a formal = "fab_add.bus80" actual = "msf_mtf_fab.bus80" />
+<f2a formal = "fab_drop.bus80" actual = "mdf_msf_fab.bus80" />
+<f2a formal = "lba.dummy2" actual = "msf_msl_lba.dummy2" />
+</instance>
+</instantiation>
+<instantiation type = "mfd_sec_lba">
+<instance name="mfd_sec_lba">
+<f2a formal = "lb.dummy3" actual = "msl_ms_lb.dummy3" />
+<f2a formal = "lba.dummy2" actual = "msf_msl_lba.dummy2" />
+</instance>
+</instantiation>
+<instantiation type = "mfd_sec">
+<instance name="mfd_sec">
+<f2a formal = "lb.dummy3" actual = "msl_ms_lb.dummy3" />
+</instance>
+</instantiation>
+</unit>
+</design>

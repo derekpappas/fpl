@@ -1,0 +1,29 @@
+//costelc
+//port - port concatenation
+
+
+csl_unit a{
+  csl_port a_in(input,16);
+  csl_port a_out(output);
+  a() {}
+};
+
+csl_unit b{
+  csl_port b_in(input);
+  csl_port b_out(output,8);
+  b() {}
+};
+csl_unit c{
+  csl_port c_in(input);
+  csl_port c_out(output,8);
+  c() {}
+};				
+csl_unit top{
+  b b0(.b_in(s),.b_out(t_out1));
+  c c0(.c_in(s),.c_out(t_out2));
+  csl_port t_out1(output,8);
+  csl_port t_out2(output,8);
+  csl_signal s;
+  a a0(.a_in({t_out1,t_out2}),.a_out(s));
+  top() {}
+};

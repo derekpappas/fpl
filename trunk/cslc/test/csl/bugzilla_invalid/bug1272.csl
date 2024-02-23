@@ -1,0 +1,10 @@
+csl_unit u{
+  u(){}
+};
+
+csl_memory_map_page mmpage{
+  mmpage(){
+    add_address_range(0, 31);
+    set_next_address(112);//112 is not an address from the mmpage
+  }
+};

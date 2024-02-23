@@ -1,0 +1,13 @@
+//Petronela
+
+csl_interface ifc1{
+  ifc1(){
+  }
+};
+csl_unit a{
+    csl_signal s1;
+  a(){
+    s1.set_width(7);
+    set_unit_prefix(56);//should be a string
+  }
+};

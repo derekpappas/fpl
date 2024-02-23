@@ -1,0 +1,10 @@
+<project name="fplsite" basedir="." default="build">
+	<description>Builds search</description>
+
+	<import file="../common.xml" />
+
+	<path id="compile.classpath"> <!-- common override -->
+		<path refid="stringTemplate.libs" />
+		<path refid="antlr.libs" />
+	</path>
+</project>

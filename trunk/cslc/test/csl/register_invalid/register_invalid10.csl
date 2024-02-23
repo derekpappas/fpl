@@ -1,0 +1,7 @@
+//set_type -mandatory command for register
+//danielt
+csl_register reg{
+  reg(){
+    set_width(10);
+  }
+};

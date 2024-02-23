@@ -1,0 +1,17 @@
+csl_unit test {
+  csl_signal sgn66,sgn67,sgn68;           
+  csl_bitrange br7(3);
+  csl_bitrange br8(2);
+  csl_bitrange br9(0,7);     
+  csl_signal sgn68_1,sgn68_2,sgn68_3,sgn68_4;
+
+  test(){
+    sgn66.set_number_of_dimensions(3);
+    sgn66.set_dim_bitrange(1,br8);          
+    sgn66.set_dim_bitrange(2,br9);
+    sgn68.set_number_of_dimensions(2);
+    sgn68.set_dim_bitrange(0,sgn66.get_dim_bitrange(1));
+    //sgn68.set_dim_bitrange(1,sgn66.get_dim_bitrange(2));
+
+  }
+};

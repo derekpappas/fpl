@@ -1,0 +1,19 @@
+How the build/regression system can be improved..
+
+General Aspects:
+
+The most important features/improvements of the regression system have to be:
+- organizing the testing process based on the "testsuite" concept (totally independent of files, directories and hdls)
+- improved reporting format (xml + xslt only)
+- more info added to the reports:
+  * platform and environment information, 
+  * add all valgrind’s tools as optional regress stages
+  * categorizing the errors based on stage/level and importance
+  * progress history and archiving
+- modularization of the entire application (split into files/classes)
+- OOP conversion of the code
+- integration/usage of external tools (cpan XML parsers like twig xml)
+- improved configuration (text/xml config file and command-line/environment parameters)
+- GUI for the configuration and results information
+
+Details:

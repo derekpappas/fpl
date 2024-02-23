@@ -1,0 +1,23 @@
+//Monica
+
+csl_interface ifc1{
+  csl_port p21(input);
+  csl_port p22(output);
+  ifc1(){
+    set_suffix("_xxx");
+}
+};
+
+csl_interface ifc2{
+  csl_port p21(input),p22(output);
+  ifc2(){}
+};
+
+csl_unit u1{
+  ifc1 ifc11;
+  ifc2 ifc21;
+  u1(){
+    ifc21.set_suffix("_21");
+    ifc11 = ifc21;
+  }
+};

@@ -1,0 +1,19 @@
+//oanab
+//10 nov 2007
+//signal declared in a memory map's scope
+
+csl_memory_map_page mpg{
+  mpg(){
+    set_data_word_width(32);
+    add_address_range(0,9);
+  }
+};
+
+csl_memory_map mp{
+  mpg mpg;
+  csl_signal x(wire); // signals can't be declared in a memory map
+  mp(){
+  set_data_word_width(32);
+  set_type(hierarchical);
+  }
+};

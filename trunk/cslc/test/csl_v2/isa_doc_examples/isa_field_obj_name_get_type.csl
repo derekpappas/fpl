@@ -1,0 +1,8 @@
+//isa_field_obj_name.get_type();
+//20 August 2007
+
+csl_isa_field f_op(2);
+f_op.set_type(opcode);
+
+csl_isa_field f_op2(3);
+f_op2.set_type(f_op.get_type());

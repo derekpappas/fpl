@@ -1,0 +1,20 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="output.xsl"?>
+<design>
+<unit  name="MAC_rx" > 
+ </unit>
+<unit  name="MAC_tx" > 
+ </unit>
+<unit  name="Phy_int" > 
+ </unit>
+<unit  name="Reg_int" > 
+ </unit>
+<unit  name="RMON" > 
+ </unit>
+<unit  name="eth_miim" > 
+ </unit>
+<unit  name="Clk_ctrl" > 
+ </unit>
+<unit  name="MAC_top" > 
+ </unit>
+</design>

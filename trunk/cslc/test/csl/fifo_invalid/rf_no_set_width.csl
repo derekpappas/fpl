@@ -1,0 +1,16 @@
+//Petronela
+//error:we don't have set_width
+csl_register_file r1{
+  r1(){
+    set_depth(3);
+    create_rtl_module(); 
+  }
+};
+
+
+
+csl_unit u1{
+  r1 r1;
+  u1(){
+  }
+};

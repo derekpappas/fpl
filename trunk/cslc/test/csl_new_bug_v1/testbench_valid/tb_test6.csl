@@ -1,0 +1,75 @@
+//Monica
+// 7 apr 2008
+
+csl_bitrange br_data(16);
+ 
+csl_unit adder{
+  csl_port op1(input,br_data);
+  csl_port op2(op1);
+  csl_port res(output,br_data);
+  adder(){
+    res=op1+op2;
+  }};
+csl_unit substr{
+  csl_port op1(input,br_data);
+  csl_port op2(op1);
+  csl_port res(output,br_data);
+  substr(){
+    res=op1-op2;
+  }
+};
+csl_unit op_logic{
+  csl_port op1(input,br_data);
+  csl_port op2(op1);
+  csl_port res_and(output,br_data);
+  csl_port res_or(output,br_data);
+  op_logic(){
+    res_and=op1 & op2;
+    res_or=op1 | op2;
+  }
+};
+csl_unit op_dut{
+  csl_port clk(input);
+  csl_port p_op1(input,br_data);
+  csl_port p_op2(p_op1);
+  csl_port p_res_add(output,br_data);
+  csl_port p_res_sub(output,br_data);
+  csl_port p_res_and(output,br_data);
+  csl_port p_res_or(output,br_data);
+  csl_signal clk1;
+
+  adder u_add(.op1(p_op1),
+              .op2(p_op2),
+              .res(p_res_add));
+  substr u_sub(.op1(p_op1),
+               .op2(p_op2),
+               .res(p_res_sub));
+  op_logic u_logic(.op1(p_op1),
+                   .op2(p_op2),
+                   .res_and(p_res_and),
+                   .res_or(p_res_or));  
+op_dut(){
+    clk.set_attr(clock);
+    clk = clk1;
+  }};
+csl_vector stim_vec{
+  stim_vec(){
+    set_unit_name(op_dut);
+    set_direction(input);
+  }
+};
+csl_vector exp_vec{
+  exp_vec(){
+    set_unit_name(op_dut);
+    set_direction(output);
+  }
+};
+csl_testbench tb_op{
+  csl_signal clk(reg);
+  op_dut dut(.clk(clk));
+
+  tb_op(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,5,ns);
+  }
+};

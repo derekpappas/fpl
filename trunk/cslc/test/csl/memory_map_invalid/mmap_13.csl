@@ -1,0 +1,17 @@
+csl_memory_map_page mpage{
+	  mpage(){
+	  	add_reserved_address_range(0,127);
+		  add_address_range(128,255);
+		  set_address_increment(2);
+		  }
+};
+
+csl_memory_map mmap{
+  mpage mpage;
+	mmap(){
+		set_data_word_width(32);
+	}
+};
+
+csl_unit top {
+};

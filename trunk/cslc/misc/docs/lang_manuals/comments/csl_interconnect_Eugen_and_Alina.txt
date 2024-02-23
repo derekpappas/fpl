@@ -1,0 +1,251 @@
+Page 2: 
+CSLC will read the CSL language specification and check the CSL specification for correctness, report errors, and generate a set of RTL and C++ files.
+corrected:
+CSLC will read the CSL files and check corectness according to CSL language specification, report errors, and generate a set of RTL and C++ files. 
+
+Page 2: 
+• interconnect generation
+• C/C++ simulator and testbench vector readers/writers
+• C/C++ simulator and testbench memory readers/writers
+corrected (indentation):
+• generating interconnect (or interconnect generating)
+  • C/C++ simulator and testbench vector readers/writers
+  • C/C++ simulator and testbench memory readers/writers
+Does this mean that the CSLC will generate automaticaly the simulator and the testbench?
+
+Page 2:
+• instance documentation:
+  • each instance’s formal to actual mappings and the fanin and fanout
+  • usage information for each bit in each port
+
+• instance documenting:
+  • each instance’s formal to actual mappings and the fanin and fanout (Does this mean that each instance is documented )
+  • usage information for each bit in each port
+What is the meaning of this? be more precise please ...
+Are we supposed to generate documentation from the csl files (.csl) ? If yes, what about the semantics of each instance, is this supposed to be generated from the comments,
+just like the cdom docs from the java style commenting.
+
+Page 2:
+the connections between the clocks and the SE’s are checked for glitches also
+And SE stands for ?
+
+Page 2:
+CSL has a lint tool to enforce the following lint rules:
+• Clocks.
+• Enables (register leaks).
+• Check pipe lines.
+• Combinational loops.
+• Component loops.
+• Infinite loops (for / while / …).
+• missing signals.
+These aren't rules, these are cases, possible errors, what do you want to enforce here ? Please be more specific.
+
+Page 3:
+There will be different modes of operation for the port name inference engine. The first mode will allow dangling nets in the design database. The second mode of operation will allow the designer to add an override attribute in the code which will cause the clsc to ignore a dangling net. The third mode of operation will flag all dangling nets and any dangling net will cause a cslc compilation failure
+q: What is a "dangling net" ??
+
+Page 3:
+Signal declaration <- two types of statements are used in the interconnect files signal point:
+What does this mean ?
+
+Page 3:
+The signals in the database are automatically connected.
+What database?
+
+Page 3:
+If the tool is unable to find at least one driver and one receiver endpoint.
+Then what ?
+
+Page 3:
+If all bits in a csl endpoint vector signal are not driven then is flagged and reported to a log file.
+Please fix this phrase.
+
+Page 3:
+signalname range bit number 76543210
+foo [31:0] 10211111
+this example is very difficult to read, please allign the columns
+
+Page 3:
+The CSL compiler generates the RTL interconnect and a .vc file and interface files for each leaf used verilog module.
+used by the verilog module ?
+
+Page 3:
+Note if there are several hierarchical levels of interconnect and tree files the interconnect can be built in a bottom **un manner.
+Note: if there are several hierarchical levels of interconnect and tree files, the interconnect can be built in a bottom **up manner.
+
+Page 4:
+The interface files are included in each designers leaf level module:
+‘include “leaf_module.port
+designers leaf ? please make this more readable because we couldn't understand the meaning of this sentence ...
+
+Page 4:
+Parts of multi-bit signals can connect to other.
+???
+Parts of multi-bit signals can connect to other flowers? :)
+
+1.2.3:
+Basic operation in the CSL interconnect specification is creating a connection between two or more signals and contains:
+A basic operation in the CSL interconnect specification is creating a connection between two or more signals and contains:
+
+1.2.3:
+Basic operation in the CSL interconnect specification is creating a connection between two or more signals and contains:
+• source input code   ----> What input source code?
+• commands to execute ----> Isn't that what the code is supposed to do?
+• reports generation  ----> The action of connecting signals generates reports, but the connection doesn't contain reports
+• code generation     ----> Isn't that the input source code, or what is it ? And the connections doesn't contain the action
+                            of generation, it might contain the generated code ... ????? 
+
+1.2.3.2
+CSL can specify the memory type and instantiate memories:
+  • macro’s
+  • environment variables
+  • formal to actual mappings in instance port lists
+  • actual expressions
+  • const
+  • concat
+  • bit or bit range
+  • scalars
+  • vectors
+  • multiple instances
+  • declarations
+  • assignments
+  • compiler directives
+Are macroes memory types????
+Maybe this is an unfinished sencence?? macro's what?
+All of this is very unclear .. Are these types of possible memories that we
+can instantiate ??
+
+1.2.3.2.1
+The RHS of an assignment, a select, or an actual name can be one of the
+following:
+• bit
+• bus
+• bus_part_select
+• expr_concat
+• expr_constant
+• expr
+The LHS of an assignment can be one of the following:
+• bit
+• bus
+• bus_part_select
+You are repeating yourself
+
+1.2.3.2.2
+Or it has to be able to parse a verilog file from either the user or the
+vendor and it has to be able to insert it into the memory and the RTL Floor
+Planner has to position it correctly.
+1. REGFILE
+2. SRAM
+3. CAM
+What are these three??
+
+1.3
+CONNECT signal_expression_lhs "_" signal_expression_rhs ";"
+dimension : range [( range )];
+// íf the instance name is not specified then use the variable ín the //
+// current_namespace. If the variable does not exist then create ít
+// unless the CSL SIGNAL NOT DEFINED ERROR == true
+instance_name:
+ID
+| regex;
+signal_name:
+ID
+| regex;
+// add in signal_prefix and signal_suffix overrides
+signal :
+instance_name
+// connect the signal to the instance and create new signal which is
+// compatible with the type of the signal it is being assigned to
+[ instance_name ] "." signal_name [ dimension ]
+// the signal name is in the signal and optionally the instance_name
+// and the dimenson are included in the signal
+signal_expression_lhs :
+signal
+| signal_expression_concatentation_lhs
+;
+signal_expression_concatenation_lhs:
+"{" ( signal_expression_lhs )+ "}”
+;
+signal_expression_rhs :
+signal_expression_lhs
+I expression
+;
+signal_connection:
+Please finish these rules and sort them in a top down manner.
+
+1.3.1
+A leaf level file is a file at the lowest level if the design hierarchy which
+is user generated. There are three ways to connect leaf level and
+hierarchical files.
+Plase fix these sententices, they are very unclear.
+
+1.3.1.1 Hierarchy Specification:
+The CSL interconnect specification is used to define the module hierarchy for
+a chip design.
+module modulename;
+  /* CSL Interconnect directive options */
+  i_name template_name instance_name;
+  /* CSL Interconnect directive option */
+  i_name template_name;
+  /* CSL Interconnect directive option */
+  instance_name; // declaration of an instance name
+  instance_name_list : iname+
+  //(Check that these are different)
+  //instance_name_List: a list of unique instance names
+  //i_name is equal some valid instance name string
+endmodule
+What is with all these rules, what do they represent, etc etc. ....
+
+1.3.1.3 Interconnect files contents
+Interconnect files generated by CSL interconnect can contain:
+• The header.
+• The User Includes (e.g. timescale 1 ns/1 ps).
+Aren't these the same thing?
+.....
+• Continuous assigns with const drivers refer to constant numbers.
+This sencence doesn't make any sence????
+
+1.3.1.5 Hierarchy Slice
+A hierarchy slice is a set of modules that have a root and a terminating level
+n levels below the root or a Iist of modules which are the leaf levels of the
+hierarchy slice.
+Examples plase of the two hierarchy slice types
+
+1.3.1.5.2 Creating Module Instances
+Top is a module which is declared using CSL. We declare other modules then we
+add them as children
+to their parent modules using the instance keyword.
+csl_unit(top);
+top.instance(foo, f );
+top.instance(foo, f1);
+csl_unit(bar);
+top.instance(bar, bar0);
+WHere is the declaration of foo ??
+
+1. class csl_unit(string unit_name) {...}
+// comments
+What is the meaning of the word class, csl_unit, string and unit_name here?
+Why so many keywords ?
+
+parent_name := instance_name | unit_name;
+// comments
+parent_name.add_instance(instance_name | instance_list);
+// comments
+Adding instances to a class from another class is not OOP, is not safe, and
+this kind of programming will make it very difficult to understand the
+composition of the parent, unless you want to make csl be a command line
+prompt.
+
+signal which has more than one bit is called a multi-bit signal. Multi-bit
+signals can connect to other multi-bit signals with the same number of bits.
+Parts of multi-bit signals can connect to other selecting part of a multi-bit
+signal.
+How many times can you repeat one thing ?
+
+1.3.2 Adding parameters to modules
+module_name.parameter(parameter_name, default_value);
+1.3.3 Passing parameters to instances
+instance_name.parameter_name(parameter_value);
+These two would be okay as syntactic sugar, only if this you could do this
+from the module you are declaring. Really, what is the point of the commands?
+Commands are used in promts, not HDLs?

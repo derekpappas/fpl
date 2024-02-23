@@ -1,0 +1,10 @@
+//oanab
+//22 july 2008
+
+csl_unit a {
+  csl_port x(input,4);
+  csl_signal s(2);
+  a () {
+    s=x[7:6];
+  }
+};

@@ -1,0 +1,5 @@
+// LEGAL TEST: because in c++ it's working
+csl_enum e1{
+  a = 2,
+  b = a-1//the error appears because this line - if I comment this line it's working
+};

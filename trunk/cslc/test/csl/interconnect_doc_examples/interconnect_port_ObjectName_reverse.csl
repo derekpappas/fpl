@@ -1,0 +1,19 @@
+csl_unit snd{
+   csl_port x(output), y(input);
+   snd(){
+   }
+};
+csl_unit rcv{
+   csl_port x(snd.x), y(snd.y);
+   rcv(){
+     x.reverse();
+     y.reverse();
+   }
+};
+csl_unit trans{
+  csl_signal x_d, y_d;
+  snd snd ( .x(x_d), .y(y_d));
+  rcv rcv( .x(x_d), .y(y_d)); 
+  trans(){
+  }
+};

@@ -1,0 +1,11 @@
+csl_interface ifc{
+  csl_port x(input), y(output);
+  ifc(){
+    set_prefix ("ifc");
+  }};
+csl_unit top{
+  ifc ifc;
+ top(){
+set_prefix( "unit");
+}
+};

@@ -1,0 +1,964 @@
+// Author: cghaba
+// Date: June 4, 2008
+
+// declaring opcode enums 
+csl_enum e_opcode{
+    LOAD      =0,
+    INPUT     =2,
+    FETCH     =3,
+    AND       =5,
+    OR        =6,
+    XOR       =7,
+    TEST      =9,
+    COMPARE   =10,
+    ADD       =12,
+    ADDCY     =13,
+    SUB       =14,
+    SUBCY     =15,
+    SR        =16,
+    RETURN    =21,
+    OUTPUT    =22,
+    STORE     =23,
+    CALL      =24,
+    JUMP      =26,
+    RETURNI   =28,
+    INTERRUPT =30
+  };
+
+// declaring condition enums
+csl_enum e_cond{
+  Z  =0,
+    NZ =1,
+    C  =2,
+    NC =3
+    };
+
+// declaring conditional types
+csl_enum e_cond_type{
+    NCOND =0,
+    COND  =1
+    };
+
+// declaring enabling type
+csl_enum e_enable{
+    DISABLE =0,
+    ENABLE  =1
+    };
+
+
+// declaring rotating/shifting types
+csl_enum e_srtype{
+    SLA =0,
+    RL  =2,
+    SLX =4,
+    SL0 =6,
+    SL1 =7,
+    SRA =8,
+    SRX =10,
+    RR  =12,
+    SR0 =14,
+    SR1 =15
+
+    };
+
+// declaring arithmetic operator type
+csl_enum e_operator{
+    CONST  =0,
+    NCONST =1
+      };
+
+
+//------------------------------------
+// defining instruction fields
+//------------------------------------
+
+// opcode field
+
+csl_isa_field f_opcode {
+  f_opcode() {
+    set_type(opcode);
+    set_width(5);
+    set_enum(e_opcode);
+  }
+};
+
+// register address field 
+csl_isa_field r_field {
+  r_field(){
+        set_type(address);
+    //    set_type(rf_address);
+    set_width(4);
+  }
+};
+
+// constant field
+csl_isa_field k_field {
+  k_field(){
+        set_type(constant);
+        //set_type(im);
+    set_width(8);
+  }
+};
+
+// branch address field
+csl_isa_field b_field {
+  b_field(){      
+    set_type(address);
+    set_width(10);
+  }
+};
+
+// condition field
+csl_isa_field c_field {
+  c_field(){
+    set_type(selector);
+    set_width(2);
+    set_enum(e_cond);
+  }
+};
+
+// shift/rotate field
+csl_isa_field sr_field {
+  sr_field(){
+    set_type(selector);
+    set_width(4);
+    set_enum(e_srtype);
+  }
+};
+
+// constant/register selection field
+csl_isa_field kr_field {
+  kr_field(){
+    set_type(selector);
+    set_width(1);
+    set_enum(e_operator);
+  }
+};
+
+// enable/disable selection field
+csl_isa_field ed_field{
+  ed_field(){
+    set_type(selector);
+    set_width(1);
+    set_enum(e_enable);
+  }
+};
+
+// conditional/unconditional selection field
+csl_isa_field cu_field{
+  cu_field(){
+    set_type(selector);
+    set_width(1);
+  }
+};
+
+// 1 bit constant field
+csl_isa_field k1_field{
+  k1_field(){
+    set_type(constant);
+    set_width(1);
+  }
+};
+
+// 4 bit constant field
+csl_isa_field k4_field{
+  k4_field(){
+    set_type(constant);
+    set_width(4);
+  }
+};
+
+// scratch pad address field
+csl_isa_field sp_field{
+  sp_field(){
+    set_type(address);
+    set_width(6);
+  }
+};
+
+// port address field
+csl_isa_field p_field{
+  p_field(){
+    set_type(address);
+    set_width(8);
+  }
+};
+
+//-----------------------------
+// defining instruction formats
+//-----------------------------
+
+// defining root format
+
+csl_isa_element picoblaze_isa_root{
+  picoblaze_isa_root(){
+    set_type(root_format);
+    set_width(18);
+  }
+};
+
+//declaring base format derived from isa_root
+
+csl_isa_element base_format: picoblaze_isa_root {
+  f_opcode f_opcode;
+  base_format() {
+    set_type(instr_format);
+    set_position(f_opcode,13);
+  }
+};
+
+// declaring disable/enable interrupt/returni format
+csl_isa_element interrupt_format: base_format {
+  ed_field edfield;
+  k4_field k4f1, k4f2, k4f3;
+  interrupt_format() {
+    set_type(instr_format);
+    set_position(edfield,0);
+    set_position(k4f1,1);
+    set_position(k4f2,5);
+    set_position(k4f3,9);
+    k4f1.set_value(0);   
+    k4f2.set_value(0);
+    k4f3.set_value(0);
+  }
+};
+
+// declaring shift/rotate format
+csl_isa_element sr_format: base_format {
+  sr_field srfield;
+  k4_field k4zero; // 4 padded with 0 
+  k1_field k1zero; // 1 zero bit
+  r_field xfield;
+  sr_format(){
+    set_type(instr_format);
+    set_position(srfield,0);
+    set_position(k4zero,4);
+    set_position(xfield,8);
+    set_position(k1zero,12);
+    k4zero.set_value(0);
+    k1zero.set_value(0);
+  }
+};
+
+// math/logic operations base format
+csl_isa_element alubase_format: base_format {
+  kr_field krfield;
+  alubase_format(){
+    set_type(instr_format);
+    set_position(krfield,12);
+  }
+};
+
+// math/logic 2 operand format
+csl_isa_element alu_format: alubase_format {
+  r_field xfield, yfield;
+  k4_field k4zero;
+  alu_format(){
+    set_type(instr_format);
+    set_position(xfield,8);
+    set_position(yfield,4);
+    set_position(k4zero,0);
+    k4zero.set_value(0);
+  }
+};
+
+// math/logic immediate constant format
+csl_isa_element aluk_format: alubase_format {
+  r_field xfield;
+  k_field kfield;
+  aluk_format(){
+    set_type(instr_format);
+    set_position(xfield,8);
+    set_position(kfield,0);
+  }
+};
+
+// imediate short constant format
+csl_isa_element alusk_format: alubase_format {
+  r_field xfield;
+  k1_field k1zero1, k1zero2;
+  sp_field spfield;
+  alusk_format(){
+    set_type(instr_format);
+    set_position(xfield,8);
+    set_position(k1zero1,7);
+    set_position(k1zero2,6);
+    set_position(spfield,0);
+    k1zero1.set_value(0);
+    k1zero2.set_value(0);
+  }
+};
+
+// jump/call/return base format
+
+csl_isa_element jcrbase_format: base_format {
+  cu_field cufield;
+  jcrbase_format(){
+    set_type(instr_format);
+    set_position(cufield,12);
+  }
+};
+
+// jmp/call/return conditional base format
+csl_isa_element jcrcbase_format: jcrbase_format {
+  c_field cfield;
+  jcrcbase_format(){
+    set_type(instr_format);
+    set_position(cfield,10);
+  }
+};
+
+// jmp/call conditional format
+csl_isa_element jcr_format: jcrcbase_format {
+  b_field bfield;
+  jcr_format(){
+    set_type(instr_format);
+    set_position(bfield,0);
+  }
+};
+
+// jmp/call unconditional format
+csl_isa_element jcru_format: jcrbase_format {
+  b_field bfield;
+  k1_field k1zero1, k1zero2;
+  jcru_format(){
+    set_type(instr_format);
+    set_position(k1zero1,11);
+    set_position(k1zero2,10);
+    set_position(bfield,0);
+    k1zero1.set_value(0);
+    k1zero2.set_value(0);
+  }
+};
+
+//---------------------------------------
+// defining instructions
+//---------------------------------------
+
+// ADD sX,kk instruction
+
+csl_isa_element i_addk: aluk_format {
+  i_addk(){
+    set_type(instr);
+    f_opcode.set_enum_item(ADD);
+    f_opcode.set_mnemonic("ADD");
+  }
+};
+
+// ADD sX,sY
+
+csl_isa_element i_addr: alu_format {
+  i_addr(){
+    set_type(instr);
+    f_opcode.set_enum_item(ADD);
+    f_opcode.set_mnemonic("ADD");
+  }
+};
+
+
+// ADDCY sX,kk instruction
+
+csl_isa_element i_addcyk: aluk_format {
+  i_addcyk(){
+    set_type(instr);
+    f_opcode.set_enum_item(ADDCY);
+    f_opcode.set_mnemonic("ADDCY");
+  }
+};
+
+// ADDCY sX,sY
+
+csl_isa_element i_addrcy: alu_format {
+  i_addrcy(){
+    set_type(instr);
+    f_opcode.set_enum_item(ADDCY);
+    f_opcode.set_mnemonic("ADDCY");
+  }
+};
+
+
+// AND sX,kk instruction
+
+csl_isa_element i_andk: aluk_format {
+  i_andk(){
+    set_type(instr);
+    f_opcode.set_enum_item(AND);
+    f_opcode.set_mnemonic("AND");
+  }
+};
+
+// AND sX,sY
+
+csl_isa_element i_andr: alu_format {
+  i_andr(){
+    set_type(instr);
+    f_opcode.set_enum_item(AND);
+    f_opcode.set_mnemonic("AND");
+  }
+};
+
+
+// OR sX,kk instruction
+
+csl_isa_element i_ork: aluk_format {
+  i_ork(){
+    set_type(instr);
+    f_opcode.set_enum_item(OR);
+    f_opcode.set_mnemonic("OR");
+  }
+};
+
+// OR sX,sY
+
+csl_isa_element i_orr: alu_format {
+  i_orr(){
+    set_type(instr);
+    f_opcode.set_enum_item(OR);
+    f_opcode.set_mnemonic("OR");
+  }
+};
+
+
+// SUB sX,kk instruction
+
+csl_isa_element i_subk: aluk_format {
+  i_subk(){
+    set_type(instr);
+    f_opcode.set_enum_item(SUB);
+    f_opcode.set_mnemonic("SUB");
+  }
+};
+
+// SUB sX,sY
+
+csl_isa_element i_subr: alu_format {
+  i_subr(){
+    set_type(instr);
+    f_opcode.set_enum_item(SUB);
+    f_opcode.set_mnemonic("SUB");
+  }
+};
+  
+
+// SUBCY sX,kk instruction
+
+csl_isa_element i_subcyk: aluk_format {
+  i_subcyk(){
+    set_type(instr);
+    f_opcode.set_enum_item(SUBCY);
+    f_opcode.set_mnemonic("SUBCY");
+  }
+};
+
+// SUBCY sX,sY
+
+csl_isa_element i_subcyr: alu_format {
+  i_subcyr(){
+    set_type(instr);
+    f_opcode.set_enum_item(SUBCY);
+    f_opcode.set_mnemonic("SUBCY");
+  }
+};
+
+
+// XOR sX,kk instruction
+
+csl_isa_element i_xork: aluk_format {
+  i_xork(){
+    set_type(instr);
+    f_opcode.set_enum_item(XOR);
+    f_opcode.set_mnemonic("XOR");
+  }
+};
+
+// XOR sX,sY
+
+csl_isa_element i_xorr: alu_format {
+  i_xorr(){
+    set_type(instr);
+    f_opcode.set_enum_item(XOR);
+    f_opcode.set_mnemonic("XOR");
+  }
+};
+
+
+// COMPARE sX,kk instruction
+
+csl_isa_element i_compk: aluk_format {
+  i_compk(){
+    set_type(instr);
+    f_opcode.set_enum_item(COMPARE);
+    f_opcode.set_mnemonic("COMPARE");
+  }
+};
+
+// COMPARE sX,sY
+
+csl_isa_element i_compr: alu_format {
+  i_compr(){
+    set_type(instr);
+    f_opcode.set_enum_item(COMPARE);
+    f_opcode.set_mnemonic("COMPARE");
+  }
+};
+
+
+// TEST sX,kk instruction
+
+csl_isa_element i_testk: aluk_format {
+  i_testk(){
+    set_type(instr);
+    f_opcode.set_enum_item(TEST);
+    f_opcode.set_mnemonic("TEST");
+  }
+};
+
+// ADD sX,sY
+
+csl_isa_element i_testr: alu_format {
+  i_testr(){
+    set_type(instr);
+    f_opcode.set_enum_item(TEST);
+    f_opcode.set_mnemonic("TEST");
+  }
+};
+
+// DISABLE INTERRUPT instruction
+
+csl_isa_element i_disint: interrupt_format {
+  i_disint(){
+    set_type(instr);
+    f_opcode.set_enum_item(INTERRUPT);
+    f_opcode.set_mnemonic("DISABLE INTERRUPT");
+    edfield.set_value(0);
+  }
+};
+
+// ENABLE INTERRUPT instruction
+
+csl_isa_element i_enint: interrupt_format {
+  i_enint(){
+    set_type(instr);
+    f_opcode.set_enum_item(INTERRUPT);
+    f_opcode.set_mnemonic("ENABLE INTERRUPT");
+    edfield.set_value(1);
+  }
+};
+
+
+// RETRUNI DISABLE instruction
+
+csl_isa_element i_retidis: interrupt_format {
+  i_retidis(){
+    set_type(instr);
+    f_opcode.set_enum_item(RETURNI);
+    f_opcode.set_mnemonic("RETURN DISABLE");
+    edfield.set_value(0);
+  }
+};
+
+// RETRUNI ENABLE instruction
+
+csl_isa_element i_retien: interrupt_format {
+  i_retien(){
+    set_type(instr);
+    f_opcode.set_enum_item(RETURNI);
+    f_opcode.set_mnemonic("RETURNI ENABLE");
+    edfield.set_value(1);
+  }
+};
+
+
+// FETCH sX,ss instruction
+csl_isa_element i_fetchk: alusk_format {
+  i_fetchk(){
+    set_type(instr);
+    f_opcode.set_enum_item(FETCH);
+    f_opcode.set_mnemonic("FETCH");
+    kr_field.set_value(0);
+  }
+};
+
+// FETCH sX, (sY) instruction
+
+csl_isa_element i_fetchr: alu_format {
+  i_fetchr(){
+    set_type(instr);
+    f_opcode.set_enum_item(FETCH);
+    f_opcode.set_mnemonic("FETCH");
+    kr_field.set_value(1);
+  }
+};
+
+// STORE sX,ss instruction
+csl_isa_element i_storek: alusk_format {
+  i_storek(){
+    set_type(instr);
+    f_opcode.set_enum_item(STORE);
+    f_opcode.set_mnemonic("STORE");
+    kr_field.set_value(0);
+  }
+};
+
+// STORE sX, (sY) instruction
+
+csl_isa_element i_storer: alu_format {
+  i_storer(){
+    set_type(instr);
+    f_opcode.set_enum_item(STORE);
+    f_opcode.set_mnemonic("STORE");
+    kr_field.set_value(1);
+  }
+};
+
+// OUTPUT sX, (sY) instruction 
+
+csl_isa_element i_outputr: alu_format {
+  i_outputr(){
+    set_type(instr);
+    f_opcode.set_enum_item(OUTPUT);
+    f_opcode.set_mnemonic("OUTPUT");
+    kr_field.set_value(1);
+  }
+};
+
+// OUTPUT sX, pp  instruction
+
+csl_isa_element i_outputk: aluk_format {
+  i_outputk(){
+    set_type(instr);
+    f_opcode.set_enum_item(OUTPUT);
+    f_opcode.set_mnemonic("OUTPUT");
+    kr_field.set_value(0);
+  }
+};
+
+// INPUT sX, (sY) instruction 
+
+csl_isa_element i_inputr: alu_format {
+  i_inputr(){
+    set_type(instr);
+    f_opcode.set_enum_item(INPUT);
+    f_opcode.set_mnemonic("INPUT");
+    kr_field.set_value(1);
+  }
+};
+
+// INPUT sX, pp  instruction
+
+csl_isa_element i_inputk: aluk_format {
+  i_inputk(){
+    set_type(instr);
+    f_opcode.set_enum_item(INPUT);
+    f_opcode.set_mnemonic("INPUT");
+    kr_field.set_value(0);
+  }
+};
+
+// LOAD sX,kk
+csl_isa_element i_loadk: aluk_format {
+  i_loadk(){
+    set_type(instr);
+    f_opcode.set_enum_item(LOAD);
+    f_opcode.set_mnemonic("LOAD");
+    kr_field.set_value(0);
+  }
+};
+
+// LOAD sX,sY
+
+csl_isa_element i_loadr: alu_format {
+  i_loadr(){
+    set_type(instr);
+    f_opcode.set_enum_item(LOAD);
+    f_opcode.set_mnemonic("LOAD");
+    kr_field.set_value(1);
+  }
+};
+
+
+// RL sX instruction
+
+csl_isa_element i_rl: sr_format {
+  i_rl(){
+    set_type(instr);
+    f_opcode.set_enum_item(RL);
+    f_opcode.set_mnemonic("RL");
+    srfield.set_value(2);
+  }
+};
+
+// SL0 sX instruction
+
+csl_isa_element i_sl0: sr_format {
+  i_sl0(){
+    set_type(instr);
+    f_opcode.set_enum_item(SL0);
+    f_opcode.set_mnemonic("SL0");
+    srfield.set_value(6);
+  }
+};
+
+// SL1 sX instruction
+
+csl_isa_element i_sl1: sr_format {
+  i_sl1(){
+    set_type(instr);
+    f_opcode.set_enum_item(SL1);
+    f_opcode.set_mnemonic("SL1");
+    srfield.set_value(7);
+  }
+};
+
+
+// SLA sX instruction
+
+csl_isa_element i_sla: sr_format {
+  i_sla(){
+    set_type(instr);
+    f_opcode.set_enum_item(SLA);
+    f_opcode.set_mnemonic("SLA");
+    srfield.set_value(0);
+  }
+};
+
+
+// SLX sX instruction
+
+csl_isa_element i_slx: sr_format {
+  i_slx(){
+    set_type(instr);
+    f_opcode.set_enum_item(SLX);
+    f_opcode.set_mnemonic("SLX");
+    srfield.set_value(4);
+  }
+};
+
+
+// RR sX instruction
+
+csl_isa_element i_rr: sr_format {
+  i_rr(){
+    set_type(instr);
+    f_opcode.set_enum_item(RR);
+    f_opcode.set_mnemonic("RR");
+    srfield.set_value(12);
+  }
+};
+
+// SR0 sX instruction
+
+csl_isa_element i_sr0: sr_format {
+  i_sr0(){
+    set_type(instr);
+    f_opcode.set_enum_item(SR0);
+    f_opcode.set_mnemonic("SR0");
+    srfield.set_value(14);
+  }
+};
+
+// SR1 sX instruction
+
+csl_isa_element i_sr1: sr_format {
+  i_sr1(){
+    set_type(instr);
+    f_opcode.set_enum_item(SR1);
+    f_opcode.set_mnemonic("SR1");
+    srfield.set_value(15);
+  }
+};
+
+// SRA sX instruction
+
+csl_isa_element i_sra: sr_format {
+  i_sra(){
+    set_type(instr);
+    f_opcode.set_enum_item(SRA);
+    f_opcode.set_mnemonic("SRA");
+    srfield.set_value(8);
+  }
+};
+
+// SRX sX instruction
+
+csl_isa_element i_srx: sr_format {
+  i_srx(){
+    set_type(instr);
+    f_opcode.set_enum_item(SRX);
+    f_opcode.set_mnemonic("SRX");
+    srfield.set_value(10);
+  }
+};
+
+// RETURN instruction
+
+csl_isa_element i_return: jcrbase_format {
+  i_return(){
+    set_type(instr);
+    f_opcode.set_enum_item(RETURN);
+    f_opcode.set_mnemonic("RETURN");
+    cufield.set_value(0);
+    // to zero the remaining bits !!!
+  }
+};
+
+// RETURN C instruction
+
+csl_isa_element i_returnc: jcrcbase_format {
+  i_returnc(){
+    set_type(instr);
+    f_opcode.set_enum_item(RETURN);
+    f_opcode.set_mnemonic("RETURN");
+    cfield.set_value(2);
+  }
+};
+
+// RETURN NC instruction
+
+csl_isa_element i_returnnc: jcrcbase_format {
+  i_returnnc(){
+    set_type(instr);
+    f_opcode.set_enum_item(RETURN);
+    f_opcode.set_mnemonic("RETURN");
+    cfield.set_value(3);
+  }
+};
+
+// RETURN NZ instruction
+
+csl_isa_element i_returnnz: jcrcbase_format {
+  i_returnnz(){
+    set_type(instr);
+    f_opcode.set_enum_item(RETURN);
+    f_opcode.set_mnemonic("RETURN");
+    cfield.set_value(1);
+  }
+};
+
+// RETURN Z instruction
+
+csl_isa_element i_returnz: jcrcbase_format {
+  i_returnz(){
+    set_type(instr);
+    f_opcode.set_enum_item(RETURN);
+    f_opcode.set_mnemonic("RETURN");
+    cfield.set_value(0);
+  }
+};
+
+// CALL instruction
+
+csl_isa_element i_call: jcru_format {
+  i_call(){
+    set_type(instr);
+    f_opcode.set_enum_item(CALL);
+    f_opcode.set_mnemonic("CALL");
+  }
+};
+
+// JUMP instruction
+
+csl_isa_element i_jump: jcru_format {
+  i_jump(){
+    set_type(instr);
+    f_opcode.set_enum_item(JUMP);
+    f_opcode.set_mnemonic("JUMP");
+  }
+};
+
+// CALL C instruction
+
+csl_isa_element i_callc: jcr_format {
+  i_callc(){
+    set_type(instr);
+    f_opcode.set_enum_item(CALL);
+    f_opcode.set_mnemonic("CALL");
+    bfield.set_value(1);
+    cfield.set_value(2);
+  }
+};
+
+// CALL NC instruction
+
+csl_isa_element i_callnc: jcr_format {
+  i_callnc(){
+    set_type(instr);
+    f_opcode.set_enum_item(CALL);
+    f_opcode.set_mnemonic("CALL");
+    bfield.set_value(1);
+    cfield.set_value(3);
+  }
+};
+
+// CALL NZ instruction
+
+csl_isa_element i_callnz: jcr_format {
+  i_callnz(){
+    set_type(instr);
+    f_opcode.set_enum_item(CALL);
+    f_opcode.set_mnemonic("CALL");
+    bfield.set_value(1);
+    cfield.set_value(1);
+  }
+};
+
+// CALL Z instruction
+
+csl_isa_element i_callz: jcr_format {
+  i_callz(){
+    set_type(instr);
+    f_opcode.set_enum_item(CALL);
+    f_opcode.set_mnemonic("CALL");
+    bfield.set_value(1);
+    cfield.set_value(0);
+  }
+};
+
+// JUMP C instruction
+
+csl_isa_element i_jumpc: jcr_format {
+  i_jumpc(){
+    set_type(instr);
+    f_opcode.set_enum_item(JUMP);
+    f_opcode.set_mnemonic("JUMP");
+    bfield.set_value(1);
+    cfield.set_value(2);
+  }
+};
+
+// JUMP NC instruction
+
+csl_isa_element i_jumpnc: jcr_format {
+  i_jumpnc(){
+    set_type(instr);
+    f_opcode.set_enum_item(JUMP);
+    f_opcode.set_mnemonic("JUMP");
+    bfield.set_value(1);
+    cfield.set_value(3);
+  }
+};
+
+// JUMP NZ instruction
+
+csl_isa_element i_jumpnz: jcr_format {
+  i_jumpnz(){
+    set_type(instr);
+    f_opcode.set_enum_item(JUMP);
+    f_opcode.set_mnemonic("JUMP");
+    bfield.set_value(1);
+    cfield.set_value(1);
+  }
+};
+
+// JUMP Z instruction
+
+csl_isa_element i_jumpz: jcr_format {
+  i_jumpz(){
+    set_type(instr);
+    f_opcode.set_enum_item(JUMP);
+    f_opcode.set_mnemonic("JUMP");
+    bfield.set_value(1);
+    cfield.set_value(0);
+  }
+};
+

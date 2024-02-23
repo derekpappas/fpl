@@ -1,0 +1,188 @@
+// Author: cghaba
+// Date: June 11, 2008
+
+csl_bitrange br_d(0,7);
+csl_bitrange br_i(0,17);
+csl_bitrange br_a(0,9);
+
+
+// instruction memory
+csl_memory im{
+  im(){
+    set_width(18);
+    set_depth(1024);
+  }
+};
+
+// scratch pad memory
+csl_memory spm{
+  spm(){
+    set_width(8);
+    set_depth(64);
+  }
+};
+
+// register file
+csl_register_file rf{
+  rf(){
+    set_width(8);
+    set_depth(16);
+  }
+};
+
+// alu
+csl_unit alu {
+  csl_port op1(input,br_d);
+  csl_port op2(input,br_d);
+  csl_port res(output,br_d);
+  csl_port opsel(input,4);
+  alu(){
+  }
+};
+
+// program counter
+csl_unit pc {
+  pc(){
+  }
+};
+
+// instruction decoder
+csl_unit idec {
+  idec(){
+  }
+};
+
+csl_memory stack {
+  stack(){
+    set_width(10);
+    set_depth(31);
+  }
+};
+
+// shift/rotate block
+
+csl_unit shr{
+  csl_port inp(input,br_d);   // input to be shifted
+  csl_port shsel(input,4);    // select rotate and shift types
+  csl_port outp(output,br_d); // shift result
+  shr(){
+  }
+};
+
+csl_unit picoblaze {
+  csl_port in_port(input,br_d);
+  csl_port interrupt(input);
+  csl_port reset(input);
+  csl_port clock(input);
+  csl_port out_port(output,br_d);
+  csl_port port_id(output,br_d);
+  csl_port read_strobe(output);
+  csl_port write_strobe(output);;
+  csl_port interrupt_ack(output);
+
+
+  // instruction register
+  csl_signal ir(18);
+
+  // multiplexors
+
+  csl_signal mux_rf0_data(br_d);          // input/result/scratchpad memory write to rf multiplexor
+  csl_signal mux_spm0_addr(br_d);         // fetch/store register/constant address multiplexor output
+  csl_signal mux_port_id(br_d);           // input/output port address
+  csl_signal mux_pc0(br_a);               // next PC address
+
+  // signals
+
+  csl_signal spm0_rf0_data(br_d);         // data from scratch pad to register file
+  csl_signal rf0_spm0_data(br_d);         // data from register file to scratch pad
+  csl_signal rf0_alu0_op0(br_d);          // first operand
+  csl_signal rf0_mux0_op1(br_d);          // second operand
+  csl_signal s_alu;                       // alu operations
+  csl_signal alu0_mux_res(br_d);          // alu output
+  csl_signal s_sh;                        // shift/rotate operations
+  csl_signal shr0_mux_res(br_d);        // shifter output
+  csl_signal load_pc;                    // selects load program counter with new address or simple increment
+  csl_signal opsel(4);
+  csl_signal condition_true;
+  csl_signal clk,clear,valid;
+  im im0;
+
+  pc pc0;
+
+  shr shr0(.inp(ir.alu_format.xfield),
+           .shsel(ir.sr_format.srfield),
+           .outp(shrot0_mux_res));
+
+  alu alu0(.op0(rf_alu0_op0),
+           .op1(mux0_alu0_op1),
+           .res(alu0_mux_res),
+           .opsel(opsel));
+
+  spm spm0(.rd0en(ir.base_format.opcode.FETCH),
+           .rd0address(mux_spm0_addr[0,5]),
+           .rd0data(rf0_spm0_data),
+           .wr0en(ir.base_format.opcode.STORE),
+           .wr0address(mux_spm0_addr[0:5]),
+           .wr0data(spm0_rf0_data));
+
+  rf rf0(.reset(reset),
+         .clear(clear),
+         .clock(clk),
+         .rd_en0(ir.base_format.opcode.OUTPUT|ir.base_format.opcode.FETCH|s_alu),
+         .rd_addr0(ir.alu_format.xfield),
+         .rd_en1(s_alu & ~s_aluk),
+         .rd_addr1(ir.alu_format.yfield),
+         .wr_addr(ir.alu_format.xfield),
+         .wr_en(ir.base_format.opcode.INPUT|ir.base_format.opcode.STORE|s_alu),
+         .data_in(mux_rf0_data),
+         .data_out0(rf0_alu0_op0),
+         .data_out1(rf0_mux0_op1),
+         .valid(valid));
+
+stack stack0;
+idec idec0;
+  picoblaze(){
+
+/*    // associate isa with instruction register
+    ir.set_isa(picoblaze_isa_root);
+    
+   //  generate decoders
+    ir.gen_decoders();
+
+    // multiplexers
+    mux0_alu0_op1 =  ir.alu_base_format.kr_field ? rf0.data_out1    : ir.aluk_format.k_field;    // alu operand1 can be immediate constant or register 
+    mux_rf0_data  = ir.base_format.opcode.STORE  ? spm0_rf0_data    :
+      (ir.base_format.opcode.SR ? shr0_mux_res :
+              (s_alu ? alu0_mux_res :
+                        (ir.base_format.opcode.INPUT ? in_port: alu_res));    // in register file we write alu result, sh result or data from scratch pad memory
+    mux_port_id   = ir.alu_base_format.kr_field  ? rf_data_out1     : ir.aluk_format.k_field;  // port address is a multiplex of immediate and address in a register
+    mux_pc0       = load_pc                      ? (pc0_out+1)      : ir.jcr_format.bfield;  // program counter increments or is loaded with address for call and jmp ops
+   
+    // condition true (for conditional instructions)
+    condition_true =( (ir.jcrbase_format.cfield.C & s_carry) |  (ir.jcrbase_format.cfield.NC & ~ s_carry) |   (ir.jcrbase_format.cfield.Z & s_zero) | (ir.jcrbase_format.cfiel//d.NZ & ~ s_zero));
+
+    // zero flag
+    s_zero = ~| alu0.res;
+
+    // condition to load program counter
+    load_pc = (ir.base_format.opcode.JUMP | ir.base_format.opcode.CALL) & (ir.jcrbase_format.cufield ? 1 : condition_true);
+
+       // alu operations
+       s_alu= ir.base_format.opcode.ADD |
+       ir.base_format.opcode.ADDCY |
+       ir.base_format.opcode.SUB |
+       ir.base_format.opcode.SUBCY |
+       ir.base_format.opcode.AND |
+       ir.base_format.opcode.OR |
+       ir.base_format.opcode.XOR |
+       ir.base_format.opcode.COMPARE |
+       ir.base_format.opcode.TEST;
+
+       // or 
+       // s_alu = (ir.base_format.opcode >= 5) && (ir_base_format.opcode <=15);  // this is dependent on the coding of opcode enums
+    */  
+
+  }
+};
+
+

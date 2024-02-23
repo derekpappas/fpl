@@ -1,0 +1,84 @@
+// Intel XScale Core
+
+// instruction cache unit
+csl_unit ic {
+ ic(){};
+  };
+  
+// Data cache unit
+csl_unit dc {
+  dc(){};
+  };
+
+// Mini-Data cache
+csl_unit mdc{
+  mdc(){};
+  };
+
+//Power management unit
+csl_unit pmu{
+  pmu(){};
+  };
+  
+//Intel ARM Core unit
+csl_unit iac {
+  iac(){};
+  };
+  
+//Performance monitor unit
+csl_unit pfm {
+  pfm(){};
+  };
+  
+//I-MMU instruction memory management unit
+csl_unit immu{
+  immu(){};
+  };
+
+//D-MMU data memory management unit
+csl_unit dmmu{
+  dmmu(){};
+  };
+  
+// Fill Buffer unit
+csl_unit fb{
+  fb(){};
+  };
+  
+// Debug unit
+csl_unit du{
+  du(){};
+  };
+  
+// Branch Target Cache unit
+csl_unit btc{
+  btc(){};
+  };
+  
+// Co-processor unit
+csl_unit cp {
+  cp(){};
+  };
+  
+// Write Buffer unit
+csl_unit wb {
+  wb(){};
+  };
+ //XScale Core  
+csl_unit xscalecore{
+  ic ic;
+  dc dc;
+  mdc mdc;
+  pmu pmu;
+  iac iac;
+  pfm pfm;
+  immu immu;
+  dmmu dmmu;
+  fb fb;
+  du du;
+  btc btc;
+  cp cp;
+  wb wb;
+  xscalecore(){}
+  }; 
+  

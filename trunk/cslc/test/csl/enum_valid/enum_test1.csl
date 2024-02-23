@@ -1,0 +1,11 @@
+//AV legal
+
+csl_enum e1{
+	a,
+	b,
+	c
+};
+
+csl_unit top {
+};
+

@@ -1,0 +1,70 @@
+//connect_units in multiple levels
+// the picture conn_units_levels.odg shows the connections. 
+
+csl_unit u1 {
+  csl_port p1(input,2);
+u1(){}
+};
+
+csl_unit u2 {
+  csl_port p1(input,2);
+  csl_port p2(input,2);
+  u1 u11;
+  u1 u12(.p1(p2));
+  
+u2(){}
+};
+
+csl_unit u3 {
+  csl_port p1(input,2);
+  csl_port p2(input,2);
+  csl_port p3(input,2);
+  csl_port p4(input,2);
+  csl_port p5(input,2);
+  csl_port p6(input,2);
+  u2 u21;
+  u2 u22(.p1(p3),.p2(p4));
+  u2 u23(.p1(p5),.p2(p6));
+u3(){
+ u21.connect_units(u21.u11);
+ u22.connect_units(u22.u11);
+ u23.connect_units(u23.u11);
+ 
+}
+};
+
+csl_unit u4 {
+  csl_port p11(input,2);
+  csl_port p12(input,2);
+  csl_port p13(input,2);
+  csl_port p14(input,2);
+  csl_port p15(input,2);
+  csl_port p16(input,2);
+
+  csl_port p21(input,2);
+  csl_port p22(input,2);
+  csl_port p23(input,2);
+  csl_port p24(input,2);
+  csl_port p25(input,2);
+  csl_port p26(input,2);
+
+  csl_port p31(input,2);
+  csl_port p32(input,2);
+  csl_port p33(input,2);
+  csl_port p34(input,2);
+  csl_port p35(input,2);
+  csl_port p36(input,2);
+
+  u3 u31(.p1(p11),.p2(p12),.p3(p13),.p4(p14),.p5(p15),.p6(p16));
+  u3 u32(.p1(p21),.p2(p22),.p3(p23),.p4(p24),.p5(p25),.p6(p26));
+  u3 u33(.p1(p31),.p2(p32),.p3(p33),.p4(p34),.p5(p35),.p6(p36));
+u4(){
+   u31.connect_units(u31.u21);
+   u32.connect_units(u32.u21);
+   u33.connect_units(u33.u21);
+
+}
+};
+
+
+ 

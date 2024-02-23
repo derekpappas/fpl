@@ -1,0 +1,24 @@
+//oanab
+//1 aug 2008
+
+csl_bitrange br1(15);
+
+csl_interface ifc {
+  csl_port p_b(output);
+  csl_port p_c(input,br1);
+   ifc () {}
+};
+
+csl_unit a {
+  csl_signal s_a(2);
+  a () {
+  }
+};
+
+csl_unit b3 {
+  a a0;
+  ifc ifc0;
+  b3 () {
+    ifc0.p_c.connect_by_pattern(a0.s_a);  
+  }
+};

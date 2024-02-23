@@ -1,0 +1,19 @@
+//Monica
+//15 January 2008
+//port to signal connections
+
+csl_unit test1{
+  csl_port in1(input,2),in2(input,4);
+  csl_port out1(output,2),out2(output,4);
+
+  test1(){}
+};
+csl_unit top{
+  csl_signal sig_in1(2),sig_in2(4),sig_out1(2),sig_out2(4);
+  test1 test1;
+  top(){
+    test1.in1.connect_by_name(sig_in1);
+    test1.in2.connect_by_name(sig_in2);
+    test1.out1.connect_by_name(sig_out1);
+    test1.out2.connect_by_name(sig_out2);
+  }};

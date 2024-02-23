@@ -1,0 +1,26 @@
+a new high level specification language and compiler for specifying the architecture and generating the design, verification,
+and cycle based C++ simulator frameworks. We convert the language into C++, RTL
+(Verilog, working on SystemC, and can easily do any other RTL language using visitor
+functions). The language can be extended easily by adding new keywords and could
+be used to generate assertions and other verification code.  The compiler also generates
+documentation. The high level specification language is C++ compatible with some
+additional syntactic sugar with HDL compatible functionality. It will not compile with a
+C++ compiler. It requires our compiler with built in elaboration for vectors, test benches,
+memory maps and interconnect to mention a few components. The high level specification
+language is the HDL analog to object oriented design patterns. We have a language with
+over 300 keywords (classes and methods) that covers most of the major cross functional
+areas in chip design. The language supports keywords with hierarchical and linked list
+structures which are used to represent the common HDL hardware design patterns.
+The language is used in conjunction with Verilog and C++ to build chips.
+
+As you know there are design patterns in hardware languages which can be captured
+which represent the cross functional relationships between the different HDL
+design patterns. As you also know the design verification problem is very complex and
+trying to explain/capture the design verification dependencies can be daunting problem.
+Think about this language as a formal specification for the projects architecture and
+the design, verification, and cycle based C++ simulator components.
+
+
+
+
+

@@ -1,0 +1,18 @@
+//Monica
+
+csl_register reg1{
+  csl_parameter data_width(8);
+  reg1(){
+    set_width(data_width);
+    set_type(counter);
+    add_logic(count_direction,up);
+  }
+};
+csl_unit u1{
+  csl_signal rst,clk,en,data(16);
+  reg1 #(16) reg1(.reset_(rst),.enable(en),.clock(clk),.reg_out(data));
+
+  u1(){}
+};
+
+

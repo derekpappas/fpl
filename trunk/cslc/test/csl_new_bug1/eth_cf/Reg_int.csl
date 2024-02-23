@@ -1,0 +1,72 @@
+
+//*****************
+// Unit Reg_int
+//*****************
+
+csl_unit Reg_int{ 
+
+  csl_port  Reset(input);      
+  csl_port  Clk_reg(input);    
+  csl_port  CSB(input);        
+  csl_port  WRB(input);        
+  csl_port  CD_in(input,16);      
+  csl_port  CD_out(output,reg,16);
+  csl_port  CA_(input,8);         
+  //Tx host interface 
+  csl_port  Tx_Hwmark(output,5);  
+  csl_port  Tx_Lwmark(output,5);  
+  csl_port  pause_frame_send_en(output);
+  csl_port  pause_quanta_set(output,16);
+  csl_port  MAC_tx_add_en(output);      
+  csl_port  FullDuplex(output);         
+  csl_port  MaxRetry(output,4);         
+  csl_port  IFGset(output,6);           
+  csl_port  MAC_tx_add_prom_data(output,8);
+  csl_port  MAC_tx_add_prom_add(output,3); 
+  csl_port  MAC_tx_add_prom_wr(output);    
+  csl_port  tx_pause_en(output);           
+  csl_port  xoff_cpu(output);              
+  csl_port  xon_cpu(output);               
+  //Rx host interface     
+  csl_port  MAC_rx_add_chk_en(output);     
+  csl_port  MAC_rx_add_prom_data(output,8);
+  csl_port  MAC_rx_add_prom_add(output,3); 
+  csl_port  MAC_rx_add_prom_wr(output);    
+  csl_port  broadcast_filter_en(output);   
+  csl_port  broadcast_bucket_depth(output,16);
+  csl_port  broadcast_bucket_interval(output,16);
+  csl_port  RX_APPEND_CRC(output);      
+  csl_port  Rx_Hwmark(output,5);        
+  csl_port  Rx_Lwmark(output,5);        
+  csl_port  CRC_chk_en(output);         
+  csl_port  RX_IFG_SET(output,6);       
+  csl_port  RX_MAX_LENGTH(output,16);   
+  csl_port  RX_MIN_LENGTH(output,7);    
+  //RMON host interface
+  csl_port  CPU_rd_addr(output,6);      
+  csl_port  CPU_rd_apply(output);       
+  csl_port  CPU_rd_grant(input);        
+  csl_port  CPU_rd_dout(input,32);      
+  //Phy int host interface     
+  csl_port  Line_loop_en(output);       
+  csl_port  Speed(output,3);            
+  //MII to CPU 
+  csl_port  Divider(output,8);          
+  csl_port  CtrlData(output,16);        
+  csl_port  Rgad(output,5);             
+  csl_port  Fiad(output,5);             
+  csl_port  NoPre(output);              
+  csl_port  WCtrlData(output);          
+  csl_port  RStat(output);              
+  csl_port  ScanStat(output);           
+  csl_port  Busy(input);                
+  csl_port  LinkFail(input);            
+  csl_port  Nvalid(input);              
+  csl_port  Prsd(input,16);             
+  csl_port  WCtrlDataStart(input);      
+  csl_port  RStatStart(input);          
+  csl_port  UpdateMIIRX_DATAReg(input); 
+  
+  Reg_int(){
+  }
+};

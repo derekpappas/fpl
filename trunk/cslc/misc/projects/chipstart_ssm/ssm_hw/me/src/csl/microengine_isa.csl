@@ -1,0 +1,258 @@
+//---------------------------------------------------------------------
+// Copyright (c) 2005, 2006, 2007 Fastpath Logic
+// All Rights Reserved.
+// This is UNPUBLISHED PROPRIETARY SOURCE CODE of Fastpathlogic;
+// the contents of this file may not be disclosed to third parties,
+// copied or duplicated in any form, in whole or in part, without the prior
+// written permission of Fastpathlogic.
+//
+// RESTRICTED RIGHTS LEGEND:
+// Use, duplication or disclosure by the Government is subject to
+// restrictions as set forth in subdivision (c)(1)(ii) of the Rights in
+// Technical Data and Computer Software clause at DFARS 252.227-7013,
+// and/or in similar or succesor clauses in the FAR, DOD or NASA FAR Supplement.
+// Unpublished rights reserved under the Copyright Laws of the United States
+//----------------------------------------------------------------------
+
+//----------------------------------------------------------------------
+// design: Microcode Engine ISA
+// author: Catalin Lipsa
+//----------------------------------------------------------------------
+
+csl_enum f1_opc{
+	NOP = 0,
+	STR = 1,
+	STP = 2
+};
+
+csl_enum f2_opc{
+	LD  = 8,
+	ST  = 9,
+	NOT = 10
+};
+
+csl_enum f3_opc{
+	ADD = 16,
+	SUB = 17,
+	AND = 18,
+	OR  = 19,
+	SLL = 20,
+	SRL = 21,
+	SLA = 22,
+	SRA = 23
+};
+
+csl_enum f4_opc{
+	BR = 24
+};
+
+csl_enum br_cond{
+	ALW        = 0,
+	LESS_THEN  = 1,
+	GREATER_THEN = 2,
+	POSITIVE   = 3,
+	NEGATIVE   = 4
+};
+
+//define instruction format 1 (to be used by control instructions and nop)
+csl_isa_instruction_format format1 {
+  csl_field op(31,27);         //define format1 fields
+  
+  format1() {                  //the default constructor
+    set_width(32);             //set the width of the format
+    op.set_enum(f1_opc);       //set what enum to use with op field
+  }
+};
+
+//define instruction format 2 (to be used by mem instructions and by NOT instruction)
+csl_isa_instruction_format format2 {
+  csl_field op(31,27);         //define format2 fields
+  csl_field src(26,21);        //define format2 fields
+  csl_field dst(20,16);        //define format2 fields
+
+  format1() {                  //the default constructor
+    set_width(32);             //set the width of the format
+    op.set_enum(f2_opc);       //set what enum to use with op field
+  }
+};
+
+//define instruction format 3 (to be used by alu instructions)
+csl_isa_instruction_format format3 {
+  csl_field op(31,27);         //define format3 fields
+  csl_field srca(26,21);       //define format3 fields
+  csl_field srcb(20,16);       //define format3 fields
+  csl_field dst(20,16);        //define format3 fields
+
+  format1() {                  //the default constructor
+    set_width(32);             //set the width of the format
+    op.set_enum(f3_opc);       //set what enum to use with op field
+  }
+};
+
+//define instruction format 4 (to be used by branch instructions)
+csl_isa_instruction_format format4 {
+  csl_field op(31,27);         //define format4 fields
+  csl_field addr_src(26,21);   //define format4 fields
+  csl_field cond_src(20,16);   //define format4 fields
+  csl_field cond(15,13);       //define format4 fields
+
+  format1() {                  //the default constructor
+    set_width(32);             //set the width of the format
+    op.set_enum(f4_opc);       //set what enum to use with op field
+    cond.set_enum(br_cond);    //set what enum to use with cond field
+  }
+};
+
+//define the nop instruction
+csl_isa_instruction nop {
+  nop() {                            //default constructor
+    set_instruction_format(format1); //set the instruction format to use(format1)
+    op.set_value(f1_opc.nop);
+  }
+};
+
+//define the start instruction
+csl_isa_instruction str {
+  str() {                            //default constructor
+    set_instruction_format(format1); //set the instruction format to  use(format1)
+    op.set_value(f1_opc.str);
+  }
+};
+
+//define the stop instruction
+csl_isa_instruction stp {
+  stp() {                            //default constructor
+    set_instruction_format(format1); //set the instruction format to use(format1)
+    op.set_value(f1_opc.stp);  
+  }
+};
+
+//define the ld instruction
+csl_isa_instruction ld {
+  ld() {                            //default constructor
+    set_instruction_format(format2); //set the instruction format to use(format2)
+    op.set_value(f2_opc.ld);  
+  }
+};
+
+//define the ld instruction
+csl_isa_instruction st {
+  st() {                            //default constructor
+    set_instruction_format(format2); //set the instruction format to use(format2)
+    op.set_value(f2_opc.st);
+  }
+};
+
+//define the not instruction
+csl_isa_instruction not {
+  not() {                            //default constructor
+    set_instruction_format(format2); //set the instruction format to use(format2)
+    op.set_value(f2_opc.not);
+  }
+};
+
+//define the add instruction
+csl_isa_instruction add {
+  add() {                            //default constructor
+    set_instruction_format(format3); //set the instruction format to use(format3)
+    op.set_value(f3_opc.nop);    
+  }
+};
+
+//define the sub instruction
+csl_isa_instruction sub {
+  sub() {                            //default constructor
+    set_instruction_format(format3); //set the instruction format to use(format3)
+    op.set_value(f3_opc.sub);    
+  }
+};
+
+//define the and instruction
+csl_isa_instruction and {
+  and() {                            //default constructor
+    set_instruction_format(format3); //set the instruction format to use(format3)
+    op.set_value(f3_opc.and);    
+  }
+};
+
+//define the or instruction
+csl_isa_instruction or {
+  or() {                            //default constructor
+    set_instruction_format(format3); //set the instruction format to use(format3)
+    op.set_value(f3_opc.or);    
+  }
+};
+
+//define the sll instruction
+csl_isa_instruction sll {
+  sll() {                            //default constructor
+    set_instruction_format(format3); //set the instruction format to use(format3)
+    op.set_value(f3_opc.sll);    
+  }
+};
+
+//define the srl instruction
+csl_isa_instruction srl {
+  srl() {                            //default constructor
+    set_instruction_format(format3); //set the instruction format to use(format3)
+    op.set_value(f3_opc.srl);    
+  }
+};
+
+//define the sla instruction
+csl_isa_instruction sla {
+  sll() {                            //default constructor
+    set_instruction_format(format3); //set the instruction format to use(format3)
+    op.set_value(f3_opc.sla);    
+  }
+};
+
+csl_isa_instruction br{
+  br(){
+    set_instruction_format(format4);
+    op.set_value(f4_opc.br);        
+    }
+};
+
+//define the sra instruction
+csl_isa_instruction sra {
+  sra() {                            //default constructor
+    set_instruction_format(format3); //set the instruction format to use(format3)
+  }
+};
+
+csl_isa microengine_isa{
+	nop nop;
+	str str;
+	stp stp;
+	ld  ld;
+	st  st;
+	not not;
+	add add;
+	sub sub;
+	and and;
+	or  or;
+	sll sll;
+	srl srl;
+	sla sla;
+	sra sra;
+	br  br;
+	
+	microengine_isa(){
+		nop.set_mnemonic("nop");
+		nop.set_mnemonic("str");
+		nop.set_mnemonic("stp");
+		nop.set_mnemonic("ld") ;
+		nop.set_mnemonic("st") ;
+		nop.set_mnemonic("not");
+		nop.set_mnemonic("add");
+		nop.set_mnemonic("sub");
+		nop.set_mnemonic("and");
+		nop.set_mnemonic("or") ;
+		nop.set_mnemonic("sll");
+		nop.set_mnemonic("srl");
+		nop.set_mnemonic("sla");
+		nop.set_mnemonic("sra");
+		nop.set_mnemonic("br") ;
+	}
+};

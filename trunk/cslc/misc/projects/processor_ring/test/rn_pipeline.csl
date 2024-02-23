@@ -1,0 +1,250 @@
+//---------------------------------------------------------------------
+// Copyright (c) 2005, 2006, 2007 Fastpath Logic
+// All Rights Reserved.
+// This is UNPUBLISHED PROPRIETARY SOURCE CODE of Fastpathlogic;
+// the contents of this file may not be disclosed to third parties,
+// copied or duplicated in any form, in whole or in part, without the prior
+// written permission of Fastpathlogic.
+//
+// RESTRICTED RIGHTS LEGEND:
+// Use, duplication or disclosure by the Government is subject to
+// restrictions as set forth in subdivision (c)(1)(ii) of the Rights in
+// Technical Data and Computer Software clause at DFARS 252.227-7013,
+// and/or in similar or succesor clauses in the FAR, DOD or NASA FAR Supplement.
+// Unpublished rights reserved under the Copyright Laws of the United States
+//----------------------------------------------------------------------
+
+//----------------------------------------------------------------------
+// author: Monica
+// 06 feb 2008
+//----------------------------------------------------------------------
+
+csl_interface rn_bus_ifc {
+csl_port  valid   (input,  1);
+csl_port  age     (input,  1);
+csl_port  burst   (input,  1);
+csl_port  src_nid (input,  4);
+csl_port  dst_nid (input,  4);
+csl_port  be      (input,  4);
+csl_port  addr    (input, 24);
+csl_port  data    (input, 32);
+csl_port  cmd     (input,  4);
+};
+
+
+
+/*csl_pipestage rn_ps_0{
+  add_object(cd);
+  add_object(cp0);
+  add_object(qm);
+  add_object(mq);
+  add_object(au);
+  add_object(st);
+  csl_signal data_st(32);
+ 
+};
+csl_pipestage rn_ps_1{
+  add_object(cp1);
+  add_object(nios2);
+  add_object(cl);
+  add_object(au);
+  add_object(st);
+  csl_signal data_st(32);
+};
+csl_pipestage rn_ps_2{
+  dd_object(cp2);
+  add_object(bo);
+  add_object(st);
+};
+//ring node pipeline description
+csl_pipeline rn_pipe{
+  set_number_of_stages(3);
+  add_pipestage( rn_ps_0);
+  add_pipestage( rn_ps_1);
+  add_pipestage( rn_ps_2);
+  rn_pipe(){}
+  };
+*/
+
+
+csl_unit u_st{
+  rn_bus_ifc bus_in;
+  rn_bus_ifc bus_out;
+  csl_port  ck(input), rst_(input);
+  // csl_include (file_verilog, "st.vh");
+
+ u_st(){
+    bus_out.reverse();
+ }
+};
+
+csl_interface cd0_ifc{
+  csl_port slot_empty(input), rd(input), wr(input), rd_burst(input);
+  csl_port wr_burst(input), burst(input), dma_en(input), pass_trough(input);
+};
+
+csl_unit cd0{
+  cd0_ifc cd0_in;
+  cd0_ifc cd0_out;
+  // csl_include(file_verilog, "cd0.vh");
+
+  cd0(){
+    cd0_out.reverse();
+    //  csl_enum bus_cmd("nop","rd","wr","rd_burst","wr_burst");
+    // cmd.generate_decoder(bus_cmd); //cmd.dec
+  }
+};
+
+csl_interface  cd1_ifc{
+  csl_port  im_en(input), dm_en(input), reg_en(input);
+  cd1_ifc(){}
+};
+
+csl_unit cd1{
+  cd1_ifc cd1_in;
+  cd1_ifc cd1_out;
+  // csl_include(file_verilog, "cd1.vh");
+
+  cd1(){
+    cd1_out.reverse();
+  }
+};
+
+csl_interface cd2_ifc{
+  csl_port rd_mux_sel(input), pass_trough(input);
+  cd2_ifc(){}
+};
+
+csl_unit cd2{
+  cd2_ifc cd2_in;
+  cd2_ifc cd2_out;
+  // csl_include(file_verilog, "cd2.vh");
+
+  cd2(){
+    cd2_out.reverse();
+  }
+};
+
+csl_interface au_ifc{
+  csl_port  wr(input), rd(input), wr_burst(input), rd_burst(input), burst(input), dma_en(input);
+  csl_port  data(input,32), addr(input, 32);
+  csl_port  data_out (output, 32);
+  csl_port  addr_out (output, 20);
+  csl_port  we       (output,  1);
+  au_ifc(){}
+};
+/*csl_unit ac{
+  csl_port  addr         (input, 32);
+  csl_port  int_mem_addr (output, 20);
+  // csl_include(file_verilog, "ac.vh");
+  };*/
+csl_unit dc{
+  au_ifc au;
+
+  dc(){
+  
+ }
+};
+csl_unit au {
+  au_ifc  au;
+  csl_port clock(input), rst_(input, 1);
+  // ac ac;
+  dc dc;
+  au(){
+  }
+};
+
+
+csl_interface qm_ifc{
+  csl_port  mq_full (input, 1);
+  csl_port  bus_cmd (input, 4);
+  csl_port  mq_push(output), mqf(output, 1);
+};
+
+csl_unit qm{
+  qm_ifc qm;
+  // csl_include(file_verilog, "qm.vh");
+};
+
+csl_interface mq_ifc{
+  csl_port push(input), pop(input);
+  csl_port  in (input, 56);
+  csl_port full(output), empty(output);
+};
+
+csl_unit mq{
+  mq_ifc mq;
+  // csl_include(file_verilog, "mq.vh");
+};
+
+csl_interface bo_ifc{
+  csl_port  n_bo(input,74), cl_bo(input,74), st1_st2_bus(input, 74);
+  csl_port  rd_mux_sel(input), pass_trough(input) ; 
+  csl_port  rn_bus_st1 (output, 74);
+};
+
+csl_unit bo{
+  bo_ifc bo;
+  csl_signal rd_data, rn_bus_st1, n_bo, cl_bo_bus, st1_st2_bus,
+rd_mux_sel, pass_through;
+  bo(){
+    // rd_data.mux(rd_mux_sel, n_bo, cl_bo_bus);
+    // rn_bus_st1.mux(pass_through, rd_data, st1_st2_bus);
+  };
+};
+
+csl_interface cl_ifc_in {
+  csl_port  dataa(input,32),datab(input, 32) ;
+  csl_port  clock(input),clk_en(input),reset(input),start(input),readra(input), readrb(input),writerc(input,  1);
+  csl_port  a(input,4),b(input,4),c(input,  4) ;
+  csl_port  n (input,  8);
+};
+csl_interface cl_ifc_out {
+  csl_port  result (output, 32);
+  csl_port  done   (output, 1);
+};
+
+csl_unit cl {
+  cl_ifc_in  cl_in;
+  cl_ifc_out cl_out;
+};
+
+csl_interface nios_ifc_in {
+  csl_port  io_ack_i(input),me_ack_i(input, 1);
+  csl_port  io_dat_i(input,32),me_dat_i(input,32),int_i(input, 32);
+};
+
+csl_interface nios_ifc_out {
+  csl_port  io_stb_o(output),io_cyc_o(output),io_we_o(output),io_clk_o(output), io_rst_o(output),me_stb_o(output),me_cyc_o(output), me_we_o(output),me_clk_o(output),me_rst_o(output);
+  csl_port  io_dat_o(output,32),me_adr_o(output,32),me_dat_o(output,32);
+  csl_port  io_adr_o (output, 24);
+  csl_port  io_sel_o (output,  4);
+};
+
+csl_unit nios2 {
+nios_ifc_in  nios_in;
+nios_ifc_out nios_out;
+};
+csl_unit rn {
+  rn_bus_ifc rn_bus_ifc_in; 
+  rn_bus_ifc rn_bus_ifc_out;
+  csl_port  clock(input), rst_(input);
+ cd0  cd0;
+  cd1  cd1;
+  cd2  cd2;
+  qm  qm;
+  mq  mq;
+  nios2 nios2;
+  cl  cl;
+  bo  bo;
+  u_st  st0;
+  u_st  st1;
+  u_st  st2;
+  au  au;
+  //  csl_include (file_verilog, "rn_logic.vh");
+  rn(){
+
+    rn_bus_ifc_out.reverse();
+    // csl_pipeline(rn_pipe);
+  }
+};

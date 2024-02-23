@@ -1,0 +1,16 @@
+//oanab
+//12 feb 2008
+
+csl_register rg {
+  rg () {
+  set_width(2);
+  set_type(register);
+  // add_logic(init,0);
+  }
+};
+
+csl_unit u {
+  csl_signal d_in(2),d_out(2),clk,rst,en;
+  rg rg(.reg_in(d_in),.reg_out(d_out),.clock(clk),.reset_(rst),.enable(en));
+  u () {}
+};

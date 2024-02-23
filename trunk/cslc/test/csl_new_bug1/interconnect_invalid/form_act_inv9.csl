@@ -1,0 +1,30 @@
+//oanab
+//25 mar 2008
+//formal to actual - signal and signal group
+
+csl_signal_group sg {
+  csl_signal s1(4),s2(8);
+  sg () {}
+};
+
+csl_unit u1 {
+  sg sg0;
+  u1 () {}
+};
+
+csl_unit u2 {
+  sg sg1;
+  u2 () {}
+};
+
+csl_unit u3 {
+  csl_signal s(11,0);
+  u1 u10(.sg0(s));
+  u3 () {}
+};
+
+csl_unit u4 {
+  u2 u20;
+  u3 u30;
+  u4 () {}
+};

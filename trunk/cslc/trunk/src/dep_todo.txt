@@ -1,0 +1,16 @@
+1. Add system c code gen to
+/opt/he_fpl_svn/fpl_repo/cslc/trunk/src/cslc/new_cslc.cpp
+
+ECSLcError CSLcMain::runSysCGen(const std::string& sysCPath) {
+  try {
+
+    //TODO: add sysC gen
+    DISPLAY_CGEN_BEGIN(CG_SYSC);
+
+    DISPLAY_CGEN_END(CG_SYSC);
+
+    return ERR_NONE;
+
+  }
+  CATCH_ALL_EXCEPTIONS(_e, ERR_NONE);
+}

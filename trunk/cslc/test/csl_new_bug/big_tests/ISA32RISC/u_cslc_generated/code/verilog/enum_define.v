@@ -1,0 +1,38 @@
+`ifndef INC_GUARD_ENUM
+`define INC_GUARD_ENUM
+
+`define E_E_OPCODE_HALT 4
+`define E_E_OPCODE_RETI 5
+`define E_E_OPCODE_TRAP 6
+`define E_E_OPCODE_B 8
+`define E_E_OPCODE_CALLN 12
+`define E_E_OPCODE_CALLR 13
+`define E_E_OPCODE_JMPN 14
+`define E_E_OPCODE_JMPR 15
+`define E_E_OPCODE_AND_OP 17
+`define E_E_OPCODE_OR_OP 18
+`define E_E_OPCODE_XOR_OP 19
+`define E_E_OPCODE_SLL 20
+`define E_E_OPCODE_SRA 21
+`define E_E_OPCODE_SRL 22
+`define E_E_OPCODE_ROTL 23
+`define E_E_OPCODE_ADD_OP 24
+`define E_E_OPCODE_ADDC 25
+`define E_E_OPCODE_S 26
+`define E_E_OPCODE_SUB 28
+`define E_E_OPCODE_SUBC 29
+`define E_E_OPCODE_SUBR 30
+`define E_E_OPCODE_SUBRC 31
+`define E_E_OPCODE_CONST_PLUS 33
+`define E_E_OPCODE_CONST_MINUS 34
+`define E_E_OPCODE_CONSTH 35
+`define E_E_OPCODE_LW 38
+`define E_E_OPCODE_LHU 40
+`define E_E_OPCODE_LHS 42
+`define E_E_OPCODE_LBU 44
+`define E_E_OPCODE_LBS 46
+`define E_E_OPCODE_SW 54
+`define E_E_OPCODE_SH 58
+`define E_E_OPCODE_SB 62
+
+`endif

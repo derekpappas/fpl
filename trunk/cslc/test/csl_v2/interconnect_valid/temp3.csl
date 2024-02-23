@@ -1,0 +1,25 @@
+//set_number of dimensions and set the dimensions width  for a signal;
+//andreim
+//19 June 2007
+
+csl_bitrange br_br(0, 7);
+
+csl_unit u_unit1{
+	csl_signal 	sgn_sgn1,
+							sgn_sgn2(wire, 4),     
+							sgn_sgn3(reg, 0,3),  //lower & upper
+							sgn_sgn4,
+							sgn_sgn5,
+							sgn_sgn6;
+    
+    csl_multi_dim_bitrange mbr(4);
+    
+	u_unit1(){
+      mbr.set_dim_width(0, 10);
+      mbr.set_dim_width(1, 11);
+      mbr.set_dim_bitrange(2, br_br);
+      mbr.set_dim_bitrange(3, br_br);
+
+      sgn_sgn1.set_bitrange(mbr);
+	}
+};

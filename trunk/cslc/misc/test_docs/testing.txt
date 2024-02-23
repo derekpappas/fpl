@@ -1,0 +1,43 @@
+blackbox testing
+whitebox testing
+API, driver testing, unit testing
+basic tests
+advancesd test cases - ? tests
+                     - whitebox special
+                     - cases
+                     - illegal tests
+                     - ? tests
+coverage
+
+warning/error tests
+signal handler tests
+capacity
+performance tests
+function statistics
+
+- identify the type of test that needs to be written based on the complexity of the test
+- is the class just a container
+- does the class contain scalars(numerics)
+- is the class an algorithm
+- control logic
+
+identify the location of the bug (filename/line number)
+
+how do you identify where the bug is
+
+    problem: seg fault
+    solution: run gdb, 
+	      run valgrind
+    problem: missing information
+             incomplete objects
+             missing data to private variables
+             private variables set to wrong values
+             control flow problems
+             missing functionality
+    problem: they don't think in code
+	     they can't solve a problem without help
+	     they can't use the msdn.com docs for stl
+    solution: practice coding with small problems 
+                              with algorithms
+    problem: they hand write their own code
+    solution: give the guys a typing game to play

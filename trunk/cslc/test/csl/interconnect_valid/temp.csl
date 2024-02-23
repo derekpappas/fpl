@@ -1,0 +1,32 @@
+csl_unit u_ref {
+  csl_port p_ref_out(output, 8);
+};
+csl_unit u_comp {
+   csl_port p_ref_in(input, 8), p_data_in(input,8);
+   csl_port p_valid(output);
+};
+
+
+csl_unit u_check {
+   csl_port p_data(input,8);
+   csl_port p_valid(output);
+   csl_signal sgn_ref_data;
+   u_ref ref1(.p_ref_out(sgn_ref_data));
+   u_comp comp1(.p_ref_in(sgn_ref_data),.p_data_in(p_data), .p_valid(p_valid));
+
+   u_check() {
+      sgn_ref_data.set_width(8);
+     }
+};
+
+csl_enum packet_type{
+green, blue, red
+};
+csl_enum prefix_type{
+	NO_PREFIX,
+	PIPELINE_NAME,
+	PIPESTAGE_NAME,
+	PIPELINE_PIPESTAGE_NAME
+};
+csl_enum mmap0{
+};

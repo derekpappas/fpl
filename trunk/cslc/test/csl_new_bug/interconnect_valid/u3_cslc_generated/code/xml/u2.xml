@@ -1,0 +1,12 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u2">
+<signalgroup name="sg1">
+<signal name="s1" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="s2" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="s3" offset="0" upper="10-1" lower="0" type = "wire"/>
+</signalgroup>
+<assign-stmt lhs="sg1.s3" rhs="sg1.s1sg1.s2"/>
+</unit>
+</design>

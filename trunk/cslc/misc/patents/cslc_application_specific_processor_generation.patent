@@ -1,0 +1,28 @@
+Method for generating a network of application specific processors
+Claim
+
+User defines the application specific processor ISA, pipeline, memory
+map, network topology, and ISA using CSL which is then compiled into 
+HDL/RTL simulation languages such as C++
+cslc checks the ISA specification for errrors
+cslc checks the application specific processor pipeline for data and
+control hazards and register leaks and data duplication problems
+related to bad stall logic
+cslc generates decoders from fields
+cslc generates decoders from enums associated with fields
+cslc generates an assembler from the tree representing the ISA specfication 
+cslc generates asssembly language documentation from the tree representing the ISA specfication 
+cslc generates interconnect interface documentation on a module and
+per instance basis
+cslc generates memory map documentation 
+cslc generates  representing the specfication 
+cslc generates  representing the specfication 
+cslc generates  representing the specfication 
+
+ISA tied to the the custom interconnect
+ISA built from users specfication
+
+Generated  C/C++ code can be simulated in conjuction withother
+C/C++ simulators by instantiating the functions. The generated 
+code supports both transaction accurate and cycle accurate modeling
+ 

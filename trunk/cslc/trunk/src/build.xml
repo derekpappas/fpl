@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="CSLC root" default="help">
+
+  <!-- Add 'Ant-Contrib' tasks -->
+  <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+  <typedef resource="cpptasks.types"/>
+  <taskdef resource="cpptasks.tasks"/>
+
+  <!-- Check all dependencies -->
+  <target name="check.dependencies" unless="no.dependencies">
+    <property name="no.dependencies"   value="on"/>
+    <property name="dependencies.dir"  value="${basedir}/../build_utils"/>
+    <property name="dependencies.file" value="new_dependencies.xml"/>
+
+    <antfetch dir="${dependencies.dir}" antfile="${dependencies.file}" target="check.all.dependencies" inheritAll="false"
+              return="build.dir,
+                      lib.dir,
+                      antlr.dir,
+                      antlr.lib,
+                      antlr.src,
+                      antlr.inc,
+                      antlr.jar"/>
+
+    <mkdir dir="${build.dir}"/>
+
+    <delete>
+      <fileset dir="${build.dir}" includes="**/*.gcda"/>
+    </delete>
+  </target>
+
+  <!-- Csim related properties -->
+  <target name="set.csim.properties" depends="check.dependencies">
+    <property name="csim.dir"    value="csim"/>
+    <property name="csim.lib"    value="Csim"/>
+    <property name="csim.shell"  value="CsimShell"/>
+  </target>
+
+  <!-- Project list -->
+  <target name="set.project.list" depends="check.dependencies">
+    <runtarget target="set.csim.properties"/>
+
+    <property name="error.lib"   value="CSLC_Errors"/>
+    <property name="cslc.binary" value="cslc"/>
+
+    <property name="we.dir"        value="csl_xml_warn_error"/>
+    <property name="support.dir"   value="support"/>
+    <property name="ver_p.dir"     value="parser/verilog"/>
+    <property name="csl_p.dir"     value="parser/csl"/>
+    <property name="preproc.dir"   value="preproc"/>
+    <property name="cdom.dir"      value="cdom"/>
+    <property name="cslom.dir"     value="cslom"/>
+    <property name="adapter.dir"   value="cslom2cdom_adapter"/>
+    <property name="cslom_gen.dir" value="cslom_generators"/>
+    <property name="ar.dir"        value="autorouter"/>
+    <property name="cslom_ck.dir"  value="cslom_design_checker"/>
+    <property name="cslc.dir"      value="cslc"/>
+    <property name="csl_gen.dir"   value="csl_gen"/>
+
+    <property name="project.dir.list" value="${we.dir},
+                                             ${support.dir},
+                                             ${ver_p.dir},
+                                             ${csl_p.dir},
+                                             ${preproc.dir},
+                                             ${cdom.dir},
+                                             ${cslom.dir},
+                                             ${adapter.dir},
+                                             ${cslom_gen.dir},
+                                             ${ar.dir},
+                                             ${cslom_ck.dir},
+                                             ${cslc.dir}"/>
+
+    <property name="we.lib"        value="WE"/>
+    <property name="support.lib"   value="Support"/>
+    <property name="ver_p.lib"     value="VerilogParser"/>
+    <property name="csl_p.lib"     value="CslParser"/>
+    <property name="preproc.lib"   value="Preproc"/>
+    <property name="cdom.lib"      value="Cdom"/>
+    <property name="cslom.lib"     value="Cslom"/>
+    <property name="adapter.lib"   value="Adapter"/>
+    <property name="cslom_gen.lib" value="CslomGen"/>
+    <property name="ar.lib"        value="AR"/>
+    <property name="cslom_ck.lib"  value="CslomChecker"/>
+    <property name="csl_gen.lib"   value="CslGen"/>
+  </target>
+
+  <!-- Csim -->
+  <target name="csim_lib" depends="set.csim.properties">
+    <ant dir="${basedir}/${csim.dir}" antfile="build.xml" target="csim_lib" inheritAll="true">
+      <property name="no.dependencies" value="on"/>
+    </ant>
+  </target>
+
+  <target name="csim_shell" depends="set.csim.properties">
+    <ant dir="${basedir}/${csim.dir}" antfile="build.xml" target="csim_shell" inheritAll="true">
+      <property name="no.dependencies" value="on"/>
+    </ant>
+  </target>
+
+  <!-- Wall flag -->
+  <target name="wall">
+    <echo message="---------------------- wall flag on"/>
+    <property name="wall.flag" value="on"/>
+  </target>
+
+  <!-- RLM off flag -->
+  <target name="rlm_off">
+    <echo message="---------------------- rlm_off flag on"/>
+    <property name="rlm.off.flag" value="on"/>
+  </target>
+
+  <!-- Debug target -->
+  <target name="debug" depends="set.project.list">
+    <echo message="---------------------- debug flag on"/>
+    <property name="debug.flag" value="on"/>
+    <var name="release.flag" unset="true"/>
+    <for list="${project.dir.list}" param="project" trim="true" parallel="true" threadCount="1">
+      <sequential>
+        <ant dir="${basedir}/@{project}" antfile="build.xml" target="compile" inheritAll="true">
+          <property name="no.dependencies" value="on"/>
+          <property name="project.subdir"  value="debug"/>
+        </ant>
+      </sequential>
+    </for>
+  </target>
+
+  <!-- Release target -->
+  <target name="release" depends="set.project.list">
+    <echo message="---------------------- release flag on"/>
+    <property name="release.flag" value="on"/>
+    <var name="debug.flag" unset="true"/> <!-- Why is debug.flag unset? Is this a BUG??????-->
+    <for list="${project.dir.list}" param="project" trim="true" parallel="true" threadCount="1">
+      <sequential>
+        <ant dir="${basedir}/@{project}" antfile="build.xml" target="compile" inheritAll="true">
+          <property name="no.dependencies" value="on"/>
+          <property name="project.subdir"  value="release"/>
+        </ant>
+      </sequential>
+    </for>
+
+    <ant dir="${basedir}/${csim.dir}" antfile="build.xml" target="release" inheritAll="true"/>
+  </target>
+
+  <!-- Clean target -->
+  <target name="clean" depends="set.project.list">
+    <for list="${project.dir.list}" param="project" trim="true" parallel="true" threadCount="1">
+      <sequential>
+        <ant dir="${basedir}/@{project}" antfile="build.xml" target="clean" inheritAll="true">
+          <property name="no.dependencies" value="on"/>
+          <property name="project.subdir"  value="debug"/>
+        </ant>
+      </sequential>
+    </for>
+  </target>
+
+  <!-- Clean target -->
+  <target name="clean_release" depends="set.project.list">
+    <for list="${project.dir.list}" param="project" trim="true" parallel="true" threadCount="1">
+      <sequential>
+        <ant dir="${basedir}/@{project}" antfile="build.xml" target="clean" inheritAll="true">
+          <property name="no.dependencies" value="on"/>
+          <property name="project.subdir"  value="release"/>
+        </ant>
+      </sequential>
+    </for>
+  </target>
+
+  <!-- Compile all drivers -->
+  <target name="drivers" depends="set.project.list">
+    <for list="${project.dir.list}" param="project" trim="true" parallel="true" threadCount="1">
+      <sequential>
+        <ant dir="${basedir}/@{project}" antfile="build.xml" target="drivers" inheritAll="true">
+          <property name="no.dependencies" value="on"/>
+        </ant>
+      </sequential>
+    </for>
+  </target>
+
+  <!-- Display the help/usage -->
+  <target name="help">
+    <echo message="==================== HELP ===================="/>
+    <echo message="usage: ant TARGET [OPTIONS]"/>
+    <echo message=""/>
+    <echo message="TARGET:"/>
+    <echo message="     help            : display help / usage"/>
+    <echo message="     wall            : compile with wall flag (must be specified before another target i.e. 'ant wall debug')"/>
+    <echo message="     rlm_off         : compile with rlm_off flag (must be specified before another target i.e. 'ant rlm_off debug')"/>
+    <echo message="     debug           : compile with debug information"/>
+    <echo message="     release         : compile with __RELEASE_VERSION (can call only from project's root)"/>
+    <echo message="     drivers         : compile drivers"/>
+    <echo message=""/>
+    <echo message="OPTIONS:"/>
+    <echo message="     -q              : quiet"/>
+    <echo message="     -v              : verbose"/>
+    <echo message="     -d              : debug information"/>
+    <echo message="     -p              : project information"/>
+  </target>
+
+</project>

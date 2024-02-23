@@ -1,0 +1,14 @@
+//oanab
+//25 feb 2008
+//connecting to an unexisting signal
+
+csl_unit u1 {
+  csl_port x(input);
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_signal a,b;
+  u1 u1(.x(c));  // signal c does not exist
+  u2 () {} 
+};

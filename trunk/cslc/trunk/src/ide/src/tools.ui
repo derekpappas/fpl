@@ -1,0 +1,397 @@
+<ui version="4.0" >
+ <class>Tools</class>
+ <widget class="QDialog" name="Tools" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>406</width>
+    <height>399</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>External Tools</string>
+  </property>
+  <widget class="QToolButton" name="makeLocation" >
+   <property name="geometry" >
+    <rect>
+     <x>375</x>
+     <y>72</y>
+     <width>26</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>142</y>
+     <width>36</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>ctags:</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="cslcLocation" >
+   <property name="geometry" >
+    <rect>
+     <x>375</x>
+     <y>37</y>
+     <width>26</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>180</y>
+     <width>36</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>args:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>72</y>
+     <width>36</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>make:</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="ctagsLocation" >
+   <property name="geometry" >
+    <rect>
+     <x>375</x>
+     <y>142</y>
+     <width>26</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="gdbLocation" >
+   <property name="geometry" >
+    <rect>
+     <x>375</x>
+     <y>107</y>
+     <width>26</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>107</y>
+     <width>36</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>gdb:</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="gdbWidget" >
+   <property name="geometry" >
+    <rect>
+     <x>50</x>
+     <y>40</y>
+     <width>321</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" >
+    <property name="margin" >
+     <number>0</number>
+    </property>
+    <property name="spacing" >
+     <number>6</number>
+    </property>
+    <item row="2" column="0" >
+     <widget class="QLineEdit" name="gdb" >
+      <property name="dragEnabled" >
+       <bool>true</bool>
+      </property>
+      <property name="readOnly" >
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0" >
+     <widget class="QLineEdit" name="args" >
+      <property name="whatsThis" >
+       <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" color:#0000ff;">CSLC arguments&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
+      </property>
+      <property name="dragEnabled" >
+       <bool>true</bool>
+      </property>
+      <property name="readOnly" >
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" >
+     <widget class="QLineEdit" name="make" >
+      <property name="dragEnabled" >
+       <bool>true</bool>
+      </property>
+      <property name="readOnly" >
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" >
+     <widget class="QLineEdit" name="ctags" >
+      <property name="dragEnabled" >
+       <bool>true</bool>
+      </property>
+      <property name="readOnly" >
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" >
+     <widget class="QLineEdit" name="cslc" >
+      <property name="whatsThis" >
+       <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">path to CSLC binary&lt;/p>&lt;/body>&lt;/html></string>
+      </property>
+      <property name="dragEnabled" >
+       <bool>true</bool>
+      </property>
+      <property name="readOnly" >
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>391</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>Please enter the path to the external programs:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>37</y>
+     <width>36</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>CSLC:</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget" >
+   <property name="geometry" >
+    <rect>
+     <x>50</x>
+     <y>213</y>
+     <width>312</width>
+     <height>184</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" >
+    <property name="margin" >
+     <number>0</number>
+    </property>
+    <property name="spacing" >
+     <number>6</number>
+    </property>
+    <item row="4" column="1" >
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>0</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="0" column="1" >
+       <widget class="QSpinBox" name="tabSize" >
+        <property name="maximum" >
+         <number>16</number>
+        </property>
+        <property name="minimum" >
+         <number>2</number>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" >
+       <widget class="QLabel" name="label_10" >
+        <property name="text" >
+         <string>Tab size:</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="4" column="0" >
+     <widget class="QCheckBox" name="wordWrap" >
+      <property name="text" >
+       <string>Enable Word Wrap</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1" >
+     <widget class="QCheckBox" name="enableAutoIndent" >
+      <property name="text" >
+       <string>Enable autoIndent</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" >
+     <widget class="QCheckBox" name="showVerilogFile" >
+      <property name="toolTip" >
+       <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;/p>&lt;/body>&lt;/html></string>
+      </property>
+      <property name="styleSheet" >
+       <string/>
+      </property>
+      <property name="text" >
+       <string>Show generated verilog</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" >
+     <widget class="QCheckBox" name="showDotFile" >
+      <property name="toolTip" >
+       <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;/p>&lt;/body>&lt;/html></string>
+      </property>
+      <property name="styleSheet" >
+       <string/>
+      </property>
+      <property name="text" >
+       <string>Show generated dotfile</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" >
+     <widget class="QCheckBox" name="tileAuto" >
+      <property name="text" >
+       <string>Tile Automatically</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0" colspan="2" >
+     <layout class="QHBoxLayout" >
+      <property name="margin" >
+       <number>0</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="okButton" >
+        <property name="text" >
+         <string>OK</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="cancelButton" >
+        <property name="text" >
+         <string>Cancel</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="0" >
+     <widget class="QCheckBox" name="autoBrackets" >
+      <property name="text" >
+       <string>Use Auto-Brackets</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" >
+     <widget class="QCheckBox" name="enableMatch" >
+      <property name="text" >
+       <string>Matches ( { [</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1" >
+     <widget class="QCheckBox" name="enableLineNumbers" >
+      <property name="text" >
+       <string>Enable Line Numbers</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1" >
+     <widget class="QCheckBox" name="enableTabSpaces" >
+      <property name="text" >
+       <string>replace Tab with spaces</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="ide.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Tools</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>356</x>
+     <y>219</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>179</x>
+     <y>282</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

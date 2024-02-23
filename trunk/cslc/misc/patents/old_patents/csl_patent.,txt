@@ -1,0 +1,20 @@
+A programming language describes the design hierarchy fora computerchip
+design.
+The design hierarchy consists of the function unit interfaces, the
+design i8nstaces in each unit.and the formal to actual connections
+between each unit,.
+Each signal connection between two units is updated when the
+clockthata conrolsthe driflip flopwhich rivesthe unti is updated.
+The group of signals which connects each unit contains values at each
+clock edge.
+Input ports cause the functional unit to reevaluate onthe controllong
+clock ege. 
+The resul of the reevaluation appeats on the outputs ports of the
+functional unit.
+The output values are vaildafter the reset ofthe functional unit and
+if requred when a signal(s) os assertted which indicates that the
+functional unit is units outputs are valid.
+One verification methodology uses an abstract/simpliofied model of the
+DUT to model the functional behavior of the design. This model is
+simplified in the sene that thte loGic implemented vby can be simplified
+and may not be cycle accuraTE                       

@@ -1,0 +1,54 @@
+//Monica
+//2 apr 2008
+
+csl_unit u{
+  csl_port p1(input,86);
+  u(){}
+};
+csl_unit uu{
+  csl_port p2(input,86);
+  u u1(.p1(p2));
+  u u2(.p1(p2));
+  uu(){}
+};
+
+csl_unit uuu{
+ csl_port p3(input,86);
+  uu uu1(.p2(p3));
+  uu uu2(.p2(p3));
+  uu uu3(.p2(p3));
+  uuu(){}
+};
+
+csl_unit u_unit1{
+ csl_port p4(input,86);
+ uuu uuu_1(.p3(p4));
+ uuu uuu_2(.p3(p4));
+ uuu uuu_3(.p3(p4));
+ uuu uuu_4(.p3(p4));
+
+ u_unit1(){}
+};
+csl_unit u_unit2{
+ csl_port p5(input,86);
+ u_unit1 u_u1(.p4(p5));
+ u_unit1 u_u2(.p4(p5));
+ u_unit1 u_u3(.p4(p5));
+ u_unit1 u_u4(.p4(p5));
+ u_unit1 u_u5(.p4(p5));
+
+ u_unit2(){}
+};
+csl_unit top{
+  csl_signal s1(86);
+  csl_signal s2(s1);
+  csl_signal s3(s2);
+  csl_signal s4(s3);
+
+  u_unit2  u1(.p5(s1));
+  u_unit2  u2(.p5(s2));
+  u_unit2  u3(.p5(s3));
+  u_unit2  u4(.p5(s4));
+  top(){
+}
+};

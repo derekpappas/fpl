@@ -1,0 +1,48 @@
+// Author: cghaba
+// Date: May 14, 2008
+
+// child interface instance has the same name with a parent interface instance (inifc0).
+
+csl_interface inifc{
+  csl_port x(input);
+  csl_port y(output);
+  inifc(){
+  }
+};
+
+csl_interface slifc{
+  inifc inifc0;      //<------------- here
+  inifc inifc1;
+  slifc(){
+  }
+};
+
+csl_interface tlifc{
+  slifc slifc0;
+  slifc slifc1;
+  tlifc(){
+   }
+};
+
+csl_interface utifc{
+  tlifc tlifc0;
+  tlifc tlifc1;
+  utifc(){
+  }
+};
+
+csl_unit a{
+  utifc inifc0;    // <---------- and here
+  a(){
+  }
+};
+
+csl_unit top{
+  inifc inifc0;
+  csl_port x(input);
+  a a0;
+  a a1;
+  top(){
+    inifc0.connect(inifc0);
+  }
+};

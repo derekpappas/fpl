@@ -1,0 +1,45 @@
+// Author: cghaba
+// Date: May 14, 2008
+
+csl_interface inifc{
+  csl_port x(input);
+  csl_port y(output);
+  inifc(){
+  }
+};
+
+csl_interface slifc{
+  inifc inifc0;
+//  inifc inifc1;
+  slifc(){
+  }
+};
+
+csl_interface tlifc{
+  slifc slifc0;
+  slifc slifc1;
+  tlifc(){
+    slifc0.reverse();
+  }
+};
+
+csl_unit a{
+  tlifc tlifc0;
+  a(){
+  }
+};
+
+csl_unit top{
+  csl_port x1(output);
+  csl_port x2(input);
+   csl_port y1(output);
+  csl_port y2(input);
+  a a0;
+
+  top(){
+    x1.connect_by_name(a0.tlifc0.slifc0.inifc0.x);
+    x2.connect_by_name(a0.tlifc0.slifc1.inifc0.x);
+    y1.connect_by_name(a0.tlifc0.slifc1.inifc0.y);
+    y2.connect_by_name(a0.tlifc0.slifc0.inifc0.y);
+  }
+};

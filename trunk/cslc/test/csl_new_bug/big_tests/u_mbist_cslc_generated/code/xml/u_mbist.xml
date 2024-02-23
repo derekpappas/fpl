@@ -1,0 +1,95 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u_mbist">
+<interface name="ifc_op0" >
+<port name="op1" offset="0" upper="15" lower="0" direction = "input" type = "wire" />
+<port name="op2" offset="0" upper="15" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifc_out0" >
+<port name="o" offset="0" upper="15" lower="0" direction = "output" type = "wire" />
+</interface>
+<signal name="sham" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signal name="compres" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="sel" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="status" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="op" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="r" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="wr" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="rd" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="no" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="in" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signal name="rst" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="clk" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="en" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signal name="clr" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="addr" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="valid" offset="0" upper="0" lower="0" type = "wire"/>
+<instantiation type = "r_pc">
+<instance name="r_pc">
+<f2a formal = "clock" actual = "clk" />
+<f2a formal = "enable" actual = "en" />
+<f2a formal = "reg_out" actual = "data" />
+<f2a formal = "reset_" actual = "rst" />
+</instance>
+</instantiation>
+<instantiation type = "m_im">
+<instance name="im">
+</instance>
+</instantiation>
+<instantiation type = "u_mux41">
+<instance name="mux_mem">
+<f2a formal = "ifc_out0" actual = "ifc_out0" />
+<f2a formal = "in0" actual = "in" />
+<f2a formal = "in1" actual = "in" />
+<f2a formal = "in2" actual = "in" />
+<f2a formal = "in3" actual = "in" />
+<f2a formal = "sel" actual = "sel" />
+</instance>
+</instantiation>
+<instantiation type = "rf">
+<instance name="rf">
+<f2a formal = "clear" actual = "clr" />
+<f2a formal = "clock" actual = "clk" />
+<f2a formal = "data_in" actual = "data" />
+<f2a formal = "data_out0" actual = "data" />
+<f2a formal = "data_out1" actual = "data" />
+<f2a formal = "rd_addr0" actual = "addr" />
+<f2a formal = "rd_addr1" actual = "addr" />
+<f2a formal = "rd_en0" actual = "en" />
+<f2a formal = "rd_en1" actual = "en" />
+<f2a formal = "reset" actual = "rst" />
+<f2a formal = "valid" actual = "valid" />
+<f2a formal = "wr_addr" actual = "addr" />
+<f2a formal = "wr_en" actual = "en" />
+</instance>
+</instantiation>
+<instantiation type = "u_alu_sh_cmp">
+<instance name="alusc">
+<f2a formal = "compres" actual = "compres" />
+<f2a formal = "ifc_op0" actual = "ifc_op0" />
+<f2a formal = "ifc_out0" actual = "ifc_out0" />
+<f2a formal = "sel_op.p_sel" actual = "sel" />
+<f2a formal = "sham" actual = "sham" />
+</instance>
+</instantiation>
+<instantiation type = "u_control">
+<instance name="control">
+<f2a formal = "decr" actual = "no" />
+<f2a formal = "incr" actual = "no" />
+<f2a formal = "op_instr" actual = "op" />
+<f2a formal = "r_instr" actual = "r" />
+<f2a formal = "rd_dm" actual = "rd" />
+<f2a formal = "rd_im" actual = "rd" />
+<f2a formal = "rd_ram" actual = "rd" />
+<f2a formal = "rd_rom" actual = "rd" />
+<f2a formal = "s_status" actual = "status" />
+<f2a formal = "wr_crtaddr" actual = "wr" />
+<f2a formal = "wr_dm" actual = "wr" />
+<f2a formal = "wr_haddr" actual = "wr" />
+<f2a formal = "wr_ram" actual = "wr" />
+</instance>
+</instantiation>
+</unit>
+</design>

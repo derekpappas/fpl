@@ -1,0 +1,72 @@
+//
+
+csl_multi_dim_bitrange bl2(7);
+  bl2.set_dim_width(0,64);
+  bl2.set_dim_width(1,128);
+ 
+csl_unit socket{
+  csl_port l2in(input, bl2);
+  csl_port l2out(output,bl2);
+  csl_port addIn(input,64*9);
+  socket(){}
+};
+
+
+csl_memory memoryUnit{
+  memoryUnit(){
+    set_width(16);
+    set_depth(12);
+  }
+};
+
+csl_unit memUnit{
+
+  csl_port inAddr(input, 128);
+  csl_port outAddr(output, 128);
+
+  memoryUnit m0;
+  memoryUnit m1;
+  memoryUnit m2;
+  memoryUnit m3;
+  memoryUnit m4;
+  memoryUnit m5;
+  memoryUnit m6;
+  memoryUnit m7;
+
+  memUnit(){
+    
+  }
+};
+
+csl_unit mboard{
+  csl_port socIn(input, bl2);
+  csl_port socOut(output,bl2);
+  csl_port SocAddOut(input,64);
+  
+  socket s0(.l2out(socIn),.l2in(socOut),.addIn(SocAddOut));
+  memUnit mm;
+  
+  mboard(){
+    
+  }
+};
+
+csl_memory_map_page memUnitPage{
+  memUnitPage(){
+    add_address_range(0,1024);
+    add(memUnit.m0,"m0",0);
+    add(memUnit.m1,"m1",20);
+    add(memUnit.m2,"m2",35);
+    add(memUnit.m3,"m3",60);
+    add(memUnit.m4,"m4",80);
+    add(memUnit.m5,"m5",100);
+    add(memUnit.m6,"m6",120);
+    add(memUnit.m7,"m7",140);
+  }
+};
+
+csl_memory_map memMap{  
+  memMap(){
+    set_type(hierarchical);
+  }
+};

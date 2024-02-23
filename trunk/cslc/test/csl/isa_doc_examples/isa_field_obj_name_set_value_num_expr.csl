@@ -1,0 +1,19 @@
+//isa_field_obj_name.set_value(num_expr)
+
+
+
+csl_isa_field op(2);
+op.set_type(opcode);
+csl_isa_field rega(6);
+rega.set_type(rf_address);
+csl_isa_field imm{ 
+  imm(){ 
+    set_width(16); 
+    set_type(constant); 
+    set_value(244); 
+  }
+};
+
+
+csl_unit top {
+};

@@ -1,0 +1,23 @@
+csl_memory_map_page memp1{
+memp1(){
+   set_address_increment(4);
+    add_address_range(128, 511);}
+};
+csl_memory_map_page memp0{
+memp0(){
+
+  //  set_address_increment(memp0.get_address_increment());
+}
+};
+csl_memory_map mmap{
+memp0 m_p0;
+memp1 m_p1;
+mmap(){
+set_data_word_width(32);
+
+}
+};
+
+
+csl_unit top {
+};

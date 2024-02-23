@@ -1,0 +1,8 @@
+csl_bitrange br1(4);
+csl_bitrange br2(4);
+br1.set_offset(8);
+br2.set_offset(br1.get_offset());
+csl_unit u{
+  csl_port p1(input, br1), p2(output, br2);
+  u(){}
+};

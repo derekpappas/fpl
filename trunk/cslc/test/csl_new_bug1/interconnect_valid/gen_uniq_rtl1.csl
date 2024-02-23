@@ -1,0 +1,17 @@
+//oanab
+//5 may 2008
+
+
+csl_unit a {
+  csl_port x(input);
+  a () {
+    gen_unique_rtl_modules();
+  }
+};
+
+csl_unit b {
+  csl_signal s;
+  a a0(.x(s));
+  a a1(.x(s));
+  b () {}
+};

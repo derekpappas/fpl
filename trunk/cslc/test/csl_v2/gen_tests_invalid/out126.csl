@@ -1,0 +1,125 @@
+csl_enum yr {
+	su = 26,
+	kr = 52,
+	ul = 79,
+	lq = 61,
+	ha = 11,
+	xi = 51,
+	va = 23,
+	au = 53,
+	rv = 81
+};
+csl_enum vx {
+	ha = 90,
+	kq = 90,
+	wu = 14,
+	un = 30,
+	xu = 57,
+	ft = 76,
+	pq = 47,
+	ln = 76
+};
+csl_enum ey {
+	el = 65,
+	ac = 91,
+	tv = 99,
+	fw = 20,
+	sy = 77,
+	sp = 33
+};
+csl_isa_instruction_format sj{
+    sj( ){
+     set_width( 0);
+     generate_decoder( xhejyi);
+  }
+}
+;
+csl_isa nu{
+    nu( ){
+     set_decoder_name( "mh");
+     set_decoder_out_name_prefix( "lx");
+     set_decoder_out_name_suffix( "sj");
+     print( isa.txt);
+  }
+}
+;
+csl_fifo bl{
+   bl( ){
+     add_logic( sync_fifo);
+     add_logic( wr_hold, 1);
+     add_logic( almost_empty, 8);
+     add_logic( wr_credit);
+  }
+}
+;
+csl_memory_map_page rp{
+    rp( ){
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( none, none);
+     get_lower_bound( );
+     set_aligment( 9);
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page dd{
+    dd( ){
+     get_address_increment( );
+     set_access_rights( access_write, none);
+     add_reserved_address_range( 6, 2);
+     get_data_word_wodth( );
+     set_endianess( little_endianlittle_endian);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page bj{
+    bj( ){
+     set_access_rights( access_read_write, none);
+     add( rpdd);
+     set_data_word_width( 7);
+     get_data_word_wodth( );
+     get_aligment( );
+     set_endianess( big_endianbig_endian);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map da{
+  bj ot;
+  rp jr;
+  dd mw;
+    da( ){
+     auto_gen_memory_map( );
+     set_top_unit( xh);
+.add_to_memory_map( 7,access_write); 
+     set_type( hierach);
+     set_data_word_width( 9);
+     set_prefix( cv);
+     get_prefix( );
+     set_suffix( mc);
+  }
+}
+;
+csl_register hs{
+    hs( ){
+     set_atribute( shadow);
+     constant( 1);
+     add_logic( serial_input);
+  }
+}
+;
+csl_register hx{
+    hx( ){
+     set_depth( 5);
+     get_depth( );
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 9);
+  }
+}
+;

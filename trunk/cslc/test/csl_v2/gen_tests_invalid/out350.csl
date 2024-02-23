@@ -1,0 +1,80 @@
+csl_enum tr {
+	pj,
+	nn,
+	bp,
+	dj,
+	wa,
+	bw
+};
+csl_enum ct {
+	mc = 47,
+	kw = 45,
+	dj = 97,
+	ux = 26,
+	ug = 59,
+	lw = 55,
+	nw = 50,
+	xh = 96,
+	qo = 90,
+	te = 35,
+	cw = 90,
+	wf = 41,
+	gt = 31
+};
+csl_enum hk {
+	qk = 91,
+	gg = 96,
+	or = 54,
+	dr = 18,
+	db = 13,
+	pa = 68
+};
+csl_isa_instruction_format ly{
+    ly( ){
+     set_width( 7);
+  }
+}
+;
+csl_isa no{
+    no( ){
+     set_decoder_out_name_prefix( "us");
+     set_decoder_out_name_suffix( "mx");
+  }
+}
+;
+csl_fifo uf{
+   uf( ){
+     add_logic( almost_empty, 2);
+  }
+}
+;
+csl_memory_map_page pj{
+    pj( ){
+     get_address_increment( );
+     set_next_address( 5);
+     get_next_address( );
+     set_access_rights( none, none);
+     add_reserved_address_range( 0, 5);
+     get_lower_bound( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map ib{
+    ib( ){
+     set_top_unit( yywpbu);
+.add_to_memory_map( 9,access_read_write); 
+     set_type( flat);
+     set_data_word_width( 8);
+     get_data_word_width( );
+     set_prefix( hk);
+  }
+}
+;
+csl_register nv{
+    nv( ){
+     set_range( {[5:2], [0:5], [8:1]});
+     add_logic( wr_en);
+  }
+}
+;

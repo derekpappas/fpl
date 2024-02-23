@@ -1,0 +1,100 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="ar15a">
+<interface name="ifcrc0" >
+<port name="reset" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="clock" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifcin0" >
+<port name="p0" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="p1" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="p2" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifcout0" >
+<port name="p0" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="p1" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="p2" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="ifcin1" >
+<port name="hw" offset="0" upper="16-1" lower="0" direction = "input" type = "wire" />
+<port name="w" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="c" offset="0" upper="3-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifcin2" >
+<port name="hw" offset="0" upper="16-1" lower="0" direction = "input" type = "wire" />
+<port name="w" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="c" offset="0" upper="3-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifcin3" >
+<port name="hw" offset="0" upper="16-1" lower="0" direction = "input" type = "wire" />
+<port name="w" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="c" offset="0" upper="3-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<port name="pt_out" offset="0" upper="16-1" lower="0" direction = "input" type = "wire" />
+<port name="p_w" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="pt1_out" offset="0" upper="16-1" lower="0" direction = "output" type = "wire" />
+<signal name="s_out" offset="0" upper="8-1" lower="0" type = "wire"/>
+<instantiation type = "ua">
+<instance name="ua0">
+<f2a formal = "ifcrc.clock" actual = "ifcrc0.clock" />
+<f2a formal = "ifcrc.reset" actual = "ifcrc0.reset" />
+<f2a formal = "pain" actual = "ifcin0.p0" />
+<f2a formal = "paout" actual = "s_out" />
+</instance>
+</instantiation>
+<instantiation type = "ub">
+<instance name="ub0">
+<f2a formal = "ifcout.hw" actual = "pt_out" />
+<f2a formal = "ifcout.w" actual = "p_w" />
+<f2a formal = "ifcrc.clock" actual = "ifcrc0.clock" />
+<f2a formal = "ifcrc.reset" actual = "ifcrc0.reset" />
+<f2a formal = "pbin" actual = "ifcin0.p1" />
+</instance>
+</instantiation>
+<instantiation type = "uc">
+<instance name="uc0">
+<f2a formal = "ifcrc.clock" actual = "ifcrc0.clock" />
+<f2a formal = "ifcrc.reset" actual = "ifcrc0.reset" />
+<f2a formal = "pcin" actual = "ifcin0.p2" />
+<f2a formal = "pcout" actual = "pt1_out" />
+</instance>
+</instantiation>
+<instantiation type = "ude">
+<instance name="ude0">
+<f2a formal = "ifcrc0.clock" actual = "ifcrc0.clock" />
+<f2a formal = "ifcrc0.reset" actual = "ifcrc0.reset" />
+</instance>
+</instantiation>
+<instantiation type = "uf">
+<instance name="uf0">
+<f2a formal = "ifcfin.c" actual = "ifcin1.c" />
+<f2a formal = "ifcfin.hw" actual = "ifcin1.hw" />
+<f2a formal = "ifcfin.w" actual = "ifcin1.w" />
+<f2a formal = "ifcrc.clock" actual = "ifcrc0.clock" />
+<f2a formal = "ifcrc.reset" actual = "ifcrc0.reset" />
+<f2a formal = "pfout" actual = "ifcout0.p0" />
+</instance>
+</instantiation>
+<instantiation type = "uf">
+<instance name="uf1">
+<f2a formal = "ifcfin.c" actual = "ifcin2.c" />
+<f2a formal = "ifcfin.hw" actual = "ifcin2.hw" />
+<f2a formal = "ifcfin.w" actual = "ifcin2.w" />
+<f2a formal = "ifcrc.clock" actual = "ifcrc0.clock" />
+<f2a formal = "ifcrc.reset" actual = "ifcrc0.reset" />
+<f2a formal = "pfout" actual = "ifcout0.p1" />
+</instance>
+</instantiation>
+<instantiation type = "uf">
+<instance name="uf2">
+<f2a formal = "ifcfin.c" actual = "ifcin3.c" />
+<f2a formal = "ifcfin.hw" actual = "ifcin3.hw" />
+<f2a formal = "ifcfin.w" actual = "ifcin3.w" />
+<f2a formal = "ifcrc.clock" actual = "ifcrc0.clock" />
+<f2a formal = "ifcrc.reset" actual = "ifcrc0.reset" />
+<f2a formal = "pfout" actual = "ifcout0.p2" />
+</instance>
+</instantiation>
+</unit>
+</design>

@@ -1,0 +1,134 @@
+csl_enum ff {
+	yb,
+	ea,
+	xc,
+	sh,
+	mv,
+	bi,
+	mp,
+	sv
+};
+csl_enum mn {
+	bf,
+	qn,
+	ef,
+	eo,
+	ah
+};
+csl_enum of {
+	mp = 66,
+	is = 79,
+	qh = 5,
+	uj = 16
+};
+csl_isa_instruction_format ve{
+    ve( ){
+  }
+}
+;
+csl_isa_instruction at : ve{
+    at( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa_instruction em : ve{
+    em( ){
+    set_asm_mnemonic( th);
+  }
+}
+;
+csl_isa_instruction ch : ve{
+    ch( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa ya{
+    ya( ){
+     set_decoder_name( "go");
+     set_decoder_out_name_suffix( "ou");
+     generate_decoder( isco);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo yy{
+   yy( ){
+     add_logic( wr_hold, 5);
+     add_logic( almost_empty, 2);
+     add_logic( wr_credit);
+     add_logic( flow);
+  }
+}
+;
+csl_memory_map_page nj{
+    nj( ){
+     add_address_range( 6, 3);
+     set_address_increment( 1);
+     set_access_rights( access_read, access_read);
+     add_reserved_address_range( 5, 7);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_data_word_wodth( );
+     get_aligment( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page ed{
+  nj ox;
+    ed( ){
+     set_address_increment( 4);
+     get_address_increment( );
+     set_data_word_width( 4);
+     get_aligment( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page su{
+  nj xj;
+  ed lg;
+    su( ){
+     get_next_address( );
+     get_data_word_wodth( );
+     set_aligment( 2);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map ga{
+    ga( ){
+     set_top_unit( jdtgco);
+ed.add_to_memory_map( 6); 
+     set_type( flat);
+ed.set_access_rights_enum( njsu); 
+     set_prefix( gc);
+     set_suffix( lj);
+  }
+}
+;
+csl_register cp{
+    cp( ){
+     set_range( [8:9]);
+     set_width( 4);
+     index_data_pair( ga, 9);
+     add_logic( neg_output);
+     add_logic( rd_en);
+     set_value( 9);
+     clear_value( 5);
+     stop_at_end_value( );
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register tv{
+    tv( ){
+     set_width( 3);
+     set_const_value( 4);
+     add_logic( bypass);
+  }
+}
+;

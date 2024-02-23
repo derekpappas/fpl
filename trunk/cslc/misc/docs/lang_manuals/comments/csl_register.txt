@@ -1,0 +1,102 @@
+AndreiB
+
+notes:
+2nd review stage
+
+!note for reviewer - see paper note1
+-1.2 " Fields within register files are called cells". In memory_map there is a broader definition for cells. Could this be a problem ?
+-1.2.1 "The cslc generates code for C/C++/verilog/VHDL" - drop C code generation ?
+-Table 1.2 what defines these various states a csl_regiter can have ?
+-Table 1.3 what is an atomic register (no 4) ? what is a write one cycle register (no 7)
+-1.2.2 Does it refer to register types ? level sensitive and edge sensitive ?
+-Table 1.5 should it be kept consistent with table 1.4 ? clear=clr. What is the title and is the table really necessary - It is obvious from text what values can the pins get
+-1.3 "The address map is made available to different users. Only the portion of the address map that is required to carry out certain operations is made visible to the user." - It is not clear what different users mean (multi-user environment?). What user receives "only the portion of the address map that is required to carry out certain operations" why is this limitation being implemented and how will this be achieved ?
+- 1.3.1 Section identical with that from memory_map.
+
+!note for reviewer - see paper note2
+- 1.3.2 What is the memory map address visibility? What is it used for ? Where are the attributes from Table 1.6 being used ?
+- Figure 1.1 What exactly does it represent from the address map ?
+- 1.3.2.1 is similar to almost identical with section 1.7.16.7 in csl_memory_map.fm - it contains an extra bulleted list
+- 1.3.3.1 "Using relative field information" - would it sound better like "Create registers using relative field information"? Same question for 1.3.3.2 and 1.3.3.3.   Figures 1.4, 1.5 and 1.6: labeled the last bit as 7 instead of 8. Code section below figure 1.5: shouldn't there be [1:0] a instead of [3:2] a since this is the relative field information method ?. In these code sections what do the braces represent ? scope delimiters ?
+- 1.3.4 what is an input field and an output field.
+- Figure 1.7 what does it represent and what should be its title ?
+- 1.3.5 name those 2 types of bit ranges ? swap MSB's between ?
+- Figure 1.8 has no title. Maybe Same cell across different registers ?
+- Figure 1.9 why are both cells labeled 'a' ? aren't they different cells (type, name etc) ?
+- Figure 1.10 has no title. Maybe Read/Write/Shadow Operations. What are r,w,s in the figure ? Attributes, special bits, signals ? What are the operations for each? Read from the register, Write to the register, Shadow ... ?
+- 1.3.5.2 is identical with section 1.7.16.11 from csl_memory_map.fm but the keyword is different: noaddr vs nodef. Which one stays ?
+- 1.3.5.3 is identical with text below command description for memory_map_name.num_words(numeric_expression); in document csl_memory_map.fm
+- 1.3.5.4 "Field names must be unique in each register in the entire namespace by setting the variable
+unique_field_names = true;" where does this variable gets set? what type of variable is it and what class is it part of ?
+- 1.3.5.5 Is it necessary to have it as a distinct section ? In the code section there is: reg reg_name; How does it tell the difference between reg_name as the name of a const string and reg_name as a normal reg name as in reg foo; ?
+- 1.3.5.6 What unit is this hardware checker part of ? what unit holds the error bit ?
+- 1.3.5.7 What is this section about ?
+- 1.3.6 issues:
+	- csl_cell declaration: in the bulleted list there are 3 variations of the csl_cell command however these variations are not reflected in the commands section
+	- the paragraphs below this bulleted list (starting with "Memory map specifications evolve over the lifetime of a chip project") are similar to section 1.7.12 from the csl_memory_map.fm document
+	- at the end of the section, before 1.3.7 is the code section incomplete ?
+- 1.3.7 Why C++ register operation and how does this connect to CSL. Also, the code needs to be completed. Classes and methods need to be added ?
+- 1.3.7.1 This section is almost identical with section 1.7.16.9 from csl_memopry_map.fm document, the only difference being the sentence "The cslc will support the generation of event signals which will trigger these actions" where cslc is repaced with genmemmap and 'event signals' are 'output signals'.
+- 1.4.1 issues:
+	- what is the code section about ?
+	- In the sentences: "When the interrupt bit is asserted a different unit is noticed that there are one or more pending interrupts. The other unit then queries the interrupt register and obtains the interrupt registers’ value." Should this unit and the process be represented in a figure ?
+	- Figure 1.11 There is no information where the input pins come from. Shouldn't the pin layout be similar with the one from Figure 1.12 - some are inputs for the interrupt control register while others are inputs for the interrupt mask register ?
+- 1.4.2 issues:
+	- turned this into H2 (same level as interrupt reg). No definition of atomic registers. In the sentence "The atomic register can only be written by software or hardware if the software routine address or the hardware unit is first able to set the atomic register lock bit." couldn't understand "only by software or hardware - aren't these all the possibilities ? also the part "if the software routine address" is unclear.
+	- added wikipedia definition for spinlock
+	- what is a csl_atomic_reg_acces block ?
+	- what is a remote unit in this case and how is the access to remote units being implemented ?
+- 1.4.3 (turned to H2)
+	- "A sycnhronization barrier is a point which says that all processes/processors have stopped" - don't understand what "a point which says" actually is ? maybe "a point in time when all processes/processors have stopped" ?
+- 1.4.4 "Event trigger" is it about Event registers ? (see note below)
+- 1.4.5 turned this into H2. Should there be pins for the counter in the figure? Add explanations on the functioning of the U/D counter ?
+- 1.4.6 The write enable that gets asserted at the next clock cycle enables the write operation for which register?
+The sentence "This allows the memory to be relocatable in the software view in the sense that the memory is only addressed indirectly" is unclear - what does it mean "in the software view" ? Index/data pairs are register types ?
+- 1.4.7 Action Sequence register is not present in table 1.3. Add it there ? What are 'back to back' memory rds/wrs ? Consecutive rds/wrs ? the next 3 lines represent a sequence ?
+- Add figures 1.17 and 1.18 to event trigger section (1.4.4) ?
+- Below Figure 1.18 the sentence "Mechanisms to reduce the bandwidth between the host processor and the application specific device (ASD)" should be turned into a header ?
+- Table 1.7 is it about a hardware semaphore ? There is no explanation what is presented in each cell.
+- In the text below Table 1.7: 
+	- What is the Command Request ? Is it a unit ?
+	- Should the ASD be represented in a figure ?
+- Figures 1.19, 1.20, 1.21 and 1.22 have no title.
+- I don't understand Figure 1.23. What does it represent?
+- Figure 1.24 has no title and how does the column in memwr gets mutual excluded ?
+- Figure 1.25 does not appear to be consistent: shouldn't the command path be connected to the host, the command queue is not connected to the target device ? what is the response logic connmected to and how does it interact with the rest of the units in the figure ? Maybe coonect all blocks ?
+
+!note for reviewer - see paper note3
+- 1.6 Commands notes:
+	- added descriptions for commands
+	- reg_name.atomic(semaphore_signal_name);  why is the parameter called semaphoire_signal_name ?
+	- reg_name.interrupt( );  what parameter(s) should this instruction receive ?
+	- reg_name.event(signal_name, register_bit_to_set); ???  <- instruction bares the question marks. Maybe on event signal_name set the register bit register_bit_to_set  (just like in the example section) ?
+	- csl_cell cell_name;  and  reg_name.cell(cell_name); are these commands identical and if so, how ? because the first one declares a cell, but it is not specified where this cell is declared so it should default somewhere, and the second one specifies a reg_name.
+	- csl_reg status;  this command is identical with csl_reg reg_name - how does the compiler make the difference between the two ? Same question for instruction status.cell(unitx, bitrange,  attributes); ?
+	- the instruction  cell_name.mem_map(memory_map_name);  should be moved to csl_memory_map.fm ?
+	- cell_name.enum(enum_name = value);  why do we need an enumerated value associated with a cell ?
+	- Should instructions starting with  memory_map_name.cell_name.attributes(attribute_list);  down to instruction  memory_map_name.cell_name.cell(cell_name); be moved to csl_memory_map.fm document ? 
+	- Same question as above for instructions starting with  name.range(bit_range);  down to name.subrange_name.const(const_name, constant_numeric_expression);  !Read below before this comment:
+		- name.subrange_name.range decimal_number : decimal_number;  how does one create a named sub-range?
+	- page 57 (top), right after instruction name.subrange_name.const(const_name, constant_numeric_expression);
+there are 3 csl instructions that appear to be plain examples (eg. status.control(set [6:3] csl_attr__rw);) ?
+	- turned "Register_specification" into heading 2. Maybe this fits better into concepts ? Is the code section below text some commands ?
+	- created heading 2 CSL counters at 1.6.2 which should probably be moved to examples. However the commands probably should be changed to reflect the csl style: reg_name.counter(params) - notice though that this command exists and no parameters are specified for it: create a new one or adapt the old one ?
+	- where do these commands fit: 
+		unique_field_names = true | false; 
+		default_field_name = string;
+		csl_autofill;
+	maybe in csl_memory_map.fm document ?
+	- sections 1.6.3, 1.6.4 and 1.6.5 have no contents and the titles don't look like titles.
+- 1.7 Examples notes (all H3 have been turned into code_type according to each example):
+	- 1.7.1 The only difference between clear and reset_ is that the first is active on 1 and the second is active on 0 ?
+	- 1.7.3 below Figure 1.28 why generated Verilog code and not just Verilog code ? The verilog code section is not complete ? Is the first part an incomplete testbench ?
+	- 1.7.4 CSL commands in this example are not yet explained in the commands section. The C++ code section following is only defines and copyright notes so it is incomplete. The verilog code section doesn't look like it belongs to this example
+	- 1.7.5 What is the name of this example ? Counter up ? A counter (up) example has already been illustrated above at section 1.7.3
+	- 1.7.6 Counter Up to limit: in figure 1.31 a compare logic detects the upper/lower counter limit and then resets the counter - added a different version for the counter
+	- 1.7.7 updated figure 1.32
+	- 1.7.8 Figure 1.33 - shouldn't there be an AND gate there ? 
+	- 1.7.11 no title is given. Maybe its flip flop with enable ?
+	- 1.7.13 the title should be SR flip flop ?
+	- 1.7.14 the code sections in this sub-chapter are just duplicates of code sections from other examples in the example section.
+	- 1.7.15 No name is given to the example, however there is a verilog code section
+	- 1.7.16 How does constant look up tables connect to registers ? What is Figure 1.41 about ? Or Figure 1.42 ?

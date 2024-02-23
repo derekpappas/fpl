@@ -1,0 +1,18 @@
+//Petronela
+csl_register_file regf{
+  regf(){
+    set_width(16);
+    set_depth(4);
+    create_rtl_module();
+    set_const_value(3);
+    add_logic(bypas);//should be bypass
+    set_prefix("abc");
+  }
+};
+
+csl_unit u1{
+  regf regf;
+  u1(){
+    
+  }
+};

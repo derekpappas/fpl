@@ -1,0 +1,139 @@
+csl_enum nh {
+	ll = 46,
+	cl = 27,
+	cf = 53,
+	rc = 61,
+	av = 92,
+	tv = 4,
+	nd = 93,
+	bx = 61,
+	vp = 61,
+	uk = 87,
+	oq = 17,
+	bs = 3,
+	rp = 53,
+	ef = 91,
+	bt = 32,
+	mo = 89,
+	gq = 92,
+	bk = 86,
+	ys = 94,
+	my = 53,
+	qg = 69
+};
+csl_enum ug {
+	jx = 10,
+	hf = 74,
+	qc = 86,
+	rf = 71,
+	uu = 13,
+	an = 84,
+	kg = 77,
+	so = 64,
+	ch = 47,
+	dk = 71,
+	yg = 28,
+	ua = 66,
+	bh = 29,
+	yu = 93,
+	qv = 69,
+	dc = 54,
+	uk = 69,
+	kn = 22,
+	nc = 9,
+	sk = 57,
+	xu = 53
+};
+csl_enum ak {
+	du,
+	yf,
+	df,
+	qe
+};
+csl_isa_instruction_format rm{
+    rm( ){
+     set_width( 9);
+     generate_decoder( kq);
+  }
+}
+;
+csl_isa us{
+    us( ){
+     set_decoder_out_name_prefix( "kn");
+     generate_decoder( kqegqd);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo cy{
+   cy( ){
+     add_logic( oh);
+     add_logic( output_rd_addr);
+  }
+}
+;
+csl_memory_map_page do{
+    do( ){
+     add_address_range( 3, 7);
+     set_address_increment( 9);
+     set_access_rights( access_write, none);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page oe{
+  do qi;
+  do rm;
+  do sa;
+    oe( ){
+     add_address_range( 3, 3);
+     set_address_increment( 7);
+     set_next_address( 2);
+     get_next_address( );
+     add_reserved_address_range( 0, 6);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 3);
+     get_aligment( );
+     set_endianess( little_endian);
+  }
+}
+;
+csl_memory_map_page is{
+  do nf;
+  do xc;
+    is( ){
+     add( do);
+     get_lower_bound( );
+     get_aligment( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map sc{
+    sc( ){
+     set_top_unit( kqegil);
+  }
+}
+;
+csl_register hx{
+    hx( ){
+     constant( 7);
+     get_atributes( );
+     reset_value( 3);
+     set_end_value( 1);
+  }
+}
+;
+csl_register fc{
+    fc( ){
+     set_width( 4);
+     get_width( );
+     create_rtl_module( );
+     set_const_value( 9);
+  }
+}
+;

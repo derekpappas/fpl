@@ -1,0 +1,31 @@
+csl_interface if3{
+  //  if1 if1;
+//   csl_port p7(input);
+//   csl_port p8(output);
+  if3(){
+
+  }
+};
+
+// csl_interface if4{
+//   //  if2 if2;
+//   csl_port p9(input);
+//   csl_port p10(output);
+//   if4(){
+
+//   }
+// };
+
+csl_unit u1{
+  //  if3 if3;
+  u1(){
+  }
+};
+
+csl_unit u2{
+//   if4 if4;
+  u1 u1(.if3(if4));
+  u2(){
+   
+  }
+};

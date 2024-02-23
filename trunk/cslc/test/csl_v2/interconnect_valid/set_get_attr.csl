@@ -1,0 +1,19 @@
+//oanab
+//19 oct 2007
+csl_unit ff{
+      csl_port data(input,4),q(output,4),e(input,4);
+      csl_port clk(input);      
+ff(){ }
+};
+csl_unit top{
+     csl_signal clk;
+     csl_signal data_in(4),data_in_out(4),data_out(4),st(4);
+     ff ff1(.data(data_in),.q(data_in_out),.e(st),.clk(clk));
+     ff ff2(.data(data_in_out),.q(data_out),.e(st),.clk(clk));
+     top(){
+         st.set_attr(enable);
+         data_out.set_attr(st.get_attr());
+         clk.set_attr(clock);
+     }
+};
+          

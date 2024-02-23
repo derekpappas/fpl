@@ -1,0 +1,16 @@
+//Monica
+
+csl_enum e {
+   a, b, c, d
+};
+
+csl_bitrange br(4);
+
+csl_unit u{
+csl_signal s(br); // width of the enum is 4-bits and the bitrange is 4-bits
+u(){
+s=a;
+}
+};
+
+

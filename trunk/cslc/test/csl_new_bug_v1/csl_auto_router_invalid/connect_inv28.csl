@@ -1,0 +1,109 @@
+//oanab
+//4 apr 2008
+//test for gen - ar_ifc_invalid1
+
+csl_interface ifc1 {
+  csl_port p1(input),p2(input,4);
+  ifc1 () {}
+};
+
+csl_interface ifc2 {
+  csl_port x(input); // 0 - 50
+  ifc1 ifc12; // 50 - 175, 450 - 500
+  ifc1 ifc13; // 175 - 275, 350 - 425
+  csl_port p1(output),p2(input); // 300 - 350
+  ifc2 () {}
+};
+
+// 50 - 100, 200 - 225, 425 - 450
+csl_interface ifc3 {
+  csl_port p1(output); // 50 - 100
+  csl_port p2(output); // 50 - 100
+  ifc1 ifc13; // 200 - 225, 425 - 450
+  ifc3 () {}
+};
+
+csl_unit a {
+  ifc1 ifc10; 
+  csl_signal s(4); // 40 - 50, 175 - 200, 400 - 425
+  csl_port p(input,6); // 125 - 150, 225 - 250, 375 - 400
+  ifc2 ifc23; // 300 - 350, 460 - 465
+  ifc3 ifc32; // 425 - 450
+  a () {}
+};
+
+csl_unit b {
+  a a0;
+  ifc2 ifc22; // 150 - 175, 450 - 475
+  csl_signal s(6);// 50 - 75
+  csl_signal s3,s4; // 475 - 500
+    b () {
+    
+   }
+};
+
+csl_unit c {
+  b b0;
+  ifc2 ifc20;
+  ifc1 ifc14; // 225 - 250
+  csl_port p_x(input,8); // 250 - 275
+  csl_signal ss(6); // 275 - 300, 425 - 450
+  a a1; // 300 - 325
+  csl_signal s1,s2; // 475 - 500
+  c () {
+    b0.ifc30.connect(ifc20); // 0 - 15
+    ifc20.connect(b0.a0.s); // 40 - 50
+    ifc20.ifc12.connect(b0.a0.p[4:3]);// 125 - 150
+    b0.a0.p.connect(ifc14); // 225 - 250
+    ss.connect(b0.a0.ifc10); // 275 - 300
+    8.connect(b0.a0.ifc23); // 325 - 335
+    // binary,hex,octal 335 - 350
+    ss[4:2].connect(b0.a0.ifc32.ifc13); // 425 - 450
+    // 1'b1.connect(b0.a0.ifc23.ifc12); // 460 - 465
+    b0.a0.ifc10.connect(s1 & s2); // 475 - 500
+    b0.a0.ifc10.connect(~s2); // 475 - 500
+      }
+};
+
+csl_unit d {
+  c c0;
+  ifc3 ifc30; // 50 - 100, 200 - 225
+  csl_signal s(6); // 150 - 175, 300 - 325
+  csl_port p(input); // 10 - 25, 100 - 110
+  b b1; // 250 - 275
+  c c1; // 400 - 425
+  ifc2 ifc21; // 475 - 500
+  d () {
+    c0.b0.a0.ifc10.connect(p); // 10 - 25
+    ifc30.connect(5); // 75 - 85
+   // ifc30.connect(2'b10); // 85 - 90
+  // ifc30.connect(4'hab); // 90 - 95
+    c0.b0.ifc22.ifc12.connect(s);    // 150 - 175
+    c0.p_x[7:5].connect(b1.a0.ifc10); // 250 - 275
+    //octal 95 - 100
+    s[4:3].connect(c0.a1.ifc23); // 300 - 325
+    c0.b0.a0.s.connect(c1.ifc20.ifc13);// 400 - 425
+    2.connect(c0.b0.ifc22.ifc12);    // 450 - 460
+    //binary,hex,oct 460 - 475
+    ifc21.ifc12.connect(c0.b0.s3 | c0.b0.s4);// 475 - 500
+     }
+};
+
+// 25 - 125,  175 - 225, 350 - 400
+csl_unit e {
+  d d0;
+  ifc2 ifc23; // 175 - 200, 375 - 400
+  c c1; // 50 - 100
+  csl_port pe(output,4); // 25 - 40, 100 - 125, 350 - 375
+  b b1; // 175 - 200, 375 - 400
+  e () {
+    d0.c0.ifc20.connect(pe[2:1]);// 25 - 40
+    d0.ifc30.connect(c1.b0.s[4:2]); // 50 - 75
+    d0.c0.ifc20.ifc12.connect(pe); // 100 - 125
+    ifc23.ifc13.connect(b1.a0.s[2:1]); // 175 - 200
+    d0.ifc30.ifc13.connect(3); // 200 - 210
+    // binary,hex,oct 210 - 225
+    pe.connect(d0.c0.ifc20.ifc13); // 350 - 375
+    b1.a0.p[4:3].connect(ifc23.ifc13); // 375 - 400
+    }
+};

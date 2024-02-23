@@ -1,0 +1,24 @@
+//oanab
+//3 ian 2007
+
+csl_interface ifc1{
+  csl_port a(input),b(input),c(input);
+  ifc1 () {}
+};
+
+csl_interface ifc2{
+  ifc1 ifc1_1;
+  csl_port x(output),y(output),z(output);
+  ifc2 () {}
+};
+
+csl_unit u{
+  ifc2 ifc2_1;
+  csl_signal s1(3),s2(3);
+  u() {
+    ifc2_1.x.set_type(wire);
+    ifc2_1.ifc1_1.a.set_type(wire);
+    s1 = {ifc2_1.ifc1_1.a,ifc2_1.ifc1_1.b,ifc2_1.ifc1_1.c};
+    s2 = {ifc2_1.x,ifc2_1.y,ifc2_1.z};
+  }
+};

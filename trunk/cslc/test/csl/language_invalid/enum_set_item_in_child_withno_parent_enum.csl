@@ -1,0 +1,20 @@
+csl_enum e {
+  a = 1,
+  b,
+  c
+};
+
+csl_field f1{
+  f1(){
+    set_width(32);
+  }
+};
+
+csl_field f2{
+  f1 f1_0;
+  f2(){
+    set_width(32);
+    f1_0.set_enum_item(a); // << error on set_enum_item in hierarhcical field - no enum in parent field
+  }
+};
+

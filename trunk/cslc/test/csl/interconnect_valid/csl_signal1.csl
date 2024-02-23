@@ -1,0 +1,21 @@
+//oanab
+//19 oct 2007
+csl_unit u{
+   csl_port p1(output,4);
+   csl_port clk(input);
+   u(){}
+};
+csl_unit t{
+   csl_port p3(input,4);
+   csl_port clk(input);
+   t(){ }
+};
+csl_unit top{
+   csl_signal data(wire,4);
+   csl_signal clk;
+   u u(.p1(data),.clk(clk));
+   t t(.p3(data),.clk(clk));
+   top(){
+       clk.set_attr(clock);  }
+};  
+ 

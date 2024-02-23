@@ -1,0 +1,24 @@
+// monicah
+// 26 July 2007
+
+
+csl_unit unit1{
+	csl_port u1_p1(input,8), u1_p2(output,8);
+	unit1(){
+	}
+};
+
+csl_unit unit2{
+	csl_port u2_p1(output,8),u2_p2(input,8);
+	unit2(){
+	}
+};
+
+
+csl_unit top_unit{
+	csl_signal sgn1(reg,8), sgn2(wire,8);
+	unit1 u1( .u1_p1(sgn1),.u1_p2(sgn2)) ;
+	unit2 u2( .u2_p1(sgn1), .u2_p2(sgn2));
+
+	top_unit(){	}
+};

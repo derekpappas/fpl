@@ -1,0 +1,20 @@
+//oanab
+//11 ian 2008
+//Command Bus Decoder
+
+csl_register ppl1 {
+  ppl1 () {
+    set_width(8);
+    set_type(register);
+  }
+};
+
+csl_unit cd2 {
+  ifc_ctrl cp_st1;
+  ifc_ctrl cp_st2;
+  ppl1 cp1(.reg_in(cp_st1),.reg_out(cp_st2));
+  cd2 () {
+    cp_st2.reverse();
+  }
+};
+

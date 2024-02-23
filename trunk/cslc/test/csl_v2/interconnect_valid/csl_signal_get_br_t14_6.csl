@@ -1,0 +1,14 @@
+//author: Ines
+//testing:  bitrange_object_name signal_object_name.get_bitrange();
+
+
+csl_unit u13_t14 {
+
+  csl_bitrange br13_1_t14(8);
+  csl_signal sgn13_1_t14;
+
+  u13_t14(){
+
+    sgn13_1_t14.set_bitrange(br13_1_t14);
+  }
+};

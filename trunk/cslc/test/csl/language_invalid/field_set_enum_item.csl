@@ -1,0 +1,14 @@
+// Derek
+//
+// Fields cannot use set_enum_item unless an  parent of the instance has set
+// which instantiates the enum item
+
+csl_enum SET {
+  RDY
+};
+
+csl_field f3 {
+  f3() {
+    set_enum_item(RDY); // ILLEGAL-see above note
+  }
+};

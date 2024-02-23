@@ -1,0 +1,24 @@
+//oanab
+//20 oct 2007
+csl_unit u1{
+   csl_port x1(input,8),y1(output,8);
+   csl_port clk(input);
+   u1(){ }
+};
+csl_unit u2{
+  csl_port x3(input,8),y3(output,8);
+  csl_port clk(input);
+  //u1 u11(.x1(x3),.y1(y3),.clk(clk1));
+  //csl_port x2(u11.x1),y2(u11.y1);
+  //csl_port clk(input);
+  u2(){ }
+};
+csl_unit top{
+    csl_signal x(8),y(8),clk(1);
+    u1 u111(.x1(x),.y1(y),.clk(clk));
+    u2 u22(.x3(x),.y3(y),.clk(clk));
+    top(){
+ }
+};
+    
+    

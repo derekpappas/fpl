@@ -1,0 +1,126 @@
+csl_enum hh {
+	qh,
+	sc,
+	kc,
+	qj,
+	ny
+};
+csl_enum ym {
+	kp = 1,
+	ie = 6,
+	ci = 75,
+	pb = 76,
+	tp = 50,
+	bf = 74,
+	mp = 18,
+	jr = 14,
+	uq = 21,
+	bn = 66,
+	aw = 3
+};
+csl_enum sn {
+	yj = 1,
+	wo = 23,
+	kx = 57,
+	cu = 81,
+	nk = 43,
+	yq = 61,
+	uq = 19,
+	to = 95,
+	gw = 80,
+	wu = 21,
+	og = 93,
+	mk = 34,
+	aq = 79,
+	ac = 79,
+	ns = 25
+};
+csl_isa_instruction_format ou{
+    ou( ){
+     set_width( 9);
+     generate_decoder( tvwt);
+  }
+}
+;
+csl_isa mo{
+    mo( ){
+     set_decoder_out_name_suffix( "ue");
+     generate_decoder( tvidiu);
+  }
+}
+;
+csl_fifo nr{
+   nr( ){
+     add_logic( async_fifo);
+     add_logic( depth_extend, 6);
+     add_logic( almost_empty, 2);
+  }
+}
+;
+csl_memory_map_page ng{
+    ng( ){
+     add_address_range( 7, 2);
+     set_address_increment( 0);
+     set_next_address( 2);
+     get_next_address( );
+     set_access_rights( access_read, none);
+     add_reserved_address_range( 5, 7);
+     set_data_word_width( 2);
+     get_data_word_wodth( );
+     set_aligment( 1);
+     get_aligment( );
+     set_endianess( little_endianbig_endian);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page ij{
+  ng os;
+  ng wl;
+    ij( ){
+     set_address_increment( 7);
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_read_write, access_read_write);
+     add_reserved_address_range( 7, 6);
+     add( ng);
+     get_upper_bound( );
+     set_data_word_width( 7);
+     get_data_word_wodth( );
+     set_aligment( 1);
+     get_aligment( );
+     set_endianess( little_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map ix{
+    ix( ){
+     auto_gen_memory_map( );
+     set_top_unit( wtiu);
+     set_type( flat);
+     set_data_word_width( 2);
+     get_data_word_width( );
+     set_prefix( vk);
+     get_prefix( );
+     set_suffix( wl);
+  }
+}
+;
+csl_register yv{
+    yv( ){
+     clear_value( 1);
+  }
+}
+;
+csl_register ka{
+    ka( ){
+     set_depth( 9);
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 3);
+  }
+}
+;

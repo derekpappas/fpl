@@ -1,0 +1,2 @@
+#!/bin/bash
+nice -n 19 /home/andreib/esvn/build/linux/x86_64/parser/vparser -s 1 -f $1

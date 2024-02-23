@@ -1,0 +1,130 @@
+//Petronela
+
+
+csl_register rg{
+  rg(){
+    set_width(16);
+    set_type(register);
+  }
+};
+csl_register r1{
+  r1(){
+    set_width(23);
+    set_type(register);
+    set_attributes(rd);
+  }
+};
+csl_register r2{
+  r2(){
+    set_width(34);
+    set_type(register);
+    add_logic(neg_output);
+  }
+};
+csl_register r3{
+  r3(){
+    set_width(36);
+    set_type(register);
+    add_logic(set,5);
+    add_logic(reset,4);
+  }
+};
+csl_register r4{
+  r4(){
+    set_width(40);  
+    set_type(counter);
+    add_logic(count_direction,up);
+    add_logic(count_amount, 3);
+    add_logic(end_value, 5);
+    add_logic(start_value, 1+1);
+  }
+};
+csl_register r5{
+  r5(){
+    set_width(56);
+    set_type(register);
+  }
+};
+csl_register r16{
+  r16(){
+    set_width(44);
+    set_type(register);
+  }
+};
+csl_register r6{
+  r6(){
+    set_width(67);
+    set_type(register);
+  }
+};
+csl_register r7{
+  r7(){
+    set_width(67);
+    set_type(counter); 
+    add_logic(count_direction,down);
+    add_logic(start_value, 5);
+  }
+};
+csl_register r8{
+  r8(){
+    set_width(56);
+    set_type(register);
+  }
+};
+csl_register r9{
+  r9(){
+    set_width(43);
+    set_type(register);
+  }
+};
+csl_register r10{
+  r10(){
+    set_width(89);
+    set_type(register);  
+  }
+};
+csl_register r13{
+  r13(){
+    set_type(counter);
+    add_logic(count_direction,down);
+    set_width(98);
+    set_attributes(wr);
+    }
+};
+csl_register r11{
+  r11(){
+    set_type(register);
+    add_logic(set,89);
+    set_width(10);
+   }
+};
+csl_register r12{
+  r12(){
+    set_type(counter);
+    add_logic(count_direction,down);
+    set_width(87);
+    add_logic(gray_output);
+  }
+};
+
+csl_unit u1{
+  r1 r1;
+  r13 r13;
+  rg rg;
+  r2 r2;
+  r3 r3;
+  r4 r4;
+  r5 r5;
+  r6 r6;
+  r7 r7;
+  r8 r8;
+  r9 r9;
+  r10 r10;
+  r11 r11;
+  r12 r12;
+  r16 r16;
+  csl_signal clk;
+  u1(){
+    clk.set_attr(clock);
+  }
+};

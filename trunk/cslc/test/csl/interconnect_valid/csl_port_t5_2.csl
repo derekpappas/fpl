@@ -1,0 +1,10 @@
+//author: Ines
+//testing: csl_unit, csl_signal 
+
+csl_unit u2_t5 {
+  csl_signal sgn2_1_t5;
+  csl_signal s1;
+  u2_t5(){
+    s1 = sgn2_1_t5;
+  }
+};

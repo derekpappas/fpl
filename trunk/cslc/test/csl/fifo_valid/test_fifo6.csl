@@ -1,0 +1,56 @@
+//Petronela
+csl_fifo f1{
+  f1(){ 
+    set_width(55);
+    set_depth(10);
+    add_logic(almost_full,23); 
+    add_logic(credit);
+    add_logic(output_wr_addr);
+    add_logic(output_rd_addr); 
+    //    set_prefix("abc"); 
+  }
+};
+csl_fifo f2{
+  f2(){
+   set_width(25);
+   set_depth(37); 
+   set_physical_implementation(sram);
+   add_logic(flow);
+   add_logic(rd_credit);
+   add_logic(wr_credit);
+   add_logic(sync_fifo);
+  }
+};
+csl_fifo f3{
+  f3(){
+   set_width(5);
+   set_depth(7);
+   add_logic(priority_bypass);
+   add_logic(async_fifo);
+   add_logic(stall);
+  }
+};
+
+csl_unit u1{
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(output);
+  csl_port p4(output);
+  csl_port p5(output,55);
+  csl_port p6(input,55);
+  csl_port p7(input);
+  csl_port p8(input);
+  csl_port p9(output);
+  csl_port p10(output,25);
+  csl_port p11(input,25);
+  csl_port p12(output,5);
+  csl_port p13(input,5);
+  csl_port p24(input);
+  csl_port p25(input);
+  f1 ff1(.push(p1),.pop(p2),.full(p3),.empty(p4),.rd_data(p5),.wr_data(p6),.reset_(p7),.clock(p8),.valid(p9));
+  f2 ff2(.push(p1),.pop(p2),.full(p3),.empty(p4),.rd_data(p10),.wr_data(p11),.reset_(p7),.clock(p8),.valid(p9));
+  f3 ff3(.push(p1),.pop(p2),.full(p3),.empty(p4),.rd_data(p12),.wr_data(p13),.reset_(p7),.clock(p8),.valid(p9),.rd_clock(p24),.wr_clock(p25));
+  u1(){
+    
+  }
+};

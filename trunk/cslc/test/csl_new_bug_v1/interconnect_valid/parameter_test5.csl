@@ -1,0 +1,24 @@
+//Monica
+
+csl_signal_group sg1{
+  csl_parameter w1(3,5);  //5'b00011
+  csl_parameter w2(5,5);  //5'b00101
+  csl_parameter w3(10);
+
+csl_signal sig1(w1);
+csl_signal sig2(w2);
+csl_signal sig3(w3);
+
+sg1(){}
+};
+
+csl_unit u1{
+  sg1 #(7,10,3) sg01;
+  sg1 #(5,15,7) sg02;
+  sg1 #(1,1,1)  sg03;
+  u1(){
+    sg01.sig2 = {sg01.sig1,sg01.sig3};
+    sg02.sig2 = {sg02.sig1,sg02.sig3,sg03.sig1,sg03.sig2,sg03.sig3};
+  }
+};
+  

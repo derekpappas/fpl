@@ -1,0 +1,55 @@
+//oanab
+//1 feb 2008
+//2 interfaces connected twice
+
+csl_interface ifc1 {
+  csl_port x1(input),x2(input),y1(output);
+  ifc1 () {}
+};
+
+csl_interface ifc2 {
+  csl_port x1(output),x2(output);
+  ifc2 () {}
+};
+
+csl_unit u1 {
+  ifc1 ifc11;
+  u1 () {}
+};
+
+csl_unit u2 {
+  u1 u12;
+  ifc2 ifc22;
+  u2 () {
+    u12.ifc11.x1.connect(ifc22.x2); 
+  }
+};
+
+csl_unit u3 {
+  u2 u23;
+  u1 u13;
+  u3 () {
+    u23.ifc22.connect(u13.ifc11);  
+  }
+};
+
+csl_unit u4 {
+  u3 u34;
+  ifc1 ifc14;
+  u4 () {
+    ifc14.connect(u34.u23.u12.ifc11);
+  }
+};
+
+csl_unit u5 {
+  ifc2 ifc25;
+  u4 u45;
+  u1 u15;
+  csl_signal s;
+  u5 () {
+    u45.ifc14.x1.connect(s);
+    u45.u34.u23.ifc22.connect(u15.ifc11); 
+  }
+};
+
+

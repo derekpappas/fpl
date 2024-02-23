@@ -1,0 +1,31 @@
+//oanab
+//17 mar 2008
+//mac - phy
+
+csl_unit mux_mp {
+  ifc_phy_mux2 in1; // mux 1st input
+  ifc_mac_mux1 in2; // mux 2nd input
+  csl_port sel(input),out(output,37);
+  mux_mp () {
+    out = sel ? in1 : in2;
+  }
+};
+
+
+csl_unit PHY_MAC {
+  ifc_ltc mux_sel; // using 2 select ports for M1,M2
+  ifc_phy_mux2 phy_mux2_bus; // interface from phy to M2
+  ifc_mac_mux1 mac_mux1_bus;  // interface from mac to M1
+  mux_mp M1(.in1(phy_mux2_bus),
+	 .in2(mac_mux1_bus),
+	 .sel(mux_sel.phy_ext_loopback));
+  mux_mp M2(.in1(phy_mux2_bus),
+	 .in2(mac_mux1_bus),
+	 .sel(mux_sel.mac_int_loopback));
+  PHY_MAC () {
+    phy_mux2_bus.reverse();
+  }
+};
+
+
+

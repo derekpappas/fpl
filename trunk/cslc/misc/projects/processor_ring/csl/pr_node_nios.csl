@@ -1,0 +1,14 @@
+//Monica
+//20 feb 2008
+// processor node with nios cpu
+
+csl_unit pr_node{
+  //instances of node interfaces
+  ifc_node_in ifc_in;
+  ifc_node_out ifc_out;
+  //instance of nios processor
+  nios_pr nios_pr(.ifc_in_nios(ifc_in),.ifc_out_nios(ifc_out));
+
+  pr_node(){
+ 
+  }};

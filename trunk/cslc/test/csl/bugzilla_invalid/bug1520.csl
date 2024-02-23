@@ -1,0 +1,17 @@
+// because enum1 is 3bits wide, and the field field1 is 2bits wide and I can't set
+// and 3bits wide enum to a 2bits wide field.
+csl_enum enum1{
+  a,
+    b,
+    c,
+    d,
+    e,
+    f
+    };
+
+csl_field field1{
+  field1(){
+    set_width(2);
+    set_enum(enum1);
+  }
+};

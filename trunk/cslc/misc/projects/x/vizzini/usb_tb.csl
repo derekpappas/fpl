@@ -1,0 +1,22 @@
+csl_vector stim_vec{
+  stim_vec(){
+    set_unit_name (uart);
+    set_direction (input);
+  }
+};
+
+csl_vector exp_vec{
+  exp_vec(){
+    set_unit_name (uart);
+    set_direction (output);
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+  uart uart0;
+  tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,10,ns);
+  }
+};

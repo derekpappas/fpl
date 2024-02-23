@@ -1,0 +1,16 @@
+//oanab
+//19 oct 2007
+csl_unit u{
+     csl_port ch1(input,8),ch2(input,8),ch3(output,16);
+     csl_port clk(input);
+     u(){}
+};
+csl_unit top{
+     csl_signal sig1(wire,8),sig2(wire,8),sig3(wire);
+     csl_signal clk;
+     u u(.ch1(sig1),.ch2(sig2),.ch3(sig3),.clk(clk));
+     top(){
+           sig3.set_range(sig1.get_lsb(),sig1.get_msb()+sig2.get_msb()+1);
+           clk.set_attr(clock);
+}
+};

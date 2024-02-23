@@ -1,0 +1,81 @@
+//oanab
+//19 feb 2008
+
+csl_bitrange br(8);
+
+csl_interface ifc1 {
+  csl_port x1(input),x2(output),x3(input);
+  ifc1 () {}
+};
+
+csl_signal_group sg1 {
+  csl_signal s1,x2,s2;
+  sg1 () {}
+};
+
+csl_signal_group sg2 {
+  csl_signal s3(br),s4,s5(br);
+  sg2 () {}
+};
+
+csl_unit u1 {
+  ifc1 ifc11;
+  csl_signal s;
+  u1 () {}
+};
+
+csl_unit u2 {
+  ifc1 ifc12;
+  u2 () {
+    ifc12.reverse();
+  }
+};
+
+csl_unit u3 {
+  sg1 sg11;
+  u3 () {}
+};
+
+csl_unit u4 {
+  u1 u11;
+  u2 u21,u22;
+  sg2 sg21;
+  u4 () {
+    u21.ifc12.connect_by_name(u11.ifc11);
+    u11.s.connect_by_name(u22.ifc12.x1);
+    u22.ifc12.x2.connect_by_name(u21.ifc12.x3);
+  }
+};
+
+csl_unit u5 {
+  ifc1 ifc13;
+  u5 () {}
+};
+
+csl_unit u6 {
+  u3 u31;
+  u4 u41;
+  u6 () {
+    u31.sg11.connect_by_name(u41.u11.ifc11);
+  }
+};
+
+csl_unit u7 {
+  csl_port p(input,br);
+  u5 u51;
+  u6 u61;
+  u7 () {
+    u51.ifc13.x1.connect_by_name(u61.u41.u11.s);
+    u61.u41.sg21.s3.connect_by_name(p);
+  }
+};
+
+csl_unit u8 {
+  u2 u23;
+  u7 u71;
+  sg2 sg22;
+  u8 () {
+    sg22.s4.connect_by_name(u71.u51.ifc13.x2);
+    u71.u61.u41.u11.s.connect_by_name(u23.ifc12.x3);
+  }
+};

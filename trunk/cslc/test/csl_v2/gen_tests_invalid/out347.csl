@@ -1,0 +1,87 @@
+csl_enum km {
+	lw = 66,
+	uy = 69,
+	ji = 27,
+	aj = 70,
+	jb = 76,
+	to = 35,
+	lt = 80,
+	sy = 26,
+	xp = 57,
+	la = 66,
+	gg = 43,
+	sc = 88,
+	kv = 99,
+	gy = 6
+};
+csl_enum gq {
+	lr = 29,
+	nj = 26,
+	ty = 92,
+	tv = 87,
+	kd = 59,
+	xh = 65,
+	tl = 23
+};
+csl_isa_instruction_format nn{
+    nn( ){
+     set_width( 1);
+     generate_decoder( hc);
+  }
+}
+;
+csl_isa_instruction bs : nn{
+    bs( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa hy{
+    hy( ){
+     set_decoder_name( "up");
+     print( isa.txt);
+  }
+}
+;
+csl_fifo pk{
+   pk( ){
+     set_dimension( 3, 7);
+     add_logic( credit);
+  }
+}
+;
+csl_memory_map_page wy{
+    wy( ){
+     get_address_increment( );
+     add( pk, "td");
+     get_upper_bound( );
+     set_data_word_width( 2);
+     set_endianess( big_endian);
+  }
+}
+;
+csl_memory_map nu{
+  wy me;
+  wy my;
+    nu( ){
+     set_top_unit( db);
+.add_to_memory_map( 0,none); 
+     set_type( flat);
+     set_prefix( np);
+     get_prefix( );
+     set_suffix( vd);
+  }
+}
+;
+csl_register pb{
+    pb( ){
+     set_width( 4);
+     get_width( );
+     set_depth( 1);
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 6);
+     add_logic( bypass);
+  }
+}
+;

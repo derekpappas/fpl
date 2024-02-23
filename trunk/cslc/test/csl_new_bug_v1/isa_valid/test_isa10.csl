@@ -1,0 +1,55 @@
+//danielt
+csl_enum ers{
+  RDY
+};
+csl_unit u{
+  u(){
+  }
+};
+csl_isa_field op{
+  op(){
+    set_type(opcode);
+    set_width(2);
+    set_enum(ers);
+  }
+};
+
+csl_isa_field op3{
+  op3(){
+    set_type(subopcode);
+    set_width(3);
+  }
+};
+
+csl_isa_field rs{
+  rs(){
+  rs.set_type(selector);
+  set_width(3);
+  }
+};
+csl_isa_element root{
+  root(){
+    set_type(root_format);
+    set_width(32);
+  }
+};
+
+csl_isa_element fb : root {
+  op op;
+  op3 op3;
+  rs rs;
+  fb () {
+    set_type(instr_format);
+    set_position(op,30);
+    set_next(op,op3);
+    set_next(op3,rs);
+  }
+};
+
+csl_isa_element instr : fb {
+  instr () {
+    set_type(instr);
+    op.set_enum_item(RDY);
+  }
+};
+

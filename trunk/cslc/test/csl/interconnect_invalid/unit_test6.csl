@@ -1,0 +1,9 @@
+//Petronela
+csl_unit a{
+  csl_signal s1(wire);
+  a(){
+    s1.set_width(7);
+    s1.set_offset(4h);//error should be a numeric expression
+    
+  }
+};

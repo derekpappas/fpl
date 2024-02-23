@@ -1,0 +1,13 @@
+
+
+csl_unit top {
+};
+
+csl_memory_map_page mem_x{
+  mem_x (){
+    add_address_range(0,255);
+    set_unit_name(top);
+  }
+};
+
+

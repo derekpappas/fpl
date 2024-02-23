@@ -1,0 +1,21 @@
+// Author : CristiL
+//
+// Creating a signal group with a signal and a bitrange
+
+
+csl_bitrange bitrange(32);
+
+csl_signal_group signalGroupA {
+  csl_signal signal0;
+  signalGroupA() {
+    signal0.set_bitrange(bitrange);
+  }
+};
+
+csl_unit unitTop {
+  signalGroupA signalGroupA0;
+  csl_signal s2(32);
+  unitTop() {
+    signalGroupA0.signal0 = s2;
+  }
+};

@@ -1,0 +1,48 @@
+csl_enum op_code{
+ ADD,
+ MOV,
+ SUB
+};
+
+csl_enum eALU{
+ ALU0,
+ ALU1,
+ ALU2
+};
+
+ csl_isa_field op{
+   op(){
+     set_type(opcode);
+     set_width(2); 
+     set_enum(op_code); 
+   }
+};
+csl_isa_field alu{
+   alu(){
+     set_type(selector);
+     set_enum(eALU); 
+   }
+};
+csl_isa_element isa_root{
+   isa_root() {
+      set_type(root_format);
+      set_width(32);
+    }
+};
+
+csl_isa_element isa:isa_root {
+  op op;
+   isa() {
+      set_type(instr_format);
+      set_position(op, 30);
+    }
+};
+
+csl_isa_element f: isa {
+   alu alu;
+   f() {
+     set_type(instr_format);
+     alu.set_width(op.get_width());
+     set_position(alu, 16);
+   }
+};  

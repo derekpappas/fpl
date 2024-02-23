@@ -1,0 +1,7 @@
+csl_field fd1(4);
+fd1.set_value(16);
+csl_field fd2(fd1.get_value());
+
+csl_unit top {
+};
+

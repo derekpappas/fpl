@@ -1,0 +1,20 @@
+//author: Ines
+//testing the command get_upper() in field
+
+
+csl_field field {
+  field(){
+    set_width(2);
+  }
+};
+
+
+csl_field field1{
+    field1(){
+	set_width(field.get_upper());
+	}
+};
+
+
+csl_unit top {
+};

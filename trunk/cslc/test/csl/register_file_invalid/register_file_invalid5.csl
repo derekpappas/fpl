@@ -1,0 +1,15 @@
+//Petronela
+//the register_file isn't instantiated in a unit
+csl_register_file regf{
+  regf(){
+    set_width(3);
+    set_depth(2);
+    create_rtl_module(); 
+  }
+};
+
+csl_unit u1{
+  u1(){
+    
+  }
+};

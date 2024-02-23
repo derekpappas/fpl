@@ -1,0 +1,7 @@
+csl_fifo fifo_name{
+        fifo_name(){
+                set_dimensions(8, 32); //width,depth    
+                set_dimensions(2, 22); //width,depth    
+        }
+};
+

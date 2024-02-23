@@ -1,0 +1,31 @@
+Connect to fplserv00 using:
+ssh -X _USER_NAME_@fplserv00
+in order to get X forwarding and be able to run the GUI remotely.
+
+1. You need the following environment setup to be added to your .bashrc profile:
+# User specific aliases and functions
+export JAVA_HOME=/usr/java/jdk1.6.0_21
+export ANT_HOME=/usr/share/ant
+export ANT_HOME=/opt/tools/apache-ant-1.8.0/dist
+export CLASSPATH=$ANT_HOME/lib:$JAVA_HOME/lib:$CLASSPATH
+export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
+
+export WORK=/home/_USER_NAME_/cslc/
+export PATH=$WORK/trunk/build/linux/x86_64/cslc:$PATH
+export QTDIR=/opt/qtsdk-2009.04/qt/
+
+alias antbuild='ant -f build.xml -DrlmOff=yes debug'
+
+2. Run:
+source ~/.bashrc
+
+3. Build the cslc application.
+
+4. Build the GUI which can be found under: ...../cslc/trunk/src/FastPath/
+
+The Makefile will be created by running:
+$QTDIR/bin/qmake -spec $QTDIR/mkspecs/linux-g++-64 -unix CONFIG+=debug -o Makefile FastPath.pro
+
+The running make will create the FastPath binary.
+Running ./FastPath will start the GUI if you connected using the X forwarding.
+

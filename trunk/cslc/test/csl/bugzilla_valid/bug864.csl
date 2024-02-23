@@ -1,0 +1,8 @@
+csl_interface coqo1{
+    csl_port ypqj1(inout, tri1, 3);
+      coqo1(){}
+};
+ csl_interface kogc1{
+    coqo1 ruhx1;
+    coqo1 wyee1; 
+ };

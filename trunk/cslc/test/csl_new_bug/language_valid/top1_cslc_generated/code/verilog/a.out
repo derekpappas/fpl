@@ -1,0 +1,13 @@
+#! /usr/bin/vvp
+:vpi_time_precision + 0;
+:vpi_module "system";
+S_0x95c2100 .scope module, "top1" "top1";
+ .timescale 0;
+v0x95c16f0_0 .net "s_s1", 0 0, C4<z>; 0 drivers
+v0x95c1748_0 .net "s_s2", 7 0, C4<zzzzzzzz>; 0 drivers
+v0x95d6860_0 .net "s_s3", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+S_0x95c0f28 .scope module, "u1" "u", S_0x95c2100;
+ .timescale 0;
+v0x95c0f88_0 .alias "sss_p_p1", 0 0, v0x95c16f0_0;
+v0x95c0fd0_0 .alias "sss_p_p2", 7 0, v0x95c1748_0;
+v0x95c1698_0 .alias "sss_p_p3", 31 0, v0x95d6860_0;

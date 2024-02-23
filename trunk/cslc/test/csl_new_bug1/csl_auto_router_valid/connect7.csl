@@ -1,0 +1,33 @@
+//oanab
+//31 ian 2008
+
+csl_interface ifc1 {
+  csl_port x(input,tri,3),y(output,2);
+  ifc1 () {}
+};
+
+csl_interface ifc2 {
+  csl_port a(inout,tri,3),b(input);
+  ifc2 () {}
+};
+
+csl_unit u1 {
+  ifc2 ifc2;
+  csl_signal s(3);
+  u1 () {
+    s.set_type(tri);
+  }
+};
+
+csl_unit u2 {
+  ifc1 ifc1;
+  u2 () {}
+};
+
+csl_unit u {
+  u1 u1;
+  u2 u2;
+  u () {
+    u2.ifc1.x.connect_by_name(u1.s);
+  }
+};

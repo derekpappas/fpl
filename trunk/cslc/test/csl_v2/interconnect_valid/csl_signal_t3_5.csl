@@ -1,0 +1,24 @@
+//author: Ines 
+//testing: add_port,bitrange,add_instance,set_width,get_width,set_bitrange,get_bitrange
+//         set_range,set_upper_index,set_lower_index,set_offset,get_offset,get_range
+//         get_upper_index,get_lower_index
+
+csl_unit u14_t3 {
+
+  csl_port sgn14_1_t3(output,reg,8);
+  csl_port sgn14_2_t3(input,1);
+  csl_port sgn14_3_t3(inout,4);
+
+  u14_t3() {
+  }
+};
+
+csl_unit u15_t3 {
+
+  u14_t3 inst14_t3;
+  csl_signal sgn15_1_t3;
+
+  u15_t3() {
+    sgn15_1_t3.set_width(u14_t3.sgn14_3_t3.get_width());
+  }
+};

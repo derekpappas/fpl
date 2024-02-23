@@ -1,0 +1,26 @@
+//oanab
+//21 mar 2008
+//connecting 2 unit instances, one of them does not have an interface
+
+csl_interface ifc {
+  csl_port a(input),b(output);
+  ifc () {}
+};
+
+csl_unit u1 {
+  ifc ifc1;
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_signal s;
+  u2 () {}
+};
+
+csl_unit u3 {
+  u1 u11;
+  u2 u21;
+  u3 () {
+    u11.connect(u21);
+  }
+};

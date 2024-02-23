@@ -1,0 +1,11 @@
+//danielt
+//november 07,2007
+
+csl_unit u1{
+  csl_signal_list sl(a1, a2);
+  csl_signal sig;
+  u1(){
+    sig.merge(or, sl);
+    sig.merge(and, sl);
+  }
+};

@@ -1,0 +1,48 @@
+//illegal because is not legal to set twice (diffents enum_items) the enum_item for the same csl_isa_field instance
+csl_enum e{
+  a,
+    b,
+    c
+};
+
+csl_isa_field f0{
+  f0(){
+    set_enum(e);
+  }
+};
+
+csl_isa_element f1{
+  f1(){
+    set_type(root_format);
+  }
+};
+
+csl_isa_element f2: f1{
+  f2(){
+    //    set_enum(e);
+    set_type(instr_format);
+    //  set_enum_item(a);
+  }
+};
+
+csl_isa_element f3: f2{
+  f0 f0_1;
+   f3(){
+     set_type(instr_format);
+     //     f0_1.set_enum_item(a);
+   }
+};
+
+csl_isa_element f4: f3{
+   f4(){
+     set_type(instr_format);
+     f0_1.set_enum_item(a);
+   }
+};
+
+csl_isa_element f5: f3{
+   f5(){
+     set_type(instr_format);
+     f0_1.set_enum_item(b);
+   }
+};

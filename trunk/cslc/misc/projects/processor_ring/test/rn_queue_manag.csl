@@ -1,0 +1,15 @@
+//Monica
+//06 feb 2008
+
+
+csl_unit u_rn_qm{
+  csl_port p_cmd(input,br_cmd);        // cmd input 
+  csl_port p_mq_full(input);           // message queue full 
+  csl_port p_mq_push(output);          // message queue push 
+  csl_port p_mqf(input);               // mqf port used to set NACK
+  csl_signal s_cmd(br_cmd);
+  u_rn_qm(){
+    p_mq_push=!p_mq_full&&(p_cmd!=rd&&p_cmd!=wr);
+    p_mqf=p_mq_full&&(p_cmd!=rd&&p_cmd!=wr);
+  }
+};

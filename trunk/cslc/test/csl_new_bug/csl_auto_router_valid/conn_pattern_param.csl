@@ -1,0 +1,55 @@
+//Monica
+//10.03.2009
+
+csl_interface ifca {
+  csl_parameter ifca_x(65);
+  csl_parameter ifca_y(6);
+  csl_parameter ifca_z(16);
+ 
+  csl_port p_a1(input,ifca_x);
+  csl_port p_a2(input,65);
+  csl_port p_a4(input,ifca_z);
+  csl_port p_a5(input,ifca_y);
+  ifca() {
+  }
+};
+csl_interface ifcb {
+  csl_parameter ifcb_x(65);
+  csl_parameter ifcb_y(6);
+  csl_parameter ifcb_z(16);
+ 
+  csl_port p_b1(output,ifcb_x);
+  csl_port p_b2(output,65);
+  csl_port p_b3(output,ifcb_z);
+  csl_port p_a5(output,ifcb_y);
+  ifcb() {
+  }
+};
+csl_unit a {
+  ifca ifca0;
+  a() {
+  }
+};
+
+
+csl_unit b {
+  ifcb ifcb0;
+  a a0;
+   b() {
+  }
+};
+
+
+
+csl_unit c {
+ ifca ifcat;
+ ifcb ifcbt;
+ b b1;
+ b b2;
+ b b3; 
+
+  c() {
+ifcat.connect_by_pattern(ifca0);
+ifcbt.connect_by_pattern(ifcb0);
+   }
+};

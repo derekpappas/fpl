@@ -1,0 +1,19 @@
+//oanab
+//11 ian 2008
+//stage
+
+csl_interface rn_bus {
+  csl_port valid(input),age(input),src_nid(input,4),dst_nid(input,4),cmd(input,4),be(input,4),unit_id(input,4),addr(input,24),data(input,32);
+  rn_bus () {}
+};
+
+csl_unit st {
+  rn_bus rn_bus_in;
+  rn_bus rn_bus_out;
+  csl_port clk(input),rst_(input);
+  st () {
+    rn_bus_out.reverse();
+  }
+};
+
+

@@ -1,0 +1,430 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="ssm_demo">
+<signalgroup name="master_a2p_arm">
+<signal name="address" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write_data" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read_data" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="error" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="master_dummy1">
+<signal name="address" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write_data" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read_data" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="error" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="master_dummy2">
+<signal name="address" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write_data" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read_data" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="error" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="master_dummy3">
+<signal name="address" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write_data" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read_data" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="error" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="ring_arm_dsp">
+<signal name="grant" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="request" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="in" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="aphi" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="error" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="ring_dsp_h264">
+<signal name="grant" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="request" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="in" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="aphi" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="error" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="ring_h264_cmpr">
+<signal name="grant" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="request" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="in" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="aphi" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="error" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="ring_cmpr_arm">
+<signal name="grant" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="request" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="in" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="aphi" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="error" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="slave_taparm_mbc">
+<signal name="read_data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="error" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="address" offset="0" upper="20-1" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="slave_tapdsp_mbc">
+<signal name="read_data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="error" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="address" offset="0" upper="20-1" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="slave_taph264_mbc">
+<signal name="read_data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="error" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="address" offset="0" upper="20-1" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="slave_tapcmpr_mbc">
+<signal name="read_data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="error" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="address" offset="0" upper="20-1" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="mbc_arm_mbc">
+<signal name="address" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="write_data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read_data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="control" offset="0" upper="32-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="mbc_dsp_mbc">
+<signal name="address" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="write_data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read_data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="control" offset="0" upper="32-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="mbc_h264_mbc">
+<signal name="address" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="write_data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read_data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="control" offset="0" upper="32-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="mbc_cmpr_mbc">
+<signal name="address" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="write_data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="write" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="read_data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="control" offset="0" upper="32-1" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "h264">
+<instance name="h264">
+<f2a formal = "mbc_out_ifc.address" actual = "mbc_h264_mbc.address" />
+<f2a formal = "mbc_out_ifc.control" actual = "mbc_h264_mbc.control" />
+<f2a formal = "mbc_out_ifc.read" actual = "mbc_h264_mbc.read" />
+<f2a formal = "mbc_out_ifc.read_data" actual = "mbc_h264_mbc.read_data" />
+<f2a formal = "mbc_out_ifc.write" actual = "mbc_h264_mbc.write" />
+<f2a formal = "mbc_out_ifc.write_data" actual = "mbc_h264_mbc.write_data" />
+</instance>
+</instantiation>
+<instantiation type = "a2rtap">
+<instance name="a2rtap_arm">
+<f2a formal = "a2rtap_master_ifc.address" actual = "master_a2p_arm.address" />
+<f2a formal = "a2rtap_master_ifc.error" actual = "master_a2p_arm.error" />
+<f2a formal = "a2rtap_master_ifc.read" actual = "master_a2p_arm.read" />
+<f2a formal = "a2rtap_master_ifc.read_data" actual = "master_a2p_arm.read_data" />
+<f2a formal = "a2rtap_master_ifc.ready" actual = "master_a2p_arm.ready" />
+<f2a formal = "a2rtap_master_ifc.write" actual = "master_a2p_arm.write" />
+<f2a formal = "a2rtap_master_ifc.write_data" actual = "master_a2p_arm.write_data" />
+<f2a formal = "a2rtap_slave_out_ifc.address" actual = "slave_taparm_mbc.address" />
+<f2a formal = "a2rtap_slave_out_ifc.data" actual = "slave_taparm_mbc.data" />
+<f2a formal = "a2rtap_slave_out_ifc.error" actual = "slave_taparm_mbc.error" />
+<f2a formal = "a2rtap_slave_out_ifc.read" actual = "slave_taparm_mbc.read" />
+<f2a formal = "a2rtap_slave_out_ifc.read_data" actual = "slave_taparm_mbc.read_data" />
+<f2a formal = "a2rtap_slave_out_ifc.ready" actual = "slave_taparm_mbc.ready" />
+<f2a formal = "a2rtap_slave_out_ifc.write" actual = "slave_taparm_mbc.write" />
+<f2a formal = "ring_in_ifc.aphi" actual = "ring_cmpr_arm.aphi" />
+<f2a formal = "ring_in_ifc.error" actual = "ring_cmpr_arm.error" />
+<f2a formal = "ring_in_ifc.grant" actual = "ring_cmpr_arm.grant" />
+<f2a formal = "ring_in_ifc.in" actual = "ring_cmpr_arm.in" />
+<f2a formal = "ring_in_ifc.read" actual = "ring_cmpr_arm.read" />
+<f2a formal = "ring_in_ifc.ready" actual = "ring_cmpr_arm.ready" />
+<f2a formal = "ring_in_ifc.request" actual = "ring_cmpr_arm.request" />
+<f2a formal = "ring_in_ifc.write" actual = "ring_cmpr_arm.write" />
+<f2a formal = "ring_out_ifc.aphi" actual = "ring_arm_dsp.aphi" />
+<f2a formal = "ring_out_ifc.error" actual = "ring_arm_dsp.error" />
+<f2a formal = "ring_out_ifc.grant" actual = "ring_arm_dsp.grant" />
+<f2a formal = "ring_out_ifc.in" actual = "ring_arm_dsp.in" />
+<f2a formal = "ring_out_ifc.read" actual = "ring_arm_dsp.read" />
+<f2a formal = "ring_out_ifc.ready" actual = "ring_arm_dsp.ready" />
+<f2a formal = "ring_out_ifc.request" actual = "ring_arm_dsp.request" />
+<f2a formal = "ring_out_ifc.write" actual = "ring_arm_dsp.write" />
+</instance>
+</instantiation>
+<instantiation type = "mcb">
+<instance name="mcb_h264">
+<f2a formal = "a2rtap_slave_in_ifc.address" actual = "slave_taph264_mbc.address" />
+<f2a formal = "a2rtap_slave_in_ifc.data" actual = "slave_taph264_mbc.data" />
+<f2a formal = "a2rtap_slave_in_ifc.error" actual = "slave_taph264_mbc.error" />
+<f2a formal = "a2rtap_slave_in_ifc.read" actual = "slave_taph264_mbc.read" />
+<f2a formal = "a2rtap_slave_in_ifc.read_data" actual = "slave_taph264_mbc.read_data" />
+<f2a formal = "a2rtap_slave_in_ifc.ready" actual = "slave_taph264_mbc.ready" />
+<f2a formal = "a2rtap_slave_in_ifc.write" actual = "slave_taph264_mbc.write" />
+<f2a formal = "mbc_in_ifc.address" actual = "mbc_h264_mbc.address" />
+<f2a formal = "mbc_in_ifc.control" actual = "mbc_h264_mbc.control" />
+<f2a formal = "mbc_in_ifc.read" actual = "mbc_h264_mbc.read" />
+<f2a formal = "mbc_in_ifc.read_data" actual = "mbc_h264_mbc.read_data" />
+<f2a formal = "mbc_in_ifc.write" actual = "mbc_h264_mbc.write" />
+<f2a formal = "mbc_in_ifc.write_data" actual = "mbc_h264_mbc.write_data" />
+</instance>
+</instantiation>
+<instantiation type = "cmpr">
+<instance name="cmpr">
+<f2a formal = "mbc_out_ifc.address" actual = "mbc_cmpr_mbc.address" />
+<f2a formal = "mbc_out_ifc.control" actual = "mbc_cmpr_mbc.control" />
+<f2a formal = "mbc_out_ifc.read" actual = "mbc_cmpr_mbc.read" />
+<f2a formal = "mbc_out_ifc.read_data" actual = "mbc_cmpr_mbc.read_data" />
+<f2a formal = "mbc_out_ifc.write" actual = "mbc_cmpr_mbc.write" />
+<f2a formal = "mbc_out_ifc.write_data" actual = "mbc_cmpr_mbc.write_data" />
+</instance>
+</instantiation>
+<instantiation type = "host_processor">
+<instance name="host_processor">
+<f2a formal = "mbc_out_ifc.address" actual = "mbc_arm_mbc.address" />
+<f2a formal = "mbc_out_ifc.control" actual = "mbc_arm_mbc.control" />
+<f2a formal = "mbc_out_ifc.read" actual = "mbc_arm_mbc.read" />
+<f2a formal = "mbc_out_ifc.read_data" actual = "mbc_arm_mbc.read_data" />
+<f2a formal = "mbc_out_ifc.write" actual = "mbc_arm_mbc.write" />
+<f2a formal = "mbc_out_ifc.write_data" actual = "mbc_arm_mbc.write_data" />
+</instance>
+</instantiation>
+<instantiation type = "mcb">
+<instance name="mcb_arm">
+<f2a formal = "a2rtap_slave_in_ifc.address" actual = "slave_taparm_mbc.address" />
+<f2a formal = "a2rtap_slave_in_ifc.data" actual = "slave_taparm_mbc.data" />
+<f2a formal = "a2rtap_slave_in_ifc.error" actual = "slave_taparm_mbc.error" />
+<f2a formal = "a2rtap_slave_in_ifc.read" actual = "slave_taparm_mbc.read" />
+<f2a formal = "a2rtap_slave_in_ifc.read_data" actual = "slave_taparm_mbc.read_data" />
+<f2a formal = "a2rtap_slave_in_ifc.ready" actual = "slave_taparm_mbc.ready" />
+<f2a formal = "a2rtap_slave_in_ifc.write" actual = "slave_taparm_mbc.write" />
+<f2a formal = "mbc_in_ifc.address" actual = "mbc_arm_mbc.address" />
+<f2a formal = "mbc_in_ifc.control" actual = "mbc_arm_mbc.control" />
+<f2a formal = "mbc_in_ifc.read" actual = "mbc_arm_mbc.read" />
+<f2a formal = "mbc_in_ifc.read_data" actual = "mbc_arm_mbc.read_data" />
+<f2a formal = "mbc_in_ifc.write" actual = "mbc_arm_mbc.write" />
+<f2a formal = "mbc_in_ifc.write_data" actual = "mbc_arm_mbc.write_data" />
+</instance>
+</instantiation>
+<instantiation type = "a2rtap">
+<instance name="a2rtap_dsp">
+<f2a formal = "a2rtap_master_ifc.address" actual = "master_dummy1.address" />
+<f2a formal = "a2rtap_master_ifc.error" actual = "master_dummy1.error" />
+<f2a formal = "a2rtap_master_ifc.read" actual = "master_dummy1.read" />
+<f2a formal = "a2rtap_master_ifc.read_data" actual = "master_dummy1.read_data" />
+<f2a formal = "a2rtap_master_ifc.ready" actual = "master_dummy1.ready" />
+<f2a formal = "a2rtap_master_ifc.write" actual = "master_dummy1.write" />
+<f2a formal = "a2rtap_master_ifc.write_data" actual = "master_dummy1.write_data" />
+<f2a formal = "a2rtap_slave_out_ifc.address" actual = "slave_tapdsp_mbc.address" />
+<f2a formal = "a2rtap_slave_out_ifc.data" actual = "slave_tapdsp_mbc.data" />
+<f2a formal = "a2rtap_slave_out_ifc.error" actual = "slave_tapdsp_mbc.error" />
+<f2a formal = "a2rtap_slave_out_ifc.read" actual = "slave_tapdsp_mbc.read" />
+<f2a formal = "a2rtap_slave_out_ifc.read_data" actual = "slave_tapdsp_mbc.read_data" />
+<f2a formal = "a2rtap_slave_out_ifc.ready" actual = "slave_tapdsp_mbc.ready" />
+<f2a formal = "a2rtap_slave_out_ifc.write" actual = "slave_tapdsp_mbc.write" />
+<f2a formal = "ring_in_ifc.aphi" actual = "ring_arm_dsp.aphi" />
+<f2a formal = "ring_in_ifc.error" actual = "ring_arm_dsp.error" />
+<f2a formal = "ring_in_ifc.grant" actual = "ring_arm_dsp.grant" />
+<f2a formal = "ring_in_ifc.in" actual = "ring_arm_dsp.in" />
+<f2a formal = "ring_in_ifc.read" actual = "ring_arm_dsp.read" />
+<f2a formal = "ring_in_ifc.ready" actual = "ring_arm_dsp.ready" />
+<f2a formal = "ring_in_ifc.request" actual = "ring_arm_dsp.request" />
+<f2a formal = "ring_in_ifc.write" actual = "ring_arm_dsp.write" />
+<f2a formal = "ring_out_ifc.aphi" actual = "ring_dsp_h264.aphi" />
+<f2a formal = "ring_out_ifc.error" actual = "ring_dsp_h264.error" />
+<f2a formal = "ring_out_ifc.grant" actual = "ring_dsp_h264.grant" />
+<f2a formal = "ring_out_ifc.in" actual = "ring_dsp_h264.in" />
+<f2a formal = "ring_out_ifc.read" actual = "ring_dsp_h264.read" />
+<f2a formal = "ring_out_ifc.ready" actual = "ring_dsp_h264.ready" />
+<f2a formal = "ring_out_ifc.request" actual = "ring_dsp_h264.request" />
+<f2a formal = "ring_out_ifc.write" actual = "ring_dsp_h264.write" />
+</instance>
+</instantiation>
+<instantiation type = "mcb">
+<instance name="mcb_dsp">
+<f2a formal = "a2rtap_slave_in_ifc.address" actual = "slave_tapdsp_mbc.address" />
+<f2a formal = "a2rtap_slave_in_ifc.data" actual = "slave_tapdsp_mbc.data" />
+<f2a formal = "a2rtap_slave_in_ifc.error" actual = "slave_tapdsp_mbc.error" />
+<f2a formal = "a2rtap_slave_in_ifc.read" actual = "slave_tapdsp_mbc.read" />
+<f2a formal = "a2rtap_slave_in_ifc.read_data" actual = "slave_tapdsp_mbc.read_data" />
+<f2a formal = "a2rtap_slave_in_ifc.ready" actual = "slave_tapdsp_mbc.ready" />
+<f2a formal = "a2rtap_slave_in_ifc.write" actual = "slave_tapdsp_mbc.write" />
+<f2a formal = "mbc_in_ifc.address" actual = "mbc_dsp_mbc.address" />
+<f2a formal = "mbc_in_ifc.control" actual = "mbc_dsp_mbc.control" />
+<f2a formal = "mbc_in_ifc.read" actual = "mbc_dsp_mbc.read" />
+<f2a formal = "mbc_in_ifc.read_data" actual = "mbc_dsp_mbc.read_data" />
+<f2a formal = "mbc_in_ifc.write" actual = "mbc_dsp_mbc.write" />
+<f2a formal = "mbc_in_ifc.write_data" actual = "mbc_dsp_mbc.write_data" />
+</instance>
+</instantiation>
+<instantiation type = "dsp">
+<instance name="dsp">
+<f2a formal = "mbc_out_ifc.address" actual = "mbc_dsp_mbc.address" />
+<f2a formal = "mbc_out_ifc.control" actual = "mbc_dsp_mbc.control" />
+<f2a formal = "mbc_out_ifc.read" actual = "mbc_dsp_mbc.read" />
+<f2a formal = "mbc_out_ifc.read_data" actual = "mbc_dsp_mbc.read_data" />
+<f2a formal = "mbc_out_ifc.write" actual = "mbc_dsp_mbc.write" />
+<f2a formal = "mbc_out_ifc.write_data" actual = "mbc_dsp_mbc.write_data" />
+</instance>
+</instantiation>
+<instantiation type = "a2rtap">
+<instance name="a2rtap_cmpr">
+<f2a formal = "a2rtap_master_ifc.address" actual = "master_dummy3.address" />
+<f2a formal = "a2rtap_master_ifc.error" actual = "master_dummy3.error" />
+<f2a formal = "a2rtap_master_ifc.read" actual = "master_dummy3.read" />
+<f2a formal = "a2rtap_master_ifc.read_data" actual = "master_dummy3.read_data" />
+<f2a formal = "a2rtap_master_ifc.ready" actual = "master_dummy3.ready" />
+<f2a formal = "a2rtap_master_ifc.write" actual = "master_dummy3.write" />
+<f2a formal = "a2rtap_master_ifc.write_data" actual = "master_dummy3.write_data" />
+<f2a formal = "a2rtap_slave_out_ifc.address" actual = "slave_tapcmpr_mbc.address" />
+<f2a formal = "a2rtap_slave_out_ifc.data" actual = "slave_tapcmpr_mbc.data" />
+<f2a formal = "a2rtap_slave_out_ifc.error" actual = "slave_tapcmpr_mbc.error" />
+<f2a formal = "a2rtap_slave_out_ifc.read" actual = "slave_tapcmpr_mbc.read" />
+<f2a formal = "a2rtap_slave_out_ifc.read_data" actual = "slave_tapcmpr_mbc.read_data" />
+<f2a formal = "a2rtap_slave_out_ifc.ready" actual = "slave_tapcmpr_mbc.ready" />
+<f2a formal = "a2rtap_slave_out_ifc.write" actual = "slave_tapcmpr_mbc.write" />
+<f2a formal = "ring_in_ifc.aphi" actual = "ring_h264_cmpr.aphi" />
+<f2a formal = "ring_in_ifc.error" actual = "ring_h264_cmpr.error" />
+<f2a formal = "ring_in_ifc.grant" actual = "ring_h264_cmpr.grant" />
+<f2a formal = "ring_in_ifc.in" actual = "ring_h264_cmpr.in" />
+<f2a formal = "ring_in_ifc.read" actual = "ring_h264_cmpr.read" />
+<f2a formal = "ring_in_ifc.ready" actual = "ring_h264_cmpr.ready" />
+<f2a formal = "ring_in_ifc.request" actual = "ring_h264_cmpr.request" />
+<f2a formal = "ring_in_ifc.write" actual = "ring_h264_cmpr.write" />
+<f2a formal = "ring_out_ifc.aphi" actual = "ring_cmpr_arm.aphi" />
+<f2a formal = "ring_out_ifc.error" actual = "ring_cmpr_arm.error" />
+<f2a formal = "ring_out_ifc.grant" actual = "ring_cmpr_arm.grant" />
+<f2a formal = "ring_out_ifc.in" actual = "ring_cmpr_arm.in" />
+<f2a formal = "ring_out_ifc.read" actual = "ring_cmpr_arm.read" />
+<f2a formal = "ring_out_ifc.ready" actual = "ring_cmpr_arm.ready" />
+<f2a formal = "ring_out_ifc.request" actual = "ring_cmpr_arm.request" />
+<f2a formal = "ring_out_ifc.write" actual = "ring_cmpr_arm.write" />
+</instance>
+</instantiation>
+<instantiation type = "a2rtap">
+<instance name="a2rtap_h264">
+<f2a formal = "a2rtap_master_ifc.address" actual = "master_dummy2.address" />
+<f2a formal = "a2rtap_master_ifc.error" actual = "master_dummy2.error" />
+<f2a formal = "a2rtap_master_ifc.read" actual = "master_dummy2.read" />
+<f2a formal = "a2rtap_master_ifc.read_data" actual = "master_dummy2.read_data" />
+<f2a formal = "a2rtap_master_ifc.ready" actual = "master_dummy2.ready" />
+<f2a formal = "a2rtap_master_ifc.write" actual = "master_dummy2.write" />
+<f2a formal = "a2rtap_master_ifc.write_data" actual = "master_dummy2.write_data" />
+<f2a formal = "a2rtap_slave_out_ifc.address" actual = "slave_taph264_mbc.address" />
+<f2a formal = "a2rtap_slave_out_ifc.data" actual = "slave_taph264_mbc.data" />
+<f2a formal = "a2rtap_slave_out_ifc.error" actual = "slave_taph264_mbc.error" />
+<f2a formal = "a2rtap_slave_out_ifc.read" actual = "slave_taph264_mbc.read" />
+<f2a formal = "a2rtap_slave_out_ifc.read_data" actual = "slave_taph264_mbc.read_data" />
+<f2a formal = "a2rtap_slave_out_ifc.ready" actual = "slave_taph264_mbc.ready" />
+<f2a formal = "a2rtap_slave_out_ifc.write" actual = "slave_taph264_mbc.write" />
+<f2a formal = "ring_in_ifc.aphi" actual = "ring_dsp_h264.aphi" />
+<f2a formal = "ring_in_ifc.error" actual = "ring_dsp_h264.error" />
+<f2a formal = "ring_in_ifc.grant" actual = "ring_dsp_h264.grant" />
+<f2a formal = "ring_in_ifc.in" actual = "ring_dsp_h264.in" />
+<f2a formal = "ring_in_ifc.read" actual = "ring_dsp_h264.read" />
+<f2a formal = "ring_in_ifc.ready" actual = "ring_dsp_h264.ready" />
+<f2a formal = "ring_in_ifc.request" actual = "ring_dsp_h264.request" />
+<f2a formal = "ring_in_ifc.write" actual = "ring_dsp_h264.write" />
+<f2a formal = "ring_out_ifc.aphi" actual = "ring_h264_cmpr.aphi" />
+<f2a formal = "ring_out_ifc.error" actual = "ring_h264_cmpr.error" />
+<f2a formal = "ring_out_ifc.grant" actual = "ring_h264_cmpr.grant" />
+<f2a formal = "ring_out_ifc.in" actual = "ring_h264_cmpr.in" />
+<f2a formal = "ring_out_ifc.read" actual = "ring_h264_cmpr.read" />
+<f2a formal = "ring_out_ifc.ready" actual = "ring_h264_cmpr.ready" />
+<f2a formal = "ring_out_ifc.request" actual = "ring_h264_cmpr.request" />
+<f2a formal = "ring_out_ifc.write" actual = "ring_h264_cmpr.write" />
+</instance>
+</instantiation>
+<instantiation type = "ssm_master">
+<instance name="ssm_master">
+<f2a formal = "a2rtap_master_ifc.address" actual = "master_a2p_arm.address" />
+<f2a formal = "a2rtap_master_ifc.error" actual = "master_a2p_arm.error" />
+<f2a formal = "a2rtap_master_ifc.read" actual = "master_a2p_arm.read" />
+<f2a formal = "a2rtap_master_ifc.read_data" actual = "master_a2p_arm.read_data" />
+<f2a formal = "a2rtap_master_ifc.ready" actual = "master_a2p_arm.ready" />
+<f2a formal = "a2rtap_master_ifc.write" actual = "master_a2p_arm.write" />
+<f2a formal = "a2rtap_master_ifc.write_data" actual = "master_a2p_arm.write_data" />
+</instance>
+</instantiation>
+<instantiation type = "dummy_unit_synth_removes">
+<instance name="dumb">
+<f2a formal = "dummy1_master_ifc.address" actual = "master_dummy1.address" />
+<f2a formal = "dummy1_master_ifc.error" actual = "master_dummy1.error" />
+<f2a formal = "dummy1_master_ifc.read" actual = "master_dummy1.read" />
+<f2a formal = "dummy1_master_ifc.read_data" actual = "master_dummy1.read_data" />
+<f2a formal = "dummy1_master_ifc.ready" actual = "master_dummy1.ready" />
+<f2a formal = "dummy1_master_ifc.write" actual = "master_dummy1.write" />
+<f2a formal = "dummy1_master_ifc.write_data" actual = "master_dummy1.write_data" />
+<f2a formal = "dummy2_master_ifc.address" actual = "master_dummy2.address" />
+<f2a formal = "dummy2_master_ifc.error" actual = "master_dummy2.error" />
+<f2a formal = "dummy2_master_ifc.read" actual = "master_dummy2.read" />
+<f2a formal = "dummy2_master_ifc.read_data" actual = "master_dummy2.read_data" />
+<f2a formal = "dummy2_master_ifc.ready" actual = "master_dummy2.ready" />
+<f2a formal = "dummy2_master_ifc.write" actual = "master_dummy2.write" />
+<f2a formal = "dummy2_master_ifc.write_data" actual = "master_dummy2.write_data" />
+<f2a formal = "dummy3_master_ifc.address" actual = "master_dummy3.address" />
+<f2a formal = "dummy3_master_ifc.error" actual = "master_dummy3.error" />
+<f2a formal = "dummy3_master_ifc.read" actual = "master_dummy3.read" />
+<f2a formal = "dummy3_master_ifc.read_data" actual = "master_dummy3.read_data" />
+<f2a formal = "dummy3_master_ifc.ready" actual = "master_dummy3.ready" />
+<f2a formal = "dummy3_master_ifc.write" actual = "master_dummy3.write" />
+<f2a formal = "dummy3_master_ifc.write_data" actual = "master_dummy3.write_data" />
+</instance>
+</instantiation>
+<instantiation type = "mcb">
+<instance name="mcb_cmpr">
+<f2a formal = "a2rtap_slave_in_ifc.address" actual = "slave_tapcmpr_mbc.address" />
+<f2a formal = "a2rtap_slave_in_ifc.data" actual = "slave_tapcmpr_mbc.data" />
+<f2a formal = "a2rtap_slave_in_ifc.error" actual = "slave_tapcmpr_mbc.error" />
+<f2a formal = "a2rtap_slave_in_ifc.read" actual = "slave_tapcmpr_mbc.read" />
+<f2a formal = "a2rtap_slave_in_ifc.read_data" actual = "slave_tapcmpr_mbc.read_data" />
+<f2a formal = "a2rtap_slave_in_ifc.ready" actual = "slave_tapcmpr_mbc.ready" />
+<f2a formal = "a2rtap_slave_in_ifc.write" actual = "slave_tapcmpr_mbc.write" />
+<f2a formal = "mbc_in_ifc.address" actual = "mbc_cmpr_mbc.address" />
+<f2a formal = "mbc_in_ifc.control" actual = "mbc_cmpr_mbc.control" />
+<f2a formal = "mbc_in_ifc.read" actual = "mbc_cmpr_mbc.read" />
+<f2a formal = "mbc_in_ifc.read_data" actual = "mbc_cmpr_mbc.read_data" />
+<f2a formal = "mbc_in_ifc.write" actual = "mbc_cmpr_mbc.write" />
+<f2a formal = "mbc_in_ifc.write_data" actual = "mbc_cmpr_mbc.write_data" />
+</instance>
+</instantiation>
+</unit>
+</design>

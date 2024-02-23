@@ -1,0 +1,18 @@
+//oanab
+//26 may 2008
+
+csl_signal_group sg {
+  csl_signal s1,s2;
+  sg () {}
+};
+
+csl_unit b {
+  csl_port clk(input);
+  sg sg0;
+  b () {
+    clk.set_attr(clock);
+    sg0.set_clock(clk);
+    sg0.s1 = clk;
+    clk = sg0.s2;
+  }
+};

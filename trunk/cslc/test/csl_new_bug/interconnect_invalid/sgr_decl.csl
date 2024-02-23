@@ -1,0 +1,7 @@
+//oanab
+//22 feb 2008
+//empty signal group
+
+csl_signal_group sg {
+  sg () {}
+};

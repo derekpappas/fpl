@@ -1,0 +1,15 @@
+//Monica
+//26 oct 2007
+
+csl_unit u1{
+  csl_port p1(input), p2(input),p3(output);
+  csl_list list_p(p1,p2,p3);
+  u1(){}
+};
+csl_unit u2{
+  csl_signal s1,s2,s3;
+  csl_list list_s(s1,s2,s3);
+
+  u1 u1(.list_p(list_s));
+  u2(){}
+};

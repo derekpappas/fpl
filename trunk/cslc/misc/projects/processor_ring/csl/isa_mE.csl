@@ -1,0 +1,401 @@
+//Monica
+//12 mar 2008
+
+csl_enum e_opcode{
+    read32req,
+    write32,
+    read32resp,
+    write64,
+    read64resp,
+    read32DMAreq,
+    write32DMA,
+    read64DMAreq,
+    write64DMA,
+    ADD,
+    sub,
+    equal,
+    movhi,
+    movi,
+    ori,
+    ldw,
+    stw,
+    brlt,
+    brge,
+    brle,
+    brgt,
+    breq,
+    brne,
+    brp,
+    brn,
+    brnn,
+    brz,
+    brnz,
+    brc,
+    brnc,
+    brv,
+    brnv
+
+    };
+
+csl_isa_field f_op{
+  f_op(){
+    set_type(opcode);
+    set_width(6);
+    set_enum(e_opcode);
+  }};
+
+csl_isa_field f_length{
+  f_length(){
+    set_type(constant);
+    set_width(4);
+    
+  }};
+
+csl_isa_field f_dstreg{
+  f_dstreg(){
+    set_type(address);
+    set_width(5);
+    
+  }};
+
+csl_isa_field f_idreg{
+  f_idreg(){
+    set_type(address);
+    set_width(5);
+    
+  }};
+
+csl_isa_field f_srcreg{
+  f_srcreg(){
+    set_type(address);
+    set_width(5);
+    
+  }};
+
+csl_isa_field f_imm{
+  f_imm(){
+    set_type(constant);
+    set_width(16);
+    
+  }};
+csl_isa_field f_bb{
+  f_bb(){
+  set_type(constant);
+  set_width(1);
+}
+};
+csl_isa_field f_src{
+  f_src(){
+    set_type(constant);
+    set_width(1);
+  }
+};
+csl_isa_field f_id{
+  f_id(){
+    set_type(constant);
+    set_width(1);
+  }
+};
+csl_isa_field f_dst{
+  f_dst(){
+    set_type(constant);
+    set_width(1);
+  }
+};
+csl_isa_field f_zero{
+  f_zero(){
+    set_type(unused);
+    set_width(5);
+  }
+};
+csl_isa_element root{
+  root(){
+    set_type(root_format);
+    set_width(32);
+  }};
+csl_isa_element format1:root{
+  f_op op;
+  format1(){
+    set_type(instr_format);
+    set_position(op,0);
+  }
+};
+csl_isa_element format2: format1{    //for read-write instructions
+  f_length trans;
+  f_dstreg dst_reg;
+  f_idreg id_reg;
+  f_srcreg src_reg;  
+  f_bb bb;
+  f_src src;
+  f_id id;
+  f_dst dst;
+  format2(){
+    set_type(instr_format);
+    set_position(bb,12);
+    set_next(bb,src);
+    set_next(src,id);
+    set_next(id,dst);
+    set_position(src_reg,27);
+    set_next(src_reg,id_reg);
+    set_next(id_reg,dst_reg);
+    set_next(dst_reg,trans);
+  }};
+
+csl_isa_element format3: format1{   //for alu instructions
+ f_srcreg src_reg1;
+ f_srcreg src_reg2;
+ f_dstreg dst_reg;
+ format3(){
+   set_type(instr_format);
+   set_position(src_reg1,27);
+   set_next(src_reg1,src_reg2);
+   set_next(src_reg2,dst_reg);
+ }
+};
+csl_isa_element format4:format1{   //for branch instructions
+  f_srcreg src_reg1;
+  f_srcreg src_reg2;
+  f_imm    addr;
+  format4(){
+   set_type(instr_format);
+   set_position(src_reg1,27);
+   set_next(src_reg1,src_reg2);
+   set_next(src_reg2,addr);
+  }
+};
+csl_isa_element format5:format1{   //for mov instructions
+  f_srcreg src_reg;
+  f_zero zero;
+  f_imm immed;
+  format5(){
+  set_type(instr_format);
+  set_position(src_reg,27);
+   set_next(src_reg,zero);
+   set_next(zero,immed);
+  }
+};
+csl_isa_element format6:format1{  //for ori,stw and ldw instructions
+ f_srcreg src_reg;
+  f_dstreg dst_reg;
+  f_imm immed;
+  format6(){
+  set_type(instr_format);
+  set_position(src_reg,27);
+   set_next(src_reg,dst_reg);
+   set_next(dst_reg,immed);
+  }
+};
+
+//read-write instructions
+csl_isa_element i1:format2{
+ 
+  i1(){
+    set_type(instr);
+    op.set_enum_item(read32req);
+    
+  }};
+
+csl_isa_element i2:format2{
+ 
+  i2(){
+    set_type(instr);
+    op.set_enum_item(write32);
+   
+  }};
+csl_isa_element i3:format2{
+  
+  i3(){
+    set_type(instr);
+    op.set_enum_item(read32resp);
+  }};
+
+csl_isa_element i4:format2{
+  
+  i4(){
+    set_type(instr);
+    op.set_enum_item(write64);
+    
+  }};
+csl_isa_element i5:format2{
+
+  i5(){
+    set_type(instr);
+    op.set_enum_item(read64resp);
+  
+  }};
+csl_isa_element i6:format2{
+
+  i6(){
+    set_type(instr);
+    op.set_enum_item(read32DMAreq);
+  
+  }};
+csl_isa_element i7:format2{
+
+  i7(){
+    set_type(instr);
+    op.set_enum_item(write32DMA);
+  
+  }};
+csl_isa_element i8:format2{
+
+  i8(){
+    set_type(instr);
+    op.set_enum_item(read64DMAreq);
+  
+  }};
+csl_isa_element i9:format2{
+
+  i9(){
+    set_type(instr);
+    op.set_enum_item(write64DMA);
+  
+  }};
+
+
+//alu instructions
+csl_isa_element i10:format3{
+
+  i10(){
+    set_type(instr);
+    op.set_enum_item(ADD);
+  }};
+csl_isa_element i11:format3{
+
+  i11(){
+    set_type(instr);
+    op.set_enum_item(sub);
+  }};
+csl_isa_element i12:format3{
+
+  i12(){
+    set_type(instr);
+    op.set_enum_item(equal);
+  }};
+
+
+//mov instructions
+csl_isa_element i13:format5{
+
+  i13(){
+    set_type(instr);
+    op.set_enum_item(movhi);
+  }};
+csl_isa_element i14:format5{
+
+  i14(){
+    set_type(instr);
+    op.set_enum_item(movi);
+  }};
+
+//ori,stw and ldw instructions
+csl_isa_element i15:format6{
+
+  i15(){
+    set_type(instr);
+    op.set_enum_item(ori);
+  }};
+csl_isa_element i16:format6{
+
+  i16(){
+    set_type(instr);
+    op.set_enum_item(ldw);
+  }};
+csl_isa_element i17:format6{
+
+  i17(){
+    set_type(instr);
+    op.set_enum_item(stw);
+  }};
+
+//conditional branch instructions
+csl_isa_element i18 :format4{
+
+  i18(){
+  set_type(instr);
+  op.set_enum_item(brlt);    
+}};
+csl_isa_element i19 :format4{
+
+  i19(){
+  set_type(instr);
+  op.set_enum_item(brge);
+}};
+csl_isa_element i20 :format4{
+
+  i20(){
+  set_type(instr);
+  op.set_enum_item(brle);
+}};
+csl_isa_element i21 :format4{
+
+  i21(){
+  set_type(instr);
+  op.set_enum_item(brgt);
+}};
+csl_isa_element i22 :format4{
+
+  i22(){
+  set_type(instr);
+  op.set_enum_item(breq);
+}};
+csl_isa_element i23 :format4{
+
+  i23(){
+  set_type(instr);
+  op.set_enum_item(brne);
+}};
+csl_isa_element i24 :format5{
+
+  i24(){
+  set_type(instr);
+  op.set_enum_item(brp);
+}};
+csl_isa_element i25 :format5{
+
+  i25(){
+  set_type(instr);
+  op.set_enum_item(brn);
+}};
+csl_isa_element i26 :format5{
+
+  i26(){
+  set_type(instr);
+  op.set_enum_item(brnn);
+}};
+csl_isa_element i27 :format5{
+
+  i27(){
+  set_type(instr);
+  op.set_enum_item(brz);
+}};
+csl_isa_element i28 :format5{
+
+  i28(){
+  set_type(instr);
+  op.set_enum_item(brnz);
+}};
+csl_isa_element i29 :format5{
+
+  i29(){
+  set_type(instr);
+  op.set_enum_item(brc);
+}};
+csl_isa_element i30 :format5{
+
+  i30(){
+  set_type(instr);
+  op.set_enum_item(brnc);
+}};
+csl_isa_element i31 :format5{
+
+  i31(){
+  set_type(instr);
+  op.set_enum_item(brv);
+}};
+csl_isa_element i32 :format5{
+
+  i32(){
+  set_type(instr);
+  op.set_enum_item(brnv);
+}};

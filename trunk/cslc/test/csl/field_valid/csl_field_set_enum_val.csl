@@ -1,0 +1,28 @@
+csl_enum opcodes {
+  RD  = 0,
+  WR  = 1,
+  BR  = 2,
+  NOP = 3
+};
+
+csl_field op {
+  op() {
+    set_width(2);
+    set_enum(opcodes); 
+  }
+};
+
+csl_field instr_fmt {
+  op op;
+  instr_fmt() {
+    set_width(32);
+    op.set_enum_item(RD);
+    set_field_position(op,30);
+  }
+};
+
+
+
+
+csl_unit top {
+};

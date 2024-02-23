@@ -1,0 +1,18 @@
+//author: Ines
+//testing the command get_offset()
+
+csl_field field {
+  field(){
+    set_offset(2);
+  }
+};
+
+csl_field field1 {
+  field1(){
+    set_offset(field.get_offset());
+  }
+};
+
+
+csl_unit top {
+};

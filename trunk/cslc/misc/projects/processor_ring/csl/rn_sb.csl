@@ -1,0 +1,15 @@
+//oanab
+//21 feb 2008
+//send buffer - used by the processor to send messages
+
+csl_unit sb1 {
+  ifc_rn_msg dma_sb_msg_st1; // input message
+  ifc_au_rd_out au_sb_rd_en_st1;     // input rd enables
+  ifc_au_wr_out au_sb_wr_en_st1;     // input wr enables
+  ifc_rn_msg sb_mux_msg_st2; // output message
+  sb1 () {
+    au_sb_rd_en_st1.reverse();
+    au_sb_wr_en_st1.reverse();
+    sb_mux_msg_st2.reverse();
+  }
+};

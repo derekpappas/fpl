@@ -1,0 +1,24 @@
+//Monica
+
+csl_unit u1{
+  csl_port p11(input);
+  csl_port p12(output);
+  u1(){}
+};
+csl_unit u2{
+  u1 u10;
+  u2(){}
+};
+csl_unit u3{
+  u2 u20;
+  u3(){}
+};
+csl_unit u4{
+  csl_port p41(input);
+  csl_port p42(output);
+  u3 u30; 
+  u4(){
+    p41.connect_by_pattern(u10.p11,in_port_added); // full path is u30.u20.u10.p11 
+    p42.connect_by_pattern(u10.p12,out_port_added); // full path is u30.u20.u10.p12
+  }
+};

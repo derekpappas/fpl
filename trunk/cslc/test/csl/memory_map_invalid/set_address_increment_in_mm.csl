@@ -1,0 +1,20 @@
+//illegal: set_address_increment  should not work in mm
+//andreim
+//15 June 2007
+
+csl_memory_map_page mmp_page{
+	mmp_page(){
+		add_address_range(0,31);
+		set_endianess(big_endian);
+		set_data_word_width(16);
+		set_alignment(4);           // increment = 16 / 4 = 4 
+ 	}
+};
+
+csl_memory_map mm{
+		mm(){
+		set_type(flat);
+	  set_data_word_width(128);
+		set_address_increment(4);
+		}
+	};

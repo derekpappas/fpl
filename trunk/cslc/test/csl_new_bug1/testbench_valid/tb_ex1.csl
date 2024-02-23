@@ -1,0 +1,56 @@
+// Author: cghaba
+// November 28, 2007
+
+csl_bitrange br_d(7,0);
+csl_bitrange br_sel(1,0);
+
+csl_unit u_alu{
+  csl_port clk(input);
+  csl_port p_cin(input);
+  csl_port p_op1(input,br_d);
+  csl_port p_op2(input,br_d);
+  csl_port p_res(output,reg, br_d);
+  csl_port p_cout(output, reg);
+  csl_port p_sel(input,br_sel);
+  csl_include(file_verilog, "u_alu.logic.v");
+  csl_signal clk1,op(19),out(9);
+  u_alu(){
+     clk.set_attr(clock);
+     clk1 = clk;
+     op = {p_cin,p_op1,p_op2,p_sel};
+     out = {p_res,p_cout};
+  }
+};
+    
+
+
+csl_vector v_stim{
+  v_stim(){
+    set_vc_header_comment ("stimulus vector");
+    set_unit_name(u_alu);
+    set_direction(input);
+     set_radix(bin);
+     set_vc_output_filename("alu_stim");
+     set_vc_max_cycles(100);
+  }
+};
+
+csl_vector v_expect{
+  v_expect(){
+    set_vc_header_comment("expected vectors");
+    set_unit_name(u_alu);
+    set_direction(output);
+    set_radix(bin);
+    set_vc_output_filename("alu_expect");
+    set_vc_max_cycles(100);
+  }
+};
+
+csl_testbench tb_alu{
+  csl_signal clk(reg);
+  u_alu alu(.clk(clk));
+  tb_alu(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,100,ps);
+  }
+};

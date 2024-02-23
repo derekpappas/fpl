@@ -1,0 +1,27 @@
+csl_field fa{
+  fa(){
+    set_width(2);
+  }
+};
+
+csl_field fb{
+  fb(){
+    set_width(3);
+  }
+};
+
+csl_field f1{
+  fa fa_1;
+  //  csl_filed fa(2);
+  f1(){
+    set_width(32);
+    set_field_position(fa, 0);
+  }
+};
+
+csl_field f2{
+  f1 f1_1;
+  f2(){
+    set_field_position(fb_1, 0);
+  }
+};

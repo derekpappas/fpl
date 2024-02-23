@@ -1,0 +1,13 @@
+csl_unit a{
+  csl_port p1(input,4),p2(output,4);
+  a (){}
+};
+
+
+csl_bitrange br1(4);
+br1.set_offset(8);
+csl_unit u{
+  csl_port p1(input, br1), p2(output, br1);
+  a a0(.p1(p1),.p2(p2));
+  u(){}
+};

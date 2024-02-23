@@ -1,0 +1,18 @@
+//oanab
+//11 aug 2008
+
+csl_field f(4);
+
+csl_unit a {
+  csl_port p_a(input,4);
+  a () {
+  }
+};
+
+csl_unit b {
+  csl_signal s_z(f);
+  a a1(.p_a(s_z)); 
+  b () {
+  }
+};
+

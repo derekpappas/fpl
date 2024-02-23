@@ -1,0 +1,12 @@
+// CristiL
+//
+// Bitrange
+
+csl_bitrange br(32);
+csl_unit u{
+  csl_signal s(br);
+  csl_signal s1(32);
+  u(){
+    s =s1;
+  }
+};

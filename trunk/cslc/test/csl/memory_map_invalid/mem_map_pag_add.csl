@@ -1,0 +1,19 @@
+csl_register_file rf{
+  rf(){
+    set_width(32);
+    set_depth(128);
+  }
+};
+csl_memory_map_page mpage{
+  mpage(){
+    add_address_range(0,511);
+    set_address_increment(2);
+    add(rf, "rf", 64);
+  }
+};
+csl_memory_map mmap{
+  mpage mp;
+  mmap(){
+    set_data_word_width(32);
+  }
+};

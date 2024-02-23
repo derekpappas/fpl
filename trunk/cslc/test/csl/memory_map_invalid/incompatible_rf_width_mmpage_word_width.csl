@@ -1,0 +1,22 @@
+//when adding rf1 to mmpage page0 rf1 width should be in conflict with mpage data_word_width
+// rf width (64) > page0 data_word_width (32);
+csl_register_file rf1{
+   rf1(){
+    set_width(64); set_depth(4);
+   }
+};
+
+csl_memory_map_page page0{
+	page0(){
+		add_address_range(0, 3);
+		set_data_word_width(32);
+		set_endianess(big_endian);
+	}
+};
+
+csl_memory_map mm{
+	page0 page_0(rf1);
+	mm(){
+     set_data_word_width(128);
+  }
+};

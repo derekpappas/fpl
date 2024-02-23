@@ -1,0 +1,26 @@
+//oanab
+//29 feb 2008
+//illegal to connect a port with a signal group
+
+csl_signal_group sg {
+  csl_signal s1,s2,s3;
+  sg () {}
+};
+
+csl_register reg {
+  reg () {
+    set_width(3);
+    set_type(register);
+  }
+};
+
+csl_unit u1 {
+  sg sg;
+  u1 () {}
+};
+
+csl_unit u2 {
+  u1 u1;
+  reg reg(.reg_in(u1.sg));
+  u2 () {}
+};

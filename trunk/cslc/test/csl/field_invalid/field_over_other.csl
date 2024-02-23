@@ -1,0 +1,29 @@
+//ILLEGAL TEST - because I set(in f2) the field fb, over the field fa.
+
+csl_field fa{
+  fa(){
+    set_width(2);
+  }
+};
+
+csl_field fb{
+  fb(){
+    set_width(3);
+  }
+};
+
+csl_field f1{
+  fa fa_1;
+  f1(){
+    set_width(32);
+    set_field_position(fa_1, 29);
+  }
+};
+
+csl_field f2{
+  f1 f1_1;
+  fb fb_1;
+  f2(){
+    set_field_position(fb_1, 28);
+  }
+};

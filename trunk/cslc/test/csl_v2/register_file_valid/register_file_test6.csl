@@ -1,0 +1,77 @@
+//Petronela
+
+csl_register_file r1{
+  r1(){
+    set_width(16);
+    set_depth(24);
+    create_rtl_module();
+    add_logic(read_valid);
+  }
+};
+
+csl_register_file r2{
+  r2(){
+     set_depth(2);
+     set_width(4+9);
+     set_wr_data_name("wrData");
+  }
+};
+csl_register_file r3{
+  r3(){
+    set_depth(6);
+    set_width(33);
+    set_rd_data_name("rdData");
+  }
+};
+csl_register_file r6{
+  r6(){
+    set_width(2);
+    set_depth(10);
+    set_wr_addr_name("wrAddr");
+  }
+};
+csl_register_file r4{
+  r4(){
+    add_logic(read_valid);
+    set_depth(56);
+    set_width(6);
+  }
+};
+csl_register_file r5{
+  r5(){
+    set_width(11);
+    set_depth(12);
+    set_rd_addr_name("rdAddr");
+
+  }
+};
+csl_register_file r16{
+  r16(){
+    set_width(12);
+    set_depth(11);
+    add_logic(read_valid);
+  }
+};
+
+csl_register_file r7{
+  r7(){
+    set_depth(20);
+    set_width(12);
+    set_wr_en_name("wrEn");
+  }
+};
+
+csl_unit u1{
+    r1 r1;
+    r2 r2;
+    r3 r3;
+    r4 r4;
+    r5 r5;
+    r6 r6;
+    r7 r7;
+    r16 r16;
+    u1(){
+      r5.set_rd_en_name(r7.get_wr_en_name());
+      r3.create_rtl_module();
+    }
+};

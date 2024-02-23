@@ -1,0 +1,16 @@
+//Monica
+
+csl_bitrange br1(99999);
+csl_bitrange br2(1111111);
+csl_unit u0{
+  csl_port p1(input,br1);
+  csl_port p2(input,br2);
+  u0(){}
+};
+csl_unit u1{
+  csl_signal s1(br1);
+  csl_signal s2(br2);
+
+  u0 u0(.p1(s1),.p2(s2));
+  u1(){}
+};

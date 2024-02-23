@@ -1,0 +1,13 @@
+//Petronela
+csl_enum e {
+  RD,
+  WR,
+  EN
+};
+csl_field f{  
+  f(){
+  set_enum(e);
+  set_range(3);//error 
+  }
+};
+

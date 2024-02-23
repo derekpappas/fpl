@@ -1,0 +1,166 @@
+csl_enum lq {
+	dh,
+	oy,
+	ha,
+	nq,
+	ff,
+	gp,
+	qs,
+	bb,
+	tb,
+	xv,
+	xp
+};
+csl_enum wb {
+	lg,
+	xg,
+	ik,
+	wo,
+	tn,
+	nd,
+	qd,
+	tv,
+	jc,
+	nc,
+	up,
+	dr,
+	sd,
+	nq,
+	tk,
+	uh,
+	tu,
+	nc,
+	hk,
+	qb,
+	yg
+};
+csl_enum ep {
+	kb = 68,
+	nt = 38,
+	dc = 31,
+	xy = 12,
+	tc = 82,
+	qm = 70,
+	hg = 22,
+	fd = 73,
+	ta = 24
+};
+csl_isa_instruction_format gn{
+    gn( ){
+  }
+}
+;
+csl_isa_instruction vx : gn{
+    vx( ){
+    set_asm_mnemonic( csl_list "gw", "ke", "li");
+  }
+}
+;
+csl_isa_instruction nt : gn{
+    nt( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa_instruction co : gn{
+    co( ){
+    set_asm_mnemonic( csl_list "jf", "bd", "tb", "cf", "aa", "xq");
+  }
+}
+;
+csl_isa_instruction fd : gn{
+    fd( ){
+    set_asm_mnemonic( ir);
+  }
+}
+;
+csl_isa_instruction ta : gn{
+    ta( ){
+    set_asm_mnemonic( csl_list "hn", "wl", "du", "qw", "te", "ty", "wn", "dw", "pj");
+  }
+}
+;
+csl_isa_instruction ld : gn{
+    ld( ){
+    set_asm_mnemonic( csl_list "vm", "wf", "dw", "tg", "rm", "dn", "qy");
+  }
+}
+;
+csl_isa rr{
+    rr( ){
+     set_decoder_name( "lp");
+     set_decoder_out_name_prefix( "dl");
+     set_decoder_out_name_suffix( "pb");
+     generate_decoder( doqr);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo wb{
+   wb( ){
+  }
+}
+;
+csl_memory_map_page lq{
+    lq( ){
+     add_address_range( 5, 9);
+     set_next_address( 3);
+     get_upper_bound( );
+     set_data_word_width( 6);
+     set_aligment( 6);
+  }
+}
+;
+csl_memory_map_page mf{
+    mf( ){
+     add_address_range( 1, 6);
+     set_address_increment( 4);
+     get_lower_bound( );
+     set_aligment( 7);
+  }
+}
+;
+csl_memory_map_page uj{
+    uj( ){
+     set_address_increment( 2);
+     get_address_increment( );
+     set_next_address( 3);
+     set_access_rights( access_write, access_read);
+     get_upper_bound( );
+     set_endianess( big_endian);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map ic{
+  lq hr;
+  mf fe;
+  uj ua;
+  lq qp;
+  mf vv;
+  lq df;
+  mf tv;
+  uj ov;
+    ic( ){
+.add_to_memory_map( 8,access_write); 
+     set_type( flat);
+     set_data_word_width( 5);
+     get_data_word_width( );
+     set_suffix( sx);
+  }
+}
+;
+csl_register bu{
+    bu( ){
+     add_logic( gray_output);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register oj{
+    oj( ){
+     create_rtl_module( );
+     set_const_value( 6);
+  }
+}
+;

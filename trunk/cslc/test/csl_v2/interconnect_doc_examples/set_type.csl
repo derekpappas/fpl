@@ -1,0 +1,14 @@
+csl_unit mux{
+  csl_port in1(input), in2(input), out(output);
+  csl_port sel(input);
+  mux(){
+    set_type(combinational); 
+  }
+};
+csl_unit top{
+  mux mux1;
+  csl_port clk(input);
+  top(){
+    clk.set_attr(clock);
+  }
+};

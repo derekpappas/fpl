@@ -1,0 +1,22 @@
+//oanab
+//18 ian 2008
+//port and signal have different widths
+
+csl_unit u1 {
+  csl_port a(inout,4),b(output,2);
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_signal s1(wire);
+  u2 () {}
+};
+
+csl_unit u {
+  csl_port x(input),y(output);
+  u1 u1;
+  u2 u2;
+  u () {
+    u1.a.connect(x);
+  }
+};

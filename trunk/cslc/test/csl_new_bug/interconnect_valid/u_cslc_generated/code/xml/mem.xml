@@ -1,0 +1,6 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="memory.xsl"?>
+<design>
+<memory name="mem" width ="data_w"  depth ="addr_w" >
+name="data_w"4name="addr_w"8</memory>
+</design>

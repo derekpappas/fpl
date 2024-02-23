@@ -1,0 +1,45 @@
+//Monica
+
+csl_unit u1{
+  csl_signal s11(wire);
+  csl_signal s12(s11);
+  csl_signal s13(34);
+  csl_port p11(output);
+  csl_port p12(p11);
+  csl_port p13(output,34);
+  u1(){
+    p11=s11;
+    p12=s12;
+    p13=s13;
+   
+}
+};
+csl_unit u2{
+  csl_port p21(output,wire);
+  csl_port p22(p21);
+  csl_port p23(output,34);
+  u1 u1(.p11(p21), .p12(p22),.p13(p23));
+  u2(){}
+
+};
+csl_unit u3{
+  csl_port p31(output,wire);
+  csl_port p32(p31);
+  csl_port p33(output,33,0);
+  u2 u2(.p21(p31),.p22(p32),.p23(p33));
+  u3(){}
+};
+
+csl_unit u4{
+  csl_port p41(output,wire);
+  csl_port p42(p41);
+  csl_port p43(output,0,33);
+  u3 u3(.p31(p41),.p32(p42),.p33(p43));
+ u4(){}
+};
+
+csl_unit top3{
+  csl_signal s1,s2,s3(34);
+  u4 u4(.p41(s1),.p42(s2),.p43(s3));
+    top3(){}
+};

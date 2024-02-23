@@ -1,0 +1,27 @@
+//Monica
+
+csl_interface ifc{
+  csl_port p1(input),p2(input);
+  csl_port p3(output,4),p4(output,2);
+  ifc(){}
+};
+
+csl_interface ifc0{
+  ifc ifc01;
+  ifc ifc02;
+  ifc0(){
+    ifc01.set_prefix("");
+  }};
+
+csl_unit u1{
+  ifc0 ifc11;
+  ifc0 ifc12;
+
+  u1(){
+    ifc11.ifc01.no_prefix();
+    ifc11.ifc02.set_prefix("");
+    ifc12.set_prefix("");
+    ifc11 = ifc12;
+  }
+};
+

@@ -1,0 +1,8 @@
+csl_memory_map mm{
+                mm(){
+                set_type(flat);
+                set_data_word_width(128);
+                add_address_range(0,31);
+                }
+};
+

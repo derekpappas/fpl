@@ -1,0 +1,21 @@
+//THIS CODE WAS GENERATED USING THE FASTPATHLOGIC HDL COMPILER
+//COPYRIGHT (c) 2006, 2007 FastpathLogic Inc
+//OUTPUT FILE NAME  : msi_rx.vf
+//FILE GENERATED ON : Thu Jun 19 15:32:42 2008
+
+enum_define.v
+
+nina.v
+-f mfd_trans_cluster.vf
+-f sd_flash_cluster.vf
+-f avalon_fab_cluster.vf
+-f sfd_data_cluster.vf
+-f sfd_trans_cluster.vf
+-f eth_fab_cluster.vf
+-f spi_cntl_cluster.vf
+-f mfd_data_cluster.vf
+-f mfd_sec_cluster.vf
+-f ddr_fab_cluster.vf
+-f i2c_cluster.vf
+-f sfd_stig_cluster.vf
+msi_rx.v

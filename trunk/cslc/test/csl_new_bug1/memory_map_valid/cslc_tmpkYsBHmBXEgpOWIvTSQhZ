@@ -1,0 +1,112 @@
+# "/opt/he_fpl_svn/fpl_repo/cslc/test/csl_new_bug1/memory_map_valid/./test_mem_map2.csl" 1
+
+
+csl_register r1 {
+  r1() {
+    set_width(32);
+    set_type(register);
+  }
+};
+
+csl_register r2 {
+  r2() {
+    set_width(32);
+    set_type(register);
+  }
+};
+
+csl_register r3 {
+  r3() {
+    set_width(32);
+    set_type(register);
+  }
+};
+
+csl_register r4 {
+  r4() {
+    set_width(32);
+    set_type(register);
+  }
+};
+csl_register_file rf1{
+  rf1() {
+    set_width(32);
+    set_depth(8);
+  }
+};
+
+csl_register_file rf2{
+  rf2() {
+    set_width(32);
+    set_depth(8);
+  }
+};
+
+csl_register_file rf3{
+  rf3() {
+    set_width(32);
+    set_depth(8);
+  }
+};
+
+csl_register_file rf4{
+  rf4() {
+    set_width(32);
+    set_depth(8);
+  }
+};
+
+csl_register_file rf5{
+  rf5() {
+    set_width(32);
+    set_depth(8);
+  }
+};
+
+csl_register_file rf6{
+  rf6() {
+    set_width(32);
+    set_depth(8);
+  }
+};
+
+
+csl_unit proc {
+  r1 r1i0;
+  r2 r2i0;
+  r3 r3i0;
+  r4 r4i0;
+  rf1 rf1i0;
+  rf2 rf2i0;
+  rf3 rf3i0;
+  rf4 rf4i0;
+  rf5 rf5i0;
+  rf6 rf6i0;
+  proc() {
+  }
+};
+
+csl_memory_map_page proc_map {
+  proc_map() {
+    add_address_range(0, 1024);
+    set_unit_name(proc);
+    add(proc.r1i0, "R1");
+    add(proc.r2i0, "R2");
+    add(proc.r3i0, "R3");
+    add(proc.r4i0, "R4");
+    add(proc.rf1i0,"RF1");
+    add(proc.rf2i0,"RF2");
+    add(proc.rf3i0,"RF3");
+    add(proc.rf4i0,"RF4");
+    add(proc.rf5i0,"RF5");
+    add(proc.rf6i0,"RF6");
+    set_alignment(32);
+  };
+};
+
+
+csl_memory_map map {
+  map() {
+    set_type(hierarchical);
+  }
+};

@@ -1,0 +1,8 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+
+#exceptions:
+#0070.v                skip    "Bug 31"

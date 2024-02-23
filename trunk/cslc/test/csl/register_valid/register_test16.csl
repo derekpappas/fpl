@@ -1,0 +1,25 @@
+//Petronela
+
+
+csl_register r2{
+  r2(){
+    set_width(16);
+    set_type(register);
+    add_logic(set,3);
+    //  add_logic(gray_output);  this only works for counter type regs
+  }
+};
+
+csl_unit u1{
+  csl_port clk(input);
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(output,16);
+  csl_port p6(input,16);
+  csl_port p7(input);
+  r2 r2(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p3),.reg_in(p6),.set(p7));
+  
+  u1(){
+    clk.set_attr(clock);
+  }
+};

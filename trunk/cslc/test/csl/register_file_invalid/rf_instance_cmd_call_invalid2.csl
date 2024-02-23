@@ -1,0 +1,14 @@
+
+csl_register_file rf{
+  rf(){
+    set_width(16);
+    set_depth(24);
+  }
+};
+
+csl_unit u1{
+    rf rf1;
+    u1(){
+     rf1.create_rtl_module(); <<<<<<<<<<<<,illegal
+    }
+};

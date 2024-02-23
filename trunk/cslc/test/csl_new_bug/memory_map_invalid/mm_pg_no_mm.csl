@@ -1,0 +1,14 @@
+//
+
+csl_unit u{
+u(){}
+};
+
+csl_memory_map_page mpage {
+  mpage (){
+    add_address_range(0,255);  
+    set_unit_name(u);
+
+  }
+};
+

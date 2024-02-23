@@ -1,0 +1,14 @@
+VERITAK2 --F --C0 --M0 --w --a --ST --W 
+"D:\SVN\A2\ip\a2r\trunk\rtl\Verilog\test"
+--e "t" --i 
+"../" 
+"A2R_hier_top_tb.v" 
+"A2R_hier_top.v" 
+"A2R_parallel_top.v" 
+"A2R_serial_top.v" 
+"A2_pseudo3state.v" 
+"../A2Rfsm.v" 
+"../A2R_gateway.v" 
+"../A2R_sample_slave.v" 
+"../A2R_slave_tap.v" 
+"../A2R_tap.v"

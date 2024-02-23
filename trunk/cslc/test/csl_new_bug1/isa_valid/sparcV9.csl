@@ -1,0 +1,951 @@
+//SparcV9 ISA 
+//andreim /danielt-new sintax/
+
+csl_unit ir{
+	ir(){
+		// To be done
+	}
+};
+
+
+// declare enums
+csl_enum cond_enum{
+	cond0 = 0,
+	cond1 = 1,
+	cond2 = 2,
+	cond3 = 3,
+	cond4 = 4,
+	cond5 = 5,
+	cond6 = 6,
+	cond7 = 7,
+	cond8 = 8, 
+	cond9 = 9,
+	cond10 = 10,
+	cond11 = 11,
+	cond12 = 12,
+	cond13 = 13,
+	cond14 = 14,
+	cond15 = 15
+};
+
+csl_enum rcond_enum{
+  //	rcond0 = 0,
+	rcond1 = 1,
+	rcond2 = 2,
+	rcond3 = 3,
+	  //	rcond4 = 4,
+	rcond5 = 5,
+	rcond6 = 6,
+	rcond7 = 7
+};
+
+
+csl_enum op_enum{
+	CALL = 0,
+	SETHI_Branches = 1
+	  //	Arithmetic = 2,
+	  //	Logical = 3
+};
+
+csl_enum op2_enum{
+  //	ILLTRAP = 0,
+	BPcc = 1,
+	Bicc = 2,
+	BPr = 3,
+	  //	SETHINOP = 4,
+	FBPfcc = 5,
+	FBfcc = 6 
+};
+
+//declare fields
+csl_isa_field op{
+  op(){
+    set_type(opcode);
+    set_width(2);
+    set_enum(op_enum);
+  }
+};
+csl_isa_field rd{
+  rd(){
+    set_type(rf_address);
+    set_width(3);
+  }
+};
+csl_isa_field op2{
+  op2(){
+    set_type(subopcode);
+    set_width(3);
+    set_enum(op2_enum);
+  }
+};
+csl_isa_field imm22{
+  imm22(){
+    set_type(constant);
+    set_width(22);
+    }
+};
+csl_isa_field a{
+  a(){
+    set_type(constant);
+    set_width(1);
+    }
+};
+csl_isa_field cond{
+ cond(){
+    set_type(selector);
+    set_width(4);
+    set_enum(cond_enum);
+  }
+};
+csl_isa_field cc1{
+  cc1(){
+    set_type(constant);
+    set_width(1);
+  }
+};
+csl_isa_field cc0{
+ cc0(){
+    set_type(constant);
+    set_width(1);
+  }
+};
+csl_isa_field p{
+  p(){
+    set_type(constant);
+    set_width(1);
+  }
+};
+csl_isa_field disp19{
+  disp19(){
+    set_type(rf_address);
+    set_width(17);
+  }
+};
+csl_isa_field _0{
+  _0(){
+    set_type(constant);
+    set_width(1);
+  }
+};
+csl_isa_field rcond{
+  rcond(){
+    set_type(selector);
+    set_width(3);
+    set_enum(rcond_enum);
+  }
+};
+csl_isa_field d16hi{
+d16hi(){
+    set_type(rf_address);
+    set_width(2);
+  }
+};
+csl_isa_field rs1{
+  rs1(){
+    set_type(rf_address);
+    set_width(5);
+  }
+};
+csl_isa_field d16lo{
+d16lo(){
+    set_type(rf_address);
+    set_width(12);
+  }
+};
+csl_isa_field disp30{
+disp30(){
+    set_type(rf_address);
+    set_width(28);
+  }
+};
+csl_isa_field op3{
+ op3(){
+    set_type(subopcode);
+    set_width(6);
+    //set_enum(op3_enum);
+  }
+};
+csl_isa_field i{
+ i(){
+    set_type(constant);
+    set_width(1);
+  }
+};
+csl_isa_field rs2{
+ rs2(){
+    set_type(rf_address);
+    set_width(5);
+  }
+};
+
+//------------------------------------------------------------------//
+// ROOT FORMAT                                                      //
+//------------------------------------------------------------------//
+
+csl_isa_element isa_root{
+  isa_root(){
+    set_type(root_format);
+    set_width(32);
+  }
+};
+csl_isa_element form : isa_root{
+  op op;
+  form(){
+    set_type(instr_format);
+    set_position(op,28);
+  }
+};
+
+//------------------------------------------------------------------//
+// FORMAT 1 (op=1): CALL                                            //
+//------------------------------------------------------------------//
+
+csl_isa_element format1:form{
+  disp30 disp30;
+  format1(){
+    set_type(instr_format);
+    set_next(op,disp30);
+  }
+};
+
+//------------------------------------------------------------------//
+// FORMAT 2 (op=0):SETHI & Branches(Bicc, BPcc, BPr, FBfcc, FBPfcc) //
+//------------------------------------------------------------------//
+csl_isa_element fmt2Base:form{	
+  op2 op2;
+  fmt2Base(){
+    set_type(instr_format);
+    set_position(op2,20);
+   
+	}
+};
+
+csl_isa_element fmt21Base:fmt2Base{
+  a a_inst_fmt21Base;
+  cond cond;
+  fmt21Base(){
+    set_type(instr_format);
+    set_next(op,               a_inst_fmt21Base);
+    set_next(a_inst_fmt21Base,      cond);
+  }
+};
+
+csl_isa_element fmt22:fmt21Base{
+  cc1 cc1_inst_fmt22;
+  cc0 cc0_inst_fmt22;
+  p p_inst_fmt22;
+  disp19 disp19_inst_fmt22;
+  fmt22(){
+    set_type(instr_format);
+    set_next(op2,                   cc1_inst_fmt22);
+    set_next(cc1_inst_fmt22,        cc0_inst_fmt22);
+    set_next(cc0_inst_fmt22,        p_inst_fmt22);
+    set_next(p_inst_fmt22,          disp19_inst_fmt22);
+  }
+};
+
+csl_isa_element fmt22FBPfcc:fmt22{
+  fmt22FBPfcc(){
+    set_type(instr_format);
+  }
+};
+
+csl_isa_element fmt23:fmt2Base{
+  a a_inst_fmt23;
+  _0 _0_inst_fmt23;
+  rcond rcond;
+  d16hi d16hi_inst_fmt23; 
+  p p_inst_fmt23;
+  rs1 rs1_inst_fmt23;
+  d16lo d16lo_inst_fmt23;
+  fmt23(){
+    set_type(instr_format);
+    set_next(op,               a_inst_fmt23);
+    set_next(a_inst_fmt23,          _0_inst_fmt23);
+    set_next(_0_inst_fmt23,         rcond);
+    set_next(op2,                   d16hi_inst_fmt23);
+    set_next(d16hi_inst_fmt23,      p_inst_fmt23);
+    set_next(p_inst_fmt23,          rs1_inst_fmt23);
+    set_next(rs1_inst_fmt23,        d16lo_inst_fmt23);
+	}
+};
+
+
+//--------------------------------------------------------------------------//
+// FORMAT 3 (op=2 or 3) Arithmetic, Logical, MOVr, MEMBAR, Load and  Store  //
+//--------------------------------------------------------------------------//
+
+
+// Format 3 Base 0
+//csl_isa_element fmt3_0:form{
+//  op3     op3;
+//  fmt3_0(){
+//    set_type(instr_format);
+//    set_position(op3, 19);
+//	}
+//};
+
+// Format 3 Base 1
+//csl_isa_element fmt3_1 : fmt3_0{
+//  rd      rd_i_fmt3_1;
+//  rs1     rs1_i_fmt3_1;      
+//  i       i_i_fmt3_1;
+//  fmt3_1(){
+//    set_type(instr_format);
+//    set_next(op,                  rd_i_fmt3_1);
+//    set_next(op3,                 rs1_i_fmt3_1);
+//    set_next(rs1_i_fmt3_1,          i_i_fmt3_1);
+//	}
+//};
+
+// Format 3 Base 2
+
+//csl_isa_element fmt3_2 : fmt3_1{
+//  rs2     rs2_i_fmt3_2;
+//  fmt3_2(){
+//    set_type(instr_format);
+//    set_position(rs2_i_fmt3_2,       0);
+//	}
+//};
+
+
+
+//---------------------------------------------------------------//
+// Instructions for FORMAT1: CALL                                //
+//---------------------------------------------------------------//
+
+csl_isa_element CALL_instr:format1{
+  CALL_instr(){
+    set_type(instr);
+    op.set_enum_item(CALL);
+  }
+};
+
+//---------------------------------------------------------------//
+// Instructions for FORMAT2                                      //
+//---------------------------------------------------------------//
+
+//- Bicc Instructions:
+
+csl_isa_element BA : fmt21Base{
+  BA(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond8);
+    op2.set_enum_item(Bicc);
+	}
+};
+
+csl_isa_element BN : fmt21Base{
+  BN(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond0);
+    op2.set_enum_item(Bicc);
+	}
+};
+csl_isa_element BNE : fmt21Base{
+  BNE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond9);
+    op2.set_enum_item(Bicc);
+	}
+};
+csl_isa_element BE : fmt21Base{
+  BE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond1);
+    op2.set_enum_item(Bicc);
+	}
+};
+csl_isa_element BG : fmt21Base{
+  BG(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond10);
+    op2.set_enum_item(Bicc);
+	}
+};
+csl_isa_element BLE : fmt21Base{
+  BLE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond2);
+    op2.set_enum_item(Bicc);
+	}
+};
+csl_isa_element BGE : fmt21Base{
+  BGE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond11);
+    op2.set_enum_item(Bicc);
+	}
+};
+csl_isa_element BL : fmt21Base{
+  BL(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond3);
+    op2.set_enum_item(Bicc);
+	}
+};
+csl_isa_element BGU : fmt21Base{
+  BGU(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond12);
+    op2.set_enum_item(Bicc);
+	}
+};
+csl_isa_element BLEU : fmt21Base{
+  BLEU(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond4);
+    op2.set_enum_item(Bicc);
+	}
+};
+csl_isa_element BCC : fmt21Base{
+  BCC(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond13);
+    op2.set_enum_item(Bicc);
+	}
+};
+csl_isa_element BCS : fmt21Base{
+  BCS(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond5);
+    op2.set_enum_item(Bicc);
+	}
+};
+csl_isa_element BPOS : fmt21Base{
+  BPOS(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond14);
+    op2.set_enum_item(Bicc);
+	}
+};
+csl_isa_element BNEG : fmt21Base{
+  BNEG(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond6);
+    op2.set_enum_item(Bicc);
+	}
+};
+csl_isa_element BVC : fmt21Base{
+  BVC(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond15);
+    op2.set_enum_item(Bicc);
+	}
+};
+csl_isa_element BVS : fmt21Base{
+  BVS(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond7);
+    op2.set_enum_item(Bicc);
+	}
+};
+
+//------------------------------ - End of Bicc instructions
+
+// BPcc instructions:
+
+csl_isa_element BPA : fmt22{
+  BPA(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond8);
+    op2.set_enum_item(BPcc);
+	}
+};
+
+csl_isa_element BPN : fmt22{
+  BPN(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond0);
+    op2.set_enum_item(BPcc);
+	}
+};
+csl_isa_element BPNE : fmt22{
+  BPNE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond9);
+    op2.set_enum_item(BPcc);
+	}
+};
+csl_isa_element BPE : fmt22{
+  BPE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond1);
+    op2.set_enum_item(BPcc);
+	}
+};
+csl_isa_element BPG : fmt22{
+  BPG(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond10);
+    op2.set_enum_item(BPcc);
+	}
+};
+csl_isa_element BPLE : fmt22{
+  BPLE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond2);
+    op2.set_enum_item(BPcc);
+	}
+};
+csl_isa_element BPGE : fmt22{
+  BPGE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond11);
+    op2.set_enum_item(BPcc);
+	}
+};
+csl_isa_element BPL : fmt22{
+  BPL(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond3);
+    op2.set_enum_item(BPcc);
+	}
+};
+csl_isa_element BPGU : fmt22{
+  BPGU(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond12);
+    op2.set_enum_item(BPcc);
+	}
+};
+csl_isa_element BPLEU : fmt22{
+  BPLEU(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond4);
+    op2.set_enum_item(BPcc);
+	}
+};
+csl_isa_element BPCC : fmt22{
+  BPCC(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond13);
+    op2.set_enum_item(BPcc);
+	}
+};
+csl_isa_element BPCS : fmt22{
+  BPCS(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond5);
+    op2.set_enum_item(BPcc);
+	}
+};
+csl_isa_element BPPOS : fmt22{
+  BPPOS(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond14);
+    op2.set_enum_item(BPcc);
+	}
+};
+csl_isa_element BPNEG : fmt22{
+  BPNEG(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond6);
+    op2.set_enum_item(BPcc);
+	}
+};
+csl_isa_element BPVC : fmt22{
+  BPVC(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond15);
+    op2.set_enum_item(BPcc);
+	}
+};
+csl_isa_element BPVS : fmt22{
+  BPVS(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond7);
+    op2.set_enum_item(BPcc);
+	}
+};
+//------------------------------- End of BPcc instructions
+
+// - BPr instructions
+
+csl_isa_element BRZ : fmt23{
+  BRZ(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    rcond.set_enum_item(rcond1);
+    op2.set_enum_item(BPr);
+	}
+};
+
+csl_isa_element BRLEZ : fmt23{
+  BRLEZ(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    rcond.set_enum_item(rcond2);
+    op2.set_enum_item(BPr);
+	}
+};
+
+csl_isa_element BRLZ : fmt23{
+  BRLZ(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    rcond.set_enum_item(rcond3);
+    op2.set_enum_item(BPr);
+	}
+};
+
+csl_isa_element BRNZ : fmt23{
+  BRNZ(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    rcond.set_enum_item(rcond5);
+    op2.set_enum_item(BPr);
+	}
+};
+
+csl_isa_element BRGZ : fmt23{
+  BRGZ(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    rcond.set_enum_item(rcond6);
+    op2.set_enum_item(BPr);
+	}
+};
+
+csl_isa_element BRGEZ : fmt23{
+  BRGEZ(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    rcond.set_enum_item(rcond7);
+    op2.set_enum_item(BPr);
+	}
+};
+
+// ------------------------------ End of BPr instructions
+
+// - FBfcc instructions
+
+csl_isa_element FBA : fmt21Base{
+  FBA(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond8);
+    op2.set_enum_item(FBfcc);
+	}
+};
+
+csl_isa_element FBN : fmt21Base{
+  FBN(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond0);
+    op2.set_enum_item(FBfcc);
+	}
+};
+csl_isa_element FBU : fmt21Base{
+  FBU(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond7);
+    op2.set_enum_item(FBfcc);
+	}
+};
+csl_isa_element FBG : fmt21Base{
+  FBG(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond6);
+    op2.set_enum_item(FBfcc);
+	}
+};
+csl_isa_element FBUG : fmt21Base{
+  FBUG(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond5);
+    op2.set_enum_item(FBfcc);
+	}
+};
+csl_isa_element FBL : fmt21Base{
+  FBL(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond4);
+    op2.set_enum_item(FBfcc);
+	}
+};
+csl_isa_element FBUL : fmt21Base{
+  FBUL(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond3);
+    op2.set_enum_item(FBfcc);
+	}
+};
+csl_isa_element FBLG : fmt21Base{
+  FBLG(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond2);
+    op2.set_enum_item(FBfcc);
+	}
+};
+csl_isa_element FBNE : fmt21Base{
+  FBNE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond1);
+    op2.set_enum_item(FBfcc);
+	}
+};
+csl_isa_element FBE : fmt21Base{
+  FBE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond9);
+    op2.set_enum_item(FBfcc);
+	}
+};
+csl_isa_element FBUE : fmt21Base{
+  FBUE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond10);
+    op2.set_enum_item(FBfcc);
+	}
+};
+csl_isa_element FBGE : fmt21Base{
+  FBGE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond11);
+    op2.set_enum_item(FBfcc);
+	}
+};
+csl_isa_element FBUGE : fmt21Base{
+  FBUGE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond12);
+    op2.set_enum_item(FBfcc);
+	}
+};
+csl_isa_element FBLE : fmt21Base{
+  FBLE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond13);
+    op2.set_enum_item(FBfcc);
+	}
+}; 
+csl_isa_element FBULE : fmt21Base{
+  FBULE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond14);
+    op2.set_enum_item(FBfcc);
+	}
+};
+csl_isa_element FBO : fmt21Base{
+  FBO(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    cond.set_enum_item(cond15);
+    op2.set_enum_item(FBfcc);
+	}
+};
+
+// --------------------------------end of FBfcc instructions
+
+// FPBfcc instructions:
+
+csl_isa_element FBPA : fmt22FBPfcc{
+  FBPA(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    op2.set_enum_item(FBPfcc);
+    cond.set_enum_item(cond8);
+	}
+};
+csl_isa_element FBPN : fmt22FBPfcc{
+  FBPN(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    op2.set_enum_item(FBPfcc);
+    cond.set_enum_item(cond0);
+	}
+};
+csl_isa_element FBPU : fmt22FBPfcc{
+  FBPU(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    op2.set_enum_item(FBPfcc);
+    cond.set_enum_item(cond7);
+	}
+};
+csl_isa_element FBPG : fmt22FBPfcc{
+  FBPG(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    op2.set_enum_item(FBPfcc);
+    cond.set_enum_item(cond6);
+	}
+};
+csl_isa_element FBPUG : fmt22FBPfcc{
+  FBPUG(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    op2.set_enum_item(FBPfcc);
+    cond.set_enum_item(cond5);
+	}
+};
+csl_isa_element FBPL : fmt22FBPfcc{
+  FBPL(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    op2.set_enum_item(FBPfcc);
+    cond.set_enum_item(cond4);
+	}
+};
+csl_isa_element FBPUL : fmt22FBPfcc{
+  FBPUL(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    op2.set_enum_item(FBPfcc);
+    cond.set_enum_item(cond3);
+	}
+};
+csl_isa_element FBPLG : fmt22FBPfcc{
+  FBPLG(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    op2.set_enum_item(FBPfcc);
+    cond.set_enum_item(cond2);
+	}
+};
+csl_isa_element FBPNE : fmt22FBPfcc{
+  FBPNE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    op2.set_enum_item(FBPfcc);
+    cond.set_enum_item(cond1);
+	}
+};
+csl_isa_element FBPE : fmt22FBPfcc{
+  FBPE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    op2.set_enum_item(FBPfcc);
+    cond.set_enum_item(cond9);
+	}
+};
+csl_isa_element FBPUE : fmt22FBPfcc{
+	FBPUE(){
+      set_type(instr);
+      op.set_enum_item(SETHI_Branches);
+      op2.set_enum_item(FBPfcc);
+      cond.set_enum_item(cond10);
+	}
+};
+csl_isa_element FBPGE : fmt22FBPfcc{
+  FBPGE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    op2.set_enum_item(FBPfcc);
+    cond.set_enum_item(cond11);
+	}
+};
+csl_isa_element FBPUGE : fmt22FBPfcc{
+  FBPUGE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    op2.set_enum_item(FBPfcc);
+    cond.set_enum_item(cond12);
+	}
+};
+csl_isa_element FBPLE : fmt22FBPfcc{
+  FBPLE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    op2.set_enum_item(FBPfcc);
+    cond.set_enum_item(cond13);
+	}
+};
+csl_isa_element FBPULE : fmt22FBPfcc{
+  FBPULE(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    op2.set_enum_item(FBPfcc);
+    cond.set_enum_item(cond14);
+	}
+};
+csl_isa_element FBPO : fmt22FBPfcc{
+  FBPO(){
+    set_type(instr);
+    op.set_enum_item(SETHI_Branches);
+    op2.set_enum_item(FBPfcc);
+    cond.set_enum_item(cond15);
+	}
+};
+
+// ---------------------------  End of FBPfcc instructions
+
+//---------------------------------------------------------------//
+// Instructions for FORMAT3                                      //
+//---------------------------------------------------------------//
+
+//csl_isa_element add_i : fmt3_2 {
+//  add_i () {
+//    set_type(instr);
+//    op.set_enum_item(Arithmetic);
+//    op3.set_enum_item(..);
+
+
+//csl_isa sparcV9{
+//
+//	// instanciate all instructions
+//
+//	sparcV9(){
+//        // TO BE FIX
+//	//setting the mnemonic for each instruction
+//
+//	CALL.set_mnemonic("CALL");
+//	Bicc.set_mnemonic("Bicc");
+//	BPcc.set_mnemonic("BPcc");
+//	BPr.set_mnemonic("BPr");
+//	FBfcc.set_mnemonic("FBfcc");
+//	FBPfcc.set_mnemonic("FBPfcc");
+//	//
+//	generate_decoder(ir);
+//	//prints in a file the ISA description (instructions and their formats)
+//	print("sparcV9_Isa.txt");
+//	}
+//};
+//

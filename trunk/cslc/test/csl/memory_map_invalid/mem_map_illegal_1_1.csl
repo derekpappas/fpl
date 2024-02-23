@@ -1,0 +1,10 @@
+// add an address range with illegal values for upper and lower
+csl_memory_map_page mmp1{
+  mmp1(){
+     add_address_range(2048, 0);//here must be an error because the lower index is bigger than the upper index
+     add_reserved_address_range(2048, 1024);
+     add_reserved_address_range(1024, 2048);
+  }
+};
+
+

@@ -1,0 +1,13 @@
+`ifndef INC_GUARD_a
+`define INC_GUARD_a
+
+`define P_CK_UPPER_INDEX  (0)
+`define P_CK_LOWER_INDEX  (0)
+`define P_CK_WIDTH  (0-0+1)
+`define P_CK_RANGE `P_CK_UPPER_INDEX:`P_CK_LOWER_INDEX
+`define P_RESET_UPPER_INDEX  (0)
+`define P_RESET_LOWER_INDEX  (0)
+`define P_RESET_WIDTH  (0-0+1)
+`define P_RESET_RANGE `P_RESET_UPPER_INDEX:`P_RESET_LOWER_INDEX
+
+`endif

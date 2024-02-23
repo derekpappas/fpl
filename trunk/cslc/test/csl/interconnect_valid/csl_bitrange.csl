@@ -1,0 +1,10 @@
+//author: Ines
+//purpose: test csl_bitrange
+
+//csl_bitrange br1;
+csl_bitrange br2(1024);
+csl_bitrange br3(511,0);
+csl_bitrange br4(0,127);
+
+csl_unit top {
+};

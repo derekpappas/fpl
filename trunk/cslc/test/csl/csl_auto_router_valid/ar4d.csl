@@ -1,0 +1,74 @@
+// Author: cghaba
+// Date: January 18, 2008
+
+/*
+         in                                            out0
+.. ..................................................................
+.        .              ...........................                 .
+.        .                                          .     .         .
+. .......c................................          .     .         .
+. .      . in                            .          .     .         .
+. .      .                      .........c.....     .     .         .
+. .      .    .......|....      .        .    .     .     .         .
+. .    ......|...    .  .|..........     .   .................      .
+. .    . in out .    .  .in   out  .     .   .in0  in1  out  .      .
+. .    .        .    .  .          .     .   .               .      .
+. .    .  u_a   .    .  .  u_b     .     .   . u_d    in2    .      .
+. .    ..........    .  ......... ..     .   .................      .
+. .                  .                   .              .           .
+. .             u_c  .                   .              .           .
+. ...................c....................              .           .
+.                    .                                  .           .
+.                    ....................................           .
+. u_top                                                             .
+.....................................................................
+
+*/
+
+
+csl_unit u_a{
+  csl_port p_a_in(input,3);
+  csl_port p_a_out(output,2);
+  u_a(){
+  }
+};
+
+csl_unit u_b{
+  csl_port p_b_in(input,2);
+  csl_port p_b_out(output,2);
+  u_b(){
+  }
+};                       
+
+csl_unit u_c{
+  csl_signal s_aout_bin(2);
+  // connection between a and b with formal2actual
+  u_a a(.p_a_out(s_aout_bin));
+  u_b b(.p_b_in(s_aout_bin));
+
+  u_c(){
+  }
+};
+
+csl_unit u_d{
+  csl_port p_d_in0(input,2);
+  csl_port p_d_in2(input,3);
+//  csl_port p_d_out(output);
+  u_d(){
+  }
+};
+
+csl_unit u_top{
+  csl_port p_t_in(input,3);
+//  csl_port p_t_out(output);
+  csl_signal t_s(3);
+  u_c c;
+  u_d d;
+  u_top(){
+    //only ports name only in connect_by_name function argument
+    p_t_in.connect_by_pattern(p_a_in);
+    c.b.p_b_out.connect_by_name(d.p_d_in0);
+     t_s.connect_by_name(d.p_d_in2);
+     c.a.p_a_in.connect_by_name(p_t_in);
+  }
+};

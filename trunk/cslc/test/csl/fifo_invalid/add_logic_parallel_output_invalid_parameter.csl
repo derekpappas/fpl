@@ -1,0 +1,25 @@
+//add_logic second parameter invalid
+//andrei
+//22 June 2007
+
+csl_fifo fifo_name{
+	fifo_name(){
+		set_dimensions(8, 32); //error width,depth	
+		add_logic(programmable_depth, 12);		
+		set_physical_implementation (SRAM);  //SRAM | Flip Flop Array
+		add_logic(priority_bypass);
+		add_logic(sync_fifo);
+		add_logic(depth_extend, 8);  //32+8=40
+		add_logic(width_extend, 8);  //32+8=40
+		add_logic(wr_hold, 5);  //32+8=40		
+		set_prefix("pre");
+		add_logic(parallel_output, a);    // the 2'nd parameter must be: "all" or vector_of_addresses
+		add_logic(parallel_input, b);     // the 2'nd parameter must be: "all" or vector_of_addresses
+		add_logic(rd_words, 12,24);
+	}
+};
+csl_unit u1{
+  fifo_name f1;
+  u1(){  
+  }
+};

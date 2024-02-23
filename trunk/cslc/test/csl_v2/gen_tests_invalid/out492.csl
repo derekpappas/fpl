@@ -1,0 +1,129 @@
+csl_enum fa {
+	un,
+	du,
+	ps,
+	sx,
+	vv,
+	iq,
+	pe,
+	ke,
+	ui,
+	rx,
+	gm,
+	if
+};
+csl_enum dm {
+	bs = 37,
+	vi = 85,
+	sr = 10,
+	vx = 64,
+	on = 85,
+	ti = 6,
+	lr = 47,
+	ev = 31,
+	iv = 28,
+	ds = 32,
+	ax = 30,
+	dt = 59
+};
+csl_enum yk {
+	hh,
+	pm,
+	vs,
+	fr,
+	bb,
+	ly,
+	yd
+};
+csl_isa_instruction_format jv{
+    jv( ){
+     set_width( 7);
+     generate_decoder( csncjbbp);
+  }
+}
+;
+csl_isa_instruction cr : jv{
+    cr( ){
+    set_asm_mnemonic( csl_list "sx", "ji", "pc");
+  }
+}
+;
+csl_isa sq{
+    sq( ){
+     set_decoder_name( "gw");
+     set_decoder_out_name_prefix( "qd");
+     set_decoder_out_name_suffix( "ri");
+     generate_decoder( csbp);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo kn{
+   kn( ){
+     add_logic( sync_fifo);
+     add_logic( depth_extend, 7);
+     add_logic( width_extend, 5);
+     add_logic( credit);
+  }
+}
+;
+csl_memory_map_page vh{
+    vh( ){
+     add_address_range( 8, 5);
+     set_address_increment( 1);
+     get_next_address( );
+     set_access_rights( access_read, access_read_write);
+     get_data_word_wodth( );
+     set_aligment( 1);
+     set_endianess( big_endianbig_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page ft{
+    ft( ){
+     get_address_increment( );
+     set_next_address( 8);
+     set_access_rights( access_read, access_write);
+     get_data_word_wodth( );
+     get_aligment( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page dk{
+    dk( ){
+     set_address_increment( 1);
+     get_data_word_wodth( );
+     set_aligment( 6);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map qm{
+    qm( ){
+     set_suffix( mf);
+  }
+}
+;
+csl_register ph{
+    ph( ){
+     set_type( EVNT);
+     init_value( 7);
+     set_lock_enable_bit( 5);
+     get_lock_enable_bit( );
+     set_end_value( 7);
+     set_start_value( 9);
+  }
+}
+;
+csl_register vf{
+    vf( ){
+     add_logic( read_valid);
+     create_rtl_module( );
+     add_logic( bypass);
+  }
+}
+;

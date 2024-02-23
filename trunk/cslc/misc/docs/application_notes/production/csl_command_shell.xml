@@ -1,0 +1,937 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XML>
+<!-- ADD -->
+
+<command name="add_signal" desc="Add a signal to the hierarchy" type="add">
+        <switch name="-unit_name"   arg="string" required="TRUE"  desc="Unit to add signal to"  > </switch>
+        <switch name="-signal_name" arg="string" required="TRUE"  desc="Signal to add"          > </switch>
+        <switch name="-signal_type" arg="string" required="TRUE"  desc="Signal to add"          > </switch>
+        <switch name="-direction"   arg="string" required="TRUE"  desc="" option="signaltype"   > </switch>
+        <switch name="-range"       arg="number" required="FALSE" desc="" option="signaltype"   > </switch>
+        <switch name="-foo  "                  required="FALSE" desc="" option="signaltype"   > </switch>
+ </command>
+
+
+
+<command name="add_unit" desc="Add a unit to the hierarchy" type="add">
+         <switch name="unit_name"   arg="string" required="TRUE" desc="Add a unit to the hierarchy"> </switch>
+</command>
+
+
+<!--BUILD-->
+
+<command name="build_db" desc="Build binary datebase" type="build">
+        <switch name="-db_name" arg="string"         required="TRUE" desc="name of database to create"> </switch>
+        <switch name="-path"    arg="directory_path" required="TRUE" desc="path to database"          > </switch>
+</command>
+
+
+<!--COMPUTE-->
+
+<command name="compute_dependencies" desc="Compute the dependencies from the design hierarchy" type="compute">
+</command>
+
+<!--ASSIGN-->
+
+<command name="current_unit" desc="Set the current unit with the same switchument whitch sets the current scope" type="assign">
+        <switch name="name"  arg="string" required="TRUE" desc="Unit to set"> </switch>
+</command>
+
+
+<!--DISPLAY-->
+
+<command name="display_block_level_view" desc="Display the squares" type="display">
+</command>
+
+<command name="display_tree_view" desc="Print tree and display it for the entire  hierarcy or for a speciefied module name. Elaborate. Run the elaboration step and instantiate all the units" type="display">
+</command>
+
+<command name="level" desc="Show draw in GUI or display in text from the starting point ofsignal_name the fanout  of the signal" type="display">
+        <switch name="#" arg="number" required="TRUE" desc="# of levels to go down or up"> </switch>
+</command>
+
+<command name="print_tree" type="display">
+        <switch name="-block" arg="string" required="FALSE" desc=""> </switch>
+        <switch name="-tree"  arg="string" required="FALSE" desc="" value="depth|breadth"> </switch>
+</command>               
+
+
+<!--GENERATE -->
+
+<command name="gen_ifc_verilog" desc="Generate the interface for the leaf level files" type="generate"> 
+	<switch name="-all" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="gen_sch" desc="Generate PCD files" type="generate">
+</command>
+
+<command name="gen_td" desc="Generate all the test benches or a specific test bench" type="generate">
+        <switch name="-all modulename" arg="string" required="FALSE" desc=""> </switch>
+        <switch name="-unit modulname" arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="gen_ucf" desc="File format which specifies the interface to the FPGA" type="generate">
+</command>
+
+<command name="gen_verilog" desc="Generate all Verilof files" type="generate">
+</command>
+
+<command name="gen_vhdl" desc="Add VHDL support" type="generate">
+</command>
+
+<command name="gen_sch" desc="Generate PCD files" type="generate">
+</command>
+
+
+<!--HELP-->
+
+<command name="help" desc="Display the help file" type="help">
+</command>
+
+<command name="help" desc="List all options for a command" type="help">
+        <switch name="cmd" arg="string" required="TRUE" desc="The name of the command which's option want to see"> </switch>
+ </command>
+
+<command name="apropos" desc="Returns all commands and options which have the heyword" type="help">
+        <switch name="keyword" arg="string" required="TRUE" desc=""> </switch>
+ </command>
+
+<command name="info" desc="Hyper linker help" type="help">
+</command>
+
+<!--FILEOP-->
+
+<command name="read_ifc" desc="Read the files interface" type="fileop">
+        <switch name="filetype" arg="string" required="TRUE" desc="The type of the file to read"> </switch>
+        <switch name="filename" arg="path" required="TRUE" desc="The file to read"> </switch>
+</command>
+
+<command name="save" desc="Save the stages output to a binary database" type="fileop">
+        <switch name="stage" arg="stringe" required="TRUE" desc="Stage to save"> </switch>
+</command>
+
+<command name="write_meta_file" desc="This should create a new meta file with the date. Append to them and should not overwrite the previus meta files" type="fileop">
+</command>
+
+<!--TRACE-->
+
+<command name="trace-signal" desc="Traces signal through all the F2A mappings" type="trace">
+        <switch name="signal" arg="string" required="TRUE"  desc="Signal to trace"> </switch>
+</command>
+
+<!--VIEW-->
+
+<command name="view_generated_code" type="view">
+        <switch name="source" arg="string" required="TRUE"> </switch>
+</command>
+
+<command name="report_all_memory_array" desc="This is the output of the report command. Report memory statistics: totlal bits, total size, number of memories, histogram of memory sizes, sort by number of bits | memory" type="report">
+	<switch name="-type type_name"                     arg="string" required="TRUE" desc=""> </switch>
+        <switch name="-implementation (latch | FF | SRAM)" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<!--ONE_HOT-->
+
+<command name="report_all_fsms" type="report" option="one_hot">
+</command>
+
+<!--TEMPORARY DELAY-->
+
+<command name="report_all_clock_synchronizers" desc="" type="report">
+        <switch name="single_pulse"    arg="string" required="FALSE" desc=""> </switch>
+        <switch name="single_bit"      arg="string" required="FALSE" desc=""> </switch>
+        <switch name="bus"             arg="string" required="FALSE" desc=""> </switch>
+        <switch name="fifo"            arg="string" required="FALSE" desc=""> </switch>
+        <switch name="temporal_delay"  arg="string" required="FALSE" desc=""> </switch> 
+</command>
+
+<!--TYPE-->
+
+<command name="show_clks_in_fan_in_come" desc="" type="type">
+</command>
+
+<!--CONFIG-->
+
+<command name="set_current_module" desc="Sets the CSL variable current_module_name to module_name in the root of" type="config">
+        <switch name="module_name" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="set_current_instance" desc="Sets the CSL variable current instance_name to instance_name" type="config">
+        <switch name="instance_name" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<!--SEARCH-->
+
+<command name="sub_tree" desc="Only search for the current search term in the sub-tree which instance_name is the root of" type="search">
+        <switch name="instance_name" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+???<command name="instance" desc="Only search in the instance_name" type="search">
+        <switch name="instance_name" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="instance_list" desc="Only search in the instance_name_list" type="search">
+        <switch name="instance_name_list" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="module" desc="Only search inthe module_name" type="search">
+        <switch name="module_name" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="signal_name" desc="Search for the signal named signal_name_list in the search space" type="search">
+        <switch name="signal_name" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+?<command name="signal_name_list" desc="Search for the signals int he list signal_name_list in the search space" type="search">
+        <switch name="signal_name_list" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+???<command name="port-ifc" desc="Only search int he port interface of the current or named module(s). The direction of the port to serarch for may be optionally specified" type="search">
+        <switch name="DIRECTION" arg="path" required="FALSE" desc=""></switch>
+</command>
+
+<!-- HW_COMPONENT_TYPE -->
+
+
+<!--REPORT-->
+
+<command name="report_components" desc="" type="report">
+        <switch name="search_space"    arg="string" required="FALSE" desc=""> </switch>
+        <switch name="search_type>"    arg="string" required="FALSE" desc=""> </switch>
+        <switch name="display_options" arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="component_type" type="report">
+     <switch name="search_space"   arg="string" required="FALSE" desc=""> </switch> 
+     <switch name="component_type" arg="string" required="FLASE" desc=""> </switch>
+</command>
+
+<command name="report_all_hw_components" desc="Report all hardware components" type="report">
+</command>
+
+<command name="report_all_fifos" desc="Report all fifos" type="report">
+</command>
+
+<command name="report_all_srams" desc="" type="report">
+</command>
+
+<command name="report_all_counters" desc="" type="report">
+</command>
+
+<command name="report_all_flipflops" desc="Report all flipflops" type="report">
+</command>
+
+<command name="report_all_latches" desc="" type="report">
+</command>
+
+<command name="report_all_srffs" desc="" type="report">
+ </command>
+
+<command name="report_all_decoders" desc="" type="report">
+ </command>
+
+<command name="report_all_flipflop_arrays" desc="" type="report">
+ </command>
+
+???<command name="report_all_memory_array" type="report">
+       <switch name="-type memory_type" arg="string" required="FALSE" desc=""                            > </switch>
+       <switch name="-imp"              arg="string" required="FALSE" desc="" value="latch|flipflop|sram"> </switch> 
+       <switch name="-histogram"        arg="string" required="FALSE" desc="Show a histogram of memory size-sort by bits per memory"> </switch>
+       <switch name="-xls out_file_name" arg="path"  required="FALSE" desc="create an xls spredsheet with the memory statistics"> </switch>
+ </command>
+
+<command name="report_all_state_elements" desc="Show all couters that will not reset correctly due to asynchronous reset. Each of the report component commands should take an option size and upper/lower bound switchuments which is the threshhould to report. Report all components in the optionally defined search_space of the optionally search_type" type="report">
+       <switch name="-with_asynch_reset" arg="string" required="FALSE" desc=""> </switch>
+       <switch name="with_synch_reset"        arg="string" required="FALSE" desc=""> </switch>
+       <switch name="reset_violation"    arg="string" required="TRUE"  desc=""> </switch>
+</command>
+
+
+<command name="report_clk_tree_gate_loop" desc="Report the clock tree elements in a sequential loop that will cause a stuch_at value in the clk tree" type="report">
+</command>
+
+<command name="report_click_gate_stuck_at_value" desc="Report stack at value that occur before or after reset or an event" type="report">
+        <switch name="x|y|z|0|1"    arg="value" required="TRUE" desc=""> </switch>
+        <switch name="before_reset" arg="string" required="TRUE" desc=""> </switch>
+        <switch name="after_reset"  arg="string" required="TRUE" desc=""> </switch>
+        <switch name="before_event" arg="string" required="TRUE" desc=""> </switch>
+        <switch name="after_event"  arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="report_click_gate_enable_gradularity" desc="Report clk gate with constant enable" type="report">
+</command>
+
+<command name="report_clk_gate_granularity" desc="Report the level of clk gating for a hierarchy, levels to report, instance is gates, modules below instance are gated,pipeline are gate" type="report">
+</command>
+
+<command name="report_components" desc="" type="report"> 
+        <switch name="regfile" arg="string" required="FALSE" desc=""> </switch>
+	<switch name="FF" arg="string" required="FALSE" desc=""></switch>
+</command>
+
+<command name="report_connections" type="report">
+        <switch name="port_interface" arg="string" required="FALSE" desc="Show the signal type: wire, reg, port.. show all signals in interface"> </switch>
+	<switch name="instance" arg="string" required="FALSE" desc="" option="port_interface"> </switch>
+	<switch name="module"   arg="string" required="FALSE" desc="" option="port_interface"> </switch>
+        <switch name="-name name" arg="string" required="TRUE" desc="Show all instances the name is conveied to arg=string"> </switch>
+</command>
+
+<command name="report_instances" desc="Show all instances of type" type="report">
+        <switch name="-type type_name" arg="name" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="report_modules" type="report">
+        <switch name="-hier instances" arg="string" required="FALSE" desc="Show all instances below a hierarchy first"> </switch>
+        <switch name="-tree(breadth first|depth first)" arg="string"
+        required="FALSE" desc="Show all instances in a tree view specify a depth first or dreadth first traversal"> </switch>
+</command>
+
+<command name="report_all_unconnected" desc="Report if the source or sink of name is unconnected" type="report">
+        <switch name="-signal name" arg="string" required="TRUE" desc=""> </switch>
+        <switch name="-source" arg="string" required="TRUE" desc=""> </switch>
+        <switch name="-sink"   arg="string" required="TRUE" desc=""> </switch>
+ </command>
+
+<command name="report-all_counters" desc="Show all counters that will not reset correctly due to asynch reset" type="report">
+        <switch name="-sync_reset" arg="string" required="FALSE" desc=""> </switch>
+        <switch name="async_reset" arg="string" required="FALSE" desc=""> </switch>
+        <switch name="reset_violation" arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+
+
+<command name="report_instances" desc="Report all the instances in the optionally defined search_space of the optionally defined search_type from the optionally defined start_search_point to the optionally defined  end_search_point" type="report">
+	<switch name="search_space" arg="string" required="FALSE" desc=""> </switch>
+	<switch name="search_type"  arg="string" required="FALSE" desc=""> </switch>
+	<switch name="-type|functional_type" arg="string" required="TRUE" desc="" option="search_type"> </switch>
+</command>
+
+<command name="report_modules" desc="Report all of the modules connected in the optionally defined search_space of the optionally defined search_type from the optionally defined start_search_point to the optionally defined  end_search_point" type="report">
+ 	<switch name="search_space" arg="string" requiered="FALSE" desc=""> </switch>
+       	<switch name="search_type" arg="string" requiered="FALSE" desc=""> </switch>
+        <switch name="start_search_point" arg="string" requiered="FALSE" desc=""> </switch>
+       	<switch name="end_search_point" arg="string" required="FALSE" desc=""> </switch>
+	<switch name="-type|functional_type" arg="string" required="TRUE" option="end_search_point" desc=""> </switch>
+	<switch name="display_options" arg="string" required="FALSE" desc=""> </switch>
+ </command>
+
+<command name="report_signal_connections" desc="Report all of the connections in the optionally defined search_space of the optionally defined search_type from the optionally defined start_search_point to the optionally defined  end_search_point" type="report">
+   	<switch name="search_space"       arg="string" required="FALSE" desc=""> </switch>
+ 	<switch name="search_type"        arg="string" required="FALSE" desc=""> </switch>
+	<switch name="-srch_point_start"  arg="string" required="FALSE" desc=""> </switch>
+	<switch name="start_search_point" arg="string" required="FALSE" desc=""> </switch>
+	<switch name="srch_point_end"     arg="string" required="FALSE" desc=""> </switch>
+	<switch name="end_search_point"   arg="string" required="FALSE" desc=""> </switch>
+	<switch name="-type|functional_type"  arg="string" required="TRUE" desc=""> </switch>
+	<switch name="display_options" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="report_unconnected_signals" desc="Report all of the unconnected signals in the optionally defined search_space of the optionally defined search_type from the optionally defined start_search_point to the optionally defined  end_search_point" type="report">
+	<switch name="search_space" arg="string" required="FALSE" desc=""> </switch>
+	<switch name="search_type" arg="string" required="FALSE" desc=""> </switch>
+	<switch name="start_search_point" arg="string" required="FALSE" desc=""> </switch>
+	<switch name="srch_searcH-point " arg="string" required="FALSE" desc=""> </switch>	
+        <switch name="display_options"    arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="report_all_fsms" desc="Report all finite state machines (FSM's). reports the type of the FSM (one hot / cold,...)" type="report">
+</command>
+
+<command name="report_all_clock_synchronizers" desc="Report all clock synchronizer elements. Optionally only reports the specified types. Reports any clock synchronization violations. Reports any asynchronous clock synchronization which cannot be verified. Reports any clock synchronizers which cannot be identified" type="report">
+        <switch name="-single_pulse"        arg="string" required="FALSE" desc=""> </switch>
+        <switch name="-single_bit"          arg="string" required="FALSE" desc=""> </switch>
+        <switch name="-bus"                 arg="string" required="FALSE" desc=""> </switch>
+        <switch name="-fifo"                arg="string" required="FALSE" desc=""> </switch>
+        <switch name="-teporal_delay"       arg="string" required="FALSE" desc=""> </switch>
+        <switch name="-asynch"              arg="string" required="FALSE" desc=""> </switch>        
+        <switch name="-other"               arg="string" required="FALSE" desc=""> </switch>
+        <switch name="-report_design_flaws" arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="report_loops" desc="Combinational loops cannot be synthesized since they represent asynchronous logic. Component loops cannot be simulated in cycle based simulators since elements in the loop need to be evaluated more than once per clock cycle" type="report">
+	<switch name="-combinational|-component"> </switch>
+</command>
+
+<command name="report_csl_space" desc="A report command will generate the list of the state elements which have specification problems" type="report">
+        <switch name="-search_space"         arg="string" required="TRUE" desc=""> </switch>
+        <switch name="-search_type"         arg="string" required="TRUE" desc=""> </switch>
+        <switch name="-display_options"     arg="string" required="TRUE" desc=""> </switch>
+        <switch name="-incomplete"          arg="string" required="FALSE" desc="" option="-display_options"> </switch>
+        <switch name="-incompatible"        arg="string" required="FALSE" desc="" option="-display_options"> </switch>
+</command>
+
+<command name="report_csl_incomplete_specs" desc="A reports command will generate the list of the state elements which have incomplete specification" type="report">
+	<switch name="search_space" arg="string" required="TRUE" desc=""> </switch>
+	<switch name="search_type" arg="string" required="TRUE" desc=""> </switch>
+	<switch name="display_options" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="report_all_incompatible_specs" desc="A report command will generate the lis of the state elements which have incompatible specifications" type="report">
+	<switch name="search_space"  arg="string" required="TRUE" desc=""> </switch>
+	<switch name="search_type"   arg="string" required="TRUE" desc=""> </switch>
+	<switch name="display_options" arg="string" required="TRUE" desc=""> </switch>>
+</command>
+
+<command name="report_clock_tree_seq_loop" desc="Report a clock tree sequential loop. A clock tree sequential loop contains a clock element that has an output which drives sequential logic which feeds back into the clock tree element. This can cause problems prior to or after reset. The output of the clock tree element may be undefined." type="report">
+	<switch name="search_space"     arg="string" required="TRUE" desc=""> </switch>
+	<switch name="search_type"      arg="string" required="TRUE" desc=""> </switch>
+	<switch name="display_options"  arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="report_clock_tree_stuck_at_value" desc="Report a clock tree element with a stuck at value. Statically analyze the design for stuck at values" type="report">
+	<switch name="search_space"  arg="string" required="TRUE" desc=""> </switch>
+	<switch name="search_type"  arg="string" required="TRUE" desc=""> </switch>
+	<switch name="display_options"  arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="reprot_reset_tree_sew_loop" desc="Report a reset tree sequential loop. A reset tree sequential loop contains a reset element that has an output which drives sequential logic which feeds back into the reset tree element. This can cause problems prior to or after reset. The output of the reset tree element may be undefined." type="report">
+	<switch name="search_space"  arg="string" required="TRUE" desc=""> </switch>
+	<switch name="search_type"  arg="string" required="TRUE" desc=""> </switch>
+	<switch name="display_options"  arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="report_tree_stuck_at_value" desc="Report a reset tree element with a stuck at value. Statically analyze the design for stuck at values" type="report">
+	<switch name="search_space"     arg="string" required="TRUE" desc=""> </switch>
+	<switch name="search_type"      arg="string" required="TRUE" desc=""> </switch>
+	<switch name="display_options"  arg="string" required="TRUE" desc=""> </switch>
+	<switch name="-before_reset"    arg="string" required="FALSE" desc=""> </switch>
+	<switch name="after_reset"   arg="string" required="FALSE" desc=""> </switch>
+	<switch name="before_event"  arg="string" required="FALSE" desc=""> </switch>
+	<switch name="after_event"   arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="report_clock_gate_with_constant_enable" desc="Report a clock gate with a constant enable. This report can be find power problems" type="report">
+	<switch name="search_space"    arg="string" required="TRUE" desc=""> </switch>
+	<switch name="search_type"     arg="string" required="TRUE" desc=""> </switch>
+	<switch name="display_options" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="report_clock_gate_granularity" desc="Report the granularity of the clock gating. This report can find power problems. Report if the instances are gated in the search space. Report if the pipelines are gated in the search space." type="report">
+	<switch name="search_space"               arg="string" required="TRUE" desc=""> </switch>
+	<switch name="search_type"                arg="string" required="TRUE" desc=""> </switch>
+	<switch name="display_options"            arg="string" required="TRUE" desc=""> </switch>
+	<switch name="number_of_gates_per_clock"  arg="string" required="FALSE" desc="" option="display_option"> </switch>
+	<switch name="number"                     arg="string" required="TRUE" desc="" option="number_of_gates_per_clock"> </switch>
+</command>
+
+<command name="report_connectivity" desc="Should draw in GUI or display in text from the starting point ofsignal_name the fanout of the signal" type="report">
+	<switch name="text"                  arg="string" required="TRUE" desc=""> </switch>
+	<switch name="gui"                   arg="string" required="TRUE" desc=""> </switch>
+	<switch name="continue_thru_boolean" arg="string" required="TRUE" desc=""> </switch>
+	<switch name="levels number"       arg="string" required="TRUE" desc=""> </switch>
+	<switch name="-up"                   arg="string" required="FALSE" desc="" option="levels"> </switch>
+	<switch name="-down"                 arg="string" required="FALSE" desc="" option="levels"> </switch>
+</command>
+
+<command name="report_signalName" desc="Report the name of the signal" type="control">
+	 <switch name="bit_unit" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="report_source_of_file" desc="Report memory statistics: total bits, total size, number of memories, histogramm of memory sizes, sort bay number of bits| memory" type="report">
+</command>
+
+<command name="report_all_fsms" desc="" type="report">
+	 <switch name="one-hot" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="report_all_clock_synchronizers" desc="" type="report">
+	 <switch name="single_pulse"    arg="string" required="FALSE" desc=""> </switch>
+	 <switch name="single_bit"      arg="string" required="FALSE" desc=""> </switch>
+	 <switch name="bus"             arg="string" required="FALSE" desc=""> </switch>
+	 <switch name="fifo"            arg="string" required="FALSE" desc=""> </switch>
+	 <switch name="temporary_delay" arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="report_all_memory_arrays" desc="" type="report">
+	 <switch name="type"                   arg="string" required="FALSE" desc=""> </switch>	   
+	 <switch name="implementation latch | FF | SR" arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="report_clk_tree-loop" desc="Report the clock tree elements in a sequential loop that will cause a stuck_at value in the clk tree" type="report">
+</command>
+
+<command name="report_clk_tree_gate_stack_at_value" desc="Report stack at values that occur before or after reset or an event.">
+	 <switch name="-value(x|z|0|1)" arg="value"  required="TRUE"  desc=""> </switch>
+	 <switch name="before_reset"    arg="string" required="FALSE" desc=""> </switch>
+	 <switch name="after_reset"     arg="string" required="FALSE" desc=""> </switch>
+	 <switch name="before_event"    arg="string" required="FALSE" desc=""> </switch>
+	 <switch name="after_event"     arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="report_clk_gate_enable_constant" desc="Report clk gate with constant enable" type="report">
+</command>
+
+<command name="report_clk_gate_granularity" desc="report the level of clk gating for a hierarchy" type="report">
+	 <switch name="leaves to report"                 arg="string" required="FALSE" desc=""> </switch>
+	 <switch name="instace is gated"                 arg="string" required="FALSE" desc=""> </switch>
+	 <switch name="modules below instance are gated" arg="string" required="FALSE" desc=""> </switch>
+	 <switch name="pipelines are gated"              arg="string" required="FALSE" desc=""> </switch>
+</command>
+ 
+<command name="report_instances" show="show all instances of type (e.g. show all FFs, or show all modules)" type="report">
+	 <switch name="-type type" arg="string" required="TRUE" desc="The type of the instance to show"> </switch>
+</command>
+   
+<command name="report_modules" type="report">
+	 <switch name="-hier instances"           arg="string" required="FALSE" desc="show all instances below a hierarchy first"	             > </switch>
+	 <switch name="-tree"                       arg="string" required="FALSE" desc="show all instances in a tree view specify a depth first or breadth first traversal"> </switch>
+	 <switch name="-breadth first|depth first" arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="report_all_unconnected" desc="report if the source or sink of name is unconnected" type="report">
+	 <switch name="- signal name"                 arg="string" required="FALSE" desc=""> </switch>
+         <switch name="-instance"     arg="string" required="FALSE" desc=""> </switch>
+	 <switch name="-source"       arg="string" required="FALSE" desc=""> </switch>
+	 <switch name="-sink"         arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="report_all_counters" desc="show all counters that will not reset correctly due to asynch reset" type="report">
+	 <switch name="-sync_reset"      arg="string" required="FALSE" desc=""> </switch>
+	 <switch name="-async_reset"     arg="string" required="FALSE" desc=""> </switch>
+	 <switch name="-reset_violation" arg="string" required="FALSE" desc=""> </switch>
+ </command>
+
+     
+
+
+<!--SHOW-->
+
+<command name="show_disconnected_clks" desc="" type="show">
+        <switch name="scope_list"                      arg="string" required="FALSE" desc=""> </switch>
+        <switch name="-cls clk_name"                  arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="show_disconnected_resets" desc="" type="show">
+        <switch name="reset reser_names" arg="string" required="FALSE" desc=""></switch>
+</command>
+     
+<command name="show_memory_map" desc="Show name/type of element" type="show">
+        <switch name="adress"                          arg="string" required="FALSE" desc=""> </switch>
+        <switch name="-type" values="SRAM|FF|RF|FIFO"  arg="string" required="FALSE" desc=""> </switch>
+        <switch name="-name name"                      arg="string" required="FALSE" desc=""> </switch>
+        <switch name="-name regex"                    arg="string" required="FALSE" desc=""> </switch>
+        <switch name="range addr:addr"              arg="string" required="FALSE" desc=""> </switch>
+        <switch name="modul name"                      arg="string" required="FALSE" desc=""> </switch>
+        <switch name="instance name"                   arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="show ramlist" desc=""  type="show">
+</command>
+
+<command name="ram_raport" desc="" type="show">
+</command>
+
+<command name="show_input-spec" desc="Shows the input specification for a specified object or object list" type="show">
+        <switch name="objects or object_list"           arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="show_output_spec" desc="Shows the output specification for a specified object or object field" type="show">
+        <switch name="objects or objects_file"        arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="show commands" desc="" type="show">
+</command>
+
+<command name="print help show" desc="" type="show">
+</command>
+
+<command name="show_path" desc="" type="show">
+        <switch name="-from signal"                    arg="string" required="FALSE" desc=""> </switch>
+        <switch name="-to signal"                      arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="show_fan_in" desc="" type="show">
+</command>
+
+<command name="show_fan_out" desc="" type="show">
+</command>
+
+<command name="show" desc="Show all modules that a given signal name is connected to" type="show">
+	<switch name="signal name"                     arg="string" required="FALSE" desc=""> </switch>
+	<switch name="enum name"                        arg="string" required="FALSE" desc=""> </switch>
+        <switch name="const name"                       arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="show" desc="Show all signals in module. Info module errors" type="show" option="module_name">
+</command>
+
+<command name="show" desc="Show all module errors" type="show">
+</command>
+
+<command name="show_disconnected_clks" desc="" type="show">
+	<switch name="scope_list"                       arg="string" required="TRUE" desc=""> </switch>
+	<switch name="-clk"                             arg="string" required="TRUE" desc=""> </switch>
+	<switch name="clk_name"                         arg="string" required="FALSE" desc="" option="-clk"> </switch>
+</command>
+
+<command name="show_connections" desc="Lists the signals the siganl_names connectto" type="show">
+        <switch name="-port"                            arg="string" required="TRUE" desc="Only list he ports which the signal is connected to arg=string"> </switch>
+        <switch name="-state_element"                   arg="string" required="TRUE" desc="Only lists the state elements that the signals are connected to"> </switch>
+        <switch name="scope scope_name "                arg="string" required="FALSE" desc="only check in the scope scope_name"> </switch>
+	<switch name="singal_name"                      arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="show_width_mismatches" desc="Show the width mismatches for a signal_name" type="show">
+        <switch name="signal_name" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<!-- command name="show_direction_conflicts" desc="Show the signal which have direction missmatches at the portlist instantiations. Output connected to output. Input connected to input" type="show" -->
+        <!-- switch name="scope_name"                      arg="string" required="TRUE" desc=""--> <!-- /switch -->
+<!-- /command -->
+
+<command name="disconnected_resets" desc="" type="show">
+	<switch name="-reset reset_name"               arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="show_memory_map" desc="" type="show">
+</command>
+
+<command name="show_memory_map" desc="Show name/ type of element" type="show">
+	<switch name="address"                        arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="show_memory_map" desc="" type="show">
+	<switch name="-name name"                     arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="show_memory_map" desc="" type="show">
+	<switch name="-name regex"                    arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="show_memory_map" desc="" type="show">
+	<switch name="-range [addr]:[addr]"          arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="show_memory_map" desc="" type="show">
+	<switch name="-module name"                  arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="show_memory_map" desc="" type="show">
+	<switch name="-instance name"               arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="show_ramlist" desc="" type="show">
+</command>
+
+<command name="show_ram_report" desc="" type="show">
+	<switch name="names"                        arg="string" required="FALSE" desc=""> </switch>
+	<switch name="modules"                      arg="string" required="FALSE" desc=""> </switch>
+	<switch name="total bits"                   arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="clocks" desc=""  type="show">
+	<switch name="read"                        arg="string" required="FALSE" desc=""> </switch>
+	<switch name="write"                       arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="show_connections_signal_name" desc="Lists the signals the signal_names connected to" type="show">
+	<switch name="-port"                       arg="string" required="TRUE" desc="Only lists the ports which the signal is connected to"> </switch>
+	<switch name="-state_element"              arg="string" required="TRUE"  desc="Only lists the state elements that the signals are connected to"> </switch>
+	<switch name="-scope scope_name"         arg="string" required="TRUE" desc="Only check in the scope scope_name"> </switch>
+</command>
+
+<command name="show_width_mismatches_signal_name" desc="Show the width mismatches for a signal_name" type="show">
+</command>
+
+<command name="show_direction_conflicts" desc="Show the siganls which have direction mismatches at the instantiation; output connected to output, input connected to input" type="show">
+	<switch name="scope name"                  arg="string" required="TRUE" desc=""> </switch>
+	<switch name="signal_name*"                arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="show_generated-code">
+	<switch name="source" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="show_connections" desc="Lists the signals the signal_name s connected to"  type="show">
+        <switch name="-port"                      arg="string" required="FALSE" desc="Only lists the ports which the signal is connected to"> </switch>
+        <switch name="-state_element"             arg="string" required="FALSE" desc="Only lists the state elements that the signals is connected to"> </switch>
+        <switch name="-scope scope_name"        arg="string" required="FALSE" desc="Only check in the scope scope_name"> </switch>
+        <switch name="signal_name"                arg="string" required="FALSE" desc="Only check in the scope scope_name"> </switch>
+</command>
+
+<command name="show_width_mismatches" desc="Show the width mismatches for a signal_name" type="show">
+	 <switch name="signal_name"              arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="show_direction" desc="Show the signals which have idrection mismatches at the portlist instantiations.Output connected to output.Input connected to input" type="show">
+	 <switch name="-conflicts scope_name"  arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="view_generated_code" desc="View generated code" type="show">
+	 <switch name="source"                 arg="string" required="TRUE" desc=""> </switch>>
+</command>
+
+<command name="print_source_of_code" desc="" type="show">
+</command>
+
+<command name="csl cmd" desc="" type="show">
+</command>
+
+<command name="show_connections"  desc="" type="show">
+	 <switch name=" sn instances"          arg="string" required="TRUE" desc=""> </switch>
+ </command>
+
+<command name="show connections" desc="" type ="show">
+	 <switch name="sn tree"               arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="show fanout" desc="" type="show">
+	 <switch name="sn"                    arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="show_ fanin" desc="" type="show">
+	 <switch name="sn"                    arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="show_ram_total_rambits" desc="" type="show">
+</command>
+
+<command name="ck_interconnect" desc="" type="show">
+</command>
+
+<command name="trace_fanin  show_ff driver" desc="" type="show">
+</command>
+
+<command name="show_connections" desc="" type="show">
+</command>
+
+<command name="show_commands" desc="Show the commands" type="show"> 
+</command>
+
+<command  name="print help show" desc="" type="show">
+</command>
+
+<command name="show_path" desc="" type="show">
+	 <switch name="-from sig"             arg="string" required="TRUE" desc=""> </switch>
+	 <switch name="-to sig"               arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+
+
+<!--CHECK-->
+
+<command name="Check_hierarchy" desc="Specify the hierarchy specified for the different modules. Passed as an optional switchument in with an instance" type="check">
+</command>
+
+<command name="check_file" desc="Check if here are any syntax errors in the CSL imput file" type="check">
+</command>
+
+<command name="Check_signal" desc="Helps discover width and driver problems" type="check">
+</command>
+
+<command name="check_interfaces" desc="Check the connection in the instance formal to actual port mapping" type="check">
+        <switch name="scope_name"              arg="string" required="TRUE" desc=""> </switch>
+        <switch name="signal_name"             arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+
+
+<!--command name="Check_connectivity" type="check" option="all" option="inst"-->
+<!--/command-->
+
+<command name="Check_autoroute" desc="Check all autoroute or specific autoroute" type="check">
+</command>
+
+<command name="check_interface" desc="Checks the connections in the instance formal to actual port mapping" type="check">
+	<switch name="scope name"             arg="string" required="TRUE" desc=""> </switch>
+	<switch name="signal_name*"           arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+
+<command name="check_hierarcy" desc="No dep instances, multiple instances with children has sigfile" type="check">
+	 <switch name="root"                 arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="check-format" desc="" type="check">
+	 <switch name="-all"                   arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+
+<!--SHELL-->
+
+<command name="grep" type="shell">
+        <switch name="regular_expression"      arg="string" required="TRUE" desc="Can be a module,instance or signal name,regular expression"> </switch>
+        <switch name="scope_name"              arg="string" required="TRUE" desc="Is a scope the the search should take place in"> </switch>
+</command>
+
+<command name="cd " type="shell">
+        <switch name="instance_name_in_current_workspace" arg="string" required="FALSE" desc=""> </switch>
+        <switch name="hierarchical_path_to_instance"      arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+
+<command name="grep" desc="" type="shell">
+	<switch name="regular_expression" arg="string" required="TRUE"  desc="Can be a module,instance or signal name or can be a regular expression"> </switch>
+	<switch name="scope_name" arg="string" required="TRUE" desc="Is a scope that the search should take space in"> </switch>
+</command>
+
+<command name="cd.." desc="" type="shell">
+</command>
+
+<command name="cd" desc="" type="shell">
+	<switch name="instance_name_in current_workspace" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="cd" desc="" type="shell">
+	<switch name="hierarchical_path_to instance" arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="find" desc="" type="shell">
+	<switch name="identifier"                 arg="string" required="TRUE" desc=""> </switch>
+	<switch name="scope_name"                 arg="string" required="FALSE" desc="" optional="identifier"> </switch>
+</command>
+
+
+<!--CONTROL-->
+
+<command name="read_db" desc="this will read the binary datebase" type="control">
+ </command>
+
+<command name=" precrocess_macros" desc="Preprocesses macros and expand meta language code so we can read the code and debug the macros" type="control">
+	<switch name="-o output file"             arg="string" required="FALSE" desc=""> </switch>
+        <switch name="-m modulname"               arg="string" required="FALSE" desc=""> </switch>
+        <switch name="-all"                       arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="write_file" desc="User writes the design specification cslc_i" type="control">
+</command>
+
+<command name="compile" desc="Application parses the file and creates the CDOM objects" type="control">
+	<switch name="top_level_module"           arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="elaborate" desc="Application elaborates the file and modified the/creates new objects" type="control">
+	<switch name="top_level_module"           arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="levelize" desc="Application topologically sorts the CDOM" type="control">
+</command>
+
+<command name="analyze" desc="Application analyzes the CDOM for errors/ statistics and generates reports on statistics/ errors" type="control">
+	<switch name="top_level_module"           arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+
+
+<!--FILE IO-->
+
+<command name="read" desc="Application reads in the file name" type="file io">
+	<switch name="-f file.cslc_i"           arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="write_verilog" desc="Application writes out the verilog RTL" type="file io">
+	<switch name="top_levels_module"          arg="string" required="TRUE" desc=""> </switch>
+	<switch name="hier|flat"                  arg="string" required="TRUE" desc="" option="top_levels_module"> </switch>
+	<switch name="-o name.v"                  arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="save_session" desc="save the command line and shell commands to a file to be played back later. The default behavior for the program is to save the keystrkes in a users home dir .bss saved.bsssession file." type="file io">
+	<switch name="session name"               arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="restore_session" desc="Read in a session file and execute the commands in the file" type="file io">
+	<switch name="session name"               arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="save_session" desc="Save the command line and shell commands to a file to be played back later. The default behavior for the program is to save the keystrkes in a users home dir .bss saved.bsssession file." type="file io">
+	 <switch name="session name"              arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="session_restore" desc="Read in session file and execute the commands in the file" type="file io">
+	 <switch name="session name"              arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+
+<!--PRINT-->
+
+<command name="print_hierarchy_tree" desc="Print out the hierarchy tree" type="print">
+        <switch name="-no instances"              arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="print" desc="Print all modules or files to the screen or file" type="print">
+	<switch name="-all"                                          arg="string" required="TRUE" desc=""> </switch>
+	<switch name="module name list|file name|-f file_containing_list_of_files" arg="string" required="FALSE" desc="" option="-all"> </switch>
+	<switch name="-o filename"              arg="string" required="TRUE" desc="" option="-all"> </switch>
+</command>
+
+<command name="print" desc="Print the modules at and below the specified sub-tree root  to the screen or file" type="print">
+	<switch name="-subtree module_name"      arg="string" required="TRUE" desc=""> </switch>
+	<switch name="-o filename"               arg="string" required="FALSE" desc=""> </switch>
+</command>
+
+<command name="print_env" desc="Prints all the environment variables that are currently read into the shell." type="print">
+</command>
+
+<command name="print_env - cslc" desc="Prints the cslc_interconnect program environment variables" type="print">
+</command>
+
+
+
+<!--FIND-->
+
+<command name="find_connections" desc="Given a clk net return the list of state elements connected to clk net" type="find">
+	 <switch name="clock_name"                 arg="string" required="TRUE" desc=""> </switch>
+	 <switch name="-state_elements"            arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="find_connections" desc="Return a list of all state elements connected to the signal" type="find">
+	 <switch name="signal_name"               arg="string" required="TRUE" desc=""> </switch>
+	 <switch name="-state_elements"           arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="find_connections" desc="Given an object return a list of all nets connected to it" type="find">
+	 <switch name="object_name"               arg="string" required="TRUE" desc=""> </switch>
+	 <switch name="-state_elements"           arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="find_connections" desc="Given a net return all objects connected to it" type="find">
+	 <switch name="net_name"                  arg="string" required="TRUE" desc=""> </switch>
+	 <switch name="-objects"                  arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="find_connections" desc="Given an object return all input pins for obj" type="find">
+	 <switch name="object_name"               arg="string" required="TRUE" desc=""> </switch>
+	 <switch name="-input_pins"               arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="find_connections" desc="Given an object return all output pins for obj" type="find">
+	  <switch name="object_name"             arg="string" required="TRUE" desc=""> </switch>
+  	  <switch name="-output_pins"            arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="find_connections" desc="Given an input pin return the fan in cone"  type="find">
+	  <switch name="object_name"             arg="string" required="TRUE" desc=""> </switch>
+  	  <switch name="fan_in_cone"             arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="find_connections" desc="Given an output pin return the fan out cone" type="find">
+	  <switch name="object_name"             arg="string" required="TRUE" desc=""> </switch>
+  	  <switch name="fan_out_cone"            arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+
+<command name="find_connections" desc="Get module list" type="find">
+	  <switch name="object_name"             arg="string" required="TRUE" desc=""> </switch>
+  	  <switch name="-modules"                arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="find_connections" desc="Get the list of statements that the object name is derived from" type="find">
+	  <switch name="object_name"            arg="string" required="TRUE" desc=""> </switch>
+  	  <switch name="-statements"            arg="string" required="TRUE" desc=""> </switch>
+</command>
+
+<command name="find_connections" desc="Get the assignment(s) of the signal" type="find">
+	 <switch name="signal_name"            arg="string" required="TRUE" desc="the name of the signal to assign"> </switch>
+	 <switch name="-assignment"            arg="string" required="TRUE" desc="the name of the assignment"      > </switch>
+ </command>
+
+<command name="ls" desc="shows all objects of the selected type in the selected scope. The default scope is the current scope" type="find">
+        <switch name="-scope"                  arg="string" required="TRUE" desc="name of the scope to search down and find the selected types" > </switch>
+        <switch name="-current_scope"          arg="string" required="TRUE" desc="only search in the current scope"                             > </switch>
+	<switch name="-module"                 arg="string" required="TRUE" desc="shows all signal names in module_name"                        > </switch>
+        <switch name="-instances"              arg="string" required="TRUE" desc="shows all instances in module_name" type="find"               > </switch>
+        <switch name="-module_name"            arg="string" required="TRUE" desc="shows all signal names in module_name"                        > </switch>
+        <switch name="-signal_names"           arg="string" required="TRUE" desc="shows all signal names in module_name"                        > </switch>
+</command>
+
+</XML>

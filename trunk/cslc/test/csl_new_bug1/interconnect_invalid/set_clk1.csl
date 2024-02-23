@@ -1,0 +1,13 @@
+//oanab
+//30 may 2008
+//method is called for a interface instance
+
+
+csl_interface ifc {
+  csl_port p_x(input);
+  csl_port p_y(output);
+  csl_port p_z(input);
+  ifc () {
+    set_clock(clk);
+  }
+};

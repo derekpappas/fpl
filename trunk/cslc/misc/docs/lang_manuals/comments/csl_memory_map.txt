@@ -1,0 +1,138 @@
+AndreiB
+
+notes:
+2nd review stage
+
+- 1.2 In the sentence: "The CSL memory map specification will create memory mapped structures which are addressable by other hardware units or by software through bus writes to the unit containing the memory mapped structure."
+  ->is it bus writes or reads ? //not
+
+- 1.2 csl_memory_map program (1st paragraph) vs genmemmap program (3rd paragraph): identical ? // change to csl compiler// rules CSL upper case; cslc lower case in the whole text
+
+- Figure 1.1: cslc appears in a box and a bubble above it. Why 2 times ? // get rid of the squared box
+
+- below Figure 1.1 in the bulleted list: what does namespace refer to here that it can be added to a CSL memory ?
+// turn into a table: 2 cols: 1 for abreviations and one for full name
+
+- 1.2.1 In the sentence: "Automatically generate tests to write a value, read a value, and compare the value written with the value read" where does the generator performs these reads and writes? In the memory mapped structures and if so how does it do that ? uses DUT's ?
+
+- move some contents from overview to concepts ?
+- 1.3.1 added definition for memory word alignment (used terms like halfword and doubleword that are not used anywhere else)
+
+- 1.3.2 added contents for memory attributes
+
+- Table 1.3 where is the attribute bit being used ? eg. csl_attr_rr, csl_attr_w (shouldn't it be csl_attr_wr, sh, ct etc for same size) ? /not
+
+- What is the register code generator (above Figure 1.2) and what does it do in the Memory attribute section ? and 
+  What is a cell in this case ? Is it a named memory range ? if so, maybe add a heading called Memory partitioning or ranging ?
+
+- Under Figure 1.2 the commands:
+	cell_name.mem_addr_rel(cell_addr_expr);
+	cell_name.mem_addr_abs(cell_addr_expr, addr_inc_amount);
+  shouldn't relative and absolute (rel and abs) be swapped among each other ? // fixed
+
+- Just above section 1.3.3 in the sentence: "The code section above creates a 16 entry table. The name of this table is constant_table. The entry type is const32, which means that the table contains 32 bit words." Should there be more info on the entry types other than const32 ?
+- 1.4 Commands summary:
+	- what are the commands:
+	
+	name.type(type_name);  
+	name.group_name(me_group_name);
+	name.abs_address(number);
+	name.relative_address(number); 
+	
+	about? local_suffixe_name below uses name variable too
+
+	- the command memory_map_name.cell(cell_name); creates a cell named cell_name but, within text there is an example containing the command csl_cell(cell_name, cell_range); -> csl_cell(f, 12); Is it possible to group two commands like that ? //fixed - use csl_cell to create ranged cells and then unit.cell(a,b,c) to create cells within cell
+
+	- there are no commands for csl_name.mem_addr_rel(cell_addr_expr) and csl_name.mem_addr_abs(cell_addr_expr, addr_inc_amount) found in text under Figure 1.2, however there are the commands name.abs_address(number); and name.relative_address(number); stated above. how to fix this ?
+
+- 1.5 Command:
+	- added/modified description and examples for the following commands:
+
+	csl_memory_map memory_map_name; 
+	memory_map_name.alignment(number);
+	memory_map_name.endianess(endianess_type);
+	memory_map_name.ob.attributes(attribute_list);
+	
+	..and others (see text).
+
+	- memory_map_name.type(memory_map_type); no memory_map types are specified /done
+
+
+	- memory_map_name.range(range); what is the range variable's unit: bits ? and how is it represented? single number?//done
+
+	- memory_map_name.attributes(attribute_list); I assumed attributes here are the same with those in Table 1.2 .. If so, wouldn't it be better to use shorter names for these attributes like rw instead of csl_attr_rw ?
+
+
+	- memory_map_name.cell_name.type(memory_map_type); does cell type coincides with memory map type ? and what types are these ? Same question for cell range, attributes
+	- memory_map_name.enum(enum_name = value); In the description it is stated that the enumerated value is specific to the cell yet the command does not seem to refer cell. Add cell_name or this command applies also to memor_map ?
+	- memory_map_name.limit_address(address); does this command sets the upper limit for the addresses ?
+	- memory_map_name.name_max_length(length); what is a name in this case (for the maximum number of characters in a name) and why limit the maximum number of characters ?
+	- memory_map_name.local_prefix_name(name); how do we define a local range ? Is this done with the memory_map_name.range(range); command ? same question for local_suffix_name
+	- memory_map_name.word_width(numeric_expression); Isn't this the same as memory_map_name.alignment(number); ?
+	- memory_map_name.num_words(numeric_expression); where does the range syntax discussion fit (it is identical with a section in csl_register) ? 
+	- memory_map_name.next_addr(numeric_expression); what does this command do ? same question for next commands
+
+- 1.6 Memory Map types section is void
+- 1.7 code section just below the title is unclear ? what are these commands ?
+
+!note for reviewer: see paper note
+- 1.7.1 issues:
+	- what exactly does csl_set_addr = # command do? It looks similar to memory_map_name.base_address(address); although it appears to be able to set a custom starting address within the memory map.
+	- Isn't csl_addr_inc = # equivalent with memory_map_name.alignment(number); or should a new command be created ?
+	- the code section is not clear
+	- small code section before 1.7.2 is clear enough yet what type is it ? CSL ?
+- 1.7.2 issues:
+	- what is address_type keyword ? is it a csl instruction ? memory_map_name.address_type(); ?
+	- Table 1.4 middle row: word size is 32 bits and the others are halfwords or doublewords etc ?
+	- what is the code type below table 1.4 ?
+	- what is addr_in in the code section below Figure 1.4 ?
+- 1.7.3 issues:
+	- the code section needs to be improved (Does this belong to concepts or examples section?). Could be something like memory_map_name1.parent_map(memory_map_name0); ?
+	- In the sentence: "The memory hierarchy will be converted into a set of hierarchical memories which can be written and read with decoders that create the write_enable’s and mux trees to select the data." it's not clear how the memory hierachy will be converted into a set of hierarchical memories.
+- 1.7.4 issues:
+	- mem_address_range should it be memory_map_name.address_range(lower_limit, upper_limit);  or is it the plain range command ?
+	- numbered list: 1 and 2 are about the same thing. What does absolute address has to do with mem_addr_type and mem_word_size ? 4 and 5 seem to be the same thing but the command is inconsistent with the one in Commands - maybe memory_map_name.addr_inc(numeric_expression)
+- Figure 1.5: 1x32bit bus goes into 4x32bit buses ?
+- 1.7.4.2 issues:
+	- the command csl_addr_alignement(<cellname>,<address>); is marked with ???'s in Command Summary
+	- in the bulleted list there are 2 entries about relative addressing which seem to be about the same thing
+- 1.7.5 added content about absolute and relative addressing. don't know what "individual memory addresses" is about.
+- 1.7.6  it is not complete and the code sections is unclear
+- 1.7.6.1 incomplete code ?
+- 1.7.6.2 in the generate_mux the code syntax is unclear
+- Table 1.5 title looks weird. Maybe read ports and write ports should be integrated within the table ?
+- 1.7.7  code sections are unclear (under "CELL range 25:4 "[...] and under Figure 1.6) what is this section about ?
+- 1.7.7 Figure 1.6 has no title
+- under the code section below Figure 1.6, the block of text beggining with: "Register file generated verilog code will be synthesizable..." what is it about and how does it connect to Read Only Memory
+- Figure 1.7 what is it about ? How does it connect to memory map ?
+- Figure 1.8 what is the purpose of the register with combinational logic on input here ?
+
+!note for reviewer: see paper note
+- 1.7.8 there is nothing here about how to create the memory map. What are the bulleted lists about ?
+- 1.7.9 should be added after Create memory map section in Concepts ?
+- 1.7.10 Should there be more detailed information about Memory Format Description Language ? And why a language and not just a specifications set ? 
+- 1.7.11 What is the CSL memory map declaration ? Is it an instruction ?
+- 1.7.11.1 Shouldn't there be a part about relative addresses too ? Since a relative address is obtained from an absolute address.
+- 1.7.12 issues:
+	- "csl_me_generic_register_file name width number_elements bit_attributes num_rd_ports num_wr_ports" what is this ?
+	- the memory element specification (bulleted list), cell declarations are written with csl commands ?
+	- what are the address check and name check operations ? are they initiated by the csl compiler ?
+	- (section is similar to a section in csl_register)
+- 1.7.13 issues:
+	- the verilog, vhdl and c++ code is generated by what unit ? what happens with the csl code ?
+	- what is the documentation describing the memory element ? What does it contain, what format is it in and what unit generates this documentation ?
+	- which unit describes the relationship between the memory elements and what is the purpose of this operation ?
+- 1.7.14 and 1.7.14.1 code sections look like half-pseudocode. Should these be csl code ? 
+- 1.7.15 and 1.7.16  are Generated code sections (C++ and verilog) but the code is mostly defines and incomplete copyright notices
+- 1.7.16.2 at the end of the section 
+- 1.7.16.3 What is the connection between the title of the section "files" and the 4 types of defines that can be in the spec file ? and what kind of specification (spec) file is used here ?
+- 1.7.16.4 what are the elements used to construct RF's ? cells ? - the text here is identical with the one at 1.3.1 in csl_memory_map file 
+- 1.7.16.5 What are these keywords that relate to namespaces ? csl instructions ?
+- 1.7.16.6 Merge this with 1.7.4 ?
+- 1.7.16.8 No further details are given on consts ? what is the definition syntax ? any restrictions ?
+- 1.7.16.9 "The genmemmap program will support the generation of output signals which when asserted will trigger these actions." maybe supports ? Should there be more details on how is this accomplished or a simple example? (this is almost identical to a section in csl_register)
+
+- 1.7.16.11 These keywords need to be illustrated with examples (also identical to a section in csl_register)
+- 1.7.17 numbered list: what are memmap:hw and memmap:sw ? And what is the numbered list about ?
+- 1.7.18 Move this before absolute address and relative address section ?
+- 1.7.19 Shouldn't this be moved to csl_buses.fm ?

@@ -1,0 +1,8 @@
+//csl_reg rf;
+csl_register rg{
+  rg(){
+    set_width(16);
+    set_address(abc,255);//should give an error message because i haven't declarated a memory_map abc
+    index_data_pair(abc,0,3);//the same
+  }
+};

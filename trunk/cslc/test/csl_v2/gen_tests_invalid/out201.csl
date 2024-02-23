@@ -1,0 +1,140 @@
+csl_enum gv {
+	di = 96,
+	jq = 20,
+	vs = 69,
+	xi = 46,
+	kp = 72,
+	hu = 68,
+	oe = 48,
+	iq = 38,
+	oo = 27,
+	fq = 3,
+	wa = 97,
+	ae = 26
+};
+csl_enum pr {
+	xr,
+	ee,
+	nh,
+	pa
+};
+csl_enum yl {
+	sw,
+	vf,
+	oe,
+	bf,
+	il,
+	ww
+};
+csl_isa_instruction_format rs{
+    rs( ){
+     set_width( 0);
+     generate_decoder( bxkkry);
+  }
+}
+;
+csl_isa_instruction rv : rs{
+    rv( ){
+    set_asm_mnemonic( csl_list "pr", "my", "oj", "px");
+  }
+}
+;
+csl_isa_instruction cb : rs{
+    cb( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa_instruction nq : rs{
+    nq( ){
+    set_asm_mnemonic( csl_list "em", "gg", "bc", "sh");
+  }
+}
+;
+csl_isa bv{
+    bv( ){
+     set_decoder_name( "qu");
+     set_decoder_out_name_prefix( "px");
+     set_decoder_out_name_suffix( "dh");
+     generate_decoder( tory);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo vm{
+   vm( ){
+  }
+}
+;
+csl_memory_map_page vp{
+    vp( ){
+     add_address_range( 9, 8);
+     get_address_increment( );
+     set_next_address( 3);
+     get_next_address( );
+     set_access_rights( access_read_write, access_write);
+     add( vm, "dq", 7);
+     get_lower_bound( );
+     set_data_word_width( 2);
+     set_aligment( 8);
+     set_endianess( little_endian);
+  }
+}
+;
+csl_memory_map_page uj{
+  vp gx;
+    uj( ){
+     get_address_increment( );
+     set_aligment( 8);
+  }
+}
+;
+csl_memory_map_page je{
+  vp vp;
+  uj dk;
+  uj hn;
+    je( ){
+     set_next_address( 6);
+     get_next_address( );
+     set_access_rights( access_read, none);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 4);
+     get_data_word_wodth( );
+     set_endianess( little_endianbig_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map gl{
+    gl( ){
+.     set_type( page);
+     set_data_word_width( 0);
+     get_data_word_width( );
+     set_prefix( ns);
+     set_suffix( vj);
+  }
+}
+;
+csl_register ui{
+    ui( ){
+     set_type( CTL);
+     add_logic( serial_input);
+     add_logic( wr_en);
+     set_count_amount( 5);
+     add_logic( cnt_dir_signal);
+     add_logic( inc_signal);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register bq{
+    bq( ){
+     set_width( 3);
+     get_width( );
+     set_depth( 5);
+     set_const_value( 5);
+  }
+}
+;

@@ -1,0 +1,181 @@
+Subject:   	Re: processor ring list of questions
+From:   	"Derek Pappas" <dpappas@fastpathlogic.ro>
+Date:   	Wed, March 14, 2007 09:10
+-------------------------------------------------------------------------------------------------------------------------------
+
+what is the HW team email alias?
+
+Additional answers below to questions 1-17
+>> Hi,
+>>
+>> Here are additional questions (not really organized):
+>>
+>> 1. Is DM using the Power PC EBC bus?
+>>
+>
+> Our previous design used the 603 bus interface from the PowerPC to the
+> FPGA.  The FPGA looked like a memory mapped device.
+>
+> We used an external processor (PowerPC) that had a specialized node on
+> the ring.  The PowerPC could read and write the memory from all of the
+> processors on the ring.  In addition, the PowerPC could send and
+> receive messages on the ring.
+>
+>> 2. Can DM send the Verilog interfaces for the stripped down NIOS2
+>>
+>
+> I will work on that.
+>
+>> 3. Do stage[0-2] have one pipestage of delay?
+>>
+>
+> Yes.  A transaction moves forward one stage on every clock, and each
+> node has three stages.
+>
+>> 4. There are not 10 instances of the same ring node in the system.
+>> Each ring node potentially has a different memory map and different
+>> custom logic.
+>> Which ring nodes are the same instance if any?
+>>
+>
+> Generating the Verilog for 10 identical nodes would be a great first
+> step.  Having a generic node interface is also quite valuable because
+> it allows the overall ring design to be working before each node is
+> customized.  Our previous product replicated input nodes (e.g.
+> receiving audio, receiving video, and receiving Ethernet) that had
+> identical versions of the node interface, NIOS,  and custom
+> instructions.  We had a similar set for output nodes as well.
+>
+>
+>> 5. Queue manager-is this basically the ring node controller?
+>>
+>
+> No.
+>
+> Each processor has a message queue that is used to receive messages
+> from other processors.  However, the message queue is bypassed for
+> memory reads and writes, which go directly to the memory.
+>
+>
+>> 6. How is a word written/read from the ring bus to/from the data NIOS2
+>> /instruction data memory
+>>
+>
+> The instruction memory has two 32-bit read/write ports.  One port is
+> used exclusively by the processor, and the other is shared between the
+> custom instruction logic and the ring node logic.  The ring node logic
+> has strict priority over the custom instruction logic.
+>
+> The data memory is organized the same way as the instruction memory.
+>
+>
+>> 7. Is there an input bus cmd queue?
+>>
+>
+> See #5 above.
+>
+>
+>> 8. Is there an output tansaction queue for holding outbound transactions
+>> that can't be sent right away?
+>>
+>
+> No.  We used a single output register stage that is shared by the
+> memory read responses, processor message transmission, and the DMA
+> engines.  The memory read responses have strict priority over the
+> other two because the read response must go out in the same slot as
+> the read request.  The processor message transmission has strict
+> priority over the DMA engines because the processor will stall if
+> another attempt to send a message is made before the prior one is sent
+> out.  The DMA engines generally are longer running, and use the
+> remaining bandwidth.
+>
+>
+>> 9. Can you send Mike Goudy an email and ask him to talk to me. He did
+>> not respond to me email inquery.
+>>
+>
+> I will send the email.
+>
+>
+>> 10. Can a bus read cmd in stage 0 be replied to in stage  2  two cycles
+>> later?
+>>
+>
+> Yes!  That is why we designed three stages in each node.
+>
+>
+>> 11. Is there an input message queue for new messages received at the
+>> remote processor?
+>>
+>
+> See #5 above.
+>
+>
+>> 12. Is the NIOS2 processor interrupted by the queue manager so that the
+>> input message queue can be processed?
+>>
+>
+> Our model has been poll-driven by the processor.  We think of the
+> message queue as a work queue in which the processor extracts messages
+> from the queue when the processor is ready for the next item.  There
+> is no need for interrupts because the hardware queue manager accepts
+> or rejects the incoming message without consulting the processor.
+>
+>
+>> 13. How are the instruction and data memories read/written?
+>>    Via the custom logic shadow register?
+>>
+>
+> See #6 above.
+>
+>
+>> 14. Can a bus read command that is received in stage 1 be read in stage
+>> 2 and sent out in stage three in the same
+>> bus token that sent the read?
+>>
+>
+> See #10 above.
+>
+>
+>> 15. Is there an out fifo for sending out new bus transactions or reply
+>> transactions?
+>>
+>
+> See #8 above.
+>
+>
+>> 16. Is there a traffic manager for the token allocation on the bus for
+>> handling fairness, guarenteed bandwidth,
+>> high priority interrupts, reserving space for burst operations ...
+>>
+>
+> We considered this problem, but did not attempt to solve it because a
+> general solution can become quite complicated and interfere with the
+> otherwise simple operation of the ring.  Our simple solution was to
+> add a register setting for fairness at each node that would specify
+> the number of time slots that the node would have to skip after each
+> time slot that it used sending something on the fabric other than a
+> memory read response.
+>
+> We set the default value to 3, which meant that each node would send
+> data no more than once every four clocks.  This worked well in our
+> application because only a couple of nodes ever attempted to send
+> relatively high bandwidth.  In addition, the overall bandwidth using
+> 64-bit bursts with the entire ring running at 166 MHz provided a lot
+> of headroom.
+>
+>
+>> 17. Is there a control processor for bringing up the processor ring and
+>> for interrupting it?
+>>
+>
+> See #1 above.  The PowerPC is able to boot all of the processors in 
+> the ring.
+>
+>> I will send the current block diagrams and the bus cmd and virtual
+>> memory tables.
+>>
+>> Thanks,
+>>
+>> Derek
+>>

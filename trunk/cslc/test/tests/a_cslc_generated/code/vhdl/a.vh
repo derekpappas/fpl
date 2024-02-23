@@ -1,0 +1,8 @@
+--THIS CODE WAS GENERATED USING THE FASTPATHLOGIC HDL COMPILER
+--COPYRIGHT (c) 2006, 2007 FastpathLogic Inc
+--OUTPUT FILE NAME  : a.vh
+--FILE GENERATED ON : Wed Jul 28 21:41:03 2010
+
+a.vhd
+stim_expect_mem_template.vhd
+tb.vhd

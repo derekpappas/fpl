@@ -1,0 +1,53 @@
+//fifo commands
+//andrei
+//22 June 2007
+
+csl_fifo fifo_name{
+  fifo_name(){
+    set_width(8);
+    set_depth(32);	
+    add_logic(programmable_depth, 12);		
+    set_physical_implementation (sram);  //SRAM | Flip Flop Array
+    add_logic(priority_bypass);
+    add_logic(sync_fifo);
+    add_logic(depth_extend, 8);  //32+8=40
+    add_logic(width_extend, 8);  //32+8=40
+    add_logic(wr_hold, 5);  //32+8=40		
+    //    set_prefix("pre");
+    //		add_logic(parallel_output, a);    // the 2'nd parameter must be: "all" or vector_of_addresses
+    //		add_logic(parallel_input, b);     // the 2'nd parameter must be: "all" or vector_of_addresses
+    add_logic(rd_words, 12,24);
+    add_logic(wr_words, 12,24);
+    add_logic(sram_rd);
+    add_logic(sram_wr);
+    add_logic(pushback);
+    add_logic(flow_through,12);
+    add_logic(stall);
+    add_logic(stall_rd_side);
+    add_logic(stall_wr_side);
+    //add_logic(wr_release);  // to be erased?
+    add_logic(almost_empty, 23);
+    add_logic(almost_full, 46);
+    add_logic(output_wr_addr);
+    add_logic(output_rd_addr);
+    add_logic(credit);
+    add_logic(rd_credit);
+    add_logic(wr_credit);
+    add_logic(flow);
+  }
+};
+
+csl_unit u1{
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(output);
+  csl_port p4(output);
+  csl_port p5(output,8);
+  csl_port p6(input,8);
+  csl_port p7(input);
+  csl_port p8(input);
+  csl_port p9(output);
+  fifo_name ff(.push(p1),.pop(p2),.full(p3),.empty(p4),.rd_data(p5),.wr_data(p6),.reset_(p7),.clock(p8),.valid(p9));
+  u1(){  
+  }
+};

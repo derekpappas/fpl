@@ -1,0 +1,36 @@
+//Petronela
+csl_interface if3{
+  csl_port p3(input);
+  csl_port p4(output);
+  if3(){
+  }
+};
+csl_interface if1{
+  if3 if3;
+  csl_port p1(input);
+  csl_port p2(output);
+  if1(){ 
+  }
+};
+
+csl_interface if2{
+  csl_port p1(input);
+  csl_port p2(output);
+  csl_port p3(input);
+  if2(){
+  }
+};
+
+csl_unit u1{
+  if1 if1;
+  u1(){
+  }
+};
+
+csl_unit u2{
+  if2 if2;
+  u1 u1(.if1(if2));
+  u2(){
+      
+  }
+};

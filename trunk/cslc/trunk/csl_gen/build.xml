@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="CSL Test Generators" default="help">
+
+  <property name="project.parent.dir"  value=".."/>
+  <property name="project.parent.file" value="build.xml"/>
+
+  <!-- Check all dependencies -->
+  <target name="check.dependencies" unless="no.dependencies">
+    <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+    <typedef resource="cpptasks.types"/>
+    <taskdef resource="cpptasks.tasks"/>
+
+    <antfetch dir="${project.parent.dir}" antfile="${project.parent.file}" target="set.project.list" inheritAll="false"
+              return="build.dir,
+                      csl_gen.dir,
+                      csl_gen.lib"/>
+  </target>
+
+  <!-- Set all properties -->
+  <target name="set.all.properties" depends="check.dependencies" unless="properties.set">
+    <property name="no.dependencies"     value="on"/>
+    <property name="properties.set"      value="on"/>
+    <property name="project.build.dir"   value="${build.dir}/${csl_gen.dir}"/>
+    <property name="project.build.lib"   value="lib${csl_gen.lib}.a"/>
+    <property name="project.src.list"    value="support.cpp,
+                                                cslInterconnectGen_TB.cpp,
+                                                cGenFifo_ao.cpp,
+                                                cslIsa.cpp,
+                                                cslMemoryMap.cpp,
+                                                cslRegister.cpp,
+                                                cslField.cpp,
+                                                cslGenEnum.cpp,
+                                                cslMemory.cpp,
+                                                cGenBase_tb.cpp"/>
+    <property name="project.driver.list" value="cGen_ao,
+                                                cGenDecl_tb,
+                                                cGenInstDecl_tb,
+                                                cGenCmds_tb,
+                                                cGenInstCmds_tb"/>
+
+    <mkdir dir="${project.build.dir}"/>
+    <echo message="Build dir: '${project.build.dir}'" level="info"/>
+  </target>
+
+  <!-- Wall flag -->
+  <target name="wall">
+    <echo message="---------------------- wall flag on"/>
+    <property name="wall.flag" value="on"/>
+  </target>
+
+  <!-- Debug target -->
+  <target name="debug" depends="set.all.properties">
+    <echo message="---------------------- debug flag on"/>
+    <runtarget target="compile"/>
+  </target>
+
+  <!-- Clean target -->
+  <target name="clean" depends="set.all.properties">
+    <echo message="==================== Cleaning ${csl_gen.dir} ===================="/>
+      <delete>
+        <fileset dir="${project.build.dir}" includes="**/*"/>
+      </delete>
+  </target>
+
+  <!-- Compile this project -->
+  <target name="compile" depends="set.all.properties">
+    <echo message="==================== Compiling in ${csl_gen.dir} ===================="/>
+    <cc outfile="${project.build.dir}/${csl_gen.lib}" outtype="static">
+      <compiler name="gcc">
+        <fileset dir="${basedir}" includes="${project.src.list}"/>
+        <compilerarg value="-g"                  if="debug.flag"/>
+        <compilerarg value="-ftest-coverage"     if="debug.flag"/>
+        <compilerarg value="-fprofile-arcs"      if="coverageFlag"/>
+        <compilerarg value="-D__RELEASE_VERSION" if="release.flag"/>
+        <compilerarg value="-DNDEBUG"            if="release.flag"/>
+        <compilerarg value="-Wall"               if="wall.flag"/>
+      </compiler>
+
+      <linker name="gcc">
+        <libset libs="stdc++"/>
+      </linker>
+    </cc>
+  </target>
+
+  <!-- Compile drivers -->
+  <target name="drivers" depends="set.all.properties">
+    <echo message="==================== Compiling drivers in ${csl_gen.dir} ===================="/>
+    <for list="${project.driver.list}" param="driver" trim="true">
+      <sequential>
+        <cc outfile="${project.build.dir}/@{driver}">
+          <compiler name="gcc">
+            <fileset dir="${basedir}" includes="@{driver}.cpp"/>
+            <compilerarg value="-g"                  if="debug.flag"/>
+            <compilerarg value="-D__RELEASE_VERSION" if="release.flag"/>
+            <compilerarg value="-DNDEBUG"            if="release.flag"/>
+            <compilerarg value="-Wall"               if="wall.flag"/>
+          </compiler>
+
+          <linker name="gcc">
+            <libset libs="stdc++"/>
+            <libset dir="${project.build.dir}" libs="${csl_gen.lib}"/>
+          </linker>
+        </cc>
+      </sequential>
+    </for>
+  </target>
+
+  <!-- Display the help/usage -->
+  <target name="help">
+    <ant dir="${project.parent.dir}" antfile="${project.parent.file}" target="help" inheritAll="false"/>
+  </target>
+
+</project>

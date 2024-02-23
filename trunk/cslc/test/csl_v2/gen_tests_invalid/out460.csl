@@ -1,0 +1,156 @@
+csl_enum gi {
+	ld,
+	ay,
+	vd,
+	bd,
+	bx,
+	hy,
+	sy,
+	im,
+	uu,
+	yy,
+	ia,
+	lx
+};
+csl_enum ob {
+	vy,
+	bd,
+	io,
+	ik,
+	nf,
+	no,
+	kq,
+	or,
+	sj,
+	sb,
+	vp,
+	wu
+};
+csl_enum rh {
+	ud,
+	hl,
+	ge,
+	lj,
+	jv,
+	xr
+};
+csl_isa_instruction_format kk{
+    kk( ){
+     set_width( 4);
+     generate_decoder( bv);
+  }
+}
+;
+csl_isa_instruction yy : kk{
+    yy( ){
+    set_asm_mnemonic( csl_list "xf", "sl", "gk", "vv", "cn", "hi", "qe", "oc");
+  }
+}
+;
+csl_isa_instruction ly : kk{
+    ly( ){
+  }
+}
+;
+csl_isa_instruction qx : kk{
+    qx( ){
+    set_asm_mnemonic( csl_list "df", "xu", "jd", "ka", "ko", "qs", "gc", "rw");
+  }
+}
+;
+csl_isa_instruction yw : kk{
+    yw( ){
+    set_asm_mnemonic( csl_list "fy", "xd", "th", "jh", "iv", "vb", "of");
+  }
+}
+;
+csl_isa_instruction td : kk{
+    td( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa vq{
+    vq( ){
+     set_decoder_name( "cp");
+     set_decoder_out_name_prefix( "xp");
+     set_decoder_out_name_suffix( "xl");
+     print( isa.txt);
+  }
+}
+;
+csl_memory_map_page qu{
+    qu( ){
+     add_address_range( 8, 4);
+     set_address_increment( 7);
+     get_address_increment( );
+     set_next_address( 2);
+     get_next_address( );
+     set_access_rights( access_read_write, access_write);
+     add_reserved_address_range( 5, 9);
+     get_upper_bound( );
+     set_aligment( 3);
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page mn{
+    mn( ){
+     get_next_address( );
+     set_access_rights( access_read_write, access_read);
+     add_reserved_address_range( 8, 5);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_aligment( 3);
+     set_endianess( big_endian);
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page ie{
+    ie( ){
+     add_address_range( 5, 7);
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_read, access_read);
+     add_reserved_address_range( 3, 0);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 8);
+     set_endianess( little_endianbig_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map tm{
+  ie gd;
+  qu ah;
+    tm( ){
+     set_type( hierach);
+     set_data_word_width( 5);
+     get_data_word_width( );
+     set_prefix( hi);
+     set_suffix( sm);
+  }
+}
+;
+csl_register kv{
+    kv( ){
+     index_data_pair( tm, 6);
+  }
+}
+;
+csl_register xw{
+    xw( ){
+     set_width( 3);
+     create_rtl_module( );
+     set_const_value( 3);
+     add_logic( bypass);
+  }
+}
+;

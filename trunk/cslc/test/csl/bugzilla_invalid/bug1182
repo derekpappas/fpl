@@ -1,0 +1,11 @@
+csl_isa_element isa{
+  isa(){
+    set_type(root_format);
+    //    set_width(2);
+  }
+};
+csl_isa_element derived : isa{
+  derived(){
+    set_type(instr);
+  }
+};

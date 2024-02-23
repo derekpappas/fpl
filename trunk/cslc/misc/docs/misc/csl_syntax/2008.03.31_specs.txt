@@ -1,0 +1,601 @@
+SPECS:
+
+1. Concatenation & Replication operator (AKA multi concat in CSL)
+Location: To be added in Language chapter (lang_manuals)
+
+=== Concatenation operator ===
+Syntax: 
+concatenation := { expression (, expression)* }
+expression := port_hid | signal_hid |
+             signal_group_hid | interface_hid |
+             sized_constant
+
+There can be any number of expression arguments (at least 1).
+
+Arguments should be processed and concatenated in the given order. 
+
+If container structures (like signal group or interfaces) are used these
+should have all contained elements processed in the order they were
+declared in the container. Eg:
+
+ifcB contains: port x
+ifcA contains: port y, ifcB, port z
+
+In a concatenation using ifcA (eg. { ifcA, t, 2'b01 }) the output will
+be equivalent to:
+{ ifcA_y, ifcA_ifcB_x, ifcA_z, t, 2'b01 }
+
+Same goes for signal groups with one exception:
+
+<does not go in the spec - internal note only>
+
+Signal groups have the generate_individual_rtl_signals(on|off) option.
+Default is on, but if a user wants to generate a single signal from
+the signal group and uses that signal group in a concatenation, the
+Adapter will genearate only one signal and that signal will be used in 
+the concat.
+
+Checks needed:
+width checks: need to check if the sum of the widths of the
+concatenated signals/ports/elements or containers(ifc/signal groups)
+matches the width of the other connection endpoint or asignee,
+else a warning needs to be printed (it is not an error because this
+will still work but it will result in truncation of the output)
+
+</does not go in the spec - internal note only>
+
+Where can concatenation be used:
+- assignment:         x = {a,b,c} or {a,b,c} = x; (LHS and RHS)
+
+- connect statement:  x.connect({a,b,c}); 
+This is NOT legal: {a,b,c}.connect(x);
+
+- formal to actual:   (.x({a,b,c})); (RHS only) 
+
+
+=== Replication operator ===
+(also known as multi concat in CSLOm/CDOm terminology)
+Syntax: 
+replication := { constant_expression concatenation }
+
+The constant_expression is a constant numeric_expression (eg: number,
+parameter) and has to have a positive, non-zero, non-z, non-x value.
+Replication is a joining together of as many concatenations as gievn
+by the constant_expression value.
+
+Replications can be used in:
+- assignment:         x = {2{a}};  (only RHS)
+This is NOT legal {2{a}} = x;
+
+- connect statement:  x.connect({2{a,b,c}}); 
+This is NOT legal: {2{a,b,c}}.connect(x)
+
+- formal to actual:   (.x({4{a,b,c}})); (RHS only) 
+
+As a generale rule:
+Replications shall NOT be in expressions on the LHS of the assignment
+nor connected to output or inout ports
+
+
+2. Parameters
+Location: To be added in Interconnect chapter (lang_manuals)
+
+Syntax for declaration:
+csl_parameter paramter_definition_list;
+parameter_definition_list = identifier( numeric_expression [,width_expression ]);
+
+Example:
+csl_parameter x(1);  
+csl_parameter y(2'b1);
+csl_parameter z(2,5); //width is set to 5 bit (5'b00010)
+
+Parameters can be declared in:
+- units
+- interfaces
+- signal groups
+- register class
+- register file class
+- fifo class
+- memory class
+
+<does not go in the spec - internal note only>
+
+Note for the above: by adding the built in classes as legal containers
+of csl parameter declaration, the description for each of these
+containers have to be updated in their appropriate chapter. Thus, it
+should be changed that these classes don't accept anything to be
+declared in their scope to only parameters can be declared in their scope
+
+(Even after adding built in classes, We can still extend this to all
+csl classes - eg. memory map, isa etc)
+
+</does not go in the spec - internal note only>
+
+Parameters can have a width (specified by the width_expression). The
+radix and signed type is specified with the assigned value.
+- A parameter declaration with no width shall default to the width of
+the final value assigned to the parameter, after all value overrides
+have been applied
+- A parameter with a width specification shall be the width of the
+parameter declaration and shall not be affected by value overrides.
+- A parameter with no width specification and for which the final
+values assigned to it is unsized, shall have an implied width of 32
+bit.
+eg. csl_parameter x(3);  //x is 32 bit
+If the values is sized, then the parameter width is given by the specified width:
+eg. csl_parameter x(4'd3); //x is 4 bit
+
+Syntax for overriding parameter values:
+type_instantiation := type #(list_of_parameters_override_values) instance_name instantiation_options;
+list_of_paramters_override_values := formal_to actual_override | ordered_override
+formal_to_actual_override := .parameter_identifier( numeric_expression)
+ordered_override := numeric_expression (, numeric_expression)+
+
+Example:
+Assuming we have ONE parameter defined in class definition for type a:
+a #(4) a0(.x(y),.z(t)); 
+//overrides the first parameter in instance a0 of type a with value 4
+
+Assuming we have THREE parameters defined in class definition for type b:
+b #(4,3,2) b0;
+//overrides all 3 parameters in instance b0 of type b with values 4,3
+and 2 respectively
+
+Assuming we have FIVE parameters defined in class definition for type b:
+b #(4,3,2) b0;
+//overrides the first 3 parameters in instance b0 of type b with values 4,3
+and 2 respectively and leaves the remaing 2 with their declared
+values.
+
+The difference between formal to actual override and ordered override
+ids that in the formal to actual override the override values can be
+given in any order since they are always grouped with their targeted
+parameter identifier, whereas in order override the override values
+have to be specified in the same order the parameters have been
+declared.
+
+Eg.
+If there are 3 parameters in a unit: m,n,p (declared in this order)
+and we want to override x and z with values 7 and 8 this is how it would look like for each type
+of override:
+
+formal to actual override:
+a #(.p(8),.m(7)) a0(.x(y),.z(t)); //notice how the order is not important
+
+ordered override:
+a #(7,,8) a0(.x(y),.z(t)); //order is the same as the order of
+declaration of parameters + the skipped parameter is specified with an
+extra comma
+
+
+Also a method is available for overriding a parameter and is invoked according to the syntax:
+instance_name.override_parameter(parameter_name, numeric_expression);
+
+parameter_name is the identifier of the csl parameter defined in the
+instantiated type and numeric_expression is the new value assigned to
+that parameter
+
+
+3. Prefixes and suffixes (and NO prefixes)
+Location: To be added in Language chapter (lang_manuals)
+
+<does not go in the spec - internal note only>
+
+Note: I propose to deal with prefixing/suffixing for interfaces and
+signal groups at this point and leave the others for later because
+interface and sg instances are a special case (compared to
+units/registers etc).
+
+</does not go in the spec - internal note only>
+
+<future if above applies>
+
+Objects contained in CSL classes may be prefixed/suffixed with a user
+defined string. This is set by calling the set_prefix/set_suffix
+methods inside the class constructor.
+
+</future if above applies>
+
+At this point there are 2 CSL classes that supporting prefixing and
+suffixing in the generated code: interfaces and signal groups. For
+both types there is also default automatic prefixing activated.
+The default prefix is the instantiated container object's name
+prepended to the contained object's name.
+
+Eg: If an interface ifc contains a port x and the interface is
+instantiated by the name ifc0, the generated port name will be:
+ifc0x
+
+<does not go in the spec - internal note only>
+Note there is no more underscore in the prefixing
+</does not go in the spec - internal note only>
+
+Syntax for set_prefix() method:
+[ifc/sg_instance_name.]set_prefix("string");
+
+Note that set_prefix() method can be called on both inside the class
+constructor and on the instance name due to the special nature of the
+interface and signal group instances.
+
+Once a prefix is set, it will override the default prefix set by the
+compiler. Thus in the example given above:If an interface ifc contains 
+a port x and the interface is instantiated by the name ifc0 and:
+- we call ifc0.set_prefix("ixx_") the generated code will be ixx_x
+- we call set_prefix("ixx_") in the interface constructor the
+generated code will be ixx_x on all instances of that interface unless
+a set_prefix() method called on an instance does not override this prefix.
+
+No prefix situation:
+Sometimes it may be required that there is no prefix in the generated
+code. There are two ways to accomplish this using the following
+syntax:
+[ifc/sg_instance_name.]set_prefix("");
+[ifc/sg_instance_name.]no_prefix();
+
+If a port (x) belongs to an interface (ifc) in a unit the
+output name for the port will be ifcx
+With no_prefix()/set_prefix("") on the ouput name for port x should be x.
+Hierarchical interfaces:
+Interfaces can be hierarchical. Example: ifc1_.ifc2_.ifc3_.x (ifc1_ifc2_ifc3_x)
+If ifc3 has no_prefix()/set_prefix("") on, 
+than the output for port x should look like: ifc1_ifc2_x
+If ifc2 has no_prefix()/set_prefix("") on, 
+than the output for port x should look like: ifc1_ifc3_x
+Checks required:
+when using no_prefix()/set_prefix("") on one interface, it's possible to have name
+conflicts with  objects from the parent scope.
+Example:
+ifc1_.x
+ifc1_.ifc2_.x
+If ifc2 has no_prefix()/set_prefix("") on, then the output would contain two
+variables with the same name:
+ifc1_x
+ifc1_x
+So, when no_prefix()/set_prefix("") is used it should be checked if 
+any object from the current scope has identical name with objects from the parent scope. 
+
+Syntax for set_suffix() method:
+[ifc/sg_instance_name.]set_suffix("string");
+
+Just like prefixing, objects can be suffixed with a user defined
+string. Unlike prefixes however there is no default prefixing done by
+the compiler.
+
+Also, if the suffixing method is called as in:
+set_suffix("")
+A warning will be printed because the prefix supplied is null and
+nothing will happen (redundant command). 
+
+4. Pattern generator 
+Location: To be added in Language chapter (lang_manuals)
+
+The pattern generator is a functionality implemented at preprocessor
+level and it's used to expand user code into multiple lines of code
+according to a specification syntax. Eg:
+iob  iob[[0---2]] (.in(x\1\));
+
+expands into:
+
+iob  iob0 (.in(x0));
+iob  iob1 (.in(x1));
+iob  iob2 (.in(x2));
+
+
+The pattern generator can modify one line at a time or an entire
+area of code. Eg:
+
+csl_register reg[[2---4]]{
+ reg\1\(){
+   set_type(register);
+   set_width(\1\);
+ }
+};
+
+
+expands into:
+
+csl_register reg2{
+ reg2(){
+   set_type(register);
+   set_width(2);
+ }
+};
+
+csl_register reg3{
+ reg3(){
+   set_type(register);
+   set_width(3);
+ }
+};
+
+csl_register reg4{
+ reg4(){
+   set_type(register);
+   set_width(4);
+ }
+};
+
+Syntax:
+these are the specifiers for the pattern generator:
+
+
+
+[[ pattern_specifier ]]
+
+this generates a set of values according to the type of the pattern 
+specifier. The type of the pattern specifier can be:
+ - range_pattern: This can be a numeric range (eg. 0---9 generates 0
+ to 9) or a character range (eg. a---z generates a to z).
+ - list_pattern: this can be a selection (eg. a,m,z  will generate
+ a, m and z)
+
+
+The pattern specifier creates a backreference that can be called later
+in the code. Thus, the first pattern specifier creates backreference
+1, the second creates backreference 2 and so on.. the backreferences
+can be later called using a specific syntax.
+
+
+Note for Syntax specifications below: < > are user variable delimiters
+and are not part of the pattern generator syntax
+
+
+
+backreference_number
+Syntax: \<backreference_number>\
+
+Eg. \1\ 
+this will insert generated code according to pattern specifier linked
+to backreference 1 as in:
+
+-with range pattern
+iob  iob[[0---2]] (.in(x\1\));
+which expands into:
+iob  iob0 (.in(x0));
+iob  iob1 (.in(x1));
+iob  iob2 (.in(x2));
+
+-with list_pattern
+abc_[[a,c,e,g]] = b_\1\;
+generates
+abc_a = b_a;
+abc_c = b_c;
+abc_e = b_e;
+abc_g = b_g;
+
+
+
+backreference_number with increment amount
+Syntax: \<backreference_number>i<inc_amount>\
+
+Eg. \1i4\
+this will insert generated code according to pattern specifier linked
+to backreference 1 incremented at each iteration with a value of 4
+
+abc[[0----3]] = xyz\1i4\;
+generates
+abc0 = xyz0;
+abc1 = xyz4;
+abc2 = xyz8;
+abc3 = xyz12;
+
+Note: this does not work for ASCII character ranges in pattern generator
+
+
+
+reversed backreference_number
+Syntax: \<back_reference_number>r\
+
+Eg. \1r\
+counts backwards from the end of the range or list to the beginning of
+the range or list
+-with range pattern
+abc[[0----3]] = xyz\1r\;
+generates
+abc0 = xyz3;
+abc1 = xyz2;
+abc2 = xyz1;
+abc3 = xyz0;
+
+-with list pattern
+abc_[[a,c,e,g]] = b_\1r\;
+generates
+abc_a = b_g;
+abc_c = b_e
+abc_e = b_c;
+abc_g = b_a;
+
+<does not go in the spec - internal note only>
+
+add \1ri4\ combination as valid ?
+
+</does not go in the spec - internal note only>
+
+
+
+(?#ignore_sequence)
+Everything between the (?# and ) is the ignore sequence. The pattern
+generator will not affect the ignore sequence, leaving it as it is.
+Eg:
+iob  iob[[(a---d($#_user)) , (e---g($#_driver))]][[0---9]](.in(x\1\\2\));
+
+
+5. Connection with actual name
+When using the connect method across unit scopes, the autorouter
+infers intermediate connectivity elements (if a identical connectivity
+element cannot be located) with generated names.
+
+The user can 'direct' a connection through selected connectivity
+elements by using the connect with actual name option. This is similar
+to connect method only that it specifies an additional connection
+element (the relaying connectivity element) as in the syntax:
+
+connect_object_hid.connect(connect_object_hid, relay_object_expression);
+
+the relay_object can be a object of the same type as the objects
+involved in the connection or an width equivalent object
+(eg. interface that has the sum of the widths of all ports equal to
+the width of a port as in portz.connect(ifcx,ifcy)) or can be a part
+select on a port larger than the connect command scope as in:
+portz.connect(ifcx, porty[31:16]);
+
+
+
+
+
+6. Clock domain 
+All connectivity elements can be tied with a clock domain. A clock
+domain is physically determined by a clock generator and all devices
+driven by that clock generator.
+The clock/clocks enter a design through the top unit and propagate to
+all instances conatined. A port carries a clock signal if it has the
+attribute clock set to it by the set_attr(clock) method.
+
+Connectivity elements like:
+ - ports
+ - signals
+ - signal groups
+ - interfaces
+can be associated with a clock name (this association does not
+imply a connection at this point - it only specifies the clock domain
+a connectivity element belongs to so that it could be used later:
+eg. in the register_ios() method, when a flipflop is inferred to
+register a port it will be driven by the clock associated with that
+port)
+
+Also, units can be associated with clocks, however this will not work
+if such a unit contains elements that are driven by more than one
+clock. It is useful however if a unit and all it's components are
+driven by one clock - in this case the set_clock command applies to
+all connectivity elements from that unit
+
+Synatx:
+[object_name.]set_clock(clock_name)
+
+Can be called on:
+ - ports
+ - signals
+ - signal groups
+ - interfaces
+ -units
+
+
+7. Register IO option
+This command applies to units and allows for inputs/outputs to be
+registerd with flip flops:
+
+Syntax:
+[(interface_name.)+]register_ios(input|output [,
+.reset[_](<optional_reset>), reset_value ][,.en(<optional_enable>) ]);
+
+The command can be called on all ports/interfaces of a unit or it can
+specify a certain interface and it will apply only to that particular
+interface and contained interfaces (if any).
+
+Only input and output ports will be affected by this command
+inout type will not be registered.
+
+Note: In order for this to work all connectivity elements involved
+need to have a clock associated to them with the set_clock() method
+(because each port in the unit's interface can be clocked by a different clock line)
+otherwise this will result in an error.
+
+<does not go in the spec - internal note only>
+
+In the adapter this is going to generate always blocks
+for the unit with the selected ports according to the specified
+direction (input/output)
+
+always @(posedge clk) begin
+   <local_signal> <= <port_name>;
+end
+
+optional reset (low true):
+always @(posedge clk or negedge <optional_reset>) begin
+  if(~<optional_reset>) begin
+    <local_signal> <= <reset_value>;
+  end
+  else begin
+    <local_signal> <= <port_name>;
+  end
+  
+end
+
+optional enable and reset (high true reset):
+always @(posedge clk or posedge <optional_reset>) begin
+  if(<optional_reset>) begin
+   <local_signal> <= <reset_value>;
+  end
+  else if(<optional_enable>) begin
+   <local_signal> <= <port_name>;
+  end
+end
+
+</does not go in the spec - internal note only>
+
+8. Do not generate RTL
+Location: To be added in Interconnect chapter (lang_manuals)
+
+This applies to CSL Units
+
+Syntax
+do_not_gen_rtl()
+
+This method specifies not to generate the RTL code for the unit and the sub
+hierarchy below the unit.
+This unit is used when there is existing RTL code (IP or legacy) from a
+customer and it's required to use that code by instantiating it in the
+design without generating an RTL unit from the CSL design.
+
+<does not go in the spec - internal note only>
+
+For this to work properly, additional cli options is required:
+--include_vf <path_to_vf_file>
+--include_verilog <path_to_verilog_v_file>
+
+The user specifies the path to the v/vf file that contains the required
+RTL code for the unit not generated
+
+</does not go in the spec - internal note only>
+
+9. Generate unique RTL modules
+Location: To be added in Interconnect chapter (lang_manuals)
+
+This applies to CSL Units
+
+Syntax
+gen_unique_rtl_modules()
+
+This method is used to specify that for each instance of the unit for
+which it is called there should be a unique RTL module declaration
+generated. Also the instantiation will be updated with the unit's new
+name. This is done by sufixing the unit name in the declaration with a
+number that is incremented for each instantiation.
+
+Eg.
+csl_unit a{
+ a(){
+ gen_unique_rtl_modules();
+ }
+};
+
+csl_unit top{
+ a a0;
+ a a1;
+ top(){}
+};
+
+will generate:
+
+module a0();
+endmodule
+
+module a1();
+endmodule
+
+module top();
+ 
+ a0 a0();
+ a1 a1();
+
+endmodule

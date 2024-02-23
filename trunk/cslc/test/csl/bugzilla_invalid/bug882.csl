@@ -1,0 +1,14 @@
+csl_field field1 {
+  csl_field field_obj1(1);
+  field1() {
+    set_width(1);
+  }
+};
+
+csl_field field2 {
+  field1 field_inst1;
+  field2() {
+    set_width(1);
+    field_inst1.field_obj1.add_logic(wr_en);
+  }
+};

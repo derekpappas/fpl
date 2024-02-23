@@ -1,0 +1,77 @@
+//****************************************
+// Memory Map Page Object
+//****************************************
+
+memory_map_page memory_map_page_name;
+//object that holds a list of addresses with associated symbols, and references to addressable objects
+
+memory_map_page memory_map_page_name(memory_map_page_name1);
+//copies the memory_map_page_name1 object into the memory_map_page_name
+
+memory_map_page memory_map_page_name(lower_bound, upper_bound[, auto_increment_amount]);
+//specify the range of addresses that the page can contain
+//the auto_increment_amount defaults to 32
+
+memory_map_page_name.add_address_range(lower_bound, upper_bound);
+//adds the address range to the memory_map_page_name. 
+//this is used so that the user can add only the legal values
+//the ranges that do not exist in the memory_map_page_name do not exist in the memory_map and will be considered illegal
+
+memory_map_page_name.set_increment_amount(numeric_expression);
+//sets the auto increment amount
+//the auto_increment_amount defaults to 32
+
+memory_map_page_name.set_next_address(numeric_expression);
+//overrides the current free address to the parameter value
+
+memory_map_page_name.add_reserved_address_range(lower_bound, upper_bound);
+//specifiy a reserved address range for later use
+//if an addressable_object will be added to the specified range the cslc will give an error
+//if an addressable_object is already added the the specified range the cslc will give an error
+
+memory_map_page_name.add(addressable_object, symbol[,base_address]);
+//adds a new object the the memory_map_page_name. note that if the addressable_object has a address range(ex. csl_register_file) the amount that the address
+//if the base_address is set the new addressable_object/symbol will be added starting at the base_address and not at the current page address
+//if the addressable_object has an address range bigger than the current accesible range the cslc will search for a new position where it can add the addressable_object
+//if no accesible range in which the addressable_object can fit than the cslc will give an error
+
+memory_map_page_name.add(memory_map_page_name1);
+//adds the symbols in the memory_map_page_name1 into the memory_map_page_name if there are enough free addresses
+//if not the cslc will issue and error
+
+//****************************************
+// Memory Map Object
+//****************************************
+memory_map memory_map_name { 
+  (memory_map_page instantiations)+
+  memory_map_page() {
+    (set/get/add commands)*;
+  }
+};
+//memory_map object definition
+
+memory_map.set_type(map_type); <- type is flat|virtual|hierarchical
+
++--------------------------------+---------------+---------------+-----------------------------------+
+|MemoryMapType                   | No of pages   | Local address | Global address                    |
++--------------------------------+---------------+---------------+-----------------------------------+
+|Flat                            | 1             | low - up      | low - up                          |
++--------------------------------+---------------+---------------+-----------------------------------+
+|Virtual With Page No in Address | n             | low - up      | (n<<amount)|low - (n<<amount)|up  |
++--------------------------------+---------------+---------------+-----------------------------------+
+|Virtual With Base Address       | n             | low - up      | base_addr + low - base_addr + up  |
++--------------------------------+---------------+---------------+-----------------------------------+
+|Hierarchical                    | n             | low - up      | low - up                          |
++--------------------------------+---------------+---------------+-----------------------------------+
+                                                                                         ;
+memory_map_name.set_unit_name(memory_map_page_name, unit_name);
+//sets the name of the unit for every page in a hierarchical memory_map
+//if a page in the hierarchical memory_map does not have a associated unit_name then the cslc will issue a error
+
+NOT memory_map_name.set_page_no(memory_map_page_name, numeric_expression);
+//sets the name of the unit for every page in a virtual memory_map with page no in address
+//if a page in the virtual memory_map does not have a associated page no then the cslc will issue a error
+
+memory_map_name.set_base_address(memory_map_page_name, numeric_expression);
+//sets the name of the unit for every page in a virtual memory_map with base address
+//if a page in the virtual memory_map does not have a associated base_addr then the cslc will issue a error

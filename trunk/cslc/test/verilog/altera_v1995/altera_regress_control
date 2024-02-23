@@ -1,0 +1,15 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+is_valid          = 1       #testing a current valid testsuite
+
+#exceptions:
+dsp_mult_inst12.v           skip  "invalid instantiation"
+fft_small_inst.v            skip  "invalid instantiation"
+four_mult_two_add_inst.v    skip  "invalid instantiation"
+mem16x18_inst.v             skip  "invalid instantiation"
+top_inst.v                  skip  "invalid instantiation"
+fir321_inst.v               skip  "invalid instantiation"
+

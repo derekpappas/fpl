@@ -1,0 +1,116 @@
+csl_enum yb {
+	ap = 42,
+	pg = 21,
+	nw = 95,
+	uc = 66,
+	mt = 77,
+	jm = 52,
+	fu = 8,
+	dq = 16,
+	rw = 75,
+	yw = 6,
+	en = 28,
+	ri = 36,
+	tb = 62,
+	oa = 51
+};
+csl_enum iq {
+	bi,
+	iq,
+	rv,
+	qm,
+	bf,
+	gk,
+	rn,
+	hw,
+	gy,
+	tg
+};
+csl_enum vb {
+	vo,
+	lq,
+	rc,
+	qb,
+	st
+};
+csl_isa_instruction_format js{
+    js( ){
+     set_width( 9);
+     generate_decoder( ko);
+  }
+}
+;
+csl_isa xf{
+    xf( ){
+     set_decoder_name( "oe");
+     set_decoder_out_name_suffix( "bq");
+     generate_decoder( hm);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo cs{
+   cs( ){
+     add_logic( width_extend, 5);
+     add_logic( string_through, 6);
+     add_logic( wr_release);
+     add_logic( flow);
+  }
+}
+;
+csl_memory_map_page py{
+    py( ){
+     add_address_range( 9, 4);
+     set_access_rights( access_read_write, none);
+     add_reserved_address_range( 9, 6);
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page pq{
+    pq( ){
+     add_address_range( 0, 9);
+     set_next_address( 5);
+     get_next_address( );
+     add( py);
+     set_data_word_width( 4);
+     get_data_word_wodth( );
+     set_endianess( big_endianlittle_endian);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map mp{
+    mp( ){
+     auto_gen_memory_map( );
+     set_top_unit( hmkonrsb);
+pq.     set_type( hierach);
+pq.set_access_rights_enum( pypq); 
+     set_data_word_width( 9);
+     get_data_word_width( );
+     set_suffix( wv);
+  }
+}
+;
+csl_register vi{
+    vi( ){
+     set_type( ATOM);
+     add_logic( serial_input);
+     add_logic( serial_output);
+     add_logic( rd_en);
+     clear_value( 3);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register ll{
+    ll( ){
+     set_width( 9);
+     get_width( );
+     create_rtl_module( );
+  }
+}
+;

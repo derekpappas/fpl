@@ -1,0 +1,113 @@
+csl_enum nt {
+	td,
+	yo
+};
+csl_enum jf {
+	yh,
+	lj,
+	wp,
+	di,
+	rb
+};
+csl_enum tn {
+	rs,
+	hl,
+	es,
+	ve,
+	rw,
+	hg,
+	sb,
+	lr,
+	rv,
+	ar
+};
+csl_isa_instruction_format gb{
+    gb( ){
+     set_width( 4);
+     generate_decoder( jx);
+  }
+}
+;
+csl_isa qe{
+    qe( ){
+     set_decoder_name( "ms");
+     set_decoder_out_name_prefix( "bs");
+     set_decoder_out_name_suffix( "ho");
+     generate_decoder( jx);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo qb{
+   qb( ){
+     set_physical_implementation( FFA);
+     add_logic( wr_hold, 7);
+  }
+}
+;
+csl_memory_map_page ya{
+    ya( ){
+     get_address_increment( );
+     set_next_address( 7);
+  }
+}
+;
+csl_memory_map_page hs{
+    hs( ){
+     add_address_range( 3, 2);
+     get_next_address( );
+     set_data_word_width( 1);
+     get_aligment( );
+     set_endianess( big_endian);
+  }
+}
+;
+csl_memory_map_page ew{
+  ya ta;
+  hs yq;
+  ya gw;
+  hs nt;
+    ew( ){
+     add_address_range( 3, 3);
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_read, access_write);
+     add( qb, "dj", 0);
+     set_data_word_width( 5);
+     get_data_word_wodth( );
+     set_aligment( 0);
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map mi{
+  ya mc;
+  ya kc;
+  ew mp;
+  ya yo;
+    mi( ){
+ew.add_to_memory_map( none); 
+     set_type( hierach);
+ew.set_access_rights_enum( ew); 
+  }
+}
+;
+csl_register vx{
+    vx( ){
+     index_data_pair( mi);
+     add_logic( wr_en);
+     clear_value( 1);
+     set_lock_enable_bit( 4);
+     add_logic( gray_output);
+  }
+}
+;
+csl_register iv{
+    iv( ){
+     set_depth( 2);
+     get_depth( );
+     add_logic( read_valid);
+     set_const_value( 3);
+  }
+}
+;

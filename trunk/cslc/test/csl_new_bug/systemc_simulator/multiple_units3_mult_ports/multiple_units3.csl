@@ -1,0 +1,75 @@
+
+// testbench is assciated with another unit than top unit
+
+
+csl_unit a {
+  csl_port in1(input,3);
+  csl_port in2(input);
+  csl_port in3(input,6);
+  csl_port out(output,3);
+  csl_port clk(input);
+  a () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit b{
+  csl_port in1(input,3);
+  csl_port in2(input);
+  csl_port in3(input,6);
+  csl_port out(output,3);
+  csl_port clk(input);
+  a a0(.in1(in1),.in2(in2),.in3(in3),.out(out),.clk(clk));
+  b () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit c{
+  csl_port in1(input,3);
+  csl_port in2(input);
+  csl_port in3(input,6);
+  csl_port out(output,3);
+  csl_port clk(input);
+  b b0(.in1(in1),.in2(in2),.in3(in3),.out(out),.clk(clk));
+  c () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit top{
+  csl_port in1(input,3);
+  csl_port in2(input);
+  csl_port in3(input,6);
+  csl_port out1(output,3);
+  csl_port out2(output,3);
+  csl_port clk(input);
+  c c0(.in1(in1),.in2(in2),.in3(in3),.out(out1),.clk(clk));
+  c c1(.in1(in1),.in2(in2),.in3(in3),.out(out2),.clk(clk));
+  top () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_vector stim {
+  stim () {
+    set_unit_name(top);
+    set_direction(input);
+  }
+};
+
+csl_vector exp {
+  exp () {
+    set_unit_name(top);
+    set_direction(output);
+  }
+};
+
+csl_testbench tb {
+  top top0(.clk(clk));
+  csl_signal clk(reg);
+  tb () {
+    clk.set_attr(clock);
+    add_logic(clock,clk,20,ns);
+  }
+};

@@ -1,0 +1,6 @@
+csl_memory_map_page mmp1{
+  mmp1(){
+     add_address_range(2048, 0);
+     add_reserved_address_range(1024, 2048);//line 30
+  }
+};

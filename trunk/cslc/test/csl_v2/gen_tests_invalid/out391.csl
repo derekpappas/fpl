@@ -1,0 +1,126 @@
+csl_enum hx {
+	rg = 17,
+	ve = 52,
+	yk = 63,
+	mg = 73,
+	ph = 32,
+	ag = 33,
+	ek = 76,
+	gn = 17,
+	to = 6
+};
+csl_enum ji {
+	pp,
+	ve,
+	ea,
+	fu,
+	cm,
+	st,
+	sq,
+	at,
+	cm
+};
+csl_isa_instruction_format jb{
+    jb( ){
+     set_width( 4);
+     generate_decoder( kw);
+  }
+}
+;
+csl_isa sh{
+    sh( ){
+     set_decoder_name( "yx");
+     set_decoder_out_name_suffix( "wo");
+  }
+}
+;
+csl_fifo mq{
+   mq( ){
+     add_logic( js);
+     add_logic( almost_full, 8);
+  }
+}
+;
+csl_memory_map_page wf{
+    wf( ){
+     add_address_range( 5, 6);
+     set_data_word_width( 1);
+     get_data_word_wodth( );
+     set_aligment( 8);
+     set_endianess( big_endian);
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page gn{
+    gn( ){
+     add_address_range( 3, 0);
+     get_address_increment( );
+     set_next_address( 1);
+     get_upper_bound( );
+     set_endianess( big_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page qi{
+  wf jh;
+  gn qt;
+  wf dw;
+  gn kq;
+    qi( ){
+     get_address_increment( );
+     set_next_address( 0);
+     get_upper_bound( );
+     set_data_word_width( 2);
+     get_aligment( );
+     get_endianess( );
+  }
+}
+;
+csl_memory_map th{
+  wf hl;
+  gn ry;
+  wf py;
+  gn xm;
+  qi su;
+    th( ){
+     auto_gen_memory_map( );
+     set_top_unit( tk);
+     set_type( flat);
+wfgn.set_access_rights_enum( wf); 
+     set_suffix( kj);
+     get_suffix( );
+  }
+}
+;
+csl_register kd{
+    kd( ){
+     set_type( INT);
+     set_width( 2);
+     set_address( th, 5);
+     set_atribute( shadow);
+     constant( 9);
+     add_logic( serial_input);
+     init_value( 9);
+     set_value( 1);
+     reset_value( 7);
+     set_count_direction( 8);
+     set_end_value( 8);
+     stop_at_end_value( );
+     add_logic( cnt_dir_signal);
+     add_logic( inc_signal);
+  }
+}
+;
+csl_register ds{
+    ds( ){
+     set_depth( 3);
+     get_depth( );
+     create_rtl_module( );
+     set_const_value( 9);
+     add_logic( bypass);
+  }
+}
+;

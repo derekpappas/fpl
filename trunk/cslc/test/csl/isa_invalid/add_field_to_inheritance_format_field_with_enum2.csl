@@ -1,0 +1,34 @@
+//illegal: can't add a new field over another that is inheritanced
+//danielt
+//16 june 2007
+
+
+csl_enum e_enum{
+	a,
+	b,	
+	c
+};
+
+csl_isa_field f_field(2,e_enum);
+csl_isa_field f_field2(2);
+
+csl_isa_element format{
+    f_field field_i1;
+    f_field2 field_i2;
+    format(){
+      set_type(root_format);
+       	set_width(8);
+       	set_position(field_i1, 6);
+       	set_next(field_i1, field_i2);
+    }
+};
+
+csl_isa_element format_ext : format{
+    f_field field_i3;
+    format_ext(){
+	set_type(instr_format);
+	set_position(field_i3, 6); 
+		// can't add a new field over the inheritanced one
+	}		
+};
+

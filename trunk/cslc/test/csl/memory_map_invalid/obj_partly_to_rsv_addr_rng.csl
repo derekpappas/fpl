@@ -1,0 +1,29 @@
+//oanab
+//27 oct 2007
+//fifo is partly added to a reserved address range
+
+csl_fifo ff{
+  ff(){
+    set_depth(16);
+    set_width(4);
+  }
+};
+
+csl_unit u{
+  ff ff;
+  u(){}
+};
+
+csl_memory_map_page mpg{
+  mpg(){
+    add_address_range(7,128);
+    add_reserved_address_range(7,26);
+    add(u.ff,"ff1",25); // the base address should be outside the reserved addr 
+  }
+};
+
+csl_memory_map mmp{
+  mmp(){
+    set_type(hierarchical);
+  }
+};

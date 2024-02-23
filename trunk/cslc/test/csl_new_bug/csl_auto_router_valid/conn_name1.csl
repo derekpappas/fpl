@@ -1,0 +1,26 @@
+//oanab
+//12 june 2008
+
+csl_unit a {
+  csl_port p1(input),p2(output);
+  a () {}
+};
+
+csl_unit b {
+  csl_signal ss;
+  a a0(.p2(ss));
+  csl_port y(input);
+  b () {}
+};
+
+csl_unit c {
+  b b0;
+  b b1(.y(s));
+  csl_port x(input);
+  csl_signal s;
+  c () {
+      b0.y.connect_by_name(x);
+      s.connect_by_pattern(a0.p1);
+  }
+};
+

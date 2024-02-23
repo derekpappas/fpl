@@ -1,0 +1,26 @@
+csl_register_file RF{
+RF(){
+ set_width(32);
+ set_depth(4);
+ create_rtl_module();
+}
+};
+csl_unit u1{
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(input);                  
+  csl_port p4(input,2);
+  csl_port p5(input,2);
+  csl_port p6(input,2);
+  csl_port p7(input,32);
+  csl_port p8(output,32);
+  csl_port p9(output,32);
+  csl_port p10(input);
+  csl_port p11(input);
+  csl_port p12(input);
+  csl_port p13(output);
+  RF r1(.reset(p1),.clear(p2),.clock(p3),.wr_addr(p4),.rd_addr0(p5),.rd_addr1(p6),.data_in(p7),.data_out0(p8),.data_out1(p9),.wr_en(p10),.rd_en0(p11),.rd_en1(p12),.valid(p13));
+  u1(){
+  }
+};    
+  

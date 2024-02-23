@@ -1,0 +1,77 @@
+AndreiB
+
+reffered documents:
+.fm file is /docs/manuals/production/csl_files/csl_register.fm
+
+document notes:
+- Chapter outline: keep CSL testbench language summary or change to CSL testbench commands summary
+- 1.2 C++ Simulator
+- 1.3.4 
+compare the state of the C++ passed ???
+- Figure 1.9 has no name; also: what does 'v' stand for? and what is the middle block's name ?
+- Figure 1.10 under dwa: block has no name, also the fourth signal (out) is unamed
+- Figures 1.12 and 1.13 have no name
+- under figure 1.13 what does the code section represent ?
+- Figure 1.15: on the CSL interconnect block, the first (top) and the 3rd (bottom) signals are unamed
+- under Figure 1.15 should "Vector concepts" paragraph be turned into heading3 
+- Figure 1.17 has no name
+- Figures 1.19, 1.20, 1.21 and 1.22 have no name
+- under Figure 1.20: "M2 depends on M1. M3 depends on M2" - does it refer to the figure above ?
+- Figure 1.21 "sim out pnt" - or is it sim output? Also it is not clear how the comparison between the simulator output and the golden image is being made.
+- 1.3.6 sub-chapter has no name
+- Figures 1.23, 1.24, 1.25, 1.26 and 1.27 have no name
+- under Figure 1.25 is a list that doesn't make very clear reference to what it is about. Also there are some ?-marks and a code section below is not clear
+- below Figure 1.26 is there a code section, and if so it seems incomplete (also, what is "No shading" about?)
+- on Figure 1.27 what do a_b.tav, b_c.tav represent ? also what are the other signals and what is the name of the final block in the figure (the last one in the right)
+- below Figure 1.27 this sentence "The DUT (Design under Test)  is tested in the testbench expected" seems unclear. There is no reference in the text about the verilog code below. Also, after the verilog code section there is a paragraph which is unclear (?-marks and unfinished sentences). The code section that follows this paragraph is incomplete
+- at 1.3.7 In the sentence "Use pins arguments to read in the <dir>/<test>" what do pins refer to ? Also, should it be outlined that <dir>/<test> refers to a path?
+- Figure 1.30 (sub-chapter 1.3.8) has no name: is it compare logic? and is thus connected to 1.3.8?
+- 1.3.9 sub-chapter, fisrt sentence: "Figure 4.4" is it actually Figure 1.31 and if so add it as a crossreference ?
+Also, Figure 1.31 has no name
+- 1.3.11 the sentence "The temporal interface testbench injects bubbles into stimulus vectors [...]" is unclear - what is bubbles refer to?. Also, I don't understand the following paragraph: "The temporal interface testbench “randomly“ asserts the stall signals to the DUT to stress the output. Stalls can be completely shut off to test the max mem through ?? put of the DUT".
+- Figure 1.32 has no name
+- Figure 1.33 upper left: two blocks have no name
+- Figure 1.34 has no name and also the middle block in the figure is unnamed
+- Figure 1.35 has no name, also the code section+text beneath it is unclear
+- Figure 1.36 has no name and the code section under it is not clear what it's about. 
+Also, in the sentence: "If  there is a bit string being loaded into a register from a testbench then there should be a length check (bs?, reg) to make sure that the two are equal lenghts" what should replace the ?-mark
+What is the "Dump File" reffering to ? Possibly an output ?
+After the "Dump File" bulleted list there are some references to "CSIM initialisation" which are unclear
+- The text below Figure 1.37 is not very explanatory
+- Figures 1.38 and 1.39 have no name.
+- Why is there a numbered list below Figure 1.39
+- code section below Figure 1.40 is related with the code from the figure ?
+- Figure 1.41 has no name and there are unnamed blocks.
+- Below Figure 1.41 is a bulleted list regarding vector formats. How is this integrated in the context and is it related to the similar bulleted list from section 1.3.1 ?
+- Figure 1.42 has no name and the following paragraph below it is difficult to understand and incomplete:
+	"State elements have to be defined / same in Docs c.model DUT, c.model file, TB             Reader,DUT.  Implementation need  to be able to “backdoor“ load SES in c. model and verilog model.
+CSL Vector 
+Stim/Expect vector generation"
+- Section 1.3.12 It begins with a figure without much explanation. Also the text below the figure is incomplete
+There a bold text "CSL test_state section" followed by a few paragraphs that don't seem to fit in this section. Maybe turn the bold text intro a heading 3 ? Also, at the end of the aforementioned mentioned paragraphs there is some incomplete text starting at "File based comparison" and ending at "[...] captured on the same"
+- 1.5 instruction testbench_name.gen_waves(wave_type); is described as "where wave_type is either fsdb or ..." - is missing the last part. Also I don't know what fsdb is.
+
+In the same section under "CSL architectural state" the sentence "Architectural state memory file suffix." is not very clear in the context.
+
+At instruction vector_name.vector_type(vector_event_type); under description, the following text "The width of the vector memory is equal to the sum of the widths of the signals in the vector" seems not refer to that instruction ?
+
+At instruction testbench_name.clk_phases(int_phi0, int_phi1); under description, the text "The name of the testbench event name is set equal to the event_expression. The event_expression is defined in terms of signals whcih are the output of the DUT or DUT internal signals." seems not to refer to that instruction.
+
+At instruction dut_mem_name.random_pid_init(); under description, I have rephrased the sentence:
+		"Initialize each byte with random generated using the process ID (PID)"
+		to
+		"Initialize each byte with random bits generated using the process ID (PID)"
+
+- 1.6.1 The sentences "A testbench which contains a serial bus which is used to inject and test vectors." and then "The bus transaction generator." are ambiguous.
+- Under "User can select memory initialization file at run time." there are some instructions; however no information is given on the type of code, or explanations of commands
+- Under "Example csl_arch_state spec" a set of csl instructions. However ther is no detailed description of the commands or the context they should be used in.
+- This sentence may be incomplete: "Cslc creates a test module which contains the memory to"
+- Table 1.3 has no name
+- 1.6.1.2 has no title
+- 1.6.2 has no tile
+- Figure 1.47 has unnamed blocks and signals. Figure has no name
+- Figure 1.48 has unnamed blocks. Figure has no name
+- Under "Option object assigns command line file names to" (page 39 in .fm file) I can't understand that block of text.(before Figure 1.49)
+- Figure 1.49 has no title
+
+Figures 1.50 and 1.51 and Table 1.4 have been appended to the document later. Where should they be integrated within the document

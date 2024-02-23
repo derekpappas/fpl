@@ -1,0 +1,14 @@
+//AnamariaH
+//07.03.2008
+
+
+csl_enum enum1{a=0};
+csl_field fd {
+  fd(){
+    set_enum(enum1);}
+};
+
+csl_unit top {
+  fd fd;
+  top(){}
+};

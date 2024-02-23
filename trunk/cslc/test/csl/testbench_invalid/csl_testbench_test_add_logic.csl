@@ -1,0 +1,37 @@
+//8 Oct 2007
+//andreim
+//add_logic(simulation_timeout_counter, numeric_expresion)
+
+csl_unit DUT_a{
+   csl_port clk      ( input );
+   csl_port stim_in_a0 ( input );
+   csl_port stim_in_a1 ( input );
+   csl_port exp_out_a0 ( output );
+   csl_port exp_out_a1 ( output );  
+   DUT_a(){
+     clk.set_attr ( clock );
+   }
+};
+
+csl_vector stim_vec_a{
+   stim_vec_a(){
+      set_unit_name ( DUT_a   );
+      set_direction   ( input   );
+   }
+};
+
+csl_vector exp_vec_a{
+   exp_vec_a(){
+      set_unit_name ( DUT_a );
+      set_direction   ( output );
+   }
+};
+csl_testbench tb{
+  csl_signal clk(reg);
+   DUT_a DUT_a0(.clk(clk));
+   tb(){
+         clk.set_attr ( clock );
+         add_logic ( clock, clk, 2 ,ns );
+         add_logic ( simulation_timeout_counter ,20);
+      }
+};

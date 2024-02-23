@@ -1,0 +1,12 @@
+csl_unit u1{
+  csl_port p1(output,16);
+  u1() {    
+  }
+};
+
+csl_unit top{
+  csl_signal s1(wire, 543095849573);
+  u1 u1(.p1(s1));
+  top(){
+  }
+};

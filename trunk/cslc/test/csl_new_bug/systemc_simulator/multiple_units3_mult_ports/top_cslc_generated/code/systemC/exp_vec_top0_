@@ -1,0 +1,5 @@
+// $var wire    3  aaa  out2 [2:0]  $end
+// $var wire    3  aab  out1 [2:0]  $end
+// VEC ID:  2
+// VEC VERSION:  4
+0_0

@@ -1,0 +1,12 @@
+//Monica
+//15 January 2008
+//invalid --the objects connected are from the same unit
+
+csl_unit test{
+  csl_signal sig1,sig2;
+  csl_port p1(input),p2(output);
+
+  test(){
+    sig1.connect(p1);
+    sig2.connect(p2);
+  }};

@@ -1,0 +1,16 @@
+`ifndef INC_GUARD_ENUM
+`define INC_GUARD_ENUM
+
+`define E_OP_ENUM_CALL 1
+`define E_OP_ENUM_SETHI_BRANCHES 0
+`define E_OP_ENUM_ARITHMETIC 2
+`define E_OP_ENUM_LOGICAL 3
+`define E_OP2_ENUM_ILLTRAP 0
+`define E_OP2_ENUM_BPCC 1
+`define E_OP2_ENUM_BICC 2
+`define E_OP2_ENUM_BPR 3
+`define E_OP2_ENUM_SETHINOP 4
+`define E_OP2_ENUM_FBPFCC 5
+`define E_OP2_ENUM_FBFCC 6
+
+`endif

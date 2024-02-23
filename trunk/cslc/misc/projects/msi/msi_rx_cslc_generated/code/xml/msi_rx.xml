@@ -1,0 +1,123 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="msi_rx">
+<signalgroup name="msf_mtf_fab">
+<signal name="bus80" offset="0" upper="79" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="mdf_msf_fab">
+<signal name="bus80" offset="0" upper="79" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="ssf_mdf_fab">
+<signal name="bus80" offset="0" upper="79" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="sdf_ssf_fab">
+<signal name="bus80" offset="0" upper="79" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="scf_sdf_fab">
+<signal name="bus80" offset="0" upper="79" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="sff_scf_fab">
+<signal name="bus80" offset="0" upper="79" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="if_sff_fab">
+<signal name="bus80" offset="0" upper="79" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="af_if_fab">
+<signal name="bus80" offset="0" upper="79" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="df_af_fab">
+<signal name="bus80" offset="0" upper="79" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="ef_df_fab">
+<signal name="bus80" offset="0" upper="79" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="stf_ef_fab">
+<signal name="bus80" offset="0" upper="79" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="mtf_stf_fab">
+<signal name="bus80" offset="0" upper="79" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="ab_nina_lb">
+<signal name="dummy3" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "nina">
+<instance name="nina">
+<f2a formal = "lb.dummy3" actual = "ab_nina_lb.dummy3" />
+</instance>
+</instantiation>
+<instantiation type = "mfd_trans_cluster">
+<instance name="mfd_trans_cluster">
+<f2a formal = "msf_mtf_fab.bus80" actual = "msf_mtf_fab.bus80" />
+<f2a formal = "mtf_stf_fab.bus80" actual = "mtf_stf_fab.bus80" />
+</instance>
+</instantiation>
+<instantiation type = "sd_flash_cluster">
+<instance name="sd_flash_cluster">
+<f2a formal = "if_sff_fab.bus80" actual = "if_sff_fab.bus80" />
+<f2a formal = "sff_scf_fab.bus80" actual = "sff_scf_fab.bus80" />
+</instance>
+</instantiation>
+<instantiation type = "avalon_fab_cluster">
+<instance name="avalon_fab_cluster">
+<f2a formal = "ab_nina_lb.dummy3" actual = "ab_nina_lb.dummy3" />
+<f2a formal = "af_if_fab.bus80" actual = "af_if_fab.bus80" />
+<f2a formal = "df_af_fab.bus80" actual = "df_af_fab.bus80" />
+</instance>
+</instantiation>
+<instantiation type = "sfd_data_cluster">
+<instance name="sfd_data_cluster">
+<f2a formal = "scf_sdf_fab.bus80" actual = "scf_sdf_fab.bus80" />
+<f2a formal = "sdf_ssf_fab.bus80" actual = "sdf_ssf_fab.bus80" />
+</instance>
+</instantiation>
+<instantiation type = "sfd_trans_cluster">
+<instance name="sfd_trans_cluster">
+<f2a formal = "mtf_stf_fab.bus80" actual = "mtf_stf_fab.bus80" />
+<f2a formal = "stf_ef_fab.bus80" actual = "stf_ef_fab.bus80" />
+</instance>
+</instantiation>
+<instantiation type = "eth_fab_cluster">
+<instance name="eth_fab_cluster">
+<f2a formal = "ef_df_fab.bus80" actual = "ef_df_fab.bus80" />
+<f2a formal = "stf_ef_fab.bus80" actual = "stf_ef_fab.bus80" />
+</instance>
+</instantiation>
+<instantiation type = "spi_cntl_cluster">
+<instance name="spi_cntl_cluster">
+<f2a formal = "scf_sdf_fab.bus80" actual = "scf_sdf_fab.bus80" />
+<f2a formal = "sff_scf_fab.bus80" actual = "sff_scf_fab.bus80" />
+</instance>
+</instantiation>
+<instantiation type = "mfd_data_cluster">
+<instance name="mfd_data_cluster">
+<f2a formal = "mdf_msf_fab.bus80" actual = "mdf_msf_fab.bus80" />
+<f2a formal = "ssf_mdf_fab.bus80" actual = "ssf_mdf_fab.bus80" />
+</instance>
+</instantiation>
+<instantiation type = "mfd_sec_cluster">
+<instance name="mfd_sec_cluster">
+<f2a formal = "mdf_msf_fab.bus80" actual = "mdf_msf_fab.bus80" />
+<f2a formal = "msf_mtf_fab.bus80" actual = "msf_mtf_fab.bus80" />
+</instance>
+</instantiation>
+<instantiation type = "ddr_fab_cluster">
+<instance name="ddr_fab_cluster">
+<f2a formal = "df_af_fab.bus80" actual = "df_af_fab.bus80" />
+<f2a formal = "ef_df_fab.bus80" actual = "ef_df_fab.bus80" />
+</instance>
+</instantiation>
+<instantiation type = "i2c_cluster">
+<instance name="i2c_cluster">
+<f2a formal = "af_if_fab.bus80" actual = "af_if_fab.bus80" />
+<f2a formal = "if_sff_fab.bus80" actual = "if_sff_fab.bus80" />
+</instance>
+</instantiation>
+<instantiation type = "sfd_stig_cluster">
+<instance name="sfd_stig_cluster">
+<f2a formal = "sdf_ssf_fab.bus80" actual = "sdf_ssf_fab.bus80" />
+<f2a formal = "ssf_mdf_fab.bus80" actual = "ssf_mdf_fab.bus80" />
+</instance>
+</instantiation>
+</unit>
+</design>

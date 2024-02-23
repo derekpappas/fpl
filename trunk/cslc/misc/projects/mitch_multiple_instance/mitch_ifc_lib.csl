@@ -1,0 +1,135 @@
+// processed by the pattern generator
+
+
+csl_interface fabric_ifc {
+   csl_port addr  (output, 18);
+   csl_port data  (output, 32);
+   csl_port nid	  (output,  4);
+   csl_port ready (input,   1);
+   csl_port reject(output,  1);
+   csl_port type  (output,  4);
+   csl_port valid (output,  1);
+
+   fabric_ifc () {}
+};
+
+csl_interface cdrv_ifc {
+   csl_port  cmd  (input    );    // emac rx ix bus
+   csl_port  data (input, 32);
+   csl_port  ready(input    );
+   csl_port  valid(input    );
+};
+
+
+// Fabric_Ifc connections
+// ipc_bm
+// bm_exdq
+// exdq_exnq
+// exnq_sram
+// sram_ethnq0
+// ethnq0_ethdq
+// ethdq_ethnq1
+// ethnq1_auddq
+// auddq_audnq
+// audnq_ipc
+
+csl_interface sb_ifc {
+   csl_port start(output), busy(input); 
+   sb_ifc () {}
+};
+
+csl_interface sbhp_ifc {
+   csl_port start(input), busy(output), hit(output), port(output) ; 
+   sbhp_ifc () {}
+};
+
+csl_interface vrr_ifc {
+   csl_port valid(output), rd(input), result(output, 32); 
+   vrr_ifc () {}
+};
+
+csl_interface vsr_ifc {
+   csl_port read_response_valid(output), fabric_start(input), read_resonse(output, 32); 
+   vsr_ifc () {}
+};
+
+csl_interface adrv_ifc {
+   csl_port addr(output,18), data(output,32), ready(input), valid(output); 
+   adrv_ifc () {}
+};
+
+csl_interface adwr_ifc {
+   csl_port addr(output,18), data(output,32), wr(output), rd(output); 
+   adwr_ifc () {}
+};
+
+csl_interface cdrv_ifc {
+   csl_port cmd(output), data(output,32), ready(input), valid(output); 
+   adrv_ifc () {}
+};
+
+csl_interface dw_ifc {
+   csl_port data(output,32), wr(input); 
+   adrv_ifc () {}
+};
+
+csl_interface adw_ifc {
+   csl_port addr(output,18), data(output,32), wr(input); 
+   adrv_ifc () {}
+};
+
+
+csl_interface ram_ifc {
+  csl_port 	address	(input	, 11);
+  csl_port 	byteena	(input	, 4);
+  csl_port 	clock	(input	, 1);
+  csl_port 	data	(input	, 32);
+  csl_port 	enable	(input	, 1);
+  csl_port 	q	(output	, 16);
+  csl_port 	wren	(input	, 1);
+  ram_ifc () {}
+};
+
+csl_interface nios_tcm_ifc {
+//   csl_port clk        (input); //	( core_clk 	),
+//   csl_port reset_n    (input); //	( nios_run 	),
+
+   csl_port address(output, 18);  // address_to_the_data_tcm     
+   csl_port byteena(output,  4);  // byteenable_to_the_data_tcm  
+   csl_port chipsel(output,  1);  // chipselect_to_the_data_tcm  
+   csl_port enable (output,  1);  // clken_to_the_data_tcm       
+   csl_port dout   (input , 32);  // readdata_from_the_data_tcm
+   csl_port wren   (output,  1);  // write_to_the_data_tcm     
+   csl_port din    (output, 32);  // writedata_to_the_data_tcm 
+   
+   nios_tcm_ifc () {}
+};
+   
+csl_interface nios_cii_ifc {
+   csl_port a 	    (output,  1);   //	( e_a_from_the_custominstruction_nq_cpu           e_a 	),
+   csl_port b 	    (output,  1);   //	( e_b_from_the_custominstruction_nq_cpu           e_b 	),
+   csl_port c 	    (output,  1);   //	( e_c_from_the_custominstruction_nq_cpu           e_c 	),
+   csl_port clk_en  (output,  1);   //	( e_clk_en_from_the_custominstruction_nq_cpu      e_clk_en 	),
+   csl_port clk     (output,  1);   //	( e_clk_from_the_custominstruction_nq_cpu         e_clk 	),
+   csl_port dataa   (output, 32);   //	( e_dataa_from_the_custominstruction_nq_cpu       e_dataa 	),
+   csl_port datab   (output, 32);   //	( e_datab_from_the_custominstruction_nq_cpu       e_datab 	),
+   csl_port done    ( input,  1);   //	( e_done_to_the_custominstruction_nq_cpu          e_done 	),
+   csl_port n 	    (output,  8);   //	( e_n_from_the_custominstruction_nq_cpu           e_n 	),
+   csl_port readra  ( input, 32);   //	( e_readra_from_the_custominstruction_nq_cpu      e_readra 	),
+   csl_port readrb  ( input, 32);   //	( e_readrb_from_the_custominstruction_nq_cpu      e_readrb 	),
+   csl_port reset   (output,  1);   //	( e_reset_from_the_custominstruction_nq_cpu       	),
+   csl_port result  ( input, 32);   //	( e_result_to_the_custominstruction_nq_cpu        e_result 	),
+   csl_port start   (output,  1);   //	( e_start_from_the_custominstruction_nq_cpu       e_start 	),
+   csl_port writerc ( input, 32);   //	( e_writerc_from_the_custominstruction_nq_cpu     e_writerc 	),
+
+   nios_cii_ifc () {}
+};
+                                   
+csl_interface nios_int_ifc {
+   csl_port irq_i_to_the_interrupt_0(put); //	( exception[0] 	),
+   csl_port irq_i_to_the_interrupt_1(put); //	( exception[1] 	),
+   csl_port irq_i_to_the_interrupt_2(put); //	( exception[2] 	),
+   csl_port irq_i_to_the_interrupt_3(put); //	( exception[3] 	),
+
+   nios_int_ifc () { }
+};

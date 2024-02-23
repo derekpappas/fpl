@@ -1,0 +1,139 @@
+csl_enum xd {
+	by = 24,
+	hn = 26,
+	fm = 24,
+	hh = 4,
+	se = 70,
+	ot = 94,
+	jq = 41,
+	ea = 38,
+	pa = 20,
+	aj = 83,
+	qc = 10,
+	ho = 17,
+	nw = 89,
+	yh = 28,
+	cy = 38
+};
+csl_enum mf {
+	yt = 19,
+	sg = 18,
+	ic = 67,
+	nb = 93,
+	gf = 49,
+	ur = 32,
+	vb = 77,
+	rn = 74,
+	du = 40,
+	wt = 99,
+	yg = 87,
+	km = 98,
+	dj = 93,
+	wh = 6,
+	lj = 45
+};
+csl_enum mk {
+	eh,
+	so,
+	jg,
+	qs,
+	ll,
+	kj,
+	pd,
+	ys,
+	ax,
+	py,
+	ea,
+	mk,
+	mj,
+	rx
+};
+csl_isa_instruction_format ji{
+    ji( ){
+     set_width( 8);
+     generate_decoder( jspihm);
+  }
+}
+;
+csl_isa dr{
+    dr( ){
+     set_decoder_name( "bm");
+     set_decoder_out_name_prefix( "si");
+     set_decoder_out_name_suffix( "lb");
+     generate_decoder( jspihm);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo gc{
+   gc( ){
+     set_dimension( 3, 4);
+     add_logic( stall);
+     add_logic( stall_wr_side);
+     add_logic( almost_empty, 4);
+     add_logic( almost_full, 5);
+  }
+}
+;
+csl_memory_map_page ye{
+    ye( ){
+     add_address_range( 9, 5);
+     get_address_increment( );
+     set_endianess( little_endianlittle_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page jr{
+  ye rl;
+  ye au;
+  ye bb;
+    jr( ){
+     set_address_increment( 3);
+     get_lower_bound( );
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page mb{
+  ye ax;
+  ye ph;
+  jr hn;
+  jr vw;
+    mb( ){
+     add_address_range( 1, 4);
+     set_next_address( 9);
+     set_access_rights( access_write, access_read);
+     add_reserved_address_range( 8, 2);
+     get_upper_bound( );
+     set_data_word_width( 7);
+     get_data_word_wodth( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map yf{
+    yf( ){
+ye.set_access_rights_enum( yemb); 
+     set_prefix( ne);
+  }
+}
+;
+csl_register gp{
+    gp( ){
+     add_logic( serial_output);
+     add_logic( rd_en);
+     clear_value( 2);
+  }
+}
+;
+csl_register kq{
+    kq( ){
+     add_logic( read_valid);
+     create_rtl_module( );
+  }
+}
+;

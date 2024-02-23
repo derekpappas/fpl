@@ -1,0 +1,26 @@
+//oanab
+//11 aug 2008
+
+
+csl_interface ifc {
+  csl_port x(input);
+  ifc () {}
+};
+
+csl_unit b;
+csl_unit a;
+
+csl_unit a {
+  ifc ifc0;
+  a () {
+  }
+};
+
+csl_unit b {
+  ifc ifc1;
+  a a0;
+  b () {
+    ifc1.connect_by_name(a0.ifc0);
+   }
+};
+

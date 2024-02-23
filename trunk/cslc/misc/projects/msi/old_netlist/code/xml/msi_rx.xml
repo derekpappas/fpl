@@ -1,0 +1,58 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="msi_rx">
+<instantiation type = "nina">
+<instance name="nina">
+</instance>
+</instantiation>
+<instantiation type = "mfd_trans_cluster">
+<instance name="mfd_trans_cluster">
+</instance>
+</instantiation>
+<instantiation type = "sd_flash_cluster">
+<instance name="sd_flash_cluster">
+</instance>
+</instantiation>
+<instantiation type = "avalon_fab_cluster">
+<instance name="avalon_fab_cluster">
+</instance>
+</instantiation>
+<instantiation type = "sfd_data_cluster">
+<instance name="sfd_data_cluster">
+</instance>
+</instantiation>
+<instantiation type = "sfd_trans_cluster">
+<instance name="sfd_trans_cluster">
+</instance>
+</instantiation>
+<instantiation type = "eth_fab_cluster">
+<instance name="eth_fab_cluster">
+</instance>
+</instantiation>
+<instantiation type = "spi_cntl_cluster">
+<instance name="spi_cntl_cluster">
+</instance>
+</instantiation>
+<instantiation type = "mfd_data_cluster">
+<instance name="mfd_data_cluster">
+</instance>
+</instantiation>
+<instantiation type = "mfd_sec_cluster">
+<instance name="mfd_sec_cluster">
+</instance>
+</instantiation>
+<instantiation type = "ddr_fab_cluster">
+<instance name="ddr_fab_cluster">
+</instance>
+</instantiation>
+<instantiation type = "i2c_cluster">
+<instance name="i2c_cluster">
+</instance>
+</instantiation>
+<instantiation type = "sfd_stig_cluster">
+<instance name="sfd_stig_cluster">
+</instance>
+</instantiation>
+</unit>
+</design>

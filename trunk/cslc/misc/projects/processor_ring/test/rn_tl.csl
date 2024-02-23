@@ -1,0 +1,49 @@
+//Monica
+// 08 january 2008
+//Ring Node -- Top level (rn_tl)
+
+csl_register ff{
+  ff(){
+    set_type(register);
+    set_width(32);
+  }
+};
+csl_unit mux{
+  csl_port in0(input,32),in1(input,32),sel(input),out_mux(output,32);
+  mux(){}
+};
+
+csl_unit in{
+  csl_port in_p(input,32), out_p1(output,32),out_p2(output,32);
+  csl_port clk(input);
+ 
+  ff ff1(.reg_in(in_p),.reg_out(out_p1),.clock(clk));
+  in(){}
+};
+csl_unit dly{
+  csl_port in_p(input,32), out_p(output,32);
+  csl_port clk(input);
+ 
+  ff ff1(.reg_in(in_p),.reg_out(out_p),.clock(clk));
+  dly(){}
+};
+
+csl_unit out{
+  csl_port in_p1(input,32),in_p2(input,32),out_p(output,32),clk(input);
+  csl_signal sel_mux,out_mux(32);
+
+  ff ff2(.reg_in(out_mux),.reg_out(out_p),.clock(clk));
+  mux mux(.in0(in_p1),.in1(in_p2),.out_mux(out_mux));
+  out(){}
+};
+
+csl_unit top{
+  csl_signal in_s(32), in_out_s(32),dly_in(32),dly_out(32),out_s(32);
+  csl_signal clk;
+
+  in in1(.in_p(in_s),.out_p1(dly_in),.out_p2(in_out_s),.clk(clk));
+  dly  dly(.in_p(dly_in),.out_p(dly_out),.clk(clk));
+  out out1(.in_p1(dly_out),.in_p2(in_out_s),.out_p(out_s),.clk(clk));
+ 
+  top(){}
+};

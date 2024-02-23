@@ -1,0 +1,53 @@
+//Monica
+// 14 november 2007
+
+csl_register reg{
+  reg(){
+    set_width(5);
+    set_type(counter);
+    add_logic(count_direction,up);
+  }
+};
+
+csl_unit u1{
+  csl_port clk(input);
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(output,5);
+  reg r2(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p3));
+  u1(){
+    clk.set_attr(clock);
+  }
+};
+//csl_unit dut{
+//  reg reg1;
+//csl_port in_v(input,1), in_d(input, 8);
+//csl_port out_v(output, 1), out_d(output, 8);
+//csl_port clk(input);
+//dut(){
+//clk.set_attr(clock);}
+//};
+csl_vector stim{
+stim(){
+set_vc_header_comment("stimulus_vector");
+set_vc_output_filename("stim_data_out");
+set_unit_name ( u1 );
+set_direction ( input );
+}
+};
+csl_vector exp{
+exp(){
+set_vc_header_comment("expected_vector");
+set_vc_output_filename("exp_data_out");
+set_unit_name ( u1 );
+set_direction ( output );
+}
+};
+csl_testbench tb{
+  csl_signal clk(reg);
+  u1 dut_i;
+
+tb(){
+clk.set_attr(clock);
+add_logic(clock,clk,10,ps);
+}};

@@ -1,0 +1,31 @@
+//oanab
+//3 nov 2007
+//the rf is partly added to the reserved address range
+
+csl_register_file rf{
+rf(){
+  set_width(16);
+  set_depth(32);
+ }
+};
+
+csl_unit u{
+  rf rf1;
+  u(){}
+};
+
+csl_memory_map_page mpag{
+  mpag(){
+     add_address_range(100,321);
+     set_unit_name(u);
+     add_reserved_address_range(135,146);
+     add(rf1,"rf",130);  // the base address should be between 100-102 or over 146 
+    }
+};
+
+csl_memory_map mmap{
+   mmap(){
+      set_data_word_width(32);
+      set_type(hierarchical);
+}
+};

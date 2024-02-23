@@ -1,0 +1,84 @@
+// Author : Cristil
+// Creating a hid item using signal groups in signal groups
+
+csl_signal_group signalGroupA {
+};
+
+csl_signal_group signalGroupB {
+};
+
+
+csl_signal_group signalGroupAB {
+  signalGroupA signalGroupA0;
+  signalGroupA signalGroupB0;
+};
+
+
+csl_signal_group signalGroupC {
+  signalGroupAB signalgroupAB0;
+};
+
+
+csl_unit unitTop {
+
+  signalGroupC signalGroupC0; 
+
+  unitTop() {
+    signalGroupC0.signalGroupAB0.signalGroupA0.generate_individual_rtl_signals(on);
+    signalGroupC0.signalGroupAB0.signalGroupB0.generate_individual_rtl_signals(on);                              
+  }
+};
+//
+//csl_signal_group signalGroupA {
+//  csl_signal signalA0;
+//  csl_signal signalA1;
+//  csl_signal signalA2;
+//};
+//
+//csl_signal_group signalGroupB {
+//  csl_signal signalB0;
+//  csl_signal signalB1;
+//  csl_signal signalB2;
+//  csl_signal signalB3;
+//};
+//
+//
+//csl_signal_group signalGroupAB {
+//  csl_signal   signal0;
+//  csl_signal   signal1;
+//  signalGroupA signalGroupA0;
+//  signalGroupA signalGroupB0;
+//};
+//
+//
+//csl_signal_group signalGroupC {
+//  signalGroupAB signalgroupAB0;
+//};
+//
+//
+//csl_unit unitTop {
+//
+//  signalGroupC signalGroupC0; 
+//
+//  unitTop() {
+//    signalGroupC0.signalGroupAB0.signal0.set_type(INTEGER);
+//    signalGroupC0.signalGroupAB0.signal0.set_type(REG);                  
+//    signalGroupC0.signalGroupAB0.signalGroupA0.signalA0.set_type(TRI);
+//    signalGroupC0.signalGroupAB0.signalGroupA0.signalA1.set_type(TRIREG);
+//    signalGroupC0.signalGroupAB0.signalGroupA0.signalA2.set_type(WIRE);;                  
+//    signalGroupC0.signalGroupAB0.signalGroupB0.signalB0.set_type(WOR);
+//    signalGroupC0.signalGroupAB0.signalGroupB0.signalB1.set_type(SUPPLY0);
+//    signalGroupC0.signalGroupAB0.signalGroupB0.signalB2.set_type(REALTIME);;
+//    signalGroupC0.signalGroupAB0.signalGroupB0.signalB3.set_type(TRIAND);
+//                                
+//    signalGroupC0.signalGroupAB0.signal0.set_attr(rst);
+//    signalGroupC0.signalGroupAB0.signal0.set_attr(wr_en);                 
+//    signalGroupC0.signalGroupAB0.signalGroupA0.signalA0.set_attr(en);
+//    signalGroupC0.signalGroupAB0.signalGroupA0.signalA1.set_attr(stall);
+//    signalGroupC0.signalGroupAB0.signalGroupA0.signalA2.set_attr(pe);;                  
+//    signalGroupC0.signalGroupAB0.signalGroupB0.signalB0.set_attr(ps);
+//    signalGroupC0.signalGroupAB0.signalGroupB0.signalB1.set_attr(ms);
+//    signalGroupC0.signalGroupAB0.signalGroupB0.signalB2.set_attr(decode);;
+//    signalGroupC0.signalGroupAB0.signalGroupB0.signalB3.set_attr(clk);
+//  }
+//};

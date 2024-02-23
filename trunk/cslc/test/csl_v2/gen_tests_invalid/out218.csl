@@ -1,0 +1,125 @@
+csl_enum cy {
+	bm = 9,
+	lm = 85,
+	nw = 80,
+	qq = 7,
+	uj = 92,
+	uk = 55,
+	cp = 74,
+	en = 86,
+	go = 92,
+	af = 40,
+	uo = 76
+};
+csl_enum ei {
+	of = 44,
+	js = 83,
+	kl = 26,
+	rn = 94,
+	xf = 45,
+	ao = 22,
+	fq = 19,
+	hc = 22,
+	dd = 93,
+	oh = 8,
+	us = 83,
+	wd = 31,
+	jw = 48,
+	jf = 4,
+	nn = 66
+};
+csl_enum nf {
+	ux = 42,
+	xh = 94,
+	lr = 71,
+	um = 8,
+	yx = 16,
+	de = 18
+};
+csl_isa_instruction_format uj{
+    uj( ){
+     set_width( 1);
+     generate_decoder( cq);
+  }
+}
+;
+csl_isa tj{
+    tj( ){
+     set_decoder_name( "wo");
+     set_decoder_out_name_prefix( "sc");
+     set_decoder_out_name_suffix( "kx");
+     generate_decoder( udoocqvd);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo ni{
+   ni( ){
+     add_logic( width_extend, 9);
+     add_logic( stall_wr_side);
+  }
+}
+;
+csl_memory_map_page jx{
+    jx( ){
+     get_address_increment( );
+     set_next_address( 6);
+     get_next_address( );
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 9);
+     set_aligment( 8);
+     set_endianess( big_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page tw{
+  jx rt;
+  jx gg;
+    tw( ){
+     add_address_range( 4, 0);
+     get_next_address( );
+     set_access_rights( access_read, access_write);
+     add_reserved_address_range( 9, 1);
+     add( ni, "eg", 8);
+     get_lower_bound( );
+     set_data_word_width( 3);
+     get_data_word_wodth( );
+     set_endianess( little_endian);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page gn{
+    gn( ){
+     set_access_rights( access_read, access_read_write);
+     set_data_word_width( 9);
+     set_endianess( big_endian);
+  }
+}
+;
+csl_memory_map pj{
+    pj( ){
+     auto_gen_memory_map( );
+     set_top_unit( cqvd);
+     set_type( flat);
+     set_suffix( qv);
+  }
+}
+;
+csl_register gk{
+    gk( ){
+     add_logic( serial_input);
+  }
+}
+;
+csl_register bw{
+    bw( ){
+     create_rtl_module( );
+     set_const_value( 7);
+     add_logic( bypass);
+  }
+}
+;

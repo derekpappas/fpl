@@ -1,0 +1,29 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u_bc">
+<port name="ck" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="reset" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="p_bc_in" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="p_bc_out" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="ar_p_a_out_p_b_in" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="ar_p_c_out_p_d_in" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<signal name="ar_p_b_out_p_c_in" offset="0" upper="8-1" lower="0" type = "wire"/>
+<instantiation type = "u_b">
+<instance name="b">
+<f2a formal = "ck" actual = "ck" />
+<f2a formal = "p_b_in" actual = "ar_p_a_out_p_b_in" />
+<f2a formal = "p_b_out" actual = "ar_p_b_out_p_c_in" />
+<f2a formal = "reset" actual = "reset" />
+</instance>
+</instantiation>
+<instantiation type = "u_c">
+<instance name="c">
+<f2a formal = "ck" actual = "ck" />
+<f2a formal = "p_c_in" actual = "ar_p_b_out_p_c_in" />
+<f2a formal = "p_c_out" actual = "ar_p_c_out_p_d_in" />
+<f2a formal = "reset" actual = "reset" />
+</instance>
+</instantiation>
+</unit>
+</design>

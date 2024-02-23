@@ -1,0 +1,389 @@
+
+/*  MBIST processor data path  */
+
+
+// instruction bitrange
+csl_bitrange br_i(0,15);
+
+// data bitrange  
+csl_bitrange br_d(0,15);
+
+// half data bitrange
+csl_bitrange br_hd(0,7);
+
+// operation selection bitrange
+
+csl_bitrange br_sop(0,2);
+
+// register address bitrange
+csl_bitrange br_ra(0,3);
+
+// instruction address bitrange
+csl_bitrange br_addr(0,15);
+
+// rom address bitrange
+csl_bitrange br_rom(0,7);
+
+
+
+
+// Datapath units
+
+// program counter
+/*
+csl_register r_pc { // for the moment not available program counter register or bidirectional counter
+  r_pc(){
+    set_type(counter);
+    add_logic(count_direction,up);
+    set_width(16);
+  }
+};
+*/
+csl_unit r_pc{
+  csl_port p_clock(input);
+  csl_port p_reset(input);
+  csl_port p_enable(input);
+  csl_port p_br_addr(input,br_i);
+  csl_port p_sel(input);
+  csl_port p_addr_out(output,br_i);
+  csl_include(file_verilog,"pc_logic.v");
+  r_pc(){
+  }
+};
+// sram address counter
+/*csl_register r_ac {
+  r_ac(){
+    set_type(counter);
+    add_logic(count_direction,up);
+    set_width(16);
+  }
+  };*/
+
+csl_unit r_caddr{
+  csl_port p_clock(input);
+  csl_port p_reset(input);
+  csl_port p_enable(input);
+  csl_port p_direction(input);
+  csl_port p_br_addr(input,br_i);
+  csl_port p_sel(input);
+  csl_port p_addr_out(output,br_i);
+  csl_include(file_verilog,"caddr_logic.v");
+  r_caddr(){
+  }
+};
+// instruction memory
+
+csl_memory m_im {
+  //csl_unit m_im{ // declared as a unit as not yet clear which are csl_memory ports
+  //csl_port rd_address(input,br_addr);
+  //csl_port rd_data(output,br_d);
+  //csl_port rd_en(input);
+  //csl_include(file_verilog,"m_im_logic.v");
+  m_im(){
+        set_width(16);
+        set_depth(65536);
+  }
+};
+
+// register file
+//csl_register_file rf{ 
+csl_unit rf{ // declared as unit as register file not yet with two read ports
+  csl_port clock(input); 
+  csl_port reset(input);
+  csl_port data_in(input,br_d); 
+  csl_port data_out1(output,br_d);
+  csl_port data_out2(output,br_d);
+  csl_port wr_addr(input,br_ra);
+  csl_port rd_addr1(input,br_ra);
+  csl_port rd_addr2(input,br_ra);
+  csl_port wr_en(input);
+  csl_port rd_en1(input);
+  csl_port rd_en2(input);
+  csl_include(file_verilog,"rf_logic.v");
+  rf() {
+    //    set_width(16);
+    // set_depth(16);
+  }
+};
+
+//rom memory
+csl_memory m_rom {
+//csl_unit m_rom { // declared as unit as not yet clear which are csl_memory ports
+//  csl_port rd_address(input,br_rom);
+//  csl_port rd_data(output,br_d);
+//  csl_port rd_en(input);
+//  csl_include(file_verilog,"m_rom_logic.v");
+  m_rom(){
+        set_width(16);
+        set_depth(256);
+  }
+};
+
+// sign extension unit
+csl_unit u_es{
+  csl_port p_c(input,br_hd);
+  csl_port p_ec(output,br_d);
+  csl_include(file_verilog,"u_es_logic.v");
+  u_es(){
+  }
+};
+
+// instruction register
+csl_unit u_ir{
+  csl_port p_clock(input);
+  csl_port p_i(input,br_i);
+  csl_port p_opcode(output,0,4);
+  csl_port p_rdst(output,br_ra);
+  csl_port p_op1(output,br_ra), p_op2(output,br_ra);
+  csl_port p_c(output);
+  csl_port p_braddr(output,11);
+  csl_port p_sha(output,4);
+  csl_port p_const8(output,br_hd);
+  csl_port p_romaddr(output,br_hd);
+  csl_port p_d(output);
+  csl_include(file_verilog,"ir_logic.v");
+  u_ir(){
+    /*    p_opcode=p_i[15:12];
+    p_rdst=p_i[11:8];
+    p_op1=p_i[7:4];
+    p_op2=p_i[3:0];
+    p_c=p_i[11];
+    p_braddr=p_i[10:0];
+    p_sha=p_i[7:4];
+    p_const8=p_i[7:0];
+    p_romaddr=p_i[7:0];
+    p_d=p_i[11];*/
+  }
+};
+
+// ALU unit
+csl_unit u_alu{
+  csl_port p_op1(input,br_d);
+  csl_port p_op2(input,br_d);
+  csl_port p_opsel(input,br_sop);
+  csl_port p_cin(input);
+  csl_port p_res(output,br_d);
+  csl_port p_cout(output);
+  csl_include(file_verilog,"u_alu_logic.v");
+  u_alu(){
+  }
+};
+
+// define high address register
+csl_register r_ha{
+  r_ha(){
+    set_type(register);
+    set_width(16);
+    add_logic(reset);
+  }
+};
+
+// status register   cz - sram addr compare 0, s - sign, c - carry, z - zero
+// 5  4  3  2  1  0  9  8  7  6  5  4  3  2  1  0
+// x  x  x  x  x  x  x  x  x  x  x  cz x  s  c  z
+csl_register r_status{
+  r_status(){
+    set_type(register);
+    set_width(16);
+    add_logic(reset);
+  }
+};
+   
+//define control unit - not ready!!!!
+csl_unit u_control {
+  csl_port p_opcode(input,br_sop);
+  csl_port p_status(input,br_d); // is should be only the used bits
+  csl_port p_direction(input,2);
+  u_control(){
+  }
+};
+
+// define mbist controler unit  
+
+csl_unit u_mbist {
+  // ports
+  csl_port p_clock(input);
+  csl_port p_reset(input);
+  csl_port p_enable(input);
+  csl_port p_sram_addr(output,br_addr);
+  csl_port p_sram_din(output,br_d);
+  csl_port p_sram_dout(input,br_d);
+  csl_port p_sram_rd_en(output);
+  csl_port p_sram_wr_en(output);
+
+  //signals
+  csl_signal s_pc_im(br_addr);
+  csl_signal s_opcode(0,4);
+  csl_signal s_reg_dest(br_ra);        
+  csl_signal s_op1(br_ra), s_op2(br_ra);
+  csl_signal s_cond;
+  csl_signal s_cond_dec(0,1);
+  csl_signal s_branch_addr(0,10);   // 10 bit branch address
+  csl_signal s_branch_addr_e(br_i); // branch address extended to 16 bits
+  csl_signal s_br_sel;
+  csl_signal s_shift_ammount(0,3); 
+  csl_signal s_const_val(br_hd);
+  csl_signal s_rom_addr(br_rom);
+  csl_signal s_direction;
+  csl_signal s_direction_dec(0,1);
+  csl_signal s_mux_shift(br_d);
+  csl_signal s_sh_sel;
+  csl_signal s_mem_mux(br_d);
+  csl_signal s_mem_sel(0,1);
+  csl_signal s_rf_alu_mux(br_d);
+  csl_signal s_rf_alu_sel;
+  csl_signal s_status(br_d);
+  csl_signal s_status_in(br_d);
+  csl_signal s_rf_mux(br_d);
+  csl_signal s_es_mux(br_d);
+  csl_signal s_alu_mux(br_d);
+  csl_signal s_rom_mux(br_d);
+  csl_signal s_rf_haddr(br_d);
+  csl_signal s_rf_caddr(br_d);
+  csl_signal s_haddr_cmp(br_i);
+  csl_signal s_caddr_cmp(br_i);
+  csl_signal s_sram_addr(br_i);
+  csl_signal s_cz_f, s_f, s_c_f, s_z_f; // compare zero, sign, carry and zero flag signals
+  csl_signal s_ir_im(br_i);
+  csl_signal s_rf_alu(br_d);
+  csl_signal s_controls(14);
+  csl_signal s_ld_caddr_sel;
+  csl_signal s_caddr_en;
+  csl_signal s_caddr_direction;
+ 
+  
+  // instantiate modules in the controler
+
+  //  instruction memory
+  m_im im0(.rd0.en(p_enable), 
+           .rd0.address(s_pc_im), 
+           .rd0.data(s_ir_im));
+    
+
+  // program counter
+  r_pc r_pc0(.p_clock(p_clock),
+             .p_reset(p_reset),
+             .p_enable(p_enable),
+             .p_br_addr(s_branch_addr_e),
+             .p_addr_out(s_pc_im), 
+             .p_sel(s_br_sel));
+  
+  // instruction register
+  u_ir ir0( .p_clock(p_clock), 
+            .p_i(s_ir_im), 
+            .p_opcode(s_opcode), 
+            .p_rdst(s_reg_dest), 
+            .p_op1(s_op1), 
+            .p_op2(s_op2), 
+            .p_c(s_cond), 
+            .p_braddr(s_branch_addr), 
+            .p_sha(s_shift_ammount), 
+            .p_const8(s_const_val), 
+            .p_romaddr(s_rom_addr),     
+            .p_d(s_direction));
+   
+
+  // alu/shift/compare unit
+  u_alu alu0(.p_op1(s_mux_shift),
+             .p_op2(s_rf_alu), 
+             .p_cin(s_status[1]), 
+             .p_opsel(s_opcode[2:0]), 
+             .p_res(s_alu_mux), 
+             .p_cout(s_c_f));
+
+  //register file
+  rf rf0(.clock(p_clock),
+         .reset(p_reset), 
+         .data_in(s_mem_mux), 
+         .data_out1(s_rf_mux),
+         .data_out2(s_rf_alu),
+         .wr_addr(s_reg_dest), 
+         .rd_addr1(s_op1), 
+         .rd_addr2(s_op2), 
+         .wr_en(s_controls[12]),
+         .rd_en1(s_controls[11]), 
+         .rd_en2(s_controls[10]));
+
+  // rom memory containing test paterns
+  m_rom pattern_rom(.rd0.en(p_enable), 
+                    .rd0.address(s_rom_addr), 
+                    .rd0.data(s_rom_mux));
+  
+  // sign extension unit
+  u_es es0(.p_c(s_const_val),
+           .p_ec(s_es_mux));
+  
+  // sram address counter
+  r_caddr caddr(.p_reset(p_reset), 
+                .p_clock(p_clock),
+                .p_enable(s_caddr_en),
+                .p_direction(s_caddr_direction),
+                .p_br_addr(s_rf_alu), 
+                .p_addr_out(p_sram_addr), 
+                .p_sel(s_ld_caddr_sel));
+
+  // highest address register
+  r_ha haddr(.reset_(p_reset),
+             .clock(p_clock),
+             .enable(p_enable), 
+             .reg_in(s_rf_alu), 
+             .reg_out(s_haddr_cmp));
+
+  // status register 
+  r_status status(.reset_(p_reset),
+                  .clock(p_clock),
+                  .enable(p_enable),
+                  .reg_in(s_status_in),
+                  .reg_out(s_status));
+  
+  // control unit
+  u_control control;
+   
+  u_mbist(){
+    /*
+// branch address extension
+s_branch_address_e={6'b0,s_branch_address};
+
+// opcode decoder
+   s_opcode_dec = 1 <<s_opcode;
+    
+    // condition decoder
+   s_cond_dec =1<<s_cond;
+    
+    // transfer direction decoder
+    s_direction_dec=1<<s_direction;
+    
+    // shift multiplexor
+    s_mux_shift= s_sh_sel ? s_rf_mux: {12'b0,s_shift_ammount};
+
+   //sets the CZ bit in status register
+    cz_f= | (s_haddr_cmp ^ p_sram_addr); 
+    
+    // sets the S (sign) flag in status register
+    s_s_f= & s_alu_mux[15];
+    
+     
+    // sets the Z (zero) flag in status register 
+    s_z_f= | (s_alu_mux);
+    
+   // sets the status flags
+    s_status_in = {11'b0, s_cz_f, 1'b0, s_s_f, s_c_f, s_z_f};
+    
+    // memory select multiplexor
+    always @(mem_sel,s_rom_mux,s_es_mux,s_sram_mux,s_alu_mux)
+       case (s_mem_sel)
+              2'b00: s_mem_mux=s_rom_mux;
+              2'b01: s_mem_mux=s_es_mux;
+              2'b10: s_mem_mux=s_sram_mux;
+              2'b11: s_mem_mux=rf_alu_mux;
+      endcase
+
+      //or
+      s_mem_mux= s_mem_sel[0] ? (s_mem_sel[0] ? s_rom_mux: s_es_mux) : (s_mem_sel[0] ? s_ram_mux: s_rf_alu_mux);
+
+   // register file alu multiplexor
+   rf_alu_mux= rf_alu_sel ? rf0.data_out2 : alu0.res;
+
+    */
+  }
+};

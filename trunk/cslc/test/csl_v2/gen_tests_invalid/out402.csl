@@ -1,0 +1,114 @@
+csl_enum ve {
+	vc = 9,
+	vj = 65,
+	cj = 35,
+	ih = 10,
+	mw = 91,
+	re = 17,
+	gy = 38,
+	rb = 64
+};
+csl_enum cw {
+	ct = 83,
+	kb = 29
+};
+csl_isa_instruction_format wn{
+    wn( ){
+     set_width( 1);
+     generate_decoder( cthmhu);
+  }
+}
+;
+csl_isa bv{
+    bv( ){
+     set_decoder_name( "gp");
+     set_decoder_out_name_prefix( "or");
+     set_decoder_out_name_suffix( "ly");
+     generate_decoder( cthmhudc);
+  }
+}
+;
+csl_fifo ny{
+   ny( ){
+     add_logic( wr_words, 8);
+     add_logic( wr_release);
+  }
+}
+;
+csl_memory_map_page yi{
+    yi( ){
+     add_address_range( 2, 4);
+     set_access_rights( none, none);
+     add( ny, "rl", 6);
+     set_endianess( little_endian);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page an{
+    an( ){
+     add_address_range( 4, 2);
+     set_address_increment( 1);
+     set_next_address( 4);
+     get_next_address( );
+     add_reserved_address_range( 3, 7);
+     get_upper_bound( );
+     set_aligment( 6);
+     get_aligment( );
+     set_endianess( little_endian);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page fq{
+  yi gn;
+  yi ar;
+  an ye;
+  an dk;
+    fq( ){
+     get_address_increment( );
+     get_next_address( );
+     add( ny, "pc", 8);
+     add( an);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_aligment( 6);
+     set_endianess( little_endianbig_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map qr{
+    qr( ){
+     set_top_unit( cthm);
+     set_type( flat);
+     set_data_word_width( 8);
+     get_data_word_width( );
+     set_prefix( tf);
+  }
+}
+;
+csl_register sb{
+    sb( ){
+     set_atribute( write);
+     init_value( 0);
+     set_value( 8);
+     set_lock_enable_bit( 1);
+     set_count_amount( 7);
+     set_start_value( 6);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register tg{
+    tg( ){
+     set_depth( 5);
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 1);
+     add_logic( bypass);
+  }
+}
+;

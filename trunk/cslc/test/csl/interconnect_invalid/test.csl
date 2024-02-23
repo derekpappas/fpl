@@ -1,0 +1,6 @@
+csl_unit portlist{
+     portlist(){
+       portlist.add_port_list(output,4,csl_list(p1,p2));
+       portlist.add_port_list(input,4,csl_list(p3,p4));
+  }
+};

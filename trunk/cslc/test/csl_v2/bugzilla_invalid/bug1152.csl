@@ -1,0 +1,12 @@
+csl_memory_map m1{
+    m1(){
+  }
+}
+;
+
+csl_memory_map m2{
+    m2(){
+  }
+}
+;
+csl_unit u{};

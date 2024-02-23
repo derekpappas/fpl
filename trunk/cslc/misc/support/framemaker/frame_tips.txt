@@ -1,0 +1,3 @@
+tm should use the frame trademark symbol. on solaris, maker6 
+it's ctl-q*
+ 

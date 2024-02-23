@@ -1,0 +1,15 @@
+//bug 945
+csl_memory_map_page pdqh1{
+    pdqh1(){
+    set_next_address(9);
+  }
+}
+;
+
+csl_memory_map_page albj1{
+    albj1(){
+     set_next_address(pdqh1.get_next_address());
+  }
+}
+;
+

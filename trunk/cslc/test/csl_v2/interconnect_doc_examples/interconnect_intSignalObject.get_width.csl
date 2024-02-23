@@ -1,0 +1,19 @@
+csl_unit snd{
+  csl_port x(output), y(output);
+  snd(){}
+};
+
+csl_unit rcv{
+  csl_port x(input), y(input);
+  rcv(){}
+};
+
+csl_unit trans{
+  csl_signal x_data, y_data;
+  snd snd( .x(x_data), .y(y_data));
+  rcv rcv( .x(x_data), .y(y_data));
+  trans(){
+    x_data.set_width(16);
+    y_data.set_width(x_data.get_width());
+  }
+};

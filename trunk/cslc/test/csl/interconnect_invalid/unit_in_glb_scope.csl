@@ -1,0 +1,15 @@
+//oanab
+//10 nov 2007
+//csl_unit can't be instantiated in the global scope
+
+csl_unit u{
+  csl_port a(input),b(output);
+  u(){}
+};
+
+u u1; // this should be in a unit or testbench
+
+csl_unit t{
+  u u2;
+  t(){}
+};

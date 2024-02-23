@@ -1,0 +1,31 @@
+//------------------STIM memory----------------------------------------------
+<TMPL_VAR stim_exp_mem> #(.<TMPL_VAR S_ADDR_WIDTH>(<TMPL_VAR STIM_ADDR_WIDTH>),
+	                   .<TMPL_VAR S_MEM_WIDTH>(<TMPL_VAR STIM_MEM_WIDTH>),
+	                   .<TMPL_VAR S_VECTOR_FILE>(<TMPL_VAR STIM_VECTOR_FILE>),
+                           .<TMPL_VAR S_VECTOR_ID>(<TMPL_VAR STIM_VECTOR_ID>),
+                           .<TMPL_VAR S_VECTOR_NAME>(<TMPL_VAR STIM_VECTOR_NAME>),
+                           .<TMPL_VAR S_VECTOR_RADIX>(<TMPL_VAR STIM_VECTOR_RADIX>),
+                           .<TMPL_VAR S_VECTOR_VERSION>(<TMPL_VAR STIM_VECTOR_VERSION>))
+                            <TMPL_VAR stim_mem_inst> (.<TMPL_VAR clock>(<TMPL_VAR clk>),
+                                           .<TMPL_VAR id_err>(<TMPL_VAR stim_mem_id_err>),
+                                           .<TMPL_VAR rd_en>(<TMPL_VAR rd_en_>),
+                                           .<TMPL_VAR reset_>(<TMPL_VAR testbench_reset_>),
+                                           .<TMPL_VAR valid>(<TMPL_VAR expect_out_valid>),
+                                           .<TMPL_VAR vector_out>({<TMPL_LOOP stimulus> <TMPL_VAR in_wire_name> <TMPL_UNLESS __last__>,</TMPL_UNLESS> <TMPL_IF __last__>}),</TMPL_IF> </TMPL_LOOP>
+                                           .<TMPL_VAR version_err>(<TMPL_VAR stim_mem_version_err>));
+//-----------------EXP memory----------------------------------------------
+<TMPL_VAR stim_exp_mem> #(.<TMPL_VAR E_ADDR_WIDTH>(<TMPL_VAR EXP_ADDR_WIDTH>),
+                           .<TMPL_VAR E_MEM_WIDTH>(<TMPL_VAR EXP_MEM_WIDTH>),
+                           .<TMPL_VAR E_VECTOR_FILE>(<TMPL_VAR EXP_VECTOR_FILE>),
+                           .<TMPL_VAR E_VECTOR_ID>(<TMPL_VAR EXP_VECTOR_ID>),
+                           .<TMPL_VAR E_VECTOR_NAME>(<TMPL_VAR EXP_VECTOR_NAME>),
+                           .<TMPL_VAR E_VECTOR_RADIX>(<TMPL_VAR EXP_VECTOR_RADIX>),
+                           .<TMPL_VAR E_VECTOR_VERSION>(<TMPL_VAR EXP_VECTOR_VERSION>))
+                            <TMPL_VAR exp_mem_inst> (.<TMPL_VAR clock>(<TMPL_VAR clk>),
+                           	          .<TMPL_VAR id_err>(<TMPL_VAR exp_mem_id_err>),
+                                          .<TMPL_VAR rd_en>(<TMPL_VAR rd_en_>),
+                                          .<TMPL_VAR reset_>(<TMPL_VAR testbench_reset_>),
+                                          .<TMPL_VAR valid>(<TMPL_VAR expect_out_valid>),
+                                          .<TMPL_VAR vector_out>({<TMPL_LOOP expected> <TMPL_VAR out_wire_name> <TMPL_UNLESS __last__>,</TMPL_UNLESS><TMPL_IF __last__>}),</TMPL_IF></TMPL_LOOP>
+                                          .<TMPL_VAR version_err>(<TMPL_VAR exp_mem_version_err>));
+//----------------------------------------------------------------------------

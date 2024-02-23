@@ -1,0 +1,32 @@
+//Petronela
+csl_unit a{
+  csl_signal s0(reg,32);
+  csl_signal s1(reg,32);
+  a(){
+  }
+};
+
+csl_unit top{
+  a a0;
+  a a1;
+  top(){
+  }
+};
+csl_memory_map_page fp{
+  fp(){
+    add_address_range(0,32);
+    add(top.ao.so,"a0_s0");//error
+    add(top.ao.s1,"ao_s1");//error
+    add(top.a1.s0,"a1_s0");//error
+    add(top.a1.s1,"a1_s1");//error
+   
+ }
+};
+csl_memory_map mm{
+  fp fpag;
+  mm(){
+    set_type(flat);
+    set_top_unit(a);
+  
+  }
+};

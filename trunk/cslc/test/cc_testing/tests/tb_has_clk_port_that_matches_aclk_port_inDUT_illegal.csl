@@ -1,0 +1,19 @@
+//andreim
+//13 October 2007
+//testbench must have a signal clk name that matches a port in DUT w/
+//clk attr
+
+csl_unit dut{
+   csl_port clk_p ( input );
+   dut(){
+    //here should be this command: clk_p.set_attr ( clock );
+   }
+};
+
+csl_testbench tb{
+   csl_port clk_p; // illegal must be a signal not a port
+   tb(){
+     //here should be this command:  clk_p.set_attr ( clock );
+      add_logic (clock, clk_sgn, 2, ns);
+   }
+};

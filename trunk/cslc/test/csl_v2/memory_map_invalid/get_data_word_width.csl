@@ -1,0 +1,14 @@
+//Monica
+//30 August 2007
+
+csl_memory_map_page  mmap0{
+mmap0(){
+set_data_word_width(32);
+}
+};
+csl_memory_map mmap1{
+  mmap0 mmap0;
+mmap1(){
+set_data_word_width(mmap0.get_data_word_width());
+}
+};

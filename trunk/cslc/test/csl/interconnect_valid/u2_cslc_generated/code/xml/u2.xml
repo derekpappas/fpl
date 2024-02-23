@@ -1,0 +1,14 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u2">
+<signal name="x" offset="0" upper="4-1" lower="0" type = "tri"/>
+<signal name="clk" offset="0" upper="0" lower="0" type = "wire" attr = "clk"/>
+<instantiation type = "u1">
+<instance name="u1">
+<f2a formal = "clk" actual = "clk" />
+<f2a formal = "x" actual = "x" />
+</instance>
+</instantiation>
+</unit>
+</design>

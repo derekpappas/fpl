@@ -1,0 +1,11 @@
+//author: Ines
+//testing: set_width,add_signal
+
+csl_unit u9_t2 {
+  csl_signal sgn2_t2;
+  csl_signal s1(32);
+  u9_t2(){
+    sgn2_t2.set_width(32);
+    s1 = sgn2_t2;
+  }
+};

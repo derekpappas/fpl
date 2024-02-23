@@ -1,0 +1,61 @@
+//oanab
+//18 feb 2008
+//signal group - interface connections
+
+csl_interface ifc1 {
+  csl_port x1(input),x2(input,4),y(output);
+  ifc1 () {}
+};
+
+csl_interface ifc2 {
+  csl_port s4(input),s5(output,4),s6(output);
+  ifc2 () {}
+};
+
+csl_signal_group sg1 {
+  csl_signal s1,s2(4),s3;
+  sg1 () {}
+};
+
+csl_signal_group sg2 {
+  csl_signal s4,s5(4),s6;
+  sg2 () {}
+};
+
+csl_unit u1 {
+  ifc1 ifc11;
+  u1 () {}
+};
+
+csl_unit u2 {
+  ifc2 ifc21;
+  u2 () {}
+};
+
+csl_unit u3 {
+  ifc2 ifc23;
+  u1 u11(.ifc11.x2(sg12.s2),.ifc11.y(sg12.s3));
+  u2 u21;
+  sg1 sg12;
+  sg2 sg21;
+  u3 () {
+    sg12.s1.connect_by_name(u11.ifc11.x1);
+  }
+};
+
+csl_unit u4 {
+  ifc2 ifc22;
+  u3 u31(.ifc23(ifc22));
+  sg2 sg22;
+  u4 () {
+    sg22.connect_by_name(u31.u21.ifc21);
+  }
+};
+
+csl_unit u5 {
+  ifc2 ifc24;
+  u4 u41(.ifc22(ifc24));
+  u5 () {
+    u41.u31.sg21.connect_by_name(u41.ifc22);
+  }
+};

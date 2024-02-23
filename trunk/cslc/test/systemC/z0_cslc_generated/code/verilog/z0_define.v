@@ -1,0 +1,9 @@
+`ifndef INC_GUARD_z0
+`define INC_GUARD_z0
+
+`define S_AR_SA0_S10_UPPER_INDEX  (1-1)
+`define S_AR_SA0_S10_LOWER_INDEX  (0)
+`define S_AR_SA0_S10_WIDTH  (1)
+`define S_AR_SA0_S10_RANGE `S_AR_SA0_S10_UPPER_INDEX:`S_AR_SA0_S10_LOWER_INDEX
+
+`endif

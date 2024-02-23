@@ -1,0 +1,35 @@
+// Test name: mem_map_virtual_base_address_reserved_free.csl
+// date: print 13:52:55, Tue Jan 13, 2009
+// Test memory type is virtual_base_address
+// Test adds a reserved to a free
+
+csl_register_file rf {
+  rf() {
+   set_depth(16);
+   set_width(32);
+  }
+};
+
+csl_unit top {
+  rf rf0;
+  top () {
+  }
+};
+
+csl_memory_map_page mpage_1{
+  mpage_1(){
+
+    add_address_range(5, 250);
+
+    add(top.rf0, "rf", 64);
+  }
+};
+
+csl_memory_map mmap{
+  mpage_1 mp1;
+  mmap(){
+    set_type(virtual_base_address);
+    set_data_word_width(32);
+  }
+};
+

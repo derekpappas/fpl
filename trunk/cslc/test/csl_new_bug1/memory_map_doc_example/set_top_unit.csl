@@ -1,0 +1,28 @@
+//
+
+csl_unit top1{
+  top1(){}
+};
+
+csl_unit top2{
+  top2(){}
+};
+
+csl_unit top{
+  top1 t1;
+  top2 t2;
+  top(){
+  }};
+
+csl_memory_map_page mpag{
+  mpag(){
+    add_address_range(0,127);
+    set_unit_name(top1);
+  }
+};
+
+csl_memory_map mmap{
+  mmap(){
+    set_type(hierarchical);    
+    set_top_unit(top);
+  }}; 

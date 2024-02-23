@@ -1,0 +1,22 @@
+//oanab
+//18 ian 2008
+//illegal to connect the same port to more signals
+
+csl_unit u1 {
+  csl_port x1(input);
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_signal a(wire),b(wire);
+  u2 () {}
+};
+
+csl_unit u3 {
+  u1 u10;
+  u2 u20;
+  u3 () {
+    u10.x1.connect(u20.a);
+    u10.x1.connect(u20.b);
+  }
+};

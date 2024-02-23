@@ -1,0 +1,22 @@
+//oanab
+//10 apr 2008
+//ss connection between 2 input ports
+
+csl_unit u1 {
+  csl_port x1(input),y1(output),z(inout);
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_port z1(inout),x3(input),y3(output);
+  u2 () {}
+};
+
+csl_unit u3 {
+  u1 u10;
+  u2 u20;
+  csl_port x2(input),y2(output),z2(inout);
+  u3 () {
+    u20.x3.connect(u10.x1);
+  }
+};

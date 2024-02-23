@@ -1,0 +1,8 @@
+csl_unit u{
+  csl_signal s1;
+  csl_signal s2(45);
+  u(){
+    s1.set_width(45);
+    s2=s1;
+  }
+};

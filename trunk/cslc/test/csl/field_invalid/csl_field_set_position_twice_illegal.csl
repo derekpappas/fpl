@@ -1,0 +1,20 @@
+//is not legal to set twice for the same field the position
+csl_field op {
+  op() {
+    set_width(2);
+  }
+};
+
+
+csl_field instr_fmt {
+  op op0;
+
+  instr_fmt() {
+    set_width(32);
+    set_field_position(op0,30);
+    set_field_position(op0,0);// an error shoul appear here
+  }
+};
+
+
+

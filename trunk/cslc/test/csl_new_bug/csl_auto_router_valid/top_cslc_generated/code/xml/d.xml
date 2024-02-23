@@ -1,0 +1,26 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="d">
+<port name="ar_clk_ck" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="ar_rst_reset" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="ar_p_out1_p_out" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="ar_p_in1_p_in" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<interface name="ifc_top" >
+<port name="ifc_p1_in" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="ifc_p2_out" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="p_sg" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<instantiation type = "c">
+<instance name="c0">
+<f2a formal = "ck" actual = "ar_clk_ck" />
+<f2a formal = "ifc1.ifc_p1_in" actual = "ifc_top.ifc_p1_in" />
+<f2a formal = "ifc1.ifc_p2_out" actual = "ifc_top.ifc_p2_out" />
+<f2a formal = "ifc1.p_sg" actual = "ifc_top.p_sg" />
+<f2a formal = "p_in" actual = "ar_p_in1_p_in" />
+<f2a formal = "p_out" actual = "ar_p_out1_p_out" />
+<f2a formal = "reset" actual = "ar_rst_reset" />
+</instance>
+</instantiation>
+</unit>
+</design>

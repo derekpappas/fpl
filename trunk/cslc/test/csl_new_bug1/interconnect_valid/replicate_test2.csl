@@ -1,0 +1,17 @@
+//Monica
+// signal group replicate
+
+csl_bitrange br1(8);
+
+csl_signal_group sg{
+  csl_signal s_s1(br1);
+  sg(){}
+};
+
+csl_unit u_u1{
+  sg sg1;
+  csl_port p_p1(output,32);
+  u_u1(){
+    p_p1={4{sg1.s_s1}};
+  }
+};

@@ -1,0 +1,154 @@
+//Petronela
+
+
+csl_register rg{
+  rg(){
+    set_width(3);
+    set_type(register);
+  }
+};
+csl_register r1{
+  r1(){
+    set_width(5);
+    set_type(counter);
+    add_logic(count_direction,down);
+    add_logic(count_amount,7);
+  }
+};
+csl_register r2{
+  r2(){
+    set_width(12);
+    set_type(register);
+  }
+};
+csl_register r3{
+  r3(){
+    set_width(12);
+    set_type(register);
+  }
+};
+csl_register r4{
+  r4(){ 
+    set_width(12); 
+    set_type(register);
+  }
+};
+csl_register r5{
+  r5(){
+    set_width(12);
+    set_type(counter);
+    add_logic(count_direction,down);
+    add_logic(gray_output);
+  }
+};
+csl_register r16{
+  r16(){
+    set_width(12); 
+    set_type(register);
+  }
+};
+csl_register r6{
+  r6(){
+    set_width(12);
+    set_type(register);
+  }
+};
+csl_register r7{
+  r7(){
+    set_width(12);
+    set_type(register);
+    add_logic(set,5);
+  }
+};
+csl_register r8{
+  r8(){
+    set_width(12);
+    set_type(counter);
+    add_logic(count_direction,down);
+  }
+};
+csl_register r9{
+  r9(){
+    set_width(12);
+    set_type(counter);
+    add_logic(count_direction,down);
+    add_logic(reset,8);
+  }
+};
+csl_register r10{
+  r10(){
+    set_width(12);
+    set_type(counter);
+    add_logic(count_direction,down);
+    add_logic(gray_output);
+  }
+};
+csl_register r13{
+  r13(){
+    set_width(12);
+    set_type(counter);
+    add_logic(count_direction,down);
+    add_logic(count_amount, 5);
+  }
+};
+csl_register r11{
+  r11(){
+    set_width(12);
+    set_type(counter);
+    add_logic(count_direction,down);
+  }
+};
+csl_register r12{
+  r12(){
+    set_width(12);
+    set_type(register);  
+  }
+};
+csl_register r14{
+  r14(){
+    set_width(12);
+    set_type(register);
+    
+  }
+};
+csl_register r15{
+  r15(){
+    set_width(12);
+    set_type(counter);
+    add_logic(count_direction,up);
+    add_logic(start_value, 13);
+  }
+};
+
+
+csl_unit u1{
+  csl_port clk(input);
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(output,3);
+  csl_port p6(input,3);
+  csl_port p4(output,5);
+  // csl_port p5(input,5);
+  csl_port p7(output,12);
+  csl_port p8(input,12);
+  csl_port p9(input,1);
+  rg rg(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p3),.reg_in(p6));
+  r1 r1(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p4));
+  r2 r2(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p7),.reg_in(p8));
+  r3 r3(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p7),.reg_in(p8));
+  r4 r4(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p7),.reg_in(p8));
+  r5 r5(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p7));
+  r16 r16(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p7),.reg_in(p8));
+  r6 r6(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p7),.reg_in(p8));
+  r7 r7(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p7),.reg_in(p8),.set(p9));
+  r8 r8(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p7));
+  r9 r9(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p7));
+  r10 r10(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p7));
+  r11 r11(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p7));
+  r12 r12(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p7),.reg_in(p8));
+  r13 r13(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p7));
+  r14 r14(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p7),.reg_in(p8));
+  r15 r15(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p7));
+  u1(){
+  }
+};

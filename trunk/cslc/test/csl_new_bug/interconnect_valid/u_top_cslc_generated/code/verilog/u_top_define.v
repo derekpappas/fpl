@@ -1,0 +1,13 @@
+`ifndef INC_GUARD_u_top
+`define INC_GUARD_u_top
+
+`define S_S_DATA_UPPER_INDEX  (32-1)
+`define S_S_DATA_LOWER_INDEX  (0)
+`define S_S_DATA_WIDTH  (32)
+`define S_S_DATA_RANGE `S_S_DATA_UPPER_INDEX:`S_S_DATA_LOWER_INDEX
+`define S_S_ADDR_UPPER_INDEX  (16-1)
+`define S_S_ADDR_LOWER_INDEX  (0)
+`define S_S_ADDR_WIDTH  (16)
+`define S_S_ADDR_RANGE `S_S_ADDR_UPPER_INDEX:`S_S_ADDR_LOWER_INDEX
+
+`endif

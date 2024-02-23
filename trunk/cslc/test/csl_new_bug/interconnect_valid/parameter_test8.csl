@@ -1,0 +1,16 @@
+//Monica
+
+csl_fifo fifo{
+  csl_parameter x(5),y(8);
+  fifo(){
+    set_width(y);
+    set_depth(x); // assert in adapter...works with number
+  }
+};
+
+csl_unit u{
+  csl_signal push,pop,full,empty,data(16),rst,clk,valid;
+  fifo #(.x(8),.y(16)) fifo_mem(.push(push),.pop(pop),.full(full),.empty(empty),
+         .rd_data(data),.wr_data(data),.reset_(rst),.clock(clk),.valid(valid));
+  u(){}
+};

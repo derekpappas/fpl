@@ -1,0 +1,44 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="output.xsl"?>
+<design>
+<register_file  name="localmem" > 
+ </register_file>
+<unit  name="ctrlstore" > 
+ </unit>
+<unit  name="execu" > 
+ </unit>
+<register_file  name="rf128" > 
+ </register_file>
+<unit  name="crc" > 
+ </unit>
+<unit  name="crcr" > 
+ </unit>
+<unit  name="opmux" > 
+ </unit>
+<unit  name="rfmux" > 
+ </unit>
+<unit  name="msf" > 
+ </unit>
+<unit  name="sramctrl" > 
+ </unit>
+<unit  name="dramctrl" > 
+ </unit>
+<unit  name="hash" > 
+ </unit>
+<unit  name="pcictrl" > 
+ </unit>
+<unit  name="cap" > 
+ </unit>
+<unit  name="me" > 
+ </unit>
+<unit  name="mecluster" > 
+ </unit>
+<unit  name="xpi" > 
+ </unit>
+<register_file  name="dram" > 
+ </register_file>
+<unit  name="xscalecore" > 
+ </unit>
+<unit  name="chip" > 
+ </unit>
+</design>

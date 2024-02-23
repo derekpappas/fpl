@@ -1,0 +1,47 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="usb_protocol_mgr">
+<interface name="tp_bus" >
+<interface name="t2p" >
+<port name="valid" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="length" offset="0" upper="6-1" lower="0" direction = "output" type = "wire" />
+<port name="endpoint" offset="0" upper="4-1" lower="0" direction = "output" type = "wire" />
+<port name="ready" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="p2t" >
+<port name="valid" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="length" offset="0" upper="6-1" lower="0" direction = "input" type = "wire" />
+<port name="endpoint" offset="0" upper="4-1" lower="0" direction = "input" type = "wire" />
+<port name="ready" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+</interface>
+<interface name="ram_bus1" >
+<port name="valid" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="write_en" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="addr" offset="0" upper="5-1" lower="0" direction = "input" type = "wire" />
+<port name="write_data" offset="0" upper="12-1" lower="0" direction = "input" type = "wire" />
+<port name="read_data" offset="0" upper="12-1" lower="0" direction = "output" type = "wire" />
+<port name="ready" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="fabric" >
+<port name="drop_valid" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="drop_type" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="drop_src_nid" offset="0" upper="4-1" lower="0" direction = "input" type = "wire" />
+<port name="drop_addr" offset="0" upper="12-1" lower="0" direction = "input" type = "wire" />
+<port name="drop_data" offset="0" upper="12-1" lower="0" direction = "input" type = "wire" />
+<port name="add_valid" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="add_type" offset="0" upper="2-1" lower="0" direction = "output" type = "wire" />
+<port name="add_dst_nid" offset="0" upper="4-1" lower="0" direction = "output" type = "wire" />
+<port name="add_addr" offset="0" upper="12-1" lower="0" direction = "output" type = "wire" />
+<port name="add_data" offset="0" upper="12-1" lower="0" direction = "output" type = "wire" />
+<port name="add_ready" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="fifo_reg" >
+<port name="write_en" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="addr" offset="0" upper="5-1" lower="0" direction = "input" type = "wire" />
+<port name="write_data" offset="0" upper="12-1" lower="0" direction = "input" type = "wire" />
+<port name="read_data" offset="0" upper="12-1" lower="0" direction = "output" type = "wire" />
+</interface>
+</unit>
+</design>

@@ -1,0 +1,17 @@
+//field3 doesn't have set_width & set_previous is not necessary
+
+
+csl_field field1(0,15),field2(16,25);
+
+csl_field field3 {
+  field1 f1;
+  field2 f2;
+  field3() {
+    set_field_position(f1,0);
+    set_field_position(f2,16);
+    set_previous(f1,f2);
+  }
+};
+
+csl_unit top {
+};

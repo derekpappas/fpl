@@ -1,0 +1,59 @@
+//cghaba
+//October 2007
+
+// define bitrange
+
+csl_bitrange br_d(0,15);
+
+// define the unit to be tested
+
+csl_unit u_alu{
+  csl_port selop(input,2);
+  csl_port c_in(input);
+  csl_port op1(input,br_d), op2(input,br_d);
+  csl_port result(output,br_d);
+  csl_port c_out(output);
+  csl_port clk(input);
+  u_alu(){
+    clk.set_attr(clock);
+  }
+};
+
+// define stimulus vector
+csl_vector v_in_stim{
+  v_in_stim(){
+    set_unit_name(u_alu);
+    set_direction(input); // set type as stimulus
+    set_vc_header_comment("Stimulus for DUT inputs");
+    set_version(0);
+    set_radix(bin);
+    set_vc_max_number_of_valid_transactions(1);
+    set_vc_max_number_of_mismatches(1);
+  }
+};
+
+// define the expected vector
+csl_vector v_out_expect{
+  v_out_expect(){
+    set_unit_name(u_alu);
+    set_direction(output);
+    set_vc_header_comment("Expected values from DUT outputs");
+    set_version(0);
+    set_radix(bin);
+    set_vc_max_number_of_valid_transactions(1);
+    set_vc_max_number_of_mismatches(1);
+
+  }
+};
+csl_testbench alu_tb {
+  u_alu u_alu0;
+  csl_signal clk(reg);
+  alu_tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,10,ns);
+    add_logic(generate_waves,"alu_tb_waves",fsdb);
+    set_testbench_verilog_filename("alu_tb1");
+    add_logic(simulation_timeout_counter, 500);
+  }
+};
+

@@ -1,0 +1,131 @@
+csl_enum pn {
+	wg = 69,
+	kq = 38,
+	pv = 45
+};
+csl_enum kr {
+	uv,
+	am,
+	uc,
+	wk,
+	vm,
+	ve,
+	en,
+	wo,
+	rc,
+	oi,
+	gg
+};
+csl_enum xf {
+	oi,
+	vg,
+	fi,
+	ac,
+	hd,
+	qc,
+	fn,
+	oe,
+	dl,
+	kh,
+	bi,
+	yt,
+	mn
+};
+csl_isa_instruction_format rq{
+    rq( ){
+     set_width( 1);
+     generate_decoder( aj);
+  }
+}
+;
+csl_isa sq{
+    sq( ){
+     set_decoder_name( "ll");
+     set_decoder_out_name_prefix( "aq");
+     set_decoder_out_name_suffix( "yo");
+     generate_decoder( ajqs);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo iu{
+   iu( ){
+     add_logic( programable_depth, 0);
+     add_logic( async_fifo);
+  }
+}
+;
+csl_memory_map_page xo{
+    xo( ){
+     get_upper_bound( );
+  }
+}
+;
+csl_memory_map_page th{
+    th( ){
+     add_address_range( 8, 0);
+     add_reserved_address_range( 0, 9);
+     add( iu, "qu", 2);
+     get_lower_bound( );
+     set_endianess( little_endianbig_endian);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page xn{
+    xn( ){
+     add_address_range( 8, 2);
+     set_next_address( 9);
+     get_next_address( );
+     set_access_rights( access_read, none);
+     add( th);
+     get_lower_bound( );
+     set_aligment( 7);
+     set_endianess( big_endian);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map uh{
+  xo qh;
+  th nf;
+  th ry;
+  xn xq;
+  th gj;
+    uh( ){
+     set_top_unit( aj);
+     set_type( hierach);
+     set_data_word_width( 2);
+     get_data_word_width( );
+  }
+}
+;
+csl_register je{
+    je( ){
+     set_range( [7:0]);
+     set_type( STATIC);
+     set_width( 9);
+     set_address( uh, 8);
+     set_atribute( read_write);
+     add_logic( neg_output);
+     add_logic( rd_en);
+     init_value( 8);
+     reset_value( 8);
+     set_lock_enable_bit( 1);
+     set_count_amount( 8);
+     stop_at_end_value( );
+     add_logic( cnt_dir_signal);
+  }
+}
+;
+csl_register ny{
+    ny( ){
+     set_width( 4);
+     get_width( );
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 4);
+     add_logic( bypass);
+  }
+}
+;

@@ -1,0 +1,38 @@
+//Monicah
+//30 oxt 2007
+
+csl_register_file rf{
+  rf(){
+    set_width(32);
+    set_depth(4);
+  }
+};
+
+csl_state_data std{
+  std(){
+    set_mem_instance_name(rf);
+   }
+};
+
+csl_vector stim{
+  stim(){    
+    set_unit_name(rf);    
+    set_direction(input);
+  }
+};
+
+csl_vector exp{
+  exp(){
+    set_unit_name(rf);    
+    set_direction(output);
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(wire);
+  rf rf0;
+  tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,200,ps);
+  }
+};

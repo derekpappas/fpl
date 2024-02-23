@@ -1,0 +1,20 @@
+//oanab
+//9 ian 2008
+//address unit - provides rd/wr enables for regs/mems
+
+
+csl_unit AU {
+  ifc_ctrl cp_st0;       // input control:rd and wr are used
+  ifc_rn_msg rn_msg_st0; // input message: valid, addr and dst_id are used
+  ifc_au_rd_out au_rd_out_st0; // output rd enables 
+  ifc_au_wr_out au_wr_out_st0; // output wr enables
+  AU () {}
+};
+
+csl_register au0 {
+  au0 () {
+    set_width(10);
+    set_type(register);
+  }
+};
+

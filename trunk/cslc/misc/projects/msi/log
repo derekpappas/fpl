@@ -1,0 +1,557 @@
+DEBUG:You are running CSLC without RLM; you'd better be offline...
+
+Fastpath Logic™ License Agreement
+
+Please read and accept the license below to continue.
+
+IMPORTANT - read carefully before DOWNLOADING, ACCESSING or USING the
+Chip Specification Language Compiler(cslc) (collectivelly, "SOFTWARE"
+of Fastpath Logic, INC.
+Your use of the SOFTWARE is expressly conditioned upon and subject to
+your agreement to these terms and conditions. If you do not agree to
+these terms and conditions, do not DOWNLOAD, ACCESS or USE the SOFTWARE
+(refer to license.txt documents for more information).
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.mfd_sec_cluster.mfd_sec_fab.fab_add.bus80 to: msi_rx.mfd_trans_cluster.mfd_trans_fab.fab_drop.bus80
+DEBUG:---------------------------------------------------------------------------
+DEBUG:mfd_sec_fab<->mfd_sec_cluster <-***-> 
+DEBUG:37<->36
+DEBUG:*** CP
+DEBUG:
+
+DEBUG:mfd_sec_cluster<->mfd_trans_cluster <-***-> 
+DEBUG:36<->2
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:mfd_trans_cluster<->mfd_trans_fab <-***-> 
+DEBUG:2<->5
+DEBUG:*** PC
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.mfd_data_cluster.mfd_data_fab.fab_add.bus80 to: msi_rx.mfd_sec_cluster.mfd_sec_fab.fab_drop.bus80
+DEBUG:---------------------------------------------------------------------------
+DEBUG:mfd_data_fab<->mfd_data_cluster <-***-> 
+DEBUG:33<->32
+DEBUG:*** CP
+DEBUG:
+
+DEBUG:mfd_data_cluster<->mfd_sec_cluster <-***-> 
+DEBUG:32<->36
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:mfd_sec_cluster<->mfd_sec_fab <-***-> 
+DEBUG:36<->37
+DEBUG:*** PC
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.sfd_stig_cluster.sfd_stig_fab.fab_add.bus80 to: msi_rx.mfd_data_cluster.mfd_data_fab.fab_drop.bus80
+DEBUG:---------------------------------------------------------------------------
+DEBUG:sfd_stig_fab<->sfd_stig_cluster <-***-> 
+DEBUG:52<->49
+DEBUG:*** CP
+DEBUG:
+
+DEBUG:sfd_stig_cluster<->mfd_data_cluster <-***-> 
+DEBUG:49<->32
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:mfd_data_cluster<->mfd_data_fab <-***-> 
+DEBUG:32<->33
+DEBUG:*** PC
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.sfd_data_cluster.sfd_data_fab.fab_add.bus80 to: msi_rx.sfd_stig_cluster.sfd_stig_fab.fab_drop.bus80
+DEBUG:---------------------------------------------------------------------------
+DEBUG:sfd_data_fab<->sfd_data_cluster <-***-> 
+DEBUG:15<->13
+DEBUG:*** CP
+DEBUG:
+
+DEBUG:sfd_data_cluster<->sfd_stig_cluster <-***-> 
+DEBUG:13<->49
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:sfd_stig_cluster<->sfd_stig_fab <-***-> 
+DEBUG:49<->52
+DEBUG:*** PC
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.spi_cntl_cluster.spi_cntl_fab.fab_add.bus80 to: msi_rx.sfd_data_cluster.sfd_data_fab.fab_drop.bus80
+DEBUG:---------------------------------------------------------------------------
+DEBUG:spi_cntl_fab<->spi_cntl_cluster <-***-> 
+DEBUG:31<->28
+DEBUG:*** CP
+DEBUG:
+
+DEBUG:spi_cntl_cluster<->sfd_data_cluster <-***-> 
+DEBUG:28<->13
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:sfd_data_cluster<->sfd_data_fab <-***-> 
+DEBUG:13<->15
+DEBUG:*** PC
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.sd_flash_cluster.sd_flash_fab.fab_add.bus80 to: msi_rx.spi_cntl_cluster.spi_cntl_fab.fab_drop.bus80
+DEBUG:---------------------------------------------------------------------------
+DEBUG:sd_flash_fab<->sd_flash_cluster <-***-> 
+DEBUG:8<->6
+DEBUG:*** CP
+DEBUG:
+
+DEBUG:sd_flash_cluster<->spi_cntl_cluster <-***-> 
+DEBUG:6<->28
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:spi_cntl_cluster<->spi_cntl_fab <-***-> 
+DEBUG:28<->31
+DEBUG:*** PC
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.i2c_cluster.i2c_fab.fab_add.bus80 to: msi_rx.sd_flash_cluster.sd_flash_fab.fab_drop.bus80
+DEBUG:---------------------------------------------------------------------------
+DEBUG:i2c_fab<->i2c_cluster <-***-> 
+DEBUG:46<->45
+DEBUG:*** CP
+DEBUG:
+
+DEBUG:i2c_cluster<->sd_flash_cluster <-***-> 
+DEBUG:45<->6
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:sd_flash_cluster<->sd_flash_fab <-***-> 
+DEBUG:6<->8
+DEBUG:*** PC
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.avalon_fab_cluster.avalon_fab.fab_add.bus80 to: msi_rx.i2c_cluster.i2c_fab.fab_drop.bus80
+DEBUG:---------------------------------------------------------------------------
+DEBUG:avalon_fab<->avalon_fab_cluster <-***-> 
+DEBUG:11<->10
+DEBUG:*** CP
+DEBUG:
+
+DEBUG:avalon_fab_cluster<->i2c_cluster <-***-> 
+DEBUG:10<->45
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:i2c_cluster<->i2c_fab <-***-> 
+DEBUG:45<->46
+DEBUG:*** PC
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.ddr_fab_cluster.ddr_fab.fab_add.bus80 to: msi_rx.avalon_fab_cluster.avalon_fab.fab_drop.bus80
+DEBUG:---------------------------------------------------------------------------
+DEBUG:ddr_fab<->ddr_fab_cluster <-***-> 
+DEBUG:44<->40
+DEBUG:*** CP
+DEBUG:
+
+DEBUG:ddr_fab_cluster<->avalon_fab_cluster <-***-> 
+DEBUG:40<->10
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:avalon_fab_cluster<->avalon_fab <-***-> 
+DEBUG:10<->11
+DEBUG:*** PC
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.eth_fab_cluster.eth_fab.fab_add.bus80 to: msi_rx.ddr_fab_cluster.ddr_fab.fab_drop.bus80
+DEBUG:---------------------------------------------------------------------------
+DEBUG:eth_fab<->eth_fab_cluster <-***-> 
+DEBUG:26<->21
+DEBUG:*** CP
+DEBUG:
+
+DEBUG:eth_fab_cluster<->ddr_fab_cluster <-***-> 
+DEBUG:21<->40
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:ddr_fab_cluster<->ddr_fab <-***-> 
+DEBUG:40<->44
+DEBUG:*** PC
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.sfd_trans_cluster.sfd_trans_fab.fab_add.bus80 to: msi_rx.eth_fab_cluster.eth_fab.fab_drop.bus80
+DEBUG:---------------------------------------------------------------------------
+DEBUG:sfd_trans_fab<->sfd_trans_cluster <-***-> 
+DEBUG:19<->17
+DEBUG:*** CP
+DEBUG:
+
+DEBUG:sfd_trans_cluster<->eth_fab_cluster <-***-> 
+DEBUG:17<->21
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:eth_fab_cluster<->eth_fab <-***-> 
+DEBUG:21<->26
+DEBUG:*** PC
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.mfd_trans_cluster.mfd_trans_fab.fab_add.bus80 to: msi_rx.sfd_trans_cluster.sfd_trans_fab.fab_drop.bus80
+DEBUG:---------------------------------------------------------------------------
+DEBUG:mfd_trans_fab<->mfd_trans_cluster <-***-> 
+DEBUG:5<->2
+DEBUG:*** CP
+DEBUG:
+
+DEBUG:mfd_trans_cluster<->sfd_trans_cluster <-***-> 
+DEBUG:2<->17
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:sfd_trans_cluster<->sfd_trans_fab <-***-> 
+DEBUG:17<->19
+DEBUG:*** PC
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.mfd_sec_cluster.mfd_sec_fab.lba.dummy2 to: msi_rx.mfd_sec_cluster.mfd_sec_lba.lba.dummy2
+DEBUG:---------------------------------------------------------------------------
+DEBUG:mfd_sec_fab<->mfd_sec_lba <-***-> 
+DEBUG:37<->38
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.mfd_data_cluster.mfd_data_fab.lba.dummy2 to: msi_rx.mfd_data_cluster.mfd_data_lba.lba.dummy2
+DEBUG:---------------------------------------------------------------------------
+DEBUG:mfd_data_fab<->mfd_data_lba <-***-> 
+DEBUG:33<->34
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.sfd_stig_cluster.sfd_stig_fab.lba.dummy2 to: msi_rx.sfd_stig_cluster.sfd_stig_lba.lba.dummy2
+DEBUG:---------------------------------------------------------------------------
+DEBUG:sfd_stig_fab<->sfd_stig_lba <-***-> 
+DEBUG:52<->51
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.sfd_data_cluster.sfd_data_fab.lba.dummy2 to: msi_rx.sfd_data_cluster.sfd_data_lba.lba.dummy2
+DEBUG:---------------------------------------------------------------------------
+DEBUG:sfd_data_fab<->sfd_data_lba <-***-> 
+DEBUG:15<->16
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.spi_cntl_cluster.spi_cntl_fab.lba.dummy2 to: msi_rx.spi_cntl_cluster.spi_cntl_lba.lba.dummy2
+DEBUG:---------------------------------------------------------------------------
+DEBUG:spi_cntl_fab<->spi_cntl_lba <-***-> 
+DEBUG:31<->30
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.sd_flash_cluster.sd_flash_fab.lba.dummy2 to: msi_rx.sd_flash_cluster.sd_flash_lba.lba.dummy2
+DEBUG:---------------------------------------------------------------------------
+DEBUG:sd_flash_fab<->sd_flash_lba <-***-> 
+DEBUG:8<->9
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.i2c_cluster.i2c_fab.lba.dummy2 to: msi_rx.i2c_cluster.i2c_lba.lba.dummy2
+DEBUG:---------------------------------------------------------------------------
+DEBUG:i2c_fab<->i2c_lba <-***-> 
+DEBUG:46<->48
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.avalon_fab_cluster.avalon_fab.lba.dummy2 to: msi_rx.avalon_fab_cluster.avalon_bridge.lba.dummy2
+DEBUG:---------------------------------------------------------------------------
+DEBUG:avalon_fab<->avalon_bridge <-***-> 
+DEBUG:11<->12
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.ddr_fab_cluster.ddr_fab.lba.dummy2 to: msi_rx.ddr_fab_cluster.ddr_buf_ctrl.lba.dummy2
+DEBUG:---------------------------------------------------------------------------
+DEBUG:ddr_fab<->ddr_buf_ctrl <-***-> 
+DEBUG:44<->43
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.eth_fab_cluster.eth_fab.lba.dummy2 to: msi_rx.eth_fab_cluster.eth_bridge.lba.dummy2
+DEBUG:---------------------------------------------------------------------------
+DEBUG:eth_fab<->eth_bridge <-***-> 
+DEBUG:26<->25
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.sfd_trans_cluster.sfd_trans_fab.lba.dummy2 to: msi_rx.sfd_trans_cluster.sfd_trans_lba.lba.dummy2
+DEBUG:---------------------------------------------------------------------------
+DEBUG:sfd_trans_fab<->sfd_trans_lba <-***-> 
+DEBUG:19<->20
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.mfd_trans_cluster.mfd_trans_fab.lba.dummy2 to: msi_rx.mfd_trans_cluster.mfd_trans_lba.lba.dummy2
+DEBUG:---------------------------------------------------------------------------
+DEBUG:mfd_trans_fab<->mfd_trans_lba <-***-> 
+DEBUG:5<->4
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.mfd_sec_cluster.mfd_sec_lba.lb.dummy3 to: msi_rx.mfd_sec_cluster.mfd_sec.lb.dummy3
+DEBUG:---------------------------------------------------------------------------
+DEBUG:mfd_sec_lba<->mfd_sec <-***-> 
+DEBUG:38<->39
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.mfd_data_cluster.mfd_data_lba.lb.dummy3 to: msi_rx.mfd_data_cluster.mfd_data_fab.lb.dummy3
+DEBUG:---------------------------------------------------------------------------
+DEBUG:mfd_data_lba<->mfd_data_fab <-***-> 
+DEBUG:34<->33
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.sfd_stig_cluster.sfd_stig_lba.lb.dummy3 to: msi_rx.sfd_stig_cluster.sfd_stig.lb.dummy3
+DEBUG:---------------------------------------------------------------------------
+DEBUG:sfd_stig_lba<->sfd_stig <-***-> 
+DEBUG:51<->50
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.sfd_data_cluster.sfd_data_lba.lb.dummy3 to: msi_rx.sfd_data_cluster.sfd_data.lb.dummy3
+DEBUG:---------------------------------------------------------------------------
+DEBUG:sfd_data_lba<->sfd_data <-***-> 
+DEBUG:16<->14
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.spi_cntl_cluster.spi_cntl_lba.lb.dummy3 to: msi_rx.spi_cntl_cluster.spi_cntl.lb.dummy3
+DEBUG:---------------------------------------------------------------------------
+DEBUG:spi_cntl_lba<->spi_cntl <-***-> 
+DEBUG:30<->29
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.sd_flash_cluster.sd_flash_lba.lb.dummy3 to: msi_rx.sd_flash_cluster.sd_flash.lb.dummy3
+DEBUG:---------------------------------------------------------------------------
+DEBUG:sd_flash_lba<->sd_flash <-***-> 
+DEBUG:9<->7
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.i2c_cluster.i2c_lba.lb.dummy3 to: msi_rx.i2c_cluster.i2c.lb.dummy3
+DEBUG:---------------------------------------------------------------------------
+DEBUG:i2c_lba<->i2c <-***-> 
+DEBUG:48<->47
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.avalon_fab_cluster.avalon_bridge.lb.dummy3 to: msi_rx.nina.lb.dummy3
+DEBUG:---------------------------------------------------------------------------
+DEBUG:avalon_bridge<->avalon_fab_cluster <-***-> 
+DEBUG:12<->10
+DEBUG:*** CP
+DEBUG:
+
+DEBUG:avalon_fab_cluster<->nina <-***-> 
+DEBUG:10<->1
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.ddr_fab_cluster.ddr_buf_ctrl.lb.dummy3 to: msi_rx.ddr_fab_cluster.ddr_ctrl.lb.dummy3
+DEBUG:---------------------------------------------------------------------------
+DEBUG:ddr_buf_ctrl<->ddr_ctrl <-***-> 
+DEBUG:43<->41
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.eth_fab_cluster.eth_bridge.lb.dummy3 to: msi_rx.eth_fab_cluster.eth_mac.lb.dummy3
+DEBUG:---------------------------------------------------------------------------
+DEBUG:eth_bridge<->eth_mac <-***-> 
+DEBUG:25<->23
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.sfd_trans_cluster.sfd_trans_lba.lb.dummy3 to: msi_rx.sfd_trans_cluster.sfd_trans.lb.dummy3
+DEBUG:---------------------------------------------------------------------------
+DEBUG:sfd_trans_lba<->sfd_trans <-***-> 
+DEBUG:20<->18
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:
+DEBUG:AutoRouter: AutoRouting from: msi_rx.mfd_trans_cluster.mfd_trans_lba.lb.dummy3 to: msi_rx.mfd_trans_cluster.mfd_trans.lb.dummy3
+DEBUG:---------------------------------------------------------------------------
+DEBUG:mfd_trans_lba<->mfd_trans <-***-> 
+DEBUG:4<->3
+DEBUG:*** SS
+DEBUG:
+
+DEBUG:Using adapter compiled at : Jun 19 2008 13:29:40
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy2
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy2
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy2
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy2
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy2
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy2
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy2
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy2
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy2
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy2
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map dummy2
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy2
+
+DEBUG:port to be included in allCslPorts map dummy3
+
+DEBUG:port to be included in allCslPorts map dummy2
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+
+DEBUG:port to be included in allCslPorts map bus80
+

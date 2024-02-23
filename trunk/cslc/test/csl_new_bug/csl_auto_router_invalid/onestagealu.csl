@@ -1,0 +1,110 @@
+// Author: cghaba 
+// Date: April 4, 2008
+
+// describe a one stage alu made of an arithmetic unit
+// and a logic unit selected with a 2-to-1 multiplexer
+
+// define constants
+
+csl_enum e_const{
+    DATA_WIDTH=8,
+    OPSEL_WIDTH=3
+    };
+
+// define bitranges
+
+csl_bitrange brd(DATA_WIDTH);
+csl_bitrange brs(OPSEL_WIDTH);
+
+// define interfaces
+
+// define input operand interface
+csl_interface opifc{
+  
+  csl_port a(input,brd);
+  csl_port b(input,brd);
+};              
+
+// define selection signal interface
+csl_interface selifc {
+  csl_port s(input, brs);
+};
+
+
+// define output operand interface
+csl_interface outifc {
+  csl_port o(output, brd);
+};
+
+// define one stage arithmetic unit
+csl_unit ostga {
+  //add interfaces
+  opifc opifc0;
+  selifc selifc0;
+  outifc outifc0;
+  //add ports
+  csl_port cin(input);
+  csl_port cout(output);
+
+  ostga(){
+  }
+};
+
+// define one stage logic unit
+csl_unit ostgl {
+  //add interfaces
+  opifc opifc0;
+  selifc selifc0;
+  outifc outifc0;
+  ostgl(){
+  }
+};
+
+// a 2-to-1 multiplexer
+csl_unit mux21 {
+  //add interfaces
+  outifc inifc0;
+  outifc inifc1;
+
+  //add ports
+  csl_port muxout(output,brd);
+  csl_port s(input);
+
+  mux21() {
+    inifc0.reverse();
+    inifc1.reverse();
+  }
+};
+
+
+// module top
+csl_unit alutop {
+
+  //add ports
+  csl_port cin1(input);
+  csl_port aluout(output,brd);
+  csl_port cout1(output);
+  csl_port selal(input);
+  
+  //interfaces
+  opifc ops;
+  selifc selops;
+
+  // add unit instances
+  ostga ostga0/*(.cout(cout),
+                .cin(cin))*/;
+  ostgl ostgl0;
+  mux21 mux21a;
+  
+  alutop(){
+    cout1.connect_by_pattern(cout);
+    cin1.connect_by_pattern(cin);
+    ops.connect_by_pattern(opifc0);
+//    ops.connect(opifc0);
+    ostga0.outifc0.connect_by_name(mux21a.inifc0);
+    ostgl0.outifc0.connect_by_name(mux21a.inifc1);
+    aluout.connect_by_pattern(muxout);
+    selops.connect_by_pattern(selifc0);
+    selal.connect_by_pattern(mux21a.s);
+  }
+};

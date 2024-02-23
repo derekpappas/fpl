@@ -1,0 +1,401 @@
+//oanab
+//28 ian 2008
+//processor ring instruction set
+
+// enum opcode
+
+csl_enum opcodes {
+    read32req=0,
+    write32=1,
+    read32resp=2,
+    write64=3,
+    read64resp=4,
+    read32dmareq=5,
+    write32dma=6,
+    read64dmareq=7,
+    write64dma=8,
+    add_i=9,
+    sub=10,
+    equal=11,
+      bran=12,
+      movhi=13,
+      movi=14,
+      ori=15,
+      ldw=16,
+      stw=17
+    };
+
+csl_enum cmdcodes {
+  write_sing_64=4'b0000,
+    write_sing_32=4'b0001,
+    write_dma_64=4'b0010,
+write_dma_32=4'b0011,
+    read_resp_64=4'b1000,
+read_resp_32=4'b1001,
+    read_req_32=4'b1010,
+read_dma_64=4'b1011,
+    read_dma_32=4'b1100,
+nack=4'b1111
+    };
+
+
+// opcode field
+
+csl_isa_field f_opcode {
+  f_opcode() {
+    set_type(opcode);
+    set_width(6);
+    set_enum(opcodes);
+  }
+};
+
+// register address field
+
+csl_isa_field reg_field {
+  reg_field(){
+    set_type(address);
+    set_width(5);
+  }
+};
+
+// pr id field
+
+csl_isa_field id_field{
+  id_field(){
+    set_type(constant);
+    set_width(4);
+  }
+};
+
+// transaction number field
+
+csl_isa_field tno_field {
+  tno_field(){
+    set_type(constant);
+    set_width(4);
+  }
+};
+
+// burst length field
+
+csl_isa_field blen_field {
+  blen_field() {
+    set_type(constant);
+    set_width(4);
+  }
+};
+
+// burst bit field
+
+csl_isa_field bb_field {
+  bb_field() {
+    set_type(constant);
+    set_width(1);
+  }
+};
+
+// immediate data field
+
+csl_isa_field immed_field {
+  immed_field() {
+    set_type(constant);
+    set_width(16);
+  }
+};
+
+csl_isa_field sel_field {
+  sel_field () {
+    set_type(selector);
+    set_width(1);
+  }
+};
+
+// defining instruction formats
+
+
+// defining root format
+
+csl_isa_element root{
+  root(){
+    set_type(root_format);
+    set_width(32);
+  }
+};
+
+// declaring base format
+
+csl_isa_element base_format: root {
+  f_opcode f_opcode;
+  base_format() {
+    set_type(instr_format);
+    set_position(f_opcode,0);
+  }
+};
+
+// declaring format1 derived from base_format
+
+csl_isa_element f1_format: base_format {
+  reg_field srcreg1_field;
+  f1_format(){
+    set_type(instr_format);
+    set_position(srcreg1_field,27);
+  }
+};
+
+// declaring f2 format derived from f1 format 
+
+csl_isa_element f2_format: f1_format {
+  reg_field dstreg_field,idreg_field;
+  f2_format(){
+    set_type(instr_format);
+    set_position(idreg_field,22);
+    set_next(idreg_field,dstreg_field);
+  }
+};
+
+//declaring sel format derived from f2 format
+
+csl_isa_element sel_format: f2_format {
+  sel_field src_field,id_field,dst_field;
+  sel_format () {
+    set_type(instr_format);
+    set_position(src_field,11);    
+    set_next(src_field,id_field);
+    set_next(id_field,dst_field);
+  }
+};
+
+// declaring single read/write format derived from sel format
+
+csl_isa_element sing_format: sel_format {
+   bb_field bb_field;
+  sing_format(){
+    set_type(instr_format);
+    set_position(bb_field,12);
+  }
+};
+
+// declaring read/write response format derived from sing format
+
+csl_isa_element resp_format: sing_format {
+  tno_field tno_field;
+  resp_format() {
+    set_type(instr_format);
+    set_position(tno_field,13);
+  }
+};
+
+// declaring dma format derived from sel format
+
+csl_isa_element dma_format: sel_format {
+  blen_field blen_field;
+  dma_format(){
+    set_type(instr_format);
+    set_position(blen_field,13);
+  }
+};
+
+
+//declaring mv format derived from f1 format
+
+csl_isa_element mv_format: f1_format {
+  immed_field immed_field;
+  mv_format() {
+    set_type(instr_format);
+    set_position(immed_field,6);
+  }
+};
+
+// declaring imm format derived from mv format 
+
+csl_isa_element imm_format: mv_format {
+   reg_field dstreg_field;
+   imm_format(){
+   set_type(instr_format);
+   set_position(dstreg_field,22);
+    }
+};
+
+
+// defining instructions
+
+
+//read32req instruction
+
+csl_isa_element rd32req_instr: sing_format {
+  rd32req_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(read32req);
+    f_opcode.set_mnemonic("read32req");
+  }
+};
+
+//write32 instruction
+
+csl_isa_element wr32_instr: resp_format {
+  wr32_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(write32);
+    f_opcode.set_mnemonic("write32");
+  }
+};
+
+//read32resp instruction
+
+csl_isa_element rd32resp_instr: resp_format {
+  rd32resp_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(read32resp);
+    f_opcode.set_mnemonic("read32resp");
+  }
+};
+
+//write64 instruction
+
+csl_isa_element wr64_instr: resp_format {
+  wr64_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(write64);
+    f_opcode.set_mnemonic("write64");
+  }
+};
+
+//read64resp instruction
+
+csl_isa_element rd64resp_instr: resp_format {
+  rd64resp_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(read64resp);
+    f_opcode.set_mnemonic("read64resp");
+  }
+};
+
+//read32dmareq instruction
+
+csl_isa_element rd32dmareq_instr: dma_format {
+  rd32dmareq_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(read32dmareq);
+    f_opcode.set_mnemonic("read32dmareq");
+  }
+};
+
+//write32dma instruction
+
+csl_isa_element wr32dma_instr: dma_format {
+  wr32dma_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(write32dma);
+    f_opcode.set_mnemonic("write32dma");
+  }
+};
+
+//read64dmareq instruction
+
+csl_isa_element rd64dmareq_instr: dma_format {
+  rd64dmareq_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(read64dmareq);
+    f_opcode.set_mnemonic("read64dmareq");
+  }
+};
+
+//write64dma instruction
+
+csl_isa_element wr64dma_instr: dma_format {
+  wr64dma_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(write64dma);
+    f_opcode.set_mnemonic("write64dma");
+  }
+};
+
+//add instruction
+
+csl_isa_element add_instr: f2_format {
+  add_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(add_i);
+    f_opcode.set_mnemonic("add");
+  }
+};
+
+//substract instruction
+
+csl_isa_element sub_instr: f2_format {
+  sub_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(sub);
+    f_opcode.set_mnemonic("sub");
+  }
+};
+
+//equal instruction
+csl_isa_element eq_instr: f2_format {
+  eq_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(equal);
+    f_opcode.set_mnemonic("equal");
+  }
+};
+
+//branch instruction
+
+csl_isa_element br_instr: imm_format {
+  br_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(bran);
+    f_opcode.set_mnemonic("branch");
+  }
+};
+
+//movhi instruction
+
+csl_isa_element mvhi_instr: mv_format {
+  mvhi_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(movhi);
+    f_opcode.set_mnemonic("movhi");
+  }
+};
+
+//movi instruction
+
+csl_isa_element mvi_instr: mv_format {
+  mvi_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(movi);
+    f_opcode.set_mnemonic("movi");
+  }
+};
+
+//ori instruction
+
+csl_isa_element ori_instr:imm_format {
+  ori_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(ori);
+    f_opcode.set_mnemonic("ori");
+  }
+};
+
+//ldw instruction
+
+csl_isa_element ldw_instr:imm_format {
+  ldw_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(ldw);
+    f_opcode.set_mnemonic("ldw");
+  }
+};
+
+//stw instruction
+
+csl_isa_element stw_instr:imm_format {
+  stw_instr() {
+    set_type(instr);
+    f_opcode.set_enum_item(stw);
+    f_opcode.set_mnemonic("stw");
+  }
+};
+

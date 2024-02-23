@@ -1,0 +1,321 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="MAC_top">
+<port name="Reset" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Clk_125M" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Clk_user" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Clk_reg" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Speed" offset="0" upper="3-1" lower="0" direction = "input" type = "wire" />
+<port name="Rx_mac_ra" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Rx_mac_rd" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Rx_mac_data" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="Rx_mac_BE" offset="0" upper="2-1" lower="0" direction = "output" type = "wire" />
+<port name="Rx_mac_pa" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Rx_mac_sop" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Rx_mac_eop" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Tx_mac_wa" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Tx_mac_wr" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Tx_mac_data" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+<port name="Tx_mac_BE" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="Tx_mac_sop" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Tx_mac_eop" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Gtx_clk" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Rx_clk" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Tx_clk" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Tx_er" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Tx_en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Txd" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="Rx_er" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Rx_dv" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Rxd" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="Crs" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Col" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="CSB" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="WRB" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="CD_in" offset="0" upper="16-1" lower="0" direction = "input" type = "wire" />
+<port name="CD_out" offset="0" upper="16-1" lower="0" direction = "output" type = "wire" />
+<port name="CA_" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="Mdio" offset="0" upper="0" lower="0" direction = "inout" type = "wire" />
+<port name="Mdc" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<signal name="Rx_pkt_length_rmon" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signal name="Rx_apply_rmon" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="Rx_pkt_err_type_rmon" offset="0" upper="3-1" lower="0" type = "wire"/>
+<signal name="Rx_pkt_type_rmon" offset="0" upper="3-1" lower="0" type = "wire"/>
+<signal name="Tx_pkt_type_rmon" offset="0" upper="3-1" lower="0" type = "wire"/>
+<signal name="Tx_pkt_length_rmon" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signal name="Tx_apply_rmon" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="Tx_pkt_err_type_rmon" offset="0" upper="3-1" lower="0" type = "wire"/>
+<signal name="MCrs_dv" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="MRxD" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="MRxErr" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="pause_quanta" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signal name="pause_quanta_val" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="MTxD" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="MTxEn" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="MCRS" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="MAC_tx_clk" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="MAC_rx_clk" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="MAC_tx_clk_div" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="MAC_rx_clk_div" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="Tx_Hwmark" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="Tx_Lwmark" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="pause_frame_send_en" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="pause_quanta_set" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signal name="MAC_tx_add_en" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="FullDuplex" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="MaxRetry" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="IFGset" offset="0" upper="6-1" lower="0" type = "wire"/>
+<signal name="MAC_tx_add_prom_data" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="MAC_tx_add_prom_add" offset="0" upper="3-1" lower="0" type = "wire"/>
+<signal name="MAC_tx_add_prom_wr" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="tx_pause_en" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="xoff_cpu" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="xon_cpu" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="MAC_rx_add_chk_en" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="MAC_rx_add_prom_data" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="MAC_rx_add_prom_add" offset="0" upper="3-1" lower="0" type = "wire"/>
+<signal name="MAC_rx_add_prom_wr" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="broadcast_filter_en" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="RX_APPEND_CRC" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="Rx_Hwmark" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="Rx_Lwmark" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="CRC_chk_en" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="RX_IFG_SET" offset="0" upper="6-1" lower="0" type = "wire"/>
+<signal name="RX_MAX_LENGTH" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signal name="RX_MIN_LENGTH" offset="0" upper="7-1" lower="0" type = "wire"/>
+<signal name="CPU_rd_addr" offset="0" upper="6-1" lower="0" type = "wire"/>
+<signal name="CPU_rd_apply" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="CPU_rd_grant" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="CPU_rd_dout" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="Line_loop_en" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="Divider" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="CtrlData" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signal name="Rgad" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="Fiad" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="NoPre" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="WCtrlData" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="RStat" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="ScanStat" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="Busy" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="LinkFail" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="Nvalid" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="Prsd" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signal name="WCtrlDataStart" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="RStatStart" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="UpdateMIIRX_DATAReg" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="broadcast_bucket_depth" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signal name="broadcast_bucket_interval" offset="0" upper="16-1" lower="0" type = "wire"/>
+<instantiation type = "MAC_rx">
+<instance name="U_MAC_rx">
+<f2a formal = "CRC_chk_en" actual = "CRC_chk_en" />
+<f2a formal = "Clk" actual = "MAC_rx_clk_div" />
+<f2a formal = "Clk_user" actual = "Clk_user" />
+<f2a formal = "MAC_add_prom_add" actual = "MAC_rx_add_prom_add" />
+<f2a formal = "MAC_add_prom_data" actual = "MAC_rx_add_prom_data" />
+<f2a formal = "MAC_add_prom_wr" actual = "MAC_rx_add_prom_wr" />
+<f2a formal = "MAC_rx_add_chk_en" actual = "MAC_rx_add_chk_en" />
+<f2a formal = "MCrs_dv" actual = "MCrs_dv" />
+<f2a formal = "MRxD" actual = "MRxD" />
+<f2a formal = "MRxErr" actual = "MRxErr" />
+<f2a formal = "RX_APPEND_CRC" actual = "RX_APPEND_CRC" />
+<f2a formal = "RX_IFG_SET" actual = "RX_IFG_SET" />
+<f2a formal = "RX_MAX_LENGTH" actual = "RX_MAX_LENGTH" />
+<f2a formal = "RX_MIN_LENGTH" actual = "RX_MIN_LENGTH" />
+<f2a formal = "Reset" actual = "Reset" />
+<f2a formal = "Rx_Hwmark" actual = "Rx_Hwmark" />
+<f2a formal = "Rx_Lwmark" actual = "Rx_Lwmark" />
+<f2a formal = "Rx_apply_rmon" actual = "Rx_apply_rmon" />
+<f2a formal = "Rx_mac_BE" actual = "Rx_mac_BE" />
+<f2a formal = "Rx_mac_data" actual = "Rx_mac_data" />
+<f2a formal = "Rx_mac_eop" actual = "Rx_mac_eop" />
+<f2a formal = "Rx_mac_pa" actual = "Rx_mac_pa" />
+<f2a formal = "Rx_mac_ra" actual = "Rx_mac_ra" />
+<f2a formal = "Rx_mac_rd" actual = "Rx_mac_rd" />
+<f2a formal = "Rx_mac_sop" actual = "Rx_mac_sop" />
+<f2a formal = "Rx_pkt_err_type_rmon" actual = "Rx_pkt_err_type_rmon" />
+<f2a formal = "Rx_pkt_length_rmon" actual = "Rx_pkt_length_rmon" />
+<f2a formal = "Rx_pkt_type_rmon" actual = "Rx_pkt_type_rmon" />
+<f2a formal = "broadcast_bucket_depth" actual = "broadcast_bucket_depth" />
+<f2a formal = "broadcast_bucket_interval" actual = "broadcast_bucket_interval" />
+<f2a formal = "broadcast_filter_en" actual = "broadcast_filter_en" />
+<f2a formal = "pause_quanta" actual = "pause_quanta" />
+<f2a formal = "pause_quanta_val" actual = "pause_quanta_val" />
+</instance>
+</instantiation>
+<instantiation type = "MAC_tx">
+<instance name="U_MAC_tx">
+<f2a formal = "CRS" actual = "MCRS" />
+<f2a formal = "Clk" actual = "MAC_tx_clk_div" />
+<f2a formal = "Clk_user" actual = "Clk_user" />
+<f2a formal = "FullDuplex" actual = "FullDuplex" />
+<f2a formal = "IFGset" actual = "IFGset" />
+<f2a formal = "MAC_add_prom_add" actual = "MAC_tx_add_prom_add" />
+<f2a formal = "MAC_add_prom_data" actual = "MAC_tx_add_prom_data" />
+<f2a formal = "MAC_add_prom_wr" actual = "MAC_tx_add_prom_wr" />
+<f2a formal = "MAC_tx_add_en" actual = "MAC_tx_add_en" />
+<f2a formal = "MaxRetry" actual = "MaxRetry" />
+<f2a formal = "Reset" actual = "Reset" />
+<f2a formal = "TxD" actual = "MTxD" />
+<f2a formal = "TxEn" actual = "MTxEn" />
+<f2a formal = "Tx_Hwmark" actual = "Tx_Hwmark" />
+<f2a formal = "Tx_Lwmark" actual = "Tx_Lwmark" />
+<f2a formal = "Tx_apply_rmon" actual = "Tx_apply_rmon" />
+<f2a formal = "Tx_mac_BE" actual = "Tx_mac_BE" />
+<f2a formal = "Tx_mac_data" actual = "Tx_mac_data" />
+<f2a formal = "Tx_mac_eop" actual = "Tx_mac_eop" />
+<f2a formal = "Tx_mac_sop" actual = "Tx_mac_sop" />
+<f2a formal = "Tx_mac_wa" actual = "Tx_mac_wa" />
+<f2a formal = "Tx_mac_wr" actual = "Tx_mac_wr" />
+<f2a formal = "Tx_pkt_err_type_rmon" actual = "Tx_pkt_err_type_rmon" />
+<f2a formal = "Tx_pkt_length_rmon" actual = "Tx_pkt_length_rmon" />
+<f2a formal = "Tx_pkt_type_rmon" actual = "Tx_pkt_type_rmon" />
+<f2a formal = "pause_frame_send_en" actual = "pause_frame_send_en" />
+<f2a formal = "pause_quanta" actual = "pause_quanta" />
+<f2a formal = "pause_quanta_set" actual = "pause_quanta_set" />
+<f2a formal = "pause_quanta_val" actual = "pause_quanta_val" />
+<f2a formal = "tx_pause_en" actual = "tx_pause_en" />
+<f2a formal = "xoff_cpu" actual = "xoff_cpu" />
+<f2a formal = "xon_cpu" actual = "xon_cpu" />
+</instance>
+</instantiation>
+<instantiation type = "RMON">
+<instance name="U_RMON">
+<f2a formal = "CPU_rd_addr" actual = "CPU_rd_addr" />
+<f2a formal = "CPU_rd_apply" actual = "CPU_rd_apply" />
+<f2a formal = "CPU_rd_dout" actual = "CPU_rd_dout" />
+<f2a formal = "CPU_rd_grant" actual = "CPU_rd_grant" />
+<f2a formal = "Clk" actual = "Clk_reg" />
+<f2a formal = "Reset" actual = "Reset" />
+<f2a formal = "Rx_apply_rmon" actual = "Rx_apply_rmon" />
+<f2a formal = "Rx_pkt_err_type_rmon" actual = "Rx_pkt_err_type_rmon" />
+<f2a formal = "Rx_pkt_length_rmon" actual = "Rx_pkt_length_rmon" />
+<f2a formal = "Rx_pkt_type_rmon" actual = "Rx_pkt_type_rmon" />
+<f2a formal = "Tx_apply_rmon" actual = "Tx_apply_rmon" />
+<f2a formal = "Tx_pkt_err_type_rmon" actual = "Tx_pkt_err_type_rmon" />
+<f2a formal = "Tx_pkt_length_rmon" actual = "Tx_pkt_length_rmon" />
+<f2a formal = "Tx_pkt_type_rmon" actual = "Tx_pkt_type_rmon" />
+</instance>
+</instantiation>
+<instantiation type = "Phy_int">
+<instance name="U_Phy_int">
+<f2a formal = "Col" actual = "Col" />
+<f2a formal = "Crs" actual = "Crs" />
+<f2a formal = "Line_loop_en" actual = "Line_loop_en" />
+<f2a formal = "MAC_rx_clk" actual = "MAC_rx_clk" />
+<f2a formal = "MAC_tx_clk" actual = "MAC_tx_clk" />
+<f2a formal = "MCRS" actual = "MCRS" />
+<f2a formal = "MCrs_dv" actual = "MCrs_dv" />
+<f2a formal = "MRxD" actual = "MRxD" />
+<f2a formal = "MRxErr" actual = "MRxErr" />
+<f2a formal = "MTxD" actual = "MTxD" />
+<f2a formal = "MTxEn" actual = "MTxEn" />
+<f2a formal = "Reset" actual = "Reset" />
+<f2a formal = "Rx_dv" actual = "Rx_dv" />
+<f2a formal = "Rx_er" actual = "Rx_er" />
+<f2a formal = "Rxd" actual = "Rxd" />
+<f2a formal = "Speed" actual = "Speed" />
+<f2a formal = "Tx_en" actual = "Tx_en" />
+<f2a formal = "Tx_er" actual = "Tx_er" />
+<f2a formal = "Txd" actual = "Txd" />
+</instance>
+</instantiation>
+<instantiation type = "Clk_ctrl">
+<instance name="U_Clk_ctrl">
+<f2a formal = "Clk_125M" actual = "Clk_125M" />
+<f2a formal = "Gtx_clk" actual = "Gtx_clk" />
+<f2a formal = "MAC_rx_clk" actual = "MAC_rx_clk" />
+<f2a formal = "MAC_rx_clk_div" actual = "MAC_rx_clk_div" />
+<f2a formal = "MAC_tx_clk" actual = "MAC_tx_clk" />
+<f2a formal = "MAC_tx_clk_div" actual = "MAC_tx_clk_div" />
+<f2a formal = "Reset" actual = "Reset" />
+<f2a formal = "Rx_clk" actual = "Rx_clk" />
+<f2a formal = "Speed" actual = "Speed" />
+<f2a formal = "Tx_clk" actual = "Tx_clk" />
+</instance>
+</instantiation>
+<instantiation type = "eth_miim">
+<instance name="U_eth_miim">
+<f2a formal = "Busy" actual = "Busy" />
+<f2a formal = "Clk" actual = "Clk_reg" />
+<f2a formal = "CtrlData" actual = "CtrlData" />
+<f2a formal = "Divider" actual = "Divider" />
+<f2a formal = "Fiad" actual = "Fiad" />
+<f2a formal = "LinkFail" actual = "LinkFail" />
+<f2a formal = "Mdc" actual = "Mdc" />
+<f2a formal = "Mdio" actual = "Mdio" />
+<f2a formal = "NoPre" actual = "NoPre" />
+<f2a formal = "Nvalid" actual = "Nvalid" />
+<f2a formal = "Prsd" actual = "Prsd" />
+<f2a formal = "RStat" actual = "RStat" />
+<f2a formal = "RStatStart" actual = "RStatStart" />
+<f2a formal = "Reset" actual = "Reset" />
+<f2a formal = "Rgad" actual = "Rgad" />
+<f2a formal = "ScanStat" actual = "ScanStat" />
+<f2a formal = "UpdateMIIRX_DATAReg" actual = "UpdateMIIRX_DATAReg" />
+<f2a formal = "WCtrlData" actual = "WCtrlData" />
+<f2a formal = "WCtrlDataStart" actual = "WCtrlDataStart" />
+</instance>
+</instantiation>
+<instantiation type = "Reg_int">
+<instance name="U_Reg_int">
+<f2a formal = "Busy" actual = "Busy" />
+<f2a formal = "CA_" actual = "CA_" />
+<f2a formal = "CD_in" actual = "CD_in" />
+<f2a formal = "CD_out" actual = "CD_out" />
+<f2a formal = "CPU_rd_addr" actual = "CPU_rd_addr" />
+<f2a formal = "CPU_rd_apply" actual = "CPU_rd_apply" />
+<f2a formal = "CPU_rd_dout" actual = "CPU_rd_dout" />
+<f2a formal = "CPU_rd_grant" actual = "CPU_rd_grant" />
+<f2a formal = "CRC_chk_en" actual = "CRC_chk_en" />
+<f2a formal = "CSB" actual = "CSB" />
+<f2a formal = "Clk_reg" actual = "Clk_reg" />
+<f2a formal = "CtrlData" actual = "CtrlData" />
+<f2a formal = "Divider" actual = "Divider" />
+<f2a formal = "Fiad" actual = "Fiad" />
+<f2a formal = "FullDuplex" actual = "FullDuplex" />
+<f2a formal = "IFGset" actual = "IFGset" />
+<f2a formal = "Line_loop_en" actual = "Line_loop_en" />
+<f2a formal = "LinkFail" actual = "LinkFail" />
+<f2a formal = "MAC_rx_add_chk_en" actual = "MAC_rx_add_chk_en" />
+<f2a formal = "MAC_rx_add_prom_add" actual = "MAC_rx_add_prom_add" />
+<f2a formal = "MAC_rx_add_prom_data" actual = "MAC_rx_add_prom_data" />
+<f2a formal = "MAC_rx_add_prom_wr" actual = "MAC_rx_add_prom_wr" />
+<f2a formal = "MAC_tx_add_en" actual = "MAC_tx_add_en" />
+<f2a formal = "MAC_tx_add_prom_add" actual = "MAC_tx_add_prom_add" />
+<f2a formal = "MAC_tx_add_prom_data" actual = "MAC_tx_add_prom_data" />
+<f2a formal = "MAC_tx_add_prom_wr" actual = "MAC_tx_add_prom_wr" />
+<f2a formal = "MaxRetry" actual = "MaxRetry" />
+<f2a formal = "NoPre" actual = "NoPre" />
+<f2a formal = "Nvalid" actual = "Nvalid" />
+<f2a formal = "Prsd" actual = "Prsd" />
+<f2a formal = "RStat" actual = "RStat" />
+<f2a formal = "RStatStart" actual = "RStatStart" />
+<f2a formal = "RX_APPEND_CRC" actual = "RX_APPEND_CRC" />
+<f2a formal = "RX_IFG_SET" actual = "RX_IFG_SET" />
+<f2a formal = "RX_MAX_LENGTH" actual = "RX_MAX_LENGTH" />
+<f2a formal = "RX_MIN_LENGTH" actual = "RX_MIN_LENGTH" />
+<f2a formal = "Reset" actual = "Reset" />
+<f2a formal = "Rgad" actual = "Rgad" />
+<f2a formal = "Rx_Hwmark" actual = "Rx_Hwmark" />
+<f2a formal = "Rx_Lwmark" actual = "Rx_Lwmark" />
+<f2a formal = "ScanStat" actual = "ScanStat" />
+<f2a formal = "Speed" actual = "Speed" />
+<f2a formal = "Tx_Hwmark" actual = "Tx_Hwmark" />
+<f2a formal = "Tx_Lwmark" actual = "Tx_Lwmark" />
+<f2a formal = "UpdateMIIRX_DATAReg" actual = "UpdateMIIRX_DATAReg" />
+<f2a formal = "WCtrlData" actual = "WCtrlData" />
+<f2a formal = "WCtrlDataStart" actual = "WCtrlDataStart" />
+<f2a formal = "WRB" actual = "WRB" />
+<f2a formal = "broadcast_bucket_depth" actual = "broadcast_bucket_depth" />
+<f2a formal = "broadcast_bucket_interval" actual = "broadcast_bucket_interval" />
+<f2a formal = "broadcast_filter_en" actual = "broadcast_filter_en" />
+<f2a formal = "pause_frame_send_en" actual = "pause_frame_send_en" />
+<f2a formal = "pause_quanta_set" actual = "pause_quanta_set" />
+<f2a formal = "tx_pause_en" actual = "tx_pause_en" />
+<f2a formal = "xoff_cpu" actual = "xoff_cpu" />
+<f2a formal = "xon_cpu" actual = "xon_cpu" />
+</instance>
+</instantiation>
+</unit>
+</design>

@@ -1,0 +1,28 @@
+//Monica
+//11.03.2009
+
+csl_unit a{
+csl_port p1(input,8);
+a(){}
+};
+
+csl_unit b{
+csl_port p1(input,8);
+a a0;
+b(){}
+};
+
+csl_unit c{
+
+b b0;
+
+c(){
+}
+};
+csl_unit top{
+c c0;
+csl_signal s_t(8);
+top(){
+s_t.connect_by_pattern(p1);  //one connection
+}
+};

@@ -1,0 +1,25 @@
+//oanab
+
+csl_bitrange br(92);
+
+csl_unit a {
+  csl_port p_a(input,br);
+  a () {
+  }
+};
+
+csl_unit b {
+  csl_port p_b(input,br);
+  a a1;
+  a a0(.p_a(p_b));  // f2a : port---port
+  b () {
+    p_b.connect_by_name(a1.p_a);  // port---port (PC)
+  }
+};
+
+csl_unit c {
+  csl_port p_d(input,92);
+  b b0(.p_b(p_d));
+  c () {
+  }
+};

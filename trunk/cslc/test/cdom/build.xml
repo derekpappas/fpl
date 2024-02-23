@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+  <project name="ProjectX" default="compile">
+
+    <property name="srcDirName" value="."/>
+    <property name="outputName" value="CDOM_Test"/>
+    <property name="buildPath" value="../../build"/>
+    
+    <property name="antPath" value="/home/stefan/work/ant/bin"/>
+    
+    <taskdef resource="cpptasks.tasks"/>
+    <typedef resource="cpptasks.types"/> 
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+    <target name="getTopDir">
+      <exec executable="pwd" outputproperty="currentPath"/>
+        <echo message="CurrentPath: ${currentPath}"/>
+        <property name="topDir" value="${currentPath}/../../.."/>
+        <echo message="topDir: ${topDir}"/>
+    </target>
+                                
+    <target name="getPlatformType" depends="getTopDir">
+      <exec executable="${topDir}/misc/utils/scripts/getVersion.pl" os="Linux" outputproperty="platformTypeOut">
+        <arg line="-cmd platform_type"/>
+      </exec>
+    </target>
+                  
+    <target name="testDependencies" depends="getPlatformType">
+      <echo message="Testing Dependencies"/>
+        <ant antfile="${topDir}/misc/utils/scripts/ant_check_dependencies.xml" inheritAll="true" inheritrefs="true">
+          <property name="utilsPath" value="${topDir}/scripts"/>
+        </ant>
+        <echo message="platform type: ${platformTypeOut}"/>
+        <echo message="${out}"/>
+    </target>
+            
+    <target name="createBuildPath" depends="getPlatformType">
+      <echo message="Platform type: x86_${platformTypeOut}"/>
+      <property name="buildDirName" value="${buildPath}/linux/x86_${platformTypeOut}/cdom/test"/>
+      <property name="CdomBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/cdom"/>
+      <echo message="buildDirName: ${buildDirName}"/>
+      <echo message="CdomBuildPath: ${CdomBuildPath}"/>
+    </target>
+                      
+    <target name="createBuildDirs">
+      <tstamp/>
+        <mkdir dir="${buildPath}/linux/x86_32/cdom/test"/>
+        <mkdir dir="${buildPath}/linux/x86_64/cdom/test"/>
+        <mkdir dir="${buildPath}/windows/x86_32/cdom/test"/>
+        <mkdir dir="${buildPath}/windows/x86_64/cdom/test"/>
+    </target>
+                
+
+    <target name="compile" depends="testDependencies,createBuildPath,createBuildDirs">
+      <cc outfile="${buildDirName}/${outputName}">
+        <compiler name="g++">
+	  <includepath path="../../cdom/src/"/>
+	  <fileset dir="${srcDirName}" includes="*.cpp"/>
+	</compiler>
+	<linker name="gcc">
+	  <fileset file="${CdomBuildPath}/CDOM.o"/>
+	  <fileset file="${CdomBuildPath}/VeriNum.o"/>
+	  <fileset file="${CdomBuildPath}/CDOM_Visitor.o"/>
+	  <libset libs="stdc++"/>
+	</linker>
+      </cc>
+    </target>
+
+    <target name="clean" depends="testDependencies,createBuildPath,createBuildDirs">
+      <delete>
+        <fileset dir="${buildDirName}">
+	  <!-- exclude from cleaning .xml files, they may contain usefull data -->
+	  <exclude name="**/*.xml"/>
+	</fileset>
+      </delete>
+    </target>
+
+</project>

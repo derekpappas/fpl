@@ -1,0 +1,16 @@
+Write a c++ program to show inheritance and virtual funtions. 
+The program will have a base interface class that will implement 
+a shapes basic operations like: getPerimeter, getArea, print, read
+The program will read from the keyboard the figures, there can be
+any number of figures, use stl vector. Also the program will have 
+the possibility to construct more complex representations from
+the basic figure types. 
+possible figures:
+point
+line
+triangle
+rectangle
+circle
+container ( groups of figures)
+add enum with all possible classes in the base class,
+imeplement surface, perimeter, print, read in the base class

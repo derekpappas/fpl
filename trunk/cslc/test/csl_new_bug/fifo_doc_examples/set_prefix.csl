@@ -1,0 +1,17 @@
+//Monica
+//November 05, 2007
+
+csl_fifo fifo_a{
+  fifo_a(){
+    set_depth(32);
+    set_width(4);
+//set_prefix("fifo_a"); //command can only be used for interfaces or signa; groups
+  }
+};
+
+csl_unit u{
+  csl_signal push,pop,full,empty,data(4),rst,clk,valid;
+  fifo_a ff(.push(push),.pop(pop),.full(full),.empty(empty),.rd_data(data),
+            .wr_data(data),.reset_(rst),.clock(clk),.valid(valid));
+  u(){}
+};

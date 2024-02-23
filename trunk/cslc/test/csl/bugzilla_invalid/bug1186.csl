@@ -1,0 +1,9 @@
+csl_register r1{
+  r1(){
+    add_logic(start_value, 1+1);//line 26
+   }
+};
+csl_unit u{
+ r1 r1;
+  u() {}
+};

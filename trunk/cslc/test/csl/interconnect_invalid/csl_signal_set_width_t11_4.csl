@@ -1,0 +1,14 @@
+//author: Ines
+//testing: signal_object_name.set_width(numeric_expr);
+
+
+
+csl_unit u9_t11 {
+
+  csl_signal sgn8_4_t11;
+
+  u9_t11() {
+    sgn8_4_t11.set_width(-4);           //illegal
+
+  }
+};

@@ -1,0 +1,30 @@
+//oanab
+//27 oct 2007
+//2 fifo's added to mpg; ff1 reserves the address range from 25 to 40 so ff2 
+//can't have the base address inside of that range
+
+csl_fifo ff{
+  ff(){
+    set_depth(16);
+    set_width(4);
+  }
+};
+
+csl_unit u{
+  ff ff1,ff2;
+  u(){}
+};
+
+csl_memory_map_page mpg{
+  mpg(){
+    add_address_range(7,128);
+    add(u.ff1,"ff1",25); 
+    add(u.ff2,"ff2",30);//ff2's base address should be over 41
+   }
+};
+
+csl_memory_map mmp{
+  mmp(){
+    set_type(hierarchical);
+  }
+};

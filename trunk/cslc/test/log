@@ -1,0 +1,753 @@
+totDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc
+scriptsDir = 
+STAGE_CSIM_CODE_GEN = csimcodegen
+maintainer = OanaB and Derek
+hdlExtParam = gui
+guiExtParam = 1
+[INFO] Created resultsDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26 
+export REGRESS_DIR=/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26 
+[INFO] current HDL language: gui
+Executing tests in directory = big_tests_valid 
+[INFO] regressHdl: begin currentTestDirectory = big_tests_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/big_tests_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/big_tests_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test
+
+[INFO] hdl_file_list = 
+No cf or vf files!
+-----------
+[INFO] generate_regression_list: end testlist cnt = -1 test_list = 
+[INFO] regressDir: sourceDir = big_tests_valid testlist cnt = -1
+[INFO] regressDir: Executing regression for big_tests_valid testlist cnt = -1
+[INFO] regressDir: Executing testlist = 
+[INFO] REGRESSION FAILED ! -  big_tests_valid directory is empty called in currentTestDirectory = big_tests_valid hdlExtParam = gui
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests0numStagesPassedHASH(0x153ea28)
+Excluded directory = big_tests_valid because it is empty
+Executing tests in directory = case5_5_valid 
+[INFO] regressHdl: begin currentTestDirectory = case5_5_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/case5_5_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/case5_5_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/big_tests_valid
+
+[INFO] hdl_file_list = 
+No cf or vf files!
+-----------
+[INFO] generate_regression_list: end testlist cnt = -1 test_list = 
+[INFO] regressDir: sourceDir = case5_5_valid testlist cnt = -1
+[INFO] regressDir: Executing regression for case5_5_valid testlist cnt = -1
+[INFO] regressDir: Executing testlist = 
+[INFO] REGRESSION FAILED ! -  case5_5_valid directory is empty called in currentTestDirectory = case5_5_valid hdlExtParam = gui
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests0numStagesPassedHASH(0x16405f0)
+Excluded directory = case5_5_valid because it is empty
+Executing tests in directory = case6_6_valid 
+[INFO] regressHdl: begin currentTestDirectory = case6_6_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/case6_6_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/case6_6_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/case5_5_valid
+
+[INFO] hdl_file_list = 
+No cf or vf files!
+-----------
+[INFO] generate_regression_list: end testlist cnt = -1 test_list = 
+[INFO] regressDir: sourceDir = case6_6_valid testlist cnt = -1
+[INFO] regressDir: Executing regression for case6_6_valid testlist cnt = -1
+[INFO] regressDir: Executing testlist = 
+[INFO] REGRESSION FAILED ! -  case6_6_valid directory is empty called in currentTestDirectory = case6_6_valid hdlExtParam = gui
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests0numStagesPassedHASH(0x163ad00)
+Excluded directory = case6_6_valid because it is empty
+Executing tests in directory = hid_connections_valid 
+[INFO] regressHdl: begin currentTestDirectory = hid_connections_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hid_connections_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hid_connections_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/case6_6_valid
+
+[INFO] hdl_file_list = ./hid_connections.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hid_connections_valid/./hid_connections.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hid_connections_valid/./hid_connections.csl.xml
+[INFO] regressDir: sourceDir = hid_connections_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for hid_connections_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hid_connections_valid/./hid_connections.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hid_connections_valid/./hid_connections.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hid_connections_valid/./hid_connections.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/hid_connections_valid/hid_connections.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/hid_connections_valid/gen_code/hid_connections/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1640968)
+Executing tests in directory = HIDIfc_CC_valid 
+[INFO] regressHdl: begin currentTestDirectory = HIDIfc_CC_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/HIDIfc_CC_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/HIDIfc_CC_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hid_connections_valid
+
+[INFO] hdl_file_list = ./cc_connection.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/HIDIfc_CC_valid/./cc_connection.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/HIDIfc_CC_valid/./cc_connection.csl.xml
+[INFO] regressDir: sourceDir = HIDIfc_CC_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for HIDIfc_CC_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/HIDIfc_CC_valid/./cc_connection.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/HIDIfc_CC_valid/./cc_connection.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/HIDIfc_CC_valid/./cc_connection.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/HIDIfc_CC_valid/cc_connection.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/HIDIfc_CC_valid/gen_code/cc_connection/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x16406e0)
+Executing tests in directory = hidPC_hidIfc_valid 
+[INFO] regressHdl: begin currentTestDirectory = hidPC_hidIfc_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hidPC_hidIfc_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hidPC_hidIfc_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/HIDIfc_CC_valid
+
+[INFO] hdl_file_list = ./hidPC_hidIfc.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hidPC_hidIfc_valid/./hidPC_hidIfc.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hidPC_hidIfc_valid/./hidPC_hidIfc.csl.xml
+[INFO] regressDir: sourceDir = hidPC_hidIfc_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for hidPC_hidIfc_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hidPC_hidIfc_valid/./hidPC_hidIfc.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hidPC_hidIfc_valid/./hidPC_hidIfc.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hidPC_hidIfc_valid/./hidPC_hidIfc.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/hidPC_hidIfc_valid/hidPC_hidIfc.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/hidPC_hidIfc_valid/gen_code/hidPC_hidIfc/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1642ed8)
+Executing tests in directory = ifc_drives_more_than_one_receiver_valid 
+[INFO] regressHdl: begin currentTestDirectory = ifc_drives_more_than_one_receiver_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_drives_more_than_one_receiver_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_drives_more_than_one_receiver_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/hidPC_hidIfc_valid
+
+[INFO] hdl_file_list = ./ifc_drives_more_than_one_receiver.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_drives_more_than_one_receiver_valid/./ifc_drives_more_than_one_receiver.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_drives_more_than_one_receiver_valid/./ifc_drives_more_than_one_receiver.csl.xml
+[INFO] regressDir: sourceDir = ifc_drives_more_than_one_receiver_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for ifc_drives_more_than_one_receiver_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_drives_more_than_one_receiver_valid/./ifc_drives_more_than_one_receiver.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_drives_more_than_one_receiver_valid/./ifc_drives_more_than_one_receiver.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_drives_more_than_one_receiver_valid/./ifc_drives_more_than_one_receiver.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/ifc_drives_more_than_one_receiver_valid/ifc_drives_more_than_one_receiver.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/ifc_drives_more_than_one_receiver_valid/gen_code/ifc_drives_more_than_one_receiver/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1640830)
+Executing tests in directory = log 
+[INFO] regressHdl: begin currentTestDirectory = log 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/log
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/log && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_drives_more_than_one_receiver_valid
+
+[INFO] hdl_file_list = 
+No cf or vf files!
+-----------
+[INFO] generate_regression_list: end testlist cnt = -1 test_list = 
+[INFO] regressDir: sourceDir = log testlist cnt = -1
+[INFO] regressDir: Executing regression for log testlist cnt = -1
+[INFO] regressDir: Executing testlist = 
+[INFO] REGRESSION FAILED ! -  log directory is empty called in currentTestDirectory = log hdlExtParam = gui
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests0numStagesPassedHASH(0x16405f0)
+Excluded directory = log because it is empty
+Executing tests in directory = mitch1_valid 
+[INFO] regressHdl: begin currentTestDirectory = mitch1_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch1_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch1_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_drives_more_than_one_receiver_valid
+
+[INFO] hdl_file_list = ./mitch1.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch1_valid/./mitch1.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch1_valid/./mitch1.csl.xml
+[INFO] regressDir: sourceDir = mitch1_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for mitch1_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch1_valid/./mitch1.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch1_valid/./mitch1.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch1_valid/./mitch1.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/mitch1_valid/mitch1.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/mitch1_valid/gen_code/mitch1/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x164ace8)
+Executing tests in directory = mitch_complex_valid 
+[INFO] regressHdl: begin currentTestDirectory = mitch_complex_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_complex_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_complex_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch1_valid
+
+[INFO] hdl_file_list = ./mitch1.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_complex_valid/./mitch1.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_complex_valid/./mitch1.csl.xml
+[INFO] regressDir: sourceDir = mitch_complex_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for mitch_complex_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_complex_valid/./mitch1.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_complex_valid/./mitch1.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_complex_valid/./mitch1.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/mitch_complex_valid/mitch1.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/mitch_complex_valid/gen_code/mitch1/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1643a90)
+Executing tests in directory = mitch_multiple_instance_valid 
+[INFO] regressHdl: begin currentTestDirectory = mitch_multiple_instance_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_multiple_instance_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_multiple_instance_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_complex_valid
+
+[INFO] hdl_file_list = ./mitch.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_multiple_instance_valid/./mitch.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_multiple_instance_valid/./mitch.csl.xml
+[INFO] regressDir: sourceDir = mitch_multiple_instance_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for mitch_multiple_instance_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_multiple_instance_valid/./mitch.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_multiple_instance_valid/./mitch.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_multiple_instance_valid/./mitch.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/mitch_multiple_instance_valid/mitch.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/mitch_multiple_instance_valid/gen_code/mitch/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x16472d0)
+Executing tests in directory = msi_valid 
+[INFO] regressHdl: begin currentTestDirectory = msi_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/msi_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/msi_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/mitch_multiple_instance_valid
+
+[INFO] hdl_file_list = ./msi_phase_1.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/msi_valid/./msi_phase_1.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/msi_valid/./msi_phase_1.csl.xml
+[INFO] regressDir: sourceDir = msi_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for msi_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/msi_valid/./msi_phase_1.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/msi_valid/./msi_phase_1.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/msi_valid/./msi_phase_1.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/msi_valid/msi_phase_1.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/msi_valid/gen_code/msi_phase_1/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1642f98)
+Executing tests in directory = multiple_instances_valid 
+[INFO] regressHdl: begin currentTestDirectory = multiple_instances_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instances_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instances_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/msi_valid
+
+[INFO] hdl_file_list = ./multiple_instances.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instances_valid/./multiple_instances.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instances_valid/./multiple_instances.csl.xml
+[INFO] regressDir: sourceDir = multiple_instances_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for multiple_instances_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instances_valid/./multiple_instances.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instances_valid/./multiple_instances.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instances_valid/./multiple_instances.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/multiple_instances_valid/multiple_instances.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/multiple_instances_valid/gen_code/multiple_instances/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1640830)
+Executing tests in directory = multiple_instance_valid 
+[INFO] regressHdl: begin currentTestDirectory = multiple_instance_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instance_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instance_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instances_valid
+
+[INFO] hdl_file_list = ./multiple_instance.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instance_valid/./multiple_instance.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instance_valid/./multiple_instance.csl.xml
+[INFO] regressDir: sourceDir = multiple_instance_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for multiple_instance_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instance_valid/./multiple_instance.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instance_valid/./multiple_instance.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instance_valid/./multiple_instance.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/multiple_instance_valid/multiple_instance.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/multiple_instance_valid/gen_code/multiple_instance/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1632ff0)
+Executing tests in directory = p2c_connection_valid 
+[INFO] regressHdl: begin currentTestDirectory = p2c_connection_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/p2c_connection_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/p2c_connection_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/multiple_instance_valid
+
+[INFO] hdl_file_list = ./parent_multipleChildren.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/p2c_connection_valid/./parent_multipleChildren.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/p2c_connection_valid/./parent_multipleChildren.csl.xml
+[INFO] regressDir: sourceDir = p2c_connection_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for p2c_connection_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/p2c_connection_valid/./parent_multipleChildren.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/p2c_connection_valid/./parent_multipleChildren.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/p2c_connection_valid/./parent_multipleChildren.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/p2c_connection_valid/parent_multipleChildren.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/p2c_connection_valid/gen_code/parent_multipleChildren/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x164ebe0)
+Executing tests in directory = san_diego_valid 
+[INFO] regressHdl: begin currentTestDirectory = san_diego_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/san_diego_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/san_diego_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/p2c_connection_valid
+
+[INFO] hdl_file_list = ./agent_cl.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/san_diego_valid/./agent_cl.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/san_diego_valid/./agent_cl.csl.xml
+[INFO] regressDir: sourceDir = san_diego_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for san_diego_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/san_diego_valid/./agent_cl.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/san_diego_valid/./agent_cl.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/san_diego_valid/./agent_cl.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/san_diego_valid/agent_cl.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/san_diego_valid/gen_code/agent_cl/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1602598)
+Executing tests in directory = singleHID_CC_valid 
+[INFO] regressHdl: begin currentTestDirectory = singleHID_CC_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CC_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CC_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/san_diego_valid
+
+[INFO] hdl_file_list = ./singleHID_CC.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CC_valid/./singleHID_CC.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CC_valid/./singleHID_CC.csl.xml
+[INFO] regressDir: sourceDir = singleHID_CC_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for singleHID_CC_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CC_valid/./singleHID_CC.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CC_valid/./singleHID_CC.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CC_valid/./singleHID_CC.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleHID_CC_valid/singleHID_CC.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleHID_CC_valid/gen_code/singleHID_CC/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x162f7f0)
+Executing tests in directory = singleHID_CP_valid 
+[INFO] regressHdl: begin currentTestDirectory = singleHID_CP_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CP_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CP_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CC_valid
+
+[INFO] hdl_file_list = ./singleHID_CP.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CP_valid/./singleHID_CP.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CP_valid/./singleHID_CP.csl.xml
+[INFO] regressDir: sourceDir = singleHID_CP_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for singleHID_CP_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CP_valid/./singleHID_CP.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CP_valid/./singleHID_CP.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CP_valid/./singleHID_CP.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleHID_CP_valid/singleHID_CP.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleHID_CP_valid/gen_code/singleHID_CP/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x16366b0)
+Executing tests in directory = singleHID_PC_valid 
+[INFO] regressHdl: begin currentTestDirectory = singleHID_PC_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_PC_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_PC_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_CP_valid
+
+[INFO] hdl_file_list = ./singleHID_PC.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_PC_valid/./singleHID_PC.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_PC_valid/./singleHID_PC.csl.xml
+[INFO] regressDir: sourceDir = singleHID_PC_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for singleHID_PC_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_PC_valid/./singleHID_PC.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_PC_valid/./singleHID_PC.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_PC_valid/./singleHID_PC.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleHID_PC_valid/singleHID_PC.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleHID_PC_valid/gen_code/singleHID_PC/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x163a010)
+Executing tests in directory = singleHID_SS_valid 
+[INFO] regressHdl: begin currentTestDirectory = singleHID_SS_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_SS_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_SS_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_PC_valid
+
+[INFO] hdl_file_list = ./singleHID_SS.csl.xml
+./singleHID_SStest.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_SS_valid/./singleHID_SS.csl.xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_SS_valid/./singleHID_SStest.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 1 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_SS_valid/./singleHID_SS.csl.xml/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_SS_valid/./singleHID_SStest.csl.xml
+[INFO] regressDir: sourceDir = singleHID_SS_valid testlist cnt = 1
+[INFO] regressDir: Executing regression for singleHID_SS_valid testlist cnt = 1
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_SS_valid/./singleHID_SS.csl.xml/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_SS_valid/./singleHID_SStest.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_SS_valid/./singleHID_SS.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_SS_valid/./singleHID_SS.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleHID_SS_valid/singleHID_SS.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleHID_SS_valid/gen_code/singleHID_SS/
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_SS_valid/./singleHID_SStest.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_SS_valid/./singleHID_SStest.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleHID_SS_valid/singleHID_SStest.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleHID_SS_valid/gen_code/singleHID_SStest/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests2numStagesPassedHASH(0x163a448)
+Executing tests in directory = singleIfcCC_valid 
+[INFO] regressHdl: begin currentTestDirectory = singleIfcCC_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCC_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCC_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleHID_SS_valid
+
+[INFO] hdl_file_list = ./single_Ifc_CC.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCC_valid/./single_Ifc_CC.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCC_valid/./single_Ifc_CC.csl.xml
+[INFO] regressDir: sourceDir = singleIfcCC_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for singleIfcCC_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCC_valid/./single_Ifc_CC.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCC_valid/./single_Ifc_CC.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCC_valid/./single_Ifc_CC.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleIfcCC_valid/single_Ifc_CC.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleIfcCC_valid/gen_code/single_Ifc_CC/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x164edf0)
+Executing tests in directory = singleIfcCP_valid 
+[INFO] regressHdl: begin currentTestDirectory = singleIfcCP_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCP_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCP_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCC_valid
+
+[INFO] hdl_file_list = ./single_Ifc_CP.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCP_valid/./single_Ifc_CP.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCP_valid/./single_Ifc_CP.csl.xml
+[INFO] regressDir: sourceDir = singleIfcCP_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for singleIfcCP_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCP_valid/./single_Ifc_CP.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCP_valid/./single_Ifc_CP.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCP_valid/./single_Ifc_CP.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleIfcCP_valid/single_Ifc_CP.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleIfcCP_valid/gen_code/single_Ifc_CP/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1643a60)
+Executing tests in directory = singleIfcPC_valid 
+[INFO] regressHdl: begin currentTestDirectory = singleIfcPC_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPC_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPC_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcCP_valid
+
+[INFO] hdl_file_list = ./single_Ifc_PC.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPC_valid/./single_Ifc_PC.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPC_valid/./single_Ifc_PC.csl.xml
+[INFO] regressDir: sourceDir = singleIfcPC_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for singleIfcPC_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPC_valid/./single_Ifc_PC.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPC_valid/./single_Ifc_PC.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPC_valid/./single_Ifc_PC.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleIfcPC_valid/single_Ifc_PC.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleIfcPC_valid/gen_code/single_Ifc_PC/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x163a418)
+Executing tests in directory = singleIfcPP_valid 
+[INFO] regressHdl: begin currentTestDirectory = singleIfcPP_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPP_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPP_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPC_valid
+
+[INFO] hdl_file_list = ./single_Ifc_PP.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPP_valid/./single_Ifc_PP.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPP_valid/./single_Ifc_PP.csl.xml
+[INFO] regressDir: sourceDir = singleIfcPP_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for singleIfcPP_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPP_valid/./single_Ifc_PP.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPP_valid/./single_Ifc_PP.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPP_valid/./single_Ifc_PP.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleIfcPP_valid/single_Ifc_PP.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleIfcPP_valid/gen_code/single_Ifc_PP/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x16627a0)
+Executing tests in directory = singleIfcSS_valid 
+[INFO] regressHdl: begin currentTestDirectory = singleIfcSS_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcSS_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcSS_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcPP_valid
+
+[INFO] hdl_file_list = ./sigle_Ifc_SS.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcSS_valid/./sigle_Ifc_SS.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcSS_valid/./sigle_Ifc_SS.csl.xml
+[INFO] regressDir: sourceDir = singleIfcSS_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for singleIfcSS_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcSS_valid/./sigle_Ifc_SS.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcSS_valid/./sigle_Ifc_SS.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcSS_valid/./sigle_Ifc_SS.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleIfcSS_valid/sigle_Ifc_SS.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/singleIfcSS_valid/gen_code/sigle_Ifc_SS/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1656348)
+Executing tests in directory = single_root_valid 
+[INFO] regressHdl: begin currentTestDirectory = single_root_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/single_root_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/single_root_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/singleIfcSS_valid
+
+[INFO] hdl_file_list = 
+No cf or vf files!
+-----------
+[INFO] generate_regression_list: end testlist cnt = -1 test_list = 
+[INFO] regressDir: sourceDir = single_root_valid testlist cnt = -1
+[INFO] regressDir: Executing regression for single_root_valid testlist cnt = -1
+[INFO] regressDir: Executing testlist = 
+[INFO] REGRESSION FAILED ! -  single_root_valid directory is empty called in currentTestDirectory = single_root_valid hdlExtParam = gui
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests0numStagesPassedHASH(0x1668198)
+Excluded directory = single_root_valid because it is empty
+Executing tests in directory = test11_valid 
+[INFO] regressHdl: begin currentTestDirectory = test11_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test11_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test11_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/single_root_valid
+
+[INFO] hdl_file_list = ./teat11.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test11_valid/./teat11.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test11_valid/./teat11.csl.xml
+[INFO] regressDir: sourceDir = test11_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for test11_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test11_valid/./teat11.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test11_valid/./teat11.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test11_valid/./teat11.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/test11_valid/teat11.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/test11_valid/gen_code/teat11/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1668510)
+Executing tests in directory = test4_valid 
+[INFO] regressHdl: begin currentTestDirectory = test4_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test4_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test4_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test11_valid
+
+[INFO] hdl_file_list = ./test4.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test4_valid/./test4.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test4_valid/./test4.csl.xml
+[INFO] regressDir: sourceDir = test4_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for test4_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test4_valid/./test4.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test4_valid/./test4.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test4_valid/./test4.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/test4_valid/test4.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/test4_valid/gen_code/test4/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1643328)
+Executing tests in directory = test5_valid 
+[INFO] regressHdl: begin currentTestDirectory = test5_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test5_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test5_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test4_valid
+
+[INFO] hdl_file_list = ./test5.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test5_valid/./test5.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test5_valid/./test5.csl.xml
+[INFO] regressDir: sourceDir = test5_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for test5_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test5_valid/./test5.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test5_valid/./test5.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test5_valid/./test5.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/test5_valid/test5.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/test5_valid/gen_code/test5/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1678768)
+Executing tests in directory = test6_valid 
+[INFO] regressHdl: begin currentTestDirectory = test6_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test6_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test6_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test5_valid
+
+[INFO] hdl_file_list = ./test6.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test6_valid/./test6.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test6_valid/./test6.csl.xml
+[INFO] regressDir: sourceDir = test6_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for test6_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test6_valid/./test6.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test6_valid/./test6.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test6_valid/./test6.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/test6_valid/test6.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/test6_valid/gen_code/test6/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x16022f8)
+Executing tests in directory = test7_valid 
+[INFO] regressHdl: begin currentTestDirectory = test7_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test7_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test7_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test6_valid
+
+[INFO] hdl_file_list = ./test7.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test7_valid/./test7.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test7_valid/./test7.csl.xml
+[INFO] regressDir: sourceDir = test7_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for test7_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test7_valid/./test7.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test7_valid/./test7.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test7_valid/./test7.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/test7_valid/test7.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/test7_valid/gen_code/test7/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1678c60)
+Executing tests in directory = test8_valid 
+[INFO] regressHdl: begin currentTestDirectory = test8_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test8_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test8_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test7_valid
+
+[INFO] hdl_file_list = ./test8.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test8_valid/./test8.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test8_valid/./test8.csl.xml
+[INFO] regressDir: sourceDir = test8_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for test8_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test8_valid/./test8.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test8_valid/./test8.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test8_valid/./test8.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/test8_valid/test8.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/test8_valid/gen_code/test8/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x165fa08)
+Executing tests in directory = test9_valid 
+[INFO] regressHdl: begin currentTestDirectory = test9_valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test9_valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test9_valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test8_valid
+
+[INFO] hdl_file_list = ./test9.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test9_valid/./test9.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test9_valid/./test9.csl.xml
+[INFO] regressDir: sourceDir = test9_valid testlist cnt = 0
+[INFO] regressDir: Executing regression for test9_valid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test9_valid/./test9.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test9_valid/./test9.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test9_valid/./test9.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/test9_valid/test9.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/test9_valid/gen_code/test9/
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1681070)
+Executing tests in directory = valid 
+[INFO] regressHdl: begin currentTestDirectory = valid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/valid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/valid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/test9_valid
+
+[INFO] hdl_file_list = 
+No cf or vf files!
+-----------
+[INFO] generate_regression_list: end testlist cnt = -1 test_list = 
+[INFO] regressDir: sourceDir = valid testlist cnt = -1
+[INFO] regressDir: Executing regression for valid testlist cnt = -1
+[INFO] regressDir: Executing testlist = 
+[INFO] REGRESSION FAILED ! -  valid directory is empty called in currentTestDirectory = valid hdlExtParam = gui
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests0numStagesPassedHASH(0x1659ef8)
+Excluded directory = valid because it is empty
+Executing tests in directory = duplicate_names_connection_table_invalid 
+[INFO] regressHdl: begin currentTestDirectory = duplicate_names_connection_table_invalid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/duplicate_names_connection_table_invalid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/duplicate_names_connection_table_invalid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/valid
+
+[INFO] hdl_file_list = 
+No cf or vf files!
+-----------
+[INFO] generate_regression_list: end testlist cnt = -1 test_list = 
+[INFO] regressDir: sourceDir = duplicate_names_connection_table_invalid testlist cnt = -1
+[INFO] regressDir: Executing regression for duplicate_names_connection_table_invalid testlist cnt = -1
+[INFO] regressDir: Executing testlist = 
+[INFO] REGRESSION FAILED ! -  duplicate_names_connection_table_invalid directory is empty called in currentTestDirectory = duplicate_names_connection_table_invalid hdlExtParam = gui
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests0numStagesPassedHASH(0x165fa50)
+Excluded directory = duplicate_names_connection_table_invalid because it is empty
+Executing tests in directory = duplicate_UnitInstanceName_invalid 
+[INFO] regressHdl: begin currentTestDirectory = duplicate_UnitInstanceName_invalid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/duplicate_UnitInstanceName_invalid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/duplicate_UnitInstanceName_invalid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/duplicate_names_connection_table_invalid
+
+[INFO] hdl_file_list = ./UnitInstanceName.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/duplicate_UnitInstanceName_invalid/./UnitInstanceName.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/duplicate_UnitInstanceName_invalid/./UnitInstanceName.csl.xml
+[INFO] regressDir: sourceDir = duplicate_UnitInstanceName_invalid testlist cnt = 0
+[INFO] regressDir: Executing regression for duplicate_UnitInstanceName_invalid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/duplicate_UnitInstanceName_invalid/./UnitInstanceName.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/duplicate_UnitInstanceName_invalid/./UnitInstanceName.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/duplicate_UnitInstanceName_invalid/./UnitInstanceName.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/duplicate_UnitInstanceName_invalid/UnitInstanceName.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/duplicate_UnitInstanceName_invalid/gen_code/UnitInstanceName/
+[INFO] regressDir: end testResults = totalDirPercentPassed100directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed1totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1668510)
+Executing tests in directory = ifc_without_ports_invalid 
+[INFO] regressHdl: begin currentTestDirectory = ifc_without_ports_invalid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_without_ports_invalid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_without_ports_invalid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/duplicate_UnitInstanceName_invalid
+
+[INFO] hdl_file_list = ./no_ports.csl.xml
+
+No cf or vf files!
+-----------/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_without_ports_invalid/./no_ports.csl.xml
+[INFO] generate_regression_list: end testlist cnt = 0 test_list = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_without_ports_invalid/./no_ports.csl.xml
+[INFO] regressDir: sourceDir = ifc_without_ports_invalid testlist cnt = 0
+[INFO] regressDir: Executing regression for ifc_without_ports_invalid testlist cnt = 0
+[INFO] regressDir: Executing testlist = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_without_ports_invalid/./no_ports.csl.xml
+Executing test: /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_without_ports_invalid/./no_ports.csl.xml
+cmd = /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/FastPath/FastPath  -batch -xml /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_without_ports_invalid/./no_ports.csl.xml -logdir /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/ifc_without_ports_invalid/no_ports.cslc.txt  1> log 2>&1
+genCodeDir = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/report/results_2009.11.10_12_43_26/gui/ifc_without_ports_invalid/gen_code/no_ports/
+[INFO] regressDir: end testResults = totalDirPercentPassed100directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed1totalDirMajorErrorCnt0totalDirNumTests1numStagesPassedHASH(0x1633098)
+Executing tests in directory = interface_hierarchy_invalid 
+[INFO] regressHdl: begin currentTestDirectory = interface_hierarchy_invalid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/interface_hierarchy_invalid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/interface_hierarchy_invalid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/ifc_without_ports_invalid
+
+[INFO] hdl_file_list = 
+No cf or vf files!
+-----------
+[INFO] generate_regression_list: end testlist cnt = -1 test_list = 
+[INFO] regressDir: sourceDir = interface_hierarchy_invalid testlist cnt = -1
+[INFO] regressDir: Executing regression for interface_hierarchy_invalid testlist cnt = -1
+[INFO] regressDir: Executing testlist = 
+[INFO] REGRESSION FAILED ! -  interface_hierarchy_invalid directory is empty called in currentTestDirectory = interface_hierarchy_invalid hdlExtParam = gui
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests0numStagesPassedHASH(0x162f460)
+Excluded directory = interface_hierarchy_invalid because it is empty
+Executing tests in directory = invalid 
+[INFO] regressHdl: begin currentTestDirectory = invalid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/invalid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/invalid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/interface_hierarchy_invalid
+
+[INFO] hdl_file_list = 
+No cf or vf files!
+-----------
+[INFO] generate_regression_list: end testlist cnt = -1 test_list = 
+[INFO] regressDir: sourceDir = invalid testlist cnt = -1
+[INFO] regressDir: Executing regression for invalid testlist cnt = -1
+[INFO] regressDir: Executing testlist = 
+[INFO] REGRESSION FAILED ! -  invalid directory is empty called in currentTestDirectory = invalid hdlExtParam = gui
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests0numStagesPassedHASH(0x1656330)
+Excluded directory = invalid because it is empty
+Executing tests in directory = two_roots_invalid 
+[INFO] regressHdl: begin currentTestDirectory = two_roots_invalid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/two_roots_invalid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/two_roots_invalid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/invalid
+
+[INFO] hdl_file_list = 
+No cf or vf files!
+-----------
+[INFO] generate_regression_list: end testlist cnt = -1 test_list = 
+[INFO] regressDir: sourceDir = two_roots_invalid testlist cnt = -1
+[INFO] regressDir: Executing regression for two_roots_invalid testlist cnt = -1
+[INFO] regressDir: Executing testlist = 
+[INFO] REGRESSION FAILED ! -  two_roots_invalid directory is empty called in currentTestDirectory = two_roots_invalid hdlExtParam = gui
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests0numStagesPassedHASH(0x1667c40)
+Excluded directory = two_roots_invalid because it is empty
+Executing tests in directory = unexpected_exit_invalid 
+[INFO] regressHdl: begin currentTestDirectory = unexpected_exit_invalid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/unexpected_exit_invalid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/unexpected_exit_invalid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/two_roots_invalid
+
+[INFO] hdl_file_list = 
+No cf or vf files!
+-----------
+[INFO] generate_regression_list: end testlist cnt = -1 test_list = 
+[INFO] regressDir: sourceDir = unexpected_exit_invalid testlist cnt = -1
+[INFO] regressDir: Executing regression for unexpected_exit_invalid testlist cnt = -1
+[INFO] regressDir: Executing testlist = 
+[INFO] REGRESSION FAILED ! -  unexpected_exit_invalid directory is empty called in currentTestDirectory = unexpected_exit_invalid hdlExtParam = gui
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests0numStagesPassedHASH(0x16479a8)
+Excluded directory = unexpected_exit_invalid because it is empty
+Executing tests in directory = wrong_ifc_name_invalid 
+[INFO] regressHdl: begin currentTestDirectory = wrong_ifc_name_invalid 
+[INFO] regressDir: begin
+[INFO] generate_regression_list: testDirPath = /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/wrong_ifc_name_invalid
+[INFO] ls_cmd = cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/wrong_ifc_name_invalid && find . -name "*.csl.xml" -print && cd /storage1/fpl_svn_2009_09/repos/trunk/cslc/test/gui/unexpected_exit_invalid
+
+[INFO] hdl_file_list = 
+No cf or vf files!
+-----------
+[INFO] generate_regression_list: end testlist cnt = -1 test_list = 
+[INFO] regressDir: sourceDir = wrong_ifc_name_invalid testlist cnt = -1
+[INFO] regressDir: Executing regression for wrong_ifc_name_invalid testlist cnt = -1
+[INFO] regressDir: Executing testlist = 
+[INFO] REGRESSION FAILED ! -  wrong_ifc_name_invalid directory is empty called in currentTestDirectory = wrong_ifc_name_invalid hdlExtParam = gui
+[INFO] regressDir: end testResults = totalDirPercentPassed0directoryStatusCSSfailedtotalDirValgrindErrorCnt0totalDirNumTestsPassed0totalDirMajorErrorCnt0totalDirNumTests0numStagesPassedHASH(0x1659fd0)
+Excluded directory = wrong_ifc_name_invalid because it is empty
+
+
+
+
+
+Exit msg: 
+Overall regression status = failed
+REGRESSION DONE

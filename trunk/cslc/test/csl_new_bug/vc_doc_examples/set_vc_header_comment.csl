@@ -1,0 +1,37 @@
+//
+
+csl_unit dut{
+  csl_port stim_in(input),exp_out(output),p_clk(input);
+  csl_signal s1,s2,clk; 
+ dut(){
+    p_clk.set_attr(clock);
+    s1 = stim_in;
+    exp_out = s2;
+    clk = p_clk;
+  }
+};
+
+csl_vector stim_vec{
+  stim_vec(){
+    set_unit_name(dut);
+    set_direction(input);
+    set_vc_header_comment("stimvec");
+    set_version(2);
+  }
+};
+
+csl_vector exp_vec{
+  exp_vec(){
+   set_unit_name(dut);
+   set_direction(output);
+}
+};
+
+csl_testbench tb{
+csl_signal p_clk(reg);
+dut dut_1(.p_clk(p_clk));
+tb(){
+  p_clk.set_attr(clock);
+  add_logic(clock,p_clk,100,ps);
+}
+};

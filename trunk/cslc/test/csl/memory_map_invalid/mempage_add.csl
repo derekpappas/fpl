@@ -1,0 +1,26 @@
+//oanab
+//23 oct 2007
+//the width and depth of the register file is higher than the memory map's page //address range
+csl_register_file rf{
+  rf(){
+    set_width(300);
+    set_depth(400);
+  }
+};
+csl_unit u{
+  rf rf1;
+  u(){}
+};
+csl_memory_map_page mpg{
+  mpg(){
+    set_data_word_width(32);
+    add_address_range(10,120);
+    add(u.rf1,"reg_file",15);
+  }
+};
+csl_memory_map mp{
+  mpg mpg;
+  mp(){
+  set_data_word_width(32);
+  }
+};

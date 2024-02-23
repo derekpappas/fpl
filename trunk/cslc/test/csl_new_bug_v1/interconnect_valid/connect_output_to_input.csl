@@ -1,0 +1,11 @@
+csl_unit proc { 
+csl_port in0(input, 32);
+ proc(){}
+};
+
+csl_unit cluster { 
+ csl_port out(input, 32);
+  proc p0 (.in0(out)); // HID reference to the output port out in the same module
+  cluster(){}
+
+};

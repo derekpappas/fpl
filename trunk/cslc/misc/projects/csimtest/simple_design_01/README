@@ -1,0 +1,4 @@
+This is a simple CSL example that also includes logic (verilog). 
+The example is aimed at testing both generated RTL and CSLC C++ Simulator 
+functionality on a small scale. 
+As the targeted components will prove functional, more complex examples will be used to test them.

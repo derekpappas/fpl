@@ -1,0 +1,19 @@
+# This is the test file for COmStmtLoop class
+# <> means obligatory
+# [] means optional
+# {} means a group
+# *x means this should be reapeated x times
+# Syntax: ( <1..4> [EXPRESSION_INIT_TYPE] [EXPRESSION_INIT_TEST] [EXPRESSION_COND_TYPE] [EXPR_COND_LOOP] [EXPR_LOOP_TYPE] [EXPR_LOOP_TEST] <STATEMENT_NUMBER> {<STATEMENT_TYPE> <STATEMENT_TEST>}*STATEMENT_NUMBER )
+# 1 constructor with no arguments
+# 2 constructor with EXPRESSION_INIT
+# 3 constructor with EXPRESSION_INIT, EXPRESSION_COND
+# 4 constructor with EXPRESSION_INIT, EXPRESSION_COND, EXPRESSION_LOOP
+# examples:
+
+( 1 0 )
+( 1 1 COmStmtAssn ( 2 3 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) COmExprValReal ( 2 20 2 20 2 2000 1 ) 3 ) )
+( 2 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 0 )
+( 3 COmExprValReal ( 2 20 2 20 2 2000 1 ) COmExprValReal ( 2 20 2 20 2 2000 1 ) 1 COmStmtIfElse ( 1 0 0 ) )
+( 4 COmExprValInt ( 123 3 32 123 1 ) COmExprValInt ( 123 3 32 123 1 ) COmExprValInt ( 123 3 32 123 1 ) 1 COmStmtIfElse ( 1 0 0 ) )
+( 1 1 COmStmtIfElse ( 2 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 2 COmStmtIfElse ( 1 0 0 ) COmStmtAssn ( 1 1 COmSignalSingleton ( 1 14 jsafoiw COmModule ( n bibi n 0 0 ) ) COmExprValInt ( 123 3 32 123 1 ) ) 2 COmStmtIfElse ( 1 0 0 ) COmStmtAssn ( 2 3 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) COmExprValReal ( 2 20 2 20 2 2000 1 ) 3 ) ) )
+( 1 1 COmStmtLoop ( 1 0 ) )

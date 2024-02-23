@@ -1,0 +1,33 @@
+//csl_port
+//andreim
+//18 June 2007
+
+csl_interface   ifc_interface{
+  csl_port p_p1(input, wire, 5);
+  csl_port p_p2(output, 2);
+};
+
+csl_unit u_unit1{
+	csl_unit_parameter parameter(4);
+	csl_signal 			sgn_sgn1;
+	csl_port 				p_port1,
+						 			p_port2(output, reg, parameter),
+									p_port3(p_port1);    //p_port 3 copying all proprieties from p_port1
+//	ifc_interface ifc1;
+	u_unit1(){							
+	}
+};
+
+csl_unit u_unit2{
+	csl_port 				p_port1,
+						 			p_port2(output, reg, 4);
+	u_unit2(){							
+	}
+};
+
+csl_unit u_top{
+	csl_port 				p_in,
+						 			p_out(output, reg, 4);
+	u_top(){												
+	}
+};

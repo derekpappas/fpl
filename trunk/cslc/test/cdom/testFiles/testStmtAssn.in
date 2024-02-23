@@ -1,0 +1,10 @@
+# This is the input test file for CTestStmtAssn class
+# <> means obligatory
+# [] means optional
+# Syntax: ( <1..2> <ASSIGN_TYPE> <SIGNAL_TYPE_LEFT> <SINGAL_TYPE_TEST> <SIGNAL_TYPE_RIGHT> <SIGNAL_TYPE_TEST> [STMT_ATTR] )
+# 1 constructor without STMT_ATTR
+# 2 constructor with STMT_ATTR
+# examples:
+
+( 1 1 COmSignalSingleton ( 1 14 jsafoiw COmModule ( n bibi n 0 0 ) ) COmExprValInt ( 123 3 32 123 1 ) )
+( 2 3 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) COmExprValReal ( 2 20 2 20 2 2000 1 ) 3 )

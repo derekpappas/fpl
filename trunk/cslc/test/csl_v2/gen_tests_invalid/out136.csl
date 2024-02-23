@@ -1,0 +1,130 @@
+csl_enum bc {
+	yk = 21,
+	oc = 66,
+	ue = 68,
+	wb = 43,
+	vg = 77,
+	cl = 41
+};
+csl_enum tk {
+	bp,
+	vw,
+	hc,
+	ir
+};
+csl_enum hs {
+	sd,
+	ct,
+	gd,
+	vh,
+	qm,
+	ln,
+	qi,
+	qn,
+	qu,
+	bk
+};
+csl_isa_instruction_format wc{
+    wc( ){
+     set_width( 4);
+     generate_decoder( qcwiqm);
+  }
+}
+;
+csl_isa_instruction kh : wc{
+    kh( ){
+    set_asm_mnemonic( csl_list "wh", "uw", "pr", "xm");
+  }
+}
+;
+csl_isa mx{
+    mx( ){
+     set_decoder_name( "hq");
+     set_decoder_out_name_prefix( "nh");
+     set_decoder_out_name_suffix( "ii");
+     generate_decoder( moqm);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo gp{
+   gp( ){
+     set_physical_implementation( FFA);
+     add_logic( sync_fifo);
+     add_logic( flow);
+  }
+}
+;
+csl_memory_map_page nr{
+    nr( ){
+     set_address_increment( 0);
+     get_address_increment( );
+     set_next_address( 5);
+     get_next_address( );
+     get_lower_bound( );
+     set_data_word_width( 2);
+     get_data_word_wodth( );
+     set_aligment( 0);
+     get_aligment( );
+     set_endianess( little_endianlittle_endian);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page wl{
+    wl( ){
+     get_next_address( );
+     get_upper_bound( );
+     get_aligment( );
+  }
+}
+;
+csl_memory_map_page mn{
+    mn( ){
+     get_address_increment( );
+     set_next_address( 6);
+     set_access_rights( access_write, access_write);
+     add_reserved_address_range( 8, 6);
+     add( gp, "fd");
+     get_lower_bound( );
+     get_data_word_wodth( );
+  }
+}
+;
+csl_memory_map tj{
+  nr sw;
+  nr of;
+  mn ae;
+  wl ie;
+    tj( ){
+     auto_gen_memory_map( );
+     set_top_unit( mowi);
+.add_to_memory_map( 3); 
+     set_data_word_width( 1);
+     get_data_word_width( );
+     set_prefix( xc);
+  }
+}
+;
+csl_register gc{
+    gc( ){
+     set_range( {[4:4], [3:5], [4:2], [8:7], [1:7], [3:4]});
+     set_type( EVNT);
+     set_width( 1);
+     add_logic( serial_input);
+     add_logic( rd_en);
+     add_logic( wr_en);
+     init_value( 0);
+     set_value( 5);
+     reset_value( 5);
+     set_count_amount( 2);
+  }
+}
+;
+csl_register lu{
+    lu( ){
+     set_width( 4);
+  }
+}
+;

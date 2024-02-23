@@ -1,0 +1,6 @@
+csl_interface dbki1{
+  csl_port kpry1(inout, nkmy1);
+  csl_port gufi1(output, dhsakjdhakjdnakj);
+  csl_port qenv1(inout, 5);
+  csl_port oxkb1(input, tri1);
+};

@@ -1,0 +1,37 @@
+//Monica
+// doc example
+
+csl_interface ifc {
+   csl_port p_x(input);
+   csl_port p_y(output);
+   ifc () {}
+};
+
+csl_unit a {
+  ifc ifc0;
+  a () {}
+};
+csl_unit b {
+  a a0;
+  b () {}
+};
+csl_unit c {
+  b b0;
+  b b1;
+  ifc ifc1;
+  c () {
+// 2 matches : b0.a0.ifc0 and b1.a0.ifc0
+    ifc1.connect_by_pattern(a0.ifc0); 
+  }
+}; 
+
+/*csl_unit d {
+  c c0;
+  c c1;
+  ifc ifc2;
+  d () {
+// 2 matches : c0.b0.ifc1, c1.b0.ifc1
+    ifc3.connect_by_pattern(b0.ifc1);
+  }
+  };*/
+

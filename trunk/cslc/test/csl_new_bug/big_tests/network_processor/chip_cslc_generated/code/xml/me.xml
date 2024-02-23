@@ -1,0 +1,170 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="me">
+<signal name="reset" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="clear" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="clk" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="wr_addr1" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="rd_addr01" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="rd_addr11" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="data_in1" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="data_out01" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="data_out11" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="wr_en1" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="rd_en01" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="rd_en11" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="valid1" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="wr_addr2" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="rd_addr02" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="rd_addr12" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="data_in2" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="data_out02" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="data_out12" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="wr_en2" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="rd_en02" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="rd_en12" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="valid2" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="wr_addr3" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="rd_addr03" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="rd_addr13" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="data_in3" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="data_out03" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="data_out13" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="wr_en3" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="rd_en03" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="rd_en13" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="valid3" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="wr_addr4" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="rd_addr04" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="rd_addr14" offset="0" upper="5-1" lower="0" type = "wire"/>
+<signal name="data_in4" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="data_out04" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="data_out14" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="wr_en4" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="rd_en04" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="rd_en14" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="valid4" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="wr_addr5" offset="0" upper="6-1" lower="0" type = "wire"/>
+<signal name="rd_addr05" offset="0" upper="6-1" lower="0" type = "wire"/>
+<signal name="rd_addr15" offset="0" upper="6-1" lower="0" type = "wire"/>
+<signal name="data_in5" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="data_out05" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="data_out15" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="wr_en5" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="rd_en05" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="rd_en15" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="valid5" offset="0" upper="0" lower="0" type = "wire"/>
+<instantiation type = "rf128">
+<instance name="gpra">
+<f2a formal = "clear" actual = "clear" />
+<f2a formal = "clock" actual = "clk" />
+<f2a formal = "data_in" actual = "data_in1" />
+<f2a formal = "data_out0" actual = "data_out01" />
+<f2a formal = "data_out1" actual = "data_out11" />
+<f2a formal = "rd_addr0" actual = "rd_addr01" />
+<f2a formal = "rd_addr1" actual = "rd_addr11" />
+<f2a formal = "rd_en0" actual = "rd_en01" />
+<f2a formal = "rd_en1" actual = "rd_en11" />
+<f2a formal = "reset" actual = "reset" />
+<f2a formal = "valid" actual = "valid1" />
+<f2a formal = "wr_addr" actual = "wr_addr1" />
+<f2a formal = "wr_en" actual = "wr_en1" />
+</instance>
+</instantiation>
+<instantiation type = "rf128">
+<instance name="gprb">
+<f2a formal = "clear" actual = "clear" />
+<f2a formal = "clock" actual = "clk" />
+<f2a formal = "data_in" actual = "data_in2" />
+<f2a formal = "data_out0" actual = "data_out02" />
+<f2a formal = "data_out1" actual = "data_out12" />
+<f2a formal = "rd_addr0" actual = "rd_addr02" />
+<f2a formal = "rd_addr1" actual = "rd_addr12" />
+<f2a formal = "rd_en0" actual = "rd_en02" />
+<f2a formal = "rd_en1" actual = "rd_en12" />
+<f2a formal = "reset" actual = "reset" />
+<f2a formal = "valid" actual = "valid2" />
+<f2a formal = "wr_addr" actual = "wr_addr2" />
+<f2a formal = "wr_en" actual = "wr_en2" />
+</instance>
+</instantiation>
+<instantiation type = "rf128">
+<instance name="nn">
+<f2a formal = "clear" actual = "clear" />
+<f2a formal = "clock" actual = "clk" />
+<f2a formal = "data_in" actual = "data_in3" />
+<f2a formal = "data_out0" actual = "data_out03" />
+<f2a formal = "data_out1" actual = "data_out13" />
+<f2a formal = "rd_addr0" actual = "rd_addr03" />
+<f2a formal = "rd_addr1" actual = "rd_addr13" />
+<f2a formal = "rd_en0" actual = "rd_en03" />
+<f2a formal = "rd_en1" actual = "rd_en13" />
+<f2a formal = "reset" actual = "reset" />
+<f2a formal = "valid" actual = "valid3" />
+<f2a formal = "wr_addr" actual = "wr_addr3" />
+<f2a formal = "wr_en" actual = "wr_en3" />
+</instance>
+</instantiation>
+<instantiation type = "rf128">
+<instance name="xferind">
+<f2a formal = "clear" actual = "clear" />
+<f2a formal = "clock" actual = "clk" />
+<f2a formal = "data_in" actual = "data_in4" />
+<f2a formal = "data_out0" actual = "data_out04" />
+<f2a formal = "data_out1" actual = "data_out14" />
+<f2a formal = "rd_addr0" actual = "rd_addr04" />
+<f2a formal = "rd_addr1" actual = "rd_addr14" />
+<f2a formal = "rd_en0" actual = "rd_en04" />
+<f2a formal = "rd_en1" actual = "rd_en14" />
+<f2a formal = "reset" actual = "reset" />
+<f2a formal = "valid" actual = "valid4" />
+<f2a formal = "wr_addr" actual = "wr_addr4" />
+<f2a formal = "wr_en" actual = "wr_en4" />
+</instance>
+</instantiation>
+<instantiation type = "localmem">
+<instance name="lm">
+<f2a formal = "clear" actual = "clear" />
+<f2a formal = "clock" actual = "clk" />
+<f2a formal = "data_in" actual = "data_in5" />
+<f2a formal = "data_out0" actual = "data_out05" />
+<f2a formal = "data_out1" actual = "data_out15" />
+<f2a formal = "rd_addr0" actual = "rd_addr05" />
+<f2a formal = "rd_addr1" actual = "rd_addr15" />
+<f2a formal = "rd_en0" actual = "rd_en05" />
+<f2a formal = "rd_en1" actual = "rd_en15" />
+<f2a formal = "reset" actual = "reset" />
+<f2a formal = "valid" actual = "valid5" />
+<f2a formal = "wr_addr" actual = "wr_addr5" />
+<f2a formal = "wr_en" actual = "wr_en5" />
+</instance>
+</instantiation>
+<instantiation type = "execu">
+<instance name="eu0">
+</instance>
+</instantiation>
+<instantiation type = "ctrlstore">
+<instance name="cs0">
+</instance>
+</instantiation>
+<instantiation type = "opmux">
+<instance name="opmuxa">
+</instance>
+<instance name="opmuxb">
+</instance>
+</instantiation>
+<instantiation type = "crc">
+<instance name="crc0">
+</instance>
+</instantiation>
+<instantiation type = "crcr">
+<instance name="crcr0">
+</instance>
+</instantiation>
+<instantiation type = "rfmux">
+<instance name="rfmux0">
+</instance>
+</instantiation>
+</unit>
+</design>

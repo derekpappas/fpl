@@ -1,0 +1,30 @@
+//oanab
+//16 ian 2008
+
+csl_unit u1 {
+  csl_port x1(input),x2(input);
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_port a1(input);
+  u2 () {}
+};
+
+csl_unit u3 {
+  u1 u1_0;
+  csl_port v1(input),v2(output);
+  u3 () {}
+};
+
+csl_unit top {
+  csl_signal s1,s2;
+  csl_port c1(input),c2(input),c3(output);
+  u2 u2_0;
+  u3 u3_0(.v1(c1),.v2(c3));
+  top () {
+    s1.connect_by_name(u3_0.u1_0.x1);
+    u2_0.a1.connect_by_name(c2);
+    u3_0.u1_0.x2.connect_by_name(s2);
+  }
+  };

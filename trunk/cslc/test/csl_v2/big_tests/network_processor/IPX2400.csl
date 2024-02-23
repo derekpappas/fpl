@@ -1,0 +1,196 @@
+// 
+// IXP2400 Network Processor
+
+csl_bitrange iow(0,31);
+/*  
+csl_interface rfifc{
+  rfifc(){
+    add_port(input,iow);
+    add_port(output,iow);
+  };
+*/
+// --------------------Microengine units
+// local memory
+ csl_register_file localmem{
+   //csl_unit localmem{
+    localmem(){
+      set_width(32);
+      set_depth(64);
+    }
+ };
+
+// local memory address register  
+//csl_register lm_addr{};
+//csl_register t_index{};
+//csl_register nn_get{};
+
+//control unit  
+csl_unit ctrlstore{
+  ctrlstore() {
+      }
+  };
+
+//execution unit - Shift, Add, Substract, Mutiply .....  
+csl_unit execu{
+  execu(){
+    }
+  };
+
+
+// general purpos register file
+csl_register_file rf128{
+  rf128(){
+    set_width(32);
+    set_depth(32);
+    }
+  };
+
+  
+// CRC unit
+csl_unit crc {
+  crc(){
+    }
+  };
+  
+// CRC reminder unit
+csl_unit crcr {
+  crcr(){
+    }
+  };
+
+csl_unit opmux{
+  opmux(){
+    }
+  };
+  
+csl_unit rfmux{
+  rfmux(){
+    }
+    };
+    
+    
+//---------------------IPX2400 units
+//Media switch fabric interface
+csl_unit msf {
+  msf(){
+    }
+  };
+
+// Scratchpad memory
+// csl_memory scratch {
+csl_register_file scratch {
+  scratch() {
+    set_width(32);
+    set_depth(128);
+  }
+  };
+
+// SRAM controller  
+csl_unit sramctrl {
+  sramctrl(){
+    }
+  };
+
+//DRAM controller  
+csl_unit dramctrl {
+  dramctrl(){
+    }
+  };
+
+//Hash unit  
+csl_unit hash{
+  hash(){
+    }
+  };
+
+//PCI controller
+csl_unit pcictrl{
+  pcictrl(){
+    }
+  };
+
+// Chip wide control status register
+csl_unit cap{
+  cap(){}
+  };
+
+//microengine unit
+csl_unit me{
+  localmem lm;
+  rf128 gpra;
+  rf128 gprb;
+  rf128 nn;
+  rf128 xferind;
+  rf128 xferins;
+  rf128 xferoutd;
+  rf128 xferouts;
+  execu eu0;
+  ctrlstore cs0;
+  opmux opmuxa, opmuxb;
+  crc crc0;
+  crcr crcr0;
+  rfmux rfmux0;
+  me(){
+ 
+    }
+  };
+
+// microengine cluster - contains 4 ME  
+csl_unit mecluster{
+  me me0, me1, me2, me3;
+  mecluster(){
+    }
+  };  
+
+// XScale Core periferals
+csl_unit xpi{
+  xpi(){
+    }
+  };  
+
+csl_register_file pci {
+	pci(){
+      set_width(32);
+      set_depth(128);
+    }
+};
+
+csl_register_file sram {
+  sram(){
+    set_width(32);
+    set_depth(128);
+  }
+};
+
+csl_register_file dram {
+  dram() {
+    set_width(32);
+    set_depth(128);
+  }
+};
+
+// description of xscalecore in Xscale_core.csl file
+csl_unit xscalecore{
+  xscalecore(){
+  }
+};
+  
+csl_unit chip{
+  pci pci0;
+  sram sram0;
+  dram dram0;
+  msf msf0;
+  scratch sch0;
+  sramctrl sramctrl0;
+  sramctrl sramctrl1;
+  dramctrl dramctrl0;
+  hash hash0;
+  pcictrl pcictrl0;
+  cap cap0;
+  mecluster mecluster0, mecluster1;
+  xpi xpi0;
+  xscalecore xscalecore0;
+  chip(){
+  }
+};
+

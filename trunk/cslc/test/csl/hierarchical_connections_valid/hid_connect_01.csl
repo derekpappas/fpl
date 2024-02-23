@@ -1,0 +1,35 @@
+// Author : CristiL
+//
+// Hid connections
+
+csl_signal_group signalGroupa {
+
+  csl_signal signala0(32);  
+
+  signalGroupa() {    
+  }
+};
+
+csl_interface interfacea {
+
+  csl_bitrange bitrange(32);
+  
+  csl_port porta0(input);
+
+  interfacea() {   
+
+    porta0.set_bitrange(bitrange);
+
+  }
+};
+
+
+csl_unit unitTop {
+  signalGroupa signalGroupa0;
+  
+  interfacea   interfacea0; 
+
+  unitTop() {
+    signalGroupa0.signala0 = interfacea0.porta0; 
+  }
+};

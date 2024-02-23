@@ -1,0 +1,28 @@
+//Monica
+//10.03.2009
+
+
+
+// define bitranges
+
+csl_bitrange brd(8);
+csl_bitrange brs(16);
+
+csl_interface opifc{
+  
+  csl_port a(input,brd);
+  csl_port b(input,brs);
+}; 
+csl_unit a{
+opifc opifc_i;
+a(){}
+};
+
+csl_unit b{
+opifc opifc_b;
+a ai;
+b(){
+opifc_b.connect_by_name(ai.opifc_i);
+}
+};
+          

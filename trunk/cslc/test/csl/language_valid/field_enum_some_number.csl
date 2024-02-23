@@ -1,0 +1,14 @@
+csl_enum e {
+  a = 1,
+  b,
+  c
+};
+
+csl_field f1{
+  f1(){
+    set_width(32);
+    set_enum(e);
+  }
+};
+
+

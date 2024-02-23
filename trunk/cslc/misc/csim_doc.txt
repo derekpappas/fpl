@@ -1,0 +1,447 @@
+CClock class
+typedef boost::shared_ptr<CClock> RefCClock;
+-------------
+public functions:
+
+void next();
+unsigned int getPeState();
+unsigned int getNeState();
+unsigned int getPeriod();
+unsigned int getCycles();
+std::string  getName();
+
+static RefCClock build(unsigned int period, std::string name);
+--------------
+instantiation:
+	RefCClock clk = CClock::build(5,"clk");
+
+	period determinates the posedge and negedge of the clock
+	example: if period is 5 then you will have
+           posedge: 100001000010000....
+           negedge: 001000010000100....
+           peState is 1 if m_currentCurrency is 0,5,10.... and 0 in rest
+           neState is 1 if m_currentCurrency is 2,7,12.... and 0 in rest (negedge-posedge = 2 = 5/2 <half of period>) 
+
+
+**********************************************
+
+CSimUnit class
+typedef boost::shared_ptr<CCSimUnit> RefCSimUnit;
+--------------
+public functions:
+
+virtual void        execute()                     = 0;
+virtual void        generate_vectors()            = 0;
+virtual void        initialize()                  = 0;
+virtual std::string getValue(std::string)         = 0;
+virtual void instantiateUnits(RefCSimUnit parent) = 0;
+virtual std::vector<std::string> getInputs()      = 0;
+virtual std::vector<std::string> getOutputs()     = 0;
+virtual std::vector<std::string> getSignals()     = 0;
+virtual std::vector<std::string> getVectors()     = 0;
+
+std::string getModuleName();
+std::string getInstanceName();
+
+RefCSimUnit getParent();
+RefCSimUnit getChildByName(std::string childName);
+std::string getPath();
+
+void addUnit(RefCSimUnit);
+  
+std::vector<RefCSimUnit>::iterator begin();
+std::vector<RefCSimUnit>::iterator end();
+--------------------
+
+friend functions:
+
+template<class T> friend boost::shared_ptr<T> buildUnit(std::string moduleName,std::string instanceName,RefCSimUnit parent);
+-----------------------
+
+instantiation:
+
+Class CSimUnit is a pure virtual class. It is used for simulating the exectution of a unit.
+example:
+              class UnitA: public CSimUnit{
+                private:
+                  int a,b,c;
+                public:
+                  void execute(){
+                    a = b + c;
+                  }
+                  void initialize(){
+                    b = 3;
+                    c = 5;
+                  }
+                  void generate_std::vectors(){
+                  }
+                  
+									std::string getValue(std::string field){
+										if(field=="a"){
+											return uIntToString(a);
+										}else if(field=="b"){
+											return uIntToString(b);										
+										}else if(field=="c"){
+											return uIntToString(c);										
+										}else return ""; 									
+									}
+
+									void instantiateUnits(RefCSimUnit parent){
+									}
+
+									std::vector<std::string> getInputs(){
+									}
+
+									std::vector<std::string> getOutputs(){
+									}
+
+									std::vector<std::string> getSignals(){
+									}
+	
+									std::vector<std::string> getVectors(){
+									}
+
+                  UnitA(std::string moduleName,std::string instanceName):CSimUnit(moduleName,instanceName){
+                  }
+              };
+
+
+share_ptr<UnitA> x=build<UnitA>("UnitA","x",parent);
+If you don't use it that way you will get memory leaks:D 
+and other nasty errors:D.
+
+one unit is the topUnit with no parent
+for that unit use RefCSimUnit() for parent
+this will make a NULL parent
+------------------------
+virtual functions:
+
+	std::string getValue(std::string field)
+		return the value of the field as string or an empty string if the field is not in the unit
+
+	void execute()
+		logic of the unit
+
+	void generate_vectors()
+		generate vectors
+
+	void initialize()
+		should initialize the values of the fields in unit with random values
+
+	void instantiateUnits(RefCSimUnit parent)
+		parent is shared_ptr from pointer 'this'
+		if u have children units in 'this' unit than you instantiate them in this function and use 'parent' for the 3rd parameter in build function 
+
+	  std::vector<std::string> getInputs()  
+    std::vector<std::string> getOutputs()  
+    std::vector<std::string> getSignals() 
+    std::vector<std::string> getVectors() 
+			return the stuff from the unit as vector of strings
+-----------------------------
+
+iteration in children:
+     usege:
+     for(std::vector<CSimUnit>::iterator it= unit_inst->begin(); it!=unit_inst->end(); ++it){
+       //stuff here
+     }
+    
+********************************************************
+
+CSimVectorWriter class
+typedef boost::shared_ptr<CCSimVectorWriter> RefCSimVectorWriter;
+------------------------
+
+public functions:
+	  bool isTypeBinary();
+    bool isTypeHex();
+
+    void setTypeBinary();
+    void setTypeHex();
+
+    virtual void writeVector() = 0;
+---------------------------
+
+friend functions:
+	 template <class T> friend boost::shared_ptr<T> buildVectorWriter(std::string id,std::string version,std::string filename, unsigned int width);
+
+		like unit, usie this function to build vectorWriters
+---------------------------
+
+protected members:
+
+    std::string  id;
+    std::string  version;
+    std::string  filename;
+
+    int          type; //0 = binary 1 = hex
+    unsigned int width;
+    bool         writeVectorEnable;  
+
+    std::ofstream out;
+    void writeComments(std::ostream &os);
+
+    CSimVectorWriter(std::string,std::string,std::string,unsigned int);
+---------------------------
+
+virtual functions:
+	
+	void writeVector()
+		The vector writer class is used to write data to a file
+		write to out the values of fields in the class;
+*****************************************************
+
+CFlipFlop class
+           ---------
+           |   |   |
+           |   |   |
+       --->| D | Q |--->
+           |   |   |          
+           |   |   |
+           ------^--
+           clk___|
+                 
+ Because D is a pointer user cand change its value in a very simple way.
+ D is a pointer to a combinational signal.
+ A clock is attached to every FlipFlops.
+ If Clock is true then the prop() function propagates the D value to Q.
+
+typedef boost::shared_ptr<CFlipFlop<FFUInt> >      RefCFlipFlopUInt;
+typedef boost::shared_ptr<CFlipFlop<FFUChar> >     RefCFlipFlopUChar;
+typedef boost::shared_ptr<CFlipFlop<FFULongLong> > RefCFlipFlopULongLong;
+----------------------
+	instantiation :
+		RefCFlipFlopUInt ffuint = CFlipFlop<FFUint>::build(T d, RefCClock clk, "ffuint")
+	
+	flipflop is a template class. The types for CFlipFLop must be classes with the function "toString()"
+	look in FlipFlopTypes.h and FlipFlopTypes.cpp for examples
+----------------------
+public functions:
+    void prop();                                                           //Q=D
+    std::string get();                                                     //return Q as string
+    void init(); set random value for D
+    
+    T getQ(); return q
+    static boost::shared_ptr<CFlipFlop<T> > build(boost::shared_ptr<T> d, RefCClock clock,std::string name);
+
+*****************************************************************
+
+CMemory class
+template class
+-------------------
+
+public function:
+		static boost::shared_ptr<CMemory<T> > build(unsigned int,RefCClock);
+    
+    void add(T value);
+    void setAt(int index, T value);
+    void dumpMemory(std::ofstream &out);
+
+    bool write_enable();
+	
+--------------------
+instantiation:
+
+	boost::shared_ptr<CMemory<int> > x = CMemory<int>::build(4,clk);
+	1st parameter is the width of the memory
+	2nd parameter is the clock asociated with the memory
+---------------------
+	usege:
+		class memory is a vector of values
+		add values to the vector with 'add' function
+		set new values with the 'setAt' function
+
+		dump_memory will write the vector to the ofstream	
+
+		write_enable returns true if the peState of the clock is 1
+******************************************************************
+
+CStateData class
+template class
+------------------------
+info:
+	every statedate is asociated with a CMemory object
+-------------------------
+
+public functions:
+    static boost::shared_ptr<CStateData> build(std::string, boost::shared_ptr<CMemory<T> >);
+    
+    void setEnable_flag(bool);
+			when writeMemory is called stateDate will check if enable_flag is on
+
+    void writeMemory();
+			memory asiciated with this object is written to the filename
+-------------------------
+
+instantiation:
+	boost::shared_ptr<CStateData<int> > sd = CStateData<int>::build("file.out",memory);
+--------------------------
+
+**********************************************************************************	
+
+CSimulatorInterface interface
+virtual class
+-----------------------------
+ Abstract interface for CSimulator.
+ Extend this interface and use it with the CSimulator.
+
+-----------------------------------
+
+virtual functions:
+
+    virtual void beforeSimulation()          
+    virtual void afterSimulation()           
+    virtual void cycleStart(int cycle_count) 
+    virtual void cycleEnd  (int cycle_count) 
+			this functions will be called during the simulation
+********************************************************************************
+
+CBreakPoint class
+------------------------------------------
+public members:
+ 		RefCSimUnit  unit;
+    std::string  field;
+    std::string  oper;
+    std::string  value;
+
+    bool isOn;
+
+    bool isTrue();
+
+    CBreakPoint(RefCSimUnit,std::string,std::string,std::string);
+    CBreakPoint();
+----------------------------------------------
+usage:
+
+ if user input "break f == 45 -p top/child1/child2/< .. >/childn"
+ then:
+      field = "f"
+      unit  = childn
+      oper  = "=="
+ possible values for oper: "==" "<=" ">=" "!="
+
+	isOn: the break is enable or disable
+--------------------------------------------------
+
+instantiation: 
+	CBreakPoint x(childn,"f","==","45")
+*****************************************************************************
+
+CSimulator class 
+----------------------------
+ Singleton class. This is the class that does the simulation. 
+ Extend an interface from CSimulatorInterface, put you stuff in it
+ and add it to this class. Then use start_simulation() method.
+ Each time an unit is instanciated is added to m_unitStd::Vector. 
+ Each time a flipFlop is instanciated is added to m_flipFlopStd::Vector. 
+
+---------------------------
+
+public functions:
+
+    void setSimulatorInterface(RefCSimulatorInterface  interface);
+			set the simulator interface. 
+    void setTopUnit (RefCSimUnit top);
+			simulator needs a top unit                                
+		static boost::shared_ptr<CSimulator> getInstance();
+			static function for the singleton class
+
+
+		void start_simulation();
+---------------------------------
+	example:
+		CSimulator::getInstance()->setTopUnit(buildUnit<Top>("Top","root",RefCsimUnit());
+		CSimulator::getInstance()->start_execution();
+----------------------------------
+simulation:
+	 main for:
+    for(....){
+      foreach(unit) unit.execute();
+      foreach(clock) clock.next(); 
+      foreach(flip_flop) flip_flop.prop();
+   
+      break
+   
+      max_cicle_check
+   
+      shell
+    }
+
+		 break:
+			 if any breakpoint is true then enter to shell
+
+		 max_cicle_check:
+       Counter i must be smaller than MAX_CICLE.
+       default is 0x7fffffff(max int)
+
+		 shell:
+
+command for the shell:
+
+help
+        display the help
+
+exit,quit
+        exit the simulator console
+
+run <no_loops>
+        simulate 'no_loops' clock cycles
+
+ls [<unit_path>] [-i] [-o] [-s] [-v]
+        display units from the 'unit_path'; if path is missing than display units from the current unit
+
+        options:
+                -i : inputs
+                -o : outputs
+                -s : signals
+                -v : vectos
+cd <unit_path>
+        display units from the 'unit_path'
+
+root
+        display the root (top) of the tree
+
+waves <enable>|<disable>
+        enable and disable waves
+
+dump_waves [-f <file_name>]
+        write waves to the 'file_name' or to the screen if no file_name is given
+
+finish <no_cycles>
+        set the MAX_CYCLE to 'no_cycles'
+
+print <name> [-p <path>]
+        print the value of field 'name' in the unit from the 'path'
+
+break <field> <operator> <value> [-p <path>]
+        set a break
+        example: break x == 45 -p top/child1/child2/<..>/childn
+        possible values for <operator>: "==" "<=" ">=" "!=" ">" "<"
+                Warning: please use spaces beetween <field>, <operator> and <value>
+
+show_bp
+        display the break points
+
+delete_bp <id>
+        delete the break point corespounding to "id"
+
+set_bp <id> <state>
+        possible values for <state: on , off
+
+continue
+        continue to simulate until loops = 0 or other condition to stop
+
+*********************************************************************************
+examples for csim.h
+	units, clock and flipflops:
+		CSIM_Driver.cpp
+	vector writer:
+		VW_Driver.cpp
+	stateDate and memory:
+		SD_Driver.cpp
+
+
+
+		
+
+
+	

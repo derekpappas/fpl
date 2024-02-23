@@ -1,0 +1,6 @@
+csl_isa_field f_op {
+   f_op f_op_i;//here must be an error
+   f_op(){
+      set_width(2);
+   }   
+};

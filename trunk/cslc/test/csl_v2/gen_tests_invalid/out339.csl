@@ -1,0 +1,132 @@
+csl_enum gg {
+	vy,
+	pv,
+	jb,
+	ow,
+	ss,
+	ji,
+	ut,
+	wj,
+	mo,
+	su
+};
+csl_enum ab {
+	iy = 98,
+	di = 42,
+	my = 22,
+	ou = 81,
+	hk = 63,
+	tw = 43,
+	jd = 21,
+	aa = 33,
+	dt = 85,
+	tm = 98,
+	eq = 4,
+	hc = 18
+};
+csl_enum bv {
+	st = 53,
+	rs = 30,
+	wa = 93,
+	sa = 30,
+	lh = 21,
+	ya = 36
+};
+csl_isa_instruction_format mg{
+    mg( ){
+     generate_decoder( sbte);
+  }
+}
+;
+csl_isa us{
+    us( ){
+     set_decoder_name( "hx");
+     set_decoder_out_name_prefix( "oj");
+     set_decoder_out_name_suffix( "gx");
+     generate_decoder( ivpe);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo vi{
+   vi( ){
+     add_logic( depth_extend, 4);
+  }
+}
+;
+csl_memory_map_page pn{
+    pn( ){
+     get_lower_bound( );
+     get_upper_bound( );
+     set_aligment( 8);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page yx{
+    yx( ){
+     add_address_range( 4, 9);
+     set_address_increment( 1);
+     get_address_increment( );
+     get_lower_bound( );
+     set_aligment( 2);
+     set_endianess( big_endianlittle_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page tp{
+    tp( ){
+     add_address_range( 6, 8);
+     get_next_address( );
+     set_access_rights( access_read_write, access_write);
+     add_reserved_address_range( 5, 2);
+     get_upper_bound( );
+     set_data_word_width( 4);
+     get_data_word_wodth( );
+     set_aligment( 5);
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map xv{
+    xv( ){
+     auto_gen_memory_map( );
+     set_type( page);
+     set_data_word_width( 7);
+     get_data_word_width( );
+     set_prefix( ia);
+     get_prefix( );
+     set_suffix( jh);
+  }
+}
+;
+csl_register nd{
+    nd( ){
+     set_type( DFF);
+     init_value( 7);
+     reset_value( 6);
+     add_logic( gray_output);
+     set_count_amount( 8);
+     set_end_value( 2);
+     stop_at_end_value( );
+  }
+}
+;
+csl_register lx{
+    lx( ){
+     set_width( 2);
+     get_width( );
+     set_depth( 2);
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 1);
+     add_logic( bypass);
+  }
+}
+;

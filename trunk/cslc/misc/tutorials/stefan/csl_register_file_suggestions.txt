@@ -1,0 +1,56 @@
+1.2 - fig 1.3 has no title
+
+figure 1.10 has no title
+
+paragraphs 1.2.31 and 1.2.32 have no title
+
+1.3 CSL Register File Command Summary: missing comments: 
+register_file_name.output_reg (register_name), 
+register_file_name.event( register_name ),
+register_file_name.do_not_connect_registers_fields_to_ios( [ all | <register_field>] ),
+register_file_name.connect_input_to_registers_fields( [all|<register_field>] ),
+register_file_name.clock( <clock_name> ),
+register_file_name.connect_registers_fields_to_outputs( [all|<register_field>] ),
+register_file_name.register_fields.explicitly_cleared( [[register name | register address], <signal_name>] ),
+<register_file_name>.in_prefix
+
+1.4 CSL Register File Commands: missing comments (explanations)
+<register_file_name>.output_reg ( register_name ),
+<register_file_name>.valid(),
+<register_file_name>.event ( (rd|wr) (register_name | all_regs ) ),
+<register_file_name>.event ( register_name ),
+<register_file_name>.event( register_name.[field_name] ),
+<register_file_name>.out_prefix ( register_name ),
+<register_file_name>.out_prefix ( register_name.field ),
+<register_file_name>.in_prefix ( prefix, (register_name | all_regs) ),
+<register_file_name>.in_prefix (register_name),
+<register_file_name>.in_prefix (prefix, (register_name | all_regs)),
+<register_file_name>.address_range(<address_range>),
+
+FIX : connect_all_registers_to_inputs -> more explanations needed
+
+Figure  1.25 Register file with a read from an individual register named status// FIX -> is it in the right place ?
+
+<register_file_name>.in_prefix -> needs comments
+
+1.5.3 Register file with read enable
+figure 1.26 has no name
+1.5.3.0.1 has no csl code
+1.5.4.0.1 has no csl code
+1.5.5.0.1 has no csl code
+1.5.6.0.1 has no csl code
+1.5.6.1.1 has no csl code
+1.5.7.1.1 has no verilog code
+1.5.8.3.1 has no CSL code
+1.5.8.4.2 has no verilog code
+1.5.8.5.1 has no csl code
+1.5.8.6.2 has no verilog code
+1.5.8.7.2 has no verilog code
+
+figure 1.38 has no name and content
+figure 1.39 has no name and content is maybe not all
+
+1.5.8.10.1 has no csl code
+1.5.8.10.2 has no verilog code
+1.5.8.11.1 has no csl code
+1.5.8.11.2 has no verilog code

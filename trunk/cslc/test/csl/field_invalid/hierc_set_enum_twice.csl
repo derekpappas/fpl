@@ -1,0 +1,20 @@
+// the test is invalid because set_enum is called again in the child field
+csl_enum e{
+  a,
+    b,
+    c
+};
+
+csl_field f1{
+  f1(){
+    set_enum(e);
+  }
+};
+
+csl_field f2{
+  f1 f1_1;
+  f2(){
+    set_enum(e);
+    set_enum_item(a);
+  }
+};

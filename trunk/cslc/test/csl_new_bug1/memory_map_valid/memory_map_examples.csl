@@ -1,0 +1,273 @@
+csl_memory_map mmap{
+};
+///////////////////////////////////
+csl_memory_map mmap0{
+	mmap0(){
+		set_data_word_width(32);
+	}
+};
+csl_memory_map mmap1{
+	mmap0(){
+		get_word_width(top.mmap0);
+	}
+};
+//////////////////////////////////
+csl_reg_file rf{
+	rf(){
+		set_width(32);
+		set_depth(128);
+	}
+};
+csl_memory_map mmap2{
+	csl_memory_map_page mpage;
+	mmap2(){
+		set_data_word_width(32);
+		mpage.set_address_range(0, 511);
+		set_unit_name(mpage, top.rf);
+	}
+};
+//////////////////////////////////
+csl_reg_file rf{
+	rf(){
+		set_width(32);
+		set_depth(128);
+	}
+}
+csl_memory_map mmap3{
+	csl_memory_map_page mpage_0;
+	csl_memory_map_page mpage_1 (64, 255);
+	csl_memory_map_page mpage_2 (0, 63, 2);
+	csl_memory_map_page mpage_3 (mpage_2);
+	mmap3(){
+		set_data_word_width(32);
+		set_type(hierarchical);
+		mpage_0.set_address_range(256, 511);
+		set_unit_name(mpage_0, top.rf);
+		mpage_1.set_address_increment(4);
+	}
+};
+///////////////////////////////////
+csl_memory_map mmap{
+	csl_memory_map_page mpage_0 (0, 127, 2);
+	csl_memory_map_page mpage_1;
+	mmap(){
+		set_data_word_width(32);
+		set_type(hierarchical);
+		mpage_1.set_address_range(128, 511);
+		mpage_1.set_address_increment(mpage_0.get_address_increment());
+	}
+};
+///////////////////////////////////
+csl_reg_file rf{
+	rf(){
+		set_width(32);
+		set_depth(128);
+	}
+};
+csl_memory_map mmap{
+	csl_memory_map_page mpage (0, 511, 2);
+	mmap(){
+		set_data_word_width(32);
+		mpage.set_next_address(64);
+		mpage.add(top.rf, "rf");
+	}
+};
+///////////////////////////////////
+csl_memory_map mmap{
+	csl_memory_map_page mpage_0 (64, 511, 2);
+	csl_memory_map_page mpage_1 (0,  63, 1);
+	mmap(){
+		set_data_word_width(32);
+		set_type(hierarchical);
+		mpage_0.set_next_address(24);
+		mpage_1.set_next_address(mpage_0.get_next_address());
+	}
+};
+///////////////////////////////////
+csl_memory_map mmap{
+	csl_memory_map_page mpage (0, 127, 2);
+	mmap(){
+		set_data_word_width(32);
+		mpage.set_access_rights(HWR, RW);
+		mpage.set_access_rights(SWR,  R);
+	}
+};
+///////////////////////////////////
+csl_enum acc_enum{
+	USR0,
+	USR1,
+	USR2
+};
+csl_memory_map mmap{
+	csl_memory_map_page mpage (0, 127, 2);
+	mmap(){
+		set_data_word_width(32);
+		mpage.set_access_rights_enum(acc_enum);
+		mpage.set_access_rights(USR0, RW);
+		mpage.set_access_rights(USR1,  R);
+		mpage.set_access_rights(USR2,  W);
+	}
+};
+///////////////////////////////////
+csl_memory_map mmap{
+	csl_memory_map_page mpage;
+	mmap(){
+		set_data_word_width(32);
+		mpage.add_reserved_address_range(0,127);
+		mpage.add_address_range(128,255);
+		mpage.set_address_increment(2);
+	}
+};
+///////////////////////////////////
+csl_reg_file rf{
+	rf(){
+		set_width(32);
+		set_depth(128);
+	}
+};
+csl_memory_map mmap{
+	csl_memory_map_page mpage (0, 511, 2);
+	mmap(){
+		set_data_word_width(32);
+		mpage.add(top.rf, "rf", 64);
+	}
+};
+///////////////////////////////////
+csl_memory_map mmap_0{
+	csl_memory_map_page mpage (0, 63, 2);
+	mmap(){
+		set_data_word_width(32);
+	}
+};
+csl_memory_map mmap_1{
+	csl_memory_map_page mpage (0, 63, 2);
+	mmap(){
+		set_data_word_width(32);
+		mpage.add(top.mmap_0.mpage);
+	}
+};
+///////////////////////////////////
+csl_memory_map mmap_0{
+	csl_memory_map_page mpage (0, 63, 2);
+	mmap(){
+		set_data_word_width(32);
+		mpage.set_enianess(little_endian);
+	}
+};
+csl_memory_map mmap_1{
+	csl_memory_map_page mpage (0, 63, 2);
+	mmap(){
+		set_data_word_width(32);
+		mpage.set_enianess(top.mmap_0.get_endianess());
+	}
+};
+///////////////////////////////////
+csl_memory_map mmap_0{
+	csl_memory_map_page mpage;
+	mmap(){
+		mpage.set_data_word_width(32);
+	}
+};
+csl_memory_map mmap_1{
+	csl_memory_map_page mpage;
+	mmap(){
+		mpage.set_data_word_width(mmap_0.mpage.get_word_width());
+	}
+};
+///////////////////////////////////
+csl_memory_map mmap_0{
+	csl_memory_map_page mpage;
+	mmap(){
+		mpage.set_data_word_width(32);
+		mpage.set_address_range(0, 63);
+	}
+};
+csl_memory_map mmap_1{
+	csl_memory_map_page mpage;
+	mmap(){
+		mpage.set_data_word_width(32);
+		mpage.set_address_range(mmap_0.mpage.get_lower_index(), mmap_0.mpage.get_upper_index());
+	}
+};
+///////////////////////////////////
+csl_memory_map mmap{
+	csl_memory_map_page mpage_0 (0, 63, 2);
+	csl_memory_map_page mpage_1 (64, 512, 2);
+	mmap(){
+		set_type(hierarchical);
+		mpage_0.set_align(64);
+		mpage_1.set_align(mpage_0.get_align());
+		
+	}
+};
+///////////////////////////////////
+csl_memory_map mmap{
+	csl_memory_map_page mpage_0 (0, 63, 2);
+	csl_memory_map_page mpage_1 (64, 512, 2);
+	mmap(){
+		set_type(hierarchical);
+		mpage_0.set_name_max_length(10);
+		mpage_1.set_name_max_length(mpage_0.get_name_max_length()+10);
+	}
+};
+///////////////////////////////////
+csl_memory_map_page mpage (0,1023,1);
+mpage.set_address_visibility (128,511,invalid);
+csl_memory_map mmap{
+	mpage mpage0;
+	mmap{
+		set_data_word_width(32);
+	}
+};
+///////////////////////////////////
+csl_memory_map_page mpage_0 (0,1023,1);
+mpage.set_address_visibility (128,511,invalid);
+csl_memory_map mmap{
+	csl_memory_map_page mpage_1 (0,127,1);
+	mmap{
+		mpage_1.set_address_visibility(16,63,top.mpage_0.get_address_visibility(128,511));
+	}
+};
+///////////////////////////////////
+csl_memory_map_page mpage (0,1023,1);
+mpage.set_address_visibility (128,511,invalid);
+csl_memory_map mmap{
+	mpage mpage0;
+	mmap{
+		set_data_word_width(32);
+		set_prefix("mem");
+	}
+};
+///////////////////////////////////
+csl_memory_map mmap_0{
+	mmap{
+		set_prefix("mem");
+	}
+};
+csl_memory_map mmap_1{
+	mmap{
+		set_prefix(top.mmap_0.get_prefix());
+	}
+};
+///////////////////////////////////
+csl_memory_map_page mpage (0,1023,1);
+mpage.set_address_visibility (128,511,invalid);
+csl_memory_map mmap{
+	mpage mpage0;
+	mmap{
+		set_data_word_width(32);
+		set_suffix("mem");
+	}
+};
+///////////////////////////////////
+csl_memory_map mmap_0{
+	mmap{
+		set_suffix("mem");
+	}
+};
+csl_memory_map mmap_1{
+	mmap{
+		set_suffix(top.mmap_0.get_suffix());
+	}
+};
+///////////////////////////////////

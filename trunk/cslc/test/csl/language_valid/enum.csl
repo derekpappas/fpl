@@ -1,0 +1,8 @@
+// CristiL
+// 
+// enum 
+
+csl_enum STATE {
+  RDY,
+  ERR
+};

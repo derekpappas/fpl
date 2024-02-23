@@ -1,0 +1,35 @@
+//oanab
+//1 feb 2008
+
+csl_interface ifc {
+  csl_port y(input),x(output);
+  ifc () {
+    x.set_width(2);
+  }
+};
+
+csl_unit u1 {
+  csl_port x(input);
+  ifc ifc;
+  u1 () {
+    x.set_width(2);
+  }
+};
+
+csl_unit u2 {
+  ifc ifc0;
+  u1 u11(.ifc(ifc0));
+  u1 u12(.ifc.x(ifc0.x));
+  u2 () {}
+};
+
+csl_unit u {
+  u2 u2(.ifc0.x(s3),.ifc0.y(s1));
+  csl_signal s1,s2,s3(2);
+  u () {
+    s2.set_width(2);
+    u2.u11.x.connect_by_name(s3);
+    s1.connect_by_name(u2.u12.ifc.y);
+    s2.connect_by_name(u2.u12.x);
+  }
+};

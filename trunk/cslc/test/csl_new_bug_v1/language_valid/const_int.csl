@@ -1,0 +1,19 @@
+//oanab
+//12 nov 2007
+
+csl_unit u1{
+  const int x=5;
+  csl_port clk1(input,x);
+  u1(){
+    clk1.set_attr(clock);
+  }
+};
+
+csl_unit u2{
+  u1 u1;
+  csl_signal clk,s;
+  u2(){
+    clk.set_attr(clock);
+    s = clk;
+  }
+};

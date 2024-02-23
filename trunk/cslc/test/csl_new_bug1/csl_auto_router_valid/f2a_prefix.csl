@@ -1,0 +1,22 @@
+//Monica
+csl_unit u1{
+  csl_port p_data(input,32);
+  csl_port p_addr(output,4);
+  u1(){}
+};
+csl_unit u2{
+  u1 u1_i;
+  u2(){}
+};
+csl_unit u3{
+  csl_port p_data(input,32);
+  csl_port p_addr(output,4);
+  u2 u2_i;
+  u3(){}
+};
+csl_unit top{
+  u3 u3_i;
+  top(){
+    u3_i.connect_by_scope(u2_i.u1_i,"add_prefix");  
+  }
+};

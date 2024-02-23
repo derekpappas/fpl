@@ -1,0 +1,15 @@
+csl_unit ff{
+  csl_port q(output), data(input), e(input);
+    ff(){
+  }
+};
+csl_unit top{
+  csl_signal d_data1,d_data2,data_in,data_out,st;
+  ff ff_1(.data(data_in),.e(st),.q(d_data1));
+  ff ff_2(.data(d_data1),.e(st),.q(d_data2));
+  ff ff_3(.data(d_data2),.e(st),.q(data_out));
+  top(){
+    st.set_attr(clk);
+    //  d_data1.set_attr(st.get_attr());
+  }
+};

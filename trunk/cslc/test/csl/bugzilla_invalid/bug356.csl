@@ -1,0 +1,6 @@
+csl_unit mem_b;
+csl_signal clock1;
+//csl_signal clk; //this line gives error; 
+                  //the user should be able to name a signal with the name clk
+csl_signal ck;
+clock.set_attr(clk1);

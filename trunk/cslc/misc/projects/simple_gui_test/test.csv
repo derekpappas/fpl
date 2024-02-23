@@ -1,0 +1,3 @@
+"csl_type","type_decl","from_instance_unit_name","from_connect_obj_inst_name","from_width","from_direction","to_instance_unit_name","to_connect_obj_inst_name","to_width","to_direction","actual_name"
+"port","a.b(b)","b","c(c).a(a).b(b)","","","a(a).b(b)","b","","",
+"interface","a","a","c(c).a(a)","","","c(c)","c","","",

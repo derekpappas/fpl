@@ -1,0 +1,7 @@
+csl_bitrange br1(4);
+csl_enum e1{
+  a=3'b100,
+  b= 1,
+  c=b
+};
+

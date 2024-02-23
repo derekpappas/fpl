@@ -1,0 +1,35 @@
+//Petronela
+
+csl_register_file r2{
+  r2(){
+     set_depth(2);
+     set_width(4+9);
+  }
+};
+csl_register_file r3{
+  r3(){
+    set_depth(6);
+    set_width(33);
+    set_prefix("abc",input);
+  }
+};
+
+csl_register_file r5{
+  r5(){
+    set_width(11);
+    set_depth(12);
+
+  }
+};
+
+csl_unit u1{
+    r2 r2;
+    r3 r3;
+    r5 r5;
+    u1(){
+    r2.add_logic(read_valid);
+    //  r16.set_prefix("asd",input);
+    r5.set_const_value(8);
+    r3.create_rtl_module();
+    }
+};

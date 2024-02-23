@@ -1,0 +1,231 @@
+Part select
+
+Part select 
+
+Part select is used to address contiguous bits in a multibit port or
+signal, field and ISA field.
+
+We can have constant part select and indexed part select.
+
+The constant part select is specified using the following syntax:
+
+object[upper_index:lower_index]
+
+where upper_index indicates the more significant bit, while the
+lower_index indicates the less significant bit of the part select.
+Both lower_index and upper_index must be an integer or
+constant expressions that evaluate to an integer.
+
+Example:
+
+csl_unit u{
+   csl_port pin(input,8);
+   csl_port pout(output,8);
+   u(){
+     pout[5:9]=pin[4:0];
+}
+};
+
+upper_index and lower_index must be within the bitrange of the
+multibit object. Values outside the object bitrange issue a
+compiler error.
+
+Example:
+
+csl_bitrange br(4,7);
+csl_unit u{
+         csl_port pin(br);
+         csl_port pout(br);
+         u(){
+         pout[3:0]=pin[7:4]; // error because pout[3:0] is 
+         // out of the pout bitrange
+}
+};
+
+The indexed part select is specified using the following syntax:
+
+object[base_index +: range_width]
+
+or 
+
+object[base_index -: range_width]
+
+In the first expression we have an ascending bitrange that starts at
+the base_index and has the width range_width. The second expression
+specifies a descending bitrange starting at base_index and that has
+width range_width
+The range_width must be an integer or a constant expression that
+evaluates to an integer. The base_index can be an integer or an
+expression that evaluate to an integer that can vary at run time
+
+Example
+
+csl_signal data(8);
+
+data[0 +:3] is equivalent to data[0:2]
+
+data[5 -:4] is equivalent to data[5:2]
+
+
+Bit select
+
+Bit select is used to address a particular bit from a multibit port or
+signal, a field or an ISA field. 
+
+The syntax of the bit select is:
+
+object[index]
+
+Example
+
+csl_unit u{
+   csl_port pin(input,8);
+   csl_port pout(output);
+   u(){
+   pout=pin[6];
+}
+
+A bit can also be addressed using a part select whose
+upper_index and lower_index are equal.
+
+Example:
+
+csl_unit u{
+   csl_port pin(input,8);
+   csl_port pout(output);
+   u(){
+   pout=pin[6:6];
+}
+
+
+Part select can be used with //tabel
+
+bitranges
+non-hierarchical fields
+ports
+signals
+non hierarchical ISA fields
+with HIDs when these identify one of the objects above
+
+
+
+Part select can be used in //tabel
+
+LHS and RHS of assign statements
+Expressions
+Concatenation expressions
+Replication expressions
+In f2a as actuals
+In methods that accept ports and signals as arguments
+
+
+Part select usage examples
+
+Bitranges
+
+Example:
+
+csl_bitrange br_data(0,7);
+
+csl_unit u_a{
+  csl_port pin1(input,br_data); // 8 bit input port, range 0 to 7
+
+  csl_port pin2(input,br_data[3:0]); // 4 bit input port, range 0 to 3
+  // equivalent to csl_port pin2(input,0,3);
+  
+  csl_port pout(output,br_data[7:4]); // 4 bit output port, range 4 to 7
+  // equivalent to csl_port pout(output,4,7);
+  u_a(){
+  }
+};
+
+Fields
+
+Example:
+
+
+csl_field nib(0,3);
+
+// define a hierarchical field
+
+csl_field f{
+  nib lnib;
+  nib unib;
+  f(){
+  set_width(7);
+  set_field_position(lnib,0);
+  set_field_position(unib,4);
+ }
+};
+
+With these specifications we have can address contiguous groups of
+bits from the fields and the hierarchical field.
+
+f[7:4] is equivalent to f.unib
+f[3:3] is equivalent to f.lnib
+f[2:0] is equivalent to f.lnib[2:0];
+f[7] is equivalent to f.unib[3];
+
+Ports
+
+Example:
+
+csl_interface ifcd{
+  csl_port din(input,0,15);
+  csl_port dout(output,0,15);
+  ifcd(){
+  }
+};
+
+csl_unit u_a{
+  csl_port dt(input,4);
+  csl_port pc(input);
+  ifcd ifcd0;
+
+  u_a(){
+  ifcd0.dout[15]=pc;
+    ifcd0.dout[7:0]=ifcd0.din[15:8];
+    ifcd0.dout[14:8]={ifcd0.din,ifcd0.din[3:0]};
+  }
+}
+
+Signals
+
+Example:
+
+csl_interface ifcd{
+  csl_port din(input,0,15);
+  csl_port dout(output,0,15);
+  ifcd(){
+  }
+};
+
+csl_unit u_a{
+  ifcd ifcd0;
+  csl_signal s(16);
+  u_a(){
+    ifcd0.dout=s;
+    s[7:0]=ifcd0.din[15:8]
+    s[15:8]=ifcd0.din[7:0];
+  }
+}
+
+ISA Fields
+
+Example:
+
+
+csl_isa_field subop1(0,1);
+csl_isa_field subop2(0:2);
+
+// define a hierarchical field
+
+csl_field opcode{
+  subop1 so1;
+  subop2 so2;
+  f(){
+  set_width(5);
+  set_field_position(so1,0);
+  set_field_position(so2,3);
+ }
+};

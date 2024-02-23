@@ -1,0 +1,15 @@
+//gen_decoder(csl_unit unit_object_name);
+
+csl_unit u{ 
+  u(){ 
+  }
+};
+csl_isa_field f_op(2);
+f_op.set_type(opcode);
+csl_isa_field f_branch{ 
+  f_branch(){ 
+    set_type(opcode); 
+    set_width(2); 
+//    gen_decoder(u); //command probably changed
+  }
+};

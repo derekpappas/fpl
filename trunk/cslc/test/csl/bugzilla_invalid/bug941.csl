@@ -1,0 +1,12 @@
+csl_memory_map_page mpage_0;
+csl_memory_map mmap{
+
+        mpage_0 mpage_0;
+        mmap(){
+                set_data_word_width(32);
+                set_type(hierarchical);
+                mpage_0.add_address_range(128, 511);
+        }
+};
+
+

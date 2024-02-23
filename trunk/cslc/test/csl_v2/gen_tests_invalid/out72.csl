@@ -1,0 +1,164 @@
+csl_enum wn {
+	xe,
+	xt,
+	qf,
+	oi,
+	cf,
+	wy,
+	on,
+	vk
+};
+csl_enum ht {
+	wj,
+	yl,
+	rg,
+	cg,
+	cc,
+	ac,
+	py,
+	ip,
+	uy,
+	xl,
+	ja,
+	sh,
+	ci
+};
+csl_enum wx {
+	sf,
+	tr,
+	os,
+	dj,
+	bh,
+	rd,
+	jr,
+	ha,
+	sp,
+	rq,
+	rp,
+	cb
+};
+csl_isa_instruction_format pq{
+    pq( ){
+     set_width( 6);
+     generate_decoder( oifb);
+  }
+}
+;
+csl_isa_instruction cq : pq{
+    cq( ){
+    set_asm_mnemonic( csl_list "su", "kn", "ow");
+  }
+}
+;
+csl_isa_instruction ec : pq{
+    ec( ){
+    set_asm_mnemonic( csl_list "tk", "hi", "da", "jq", "pl", "sc");
+  }
+}
+;
+csl_isa da{
+  cq de;
+  ec uv;
+  cq vk;
+  ec dj;
+  ec nq;
+  cq rj;
+  cq ef;
+  ec wd;
+  cq we;
+  ec cj;
+  ec hh;
+  ec ry;
+  cq fm;
+  ec qo;
+  cq cw;
+  cq el;
+  ec af;
+  cq ad;
+  cq je;
+  cq tp;
+  ec il;
+  ec an;
+  ec vw;
+  cq bm;
+  ec io;
+  cq na;
+  ec ro;
+    da( ){
+     set_decoder_name( "vo");
+     set_decoder_out_name_suffix( "wc");
+     generate_decoder( umfb);
+  }
+}
+;
+csl_fifo ox{
+   ox( ){
+     set_dimension( 4, 2);
+     add_logic( wr_hold, 6);
+     add_logic( parallel_input, all);
+     add_logic( stall);
+     add_logic( rd_credit);
+  }
+}
+;
+csl_memory_map_page ju{
+    ju( ){
+     set_next_address( 2);
+     get_data_word_wodth( );
+     set_endianess( big_endian);
+  }
+}
+;
+csl_memory_map_page te{
+    te( ){
+     set_address_increment( 5);
+     set_access_rights( access_read_write, none);
+     add( ju);
+     set_data_word_width( 8);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page ry{
+  ju rw;
+  ju mb;
+  te sn;
+    ry( ){
+     set_address_increment( 0);
+     get_address_increment( );
+     set_access_rights( none, none);
+     add( ox, "ks", );
+     get_lower_bound( );
+     set_data_word_width( 9);
+     set_endianess( little_endianbig_endian);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map tw{
+    tw( ){
+     auto_gen_memory_map( );
+     set_top_unit( um);
+ry.add_to_memory_map( 7,none); 
+     set_type( flat);
+ry.set_access_rights_enum( jute); 
+     set_data_word_width( 5);
+     get_data_word_width( );
+     set_prefix( pm);
+     set_suffix( js);
+  }
+}
+;
+csl_register vv{
+    vv( ){
+     set_address( tw, );
+     index_data_pair( tw);
+     set_atribute( read);
+     constant( 0);
+     get_atributes( );
+     add_logic( rd_en);
+     set_count_amount( 1);
+     set_count_direction( 7);
+  }
+}
+;

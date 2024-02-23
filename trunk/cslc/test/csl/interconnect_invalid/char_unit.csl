@@ -1,0 +1,9 @@
+//oanab
+//26 oct 2007
+//just letters in a unit
+
+csl_unit u{
+u(){
+  fgsdfdf=fdsfs.sfsdf.hgh;  //this should not pass
+ }
+};

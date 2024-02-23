@@ -1,0 +1,23 @@
+//legal: auto_gen_memory_map 
+//andreim
+//15 June 2007
+
+
+csl_memory_map_page mmp_page{
+	mmp_page() {
+		add_address_range(0, 31);
+		set_endianess(big_endian);
+		set_data_word_width(32);
+ 	}
+};
+
+csl_memory_map mm{
+  mmp_page mmp_page;
+		mm(){
+			auto_gen_memory_map();
+		}
+};
+
+
+csl_unit top {
+};

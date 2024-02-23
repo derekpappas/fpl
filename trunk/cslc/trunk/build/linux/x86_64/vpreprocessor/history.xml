@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="g++ noversion nomachine-g -I/opt/local/include -L/opt/local/lib -c">
+      <target file="Preproc.o" lastModified="11d07de3b20">
+         <source file="../../../../src/preproc/Preproc.cpp" lastModified="11d07c30260"/>
+      </target>
+      <target file="CSLcPP.o" lastModified="11d07de3f08">
+         <source file="../../../../src/preproc/CSLcPP.cpp" lastModified="11a51b6b1a8"/>
+      </target>
+   </processor>
+   <processor signature="ar">
+      <target file="libVPreprocessor_Library.a" lastModified="11d07de3f08">
+         <source file="Preproc.o" lastModified="11d07de3b20"/>
+         <source file="CSLcPP.o" lastModified="11d07de3f08"/>
+      </target>
+   </processor>
+</history>

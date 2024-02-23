@@ -1,0 +1,102 @@
+// Author: caghaba
+// Date: January 31, 2008
+//
+//                       clk1                                                     clk2 
+//        +---------------+---------------------------------------------------------+-------------------------+
+//        |               +--------------------+                     +--------------+-----+                   |
+//        |               |                    |                     |                    |                   |
+//        |   +-----------+--------------------+-----------+   +-----+--------------------+--------------+    |
+//        |   |           |                    |           |   |     |                    |              |    |
+//        |   |     +-----+--------+      +----+--------+  |   |  +--+----------+     +---+---------+    |    |
+//        |   |     |   clk    u_a |      |   clk   u_b |  |   |  |  clk    u_c |     |  clk    u_d |    |    |
+//        |   |     |              |      |             |  |   |  |             |     |             |    |    |
+//        |   |     |              |      |             |  |   |  |             |     |             |    |    |
+//        |   |     |              |      |             |  |   |  |             |     |             |    |    |
+//        |   |     +--------------+      +-------------+  |   |  +-------------+     +-------------+    |    |
+//        |   |                                            |   |                                         |    |
+//        |   +--------------------------------------------+   +-----------------------------------------+    |
+//        |                                                                                                   |
+//        |                                                                                                   |
+//        +---------------------------------------------------------------------------------------------------+
+//
+csl_unit u_a{
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+  csl_port p_ina(input,8);
+  csl_port p_outa(output,8);
+  u_a(){
+  }
+};
+
+csl_unit u_b{
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+  csl_port p_inb(input,8);
+  csl_port p_outb(output,8);
+  u_b(){
+  }
+};
+
+csl_unit u_c{
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+  csl_port p_inc(input,8);
+  csl_port p_outc(output,8);
+  u_c(){
+  }
+};
+
+csl_unit u_d{
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+  csl_port p_ind(input,8);
+  csl_port p_outd(output,8);
+  u_d(){
+  }
+};
+
+csl_unit u_ab{
+  csl_port p_clk(input);
+  u_a unita;
+  u_b unitb;
+  u_ab(){
+    p_clk.connect_by_pattern(p_clk);
+  }
+};
+
+csl_unit u_cd{
+  csl_port p_clk(input);
+  u_c unitc;
+  u_d unitd;
+  u_cd(){
+    p_clk.connect_by_pattern(p_clk);
+  }
+};
+
+csl_unit u_top{
+  csl_port p_reset(input);
+  csl_port p_clk1(input);
+  csl_port p_clk2(input);
+  csl_port p_int1(input,8);
+  csl_port p_int2(input,8);
+  csl_port p_outt1(output,8);
+  csl_port p_outt2(output,8);
+  csl_port p_outt3(output,8);
+  csl_port p_outt4(output,8);
+  u_ab unitab;
+  u_cd unitcd;
+  u_top(){
+    
+    p_reset.connect_by_pattern(p_reset);
+    p_clk1.connect_by_pattern(unitab.p_clk);
+    p_clk2.connect_by_pattern(unitcd.p_clk);
+    p_int1.connect_by_pattern(p_ina);
+    p_int1.connect_by_pattern(p_inc);
+    p_int2.connect_by_pattern(p_inb);
+    p_int2.connect_by_pattern(p_ind);
+    p_outt1.connect_by_pattern(p_outa);
+    p_outt2.connect_by_pattern(p_outb);
+    p_outt3.connect_by_pattern(p_outc);
+    p_outt4.connect_by_pattern(p_outd);
+  }
+};

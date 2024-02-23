@@ -1,0 +1,15 @@
+csl_enum enum1{
+};
+
+
+// this test passes C++
+// #include <iostream> 
+// using namespace std; 
+// 
+// enum {
+// 
+// };
+// 
+// int main() { 
+//   cout << "Hello, World\n"; return 0; 
+// }

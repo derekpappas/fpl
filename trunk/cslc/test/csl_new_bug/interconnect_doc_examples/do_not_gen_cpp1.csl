@@ -1,0 +1,28 @@
+// Monica
+//7 may 2008
+
+csl_register reg1{
+  reg1(){
+    set_type(counter);
+    set_width(8);
+    add_logic(count_direction,up);
+    do_not_gen_cpp();
+  }};
+csl_unit u_cnt{
+  csl_port p1(input,8);
+  csl_port p2(output,8);
+  csl_port p_clk(input);
+  csl_signal rst,en;
+  reg1 reg1_i(.reg_out(p2),.clock(p_clk),.reset_(rst),.enable(en));
+  u_cnt(){
+    p_clk.set_attr(clock);
+  }};
+
+csl_unit u_top{
+  csl_signal s1(8),s2(16),s3(8),clk;
+  u_cnt u_cnt(.p1(s1), .p2(s3),.p_clk(clk));
+  u_top(){
+    s2={s1,s3};
+    do_not_gen_cpp();
+  } };
+ 

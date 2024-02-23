@@ -1,0 +1,15 @@
+//oanab
+//13 june 2008
+
+csl_unit a {
+  csl_port p1(input);
+  a () {}
+};
+
+csl_unit b {
+  a a0;
+  csl_port p2(output);
+  b () {
+    a0.p1.connect_by_name(t);
+  }
+};

@@ -1,0 +1,14 @@
+//oanab
+//25 mar 2008
+//formal to actual - signal and signal
+
+csl_unit u1 {
+  csl_signal s1(2);
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_signal s2(2);
+  u1 u10(.s1(s2));
+  u2 () {}
+};

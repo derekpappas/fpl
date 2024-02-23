@@ -1,0 +1,39 @@
+//costelc
+//interface - interface concatenation
+
+csl_interface ifc_a{
+	csl_port p_a1(output,8);
+	csl_port p_a2(output,4);
+	ifc_a() {}
+};
+
+csl_interface ifc_b{
+	csl_port p_b1(output,8);
+	csl_port p_b2(output,8);
+	ifc_b() {}
+};
+
+csl_unit a{
+	ifc_a ifc_a0;
+	csl_port a_in(input);
+	a() {}
+};
+
+csl_unit b{
+	ifc_b ifc_b0;
+	csl_port b_in(input);
+	b() {}
+};
+
+csl_unit c{
+	csl_port c_out(output);
+	csl_port c_in(input,28);
+	c() {}
+};
+
+csl_unit top{
+	a a0;
+	b b0;
+	c c0(.c_in({a0.ifc_a0,b0.ifc_b0}));
+	top() {}
+};

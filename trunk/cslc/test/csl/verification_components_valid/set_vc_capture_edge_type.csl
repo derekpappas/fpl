@@ -1,0 +1,48 @@
+//oanab
+
+csl_unit dut{
+csl_port stim_i(input),clk(input),exp_o(output);
+ dut(){ 
+   clk.set_attr(clock);
+ }
+};
+
+csl_unit a {
+  csl_port p1(input);
+  csl_port p3(output);
+  csl_port p5(input);
+  dut dut1(.stim_i(p1),.exp_o(p3),.clk(p5));
+  a (){}
+};
+
+csl_vector stim{
+ stim(){
+  set_unit_name(dut);
+  set_direction(input);
+  set_vc_capture_edge_type(rise);
+}
+};
+csl_vector exp{
+ exp(){
+  set_unit_name(dut);
+  set_direction(output);
+}
+};
+csl_testbench tb{
+csl_signal clk(reg);
+dut dut;
+tb(){
+clk.set_attr(clock);
+add_logic(clock,clk,10,ps);
+//clk.set_attr(clock);
+}
+};
+
+
+
+
+
+  
+    
+    
+   

@@ -1,0 +1,54 @@
+//connection between an unit with a hid ifc and an unit with a single ifc
+//top unit connections
+
+csl_interface ifc1{
+  csl_port p11(input,8);
+  csl_port p12(input);
+ifc1(){}
+};
+
+csl_interface ifc2{
+  csl_port p12(output,16);
+
+  ifc1 ifc10;
+
+ifc2(){}
+};
+
+csl_interface ifc3{
+  csl_port p13(input);
+  csl_port p23(output);
+
+  ifc2 ifc20;
+
+ifc3(){}
+};
+
+csl_unit u1{
+  ifc3 ifc30;
+  ifc2 ifc20;
+  ifc1 ifc10;
+
+u1(){}
+};
+
+csl_unit u2{
+ // csl_port p12(output,16); 
+  
+  ifc1 ifc10;
+  ifc2 ifc20;
+  ifc3 ifc30;
+
+  u1 u10;
+u2(){
+
+u10.ifc30.ifc20.ifc10.connect_by_name(ifc10);     //hid ifc -> single ifc
+u10.ifc30.ifc20.p12.connect_by_name(ifc20.p12);   //hid ifc.port -> single ifc.port
+u10.ifc30.p13.connect_by_name(ifc30.p13);         //single ifc.port -> single ifc.port
+u10.ifc30.p23.connect_by_name(ifc30.p23);         //single ifc.port -> single ifc.port 
+
+u10.ifc10.connect_by_name(ifc20.ifc10);          //single ifc -> hid ifc
+u10.ifc20.connect_by_name(ifc30.ifc20);          //single ifc -> hid ifc
+
+}
+};

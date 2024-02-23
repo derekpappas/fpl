@@ -1,0 +1,22 @@
+//oanab
+//19 oct 2007
+csl_unit a{
+    csl_port x(output,16);
+    csl_port clk(input);
+    a(){ }
+};
+csl_unit b{
+     csl_port y(input,16);
+     csl_port clk(input);
+     b(){ }
+};
+csl_unit top{
+     csl_signal data1(wire,16),data2(data1);
+     csl_signal clk;
+     a a(.x(data1),.clk(clk));
+     b b(.y(data2),.clk(clk));
+     top(){
+       clk.set_attr(clock);
+       data1.set_width(16);
+ }
+};

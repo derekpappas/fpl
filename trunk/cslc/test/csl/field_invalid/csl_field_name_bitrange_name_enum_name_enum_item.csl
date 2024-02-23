@@ -1,0 +1,13 @@
+//author: Ines
+//testing the command bitrange & enum in field
+
+csl_bitrange bitrange(30);
+
+csl_enum enum{a, b, c};
+csl_enum enum1{d};
+
+csl_field field(2,enum);
+csl_field field1(1,d);
+
+csl_unit top {
+};

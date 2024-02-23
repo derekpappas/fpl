@@ -1,0 +1,42 @@
+//author: Monica
+//testing: signal_object_name.set_bitrange(bitrange_object_name);
+
+
+csl_unit u1_t13 {
+
+  csl_bitrange br1_1_t13(8,2);
+  csl_bitrange br1_2_t13(7);
+  csl_bitrange br1_3_t13(8,3);
+  csl_bitrange br1_4_t13(2+2/2<<1);
+  csl_signal sgn1_1_t13, sgn1_2_t13, sgn1_3_t13;
+  csl_signal sgn1_4_t13;
+
+  u1_t13() {
+    sgn1_1_t13.set_bitrange(br1_1_t13);
+    sgn1_2_t13.set_bitrange(br1_2_t13);
+    sgn1_3_t13.set_bitrange(br1_3_t13);
+    sgn1_4_t13.set_bitrange(br1_4_t13);
+    sgn1_4_t13 = sgn1_3_t13;
+    sgn1_2_t13 = sgn1_1_t13;
+  }
+};
+
+csl_unit u2_t13 {
+
+  csl_signal sgn2_1_t13, sgn2_2_t13, sgn2_3_t13;
+  csl_signal sgn2_4_t13;
+
+  u2_t13() {
+    sgn2_1_t13.set_bitrange(u1_t13.br1_1_t13);
+    sgn2_2_t13.set_bitrange(u1_t13.br1_2_t13);
+    sgn2_3_t13.set_bitrange(u1_t13.br1_3_t13);
+    sgn2_4_t13.set_bitrange(u1_t13.br1_4_t13);
+    sgn2_4_t13 = sgn2_3_t13;
+    sgn2_1_t13 = sgn2_2_t13;
+  }
+};
+csl_unit top{
+  u1_t13 u1;
+  u2_t13 u2;
+  top(){}
+};

@@ -1,0 +1,20 @@
+//oanab
+//15 mar 2008
+//custom logic
+
+
+// internal custom logic
+
+csl_unit int_cl {
+  ifc_cl ifc_cl;
+  int_cl () {}
+};
+
+// external custom logic
+
+csl_unit ext_cl {
+
+  ext_cl () {}
+};
+
+

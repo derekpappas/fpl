@@ -1,0 +1,13 @@
+//oanab
+//24 mar 2008
+//port - port concatenation
+
+csl_unit u4 {
+  csl_port p(input,30);
+  csl_port x1(output,2);
+  csl_port a(output,20);
+  csl_port b(output,8);
+  u4 () {
+    p={x1,a,b};
+  }
+};

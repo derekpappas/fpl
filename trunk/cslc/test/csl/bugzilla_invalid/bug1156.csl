@@ -1,0 +1,5 @@
+csl_register hfjx1{
+    hfjx1(){
+      set_range(100,0);
+  }
+};

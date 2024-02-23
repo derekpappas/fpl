@@ -1,0 +1,123 @@
+csl_enum ou {
+	xb,
+	dv,
+	wo,
+	aa,
+	vj
+};
+csl_enum vh {
+	vp = 24,
+	db = 19,
+	kd = 55,
+	vx = 45,
+	yl = 30,
+	xr = 57,
+	ge = 72,
+	tg = 89,
+	fk = 34,
+	df = 63,
+	lg = 44,
+	ei = 62
+};
+csl_enum we {
+	kv,
+	ph,
+	fl,
+	yj,
+	pk,
+	on,
+	iq,
+	yg,
+	ii,
+	ne,
+	qu
+};
+//csl_isa_instruction_format hw{  //removed from language
+//    hw( ){
+//     set_width( 3);
+//     generate_decoder( sphclyjl);
+//  }
+//}
+//;
+//csl_isa rk{  //removed from language
+//    rk( ){
+//     set_decoder_name( "qh");
+//     set_decoder_out_name_prefix( "nc");
+//     set_decoder_out_name_suffix( "nc");
+//     generate_decoder( sphcly);
+//     print( isa.txt);
+//  }
+//}
+//;
+csl_fifo kl{
+   kl( ){
+     add_logic( sync_fifo);
+  }
+}
+;
+csl_memory_map_page tw{
+    tw( ){
+     set_address_increment( 9);
+     //     get_lower_bound( ); //can only be called as argument of another command
+     //     get_data_word_wodth( );  //can only be called as argument of another command
+     //     get_endianess( );  //can only be called as argument of another command
+  }
+}
+;
+csl_memory_map_page ex{
+  tw px;
+  tw va;
+    ex( ){
+     set_next_address( 5);
+     set_data_word_width( 3);
+     //     get_aligment( );  //can only be called as argument of another command
+  }
+}
+;
+csl_memory_map_page vjj{
+    vjj( ){
+     set_address_increment( 7);
+     set_next_address( 9);
+     set_access_rights(32, access_write, access_write);
+     add( kl, "mj");
+     set_data_word_width( 0);
+     //     get_data_word_wodth( );  //can only be called as argument of another command
+  }
+}
+;
+csl_memory_map qa{
+  ex hc;
+  vjj wr;
+  vjj iq;
+  tw gq;
+    qa( ){
+     auto_gen_memory_map( );
+     set_top_unit( spjl);
+     //     add_to_memory_map( access_write); 
+     set_data_word_width( 6);
+     set_prefix("am");
+     set_suffix("ew");
+  }
+}
+;
+csl_register qc{
+    qc( ){
+     init_value( 3);
+     set_lock_enable_bit( 7);
+     //     set_count_amount( 8);
+     //     set_end_value( 9);
+     add_logic( inc_signal);
+     //     add_logic( dec_signal);
+  }
+}
+;
+csl_register cv{
+    cv( ){
+     set_width( 9);
+     //     get_width( );  //can only be called as argument of another command
+     //     add_logic( read_valid);  //register_file command
+     //     create_rtl_module( );  // register_file command
+     //     add_logic( bypass);
+  }
+}
+;

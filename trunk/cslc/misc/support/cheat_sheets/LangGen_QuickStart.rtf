@@ -1,0 +1,207 @@
+{\rtf1\ansi\ansicpg1252\deff0
+{\fonttbl
+{\f0\fnil\fcharset0\fprq0\fttruetype Times New Roman;}
+{\f1\fnil\fcharset0\fprq0\fttruetype Nimbus Sans L;}
+{\f2\fnil\fcharset0\fprq0\fttruetype Dingbats;}
+{\f3\fnil\fcharset0\fprq0\fttruetype Symbol;}
+{\f4\fnil\fcharset0\fprq0\fttruetype Courier New;}}
+{\colortbl
+\red0\green0\blue0;
+\red255\green255\blue255;}
+{\stylesheet
+{\s1\fi-427\li720\sbasedon28\snext28 Contents 1;}
+{\s2\fi-427\li1440\sbasedon28\snext28 Contents 2;}
+{\s3\fi-427\li2160\sbasedon28\snext28 Contents 3;}
+{\s8\fi-427\li720\sbasedon28 Lower Roman List;}
+{\s5\tx431\sbasedon24\snext28 Numbered Heading 1;}
+{\s6\tx431\sbasedon25\snext28 Numbered Heading 2;}
+{\s7\fi-427\li720 Square List;}
+{\*\cs11\sbasedon28 Endnote Text;}
+{\s4\fi-427\li2880\sbasedon28\snext28 Contents 4;}
+{\s9\fi-427\li720 Diamond List;}
+{\s10\fi-427\li720 Numbered List;}
+{\*\cs12\fs20\super Endnote Reference;}
+{\s13\fi-427\li720 Triangle List;}
+{\s14\tx431\sbasedon26\snext28 Numbered Heading 3;}
+{\s15\fi-427\li720 Dashed List;}
+{\s16\fi-427\li720\sbasedon10 Upper Roman List;}
+{\s17\sb440\sa60\f1\fs24\b\sbasedon28\snext28 Heading 4;}
+{\s18\fi-427\li720 Heart List;}
+{\s34\fi-427\li720 Box List;}
+{\s20\fi-427\li720\sbasedon10 Upper Case List;}
+{\s21\fi-427\li720 Bullet List;}
+{\s22\fi-427\li720 Hand List;}
+{\*\cs23\fs20\sbasedon28 Footnote Text;}
+{\s24\sb440\sa60\f1\fs34\b\sbasedon28\snext28 Heading 1;}
+{\s25\sb440\sa60\f1\fs28\b\sbasedon28\snext28 Heading 2;}
+{\s19\qc\sb240\sa117\f1\fs32\b\sbasedon28\snext28 Contents Header;}
+{\s27\fi-427\li720 Tick List;}
+{\s26\sb440\sa60\f1\fs24\b\sbasedon28\snext28 Heading 3;}
+{\s29\fi-427\li720\sbasedon10 Lower Case List;}
+{\s30\li1440\ri1440\sa117\sbasedon28 Block Text;}
+{\s36\f4\sbasedon28 Plain Text;}
+{\s32\tx1584\sbasedon5\snext28 Section Heading;}
+{\s33\fi-427\li720 Implies List;}
+{\s28\f0\fs24\lang1033 Normal;}
+{\s35\fi-427\li720 Star List;}
+{\*\cs31\fs20\super Footnote Reference;}
+{\s37\tx1584\sbasedon5\snext28 Chapter Heading;}}
+\kerning0\cf0\ftnbj\fet2\ftnstart1\ftnnar\aftnnar\ftnstart1\aftnstart1\aenddoc\facingp\titlepg\revprop3{\info}\deftab720\viewkind1\paperw12240\paperh15840\margl1440\margr1440\widowctl
+\sectd\sbknone\colsx360\pgncont\ltrsect
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch This is a LangGenerator (langgen) quick start guide written by Gabriel D.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\b\lang1033{\*\listtag0}\abinodiroverride\ltrch Quick description: }{\s28\f0\fs24\lang1033{\*\listtag0}LangGenerator is a program that generates files based on a grammar input file. The program fully supports EBNF and regex like syntax: \{\}, [], (), ?, +, *. Basically it generates possible implementations of that grammar.}{\s28\f0\fs24\b\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\b\lang1033{\*\listtag0}\abinodiroverride\ltrch Usage:}{\s28\f0\fs20\b\lang1033{\*\listtag0} }{\s28\f0\fs24\b\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch java -jar LangGenerator.jar grammarFile [nrOfPasses] [maxReplLevel [-range]] [cmbThreshold] }{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch  Opions:}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch         grammarFile     the grammar file from which to generate the language}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch         nrOfPasses      the number of passes over grammar}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch                         Default value: 3. Maximum value: 10}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch         maxReplLevel    the maximum number of replications to use for + and *}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch                         Default value: 2. Maximum value: 5}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch         -range          if specified uses the whole interval:}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch                          [1, maxReplLevel] for + and [0, maxReplLevel] for *}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch                         if not specified uses only the extremes:}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch                          \{1, maxReplLevel\} for + and \{0, 1, maxReplLevel\} for *}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch                        Using this flag greatly increases the number of}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch                           possible combinations.}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch                         This option is not specified by default.}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch         cmbThreshold    the combine threshold parameter}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch                         A -1 value triggers all possible combinations to be}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch                           generated.}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch                         Default value: 5. Maximum value: 50}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch NOTE: Fully supports EBNF and regex like syntax: \{\}, [], (), ?, +, *}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch WARNING: Using a -1 cmbThreshold is STRONGLY DISCOURAGED for complex grammars.}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch WARNING: Values greater than defaults can easily trigger a OutOfMemoryError.}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch And now let's see how to use it.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch The }{\s28\f0\fs24\b\lang1033{\*\listtag0}first step}{\s28\f0\fs24\lang1033{\*\listtag0} is to write the grammar file. The grammar file contains rules and tokens. A rule is defined like this:}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch rule_name = rule_body}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch The rule name is a word (it doesn't include white spaces). The rule body can be any EBNF and regex syntax as stated above.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch The token is marked with the "\\" character as prefix. Example:}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch rule_name = \\my_token}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch This is an example of a grammar file:}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch rule = \\1 op \\3}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch op = \\+ | \\- | \\* | \\/}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch final = \\( rule \\) ( op \\( rule \\) )*}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch You can notice that the tokens are separated by white spaces. LangGenerator sees everything following this character "\\" until the first white space as a token. If a word is found and it isn't starting with "\\" character then it is the name of a rule. If that rule is not defined an error will be produced.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch Now create the grammar file using the syntax provided above. Save it in a file and name it. I'm naming it myGrammar.g .}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch The }{\s28\f0\fs24\b\lang1033{\*\listtag0}second step }{\s28\f0\fs24\lang1033{\*\listtag0}is to call the LangGenerator program. Since it is a jar file it must be ran in the command line like this:}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch java -jar LangGenerator myGrammar.g}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch You can get help usage information by typing:}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch java -jar LangGenerator}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch Now you can see in the directory you ran the langgen files named after each rule from yor grammar file. Open one of them. If you used my example then when you open the file }{\s28\f0\fs24\i\lang1033{\*\listtag0}final}{\s28\f0\fs24\lang1033{\*\listtag0} you should see something like this:}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 + 3 ) + ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 + 3 ) / ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 + 3 ) - ( 1 - 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 + 3 ) * ( 1 / 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 - 3 ) + ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 - 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 - 3 ) / ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 - 3 ) - ( 1 - 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 - 3 ) * ( 1 / 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 * 3 ) + ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 * 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 * 3 ) / ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 * 3 ) - ( 1 - 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 * 3 ) * ( 1 / 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 / 3 ) + ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 / 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 / 3 ) / ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 / 3 ) - ( 1 - 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 / 3 ) * ( 1 / 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch Now you have a whole bunch of possible implementations of the rule }{\s28\f0\fs24\i\lang1033{\*\listtag0}final.}{\s28\f0\fs24\lang1033{\*\listtag0} What should we do with these lines? We can put them in a template file so that we can make use of them. For this we have a perl script named }{\s28\f0\fs24\i\lang1033{\*\listtag0}splitFile.pl}{\s28\f0\fs24\lang1033{\*\listtag0} . This script takes two arguments: the template file, the input file. }{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch perl splitFile.pl template input_file}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch The input file is the file generated by langgen. The template file is a text file of our chosing. Let's take this example for a template file:}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number #1}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch #2}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch The output file is named like the template file, the difference is the underscore character added to the end.  For each line in the input file the script adds to the output file the template file contents. The script searches for #1 and #2 and replaces them with the line number and, respectively, the coresponding line from the input file. If we have as an input file the }{\s28\f0\fs24\i\lang1033{\*\listtag0}final}{\s28\f0\fs24\lang1033{\*\listtag0} file we should get the folowing in the output file:}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _0}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 + 3 ) + ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _1}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _2}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 + 3 ) / ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _3}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 + 3 ) - ( 1 - 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _4}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 + 3 ) * ( 1 / 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _5}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 - 3 ) + ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _6}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 - 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _7}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 - 3 ) / ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _8}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 - 3 ) - ( 1 - 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _9}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 - 3 ) * ( 1 / 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _10}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 * 3 ) + ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _11}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 * 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _12}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 * 3 ) / ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _13}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 * 3 ) - ( 1 - 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _14}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 * 3 ) * ( 1 / 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _15}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 / 3 ) + ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _16}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 / 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _17}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 / 3 ) / ( 1 * 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _18}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 / 3 ) - ( 1 - 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch Operation number _19}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch ( 1 / 3 ) * ( 1 / 3 ) * ( 1 + 3 ) * ( 1 + 3 )}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch And now you have a file that you can use however you wish and which contains in our context the possible implementation of a rule. This is helpfull for testing different csl or verilog commands that have an EBNF/BNF representation in their own particular context.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\b\lang1033{\*\listtag0}\abinodiroverride\ltrch FAQ:}{\s28\f0\fs24\lang1033{\*\listtag0} }{\s28\f0\fs24\b\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch 1. How can I write a file with all the possible combinations for my rules?}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\i\lang1033{\*\listtag0}\abinodiroverride\ltrch java -jar LangGenerator.jar myGrammarFile 3 2 -range -1}{\s28\f0\fs24\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch 2. Why do I get an OutOfMemory exception and how can I avoid it?}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch You get an OutOfMemory exception because the maximum heap size for the program was reached.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch Because of the high memory requirements of the langgen tool it's sometimes difficult to avoid the exception. You can try by increasing the maximum memory size used by langgen. You increase the size to 1024MB with this command:}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs20\i\lang1033{\*\listtag0}\abinodiroverride\ltrch java -Xms1024m -Xmx1024m -jar LangGenerator myGrammarFile}{\s28\f0\fs20\i\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch The number 1024 represents the wanted size.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch Because the langgen tool doesn't check for loops in the grammar file it can get caught in such a loop thus filling up the memory.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\fi566\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch Another reason is the complexity of the grammar. The bigger the complexity the bigger the ocupied memory will be. So please fragment and simplify the grammar as much as possible.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}}

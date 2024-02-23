@@ -1,0 +1,22 @@
+// Author : CristiL
+//
+// Creating a field with a enum
+
+csl_enum enumA {        
+  a = 0,
+  b = 0
+};
+
+csl_field fieldA {      
+  fieldA() {
+    set_enum(enumA);
+  }
+};
+
+csl_unit unitTop {
+  fieldA fieldA0;
+
+  unitTop() {
+
+  }
+};

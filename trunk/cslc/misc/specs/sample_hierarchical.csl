@@ -1,0 +1,96 @@
+csl_fifo fifo {
+  fifo() {
+    set_width(32);
+    set_depth(64);
+  }
+};
+
+csl_register_file rf {
+  rf() {
+    set_width(32);
+    set_depth(32);
+  }
+};
+
+csl_unit proc {
+  fifo fifo0;
+  rf   rf0;
+  proc() {
+  }
+};
+
+csl_unit cluster {
+  proc proc0;
+  proc proc1;
+  proc proc2;
+  proc proc3;
+  proc proc4;
+  proc proc5;
+  proc proc6;
+  proc proc7;
+  
+  rf rf1;
+  cluster() {
+  }
+};
+
+csl_unit chip {
+  cluster cluster0;
+  cluster cluster1;
+  cluster cluster2;
+  cluster cluster3;
+  cluster cluster4;
+  cluster cluster5;
+  cluster cluster6;
+  cluster cluster7;
+  chip() {
+  }
+};
+
+csl_memory_map_page proc_page {
+  proc_page() {
+    add_address_range(0, 63);
+    add_address_range(128-32, 127);
+    add(proc.fifo0, "FIFO", 0); // will be added at address 0
+    add(proc.rf0, "REG_FILE"); 
+    // the compiler can see that there is no more room for the register file after the fifo, so it will add it at address 128-32
+    // that is the next free porsition
+  }
+};
+
+csl_memory_map_page cluster_page {
+  proc_page pp0(proc0);
+  proc_page pp1(proc1);
+  proc_page pp2(proc2);
+  proc_page pp3(proc3);
+  proc_page pp4(proc4);
+  proc_page pp5(proc5);
+  proc_page pp6(proc6);
+  proc_page pp7(proc7);
+  // cslc calculates the address_range needed for all instantiated pages from the instances
+  // so for 8 pages that need 128 addresses we will have this page for 0 to (8*128)-1
+  cluster_page() {
+    add_address_range(get_upper_bound()+1, get_upper_bound()+64);// we add another 64 addresses for the rf in the cluster unit, at the end of the page
+    add_reserved_address_range(get_upper_bound()+1, get_upper_bound()+32);// we reserve the first 32 addresses for later use
+    add(cluster.rf1, "CLSTR_RF"); // compiler looks for the free, legal and not reserved address_range and he finds (get_upper_bound()+33, get_upper_bound()+64)
+    // if there is no free address_ranges of that size the cslc will throw and error
+  }
+};
+
+csl_memory_map mm {
+  cluster_page clstrp0(cluster0);
+  cluster_page clstrp1(cluster1);
+  cluster_page clstrp2(cluster2);
+  cluster_page clstrp3(cluster3);
+  cluster_page clstrp4(cluster4);
+  cluster_page clstrp5(cluster5);
+  cluster_page clstrp6(cluster6);
+  cluster_page clstrp7(cluster7);
+  mm() {
+    set_type(hierarchical);
+    set_top_unit(chip);
+    set_prefix("chip"); 
+    set_suffix("example");
+    // after these two commands all objects in the memory_map will be prefixed by chip and suffixed by example
+  }
+};

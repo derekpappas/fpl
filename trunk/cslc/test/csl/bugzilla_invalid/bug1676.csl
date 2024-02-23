@@ -1,0 +1,5 @@
+//ILLEGAL TEST: because there are 2 enum items with the same name
+csl_enum e {
+  test = 2'd27, 
+      test = 5'd27
+};

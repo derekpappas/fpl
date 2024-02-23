@@ -1,0 +1,65 @@
+//author: Ines
+//test: copy interfaces and add instances
+
+
+csl_interface ifc {
+  csl_port opc(input, 4);
+  csl_port op1(input, 32);
+  csl_port op2(input, 32);
+  csl_port result(output, 32);
+
+  ifc(){
+  
+  } 
+};
+
+csl_unit addition_sub {
+  ifc as_ifc;
+
+  addition_sub(){
+
+  }
+};
+
+csl_unit shift {
+  ifc sh_ifc;
+
+  shift(){
+
+  }
+};
+
+csl_unit logic {
+  ifc l_ifc;
+
+  logic(){
+
+  }
+};
+
+csl_unit arith {
+  csl_bitrange br(5);  
+  csl_port opc(input);
+  csl_port op1(input);
+  csl_port op2(input);
+  csl_port result(input);
+
+  addition_sub adder_substracter;
+  shift shifter;
+
+  arith(){
+    opc.set_width(32);                
+    result.set_width(opc.get_width());
+  }
+};
+
+csl_unit ALU {
+  ifc ifc;
+  logic logical_unit;
+  arith arithmet_unit;
+
+  ALU(){
+
+  }
+};
+

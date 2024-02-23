@@ -1,0 +1,22 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="ddr_fab_cluster">
+<instantiation type = "ddr_ctrl">
+<instance name="ddr_ctrl">
+</instance>
+</instantiation>
+<instantiation type = "ddr_bridge_ctrl">
+<instance name="ddr_bridge_ctrl">
+</instance>
+</instantiation>
+<instantiation type = "ddr_buf_ctrl">
+<instance name="ddr_buf_ctrl">
+</instance>
+</instantiation>
+<instantiation type = "msi_fabric_if">
+<instance name="ddr_fab">
+</instance>
+</instantiation>
+</unit>
+</design>

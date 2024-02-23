@@ -1,0 +1,7 @@
+//
+//bug - non-hier field can be declared in an unit
+
+
+csl_unit a{
+  csl_field f(4); 
+};

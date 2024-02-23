@@ -1,0 +1,20 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="wb">
+<interface name="me_cntl_in" >
+<port name="v" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="pc" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="npc" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="ir" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+<port name="br_offset" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="eu_wb_in" >
+<port name="rd_data_a" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+<port name="rd_data_b" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="br_out" >
+<port name="qual_br" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+</unit>
+</design>

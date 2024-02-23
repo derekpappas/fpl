@@ -1,0 +1,13 @@
+`ifndef INC_GUARD_b
+`define INC_GUARD_b
+
+`define P_CK_UPPER_INDEX  (0)
+`define P_CK_LOWER_INDEX  (0)
+`define P_CK_WIDTH  (0-0+1)
+`define P_CK_RANGE `P_CK_UPPER_INDEX:`P_CK_LOWER_INDEX
+`define P_RES_PORT_UPPER_INDEX  (1-1)
+`define P_RES_PORT_LOWER_INDEX  (0)
+`define P_RES_PORT_WIDTH  (1)
+`define P_RES_PORT_RANGE `P_RES_PORT_UPPER_INDEX:`P_RES_PORT_LOWER_INDEX
+
+`endif

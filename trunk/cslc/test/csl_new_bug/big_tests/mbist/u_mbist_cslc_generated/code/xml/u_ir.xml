@@ -1,0 +1,18 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u_ir">
+<port name="p_clock" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="p_i" offset="0" upper="15" lower="0" direction = "input" type = "wire" />
+<port name="p_opcode" offset="0" upper="4" lower="0" direction = "output" type = "wire" />
+<port name="p_rdst" offset="0" upper="3" lower="0" direction = "output" type = "wire" />
+<port name="p_op1" offset="0" upper="3" lower="0" direction = "output" type = "wire" />
+<port name="p_op2" offset="0" upper="3" lower="0" direction = "output" type = "wire" />
+<port name="p_c" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="p_braddr" offset="0" upper="11-1" lower="0" direction = "output" type = "wire" />
+<port name="p_sha" offset="0" upper="4-1" lower="0" direction = "output" type = "wire" />
+<port name="p_const8" offset="0" upper="7" lower="0" direction = "output" type = "wire" />
+<port name="p_romaddr" offset="0" upper="7" lower="0" direction = "output" type = "wire" />
+<port name="p_d" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</unit>
+</design>

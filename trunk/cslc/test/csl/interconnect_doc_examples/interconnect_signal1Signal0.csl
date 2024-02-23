@@ -1,0 +1,22 @@
+// Author: danielt
+// November 7, 2007
+
+csl_unit comp1{
+  csl_port x(output,4);
+  comp1(){}
+};
+csl_unit comp2{
+  csl_port y (output,4);
+  comp2(){}
+};
+csl_unit ref{
+  csl_port x(input,4), y(input,4);
+  ref(){}
+};
+csl_unit top {
+  csl_signal x(wire,4), y(x);
+  ref ref (.x(x),.y(y));
+  comp1 comp1 (.x(x));
+  comp2 comp2 (.y(y));
+  top(){}
+};

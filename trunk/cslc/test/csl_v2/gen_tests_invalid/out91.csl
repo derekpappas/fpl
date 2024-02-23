@@ -1,0 +1,123 @@
+csl_enum yd {
+	fn,
+	qq,
+	ng,
+	ou
+};
+csl_enum jn {
+	gk = 31,
+	bd = 9,
+	co = 51,
+	xb = 79,
+	cu = 50,
+	ob = 85,
+	cw = 62,
+	gn = 5,
+	yf = 6,
+	sa = 66
+};
+csl_enum kx {
+	oc,
+	re,
+	ii,
+	yu,
+	yi,
+	fa,
+	nj,
+	om,
+	lr,
+	hc
+};
+csl_isa_instruction_format xi{
+    xi( ){
+     set_width( 5);
+     generate_decoder( gb);
+  }
+}
+;
+csl_isa ap{
+    ap( ){
+     set_decoder_name( "gu");
+     set_decoder_out_name_prefix( "bi");
+     print( isa.txt);
+  }
+}
+;
+csl_fifo eh{
+   eh( ){
+     add_logic( programable_depth, 0);
+     add_logic( parallel_output, all);
+     add_logic( string_through, 2);
+     add_logic( stall);
+     add_logic( output_rd_addr);
+     add_logic( flow);
+  }
+}
+;
+csl_memory_map_page fj{
+    fj( ){
+     add_address_range( 3, 0);
+     set_address_increment( 5);
+     get_address_increment( );
+     get_next_address( );
+     add_reserved_address_range( 4, 6);
+     add( eh, "bq");
+     set_data_word_width( 2);
+     set_endianess( big_endianlittle_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page ol{
+    ol( ){
+     add_reserved_address_range( 7, 7);
+     get_data_word_wodth( );
+     set_aligment( 9);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page ql{
+    ql( ){
+     add_address_range( 0, 7);
+     set_address_increment( 2);
+     get_next_address( );
+     set_access_rights( access_write, access_read);
+     add_reserved_address_range( 7, 6);
+     get_upper_bound( );
+     set_data_word_width( 6);
+     get_data_word_wodth( );
+     get_aligment( );
+     set_endianess( big_endian);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map vs{
+    vs( ){
+     auto_gen_memory_map( );
+     set_top_unit( yv);
+fj.     set_type( page);
+fj.set_access_rights_enum( fj); 
+     set_data_word_width( 8);
+     get_data_word_width( );
+  }
+}
+;
+csl_register gi{
+    gi( ){
+     set_width( 9);
+     constant( 4);
+     add_logic( wr_en);
+     init_value( 6);
+     reset_value( 7);
+     add_logic( gray_output);
+     set_count_amount( 9);
+     set_start_value( 89);
+     stop_at_end_value( );
+     add_logic( cnt_dir_signal);
+     add_logic( dec_signal);
+  }
+}
+;

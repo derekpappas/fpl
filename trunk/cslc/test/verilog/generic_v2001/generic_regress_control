@@ -1,0 +1,18 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+
+#exceptions:
+ekv.v                   skip    "missing included file,unable to find it"
+#endif.v                 skip    "iverilog -E bug"
+#func_72bit_test.v      skip    "fixed"
+#list_parameters_test.v  skip  "bug 31"
+#list_prim_delays_test.v skip  "bug 31"
+#mipd_delays_test.v      skip  "bug 31"
+#mux8_ansi_ports.v       skip  "fixed"
+#Nbit_adder.v            skip  "generate not implemented yet"
+#new_event_control.v     skip  "fixed"
+port_order.v            skip  "missing module/fixed .vf"
+#verilog2001_mux.v       skip  "generate not implemented yet"

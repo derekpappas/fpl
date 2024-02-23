@@ -1,0 +1,14 @@
+
+csl_unit a{
+  csl_port p(input,5);
+  a() {}
+};
+
+csl_unit b{
+  csl_signal s(2);
+  a a0(.p({s3}));
+  b() {}
+};
+
+
+

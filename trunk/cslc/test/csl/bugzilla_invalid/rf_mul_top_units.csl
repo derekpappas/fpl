@@ -1,0 +1,29 @@
+csl_register_file r1{
+  r1(){
+    set_width(16);
+    set_depth(14);
+    create_rtl_module();
+    set_const_value(3);
+    set_prefix("abc",input);
+  }
+};
+
+csl_register_file r2{
+  r2(){
+     set_width(7);
+     set_depth(5);
+  }
+};
+csl_register_file r3{
+  r3(){
+    set_depth(8);
+    set_width(9);
+  }
+};
+
+csl_unit u1{
+    r2 r2;
+    r3 r3;
+    u1(){
+    }
+}; 

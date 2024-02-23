@@ -1,0 +1,9 @@
+csl_field f(4);
+csl_unit u1{
+        f f1;
+        u1(){
+                f1.set_width(abc);
+        }
+};
+
+

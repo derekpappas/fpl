@@ -1,0 +1,32 @@
+//oanab
+//22 feb 2008
+
+csl_unit u1 {
+ csl_port x(input),y(output);
+  u1 () {}
+};
+
+csl_unit u2 {
+ csl_port a(input);
+  u2 () {}
+};
+
+csl_unit u3 {
+ u1 u11;
+  u3 () {}
+};
+
+csl_unit u4 {
+ u2 u21;
+ u3 u31;
+  u4 () {
+   u21.a.connect_by_name(u31.u11.y);
+ }
+};
+
+csl_unit u5 {
+ csl_port m(input);
+ u4 u41;
+  u5 () {
+   u41.u31.u11.x.connect_by_name(m);
+} };

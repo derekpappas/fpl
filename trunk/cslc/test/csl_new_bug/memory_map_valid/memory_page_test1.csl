@@ -1,0 +1,27 @@
+//
+
+csl_unit top {
+};
+
+csl_memory_map_page pg1{
+	pg1(){
+		add_address_range(0,255);
+                set_unit_name(top);
+	}
+};
+
+csl_memory_map_page pg2{
+	pg2(){
+		add_address_range(0,255);
+                set_unit_name(top);
+
+	}
+};
+
+csl_memory_map mp{
+  mp(){
+    set_type(hierarchical);
+  }
+};
+
+

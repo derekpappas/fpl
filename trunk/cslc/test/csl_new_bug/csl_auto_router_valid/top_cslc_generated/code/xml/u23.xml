@@ -1,0 +1,28 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u23">
+<interface name="ifc_in3" >
+<port name="pi1" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="pi2" offset="0" upper="4-1" lower="0" direction = "input" type = "wire" />
+<port name="pi3" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifc_out3" >
+<port name="po1" offset="0" upper="2-1" lower="0" direction = "output" type = "wire" />
+<port name="po2" offset="0" upper="4-1" lower="0" direction = "output" type = "wire" />
+<port name="po3" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="ifc_in1" >
+<port name="ar_pi1_s1" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="ar_pi2_s2" offset="0" upper="4-1" lower="0" direction = "input" type = "wire" />
+<port name="ar_pi3_s3" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<instantiation type = "u22">
+<instance name="u22">
+<f2a formal = "ifc_in1.ar_pi1_s1" actual = "ifc_in1.ar_pi1_s1" />
+<f2a formal = "ifc_in1.ar_pi2_s2" actual = "ifc_in1.ar_pi2_s2" />
+<f2a formal = "ifc_in1.ar_pi3_s3" actual = "ifc_in1.ar_pi3_s3" />
+</instance>
+</instantiation>
+</unit>
+</design>

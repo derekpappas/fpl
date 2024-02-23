@@ -1,0 +1,30 @@
+fab proto_fab  ;                        
+usb_phy usb_phy_  ;                     
+fab uart_fab_2  ;                       
+i2c i2c_  ;                             
+RAM RAM_  ;                             
+fab fab_i2c  ;                          
+                                        
+fab uart_fab_0  ;                       
+fifo_regs fifo_regs_  ;                 
+uart uart_mod3  ;                       
+uart uart_mod2  ;                       
+uart_mgr uart_mgr_  ;                   
+jeff_uart uart_mod0  ;                  
+usb_protocol_mgr usb_protocol_mgr_  ;   
+fab fab_uart_mgr  ;                     
+uart uart_mod1  ;                       
+                                        
+                                        
+fab uart_fab_3  ;                       
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+fab trans_fab  ;                        
+usb_transaction_mgr usb_transaction_mgr_  ;
+                                        
+fab_filter fab_filter_  ;               
+fab uart_fab_1  ;                                       

@@ -1,0 +1,128 @@
+csl_enum tg {
+	lv = 41,
+	ms = 32,
+	fi = 21,
+	nk = 5,
+	qj = 34,
+	yn = 61
+};
+csl_enum kh {
+	xc,
+	vd,
+	iw,
+	ia,
+	bk,
+	aa,
+	ly,
+	bf,
+	fo,
+	dt
+};
+csl_enum ii {
+	ex = 77,
+	tu = 82,
+	ju = 6,
+	ju = 42,
+	ch = 49,
+	wa = 41,
+	mi = 15
+};
+csl_isa_instruction_format qf{
+    qf( ){
+     set_width( 8);
+     generate_decoder( pb);
+  }
+}
+;
+csl_isa_instruction bq : qf{
+    bq( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa ul{
+    ul( ){
+     set_decoder_out_name_prefix( "tr");
+     generate_decoder( uspb);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo mb{
+   mb( ){
+     add_logic( wr_hold, 7);
+     add_logic( stall_rd_side);
+  }
+}
+;
+csl_memory_map_page qs{
+    qs( ){
+     set_access_rights( none, access_read);
+     add_reserved_address_range( 6, 2);
+     get_lower_bound( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page er{
+  qs cb;
+  qs oj;
+  qs ub;
+    er( ){
+     get_next_address( );
+     set_access_rights( access_read, access_read_write);
+     get_lower_bound( );
+     set_data_word_width( 3);
+     set_aligment( 5);
+  }
+}
+;
+csl_memory_map_page oi{
+  qs op;
+  er xv;
+    oi( ){
+     set_next_address( 3);
+     get_data_word_wodth( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map ig{
+  qs xr;
+  qs lj;
+  er sv;
+  qs ij;
+  er dl;
+  oi lm;
+    ig( ){
+     set_type( hierach);
+er.set_access_rights_enum( qs); 
+     set_suffix( qa);
+     get_suffix( );
+  }
+}
+;
+csl_register ht{
+    ht( ){
+     set_range( [6:1]);
+     set_type( DFF);
+     constant( 7);
+     get_atributes( );
+     add_logic( neg_output);
+     init_value( 7);
+     set_value( 5);
+     clear_value( 2);
+     set_lock_enable_bit( 5);
+     set_end_value( 2);
+     stop_at_end_value( );
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register ex{
+    ex( ){
+     set_width( 4);
+  }
+}
+;

@@ -1,0 +1,16 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+
+#exceptions:
+function_declaration1.v			skip		"too big"
+function_declaration21.v		skip		"too big"
+function_declaration22.v		skip		"too big"
+function_declaration23.v		skip		"too big"
+function_declaration24.v		skip		"too big"
+function_declaration25.v		skip		"too big"
+function_declaration26.v		skip		"too big"
+function_declaration27.v		skip		"too big"
+function_declaration28.v		skip		"too big"

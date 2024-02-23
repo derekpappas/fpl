@@ -1,0 +1,31 @@
+//set_enum_item cmd must be called for a field instance
+
+csl_enum e {
+  a = 1,
+  b,
+  c
+};
+csl_field f1{
+  f1(){
+    set_width(32);
+    set_enum_item(a);
+    set_enum_item(a);
+    set_enum(e);
+  }
+};
+
+csl_field f2{
+  f1 f1_1;
+  f2(){
+    set_enum_item(b);
+    f1_1.set_enum_item(b);
+    f1_1.set_enum(e);//enum is already set
+  }
+};
+
+
+csl_field f3{
+  f3(){
+    set_enum(e);
+  }
+};

@@ -1,0 +1,52 @@
+//Monica
+// 14 november 2007
+
+csl_fifo ff{
+  ff(){
+    set_width(8);
+    set_depth(32);
+  }
+};
+csl_unit dut{
+csl_port  in_d(input, 8);
+csl_port out_v(output, 1), out_d(output, 8);
+csl_port pe(input),pope(input),f(output),emp(output),r(input);
+csl_port clk(input);
+
+  ff ff1(.push(pe),
+         .pop(pope),
+         .full(f),
+         .empty(emp),
+         .rd_data(out_d),
+         .wr_data(in_d),
+         .reset_(r),
+         .clock(clk),
+         .valid(out_v)); 
+
+dut(){
+  clk.set_attr(clock);}
+};
+csl_vector stim{
+stim(){
+set_vc_header_comment("stimulus_vector");
+set_vc_output_filename("stim_data_out");
+set_unit_name ( dut );
+set_direction ( input );
+}
+};
+csl_vector exp{
+exp(){
+set_vc_header_comment("expected_vector");
+set_vc_output_filename("exp_data_out");
+set_unit_name ( dut );
+set_direction ( output );
+}
+};
+csl_testbench tb{
+  csl_signal clk(reg);
+dut dut_i;
+
+tb(){
+clk.set_attr(clock);
+add_logic(clock,clk,10,ps);
+}};

@@ -1,0 +1,9 @@
+//author: Ines
+//testing: csl_bitrange obj_name(num_expr);
+//         - param width - width of the bitrange, it will transform into a range [n-1:0]; 
+
+csl_bitrange obj_name(10);
+
+csl_unit a{
+  a(){}
+};

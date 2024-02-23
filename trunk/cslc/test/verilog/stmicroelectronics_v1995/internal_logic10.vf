@@ -1,0 +1,2 @@
+`include "parameter10.v"
+`include "internal_logic10.v"

@@ -1,0 +1,8 @@
+//Petronela
+csl_signal_group sg1{
+  csl_signal s1;
+  csl_port p1;//error
+  sg1(){
+    generate_individual_rtl_signals(on);
+  }
+};

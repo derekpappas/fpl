@@ -1,0 +1,12 @@
+Verilog Lexer
+
+To run the lexer type:
+./vlexer filename
+
+Output Format:
+
+<token_text> "//" <token_name> <token_data>(optional)
+                        "<" <filename> "," <line> ":" <column> ">"
+
+
++++++++

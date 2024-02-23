@@ -1,0 +1,20 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="b">
+<port name="ck" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="res_port" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<instantiation type = "a">
+<instance name="a0">
+<f2a formal = "ck" actual = "ck" />
+<f2a formal = "reset" actual = "res_port" />
+</instance>
+</instantiation>
+<instantiation type = "a">
+<instance name="a1">
+<f2a formal = "ck" actual = "ck" />
+<f2a formal = "reset" actual = "res_port" />
+</instance>
+</instantiation>
+</unit>
+</design>

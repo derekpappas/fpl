@@ -1,0 +1,113 @@
+csl_enum ss {
+	xl,
+	xn,
+	vq,
+	ok,
+	gv,
+	re
+};
+csl_enum xl {
+	ge = 5,
+	go = 9,
+	in = 82,
+	li = 4,
+	du = 89
+};
+csl_isa_instruction_format me{
+    me( ){
+     set_width( 5);
+     generate_decoder( qikt);
+  }
+}
+;
+csl_isa lj{
+    lj( ){
+     set_decoder_name( "up");
+     set_decoder_out_name_prefix( "wp");
+     set_decoder_out_name_suffix( "sy");
+     generate_decoder( qiktqj);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo pd{
+   pd( ){
+  }
+}
+;
+csl_memory_map_page gk{
+    gk( ){
+     set_address_increment( 4);
+     set_next_address( 1);
+     get_data_word_wodth( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page cy{
+  gk wt;
+  gk hd;
+    cy( ){
+     set_address_increment( 1);
+     get_next_address( );
+     set_access_rights( none, none);
+     add( pd, "ki");
+     get_lower_bound( );
+     set_data_word_width( 9);
+     get_data_word_wodth( );
+     set_endianess( big_endianbig_endian);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page cd{
+    cd( ){
+     add_address_range( 4, 6);
+     set_address_increment( 4);
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_read, access_write);
+     add_reserved_address_range( 1, 7);
+     add( pd, "il");
+     add( cy);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 4);
+     get_data_word_wodth( );
+     set_aligment( 0);
+     get_aligment( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map ll{
+    ll( ){
+     auto_gen_memory_map( );
+     set_top_unit( qiygkt);
+cd.add_to_memory_map( access_read); 
+     set_type( page);
+     set_data_word_width( 8);
+     set_prefix( qi);
+  }
+}
+;
+csl_register ml{
+    ml( ){
+     set_range( {[9:9], [3:5], [2:1], [1:3], [3:7], [2:5]});
+     set_atribute( read_write);
+     init_value( 2);
+     set_value( 3);
+     add_logic( gray_output);
+     set_end_value( 6);
+     add_logic( inc_signal);
+  }
+}
+;
+csl_register ua{
+    ua( ){
+     set_depth( 7);
+  }
+}
+;

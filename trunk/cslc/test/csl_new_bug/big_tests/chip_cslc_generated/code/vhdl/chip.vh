@@ -1,0 +1,10 @@
+u_pc.vhd
+u_im.vhd
+u_id.vhd
+u_rf.vhd
+u_alu.vhd
+pc_reg.vhd
+rf_reg.vhd
+alu_reg.vhd
+r_shr.vhd
+chip.vhd

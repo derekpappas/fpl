@@ -1,0 +1,18 @@
+//bug 2382 - not fixed
+
+csl_interface ifc {
+  csl_parameter pm(2);
+  csl_port p(input,pm);
+  ifc () {}
+};
+
+csl_unit a {
+  ifc ifc0;
+  a () {}
+};
+
+csl_unit b {
+  a a0(.ifc0(ifc1));
+  ifc ifc1;
+  b () {}
+};

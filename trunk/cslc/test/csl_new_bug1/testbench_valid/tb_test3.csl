@@ -1,0 +1,59 @@
+//Monica
+// 7 apr 2008
+
+csl_register reg_c{
+  reg_c(){
+    set_type(counter);
+    set_width(16);
+    add_logic(count_direction,up);
+    add_logic(load);
+  }
+};
+csl_unit u_count{
+  csl_port p_clk(input);
+  csl_port p_load(input,16);
+  csl_port p_reset(input);
+  csl_port p_enable(input);
+  csl_port p_data_out(output,16);
+  csl_port p_load_en(input);
+
+reg_c  reg_c(.reset_(p_reset),
+             .enable(p_enable),
+             .clock(p_clk),
+             .reg_out(p_data_out),
+             .load(p_load),
+             .load_en(p_load_en));
+ u_count(){
+   p_clk.set_attr(clock);
+  
+ }
+};
+
+csl_vector stim_vec{
+  stim_vec(){
+    set_unit_name(u_count);
+    set_direction(input);
+    set_vc_output_filename("counter_stim");
+    set_vc_max_cycles(50);
+  }
+};
+csl_vector exp_vec{
+  exp_vec(){
+    set_unit_name(u_count);
+    set_direction(output);
+    set_vc_output_filename("counter_exp");
+  }
+};
+
+csl_testbench tb_counter{
+
+  csl_signal p_clk(reg);
+  u_count count(.p_clk(p_clk));
+
+  tb_counter(){
+    p_clk.set_attr(clock);
+    add_logic(clock,p_clk,10,ps);
+    add_logic(generate_report);
+    add_logic(generate_waves,"wave.dump", vcd);
+  }
+};

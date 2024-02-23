@@ -1,0 +1,16 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="top">
+<interface name="ifc0" >
+<port name="p_ifc1" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="p_ifc2" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<signalgroup name="sg0">
+<signal name="s_sg1" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="s_sg2" offset="0" upper="8-1" lower="0" type = "wire"/>
+</signalgroup>
+<assign-stmt lhs="ifc0.p_ifc1" rhs="sg0.s_sg1"/>
+<assign-stmt lhs="ifc0.p_ifc2" rhs="sg0.s_sg2"/>
+</unit>
+</design>

@@ -1,0 +1,25 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="Phy_int">
+<port name="Reset" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="MAC_rx_clk" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="MAC_tx_clk" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="MCrs_dv" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="MRxD" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="MRxErr" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="MTxD" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="MTxEn" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="MCRS" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Tx_er" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Tx_en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Txd" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="Rx_er" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Rx_dv" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Rxd" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="Crs" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Col" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Line_loop_en" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Speed" offset="0" upper="3-1" lower="0" direction = "input" type = "wire" />
+</unit>
+</design>

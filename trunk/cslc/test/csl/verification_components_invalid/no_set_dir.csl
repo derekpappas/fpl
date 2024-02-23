@@ -1,0 +1,33 @@
+//oanab
+//27 oct 2007
+//the stim vector doesn't have a direction set
+
+csl_unit u{
+  csl_port clk(input);
+  csl_port stim_i(input),exp_o(output); 
+   u(){ 
+    clk.set_attr(clock);}
+};
+
+csl_vector stim{
+  stim(){
+                         // no direction for the stim vector
+    set_unit_name(u);
+  }
+};
+
+csl_vector exp{
+  exp(){
+    set_unit_name(u);
+    set_direction(output);
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+  u u;
+  tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,200,ps);
+    }
+};

@@ -1,0 +1,17 @@
+//oanab
+//12 nov 2007
+
+csl_unit u{
+  csl_port clk(input),x(output);
+  csl_signal a(wire),b,c;
+  u(){
+    clk.set_attr(clock);
+  }
+};
+
+csl_field f{
+  f(){
+    set_width(4);
+    gen_decoder(u);
+  }
+};

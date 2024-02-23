@@ -1,0 +1,27 @@
+csl_isa_field f_op(2);
+csl_isa_field f_op2(3);
+csl_isa_field f_cond(4);
+
+//declaring format
+
+csl_isa_element format{
+    // instanciate fields
+    f_op           f_op_i; 
+    f_op2          f_op2_i;
+    f_cond         f_cond_i;
+
+    // can't instanciate another instance
+    f_op_i         f_op_i2;
+    f_op2_i        f_op2_i2;
+    f_cond_i       f_cond_i2;
+
+    format(){
+	set_type(instr_format);
+    set_width(9);
+    set_position(f_op_i,        8);
+    set_next(f_op_i,            f_op2_i);
+    set_next(f_op2_i,           f_cond_i2);  // can't add incorectly defined field
+    }
+};
+
+

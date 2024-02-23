@@ -1,0 +1,93 @@
+//Monica
+//7 apr 2008
+
+csl_bitrange br_data(10);
+
+csl_unit pc_mux{
+  csl_port p_in0(input,br_data);
+  csl_port p_in1(input,br_data);
+  csl_port p_sel(input);
+  csl_port mux_out(output,br_data);
+  pc_mux(){
+    mux_out=(p_sel) ? p_in1 : p_in0;
+  }
+};
+
+csl_register pc_reg{
+  pc_reg(){
+    set_type(register);
+    set_width(10);
+  }
+};
+
+csl_unit pc_add{
+  csl_port p_op1(input,br_data);
+  csl_port p_op2(p_op1);
+  csl_port p_rez(output,br_data);
+
+  pc_add(){
+    p_rez=p_op1+p_op2;
+  }
+};
+
+csl_unit pc_dut{
+  csl_port clk(input);
+  csl_port br_addr_cond(input,br_data);
+  csl_port br_cond(input),br(input);
+  csl_port br_addr(input,br_data);
+  csl_port br_addr_im(output,br_data);
+
+  csl_signal next_pc(br_data);
+  csl_signal s_rez(br_data);
+  csl_signal and_gate;
+  csl_signal s_const(br_data);
+  csl_signal s1_mux_out(br_data);
+  csl_signal s2_mux_out(br_data);
+  csl_signal s1_rez(br_data),rst,en;
+
+  pc_mux mux1(.p_in0(s_const),
+              .p_in1(br_addr_cond),
+              .p_sel(and_gate),
+              .mux_out(s1_mux_out));
+  pc_mux mux2(.p_in0(s1_rez),
+              .p_in1(br_addr),
+              .p_sel(br),
+              .mux_out(s2_mux_out));
+
+  pc_add adder(.p_op1(s1_mux_out),
+               .p_op2(next_pc),
+               .p_rez(s1_rez));
+  pc_reg reg(.reg_in(s2_mux_out),
+             .reg_out(next_pc),
+             .clock(clk),.reset_(rst),.enable(en));
+
+  pc_dut(){
+    s_const=10'd1;
+    br_addr_im=next_pc;
+    and_gate=br_cond & br;
+    clk.set_attr(clock);
+    next_pc = s_rez;
+  }
+};
+csl_vector stim_pc{
+  stim_pc(){
+    set_unit_name(pc_dut);
+    set_direction(input);
+  }};
+csl_vector exp_pc{
+  exp_pc(){
+    set_unit_name(pc_dut);
+    set_direction(output);
+  }};
+csl_testbench tb_pc{
+  csl_signal clk(reg);
+
+  pc_dut pc(.clk(clk));
+
+  tb_pc(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,10,ps);
+  }
+};
+   
+

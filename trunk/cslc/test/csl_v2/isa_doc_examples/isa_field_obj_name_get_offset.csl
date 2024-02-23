@@ -1,0 +1,19 @@
+//isa_field_obj_name.get_offset()
+
+csl_isa_field f_op{ 
+f_op(){ 
+set_width(2); 
+set_type(opcode); 
+set_offset(1); 
+}
+};
+csl_isa_field f_op2{ 
+f_op2(){ 
+set_width(3); 
+set_type(opcode); 
+set_offset(f_op.get_offset()); 
+}
+};
+
+csl_unit top {
+};

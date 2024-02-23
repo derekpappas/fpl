@@ -1,0 +1,33 @@
+//Monica
+// 09.03.2009
+
+// connect_by_pattern : parent-child
+
+csl_unit a{
+csl_port ck(input);
+csl_port reset(input);
+a(){}
+};
+csl_unit b{
+csl_port ck(input);
+
+a a0;
+a a1;
+b(){}
+};
+
+csl_unit c{
+csl_port reset(input);
+b b0;
+c(){}
+};
+
+csl_unit d{
+csl_port clk(input);
+csl_port res(input);
+c c0;
+d(){
+clk.connect_by_pattern(ck,ck_port);
+res.connect_by_pattern(reset,res_port);
+}
+};

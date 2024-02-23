@@ -1,0 +1,25 @@
+//oanab
+//7 nov 2007
+
+
+csl_register cnt{
+  cnt(){
+    set_type(counter);
+    set_width(8);
+    add_logic(count_direction,down); 
+    add_logic(start_value,128);
+    add_logic(count_amount,1);
+    add_logic(end_value,0);
+  }
+};
+
+csl_unit u{
+  csl_port clk(input);
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(output,8);
+  cnt cnt(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p3));
+  u(){
+    clk.set_attr(clock);
+  }
+};

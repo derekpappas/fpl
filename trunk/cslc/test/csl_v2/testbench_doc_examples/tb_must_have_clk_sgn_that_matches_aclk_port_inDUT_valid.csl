@@ -1,0 +1,33 @@
+//Monica
+//19 October 2007
+//testbench must have a signal clk name that matches a port in DUT w/
+//clk attr (valid test)
+
+csl_unit dut{
+  csl_port stim_p(input), exp_p(output);
+   csl_port clk ( input );
+   dut(){
+    clk.set_attr ( clock );
+   }
+};
+csl_vector stim_v{
+  stim_v(){
+    set_unit_name(dut);
+    set_direction(input);
+  }
+};
+csl_vector exp_v{
+  exp_v(){
+    set_unit_name(dut);
+    set_direction(output);
+  }
+};
+csl_testbench tb{
+   csl_signal clk_sgn;
+   
+   dut dut_ (.clk(clk_sgn));
+   tb(){
+      clk_sgn.set_attr ( clock );
+      add_logic (clock, clk_sgn, 2, ns);
+   }
+};

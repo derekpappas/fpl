@@ -1,0 +1,16 @@
+
+//Monica
+
+csl_enum e {
+   a, b, c, d
+};
+
+csl_bitrange br(3);
+
+csl_unit u{
+csl_signal s(br); // illegal width of the enum is 4-bits and the bitrange is 3-bits
+u(){
+s=e;
+}
+};
+

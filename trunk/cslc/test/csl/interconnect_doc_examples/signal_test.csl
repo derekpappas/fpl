@@ -1,0 +1,23 @@
+csl_unit ref, comp, chek ;
+
+csl_unit ref{
+  csl_port ref_out (output, 8);
+  ref(){}
+};
+
+csl_unit comp{
+  csl_port ref_in (input, 8);
+  csl_port data_in (input, 8);
+  csl_port valid1 (output);
+  comp(){}
+};
+
+csl_unit chek{
+  csl_port data (input, 8);
+  csl_port valid1 (output);
+  csl_signal ref_data(8);
+    ref ref(.ref_out(ref_data));
+    comp comp( .data_in(data), .ref_in(ref_data), .valid1(valid1));
+  chek(){
+  }
+};

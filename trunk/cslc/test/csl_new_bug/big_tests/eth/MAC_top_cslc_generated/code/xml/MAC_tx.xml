@@ -1,0 +1,38 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="MAC_tx">
+<port name="Reset" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Clk" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Clk_user" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="TxD" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="TxEn" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="CRS" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Tx_pkt_type_rmon" offset="0" upper="3-1" lower="0" direction = "output" type = "wire" />
+<port name="Tx_pkt_length_rmon" offset="0" upper="16-1" lower="0" direction = "output" type = "wire" />
+<port name="Tx_apply_rmon" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Tx_pkt_err_type_rmon" offset="0" upper="3-1" lower="0" direction = "output" type = "wire" />
+<port name="Tx_mac_wa" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Tx_mac_wr" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Tx_mac_data" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+<port name="Tx_mac_BE" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="Tx_mac_sop" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Tx_mac_eop" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Tx_Hwmark" offset="0" upper="5-1" lower="0" direction = "input" type = "wire" />
+<port name="Tx_Lwmark" offset="0" upper="5-1" lower="0" direction = "input" type = "wire" />
+<port name="pause_frame_send_en" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="pause_quanta_set" offset="0" upper="16-1" lower="0" direction = "input" type = "wire" />
+<port name="MAC_tx_add_en" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="FullDuplex" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="MaxRetry" offset="0" upper="4-1" lower="0" direction = "input" type = "wire" />
+<port name="IFGset" offset="0" upper="6-1" lower="0" direction = "input" type = "wire" />
+<port name="MAC_add_prom_data" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="MAC_add_prom_add" offset="0" upper="3-1" lower="0" direction = "input" type = "wire" />
+<port name="MAC_add_prom_wr" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="tx_pause_en" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="xoff_cpu" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="xon_cpu" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="pause_quanta" offset="0" upper="16-1" lower="0" direction = "input" type = "wire" />
+<port name="pause_quanta_val" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</unit>
+</design>

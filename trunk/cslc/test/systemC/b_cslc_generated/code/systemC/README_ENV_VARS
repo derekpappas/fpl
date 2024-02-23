@@ -1,0 +1,7 @@
+Set these env vars in your .bashrc file.
+
+For the Mac 
+export SYSTEMC_HOME=/Library/SystemC/systemc-2.2.0
+export SYSTEMC=${SYSTEMC_HOME}
+export SCV_HOME=/Library/SystemC/Current
+export BOOST_HOME=/Library/SystemC/Current/boost

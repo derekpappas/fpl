@@ -1,0 +1,84 @@
+//6 Oct 2007
+//andreim
+//Testbench test (2 tb)
+
+
+csl_unit DUT_a{
+   csl_port clk      ( input );
+   csl_port stim_in_a0 ( input );
+   csl_port stim_in_a1 ( input );
+   csl_port exp_out_a0 ( output );
+   csl_port exp_out_a1 ( output );  
+   DUT_a(){
+      clk.set_attr ( clock );
+   }
+};
+
+csl_vector stim_vec_a{
+   stim_vec_a(){
+      set_unit_name ( DUT_a );
+      set_direction   ( input );
+   }
+};
+
+csl_vector exp_vec_a{
+   exp_vec_a(){
+      set_unit_name ( DUT_a );
+      set_direction   ( output );
+   }
+};
+
+csl_unit DUT_b{
+   csl_port clk      ( input );
+   csl_port stim_in_b0 ( input );
+   csl_port stim_in_b1 ( input );
+   csl_port exp_out_b0 ( output );
+   csl_port exp_out_b1 ( output );
+   DUT_b(){
+       clk.set_attr ( clock );
+   }
+};
+
+csl_vector stim_vec_b{
+   stim_vec_b(){
+      set_unit_name ( DUT_b );
+      set_direction   ( input );
+   }
+};
+
+csl_vector exp_vec_b{
+   exp_vec_b(){
+      set_unit_name ( DUT_b );
+      set_direction   ( output );
+   }
+};
+
+//csl_unit tb_top{
+//   DUT_a DUT_a0;
+//   DUT_b DUT_b0;
+//   tb_top(){
+//  }
+//};
+
+
+csl_unit a {
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(output);
+  csl_port p4(output);
+  csl_port p5(input);
+  DUT_a dut1(.stim_in_a0(p1),.stim_in_a1(p2),.exp_out_a0(p3),.exp_out_a1(p4),.clk(p5));
+  DUT_b dut2(.stim_in_b0(p1),.stim_in_b1(p2),.exp_out_b0(p3),.exp_out_b1(p4),.clk(p5));
+  a (){}
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+   DUT_a DUT_a0 (.clk(clk));
+   DUT_b DUT_b0 (.clk(clk));
+   tb(){
+         clk.set_attr ( clock );
+         add_logic(clock, clk,2,ns);
+      }
+};
+

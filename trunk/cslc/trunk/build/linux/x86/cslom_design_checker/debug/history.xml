@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="g++ noversion nomachine-g -ftest-coverage -DQCSLOM_LIBRARY -DQT_NO_KEYWORDS -DQT_CORE_LIB -DQT_SHARED -I/opt/tools/qtsdk-2009.03/qt/include/QtCore -I/opt/tools/qtsdk-2009.03/qt/include -c">
+      <target file="CSLOM_Design_Checker.o" lastModified="12db27f6710">
+         <source file="../../../../../src/cslom_design_checker/CSLOM_Design_Checker.cpp" lastModified="12db2139d50"/>
+      </target>
+   </processor>
+   <processor signature="ar">
+      <target file="libCslomChecker.a" lastModified="12db27f6710">
+         <source file="CSLOM_Design_Checker.o" lastModified="12db27f6710"/>
+      </target>
+   </processor>
+</history>

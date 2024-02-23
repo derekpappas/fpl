@@ -1,0 +1,40 @@
+//author: Monica
+//test: csl_port in interface
+
+csl_interface ifc {
+  csl_port opc(output, reg, 5);
+  csl_port rsa(output, reg, 5);
+  csl_port rsb(output, reg, 5);
+  csl_port dest(output, reg, 5);
+  ifc(){
+
+  }
+};
+
+csl_unit pipeline {
+
+  ifc ifc1;
+  pipeline(){
+    
+  }
+};
+
+csl_unit Fetch {
+  ifc ifc2;
+  Fetch(){
+
+  }
+};
+csl_unit top{
+  csl_port IR(output, 5);
+  csl_port IR1(output, 5);
+  csl_port IR2(output, 5);
+  csl_port IR3(output, 5);
+  pipeline pip(.ifc1.opc(IR),.ifc1.rsa(IR1),.ifc1.rsb(IR2),.ifc1.dest(IR3));
+  Fetch Fet(.ifc2.opc(IR),.ifc2.rsa(IR1),.ifc2.rsb(IR2),.ifc2.dest(IR3));
+  top(){}
+};
+
+
+
+

@@ -1,0 +1,14 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+
+#exceptions:
+#AD976A.v                  skip    "compile error/wrong test/fixed"
+#DAC8412.v                  skip    "compile error/wrong test/fixed"
+#DAC8413.v                  skip    "compile error/wrong test/fixed"
+#IDT6116SA20.v                  skip    "compile error/wrong tes/fixedt"
+#IDT6116SA25.v                  skip    "compile error/wrong test/fixed"
+#LTC1606.v                  skip    "compile error/wrong test/fixed"
+

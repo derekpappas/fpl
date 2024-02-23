@@ -1,0 +1,31 @@
+//oanab
+//19 feb 2008
+//connecting a signal to a signal
+
+csl_signal_group sg1 {
+  csl_signal s1,s2;
+  sg1 () {}
+};
+
+csl_signal_group sg2 {
+  csl_signal s3,s4;
+  sg2 () {}
+};
+
+csl_unit u1 {
+  sg1 sg11;
+  u1 () {}
+};
+
+csl_unit u2 {
+  sg2 sg21;
+  u2 () {}
+};
+
+csl_unit u3 {
+  u1 u11;
+  u2 u21;
+  u3 () {
+    u11.sg11.s1.connect(u21.sg21.s3);
+  }
+};

@@ -1,0 +1,6 @@
+// CristiL
+//
+// MultiBitrange
+
+csl_multi_dim_bitrange m(32);
+

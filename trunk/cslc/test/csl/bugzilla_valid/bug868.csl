@@ -1,0 +1,8 @@
+//bug 868
+csl_field rfty1{
+   csl_field fwte1(3, 8);
+   csl_field fyti1(1);
+   rfty1(){
+     set_width(7);
+  }
+};

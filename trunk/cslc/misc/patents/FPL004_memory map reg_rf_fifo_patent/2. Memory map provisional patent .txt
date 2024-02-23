@@ -1,0 +1,37 @@
+From: Pappas Derek <dpappas@fplsrl.com>
+Date: June 1, 2008 7:56:52 AM PDT
+Subject: 2. Memory map provisional patent 
+
+
+2. Memory map provisional patent
+BACKGROUND
+A state element holds values which only change after a clock changes and optionally a control signal is asserted.
+Examples of state elements include registers, FIFO's, register files, and memories.
+The state element can be written or read or optionally can be read only (contain constant values). 
+Different groups in a project can have different permission level to read and write the state elements.
+Permissions refer to read and write permission.
+Access rights are granted to different groups on the project such as hardware, a set of hardware elements, software driver,
+and software applications. 
+A design has an associated address range. Parts of the address range may be reserved for future use.
+Parts of the address range may be labeled as illegal (no addressable objects may be assigned to this range).
+Designs contain state elements which have addresses. We will call these elements addressable objects. 
+Addressable objects can be read or written depending on the accessor permissions and access rights. 
+An addressable object can have a single address associated with it or an address range associated with it.
+Addressable objects may not be allocated in illegal or reserved address ranges.
+Endianess. A memory map can be 
+Actions can be associated with addresses. Examples of actions include causing a counter to increment or
+generating an input to a state machine.
+Addresses can be associated with entire words or partial words (i.e. fields or bits).
+The transactions contain an address, a command to execute, and optional data.
+Examples of commands include read, write, DMA read, DMA write, ping, run, enable, poll, interrupt, read reply.
+Transactions are sent to units. Units listen for transactions addressed to them. When a transaction addressed to them is received
+The unit receives the transaction and executes the command. 
+Address maps can be flat or hierarchical.
+In either case addresses are associated with addressable objects in units.
+Hierarchical address maps contain a set of local addresses for each addressable object. This is the local address map.
+Unit instances are accessed with a unit address/identifier.
+Addresses can be explicitly associated with addressable objects. Example the status register is located at address 15 in unit x.
+Or the addressed can be assigned based on their relative position in a list that the user creates by specifying the relationship between
+the addressable objects in the unit.
+
+

@@ -1,0 +1,19 @@
+csl_bitrange br1(16); 
+csl_unit a{
+  csl_port x1(output), x2(output);
+  a(){}
+};
+
+  csl_unit b{
+   csl_port y1(input), y2(input);
+   b(){}
+};
+
+ csl_unit top{
+  csl_signal data, instr1;
+  a a( .x1(data), .x2(instr1));
+  b b( .y1(data), .y2(instr1));
+ top(){
+   data.set_bitrange(br1);
+   instr1.set_bitrange(data.get_bitrange());
+}};

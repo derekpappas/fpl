@@ -1,0 +1,23 @@
+HOW TO libCSLC_Errors.a
+
+
+-first delete from ~/svn/trunk/src/csl_xml_warn_error the files CSLC_Errors.h & CSLC_errors.cpp and
+	from ~/svn/trunk/build/linux/x86_64/csl_xml_warn_error libCSLC_Errors.a (not doing so might render the following steps useless)
+
+-copy the binary warnerr from ~/svn/trunk/build/linux/x86_64/csl_xml_warn_error/ to ~/svn/trunk/src/csl_xml_warn_error (the binary form your build/linux/... directory might not be the latest, to be sure you have the latest copy it from /home/ovidiub/svn/trunk/build/linux/x86_64/csl_xml_warn_error or from /home/ostolnicu/svn/trunk/build/linux/x86_64/csl_xml_warn_error)
+
+-then run the command "./warnerr xml_file output_file.h"
+	where :
+		-xml_file is the xml containig the errors (warnerrfinal*.xml)
+		-output_file should be CSLC_Errors.h
+
+-then "gcc -c output_file.cpp"
+	where :
+		-output_file.cpp should be CSLC_Errors.cpp
+
+-then "ar -cq libCSLC_Errors.a CSLC_Errors.o"
+
+
+-then copy the libCSLC_Errors.a library to ~/svn/trunk/build/linux/x86_64/csl_xml_warn_error
+
+THAT'S IT !!

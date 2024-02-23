@@ -1,0 +1,38 @@
+//Monica
+
+csl_signal_group sg{
+  csl_signal s1(9),s2,s3(2);
+  sg(){}
+};
+
+csl_signal_group sg0{
+  csl_signal sig0(32);
+  csl_signal sig1(9);
+  sg0(){}
+};
+
+csl_unit u{
+  sg sg1;
+  sg sg2;
+  sg sg3;
+
+  u(){
+    sg1.set_prefix("");
+    sg2.set_prefix("signal_group");
+    sg3.set_prefix("__SG__");
+    sg1.s1 = {sg1.s2,sg1.s3,sg2.s2,sg2.s3,sg3.s2,sg3.s3};
+    sg2.s1 = sg3.s1;
+  }
+};
+
+csl_unit u0{
+  u u1;
+  sg0 sg01;
+  sg0 sg02;
+
+  u0(){
+    sg01.no_prefix();
+    sg02.set_prefix("");
+    sg01.sig0 = sg02.sig0;
+    sg01.sig1 = sg02.sig1;
+  }};

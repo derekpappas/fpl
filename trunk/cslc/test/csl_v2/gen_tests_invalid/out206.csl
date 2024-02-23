@@ -1,0 +1,122 @@
+csl_enum ip {
+	bw = 2,
+	gf = 54,
+	rt = 43,
+	kl = 73,
+	nq = 17,
+	gb = 8,
+	rh = 62,
+	ll = 0,
+	xr = 86,
+	pb = 96
+};
+csl_enum vi {
+	vr = 60,
+	tf = 29,
+	ax = 76,
+	ki = 83,
+	pn = 85
+};
+csl_enum iw {
+	sa = 49,
+	sf = 92,
+	og = 15,
+	wu = 3,
+	jo = 34
+};
+csl_isa_instruction_format wt{
+    wt( ){
+     set_width( 9);
+     generate_decoder( dg);
+  }
+}
+;
+csl_isa_instruction tq : wt{
+    tq( ){
+    set_asm_mnemonic( csl_list "np", "ts", "gh", "fb", "jp", "ei", "dp");
+  }
+}
+;
+csl_isa mo{
+    mo( ){
+     set_decoder_name( "qa");
+     set_decoder_out_name_prefix( "fr");
+     generate_decoder( la);
+     print( isa.txt);
+  }
+}
+;
+csl_memory_map_page ka{
+    ka( ){
+     set_next_address( 8);
+     get_next_address( );
+     add_reserved_address_range( 5, 4);
+     get_lower_bound( );
+     get_aligment( );
+     set_endianess( little_endianlittle_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page en{
+  ka cm;
+    en( ){
+     add_address_range( 9, 5);
+     set_address_increment( 6);
+     get_address_increment( );
+     add( ka);
+     get_upper_bound( );
+     get_data_word_wodth( );
+     get_aligment( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page be{
+  ka an;
+  en yf;
+  ka ud;
+  en lr;
+    be( ){
+     set_address_increment( 8);
+     add( en);
+     set_data_word_width( 8);
+     get_data_word_wodth( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map yw{
+    yw( ){
+     set_top_unit( gs);
+     set_type( page);
+kaenbe.set_access_rights_enum( kaen); 
+     set_prefix( by);
+     set_suffix( dd);
+     get_suffix( );
+  }
+}
+;
+csl_register vn{
+    vn( ){
+     set_type( STATIC);
+     set_width( 3);
+     set_address( yw, );
+     add_logic( neg_output);
+     add_logic( serial_output);
+     add_logic( wr_en);
+     clear_value( 2);
+     add_logic( gray_output);
+  }
+}
+;
+csl_register cs{
+    cs( ){
+     create_rtl_module( );
+  }
+}
+;

@@ -1,0 +1,39 @@
+// Monica
+//21 may 2008
+
+csl_interface ifc_in{
+  csl_port p11(input,4);
+  csl_port p12(input,16);
+  ifc_in(){}
+};
+csl_interface ifc_out{
+  csl_port p11(output,4);
+  csl_port p12(output,16);
+  ifc_out(){}
+};
+csl_signal_group sg{
+  csl_signal p11(4);
+  csl_signal p12(16);
+  sg(){}
+};
+csl_unit u1{
+  ifc_in ifc1;
+  ifc_out ifc2;
+  u1(){}
+};
+csl_unit u2{
+  ifc_in ifc1;
+  ifc_out ifc2;
+  u2(){}
+};
+csl_unit top{
+  sg sg_i1;
+  sg sg_i2;
+  u1 u1_i;
+  u2 u2_i;
+  top(){
+    sg_i1.connect_by_name(u1_i.ifc1);      //by name
+    u2_i.ifc2.connect_by_name(sg_i2);      //by name
+    u1_i.ifc2.connect_by_name(u2_i.ifc1);  //by name
+  }
+};

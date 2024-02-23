@@ -1,0 +1,19 @@
+//oanab
+//12 nov 2007
+
+csl_enum e{
+  a=0,b=1
+    };
+
+csl_field f{
+  f(){
+    set_enum(e);
+  }
+};
+
+csl_unit u{
+  csl_signal x(wire,4);
+  u(){ 
+    x.set_bitrange(f);
+}
+};

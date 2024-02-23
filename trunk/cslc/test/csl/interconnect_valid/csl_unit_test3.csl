@@ -1,0 +1,18 @@
+//Monica
+//test: csl_unit unit_name, csl_signal, csl_port.
+
+csl_unit a{
+  csl_signal sig1(2),sig2(4);
+  csl_port p1(input,2), p2(output,4);
+  a(){
+    sig1 = p1;
+    sig2 = p2;
+  }
+};
+csl_unit top{
+  a a0;
+  a a1;
+  a a2;
+  top(){}
+};
+

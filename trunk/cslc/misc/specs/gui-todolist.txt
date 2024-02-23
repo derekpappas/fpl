@@ -1,0 +1,53 @@
+1. create tree widget from instance tree
+2. click on CSL code and display generated Verilog/C++/System C code
+3. auto completion using GD's symbol table:
+    csl_interface in {
+      in() {
+      add_logic(
+    }
+    -when the cursor is at add_logic(... then a pull down menu should appear with all options for the csl_interface add logic commands
+4. dialog boxes for special structures such as memory map, isa command sets, port interface lists
+
+
+-highlight syntax (bold for punctuation)
+-any reserved word should be bold, any variable should be italics
+-default font = monospace
+
+-autocompletion with menu
+-a pointer to the connection class, path, instance tree
+-display the path in the instance tree: modules, signals, etc
+-path router code and use the path router code to walk the list (for loop)
+-default Qt icon changed -> FPL icon
+-background/foreground colour for each widget
+-optionally display the line numbers
+-relationship highlighting
+-right click on a CSL line opens the corresponding verilog/c++ source file and highlights the generated text
+-for multiple files, find a way to cycle them
+-right click on a verilog line opens the corresponding CSL source file and highlights the generated text
+-right click on a C++ line opens the corresponding CSL source file and highlights the generated text
+-error console: click on an error -> highlights the corresponding csl/verilog code
+-right click on csl and shows the schematic
+-tree widget
+-command line
+-cd shows where you are on the tree widget
+-move around in the graph
+-aikido integrated in there
+-CSL GUI doc has all the commands
+-custom windows displays for the following:
+  f2a,
+  interconnect,
+  memorymap,
+  isa,
+
+-Instance Tree widget view-> right click menu:
+1. build that module
+2. build the subhierarchy
+3. run a check on a module if it's already build
+4. popup dialog boxes showing different attributes like memory_map for that module
+
+II. CSL Object view:
+--------------------
+-contains memory map icon, ISA icon, design icon (pops up the tree widget icon)
+-interconnect icon: shows the interconnect for the design
+-tree/block view of the design
+-pipeline view -> shows pipeline view by modules/logic

@@ -1,0 +1,298 @@
+// 
+// IXP2400 Network Processor
+
+csl_bitrange iow(0,31);
+/*  
+csl_interface rfifc{
+  rfifc(){
+    add_port(input,iow);
+    add_port(output,iow);
+  };
+*/
+// --------------------Microengine units
+// local memory
+ csl_register_file localmem{
+   //csl_unit localmem{
+    localmem(){
+      set_width(32);
+      set_depth(64);
+    }
+ };
+
+// local memory address register  
+//csl_register lm_addr{};
+//csl_register t_index{};
+//csl_register nn_get{};
+
+//control unit  
+csl_unit ctrlstore{
+  ctrlstore() {
+      }
+  };
+
+//execution unit - Shift, Add, Substract, Mutiply .....  
+csl_unit execu{
+  execu(){
+    }
+  };
+
+
+// general purpos register file
+csl_register_file rf128{
+  rf128(){
+    set_width(32);
+    set_depth(32);
+    }
+  };
+
+  
+// CRC unit
+csl_unit crc {
+  crc(){
+    }
+  };
+  
+// CRC reminder unit
+csl_unit crcr {
+  crcr(){
+    }
+  };
+
+csl_unit opmux{
+  opmux(){
+    }
+  };
+  
+csl_unit rfmux{
+  rfmux(){
+    }
+    };
+    
+    
+//---------------------IPX2400 units
+//Media switch fabric interface
+csl_unit msf {
+  msf(){
+    }
+  };
+
+// Scratchpad memory
+// csl_memory scratch {
+/*csl_register_file scratch {
+  scratch() {
+    set_width(32);
+    set_depth(128);
+  }
+  };*/
+
+// SRAM controller  
+csl_unit sramctrl {
+  sramctrl(){
+    }
+  };
+
+//DRAM controller  
+csl_unit dramctrl {
+  dramctrl(){
+    }
+  };
+
+//Hash unit  
+csl_unit hash{
+  hash(){
+    }
+  };
+
+//PCI controller
+csl_unit pcictrl{
+  pcictrl(){
+    }
+  };
+
+// Chip wide control status register
+csl_unit cap{
+  cap(){}
+  };
+
+//microengine unit
+csl_unit me{
+
+csl_signal reset,clear,clk;
+csl_signal wr_addr1(5), rd_addr01(5),rd_addr11(5);
+csl_signal data_in1(32),data_out01(32),data_out11(32);
+csl_signal wr_en1,rd_en01,rd_en11,valid1;
+
+
+csl_signal wr_addr2(5), rd_addr02(5),rd_addr12(5);
+csl_signal data_in2(32),data_out02(32),data_out12(32);
+csl_signal wr_en2,rd_en02,rd_en12,valid2;
+
+
+csl_signal wr_addr3(5), rd_addr03(5),rd_addr13(5);
+csl_signal data_in3(32),data_out03(32),data_out13(32);
+csl_signal wr_en3,rd_en03,rd_en13,valid3;
+
+
+csl_signal wr_addr4(5), rd_addr04(5),rd_addr14(5);
+csl_signal data_in4(32),data_out04(32),data_out14(32);
+csl_signal wr_en4,rd_en04,rd_en14,valid4;
+ 
+csl_signal wr_addr5(6), rd_addr05(6),rd_addr15(6);
+csl_signal data_in5(32),data_out05(32),data_out15(32);
+csl_signal wr_en5,rd_en05,rd_en15,valid5;
+
+  rf128 gpra(.reset(reset),
+             .clear(clear),
+             .clock(clk),
+             .wr_addr(wr_addr1),
+             .rd_addr0(rd_addr01),
+             .rd_addr1(rd_addr11),
+             .data_in(data_in1),
+             .data_out0(data_out01),
+             .data_out1(data_out11),
+             .wr_en(wr_en1),
+             .rd_en0(rd_en01),
+             .rd_en1(rd_en11),
+             .valid(valid1));
+  rf128 gprb(.reset(reset),
+             .clear(clear),
+             .clock(clk),
+             .wr_addr(wr_addr2),
+             .rd_addr0(rd_addr02),
+             .rd_addr1(rd_addr12),
+             .data_in(data_in2),
+             .data_out0(data_out02),
+             .data_out1(data_out12),
+             .wr_en(wr_en2),
+             .rd_en0(rd_en02),
+             .rd_en1(rd_en12),
+             .valid(valid2));
+  rf128 nn(.reset(reset),
+             .clear(clear),
+             .clock(clk),
+             .wr_addr(wr_addr3),
+             .rd_addr0(rd_addr03),
+             .rd_addr1(rd_addr13),
+             .data_in(data_in3),
+             .data_out0(data_out03),
+             .data_out1(data_out13),
+             .wr_en(wr_en3),
+             .rd_en0(rd_en03),
+             .rd_en1(rd_en13),
+             .valid(valid3));
+  rf128 xferind(.reset(reset),
+             .clear(clear),
+             .clock(clk),
+             .wr_addr(wr_addr4),
+             .rd_addr0(rd_addr04),
+             .rd_addr1(rd_addr14),
+             .data_in(data_in4),
+             .data_out0(data_out04),
+             .data_out1(data_out14),
+             .wr_en(wr_en4),
+             .rd_en0(rd_en04),
+             .rd_en1(rd_en14),
+             .valid(valid4));
+
+ localmem lm(.reset(reset),
+             .clear(clear),
+             .clock(clk),
+             .wr_addr(wr_addr5),
+             .rd_addr0(rd_addr05),
+             .rd_addr1(rd_addr15),
+             .data_in(data_in5),
+             .data_out0(data_out05),
+             .data_out1(data_out15),
+             .wr_en(wr_en5),
+             .rd_en0(rd_en05),
+             .rd_en1(rd_en15),
+             .valid(valid5));
+//  rf128 xferins;
+//  rf128 xferoutd;
+//  rf128 xferouts;
+  execu eu0;
+  ctrlstore cs0;
+  opmux opmuxa, opmuxb;
+  crc crc0;
+  crcr crcr0;
+  rfmux rfmux0;
+  me(){
+ 
+    }
+  };
+
+// microengine cluster - contains 4 ME  
+csl_unit mecluster{
+  me me0, me1, me2, me3;
+  mecluster(){
+    }
+  };  
+
+// XScale Core periferals
+csl_unit xpi{
+  xpi(){
+    }
+  };  
+
+/*csl_register_file pci {
+	pci(){
+      set_width(32);
+      set_depth(128);
+    }
+};*/
+
+/*csl_register_file sram {
+  sram(){
+    set_width(32);
+    set_depth(128);
+  }
+};*/
+
+csl_register_file dram {
+  dram() {
+    set_width(32);
+    set_depth(128);
+  }
+};
+
+// description of xscalecore in Xscale_core.csl file
+csl_unit xscalecore{
+  xscalecore(){
+  }
+};
+  
+csl_unit chip{
+csl_signal reset,clear,clk;
+csl_signal wr_addr(7), rd_addr0(7),rd_addr1(7);
+csl_signal data_in(32),data_out0(32),data_out1(32);
+csl_signal wr_en,rd_en0,rd_en1,valid;
+//  pci pci0;
+//  sram sram0;
+  dram dram0(.reset(reset),
+             .clear(clear),
+             .clock(clk),
+             .wr_addr(wr_addr),
+             .rd_addr0(rd_addr0),
+             .rd_addr1(rd_addr1),
+             .data_in(data_in),
+             .data_out0(data_out0),
+             .data_out1(data_out1),
+             .wr_en(wr_en),
+             .rd_en0(rd_en0),
+             .rd_en1(rd_en1),
+             .valid(valid));
+  msf msf0;
+//  scratch sch0;
+  sramctrl sramctrl0;
+  sramctrl sramctrl1;
+  dramctrl dramctrl0;
+  hash hash0;
+  pcictrl pcictrl0;
+  cap cap0;
+  mecluster mecluster0, mecluster1;
+  xpi xpi0;
+  xscalecore xscalecore0;
+  chip(){
+  }
+};
+

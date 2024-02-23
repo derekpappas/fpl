@@ -1,0 +1,18 @@
+# This is the input test file for CTestFunction class
+# <> means obligatory
+# [] means optional
+# {} means group
+# *x means this should repeat x times
+# Syntax: ( <MODULE_TEST> <FUNCTION_NAME> <1/2> [BITRANGE_TEST] <y/n> [COmIOList_Test] <NR_STATEMENTS> {<STATEMENT_TYPE> <STATEMENT_TEST>}*NR_STATEMENTS )
+# COmIOList_Test Syntax: ( <NUMBER_OF_CHILDREN> {<CHILD_TYPE> <CHILD_TEST>}*NUMBER_OF_CHILDREN <NUMBER_OF_RAW_PORTS><SIGNAL_PORT_TEST>*NUMBER_OF_RAW_PORTS <NUMBER_OF_SIGNALS> {<SIG_TYPE> <SIG_TEST>}*NUMBER_OF_SIGNALS <NUMBER_OF_PORT_DIRS> <SIGNAL_PORT_TEST>*NUMBER_OF_PORT_DIRS )
+# y with parent COmIOList test
+# n without parent COmIOList test
+# 1 constructor with bitRange
+# 2 constructor without bitRange
+# examples:
+
+( ( n gigi n 0 0 ) function1 1 n 0 )
+( ( n gigi n 0 0 ) function2 2 ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) n 0 )
+( ( n gigi1 n 0 0 ) function3 2 ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) n 1 COmStmtIfElse ( 1 0 0 ) ) 
+( ( n gigi1 n 0 0) function4 1 n 2 COmStmtIfElse ( 1 0 0 ) COmStmtIfElse ( 1 0 0 ) )
+( ( n gigi1 n 0 0) function5 1 n 3 COmStmtIfElse ( 1 0 0 ) COmStmtIfElse ( 1 0 0 ) COmStmtAssn ( 2 3 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) COmExprValReal ( 2 20 2 20 2 2000 1 ) 3 ) )

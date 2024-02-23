@@ -1,0 +1,13 @@
+csl_memory_map_page mpage1{
+        mpage1(){
+                add_address_range(0,23);
+
+}
+};
+csl_memory_map mm{
+        mpage1 mp1;
+        mm(){
+set_type(hierarchical);
+    mp1.set_symbol_max_length(20);
+}
+};

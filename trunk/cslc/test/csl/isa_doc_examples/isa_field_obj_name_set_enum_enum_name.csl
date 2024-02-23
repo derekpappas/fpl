@@ -1,0 +1,29 @@
+//isa_field_obj_name.set_enum(enum_name)
+
+csl_enum op_code{ 
+ALU, 
+MOV, 
+BR
+};
+csl_enum eALU{ 
+OR, 
+XOR, 
+AND
+};
+csl_isa_field op{ 
+op(){ 
+set_type(opcode); 
+set_width(2); 
+set_enum(op_code); 
+}
+};
+csl_isa_field alu{ 
+alu(){ 
+set_type(selector); 
+set_width(2); 
+set_enum(eALU); 
+}
+};
+
+csl_unit top {
+};

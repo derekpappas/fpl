@@ -1,0 +1,24 @@
+//Monica
+
+csl_interface ifc{
+  csl_port p_p1(input);
+  csl_port p_p2(input,8);
+  csl_port p_p3(output,32);
+  ifc(){}
+};
+
+csl_unit u{
+ 
+  ifc ifc0;
+ u(){
+    ifc0.set_prefix("sss");
+  // ifc0.no_prefix();
+}
+};
+csl_unit top1{
+ csl_signal s_s1,s_s2(8),s_s3(32);  
+
+ u u1(.ifc0.p_p1(s_s1),.ifc0.p_p2(s_s2),.ifc0.p_p3(s_s3));
+
+ top1(){}
+};

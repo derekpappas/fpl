@@ -1,0 +1,19 @@
+//Monica
+//05 feb 2008
+
+csl_interface bus{
+  csl_port valid(input), age(input);
+  csl_port dst_nid(input, 4),src_nid(input,4), cmd(input,4), be(input,4);
+  csl_port unit_id(input, 3);
+  csl_port addr(input, 21);
+  csl_port data(input, 32);
+  bus(){}
+};
+csl_unit rn_buff{
+  bus  bus_in;
+  bus  bus_out;
+  csl_port ck(input), rst_(input);
+  rn_buff(){
+  bus_out.reverse();
+  }
+};

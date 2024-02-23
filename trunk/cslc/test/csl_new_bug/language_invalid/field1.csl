@@ -1,0 +1,21 @@
+//oanab
+//28 july 2008
+
+csl_field fb(7,0);
+csl_field f {
+  fb fub;
+  fb flb;
+  f () {
+    set_width(16);
+    set_field_position(fub,7);
+    set_field_position(flb,0);
+  }
+};
+
+csl_unit a {
+  csl_port p(input,f);
+  csl_signal s(8);
+  a () {
+    s = p.fub;
+  }
+};

@@ -1,0 +1,8 @@
+//oanab
+//12 nov 2007
+//1st param of set_dim_width is from 0 to number of dimension-1
+
+csl_multi_dim_bitrange mbr1(3);
+mbr1.set_dim_width(1,3); // instead of 1 it should be 0
+mbr1.set_dim_width(4,6); // instead of 4 it should be 1
+mbr1.set_dim_width(3,10);// instead of 3 it should be 2

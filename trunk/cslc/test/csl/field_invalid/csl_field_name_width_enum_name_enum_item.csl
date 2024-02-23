@@ -1,0 +1,11 @@
+//author: Ines
+//testing the command width & enum in field
+
+csl_enum enum{a, b, c};
+csl_enum enum1{d};
+
+csl_field field(10,enum);
+csl_field field1(20,d);
+
+csl_unit top {
+};

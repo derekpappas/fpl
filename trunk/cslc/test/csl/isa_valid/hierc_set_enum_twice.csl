@@ -1,0 +1,31 @@
+csl_enum e{
+    a,
+    b,
+    c
+};
+
+csl_isa_field f1{
+  f1(){
+    set_enum(e);
+    set_type(opcode);
+  }
+};
+
+csl_isa_field f2{
+  f1 f1_1;
+  f2(){
+    //    set_enum(e);
+    set_type(selector);
+    f1_1.set_enum_item(a);
+  }
+};
+
+
+csl_isa_field f3{
+  f1 f1_1;
+  f3(){
+    set_type(selector);
+    //    set_enum(e);
+    f1_1.set_enum_item(a);
+  }
+};

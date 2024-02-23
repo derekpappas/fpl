@@ -1,0 +1,140 @@
+csl_enum sn {
+	tu,
+	ih,
+	pm,
+	vl,
+	ax,
+	dc,
+	gf,
+	lf,
+	wk
+};
+csl_enum gu {
+	re,
+	na,
+	he,
+	sc,
+	jn,
+	pf
+};
+csl_enum ka {
+	pb,
+	pl,
+	or,
+	ju,
+	tq,
+	ah,
+	xy,
+	re,
+	uj,
+	ik,
+	jp
+};
+csl_isa_instruction_format mr{
+    mr( ){
+     set_width( 6);
+     generate_decoder( mnuk);
+  }
+}
+;
+csl_isa_instruction wg : mr{
+    wg( ){
+    set_asm_mnemonic( csl_list "oe", "ag", "in", "fw", "fw", "rb", "im", "yg");
+  }
+}
+;
+csl_isa co{
+  wg lj;
+  wg cn;
+  wg yf;
+  wg as;
+  wg fl;
+  wg ig;
+  wg ol;
+  wg bk;
+  wg gp;
+  wg wu;
+  wg cu;
+    co( ){
+     set_decoder_name( "uw");
+     set_decoder_out_name_prefix( "ro");
+     set_decoder_out_name_suffix( "mt");
+     print( isa.txt);
+  }
+}
+;
+csl_fifo ap{
+   ap( ){
+  }
+}
+;
+csl_memory_map_page td{
+    td( ){
+     get_address_increment( );
+     set_next_address( 1);
+     get_lower_bound( );
+     get_upper_bound( );
+  }
+}
+;
+csl_memory_map_page ql{
+    ql( ){
+     get_next_address( );
+     add( ap, "wv");
+     get_lower_bound( );
+     set_data_word_width( 7);
+     set_endianess( little_endian);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page qi{
+    qi( ){
+     add_address_range( 4, 2);
+     set_address_increment( 7);
+     set_next_address( 9);
+     get_next_address( );
+     set_access_rights( none, access_read_write);
+     add_reserved_address_range( 2, 4);
+     add( ap, "xi");
+     set_data_word_width( 8);
+     get_data_word_wodth( );
+     set_aligment( 8);
+     get_aligment( );
+     set_endianess( big_endianbig_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map yi{
+    yi( ){
+     auto_gen_memory_map( );
+     set_top_unit( uk);
+td.     set_type( flat);
+td.set_access_rights_enum( tdqlqi); 
+     set_data_word_width( 2);
+     get_data_word_width( );
+     set_prefix( qb);
+     get_prefix( );
+  }
+}
+;
+csl_register qs{
+    qs( ){
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register ww{
+    ww( ){
+     set_width( 8);
+     set_depth( 5);
+     get_depth( );
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 0);
+     add_logic( bypass);
+  }
+}
+;

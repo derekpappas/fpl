@@ -1,0 +1,11 @@
+
+csl_multi_dim_bitrange bus_mem_l1(2);
+  bus_mem_l1.set_dim_width(0,64);
+  bus_mem_l1.set_dim_width(1,1024*1024*8/64);
+
+csl_unit core {
+
+  csl_signal l2_to_l1(bus_mem_l1);
+  csl_signal l1_to_l2(bus_mem_l1);
+};
+

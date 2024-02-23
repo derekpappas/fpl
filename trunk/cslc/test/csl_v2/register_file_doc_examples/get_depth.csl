@@ -1,0 +1,12 @@
+csl_register_file RF1{
+RF1(){
+set_width(32);
+set_depth(4);
+}
+};
+csl_register_file RF2{
+RF2(){
+set_width(RF1.get_depth());
+set_depth(4);
+}
+};

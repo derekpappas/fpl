@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<project name="CSLC" company="" manager="" phase="" project-start="20070730T000000Z" mrproject-version="2" calendar="1">
+  <properties/>
+  <phases/>
+  <calendars>
+    <day-types>
+      <day-type id="0" name="Working" description="A default working day"/>
+      <day-type id="1" name="Nonworking" description="A default non working day"/>
+      <day-type id="2" name="Use base" description="Use day from base calendar"/>
+    </day-types>
+    <calendar id="1" name="Default">
+      <default-week mon="0" tue="0" wed="0" thu="0" fri="0" sat="1" sun="1"/>
+      <overridden-day-types>
+        <overridden-day-type id="0">
+          <interval start="0800" end="1200"/>
+          <interval start="1300" end="1700"/>
+        </overridden-day-type>
+      </overridden-day-types>
+      <days/>
+    </calendar>
+  </calendars>
+  <tasks>
+    <task id="1" name="Interconnect checker" note="" work="144000" duration="144000" start="20070730T000000Z" end="20070803T120000Z" work-start="20070730T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-duration"/>
+    <task id="2" name="memory map rule set" note="" work="28800" start="20070730T000000Z" end="20070730T170000Z" work-start="20070730T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+    <task id="3" name="AH-SoC diagram " note="" work="28800" start="20070730T000000Z" end="20070730T170000Z" work-start="20070730T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+  </tasks>
+  <resource-groups>
+    <group id="1" name="Sysadmin" admin-name="" admin-phone="" admin-email=""/>
+    <group id="2" name="Test" admin-name="" admin-phone="" admin-email=""/>
+    <group id="3" name="Docs" admin-name="" admin-phone="" admin-email=""/>
+    <group id="4" name="Devel" admin-name="" admin-phone="" admin-email=""/>
+    <group id="5" name="HW" admin-name="" admin-phone="" admin-email=""/>
+  </resource-groups>
+  <resources>
+    <resource group="1" id="1" name="Cristian Amarandei" short-name="CA" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="5" id="2" name="CG Haba" short-name="CGH" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="2" id="3" name="Petronela Ezaru" short-name="PE" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="5" id="4" name="Daniel Toma" short-name="DT" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="5" id="5" name="Monica Helgiu" short-name="MH" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="4" id="6" name="Mihaela Plaesu" short-name="MP" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="4" id="7" name="Alina Patelli" short-name="AP" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="4" id="8" name="Andrei Susnea" short-name="AS" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="4" id="9" name="Andrei Branzila" short-name="AB" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="4" id="10" name="Tibi Haret" short-name="TH" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="4" id="11" name="Octav Stolnicu" short-name="OS" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="4" id="12" name="Bogdan Zamfir" short-name="BZ" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="4" id="13" name="Ines Ciolacu" short-name="IC" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="3" id="14" name="Anamaria Helgiu" short-name="AH" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="4" id="15" name="Eugen Croitoru" short-name="EC" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="3" id="16" name="Costel Coutun" short-name="CC" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="5" id="17" name="Oana Botez" short-name="OB" type="1" units="0" email="" note="" std-rate="0"/>
+  </resources>
+  <allocations>
+    <allocation task-id="1" resource-id="8" units="100"/>
+    <allocation task-id="2" resource-id="10" units="100"/>
+  </allocations>
+</project>

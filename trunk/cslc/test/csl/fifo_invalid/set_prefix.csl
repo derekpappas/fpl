@@ -1,0 +1,7 @@
+csl_fifo fifo_a{
+  fifo_a(){
+    set_depth(32);
+    set_width(4);
+    set_prefix_name("fifo_a.");//invalid cmd he valid version is: set_prefix
+  }
+};

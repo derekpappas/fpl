@@ -1,0 +1,135 @@
+csl_enum fu {
+	kj = 57,
+	wy = 2,
+	fs = 80,
+	rh = 84,
+	vo = 11,
+	or = 72,
+	mk = 79,
+	pe = 88,
+	re = 35,
+	nw = 34,
+	nt = 23
+};
+csl_enum gg {
+	ve,
+	rh,
+	ey,
+	er,
+	kb,
+	qs,
+	wk,
+	as,
+	yq
+};
+csl_enum ko {
+	eb,
+	sx,
+	hg,
+	uw,
+	dd,
+	dy,
+	kx,
+	gq,
+	wk,
+	ii
+};
+csl_isa_instruction_format bt{
+    bt( ){
+     set_width( 3);
+     generate_decoder( gn);
+  }
+}
+;
+csl_isa ft{
+    ft( ){
+     set_decoder_name( "ax");
+     set_decoder_out_name_prefix( "aq");
+     set_decoder_out_name_suffix( "xi");
+     generate_decoder( ycom);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo oj{
+   oj( ){
+     add_logic( priority_bypass);
+     add_logic( wr_release);
+     add_logic( rd_credit);
+  }
+}
+;
+csl_memory_map_page ko{
+    ko( ){
+     set_address_increment( 2);
+     set_next_address( 5);
+     set_data_word_width( 2);
+     set_aligment( 4);
+     get_aligment( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page tw{
+    tw( ){
+     set_address_increment( 6);
+     get_address_increment( );
+     set_next_address( 6);
+     get_next_address( );
+     add( oj, "pu");
+     get_lower_bound( );
+     get_upper_bound( );
+     set_endianess( big_endian);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page xd{
+  ko kr;
+  tw ha;
+  ko ln;
+  tw wk;
+  ko if;
+  tw wo;
+    xd( ){
+     set_address_increment( 7);
+     set_next_address( 8);
+     get_next_address( );
+     add_reserved_address_range( 3, 3);
+     get_upper_bound( );
+     set_data_word_width( 6);
+     get_data_word_wodth( );
+     get_aligment( );
+     set_endianess( little_endian);
+  }
+}
+;
+csl_memory_map di{
+    di( ){
+     set_top_unit( ycgn);
+     set_type( hierach);
+     set_data_word_width( 7);
+  }
+}
+;
+csl_register ge{
+    ge( ){
+     set_type( LFSR);
+     constant( 2);
+     get_atributes( );
+     add_logic( neg_output);
+     init_value( 0);
+     reset_value( 9);
+     set_lock_enable_bit( 9);
+     add_logic( inc_signal);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register gg{
+    gg( ){
+     set_const_value( 9);
+  }
+}
+;

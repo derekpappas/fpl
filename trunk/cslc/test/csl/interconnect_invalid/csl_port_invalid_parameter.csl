@@ -1,0 +1,11 @@
+//csl_port invalid parameter (direction)
+//andreim
+//18 June 2007
+
+//csl_bitrange br_br(0,7);
+csl_unit u_unit1{
+//	csl_signal 	sgn_sgn1;
+ 	csl_port 		p_port2(bla_in); 
+ 		u_unit1(){						
+ 	}
+ };

@@ -1,0 +1,31 @@
+//danielt
+//november 07,2007
+
+csl_fifo f{
+  f() {
+    set_width(32);
+    set_depth(8);
+  }
+}; 
+
+csl_unit u{
+  csl_signal push,pop,full,empty,data(32),rst,valid,clk;
+  f f(.push(push),.pop(pop),.full(full),.empty(empty),.rd_data(data),
+       .wr_data(data),.reset_(rst),.valid(valid),.clock(clk));
+u(){}
+};
+
+csl_memory_map_page mmap{
+  mmap(){
+    add_address_range(0,128);
+    set_unit_name(u);
+    set_data_word_width(16);
+  }
+};
+
+csl_memory_map mp{
+  mp(){
+    set_data_word_width(16);
+    set_type(hierarchical);
+  }
+};

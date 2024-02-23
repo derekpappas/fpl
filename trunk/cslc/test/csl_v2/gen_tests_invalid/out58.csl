@@ -1,0 +1,97 @@
+csl_enum pq {
+	ug,
+	ps,
+	kt,
+	qf,
+	av,
+	ud
+};
+csl_enum wk {
+	hr = 4,
+	xq = 85,
+	ri = 34,
+	pb = 16,
+	cp = 71,
+	bi = 40
+};
+csl_enum tp {
+	om = 42,
+	gk = 29,
+	sx = 26,
+	fd = 17,
+	tx = 12,
+	kt = 61,
+	vf = 14,
+	wt = 67,
+	sg = 97,
+	nq = 7
+};
+csl_isa_instruction_format st{
+    st( ){
+     set_width( 3);
+     generate_decoder( jeio);
+  }
+}
+;
+csl_isa br{
+    br( ){
+     set_decoder_name( "jm");
+     set_decoder_out_name_suffix( "fw");
+     print( isa.txt);
+  }
+}
+;
+csl_fifo eg{
+   eg( ){
+     add_logic( programable_depth, 3);
+     add_logic( rd_words, 0);
+     add_logic( output_rd_addr);
+     add_logic( wr_credit);
+  }
+}
+;
+csl_memory_map_page wc{
+    wc( ){
+     set_address_increment( 8);
+     get_address_increment( );
+     get_lower_bound( );
+     get_data_word_wodth( );
+     get_aligment( );
+     set_endianess( big_endianlittle_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page kl{
+    kl( ){
+     set_next_address( 4);
+     get_next_address( );
+     set_data_word_width( 8);
+     get_data_word_wodth( );
+     set_aligment( 2);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map xl{
+    xl( ){
+  }
+}
+;
+csl_register id{
+    id( ){
+     add_logic( serial_output);
+  }
+}
+;
+csl_register vu{
+    vu( ){
+     set_width( 8);
+     set_depth( 2);
+     add_logic( read_valid);
+     set_const_value( 9);
+  }
+}
+;

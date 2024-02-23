@@ -1,0 +1,6 @@
+csl_field field(3);
+field.set_lsb(1);
+//invalid command!
+csl_field field1(3);
+field1.set_lsb(field.get_lsb());
+//invalid command

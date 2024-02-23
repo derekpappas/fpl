@@ -1,0 +1,63 @@
+//DT
+csl_unit u{
+  u(){
+  }
+};
+csl_enum e_op {
+  OP_0,
+  OP_1,
+  OP_2,
+  OP_3
+};
+
+
+
+csl_isa_field  fld_op{
+  fld_op(){
+    set_enum(e_op);
+    set_width(2);
+    set_type(opcode);
+  }
+};
+
+
+
+csl_isa_element fmtbase {
+  fmtbase () {
+    set_type(root_format);
+    set_width(32);
+  }
+};
+
+csl_isa_element f1 : fmtbase {
+  fld_op op;
+  f1 () {
+    set_type(instr_format);
+    set_position(op, 16);
+  }
+};
+
+csl_isa_element i1 : f1{
+  i1() {
+    set_type(instr);
+    op.set_enum_item(OP_0);
+  }
+};
+csl_isa_element i2 : f1{
+  i2() {
+    set_type(instr);
+    op.set_enum_item(OP_1);
+  }
+};
+csl_isa_element i3 : f1{
+  i3() {
+    set_type(instr);
+    op.set_enum_item(OP_2);
+  }
+};
+csl_isa_element i4 : f1{
+  i4() {
+    set_type(instr);
+    op.set_enum_item(OP_3);
+  }
+};

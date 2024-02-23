@@ -1,0 +1,82 @@
+//oanab
+//21 dec 2007
+
+
+csl_enum e_opcodes { 
+  add_i = 0, 
+    sll = 1, 
+    sw = 2, 
+    bne = 3
+    }; 
+
+csl_isa_field f_op(2,e_opcodes);
+f_op.set_type(opcode);
+csl_isa_field f_rega(2); 
+f_rega.set_type(rf_address);
+csl_isa_field f_regb(2); 
+f_regb.set_type(rf_address);
+csl_isa_field f_imm(3); 	
+f_imm.set_type(constant);
+csl_isa_field f_unused(5); 
+f_unused.set_type(unused);
+csl_isa_field regc(2); 
+regc.set_type(rf_address);
+
+
+csl_isa_element root {
+  root (){
+    set_type(root_format);
+    set_width(16);  
+  }
+};
+
+csl_isa_element format1 : root { 
+  f_op opc;
+  f_rega rega;
+  f_regb regb;
+  f_imm imm; 	
+  format1() { 
+    set_type(instr_format);
+    set_position(opc,13);
+    set_next(opc,regb);
+    set_next(regb, imm);  
+  }   
+};
+
+csl_isa_element format2 : format1 {
+  f_unused un;
+  regc regc;
+  format2() { 
+    set_type(instr_format);
+    set_next(imm, un);
+    set_next(un, regc);	
+  }
+};
+
+csl_isa_element alu_instr : format2 {
+  alu_instr () { 	
+    set_type(instr);
+    opc.set_enum_item(add_i);
+  }
+};
+ 
+csl_isa_element shift_instr : format2 {		
+  shift_instr () {  
+    set_type(instr);
+    opc.set_enum_item(sll);
+  }
+}; 
+
+csl_isa_element mem_instr : format1 {
+  mem_instr () { 
+    set_type(instr);
+    opc.set_enum_item(sw);
+  } 
+};
+
+csl_isa_element br_instr : format1 { 
+  br_instr () {	  
+    set_type(instr);
+    opc.set_enum_item(bne);
+  }
+}; 

@@ -1,0 +1,32 @@
+//author: Ines
+//testing the command get_bitrange()
+
+csl_bitrange bitrange(1);
+
+/*
+csl_field field {
+  field(){
+  set_bitrange(bitrange);
+  }
+};
+
+csl_field field1 {
+  field1(){
+    set_bitrange(field.get_bitrange());
+  }
+};
+*/
+
+csl_field field2{
+    field2(){
+      set_bitrange(bitrange);
+    }
+};
+csl_field field3{
+    field3(){
+      set_bitrange(field2.get_bitrange());
+	}
+}; 
+
+csl_unit top {
+};

@@ -1,0 +1,5 @@
+ieeevarstd_logic_1164ieee.sym/std_logic_1164/prim.var
+ieeesrcstd_logic_1164stdlogic.vhd
+.varmux(behv1)work.sym/mux/_behv1.var
+.srcmux(behv1)mux.vhd
+.varmuxwork.sym/mux/prim.var

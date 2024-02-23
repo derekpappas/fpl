@@ -1,0 +1,15 @@
+csl_unit send{
+  csl_port out(output,4);
+  send(){}
+};
+ csl_unit rcv{
+  csl_port in(input,4);
+  rcv(){}
+};
+csl_unit top{
+csl_signal d_out(wire,4); 
+send send( .out(d_out));
+rcv rcv( .in(d_out));
+top(){}
+};
+

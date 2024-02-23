@@ -1,0 +1,28 @@
+
+//*************
+// Unit RMON
+//*************
+
+csl_unit RMON{
+
+  csl_port  Clk(input);   
+  csl_port  Reset(input);   
+  //Tx_RMON
+  csl_port  Tx_pkt_type_rmon(input,3);
+  csl_port  Tx_pkt_length_rmon(input,16);
+  csl_port  Tx_apply_rmon(input);      
+  csl_port  Tx_pkt_err_type_rmon(input,3);
+  //Tx_RMON
+  csl_port  Rx_pkt_type_rmon(input,3);   
+  csl_port  Rx_pkt_length_rmon(input,16);
+  csl_port  Rx_apply_rmon(input);       
+  csl_port  Rx_pkt_err_type_rmon(input,3);
+  //CPU
+  csl_port  CPU_rd_addr(input,6);      
+  csl_port  CPU_rd_apply(input);       
+  csl_port  CPU_rd_grant(output);      
+  csl_port  CPU_rd_dout(output,32);   
+  
+  RMON(){
+  }
+};

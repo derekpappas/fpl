@@ -1,0 +1,34 @@
+
+//******************
+// Unit Phy_int
+//******************
+
+csl_unit Phy_int{
+
+  csl_port  Reset(input); 
+  csl_port  MAC_rx_clk(input);
+  csl_port  MAC_tx_clk(input);
+  //Rx interface
+  csl_port  MCrs_dv(output);  
+  csl_port  MRxD(output,8);  
+  csl_port  MRxErr(output);   
+  //Tx interface
+  csl_port  MTxD(input,8);   
+  csl_port  MTxEn(input);     
+  csl_port  MCRS(output);     
+  //Phy interface
+  csl_port  Tx_er(output);    
+  csl_port  Tx_en(output);    
+  csl_port  Txd(output,8);   
+  csl_port  Rx_er(input);     
+  csl_port  Rx_dv(input);     
+  csl_port  Rxd(input,8);    
+  csl_port  Crs(input);       
+  csl_port  Col(input);       
+  //host interface
+  csl_port  Line_loop_en(input);
+  csl_port  Speed(input,3);    
+  
+  Phy_int(){
+  }
+};

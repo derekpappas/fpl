@@ -1,0 +1,41 @@
+// Only one mmpage can be add to a flat mm
+// andreim
+
+csl_register_file rf1{
+        rf1(){
+            set_width(64); set_depth(4);
+        }
+};
+
+csl_unit u{
+rf1 rf1;
+u(){}
+};
+
+csl_unit top{
+u u;
+top(){}
+};
+
+csl_memory_map_page page0{
+	page0(){ 
+		add_address_range(0,1);
+		set_unit_name(u);
+	}
+};
+
+csl_memory_map_page page1{
+	page1(){
+		add_address_range(2,7);
+		set_unit_name(top);
+	}
+};
+
+csl_memory_map mm{
+	page0 page_0(rf1);//error
+	page1 page_1(page0); //error
+	mm(){
+	set_type(hierarchical);
+        set_data_word_width(128);
+  }
+};

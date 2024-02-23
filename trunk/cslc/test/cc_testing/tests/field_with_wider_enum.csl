@@ -1,0 +1,18 @@
+// Derek
+// This test is illegal because the width of the enum is wider than the field width
+
+csl_enum e {
+  a,
+  b,
+  c,
+  d,
+  e,
+}; // enum width is 3-bits
+
+csl_field f1{
+  f1(){
+    set_width(2);
+    set_enum(e);
+  }
+};
+

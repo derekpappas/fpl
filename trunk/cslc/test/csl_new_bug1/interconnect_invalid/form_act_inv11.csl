@@ -1,0 +1,16 @@
+//oanab
+//25 mar 2008
+//formal to actual - signal and port with bitrange
+
+csl_bitrange br(10,0);
+
+csl_unit u1 {
+  csl_port x(output,br);
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_signal ss(0,9);
+  u1 u10(.x(ss));
+  u2 () {}
+};

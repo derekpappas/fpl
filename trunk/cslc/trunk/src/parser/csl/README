@@ -1,0 +1,12 @@
+Csl Lexer
+
+To run the lexer type:
+./csllexer filename
+
+Output Format:
+
+<token_text> "//" <token_name> <token_data>(optional)
+                        "<" <filename> "," <line> ":" <column> ">"
+
+
++++++++

@@ -1,0 +1,11 @@
+include "model.v"
+`include "../legal/inc0.v"
+`include "../legal/inc4.v"
+`include "../legal/t1.v"
+`include "../legal/inc0.v"
+`include "../legal/inc0.v"
+`include "../legal/inc0.v"
+`include "../legal/inc0.v"
+  `include "../legal/inc4.v"
+      `include "../legal/t3.v"
+

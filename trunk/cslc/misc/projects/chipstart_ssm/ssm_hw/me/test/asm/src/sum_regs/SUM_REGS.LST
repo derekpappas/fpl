@@ -1,0 +1,171 @@
+			     1	 .use     "..\SSM_ME.tbl"
+			     2	 .option  lines = 1000
+			     3	;=============================================================================
+			     4	;
+			     5	;    Copyright © 2010 Advanced Architectures
+			     6	;
+			     7	;    All rights reserved
+			     8	;    Confidential Information
+			     9	;    Limited Distribution to Authorized Persons Only
+			    10	;    Created and Protected as an Unpublished Work under
+			    11	;    the U.S.Copyright act of 1976.
+			    12	;
+			    13	;    Project Name         : SSM Microengine
+			    14	;    Description          : SSM me assembler test
+			    15	;
+			    16	;    Author               : RTT
+			    17	;    Creation Date        : 2010/03/13
+			    18	;
+			    19	;
+			    20	;=============================================================================
+			    21	;    THIS  SOFTWARE IS  PROVIDED "AS IS" AND  WITHOUT  ANY EXPRESS  OR IMPLIED
+			    22	;    WARRANTIES, INCLUDING, BUT  NOT LIMITED  TO, THE  IMPLIED  WARRANTIES  OF
+			    23	;    MERCHANTABILITY AND FITNESS  FOR A PARTICULAR PURPOSE. IN  NO EVENT SHALL
+			    24	;    THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+			    25	;    SPECIAL, EXEMPLARY, OR  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+			    26	;    TO, PROCUREMENT OF  SUBSTITUTE GOODS  OR SERVICES; LOSS  OF USE, DATA, OR
+			    27	;    PROFITS; OR  BUSINESS INTERRUPTION) HOWEVER  CAUSED AND ON  ANY THEORY OF
+			    28	;    LIABILITY,  WHETHER  IN  CONTRACT,  STRICT LIABILITY, OR  TORT (INCLUDING
+			    29	;    NEGLIGENCE  OR OTHERWISE) ARISING  IN  ANY WAY  OUT OF  THE  USE  OF THIS
+			    30	;    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+			    31	;=============================================================================
+			    32	;
+			     1	;=============================================================================
+			     2	;
+			     3	;    Copyright © 2010 Advanced Architectures
+			     4	;
+			     5	;    All rights reserved
+			     6	;    Confidential Information
+			     7	;    Limited Distribution to Authorized Persons Only
+			     8	;    Created and Protected as an Unpublished Work under
+			     9	;     the U.S.Copyright act of 1976.
+			    10	;
+			    11	;    Project Name         : SSM Microengine
+			    12	;    Description          : Register names header file
+			    13	;
+			    14	;=============================================================================
+			    15	;    THIS  SOFTWARE IS  PROVIDED "AS IS" AND  WITHOUT  ANY EXPRESS  OR IMPLIED
+			    16	;    WARRANTIES, INCLUDING, BUT  NOT LIMITED  TO, THE  IMPLIED  WARRANTIES  OF
+			    17	;    MERCHANTABILITY AND FITNESS  FOR A PARTICULAR PURPOSE. IN  NO EVENT SHALL
+			    18	;    THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+			    19	;    SPECIAL, EXEMPLARY, OR  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+			    20	;    TO, PROCUREMENT OF  SUBSTITUTE GOODS  OR SERVICES; LOSS  OF USE, DATA, OR
+			    21	;    PROFITS; OR  BUSINESS INTERRUPTION) HOWEVER  CAUSED AND ON  ANY THEORY OF
+			    22	;    LIABILITY,  WHETHER  IN  CONTRACT,  STRICT LIABILITY, OR  TORT (INCLUDING
+			    23	;    NEGLIGENCE  OR OTHERWISE) ARISING  IN  ANY WAY  OUT OF  THE  USE  OF THIS
+			    24	;    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+			    25	;=============================================================================
+			    26	;
+			    27	; Primary Registers
+   0			    28	 .memory REGISTERS
+   0			    29	 .equ  r0      $ + 0
+   1			    30	 .equ  r1      $ + 1
+   2			    31	 .equ  r2      $ + 2
+   3			    32	 .equ  r3      $ + 3
+   4			    33	 .equ  r4      $ + 4
+   5			    34	 .equ  r5      $ + 5
+   6			    35	 .equ  r6      $ + 6
+   7			    36	 .equ  r7      $ + 7
+   8			    37	 .equ  r8      $ + 8
+   9			    38	 .equ  r9      $ + 9
+   a			    39	 .equ  r10     $ + 10
+   b			    40	 .equ  r11     $ + 11
+   c			    41	 .equ  r12     $ + 12
+   d			    42	 .equ  r13     $ + 13
+   e			    43	 .equ  r14     $ + 14
+   f			    44	 .equ  r15     $ + 15
+  10			    45	 .equ  r16     $ + 16
+  11			    46	 .equ  r17     $ + 17
+  12			    47	 .equ  r18     $ + 18
+  13			    48	 .equ  r19     $ + 19
+  14			    49	 .equ  r20     $ + 20
+  15			    50	 .equ  r21     $ + 21
+  16			    51	 .equ  r22     $ + 22
+  17			    52	 .equ  r23     $ + 23
+  18			    53	 .equ  r24     $ + 24
+  19			    54	 .equ  r25     $ + 25
+  1a			    55	 .equ  r26     $ + 26
+  1b			    56	 .equ  r27     $ + 27
+  1c			    57	 .equ  r28     $ + 28
+  1d			    58	 .equ  r29     $ + 29
+  1e			    59	 .equ  r30     $ + 30
+  1f			    60	 .equ  r31     $ + 31
+  1c			    61	 .equ  SSM0    $ + 28
+  1d			    62	 .equ  SSM1    $ + 29
+  1e			    63	 .equ  SSM2    $ + 30
+  1f			    64	 .equ  SSM3    $ + 31
+			    65	 
+   8			    66	 .equ  TEST    $ + 8
+			    67	 
+			    68	 
+   0			    34	 .memory PROGRAM
+   0			    35	 .org  0
+			    36	;
+			    37	;  Sum registers
+			    38	;
+   0         801f0001	    39	   r31 = 1;
+   1         201e011f	    40	   r30 = 1 + r31;
+   2         201d011e	    41	   r29 = 1 + r30;
+   3         201c011d	    42	   r28 = 1 + r29;
+   4         201b011c	    43	   r27 = 1 + r28;
+   5         201a011b	    44	   r26 = 1 + r27;
+   6         2019011a	    45	   r25 = 1 + r26;
+   7         20180119	    46	   r24 = 1 + r25;
+   8         20170118	    47	   r23 = 1 + r24;
+   9         20160117	    48	   r22 = 1 + r23;
+   a         20150116	    49	   r21 = 1 + r22;
+   b         20140115	    50	   r20 = 1 + r21;
+   c         20130114	    51	   r19 = 1 + r20;
+   d         20120113	    52	   r18 = 1 + r19;
+   e         20110112	    53	   r17 = 1 + r18;
+   f         20100111	    54	   r16 = 1 + r17;
+  10         200f0110	    55	   r15 = 1 + r16;
+  11         200e010f	    56	   r14 = 1 + r15;
+  12         200d010e	    57	   r13 = 1 + r14;
+  13         200c010d	    58	   r12 = 1 + r13;
+  14         200b010c	    59	   r11 = 1 + r12;
+  15         200a010b	    60	   r10 = 1 + r11;
+  16         2009010a	    61	   r9  = 1 + r10;
+  17         20080109	    62	   r8  = 1 + r9 ;
+  18         20070108	    63	   r7  = 1 + r8 ;
+  19         20060107	    64	   r6  = 1 + r7 ;
+  1a         20050106	    65	   r5  = 1 + r6 ;
+  1b         20040105	    66	   r4  = 1 + r5 ;
+  1c         20030104	    67	   r3  = 1 + r4 ;
+  1d         20020103	    68	   r2  = 1 + r3 ;
+  1e         20010102	    69	   r1  = 1 + r2 ;
+			    70	;
+  1f         80010001	    71	   r1  = 1;
+  20         20020101	    72	   r2  = 1 + r1;
+  21         20030102	    73	   r3  = 1 + r2;
+  22         20040103	    74	   r4  = 1 + r3;
+  23         20050104	    75	   r5  = 1 + r4;
+  24         20060105	    76	   r6  = 1 + r5;
+  25         20070106	    77	   r7  = 1 + r6;
+  26         20080107	    78	   r8  = 1 + r7;
+  27         20090108	    79	   r9  = 1 + r8;
+  28         200a0109	    80	   r10 = 1 + r9;
+  29         200b010a	    81	   r11 = 1 + r10;
+  2a         200c010b	    82	   r12 = 1 + r11;
+  2b         200d010c	    83	   r13 = 1 + r12;
+  2c         200e010d	    84	   r14 = 1 + r13;
+  2d         200f010e	    85	   r15 = 1 + r14;
+  2e         2010010f	    86	   r16 = 1 + r15;
+  2f         20110110	    87	   r17 = 1 + r16;
+  30         20120111	    88	   r18 = 1 + r17;
+  31         20130112	    89	   r19 = 1 + r18;
+  32         20140113	    90	   r20 = 1 + r19;
+  33         20150114	    91	   r21 = 1 + r20;
+  34         20160115	    92	   r22 = 1 + r21;
+  35         20170116	    93	   r23 = 1 + r22;
+  36         20180117	    94	   r24 = 1 + r23;
+  37         20190118	    95	   r25 = 1 + r24;
+  38         201a0119	    96	   r26 = 1 + r25;
+  39         201b011a	    97	   r27 = 1 + r26;
+  3a         201c011b	    98	   r28 = 1 + r27;
+  3b         201d011c	    99	   r29 = 1 + r28;
+  3c         201e011d	   100	   r30 = 1 + r29;
+  3d         201f011e	   101	   r31 = 1 + r30;
+			   102	;
+			   103	 
+			   104	 .end

@@ -1,0 +1,9 @@
+//Monica
+//20 November 2007
+
+csl_unit u{
+  csl_signal sig1;
+  u(){
+    sig1.set_number_of_dimensions(2);
+  }
+};

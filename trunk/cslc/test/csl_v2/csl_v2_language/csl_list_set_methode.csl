@@ -1,0 +1,10 @@
+//Monica 
+//26 oct 2007
+
+csl_unit u{
+csl_signal s1,s2,s3;
+csl_list list1 (s1,s2,s3);
+u(){
+list1.set_method(4);
+}
+};

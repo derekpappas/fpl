@@ -1,0 +1,5 @@
+csl_field fd1(4);
+csl_field fd2(fd1.get_width());
+
+csl_unit top {
+};

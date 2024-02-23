@@ -1,0 +1,55 @@
+//author: Monica
+//testing: csl_signal signal_object_name([signal_data_type][,width]);
+//         reg,wire,tri,trireg,triand,trior,wand,wor,supply0,supply1
+
+
+csl_unit u3_t8 {
+
+  csl_signal sgn3_1_t8(wire);
+  csl_signal sgn3_2_t8(reg,8);
+
+  u3_t8() {
+    sgn3_1_t8.set_width(8);
+    sgn3_1_t8 = sgn3_2_t8;
+  }
+};
+
+csl_unit u4_t8 {
+
+  csl_signal sgn4_1_t8;
+  csl_signal s2(2);
+  u4_t8() {
+    sgn4_1_t8.set_width(2);
+    s2 = sgn4_1_t8;
+  }
+  
+};
+
+csl_unit u5_t8 {
+
+  csl_signal sgn5_1_t8(wire);
+  csl_signal sgn5_2_t8(tri,8);
+
+  u5_t8() {
+
+    sgn5_1_t8.set_width(8);
+    sgn5_1_t8 = sgn5_2_t8;
+  }
+};
+
+csl_unit u6_t8 {
+
+  //csl_signal sgn6_1_t8;
+
+  u6_t8() {
+    //sgn6_1_t8.set_width(2);
+  }
+};
+
+csl_unit top{
+  u3_t8 u1;
+  u4_t8 u2;
+  u5_t8 u3;
+  u6_t8 u4;
+  top(){}
+};

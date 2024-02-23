@@ -1,0 +1,121 @@
+csl_enum ql {
+	en = 54,
+	ij = 16,
+	sk = 78,
+	tt = 41,
+	kq = 45,
+	gi = 69,
+	kb = 99
+};
+csl_enum fk {
+	yv,
+	if,
+	xw,
+	ar,
+	tv
+};
+csl_enum il {
+	mb = 83,
+	as = 71,
+	oi = 20,
+	cj = 44,
+	ux = 26,
+	ff = 76,
+	om = 84
+};
+csl_isa_instruction_format vv{
+    vv( ){
+     set_width( 9);
+     generate_decoder( hwfjpy);
+  }
+}
+;
+csl_isa vy{
+    vy( ){
+     set_decoder_name( "bn");
+     set_decoder_out_name_prefix( "gm");
+     set_decoder_out_name_suffix( "ui");
+     generate_decoder( hwpbfj);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo gb{
+   gb( ){
+     set_physical_implementation( SRAM);
+     add_logic( depth_extend, 9);
+  }
+}
+;
+csl_memory_map_page al{
+    al( ){
+     add_address_range( 3, 1);
+     set_address_increment( 2);
+     set_access_rights( access_read_write, access_read);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page gp{
+  al ba;
+  al np;
+  al hj;
+    gp( ){
+     add_address_range( 5, 0);
+     get_address_increment( );
+     add( gb, "fc");
+     set_data_word_width( 0);
+     set_aligment( 5);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page ia{
+  al yc;
+  gp gl;
+  gp bq;
+    ia( ){
+     set_next_address( 3);
+  }
+}
+;
+csl_memory_map qh{
+  ia qs;
+  ia nu;
+  al yo;
+    qh( ){
+     auto_gen_memory_map( );
+ia.add_to_memory_map( 0); 
+ia.set_access_rights_enum( gp); 
+     set_data_word_width( 4);
+     get_data_word_width( );
+     set_prefix( ir);
+     set_suffix( df);
+  }
+}
+;
+csl_register vi{
+    vi( ){
+     set_width( 0);
+     get_atributes( );
+     add_logic( serial_output);
+     set_value( 0);
+     reset_value( 0);
+     clear_value( 2);
+     set_count_direction( 9);
+     stop_at_end_value( );
+  }
+}
+;
+csl_register hb{
+    hb( ){
+     set_width( 2);
+     get_width( );
+     set_depth( 5);
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 3);
+  }
+}
+;

@@ -1,0 +1,12 @@
+csl_register_file RF{
+RF(){
+set_width(32);
+set_depth(4);
+set_valid_name("valid");
+}
+};
+csl_unit u{
+RF RF;
+u(){}
+};
+u.RF.get_valid_name();

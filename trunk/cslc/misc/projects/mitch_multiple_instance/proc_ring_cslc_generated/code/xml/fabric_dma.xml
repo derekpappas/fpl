@@ -1,0 +1,10 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="fabric_dma">
+<interface name="sbfd" >
+<port name="start" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="busy" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+</unit>
+</design>

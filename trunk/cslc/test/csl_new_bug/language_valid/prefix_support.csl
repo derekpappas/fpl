@@ -1,0 +1,20 @@
+// costelc
+csl_interface ifc{
+  csl_port p_ifc1(input,8); 
+  csl_port p_ifc2(output,8);
+  ifc() {}
+};
+csl_signal_group sg{
+  csl_signal s_sg1(8);
+  csl_signal s_sg2(8);
+  sg() {}
+};
+  
+csl_unit top{
+  ifc ifc;      //generated ports will be : ifc_p_ifc1 , ifc_p_ifc2
+  sg sg;        //generated ports will be : sg_s_sg1 , sg_s_sg2
+  top(){
+    ifc.p_ifc1 = sg.s_sg1;
+    ifc.p_ifc2 = sg.s_sg2;
+  }
+};

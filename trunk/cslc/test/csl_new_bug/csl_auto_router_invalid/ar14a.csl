@@ -1,0 +1,121 @@
+// Author: cghaba
+// Date: April 7, 2008
+
+// Define constants
+
+csl_enum e_const{
+  WORD_WIDTH=8,
+  HW_WIDTH=WORD_WIDTH>>1,
+    DW_WIDTH=WORD_WIDTH<<1,
+    SEL_WIDTH=3,
+    CMD_WIDTH=3,
+    STAT_WIDTH=5
+    };
+
+// Define bitranges
+
+csl_bitrange br_w(0,WORD_WIDTH-1);
+csl_bitrange br_dw(0,DW_WIDTH-1);
+csl_bitrange br_hw(HW_WIDTH);
+csl_bitrange br_sel(SEL_WIDTH);
+csl_bitrange br_cmd(0,CMD_WIDTH-1);
+csl_bitrange br_stat(STAT_WIDTH);
+
+
+// Define interfaces
+
+csl_interface ifcresclk{
+  csl_port reset(input);
+  csl_port clock(input);
+  ifcresclk(){
+  }
+};
+
+csl_interface ifc_2w{
+  csl_port p1(input,br_w);
+  csl_port p2(input,br_w);
+  ifc_2w(){
+  }
+};
+
+// Define units
+
+csl_unit ua{
+  // ports
+  csl_port pout(output,br_dw);
+  csl_port psel(output,br_sel);
+  //interfaces
+  ifc_2w ifcin;
+  ifcresclk ifcrc;
+  ua(){
+  }
+};
+
+csl_unit ub{
+  //ports
+  csl_port pout1(output,br_hw);
+  csl_port pout2(output,br_hw);
+  csl_port cmdin(input,br_cmd);
+  csl_port stat(output,br_stat);
+  //interfaces
+  ifc_2w ifcin;
+  ifcresclk ifcrc;
+  ub(){
+  }
+};
+
+csl_unit uc{
+  // ports
+  csl_port cmdout(output,br_cmd);
+  csl_port stat(input,br_stat);
+  //interfaces
+  ifcresclk ifcrc;
+  uc(){
+  }
+};
+
+csl_unit ud{
+  //ports
+  csl_port pin(input,br_w);
+  csl_port psel(input,br_sel);
+  // interfaces
+  ifc_2w ifcout;
+  ifcresclk ifcrc;
+  ud(){
+    ifcout.reverse();
+  }
+};
+
+csl_unit ubc{
+  //unit instances
+  ub ub0(.cmdin(scmd),.stat(sstat));
+  uc uc0(.cmdout(scmd),.stat(sstat));
+  ubc(){
+  }
+};
+
+csl_unit uar14a{
+  //interfaces
+  ifc_2w ifcin;
+  ifc_2w ifcout;
+  ifcresclk ifcrc;
+  // signals
+  csl_signal ssel(br_sel);
+
+  // unit instances
+  ua ua0(.ifcin(ifcin),.psel(br_sel));
+  ubc ubc0;
+  ud ud0(.ifcout(ifcout),.psel(br_sel));
+ 
+  uar14a(){
+    ifcout.reverse();
+    // connections
+    ifcrc.connect_by_pattern(ifcrc);
+    // connections made by part select
+    // unit b
+    ubc0.ub0.ifcin.p1.connect_by_name(ua0.pout[0:WORD_WIDTH-1]);
+    ubc0.ub0.ifcin.p2.connect_by_name(ua0.pout[WORD_WIDTH:DW_WIDTH-1]);
+    ubc0.ub0.pout1.connect_by_name(ud0.pin[0:HW_WIDTH-1]);
+    ubc0.ub0.pout2.connect_by_name(ud0.pin[HW_WIDTH,WORD_WIDTH-1]);
+     }
+};

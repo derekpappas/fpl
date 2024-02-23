@@ -1,0 +1,30 @@
+//Monica
+
+csl_unit u {
+  u () {
+  }
+};
+
+csl_memory_map_page mpage1{
+mpage1(){
+add_address_range(512,1024);
+set_unit_name(u);
+add(mpage1);
+}
+};
+csl_memory_map_page mpage2{
+mpage2(){
+add_address_range(0,512);
+set_unit_name(u);
+add(mpage2);
+}
+};
+csl_memory_map mmap{
+mmap(){
+ set_data_word_width(32);
+ set_type(hierarchical);
+}
+};
+
+
+

@@ -1,0 +1,29 @@
+//author: Monica
+//testing:  bitrange_object_name signal_object_name.get_bitrange();
+
+
+csl_unit u6_t14 {
+
+  csl_bitrange br1_t14(3,4);
+  csl_signal sgn6_1_t14;
+
+  u6_t14(){
+    sgn6_1_t14.set_bitrange(br1_t14);
+  }
+};
+
+csl_unit u7_t14 {
+
+  csl_bitrange br1_t14(12,24);
+  csl_signal sgn7_1_t14,sgn7_2_t14;
+
+  u7_t14(){
+    sgn7_1_t14.set_bitrange(u6_t14.br1_t14);
+    sgn7_2_t14.set_bitrange(br1_t14);
+  }
+};
+csl_unit top{
+  u6_t14 u1;
+  u7_t14 u2;
+  top(){}
+};

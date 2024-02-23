@@ -1,0 +1,55 @@
+Buildfile: build.xml
+
+check.dependencies:
+
+check.dependencies:
+
+check.all.dependencies:
+     [echo] -------------------- Check dependencies --------------------
+
+check.os:
+     [echo] Build directory: /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64
+
+check.gcc:
+
+check.ant:
+
+check.antlr:
+     [exec] ANTLR library up2date.
+
+check.boost:
+
+check.lib:
+     [echo] lib dir: '/usr/lib64'
+     [echo] -------------------- Done checking dependencies --------------------
+
+set.project.list:
+
+check.dependencies:
+
+set.csim.properties:
+
+set.all.properties:
+
+debug:
+     [echo] ---------------------- debug flag on
+
+check.dependencies:
+
+set.all.properties:
+
+create.build.dir:
+     [echo] Build dir: '/home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64/support/debug'
+
+compile:
+     [echo] ==================== Compiling in support ====================
+       [cc] Starting dependency analysis for 6 files.
+       [cc] 6 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+  [symlink] ln -s /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64/support/debug/libSupport.a /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64/support/libSupport.a
+
+BUILD FAILED
+Target "cmd" does not exist in the project "CSLC Support". 
+
+Total time: 1 second

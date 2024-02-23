@@ -1,0 +1,34 @@
+//Petronela
+
+csl_fifo f1{
+  f1(){       
+   set_depth(4);
+   set_width(5);
+   add_logic(stall_rd_side);
+   add_logic(rd_words,45);//error second parameter should be address range
+  }
+};
+
+csl_fifo f2{
+  f2(){
+   set_depth(10);
+   set_width(45); 
+   add_logic(flow_through,8);
+  }
+};
+csl_fifo f3{
+  f3(){ 
+    set_width(33);
+    set_depth(11);
+    set_prefix("abc");
+    add_logic(sync_fifo);
+  }
+};
+
+csl_unit u1{
+    f1 f1;
+    f2 f2;
+    f3 f3;    
+    u1(){
+   }
+};   

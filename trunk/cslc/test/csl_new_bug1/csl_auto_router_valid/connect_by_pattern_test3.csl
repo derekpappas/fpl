@@ -1,0 +1,32 @@
+//Monica
+
+csl_unit u_low{
+  csl_port p11(input);
+  csl_port p12(output);
+  csl_port p_clk(input);
+  u_low(){}
+};
+csl_unit u1{
+  csl_port p21(input);
+  csl_port p22(output);
+  u_low u_i1(.p11(p21),.p12(p22));  
+u1(){}
+};
+csl_unit u2{
+  csl_port p31(input);
+  csl_port p32(output);
+  csl_port p_clk(input);
+  u1 u1_i1(.p21(p31),.p22(p32));
+  u1 u1_i2(.p21(p31),.p22(p32));
+  u1 u1_i3(.p21(p31),.p22(p32));
+  u2(){}
+};
+csl_unit u_top{
+  csl_signal s_clk;
+  csl_port pt1(input);
+  csl_port pt2(output);
+  u2 u2i(.p31(pt1),.p32(pt2));
+  u_top(){
+    s_clk.connect_by_pattern(p_clk);
+  }
+};

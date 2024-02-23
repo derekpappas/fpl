@@ -1,0 +1,10 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="enum.xsl"?>
+<design>
+<enum name="e">
+<item name="a" value= "0"/>
+<item name="b" value= "1"/>
+<item name="c" value= "2"/>
+<item name="d" value= "3"/>
+</enum>
+</design>

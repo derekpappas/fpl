@@ -1,0 +1,14 @@
+//author: Monica
+//test14: signal_object_name.set_dim_range(dimension_number,upper_limit, lower_limit);
+
+
+csl_unit test {
+
+  csl_signal sgn75; 
+
+  test() {
+       sgn75.set_number_of_dimensions(3);
+       sgn75.set_dim_range(1,2,0);             
+
+  }
+};

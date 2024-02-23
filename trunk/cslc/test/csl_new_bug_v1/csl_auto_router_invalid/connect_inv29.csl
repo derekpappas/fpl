@@ -1,0 +1,36 @@
+//oanab
+//10 apr 2008
+//ifc2 has only one interface instantiated in it
+
+csl_interface ifc1 {
+  csl_port p1(input),p2(output);
+  ifc1 () {}
+};
+
+csl_interface ifc2 {
+  ifc1 ifc10;
+  ifc2 () {}
+};
+
+csl_signal_group sg {
+  csl_signal p1,p2;
+  sg () {}
+};
+
+csl_unit u1 {
+  sg sg0;
+  u1 () {}
+};
+
+csl_unit u2 {
+  u1 u10;
+  u2 () {}
+};
+
+csl_unit u3 {
+  ifc2 ifc20;
+  u2 u20;
+  u3 () {
+    ifc20.connect(u20.u10.sg0);
+  }
+};

@@ -1,0 +1,26 @@
+//author: Ines
+//testing: obj_multi_dim.set_dim_range(num_expr, num_expr, num_expr);
+//         - param 1 : dimension index(dimension indexes start from 0 and go up to num_of_dims-1)
+//         - param 2 : lower_index of the dimension
+//         - param 3 : upper_index of the dimension 
+
+csl_multi_dim_bitrange obj_name(10);
+obj_name.set_dim_range(0, 1, 10);
+obj_name.set_dim_range(1, 2, 20);
+//obj_name.set_dim_range(2, 3, 30);
+//obj_name.set_dim_range(3, 4, 40);
+//obj_name.set_dim_range(4, 5, 50);
+//obj_name.set_dim_range(5, 6, 60);
+//obj_name.set_dim_range(6, 7, 70);
+//obj_name.set_dim_range(7, 8, 80);
+//obj_name.set_dim_range(8, 9, 90);
+//obj_name.set_dim_range(9, 10, 100);
+
+csl_unit u1{
+    csl_signal sgn;
+     
+    u1(){
+      sgn.set_bitrange(obj_name);
+      
+    }
+};

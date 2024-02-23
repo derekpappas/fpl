@@ -1,0 +1,10 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+
+#exceptions:
+specify_block1_91171.v		skip	"temporary removed"
+specify_block3_117649.v		skip	"temporary removed"
+specify_block_reference_event_102648.v	skip	"temporary removed"

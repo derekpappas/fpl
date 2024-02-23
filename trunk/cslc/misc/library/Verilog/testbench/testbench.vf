@@ -1,0 +1,8 @@
+comparator.v
+dut.v
+ff.v
+rf.v
+state_data.v
+state_data_comparator.v
+testbench.v
+wrapper.v

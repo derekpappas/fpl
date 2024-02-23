@@ -1,0 +1,13 @@
+csl_memory_map_page pg1{
+  pg1(){
+    add_address_range(0, 512);
+     }
+};
+csl_memory_map mmap{
+  pg1 pg1;
+  mmap(){
+    auto_gen_memory_map();
+  }};
+
+csl_unit top {
+};

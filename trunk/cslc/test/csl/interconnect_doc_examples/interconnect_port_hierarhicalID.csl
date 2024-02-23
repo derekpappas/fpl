@@ -1,0 +1,23 @@
+//Monica
+// 30 August 2007
+
+csl_unit a {
+  csl_port x(output,2), y(output,4);
+
+  a(){
+  }
+};
+
+csl_unit b{
+  csl_port x1(a.x), y1(a.y);
+
+  b(){
+  }  
+};
+
+csl_unit top {
+  csl_port c(output,2),d(output,4);
+  a a0(.x(c),.y(d));
+  b b0(.x1(c),.y1(d));
+  top(){}
+};

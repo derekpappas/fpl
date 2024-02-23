@@ -1,0 +1,130 @@
+csl_enum fp {
+	gg = 85,
+	jp = 82,
+	pr = 8,
+	kw = 60,
+	co = 17,
+	jn = 39,
+	kg = 60,
+	mx = 26
+};
+csl_enum dx {
+	oy = 11,
+	xd = 16,
+	ao = 51,
+	hf = 21,
+	xv = 11,
+	hd = 36,
+	ln = 1,
+	lu = 30,
+	gb = 21,
+	ps = 43,
+	ar = 69,
+	hk = 84,
+	hu = 50,
+	sw = 40
+};
+csl_enum sw {
+	wk = 1
+};
+csl_isa_instruction_format iy{
+    iy( ){
+     set_width( 1);
+     generate_decoder( ombx);
+  }
+}
+;
+csl_isa ir{
+    ir( ){
+     set_decoder_name( "dl");
+     set_decoder_out_name_prefix( "fy");
+     set_decoder_out_name_suffix( "hm");
+     generate_decoder( uiom);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo xn{
+   xn( ){
+     add_logic( priority_bypass);
+     add_logic( sync_fifo);
+     add_logic( wr_hold, 2);
+     add_logic( parallel_output, all);
+     add_logic( stall_wr_side);
+     add_logic( output_rd_addr);
+  }
+}
+;
+csl_memory_map_page ma{
+    ma( ){
+     add_address_range( 3, 3);
+     set_address_increment( 2);
+     set_access_rights( access_write, access_write);
+     add_reserved_address_range( 1, 9);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 3);
+     set_endianess( big_endianbig_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page wc{
+  ma jm;
+  ma rp;
+    wc( ){
+     get_address_increment( );
+     set_next_address( 7);
+     set_access_rights( access_read_write, access_read);
+     add_reserved_address_range( 9, 1);
+     get_lower_bound( );
+     set_data_word_width( 2);
+     get_data_word_wodth( );
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page dw{
+  ma ba;
+  ma xx;
+  ma bm;
+  wc ch;
+    dw( ){
+     set_address_increment( 1);
+     set_aligment( 5);
+  }
+}
+;
+csl_memory_map bf{
+    bf( ){
+     auto_gen_memory_map( );
+     set_data_word_width( 3);
+     set_suffix( xy);
+  }
+}
+;
+csl_register uc{
+    uc( ){
+     set_value( 2);
+     set_lock_enable_bit( 1);
+     get_lock_enable_bit( );
+     add_logic( gray_output);
+     set_count_amount( 1);
+     stop_at_end_value( );
+  }
+}
+;
+csl_register vc{
+    vc( ){
+     set_width( 2);
+     set_depth( 7);
+     add_logic( read_valid);
+     create_rtl_module( );
+     add_logic( bypass);
+  }
+}
+;

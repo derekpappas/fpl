@@ -1,0 +1,11 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u4">
+<port name="p" offset="0" upper="30-1" lower="0" direction = "input" type = "wire" />
+<port name="x1" offset="0" upper="2-1" lower="0" direction = "output" type = "wire" />
+<port name="a" offset="0" upper="20-1" lower="0" direction = "output" type = "wire" />
+<port name="b" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<assign-stmt lhs="p" rhs="x1ab"/>
+</unit>
+</design>

@@ -1,0 +1,7 @@
+csl_unit u3{
+  csl_signal sgn19(time);
+  csl_signal s2;
+  u3() {
+    s2=sgn19;
+}
+};

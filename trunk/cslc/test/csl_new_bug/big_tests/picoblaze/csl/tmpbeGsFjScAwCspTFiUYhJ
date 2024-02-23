@@ -1,0 +1,150 @@
+# "picoblaze_datapath.csl" 1
+
+
+
+csl_bitrange br_d(0,7);
+csl_bitrange br_i(0,17);
+csl_bitrange br_a(0,9);
+
+
+
+csl_memory im{
+  im(){
+    set_width(18);
+    set_depth(1024);
+  }
+};
+
+
+csl_memory spm{
+  spm(){
+    set_width(8);
+    set_depth(64);
+  }
+};
+
+
+csl_register_file rf{
+  rf(){
+    set_width(8);
+    set_depth(16);
+  }
+};
+
+
+csl_unit alu {
+  csl_port op1(input,br_d);
+  csl_port op2(input,br_d);
+  csl_port res(output,br_d);
+  csl_port opsel(input,4);
+  alu(){
+  }
+};
+
+
+csl_unit pc {
+  pc(){
+  }
+};
+
+
+csl_unit idec {
+  idec(){
+  }
+};
+
+csl_memory stack {
+  stack(){
+    set_width(10);
+    set_depth(31);
+  }
+};
+
+
+
+csl_unit shr{
+  csl_port inp(input,br_d);
+  csl_port shsel(input,4);
+  csl_port outp(output,br_d);
+  shr(){
+  }
+};
+
+csl_unit picoblaze {
+  csl_port in_port(input,br_d);
+  csl_port interrupt(input);
+  csl_port reset(input);
+  csl_port clock(input);
+  csl_port out_port(output,br_d);
+  csl_port port_id(output,br_d);
+  csl_port read_strobe(output);
+  csl_port write_strobe(output);;
+  csl_port interrupt_ack(output);
+
+
+
+  csl_signal ir(18);
+
+
+
+  csl_signal mux_rf0_data(br_d);
+  csl_signal mux_spm0_addr(br_d);
+  csl_signal mux_port_id(br_d);
+  csl_signal mux_pc0(br_a);
+
+
+
+  csl_signal spm0_rf0_data(br_d);
+  csl_signal rf0_spm0_data(br_d);
+  csl_signal rf0_alu0_op0(br_d);
+  csl_signal rf0_mux0_op1(br_d);
+  csl_signal s_alu;
+  csl_signal alu0_mux_res(br_d);
+  csl_signal s_sh;
+  csl_signal shr0_mux_res(br_d);
+  csl_signal load_pc;
+  csl_signal opsel(4);
+  csl_signal condition_true;
+  csl_signal clk,clear,valid;
+  im im0;
+
+  pc pc0;
+
+  shr shr0(.inp(ir.alu_format.xfield),
+        .shsel(ir.sr_format.srfield),
+               .outp(shrot0_mux_res));
+
+  alu alu0(.op0(rf_alu0_op0),
+           .op1(mux0_alu0_op1),
+           .res(alu0_mux_res),
+           .opsel(opsel));
+
+  spm spm0(.rd0en(ir.base_format.opcode.FETCH),
+           .rd0address(mux_spm0_addr[0,5]),
+           .rd0data(rf0_spm0_data),
+           .wr0en(ir.base_format.opcode.STORE),
+           .wr0address(mux_spm0_addr[0:5]),
+           .wr0data(spm0_rf0_data));
+
+  rf rf0(.reset(reset),
+         .clear(clear),
+         .clock(clk),
+         .rd_en0(ir.base_format.opcode.OUTPUT|ir.base_format.opcode.FETCH|s_alu),
+         .rd_addr0(ir.alu_format.xfield),
+         .rd_en1(s_alu & ~s_aluk),
+         .rd_addr1(ir.alu_format.yfield),
+         .wr_addr(ir.alu_format.xfield),
+         .wr_en(ir.base_format.opcode.INPUT|ir.base_format.opcode.STORE|s_alu),
+         .data_in(mux_rf0_data),
+         .data_out0(rf0_alu0_op0),
+         .data_out1(rf0_mux0_op1),
+         .valid(valid));
+
+stack stack0;
+idec idec0;
+  picoblaze(){
+# "picoblaze_datapath.csl" 183
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+
+  }
+};

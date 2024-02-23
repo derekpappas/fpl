@@ -1,0 +1,17 @@
+//author: Ines
+//testing: csl_bitrange & csl_signal
+
+
+csl_unit u4_t2 {
+  csl_bitrange br4_1_t2(4);
+  csl_bitrange br4_2_t2(3,3);
+  csl_signal sgn4_1_t2(wire,0,3);
+  csl_signal sgn4_2_t2(wire,[2:2]);
+  csl_signal sgn4_3_t2(wire,br4_1_t2);
+  csl_signal sgn4_4_t2(wire,br4_2_t2);
+
+  u4_t2() {
+    sgn4_1_t2 = sgn4_3_t2;
+    sgn4_2_t2 = sgn4_4_t2;
+  }
+};

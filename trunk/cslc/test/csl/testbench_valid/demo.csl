@@ -1,0 +1,79 @@
+//06 December 2007
+//andreim
+
+
+csl_bitrange rez_br  ( 8 );
+csl_bitrange sel_br  ( 2 );
+csl_bitrange c_br    ( 1 );
+csl_bitrange op1_br  ( 8 );
+csl_bitrange op2_br  ( 8 );
+
+csl_interface ifc_alu{
+   
+   csl_port p_op1  ( input,  op1_br  ); 
+   csl_port p_op2  ( input,  op2_br  ); 
+   csl_port p_sel  ( input,  sel_br  );
+   csl_port p_cin  ( input,  c_br    );
+   csl_port p_rez  ( output, reg     );
+   csl_port p_cout ( output, reg     );
+    
+   ifc_alu(){
+   }
+};
+
+ csl_unit DUT{
+
+    csl_port clk  ( input );
+    ifc_alu ifc1;
+    csl_include(file_verilog, "alu_logic");
+
+    DUT(){
+       clk.set_attr( clock );
+    }
+ };
+ 
+ csl_vector stim_vec{
+
+    stim_vec(){
+        set_vc_header_comment  ( "stimulus_vector" );
+        set_vc_output_filename ( "stim_data_out"   );
+        set_unit_name     ( DUT   );
+        set_direction     ( input );
+        set_radix         ( hex   );
+        set_vc_max_cycles ( 100   );        
+    }
+ };
+ 
+ csl_vector exp_vec{
+    exp_vec(){
+        set_vc_header_comment  ( "expected_vector" );
+        set_vc_output_filename ( "exp_data_out"    );
+        set_unit_name     ( DUT    );
+        set_direction     ( output );
+        set_radix         ( hex    );
+        set_vc_max_cycles ( 100    );
+    }
+ };
+
+csl_unit a {
+  csl_port p1(input,8);
+  csl_port p2(input,8);
+  csl_port p3(output);
+  csl_port p4(output);
+  csl_port p5(input);
+  csl_port p6(input,2);
+  csl_port p7(input);
+  DUT dut1(.ifc1.p_op1(p1),.ifc1.p_op2(p2),.ifc1.p_rez(p3),.ifc1.p_cout(p4),.clk(p5),.ifc1.p_sel(p6),.ifc1.p_cin(p7));
+  a (){}
+};
+
+ csl_testbench tb{
+
+   csl_signal clk(reg);
+   DUT DUT_i(.clk(clk));
+
+   tb(){
+      clk.set_attr ( clock );
+      add_logic(clock, clk, 10, ps);
+    }
+}; 

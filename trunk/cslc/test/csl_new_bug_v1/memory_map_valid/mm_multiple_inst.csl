@@ -1,0 +1,21 @@
+//
+
+csl_unit a { a(){} };
+csl_unit b { a a0; a a1;  b(){} };
+csl_unit top  { b b0; b b1; top(){} };
+
+csl_memory_map_page apage{
+  apage(){
+    add_address_range(0,511);
+    set_unit_name(a); 
+  }
+};
+
+
+csl_memory_map mm{
+  mm(){
+    set_type(hierarchical);
+  }
+};
+
+

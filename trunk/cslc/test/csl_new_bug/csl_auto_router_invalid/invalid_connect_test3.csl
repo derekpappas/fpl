@@ -1,0 +1,21 @@
+//Monica
+//15 January 2008
+// invalid = both instance have the same level and  are connected by the ports with  same direction 
+
+csl_unit a{
+  csl_port a_p1(input),a_p2(output);
+  a(){}
+};
+csl_unit b{
+  csl_port b_p1(input),b_p2(output);
+  b(){}
+};
+
+csl_unit top{
+  a a1;
+  b b1;
+
+  top(){
+      a1.a_p1.connect(b1.b_p1); //error
+      a1.a_p2.connect(b1.b_p2); //error
+     }};

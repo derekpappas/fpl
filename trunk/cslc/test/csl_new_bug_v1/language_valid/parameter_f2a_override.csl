@@ -1,0 +1,40 @@
+    //costelc
+   // Example: parameter: formal to actual override
+
+// parameters defined in units
+csl_unit a{
+  csl_parameter pr_a1(6);         //pr_a1 is 32 bit
+   csl_parameter pr_a2(3,5);       //pr_a2 is set to 5 bit
+    csl_parameter pr_a3(2'b11);      //pr_a3 is 2 bit       
+  a(){}
+};
+
+csl_unit b{
+  csl_parameter pr_b1(6);         //pr_b1 is 32 bit
+  csl_parameter pr_b2(3,5);       //pr_b2 is set to 5 bit
+   csl_parameter pr_b3(2'b11);      //pr_b3 is 2 bit       
+  b(){}
+};
+
+csl_unit c{
+  csl_parameter pr_c1(6);         //pr_c1 is 32 bit
+  csl_parameter pr_c2(6);
+  csl_parameter pr_c3(6);
+  csl_parameter pr_c4(3,5);       //pr_c2 is set to 5 bit
+  // csl_parameter pr_c5(2'b11);      //pr_c3 is 2 bit       
+  c(){}
+};
+
+csl_unit top{
+
+  a #(.pr_a1(4)) a0;                                        // overrides parameter pr_a1 in instance a0 with value 4
+  b #(.pr_b1(3),.pr_b3(2),.pr_b2(1)) b0;                  // overrides parameters pr_b1,pr_b3, pr_b2 in instance b0 with values 3, 2, ,1 respectively 
+  c #(.pr_c1(4),.pr_c4(2),.pr_c2(1),.pr_c2(0)) c0;        // overrides four parameters in instance c0, the fifth one: pr_c5 remains unchanged
+  c #(.pr_c4(1)) c1;                                      // overrides parameter pr_c5 in instance c1 with value 1  
+  top(){
+  }
+};
+
+
+
+

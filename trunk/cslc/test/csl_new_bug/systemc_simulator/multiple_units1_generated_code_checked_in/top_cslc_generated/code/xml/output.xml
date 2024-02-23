@@ -1,0 +1,18 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="output.xsl"?>
+<design>
+<unit  name="a" > 
+ </unit>
+<unit  name="b" > 
+ </unit>
+<unit  name="c" > 
+ </unit>
+<unit  name="top" > 
+ </unit>
+<vector  name="stim" > 
+ </vector>
+<vector  name="exp" > 
+ </vector>
+<testbench  name="tb" > 
+ </testbench>
+</design>

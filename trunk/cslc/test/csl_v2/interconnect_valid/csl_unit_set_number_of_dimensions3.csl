@@ -1,0 +1,16 @@
+//author: Monica
+//testing: csl_unit, csl_signal,  csl_port,csl_multi_dim_bitrange bitrange_name(numeric_expression), bitrange_object.set_dim_width(numeric_expresion,numeric_expression), get_dim_width(numeric_exression);
+
+csl_multi_dim_bitrange br(4);
+br.set_dim_width(0,2);
+br.set_dim_width(1,br.get_dim_width(0));
+br.set_dim_width(2,2);
+br.set_dim_width(3,br.get_dim_width(2));
+csl_unit top{
+  csl_signal sig1(br);
+  csl_port in(input,br);
+  top(){}
+};
+
+
+

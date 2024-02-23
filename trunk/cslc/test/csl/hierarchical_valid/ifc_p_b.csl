@@ -1,0 +1,29 @@
+// Author : CristiL
+//
+// Creating a interface with a port with bitrange
+
+csl_interface interfaceA {
+  
+  csl_port port0(input);
+  
+  csl_bitrange bitrange(32);
+
+  interfaceA() {
+
+    port0.set_bitrange(bitrange);
+
+  }
+
+};
+csl_unit u{
+  csl_port p1(input,32);
+  u (){}
+};
+
+csl_unit unitTop {
+  interfaceA interfaceA0;
+  u u0(.p1(interfaceA0.port0));
+  unitTop() {
+  }
+
+};

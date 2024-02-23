@@ -1,0 +1,23 @@
+;; Object cli/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "cli/"
+  :tables (list 
+   (semanticdb-table "cslcCLI_Typedef.cpp"
+    :major-mode 'c++-mode
+    :tags 'nil
+    :file "cslcCLI_Typedef.cpp"
+    :pointmax 7659
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "cslcCLI_Typedef.h"
+    :major-mode 'c-mode
+    :tags 'nil
+    :file "cslcCLI_Typedef.h"
+    :pointmax 11912
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "semantic.cache"
+  :semantic-tag-version "1.4.4"
+  :semanticdb-version "1.4.4"
+  )

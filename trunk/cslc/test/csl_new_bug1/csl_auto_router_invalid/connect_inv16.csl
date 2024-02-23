@@ -1,0 +1,32 @@
+//oanab
+//18 feb 2008
+//connecting a signal to a signal group
+
+csl_interface ifc {
+  csl_port x1(input),x2(input);
+  ifc () {}
+};
+
+csl_signal_group sg {
+  csl_signal s1,s2,s3;
+  sg () {}
+};
+
+csl_unit u1 {
+  ifc  ifc1;
+  sg sg1;
+  u1 () {}
+};
+
+csl_unit u2 {
+  sg sg2;
+  u2 () {}
+};
+
+csl_unit u3 {
+  u1 u11;
+  u2 u21;
+  u3 () {
+    u11.sg1.s2.connect(u21.sg2); // illegal to connect x1 to sg1
+  }
+};

@@ -1,0 +1,20 @@
+//oanab
+//10 nov 2007
+
+csl_interface ifc{
+  csl_field f(8,1);
+  csl_port x(input);
+  ifc(){}
+};
+
+
+csl_unit u{
+  csl_port p1(input);
+  u(){}
+};
+
+csl_unit top{
+  ifc ifc1;
+  u u0(.p1(ifc1.x));
+  top(){}
+};

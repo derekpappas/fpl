@@ -1,0 +1,35 @@
+//Monica
+// 14 november 2007
+// invalid test ---testbench without clock signal
+
+csl_unit dut{
+ 
+csl_port in_v(input,1), in_d(input, 8);
+csl_port out_v(output, 1), out_d(output, 8);
+csl_port clk(input);
+dut(){
+clk.set_attr(clock);}
+};
+csl_vector stim{
+stim(){
+set_vc_header_comment("stimulus_vector");
+set_vc_output_filename("stim_data_out");
+set_unit_name ( dut );
+set_direction ( input );
+}
+};
+csl_vector exp{
+exp(){
+set_vc_header_comment("expected_vector");
+set_vc_output_filename("exp_data_out");
+set_unit_name ( dut );
+set_direction ( output );
+}
+};
+csl_testbench tb{
+
+dut dut_i;
+
+tb(){
+  add_logic(clock,clk,10,ps);  //error , clk signal does't exist
+}};

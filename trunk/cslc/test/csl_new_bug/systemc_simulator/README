@@ -1,0 +1,6 @@
+Run systemC examples and use the created vector files to test the verilog testbench.
+
+mRun_regress.pl -hdl csl_new_bug --run_sysc_verilog_sim -dir_filter systemc_simulator
+
+
+The results are in the last column of the html report.

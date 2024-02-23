@@ -1,0 +1,44 @@
+//oanab
+//29 oct 2007
+
+csl_unit u1{
+  csl_port clk(input);
+  csl_port stim_i1(input),exp_o1(output);
+  u1(){
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit u2{
+  csl_port clk(input);
+  csl_port stim_i2(input),exp_o2(output);
+  u1 u1(.stim_i1(stim_i2),.exp_o1(exp_o2),.clk(clk));
+  u2(){
+    clk.set_attr(clock);
+  }
+};
+
+csl_vector stim{
+  stim(){
+    set_unit_name(u2);
+    set_direction(input);
+    set_vc_header_comment("stim_vect");
+  }
+};
+
+csl_vector exp{
+  exp(){
+   set_unit_name(u2);
+   set_direction(output);
+   set_vc_header_comment("exp_vect");
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+  u2 u2(.clk(clk));
+  tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,4,ns);
+  }
+};

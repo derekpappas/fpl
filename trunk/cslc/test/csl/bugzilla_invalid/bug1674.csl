@@ -1,0 +1,3 @@
+csl_enum e{
+  a = 2'd47;//this must be an error: unexpected token ;
+};

@@ -1,0 +1,19 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u_rf">
+<interface name="ifc_rf" >
+<port name="p_clk" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="p_rst" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="p_stall" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifc_unit_rf_l" >
+<port name="p_unitOut" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="p_unitIn" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifc_unit_rf_r" >
+<port name="p_unitOut" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="p_unitIn" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+</interface>
+</unit>
+</design>

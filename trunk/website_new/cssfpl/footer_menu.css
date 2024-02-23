@@ -1,0 +1,41 @@
+.footLinks{
+font-size: 5px;
+margin:30px 0 0 0;
+}
+
+.footLinks p{
+text-align:center;
+margin:0;
+padding:2px 0;
+color:#696969;
+font-size:11px;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: none;
+}
+
+.footLinks a:link,.footLinks a:visited,footLinks a:active{
+color:#696969;
+}
+
+.footLinks a:hover{
+color:#FF0000;
+text-decoration:none;
+}
+
+.footLinks span{
+padding:0 7px;
+}
+
+.footLinks img{
+vertical-align:middle;
+padding:0 2px 0 10px;
+}
+
+.copyRt{
+font-family: Arial, Helvetica, sans-serif;
+text-align:center;
+margin:0;
+padding:20px 0;
+color:#696969;
+font-size:11px;
+}

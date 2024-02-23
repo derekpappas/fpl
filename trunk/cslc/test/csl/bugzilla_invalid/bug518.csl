@@ -1,0 +1,18 @@
+csl_interface ifc{
+  csl_port in(input), out(output);
+  ifc(){}
+};
+
+
+csl_unit a{
+  ifc ifca;
+  a(){}
+};
+
+csl_unit b{
+  ifc ifcb;
+  b(){
+    ifcb.reverse();
+  }
+};
+

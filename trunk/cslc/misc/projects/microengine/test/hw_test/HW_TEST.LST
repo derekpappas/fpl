@@ -1,0 +1,329 @@
+			     1	 .use     "..\SSM_ME.tbl"
+			     2	 .option  lines = 1000
+			     3	;=============================================================================
+			     4	;
+			     5	;    Copyright © 2010 Advanced Architectures
+			     6	;
+			     7	;    All rights reserved
+			     8	;    Confidential Information
+			     9	;    Limited Distribution to Authorized Persons Only
+			    10	;    Created and Protected as an Unpublished Work under
+			    11	;    the U.S.Copyright act of 1976.
+			    12	;
+			    13	;    Project Name         : SSM Microengine
+			    14	;    Description          : SSM me assembler test
+			    15	;
+			    16	;    Author               : RTT
+			    17	;    Creation Date        : 2010/03/13
+			    18	;
+			    19	;
+			    20	;=============================================================================
+			    21	;    THIS  SOFTWARE IS  PROVIDED "AS IS" AND  WITHOUT  ANY EXPRESS  OR IMPLIED
+			    22	;    WARRANTIES, INCLUDING, BUT  NOT LIMITED  TO, THE  IMPLIED  WARRANTIES  OF
+			    23	;    MERCHANTABILITY AND FITNESS  FOR A PARTICULAR PURPOSE. IN  NO EVENT SHALL
+			    24	;    THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+			    25	;    SPECIAL, EXEMPLARY, OR  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+			    26	;    TO, PROCUREMENT OF  SUBSTITUTE GOODS  OR SERVICES; LOSS  OF USE, DATA, OR
+			    27	;    PROFITS; OR  BUSINESS INTERRUPTION) HOWEVER  CAUSED AND ON  ANY THEORY OF
+			    28	;    LIABILITY,  WHETHER  IN  CONTRACT,  STRICT LIABILITY, OR  TORT (INCLUDING
+			    29	;    NEGLIGENCE  OR OTHERWISE) ARISING  IN  ANY WAY  OUT OF  THE  USE  OF THIS
+			    30	;    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+			    31	;=============================================================================
+			    32	;
+			     1	;=============================================================================
+			     2	;
+			     3	;    Copyright © 2010 Advanced Architectures
+			     4	;
+			     5	;    All rights reserved
+			     6	;    Confidential Information
+			     7	;    Limited Distribution to Authorized Persons Only
+			     8	;    Created and Protected as an Unpublished Work under
+			     9	;     the U.S.Copyright act of 1976.
+			    10	;
+			    11	;    Project Name         : SSM Microengine
+			    12	;    Description          : Register names header file
+			    13	;
+			    14	;=============================================================================
+			    15	;    THIS  SOFTWARE IS  PROVIDED "AS IS" AND  WITHOUT  ANY EXPRESS  OR IMPLIED
+			    16	;    WARRANTIES, INCLUDING, BUT  NOT LIMITED  TO, THE  IMPLIED  WARRANTIES  OF
+			    17	;    MERCHANTABILITY AND FITNESS  FOR A PARTICULAR PURPOSE. IN  NO EVENT SHALL
+			    18	;    THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+			    19	;    SPECIAL, EXEMPLARY, OR  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+			    20	;    TO, PROCUREMENT OF  SUBSTITUTE GOODS  OR SERVICES; LOSS  OF USE, DATA, OR
+			    21	;    PROFITS; OR  BUSINESS INTERRUPTION) HOWEVER  CAUSED AND ON  ANY THEORY OF
+			    22	;    LIABILITY,  WHETHER  IN  CONTRACT,  STRICT LIABILITY, OR  TORT (INCLUDING
+			    23	;    NEGLIGENCE  OR OTHERWISE) ARISING  IN  ANY WAY  OUT OF  THE  USE  OF THIS
+			    24	;    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+			    25	;=============================================================================
+			    26	;
+			    27	; Primary Registers
+   0			    28	 .memory REGISTERS
+   0			    29	 .equ  r0      $ + 0
+   1			    30	 .equ  r1      $ + 1
+   2			    31	 .equ  r2      $ + 2
+   3			    32	 .equ  r3      $ + 3
+   4			    33	 .equ  r4      $ + 4
+   5			    34	 .equ  r5      $ + 5
+   6			    35	 .equ  r6      $ + 6
+   7			    36	 .equ  r7      $ + 7
+   8			    37	 .equ  r8      $ + 8
+   9			    38	 .equ  r9      $ + 9
+   a			    39	 .equ  r10     $ + 10
+   b			    40	 .equ  r11     $ + 11
+   c			    41	 .equ  r12     $ + 12
+   d			    42	 .equ  r13     $ + 13
+   e			    43	 .equ  r14     $ + 14
+   f			    44	 .equ  r15     $ + 15
+  10			    45	 .equ  r16     $ + 16
+  11			    46	 .equ  r17     $ + 17
+  12			    47	 .equ  r18     $ + 18
+  13			    48	 .equ  r19     $ + 19
+  14			    49	 .equ  r20     $ + 20
+  15			    50	 .equ  r21     $ + 21
+  16			    51	 .equ  r22     $ + 22
+  17			    52	 .equ  r23     $ + 23
+  18			    53	 .equ  r24     $ + 24
+  19			    54	 .equ  r25     $ + 25
+  1a			    55	 .equ  r26     $ + 26
+  1b			    56	 .equ  r27     $ + 27
+  1c			    57	 .equ  r28     $ + 28
+  1d			    58	 .equ  r29     $ + 29
+  1e			    59	 .equ  r30     $ + 30
+  1f			    60	 .equ  r31     $ + 31
+  1c			    61	 .equ  SSM0    $ + 28
+  1d			    62	 .equ  SSM1    $ + 29
+  1e			    63	 .equ  SSM2    $ + 30
+  1f			    64	 .equ  SSM3    $ + 31
+			    65	 
+   8			    66	 .equ  TEST    $ + 8
+			    67	 
+			    68	 
+   0			    34	 .memory PROGRAM
+   0			    35	 .org  0
+			    36	 
+			    37	 
+   0			    38	 .equ  TEST_PASSED 0
+   1			    39	 .equ  TEST_FAILED 1
+   2			    40	 .equ  TEST_START  2
+			    41	 
+			    42	start:
+			    43	;
+			    44	; Load all registers *********************************************************
+			    45	;
+   0         bf000002	    46	   msg TEST_START;
+   1         80000000	    47	   r0 = 0;
+   2         80010001	    48	   r1 = 1;
+   3         80020002	    49	   r2 = 2;
+   4         80030003	    50	   r3 = 3;
+   5         80040004	    51	   r4 = 4;
+   6         80050005	    52	   r5 = 5;
+   7         80060006	    53	   r6 = 6;
+   8         80070007	    54	   r7 = 7;
+   9         80080008	    55	   r8 = 8;
+   a         80090009	    56	   r9 = 9;
+   b         800a000a	    57	   r10 = 10;
+   c         800b000b	    58	   r11 = 11;
+   d         800c000c	    59	   r12 = 12;
+   e         800d000d	    60	   r13 = 13;
+   f         800e000e	    61	   r14 = 14;
+  10         800f000f	    62	   r15 = 15;
+  11         80100010	    63	   r16 = 16;
+  12         80110011	    64	   r17 = 17;
+  13         80120012	    65	   r18 = 18;
+  14         80130013	    66	   r19 = 19;
+  15         80140014	    67	   r20 = 20;
+  16         80150015	    68	   r21 = 21;
+  17         80160016	    69	   r22 = 22;
+  18         80170017	    70	   r23 = 23;
+  19         80180018	    71	   r24 = 24;
+  1a         80190019	    72	   r25 = 25;
+  1b         801a001a	    73	   r26 = 26;
+  1c         801b001b	    74	   r27 = 27;
+  1d         801c001c	    75	   r28 = 28;
+  1e         801d001d	    76	   r29 = 29;
+  1f         801e001e	    77	   r30 = 30;
+  20         801f001f	    78	   r31 = 31;
+			    79	;
+			    80	;  Sum registers
+			    81	;
+  21         00000001	    82	   r0 = r0 + r1;
+  22         00000002	    83	   r0 = r0 + r2;
+  23         00000003	    84	   r0 = r0 + r3;
+  24         00000004	    85	   r0 = r0 + r4;
+  25         00000005	    86	   r0 = r0 + r5;
+  26         00000006	    87	   r0 = r0 + r6;
+  27         00000007	    88	   r0 = r0 + r7;
+  28         00000008	    89	   r0 = r0 + r8;
+  29         00000009	    90	   r0 = r0 + r9;
+  2a         0000000a	    91	   r0 = r0 + r10;
+  2b         0000000b	    92	   r0 = r0 + r11;
+  2c         0000000c	    93	   r0 = r0 + r12;
+  2d         0000000d	    94	   r0 = r0 + r13;
+  2e         0000000e	    95	   r0 = r0 + r14;
+  2f         0000000f	    96	   r0 = r0 + r15;
+  30         00000010	    97	   r0 = r0 + r16;
+  31         00000011	    98	   r0 = r0 + r17;
+  32         00000012	    99	   r0 = r0 + r18;
+  33         00000013	   100	   r0 = r0 + r19;
+  34         00000014	   101	   r0 = r0 + r20;
+  35         00000015	   102	   r0 = r0 + r21;
+  36         00000016	   103	   r0 = r0 + r22;
+  37         00000017	   104	   r0 = r0 + r23;
+  38         00000018	   105	   r0 = r0 + r24;
+  39         00000019	   106	   r0 = r0 + r25;
+  3a         0000001a	   107	   r0 = r0 + r26;
+  3b         0000001b	   108	   r0 = r0 + r27;
+  3c         0000001c	   109	   r0 = r0 + r28;
+  3d         0000001d	   110	   r0 = r0 + r29;
+  3e         0000001e	   111	   r0 = r0 + r30;
+  3f         0000001f	   112	   r0 = r0 + r31;
+  40         00000100	   113	   r0 = r1 + r0;
+  41         00000200	   114	   r0 = r2 + r0;
+  42         00000300	   115	   r0 = r3 + r0;
+  43         00000400	   116	   r0 = r4 + r0;
+  44         00000500	   117	   r0 = r5 + r0;
+  45         00000600	   118	   r0 = r6 + r0;
+  46         00000700	   119	   r0 = r7 + r0;
+  47         00000800	   120	   r0 = r8 + r0;
+  48         00000900	   121	   r0 = r9 + r0;
+  49         00000a00	   122	   r0 = r10 + r0;
+  4a         00000b00	   123	   r0 = r11 + r0;
+  4b         00000c00	   124	   r0 = r12 + r0;
+  4c         00000d00	   125	   r0 = r13 + r0;
+  4d         00000e00	   126	   r0 = r14 + r0;
+  4e         00000f00	   127	   r0 = r15 + r0;
+  4f         00001000	   128	   r0 = r16 + r0;
+  50         00001100	   129	   r0 = r17 + r0;
+  51         00001200	   130	   r0 = r18 + r0;
+  52         00001300	   131	   r0 = r19 + r0;
+  53         00001400	   132	   r0 = r20 + r0;
+  54         00001500	   133	   r0 = r21 + r0;
+  55         00001600	   134	   r0 = r22 + r0;
+  56         00001700	   135	   r0 = r23 + r0;
+  57         00001800	   136	   r0 = r24 + r0;
+  58         00001900	   137	   r0 = r25 + r0;
+  59         00001a00	   138	   r0 = r26 + r0;
+  5a         00001b00	   139	   r0 = r27 + r0;
+  5b         00001c00	   140	   r0 = r28 + r0;
+  5c         00001d00	   141	   r0 = r29 + r0;
+  5d         00001e00	   142	   r0 = r30 + r0;
+  5e         00001f00	   143	   r0 = r31 + r0;
+  5f         1100007c	   144	   r0 = r0 - 124;    /* Sum should be 992 -- too big for short immediate */
+  60         1100007c	   145	   r0 = r0 - 124;
+  61         1100007c	   146	   r0 = r0 - 124;
+  62         1100007c	   147	   r0 = r0 - 124;
+  63         1100007c	   148	   r0 = r0 - 124;
+  64         1100007c	   149	   r0 = r0 - 124;
+  65         1100007c	   150	   r0 = r0 - 124;
+  66         1100007c	   151	   r0 = r0 - 124;
+  67         8001000d	   152	   r1 = 13;
+  68         c100006a	   153	   if (r0 != 0) goto fail;
+			   154	 
+  69         e000006e	   155	   goto main;
+			   156	;
+			   157	;  ON A FAILURE TEST CODE IS IN R1 !!
+			   158	;
+			   159	fail:
+  6a         bf000001	   160	   msg TEST_FAILED;
+  6b         e000006a	   161	   goto fail;
+			   162	;
+			   163	;  PASS CODE = 0 in R1 !!
+			   164	;
+			   165	pass:
+  6c         bf000000	   166	   msg TEST_PASSED;
+  6d         e000006c	   167	   goto pass;
+			   168	 
+			   169	main:
+			   170	;
+			   171	; Test Branches and Jumps  ***************************************************
+			   172	;
+  6e         80010001	   173	   r1 = 1;                    /* Set Test Code */
+  6f         80000000	   174	   r0 = 0;
+  70         c100006a	   175	   if (r0 != 0) goto fail;
+  71         80010002	   176	   r1 = 2;
+  72         c200006a	   177	   if (r0 <  0) goto fail;
+  73         80010003	   178	   r1 = 3;
+  74         c300006a	   179	   if (r0 >  0) goto fail;
+  75         80010004	   180	   r1 = 4;
+  76         c0000078	   181	   if (r0 == 0) goto next1;
+  77         e000006a	   182	   goto fail;
+			   183	next1:
+  78         80010005	   184	   r1 = 5;
+  79         c500007b	   185	   if (r0 >= 0) goto next2;
+  7a         e000006a	   186	   goto fail;
+			   187	next2:
+  7b         80010006	   188	   r1 = 6;
+  7c         c400007e	   189	   if (r0 <= 0) goto next3;
+  7d         e000006a	   190	   goto fail;
+			   191	next3:
+			   192	;
+			   193	; Test Addition **************************************************************
+			   194	;
+  7e         80010007	   195	   r1 = 7;
+  7f         300001ff	   196	   r0 = 1 + -1;
+  80         c100006a	   197	   if (r0 != 0) goto fail;
+			   198	;
+			   199	; Test Subtraction ***********************************************************
+			   200	;
+  81         80010008	   201	   r1 = 8;
+  82         3100ffff	   202	   r0 = -1 - -1;
+  83         c100006a	   203	   if (r0 != 0) goto fail;
+			   204	;
+			   205	; Test AND *******************************************************************
+			   206	;
+  84         80010009	   207	   r1 = 9;
+  85         3400ffff	   208	   r0 = -1 & -1;
+  86         10000001	   209	   r0 = r0 + 1;
+  87         c100006a	   210	   if (r0 != 0) goto fail;
+  88         340000ff	   211	   r0 =  0 & -1;
+  89         c100006a	   212	   if (r0 != 0) goto fail;
+			   213	;
+			   214	; Test OR ********************************************************************
+			   215	;
+  8a         8001000a	   216	   r1 = 10;
+  8b         35000000	   217	   r0 =  0 | 0;
+  8c         c100006a	   218	   if (r0 != 0) goto fail;
+  8d         350000ff	   219	   r0 =  0 | -1;
+  8e         10000001	   220	   r0 = r0 +  1;
+  8f         c100006a	   221	   if (r0 != 0) goto fail;
+			   222	;
+			   223	; Test XOR *******************************************************************
+			   224	;
+  90         8001000b	   225	   r1 = 11;
+  91         36000000	   226	   r0 =  0 ^ 0;
+  92         c100006a	   227	   if (r0 != 0) goto fail;
+  93         3600ffff	   228	   r0 = -1 ^ -1;
+  94         c100006a	   229	   if (r0 != 0) goto fail;
+  95         3600ff00	   230	   r0 = -1 ^ 0;
+  96         10000001	   231	   r0 = r0 +  1;
+  97         c100006a	   232	   if (r0 != 0) goto fail;
+  98         360000ff	   233	   r0 =  0 ^ -1;
+  99         10000001	   234	   r0 = r0 +  1;
+  9a         c100006a	   235	   if (r0 != 0) goto fail;
+			   236	;
+			   237	; Test XNOR *******************************************************************
+			   238	;
+  9b         8001000c	   239	   r1 = 12;
+  9c         370000ff	   240	   r0 =  0 ^~ -1;
+  9d         c100006a	   241	   if (r0 != 0) goto fail;
+  9e         3700ff00	   242	   r0 = -1 ^~ 0;
+  9f         c100006a	   243	   if (r0 != 0) goto fail;
+  a0         37000000	   244	   r0 =  0 ^~ 0;
+  a1         10000001	   245	   r0 = r0 +  1;
+  a2         c100006a	   246	   if (r0 != 0) goto fail;
+  a3         3700ffff	   247	   r0 = -1 ^~ -1;
+  a4         10000001	   248	   r0 = r0 +  1;
+  a5         c100006a	   249	   if (r0 != 0) goto fail;
+			   250	;
+			   251	;  TEST LONG IMMEDIATES ******************************************************
+			   252	;
+  a6         8001000e	   253	   r1 = 14;
+  a7         8000ffee	   254	   r0 = 0xffee;
+  a8         10000012	   255	   r0 = r0 + 0x12;        /* Should cause overflow around to zero  */
+  a9         c100006a	   256	   if (r0 != 0) goto fail;
+			   257	;
+			   258	; END OF TESTS ***************************************************************
+			   259	;
+  aa         80010000	   260	   r1 = 0;
+  ab         e000006c	   261	   goto pass;
+			   262	 .end

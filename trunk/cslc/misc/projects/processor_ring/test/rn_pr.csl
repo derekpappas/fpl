@@ -1,0 +1,305 @@
+//Monicah
+// 08 january 2008
+// Processor Ring --System Level
+
+//////////////////////////////////////////////////////////
+//DMA ctrl
+csl_register idb {
+  idb () {
+    set_width(20);
+    set_type(register);
+  }
+};
+
+csl_register idl {
+  idl () {
+    set_width(20);
+    set_type(register);
+  }
+};
+
+csl_register lmt {
+  lmt () {
+    set_width(20);
+    set_type(register);
+  }
+};
+
+csl_register cnt {
+  cnt () {
+    set_width(20);
+    set_type(counter);
+    add_logic(count_direction,up);
+  }
+};
+
+csl_unit mux {
+  csl_port m0(input,20),m1(input,20),out(output,20),sel(input);
+  mux () {
+    sel.set_attr(mux_sel);
+  }
+};
+
+csl_unit sum {
+  csl_port s_in1(input,20),s_in2(input,20),s_out(output,20);
+  sum () {}
+};
+
+ csl_unit comp {
+  csl_port c_in1(input,20),c_in2(input,20),c_not_eq(output),c_eq(output);
+  comp () {}
+};
+
+csl_unit dc {
+  csl_port  wr_en(input),rd_en(input),wr_burst(input),rd_burst(input),burst(input),dma_en(input),addr(input,20),data_in(input,32),clk(input);
+  csl_signal en_idb;  
+  csl_signal base(20),length(20),bus_burst;
+  csl_signal addr_out(20),data_out(32);
+  mux mux0(.m1(length),.sel(bus_burst));
+  idb idb0(.enable(en_idb),.reg_in(base),.clock(clk));
+  idl idl0(.enable(dma_en),.clock(clk),.reg_in(mux0.out));
+  lmt lmt0;
+  cnt cnt0;
+  sum sum0;
+  comp comp0;
+  dc () {
+    en_idb = write_burst|read_burst;
+    clk.set_attr(clock);
+    dma_en.set_attr(en);
+    wr_en.set_attr(en);
+  }
+};
+
+//////////////////////////////////////////////////////////
+//Ring node --Internal Block
+
+csl_unit in{
+  csl_port in_i(input),in_o1(output),in_o2(output);  
+in(){}
+};
+csl_unit dly{
+  csl_port dly_i(input),dly_o(output);  
+dly(){}
+};
+csl_unit out{
+  csl_port out_i1(input),out_i2(input),out_o(output);
+  out(){}
+};
+csl_unit bi{
+  csl_port bi_i(input),bi_o(output);
+  bi(){}
+};
+csl_unit bo{
+  csl_port bo_i(input),bo_o(output);
+  bo(){}
+};
+csl_fifo fifo{
+ fifo(){
+   set_width(32);
+   set_depth(2048);
+}
+};
+csl_memory mem{
+  mem(){
+    set_width(32);
+    set_depth(2048);
+  }
+};
+csl_unit nios2{
+  csl_port me_ack_i(input),me_dat_i(input,32),io_ack_i(input),io_dat_i(input,32),int_i(input,32);
+  csl_port me_clk_o(output),me_dat_o(output,32),me_addr_o(output,32),me_sel_o(output,4),me_rst_o(output),me_stb_o(output),me_cyc_o(output),me_we_o(output);
+  csl_port io_dat_o(output,32),io_addr_o(output,24),io_clk_o(output),io_sel_o(output,4),io_stb_o(output),io_rst_o(output),io_cyc_o(output),io_we_o(output); 
+  csl_port cpu_o1(output),cpu_o2(output);
+ nios2(){}
+};
+csl_fifo qm{
+qm(){
+  set_width(32);
+  set_depth(1024);}
+};
+csl_unit cl{
+  csl_port out1(output);
+  cl(){}
+};
+csl_unit au{
+  csl_signal addr(20),clk;
+  csl_port wr_en(input),rd_en(input),wr_burst(input),rd_burst(input),burst(input),dma_en(input),data_in(input,32),addr_in(input,32);
+  dc  DMA_ctrl(.wr_en(wr_en),.rd_en(rd_en),.wr_burst(wr_burst),.rd_burst(rd_burst),.burst(burst),.dma_en(dma_en),.addr(addr),.data_in(data_in),.clk(clk));
+au(){}
+};
+csl_unit rn{
+  csl_signal in1,in_dly,in_bi,dly_out,out1,out_bo,bi_qm,qm_fifo,qm_cpu,fifo_cpu,cpu_mem,cpu_bo,cl_cpu;
+  csl_signal  wr_en,rd_en,wr_burst,rd_burst,burst,dma_en,data_in(32),addr_in(32);
+  //  csl_signal addr_in(32);
+  csl_port rn_in(input,59),rn_out(output,59);
+  in in(.in_i(in1),.in_o1(in_dly),.in_o2(in_bi));
+  dly dly(.dly_i(in_dly),.dly_o(dly_out));
+  out out(.out_i1(dly_out),.out_i2(out_bo),.out_o(out1));
+  bi bi(.bi_i(in_bi),.bi_o(bi_qm));
+  bo bo(.bo_i(cpu_bo),.bo_o(out_bo));
+  fifo fifo;
+  mem mem;
+  qm qm;
+   nios2 nios2(.io_ack_i(fifo_cpu),.io_ack_i(qm_cpu),.cpu_o1(cpu_bo),.cpu_o2(cpu_mem));
+  cl cl(.out1(cl_cpu));
+  au au(.wr_en(wr_en),.rd_en(rd_en),.wr_burst(wr_burst),.rd_burst(rd_burst),.burst(burst),.dma_en(dma_en),.data_in(data_in),.addr_in(addr_in));
+  rn(){}
+};
+
+/////////////////////////////////////////////////////////////////////
+
+csl_interface phy_in{
+  // csl_port gtx_clk(input),tx_en(input),txd(input,8),rx_clk(input);
+  csl_port phy_in_p(input,11);
+  phy_in(){}
+};
+csl_interface phy_out{
+  // csl_port tx_er(output),rx_er(output),rxd(output,8),rx_dv(output),crs(output),col(output);
+  csl_port phy_out_p(output,11);
+  phy_out(){}
+};
+csl_interface mac_out1{
+  // csl_port gtx_clk(output),tx_en(output),txd(output,8),rx_clk(output);
+  csl_port mac_out1_p(output,11);
+  mac_out1(){}
+};
+csl_interface mac_out2{
+  // csl_port rx_mac_ro(output),rx_mac_data(output,32),rx_mac_be(output,2),rx_mac_pa(output),rx_mac_sop(output),rx_mac_eop(output),tx_mac_wa(output);
+  csl_port mac_out2_p(output,39);
+  mac_out2(){}
+};
+csl_interface nios2_ifc_out{
+  csl_port me_clk_o(output),me_dat_o(output,32),me_addr_o(output,32),me_sel_o(output,4),me_rst_o(output),me_stb_o(output),me_cyc_o(output),me_we_o(output);
+  csl_port io_data_o(output,32),io_addr_o(output,24),io_clk_o(output),io_sel_o(output,4),io_stb_o(output),io_rst_o(output),io_cyc_o(output),io_we_o(output);
+};
+csl_interface nios2_ifc_in{
+  csl_port me_ack_i(input),me_dat_i(input,32),io_ack_i(input),io_dat_i(input,32),int_i(input,32);
+}; 
+
+csl_interface mac_in1{
+  //  csl_port tx_er(input),rx_er(input),rxd(input,8),rx_dv(input),crs(input),col(input);
+  csl_port mac_in1_p(input,13); 
+  mac_in1(){}
+};
+csl_interface mac_in2{
+  // csl_port rx_mac_rd(input),tx_mac_wr(input),tx_mac_data(input,32),tx_mac_be(input,2),tx_mac_sop(input),tx_mac_eop(input);
+  csl_port mac_in2_p(input,38);
+  mac_in2(){}
+};
+
+csl_unit pie{
+  csl_port rn_bus_in(input,59), rn_bus_out(input,59);
+  rn rn(.rn_in(rn_bus_in),.rn_out(rn_bus_out));
+  pie(){}
+};
+csl_unit fpc{
+  csl_port rn_bus_in(input,59),rn_bus_out(output,59),out_to_mux(output),out_to_itc(output),in_from_mux(input),out_to_flash(output,32);
+  fpc(){}
+};
+csl_unit mux_u{
+  csl_port in0(input), in1(input), sel(input), out_mux(output);
+  mux_u(){}
+};
+
+csl_unit ppc{
+  csl_port in_p(input), out_p(output);
+  ppc(){}
+};
+
+csl_memory flash{
+  flash(){
+    set_width(32);
+    set_depth(65536);//addr_width is 16 bits
+  }
+};
+csl_interface ifc_itc{
+  csl_port phy_ext_loopback(output),mac_int_loopback(output),mac_ext_loopback(output),pie_int_loopback(output),fpc_ppc_ext(output),ppc_fpc_int(output);
+  ifc_itc(){}
+};
+csl_unit itc{
+  ifc_itc ifc1;
+  csl_port in_p(input);
+  itc(){}
+};
+//////////////////////////////////////////////
+//MAC unit
+
+csl_unit mac{
+  mac_out1 mac_out1;
+  mac_out2 mac_out2;
+  mac_in1 mac_in1;
+  mac_in2 mac_in2;
+
+  mac(){}
+};
+/////////////////////////////////////////////
+//PHY unit
+csl_unit phy{
+  phy_in phy_in;
+  phy_out phy_out;
+  phy(){}
+};
+///////////////////////////////////////////////
+//Mux for system input
+csl_unit mux_rn9{
+  csl_port in0(input,39),in1(input,39),sel(input),out_mux(output,39);
+  mux_rn9(){}
+};
+//Mux for MAC input
+csl_unit mux_rn8{
+  csl_port in0(input,39),in1(input,39),sel(input),out_mux(output,38);
+  mux_rn8(){}
+};
+//Mux for PHY output
+csl_unit mux_phy{
+  csl_port in0(input,11),in1(input,11),sel(input),out_mux(output,13);
+  mux_phy(){}
+};
+//Mux for mac output
+csl_unit mux_mac{
+  csl_port in0(input,11),in1(input,11),sel(input),out_mux(output,11);
+  mux_mac(){}
+};
+/////////////////////////////////////////////////////////////////////////////
+//Top unit
+
+csl_unit rp{
+  csl_signal rn1_rn2_bus(59), rn2_rn3_bus(59), rn3_rn4_bus(59), rn4_rn5_bus(59), rn5_rn6_bus(59), rn6_rn7_bus(59), rn7_rn8_bus(59), rn8_rn9_bus(59), rn9_rn1_bus(59);
+  csl_signal  flash_m_bus(32),in0,in1,out_mux1,out_mux2,itc_bus;
+  csl_signal ren,wen,addr(16),data(32);
+  csl_signal fpc_ppc_ext_loopback,ppc_fpc_int_loopback,phy_ext_loopback,mac_int_loopback,mac_ext_loopback,pie_int_loopback;
+  csl_signal mux_mac_phybus(13),mac_mux_phybus(11),mac_mux_macbus(39),mux_mac_macbus(38),phy_mux_phybus(11),phy_in(11),phy_out(11);
+  csl_signal rn_mac_macbus_out(39),rn_mac_macbus_in(39);
+
+  // 9 rn
+ pie pb  (.rn_bus_in(rn9_rn1_bus),.rn_bus_out(rn1_rn2_bus));
+ pie pie2(.rn_bus_in(rn1_rn2_bus),.rn_bus_out(rn2_rn3_bus));
+ pie pie3(.rn_bus_in(rn2_rn3_bus),.rn_bus_out(rn3_rn4_bus));
+ pie pie4(.rn_bus_in(rn3_rn4_bus),.rn_bus_out(rn4_rn5_bus));
+ pie pie5(.rn_bus_in(rn4_rn5_bus),.rn_bus_out(rn5_rn6_bus));
+ fpc fpc (.rn_bus_in(rn5_rn6_bus),.rn_bus_out(rn6_rn7_bus),.out_to_mux(in0),.out_to_itc(itc_bus),.in_from_mux(out_mux2),.out_to_flash(flash_m_bus));
+ pie pie7(.rn_bus_in(rn6_rn7_bus),.rn_bus_out(rn7_rn8_bus));
+ pie pie8(.rn_bus_in(rn7_rn8_bus),.rn_bus_out(rn8_rn9_bus));
+ pie pie9(.rn_bus_in(rn8_rn9_bus),.rn_bus_out(rn9_rn1_bus));
+
+ mux_u mux1(.in0(in0),.in1(out_mux2),.sel(fpc_ppc_ext_loopback),.out_mux(out_mux1));
+ mux_u mux2(.in0(in1),.in1(out_mux1),.sel(ppc_fpc_int_loopback),.out_mux(out_mux2));
+
+ ppc ppc(.in_p(out_mux1),.out_p(in1));
+ itc itc(.in_p(itc_bus),.ifc1.phy_ext_loopback( phy_ext_loopback),.ifc1.mac_int_loopback(mac_int_loopback),.ifc1.mac_ext_loopback(mac_ext_loopback),
+         .ifc1.pie_int_loopback(pie_int_loopback),.ifc1.fpc_ppc_ext(fpc_ppc_ext_loopback),.ifc1.ppc_fpc_int(ppc_fpc_int_loopback));
+ 
+  flash flash_mem(.rd0.en(ren),.rd0.data(flash_m_bus),.rd0.address(addr),.wr0.en(wen),.wr0.data(data),.wr0.address(addr));
+
+  mac mac(.mac_in1.mac_in1_p(mux_mac_phybus),.mac_in2.mac_in2_p(mux_mac_macbus),.mac_out1.mac_out1_p(mac_mux_phybus),.mac_out2.mac_out2_p(mac_mux_macbus));
+  phy phy(.phy_in.phy_in_p(phy_in),.phy_out.phy_out_p(phy_out)); 
+
+  mux_rn9 mux_rn9_in(.in0(mac_mux_macbus),.in1(rn_mac_macbus_out),.sel(pie_int_loopback),.out_mux(rn_mac_macbus_in));
+  mux_rn8 mux_rn8_out(.in0(rn_mac_macbus_out),.in1(mac_mux_macbus),.sel(mac_ext_loopback),.out_mux(mux_mac_macbus));
+  mux_phy mux_phy_out(.in0(mac_mux_phybus),.in1(phy_mux_phybus),.sel(mac_int_loopback),.out_mux(mux_mac_phybus));
+  mux_mac mux_mac_out(.in0(mac_mux_phybus),.in1(phy_mux_phybus),.sel(phy_ext_loopback),.out_mux(phy_in));
+
+   rp(){}
+};
+
+

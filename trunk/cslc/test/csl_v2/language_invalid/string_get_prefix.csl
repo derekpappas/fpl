@@ -1,0 +1,11 @@
+csl_unit top1{
+  top1(){
+set_prefix("unit");
+}
+};
+csl_unit top2{
+  top1 top1;
+  top2(){
+set_prefix(top1.get_prefix());
+}
+};

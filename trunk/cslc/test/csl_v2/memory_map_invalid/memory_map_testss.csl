@@ -1,0 +1,67 @@
+//Monica
+//ilegal = only one memory map page can be added to a flat memory map.
+
+csl_memory_map_page mpage1{
+	mpage1(){
+		add_address_range(0,255);
+
+}
+};
+csl_memory_map_page mpage2{
+	mpage2(){
+	set_address_increment(34);
+    set_next_address(256);
+}
+}; 
+csl_memory_map_page mpage3{
+  mpage3(){
+    add_address_range(0,255);
+  }
+};
+csl_memory_map_page mpage4{
+  mpage4(){
+    add_address_range(0,255);
+  }
+};
+csl_memory_map_page mpage5{
+  mpage5(){
+    set_address_increment(44);
+  }
+};
+
+csl_memory_map_page mpage6{
+  mpage6(){
+  set_data_word_width(3);
+  }
+};
+csl_memory_map_page mpage7{
+  mpage7(){
+  }
+};
+csl_memory_map mm{
+	mpage1 mp1;
+    mpage2 mp2;//error
+    mpage3 mp3;//error
+    mpage4 mp4;//error
+    mpage5 mp5;//error
+    mpage6 mp6;//error
+    mpage7 mp7;//error
+	mm(){
+    set_type(flat);
+    set_data_word_width(32);
+    mp1.set_alignment(4);
+    mp1.set_endianess(little_endian);
+    mp1.set_symbol_max_length(23);
+    set_prefix("abc");
+    set_top_unit(u);
+    mp2.set_next_address(mp2.get_next_address());
+    mp2.add_reserved_address_range(34,45);
+    mp2.set_endianess(big_endian);
+    mp3.set_address_increment(16);
+    set_suffix("xyz");
+    mp4.set_alignment(6);
+    
+}
+};
+
+

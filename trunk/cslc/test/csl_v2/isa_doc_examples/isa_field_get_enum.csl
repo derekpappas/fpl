@@ -1,0 +1,37 @@
+csl_enum op_code{
+ ADD,
+ MOV,
+ SUB
+};
+ csl_isa_field op{
+   op(){
+     set_type(opcode);
+     set_width(2); 
+     set_enum(op_code);
+   }
+};
+ csl_isa_field op2{
+   op2(){
+     set_type(subopcode);
+     set_width(2); 
+   }
+};
+csl_isa_element isa {
+  isa() {
+    set_type(root_format);
+    set_width(32);
+  }
+};      
+csl_isa_element isa2 : isa {
+op op;
+  op2 op2;
+  isa2() {
+    set_type(instr_format);
+    set_position(op, 29);
+    set_position(op2, 14);
+    op2.set_enum(op.get_enum());
+  }
+};
+
+csl_unit top {
+};

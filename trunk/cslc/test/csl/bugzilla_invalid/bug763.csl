@@ -1,0 +1,12 @@
+csl_unit u_unit1{
+        csl_signal      sgn_sgn1;
+        csl_port        p_port1,
+                        p_port2(output, reg, 4),
+                        p_port3(p_port1);    //p_port 3 copying all proprieties
+from p_port1
+
+        u_unit1(){                                                      
+                        p_port.reverse();    //p_port does not exist
+        }
+};
+

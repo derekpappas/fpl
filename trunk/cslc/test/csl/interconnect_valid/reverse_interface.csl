@@ -1,0 +1,27 @@
+// BZ test case from email
+//
+
+csl_signal_group sg {
+csl_signal s;
+};
+
+csl_interface ifc {
+csl_port p(output);
+};
+
+csl_unit u {
+ifc ifc0;
+ifc ifc1;
+   u() {
+    ifc1.reverse();
+  }
+};
+
+csl_unit top {
+sg sg0;
+
+ u u0(.ifc0(sg0),.ifc1(sg0));
+ u u1(.ifc1(sg0),.ifc0(sg0));
+
+ top() {
+}  };

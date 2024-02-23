@@ -1,0 +1,15 @@
+//author: Monicah
+//test: port constructor, set_width, get_width
+
+csl_unit arith {
+  csl_bitrange br(5);  
+  csl_port opcode1(input);
+  csl_port op1(input);
+  csl_port op2(input);
+  csl_port result(input);
+
+  arith(){
+    opcode1.set_width(32);                
+    result.set_width(opcode1.get_width());
+  }
+};

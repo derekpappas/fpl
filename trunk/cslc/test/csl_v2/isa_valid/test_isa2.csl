@@ -1,0 +1,69 @@
+//Daniel
+csl_unit u{
+  u(){
+  }
+};
+csl_enum ers{
+  RDY
+};
+
+csl_enum eei{
+  ZERO,
+  ONE
+};
+
+csl_isa_field i{
+  i(){
+    set_type(constant);
+    set_width(1);
+    set_enum(eei);
+  }
+};
+csl_isa_field op{
+  op(){
+    set_type(opcode);
+    set_width(2);
+  }
+};
+
+csl_isa_field op3{
+  op3(){
+    set_type(subopcode);
+    set_width(3);
+  }
+};
+
+csl_isa_field rs{
+  rs(){
+  rs.set_type(selector);
+  set_width(3);
+  set_enum(ers);
+  }
+};
+
+csl_isa_field rd{
+  rd(){
+  rd.set_type(selector);
+  set_width(1);
+  set_enum(rs.get_enum());
+}
+};
+
+csl_isa_element fb{
+  fb(){
+   set_type(root_format);
+   set_width (32);
+  }
+};
+
+
+csl_isa_element fsb:fb{
+  i i;
+  op op3;
+  fsb(){
+    set_type(instr_format);
+    set_position(op3,30);
+    set_next(op3,i);
+    
+  }
+};

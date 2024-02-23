@@ -1,0 +1,435 @@
+Alex
+notes:
+
+- table 1.3:  	need a table title
+- table 1.5:  	can i put don't care (*) at Sel when en is 0 ?
+- figure 1.9:	the output from the second MUX must be connected to the input selection for the first MUX?
+- figure 1.10:	i understand that the valid signal is activ on negative level; if it is can i put a bubble at the input pin with the valid label?
+- table 1.8:	what is bp_sel_d0?
+- figure 1.11:	the first MUX must to have a sel input
+- figure 1.24:	the selection signalwith the label mode for the MUX, tell me about this signal; from  where is it?
+- figure 1.27: 	this fig don't have a title
+		before this fig is some incomplete text: "for i..."  "parallelize"
+
+register file have a reset signal? What is going on when with the RF the reset signal is activated?
+
+
+
+
+AndreiB
+
+notes:
+2nd review stage
+
+- 1.2 turn this bold text "CSL Register File Specification Description" into a H2 ?
+- Add definition to what a register file is ? "An array of processor registers in a Central Processing Unit (CPU)"?
+Also, a register file is a physical construct (registers hardwired into such a configuration) or is it a logical construct (the configuration is controlled by a memory controller which assigns different "roles" for each register) ?
+- 1.2 bulleted list: last two elemenets (num_rd_ports and num_wr_ports) what exactly does num stand for ? Number?
+- 1.2.1 Move table 1.2 to definitions ?
+- 1.3 There are no more details about the register file block except that it is used to store values in registers: are these the registers from the register file ? what exactly is this reg file block - from the physical and/or logical pov
+- Table 1.3 has no title: maybe Implementation types and enable bits requirements ?
+- Figure 1.1 at the mux: isn't that nm instead of nw ?
+- 1.3.3 Couldn't really understand the part from "If the base address is 0x32000000 and..." why is the mask 0x3200_0000 when the address range is 0-63 ?
+- Figure 1.2 There is no clear connection between this figure and the paragraph it's part of; 
+- changed "1.3.5 Add_collision Detection logic" to "1.3.5  Address collision Detection logic".
+- 1.3.5 How is the part with "A register can be set to a constant value by setting the const attribute to a value..." connected to Address collision Detection logic ?
+- 1.3.6 What is the Register file decoder ? Is it the register file address decoder ? What is the verilog code section about ? An address decoder example ? Isn't it "wire [15:0] decoder = addr << 1;" ?
+- 1.3.7 Is this connected to 1.3.6 ? The code section about read and write enable signals generation is csl code, and if so, are the instructions complete ? Why should there be more address decoders: because the RF might have multiple read and/or write ports ?
+- Figure 1.3 should be attached to some text content: see document. Question: what happens if an address from the m range is used ? Is this the case when the Register file address checker will generate an error ? If so, is it necessary to have 1.3.8 as a separate heading ?
+- 1.3.9 The content is duplicated from 1.3.3. Isn't this basically the same as Register File addressing ?
+- 1.3.10 issues:
+	- What kind of options are these ? CSL language options ?
+	- I didn't understand this sentence "The first address for the register file can be specified to enable read and writes."
+	- rephrased this:
+	"During cycle n writes to the RF and during cycle n+1 reads from the same address will result in the write data being forwarded."
+	to
+	"Writes to the register file during cycle n, and reads from the same address during cycle n+1, will result in the write data being forwarded."
+	- what is the purpose of constant values in address register? are they used as masks ?
+- 1.3.11 issues:
+	- What is the write side of a register file ? Does it refer to the write ports and the associated registers?
+	- What is the difference between "using the wr_addr, wr_en, and wr_data signals or the wr_config_en and wr_data signals" ? Are these different implementations ?
+- 1.3.12 " The named register can be read either using the rd_addr, rd_en signals." ... or ? 
+- Figure 1.5 Labeled main block as Register File.
+- 1.3.13  ATA is Advanced Technology Attachment ? "the task of address space is 0-15 logical addresses but the register file is only 8 physical addresses" - what is "the task of address space" Shouldn't this just be "the address space" ?
+- 1.3.14 What is operand bypassing ?
+- 1.3.15 Changed "Register bypassing" to "Register file bypassing".  What is the "F block" ? What are "crf" , "srf" (shadow register file?) and "sw" ? (under Table 1.6)
+- 1.3.16 Should this be moved to 1.3.10 (Address options) ? What is the purpose of the middle mux in Figure 1.8
+- (see comment 1.3.19 below also) 1.3.17 Why does it need to check the address range (last sentence of the section) ?
+- 1.3.18 All register files have an output valid bit ?
+- 1.3.19 Should this be merged with 1.3.17 ?
+- Figure 1.11 Isn't the title "Dataflow register file qualified valid bit" ?
+- Figure 1.12 The valid delays the read operation or does it enable it whenever it is asserted in this case ?
+- Figure 1.13 It has a title however the contents appear to have been lost
+- 1.3.22 "There is an option" - where is this option ? in the CSL language ?
+- 1.3.23 Where are these flags being used ? In table 1.7 there are some abbreviations - are these the flags ?
+- 1.3.25 "A register in a Register File can be written using either the data_in and the wr_addr, wr_en or a special input which is tied to a specific register along with a special wr_en." - where is the wr_addr ? The sentence is unclear: a special input which is tied to a specific register ?
+- 1.3.26 "Specifying that a register or field is connected to an individual input will not disconnect that register from data_in" why would it disconnect ? and what is the difference between data_in and an individual input ? Just the range ?
+- 1.3.27 What is the main block in Figure 1.16 ? There are no details as to how the event detector works and what does it detects ? Does it detect certain input addresses ? How does this fit in the "Connecting register file inputs and outputs to registers and fields" section ?
+- 1.3.28.1 Is identical with 1.3.25 however the figures are different. Add this figure to 1.3.25, update figure from 1.3.25 or remove this ?
+- 1.3.31 has no title - suggested "Preloading register files". However, "The contents of a register file may be written and the entire register file can be shifted into a FIFO in one cycle." why is this neccessary ? for speed ?
+The text below Figure 1.22 is not very clear: Is it about the purposes of register files ?
+- Figures 1.23, 1.24 and 1.25 have no title and it is not clear where they fit.
+- 1.5 Commands issues:
+	- keep description under Example paragraph ? In this case I have mixed description under Examples parahraph with the ones in the actual example as comments
+	- keep verilog code sections for examples ?
+	Commands:
+	- register_file_name.module();  what kind of a module is this ? In the description "Create a module and put it in a file named register_file_name.language_extension" what kind of file is this ?
+	- register_file_name.inline();  I don't understand what this instruction does.
+	- register_file_name.library(library_file_name);  why kind of module does it create ? why is this a method of the register_file_name object ?
+	- register_file_name.bypass();  "a bypass which connects the write bus and the register file output to the read output." - Is there a way to control the way of this bypass ? Fine grain control 
+	- register_file_name.rd_en(); Can rd_en function receive the name of a signal as an argument ? Suppose we have more signals and want to use a specific one.
+	- register_file_name.output_reg(register_name); In the example we need to create a register with csl_reg command. Is it ok to use commands from other docs for these simple examples ?
+	- register_file_name.output_individual_reg_fields( register_name.[field_name]); The square brackets appear to be BNF showing field_name may or may not be present in the instruction, but being bold type may be confused with CSL instruction syntax. Does this create a register for each input ?
+	-~page 30 register_file_name.output; this may need to be dropped as the next command deals with output, and also it is not clearly outlined what should output method do in this case.
+	- register_file_name.input_ff; The description reads "Add an input flip flop for n input signals." - does n refer to all inputs ? Otherwise there should be a way to specify this n.
+	- register_file_name.valid(); Why do we need a void argument list for the valid method, as long as it doesn't require any parameters would it be better to keep it like: register_file_name.valid; (Discussion regarding the presence or absence of () ).
+	- register_file_name.event((rd | wr | rd_wr) (register_name[.field_name] | all_regs)); It is a mix of CSL and BNF. Maybe keep only a CSL format like register_file_name.event((access_attribute) (object_name)); where access attribute can be rd | wr | rd_wr and object name can be register_name[.field_name] if void (e.g register_file_name.event((rd) ());  ) or a special identifier like all_regs register_file_name.event((rd) (all_regs)); apply attribute to all registers
+	- register_file_name.event(register_name.[field_name]); this command appears to apply to only a field from within a register and the BNF square brackets surrounding field_name make it look optional, but in this case it is the command described earlier and even so, it should be register_file_name.event(register_name[.field_name]);
+	- changed register_file_name.out_prefix(register_name.field); to register_file_name.out_prefix(register_name.field_name); - what does this command do ? Same question for the next one. in_prefix commands below contain an extra user variable called prefix. Should out_prefix commands be the same ?
+Also, no all_regs switch is present, like it is in the in_prefix command. !see note below about out_prefix command
+
+	- register_file_name.in_prefix(prefix, (register_name | all_regs));  vs  register_file_name.in_prefix(register_name);  vs  register_file_name.in_prefix(prefix, (register_name | all_regs));  some of these commands have prefix variable, some don't - what is the difference between them ?
+	- register_file_name.address_range(address_range); - address_range is a range expression and in the example is given as [X:Y], so does that mean that the command would look something like this: register_file_name.address_range([X:Y]); ??
+	- register_file_name.starting_address(address_expression); address_expression can be an address relative to another: how would it look like ?
+	- register_file_name.register_group group_name([all | register_field]); Could "all" be a default value so that the all specifier would not be used ?
+	- register_file_name.valid_bit(or_all_regs | register_field); isn't there already an instruction register_file_name.valid(); do they conflict ?
+	- register_file_name.read_channel([register_field_name | prefix]); - why would an additional read channel required ?
+	- register_file_name.do_not_connect_registers_fields_to_ios([all | register_field]); What is IOS ?
+	- register_file_name.connect_input_to_registers_fields([all | register_field]); Select only a register field to deal with the inputs ?
+	- register_file_name.connect_inputs_to_all_registers([all | register_field]); The description reads "The input of all registers are connected to an individual input with the name register_name_input." - register_name_input doesn't appear to be used in the command and then why name it ? same question for next instruction
+	- register_file_name.connect_input_to_reg/field( [all | register_field]); why does this command have a slash / in the csl specific part ?
+	- register_file_name.connect_input_to_reg/field( [all | register_field]); Isn't this similar to register_file_name.connect_input_to_registers_fields([all | register_field]); ? 
+	- register_file_name.clock(clock_name); Can there be used more than one clock for the same register file ?
+	- In the command register_file_name.named_register(register_field_name, address); description I saw csl_vector_object and csl_scalar_object: what is the difference between the two in this particular context ?
+	- register_file_name.connect_registers_fields_to_outputs([all | register_field]);  is very similar to  register_file_name.connect_reg/field_to_output([all | register_field]); Also in the description there is a reference to a figure but there is no context given for this reference. Maybe some text from the description does not belong here ?
+	- register_file_name.register_fields.explicitly_cleared([[register name | register address], signal_name]); - it says register_fileds but how can one specify multiple register fileds ? What is the signal_name in this context and what it does ? The description is also unclear.
+	- register_file_name.register_fields.create_wr_event_list( single_pulse, [all | register_field]); is it necessary to specify in the command the existence of the single pulse - maybe better add the name signal_name_wr_event ? And also, where does it get the signal_name from ?
+
+	- !see note above: register_file_name.out_prefix(prefix, [all_regs | regname.field]; duplicate ? Also, the description refers to out_prefix and apparently to the in_prefix command which is not present here. There is however a command (?) in the commands summary (at the end): register_file_name.in_prefix(string); "Prefix the input signal names with the string string."
+	- register_file_name.wr_addr(ID); what is ID in this case ? is it the address where the write is performed ?
+
+	- 1.6.1 - in the verilog example the ports are named like rf_wr_data_in, rf_wr_addr... Does csl assigns default names to these ports ?
+	- 1.6.17 The section has no name, and Figure 1.42 has no contents
+	- Figure 1.43 What is the middle mux used for ?
+	- section 1.7 is void
+
+Eugen
+Register file definition:
+  A register file is a colletion of registers which are addresseable. A read
+address is used to select the register and the value of that register is
+presented at the data_out signal of the register file. The data_in value is
+written to the register selected by the write address when the write enable signal is
+asserted.
+
+global change: field -> cell
+
+1.3.2 Explain the picture (figure 1.1 needs fixing) . What is with the gate with only one input? 
+What is with the boxes, are they flip-flops?
+fix: remove multiple /n and /n*m and put them before the tree branches
+the gate has n inputs
+
+1.3.3 
+0-63, is that hex ?
+I don't think that is a correct address range  : _003F (correct range)
+Quote: ( !!!!!!!!! REWRITE )
+  If example addresses 5 -10 are included in the address range then 4 is
+  missing. // TODO remove this sentence
+  6 bits are used as the offset into the register file
+  A sparse address range may be specified : 0-3 and 10-5.
+adress ranges: 10-5 and 3-0.
+please be more specific here, are these the address ranges of the address or
+the whole addresses ? Why is one range represented as 0-3 and the second 10-5,
+shouldn't it be 0-3 and 5-10 or 3-0 and 10-5 ??
+Add figure with missing adresses.   
+----------------------
+NOTE: This belongs in the memory map document
+Gap definition: 
+  A gap in a memory range is one or more unused word in a memory range
+REWRITE:
+  We may also have a sparse adress range. This means than the there are
+gaps in the adress range. There are more than one adress ranges.
+  Example:
+    The address range 0-10 excluding address 4 is created. This addres range is represented by 
+    the following ranges 0-3 and 5-10
+  There are two different ways to create an address range with gaps, and the
+resulting address range is equivalent:
+    1) Create a range and exclude centain addresses
+    2) a) Create two or more ranges. 
+       b) Each range must contain a unique set of adresses. 
+       c) Combine the ranges into one address range.
+
+1.3.4 Elaborate ......
+figure 1.2 need to be fixed
+csl_register_file rfn;
+rfn.size(16);
+rfn.reg_name(1,status);
+rfn.reg_name(2,control);
+rfn.reg_name(3,interrupt);
+..........................
+rfn.reg_const(7,12'hFA3); //register 12 is a constant register with the the value 12'hFA3
+this is 3 sections
+1) address gaps
+2) named ranges
+3) address range detection
+
+1.3.5
+Quote:
+  Register files with more than one write port will detect multiple writes to
+  the same address location during the same cycle. This condition generates an
+  error.
+  A register can be set to a constant value by setting the const attribute to a
+  value.
+  register_name.constant(numeric expression);
+What does one thing have to do with the other ?Two different sections
+And how will the memory behave ? An error bit will be set.
+Why do you need constant values in a memory ? Is it a read-only memory?
+Quote:
+  A register can be set to a constant value by setting the const attribute to a
+  value.
+  register_name.constant(numeric expression);
+MOVE THIS TO THE csl_register document
+
+1.3.6
+Quote:
+  mask is used to extract the address offset
+  wire [3:0] mask = 4’b1111;
+  wire [3:0] addr = addr_in & mask;
+  wire [15:0] decoder = 1 << addr;
+elaborate here, is this the way an address offset will be translated from csl
+to verilog? Will this suffice (using a mask)? (Acctually yes, it should work
+since all the memories have a 2^n addesses, but are there any other, more
+exotic cases when this condition isn't satisfied ?
+//REMOVE
+
+1.3.7
+Quote:
+  //REMOVE THE CODE
+  rfregname_rd_en=(addreg == REG_ADDR_NAME & pipe_valid & <pipe_enable> & rd_en)
+  rfregname_wr_en=(addreg == REG_ADDR_NAME & pipe_valid & <pipe_enable> & wr_en)
+  There can be one or more address decoders per register file.
+please elaborate, what is the difference between register decoder and address
+decoder?
+
+FIGURE 1.3 Incomplete address space
+• n is the width of the bus
+• m are the number of unused addresses in the address spaces
+//MOVE THIS FIGURE TO THE GAP SECTION WITH THE TEXT
+Elaborate, what happens to the m bits that aren't mapped ? Can that address
+space be used somewhere else?
+
+1.3.8
+A checker will validate the addresses presented to the rf. If an address does
+not fall in the rf address range and the rd_en or wr_en bits are set then and
+error will be generated.
+Where ? in the testbench ? Who will treat that error ? How is that going to
+help the hardware developer?
+
+1.3.9
+Quote:
+  The register file is accessed with the base address + offset .
+  If the base address is 0x32000000 and the address range is 0-63 than the mask
+  for the address is 0x3200_0000.
+  The address range in the global map is 0x3200_0000 to 0x3200_0063.
+  6 bits are used as the address offset into the register file.
+This should be merged with 1.3.3, also fix the address range
+
+1.3.10
+Are the marked lines the available options ?
+Quote:
+  The first address for the register file can be specified to enable read and
+  writes.
+Explain this sentence, maybe rewrite .. Why the first adress, why not the
+whole memory block, or maybe you want separate read enable and write enable
+signals for a part or the memory (is memory equivalent to register file here?) ? 
+
+Quote:
+  During cycle n writes to the RF and during cycle n+1 reads from the same
+  address will result in the write data being forwarded.
+Rephrase:
+  if a write operation is performed on the register file (maybe register file
+  cell or a word in the register file) and then a on the n+1 cycle a read
+  operation is performed on the same memory cell, the write data will be
+  forwarded (what does that mean ? will the written data be cached ?)
+Quote:
+  Multiple writes to the same address location during the same cycle will
+  generate an error.
+..... talk, commenting each sencence here won't work
+
+1.3.11
+Quote:
+  In Figure 1.4 on page 6 we should see the write side of a rf which contains a
+  named register.
+What kind of explanation is this. Rephrase: in figure blah you can see a ...
+
+Quote:
+  The named register can be written either using the wr_addr, wr_en, and wr_data
+  signals or the wr_config_en and wr_data signals.
+so the register file contains registers and each register can be accessed
+throught the register file using the signals above, does that also mean that
+each register in the register file has a config and it can be set using the
+other set or signals ? What doens the config contain, how do we use it, this
+should be explained in the begining
+why does the figure contain specific number of bits for the address and data,
+why doesn't config enable have also a specified number of bits, and also the
+other signals ...
+
+Read registers, write registers, why isn't there and explanation were exacty
+we place them in our design and how how do we use them, how are they helping
+us ...
+
+1.3.12
+Same problem as in 1.3.11, the document musn't use an expression like "we
+should see", the last sentence isn't finished.
+
+Quote:
+  The external write enable is generated by the register file’s address
+  decoder.
+This isn't showed in the figure, how exactly does that work?
+
+1.3.13
+Quote:
+  For example in ATA the task of address space is 0-15 logical addresses but the
+  regfile is only 8 physical addresses.
+Task of adress space  = ?
+
+Quote:
+  The registers
+  have different contexts depending on whether the current operation is read or
+  is write. Register
+  7 is a status register and register 15 is a command register but they are both
+  the same physical register. Register file outputs can be either a register or
+  a field. Register file inputs can be either internal to the units which
+  contains the register file and a register external to the register file but
+  input to RF. R7 is not an internal register instead R7 is an input into the
+  RF.
+The example shouldn't be somewere inside a paragraph, but be as a separate
+paragraph. Also what is a field ? Try a better explanation for the example
+because the way this one is phrased make it difficult to understand.
+The last two sentences don't make sence. What is ATA ??
+
+1.3.15
+This is getting really unclear, first of all what does the bypassing logic
+actually optimise, the read or the write operation? As I understand it is the
+read operation, but what does this have to do with the write operation ? On
+what principle does this logic actually work ?
+
+Quote:
+  The contents of a shadow register file can be written in any order. The srf is
+  shifted into the crf in one cycle. This one cycle update mechanism guarentees
+  that the bits in the crf are updated at the same time. This allows sw to write
+  the srf registers in any order.
+Shadow register file = ?
+crf = ?
+sw = ?
+This is not complete at all
+
+
+-------------
+COMMAD SUMMARY
+It would be a good idea to put links in each of the csl_concepts to the the
+csl_commands that implement each concept. This way it will be easier to
+understand each concept with its implementation and easier to browse on how to
+do something. Also the command should have links to the concepts they
+implement.
+Derek should write the csl code for each command.
+Also it would be nice to have a copy command in each cls container, this would
+be a mechanism to simulate C++ inheritance. A user might want to copy an
+existing csl object and them modify it to meet him own reqirements. This way
+we might implement code reuseability.
+
+
+register_file_name.output_reg
+The outputs of the register file are registered.
+Where are they registered?
+
+register_file_name.output_individual_reg_fields(register_name);
+Register the data_out bus.
+Same problem here
+
+register_file_name.output_individual_reg_fields( register_name.[field_name]);
+DESCRIPTION :
+Create outputs tied to each register.
+Doesn't this command register anything ?
+what are the square brakets here for ?
+
+register_file_name.output_ff;
+DESCRIPTION :
+Add an output flip flop for all output signals. Register the output of the
+register file.
+the command name should be add_output_ff
+
+register_file_name.input_ff;
+DESCRIPTION :
+Add an input flip flop for n input signals.
+should be called add_input_ff
+
+register_file_name.valid();
+DESCRIPTION :
+The register file contains a vlaud bit which is asserted when a read operation
+is performed.
+what does it mean that a valid bit asserted ?
+What should this command do exactly
+
+register_file_name.event((rd | wr | rd_wr) (register.[ field_name]_name | all_regs));
+DESCRIPTION :
+An event signal with the name register_field_name_event is created when the
+register or register field is read or written or both.
+This description isn't complete, what is the meaning of the square brakets,
+what does all regs mean ? What is the resolution operator for?
+This command should be renamed to add_event
+
+register_file_name.event(register_name);
+DESCRIPTION :
+the description of the command.
+register_file_name.event(register_name.[field_name]);
+DESCRIPTION :
+the description of the command.
+Add description here
+
+register_file_name.out_prefix(prefix, [all_regs | regname.field];
+DESCRIPTION :
+Prefix the output names with the specified prefix. Prefix the input names with
+the specified prefix.
+The second sentence doesn't belong here.
+what is regname.field, Actually a description for each name in a command
+description is a good idea, and also to add links to the definitions of the
+related notions and commands
+
+register_file_name.out_prefix(register_name);
+DESCRIPTION :
+description of the command.
+register_file_name.out_prefix(register_name.field);
+DESCRIPTION :
+description of the command.
+.........
+add description here
+
+register_file_name.starting_address(address_expression);
+DESCRIPTION :
+Declare the starting address of the register file. address_expression can be
+an absolute address or can be relative to another address.
+TODO: add a link to the address_expression syntax
+
+register_file_name.register_group group_name([all | register_field]);
+DESCRIPTION :
+Group the registers_fields in the argument list and name the group. Operations
+listed below can be performed on named groups of registers_fields.
+What operations?
+Is the group going to be registered into the global scope, maybe
+register_file_name.group_name to be registered.
+
+register_file_name.valid_bit(or_all_regs | register_field);
+DESCRIPTION :
+A pipelined valid bit is generated from the logical OR of the read enable(s)
+or from a read of a named register. This is used to tell the downstream logic
+that an read has occurred and that the data at the output is valid.
+Can't it be a group of registers ? Also you need the figure here or a link to
+the figure and the concepts
+
+register_file_name.read_channel([register_field_name | prefix]);
+DESCRIPTION :
+Add a read channel to a register file. The read channel consists of the
+signals <n>_rd_data, <n>_rd_addr and optionally <n>_rd_en, where <n> is either
+the name of the register file (if no name is passed to read_channel) or prefix
+or register_field_name. Note that register_field_name has to already be
+declared.

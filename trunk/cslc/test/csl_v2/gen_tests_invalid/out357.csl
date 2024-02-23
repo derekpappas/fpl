@@ -1,0 +1,136 @@
+csl_enum oo {
+	st,
+	ty,
+	da,
+	bp
+};
+csl_enum cd {
+	dw,
+	vj,
+	se,
+	tx,
+	pd,
+	ih,
+	fh,
+	ux,
+	rs,
+	ig,
+	jd,
+	df,
+	ei
+};
+csl_enum fi {
+	ak = 94,
+	ld = 5,
+	jh = 88
+};
+csl_isa_instruction_format nc{
+    nc( ){
+     set_width( 7);
+     generate_decoder( co);
+  }
+}
+;
+csl_isa_instruction og : nc{
+    og( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa_instruction io : nc{
+    io( ){
+    set_asm_mnemonic( csl_list "hl", "mq");
+  }
+}
+;
+csl_isa_instruction ss : nc{
+    ss( ){
+    set_asm_mnemonic( nc);
+  }
+}
+;
+csl_isa dn{
+    dn( ){
+     set_decoder_name( "kj");
+     set_decoder_out_name_prefix( "ar");
+     set_decoder_out_name_suffix( "ve");
+     generate_decoder( fvlx);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo ym{
+   ym( ){
+     add_logic( programable_depth, 9);
+     add_logic( async_fifo);
+  }
+}
+;
+csl_memory_map_page ht{
+    ht( ){
+     add_address_range( 1, 8);
+     set_address_increment( 8);
+     set_next_address( 4);
+     get_next_address( );
+     add( ym, "hv", );
+     get_lower_bound( );
+     get_upper_bound( );
+     set_aligment( 8);
+     get_aligment( );
+  }
+}
+;
+csl_memory_map_page oq{
+  ht hl;
+  ht ib;
+  ht ts;
+    oq( ){
+     set_address_increment( 5);
+     set_aligment( 6);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page sp{
+    sp( ){
+     set_address_increment( 9);
+     set_next_address( 5);
+     get_data_word_wodth( );
+     set_aligment( 3);
+  }
+}
+;
+csl_memory_map yw{
+  sp of;
+  ht dk;
+  oq bd;
+  ht tw;
+    yw( ){
+     auto_gen_memory_map( );
+     set_top_unit( lx);
+htoq.add_to_memory_map( 8,none); 
+     set_type( page);
+htoq.set_access_rights_enum( htsp); 
+     set_data_word_width( 1);
+     set_prefix( wq);
+     set_suffix( nn);
+  }
+}
+;
+csl_register rr{
+    rr( ){
+     set_atribute( read_write);
+     add_logic( wr_en);
+     stop_at_end_value( );
+     add_logic( inc_signal);
+  }
+}
+;
+csl_register ig{
+    ig( ){
+     set_width( 9);
+     add_logic( read_valid);
+     set_const_value( 6);
+  }
+}
+;

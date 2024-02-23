@@ -1,0 +1,28 @@
+//int signal_object_name.get_width(); example 
+//(from old  csl_interconnect.fm docs) modified after the new sintax
+//monicah
+//26 July 2007
+
+csl_unit Fetch{
+	
+	csl_port IR(output,32), re(input), addr(input), instr1(input);	
+	Fetch(){
+	}	
+};
+
+csl_unit Instr_Mem{
+  csl_port IR(output,32), re(input), addr(input), instr1(input);
+	Instr_Mem(){}
+};
+
+csl_unit IF_stage{
+	csl_port IR(output, 32);
+	csl_signal re_sgn, addr_sgn, instr_sgn, IR_sgn; 
+	Fetch Fetch_i(.re(re_sgn),.addr(addr_sgn),.instr1(instr_sgn),.IR(IR_sgn));
+	Instr_Mem Instr_Mem_i(.re(re_sgn), .addr(addr_sgn),.instr1(instr_sgn),.IR(IR_sgn));
+	IF_stage(){
+		addr_sgn.set_width(16);
+		instr_sgn.set_width(32);
+		IR_sgn.set_width(instr_sgn.get_width());
+	}
+};

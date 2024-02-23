@@ -1,0 +1,70 @@
+//Monica
+
+csl_enum op_code{
+   ADD,
+   MOV,
+   SUB
+}; 
+csl_enum eBranch{
+   BR0,
+   BR1
+}; 
+csl_isa_field op{
+   op(){
+     set_type(opcode);
+     set_width(2);
+     set_enum(op_code); 
+   }
+};
+csl_isa_field branch1{
+  branch1(){
+    set_type(selector);
+    set_width(2);
+    set_enum(eBranch); 
+  }
+};
+csl_unit u{
+  u(){
+  }
+};
+csl_isa_element isa {
+  isa() {
+    set_type(root_format);
+    set_width(32);
+  }
+}; 
+csl_isa_element f: isa {
+    op op;
+ branch1 branch1;
+   f() {
+     set_type(instr_format);
+   
+   }
+}; 
+csl_isa_element f1: f{
+
+  f1() {
+    set_type(instr);
+    op.set_enum_item(MOV);
+    branch1.set_enum_item(BR0);
+ //   branch1.gen_decoder(u);  // command probably changed or not implemented
+  }
+};  
+csl_isa_element f2: f{
+
+  f2() {
+    set_type(instr);
+    op.set_enum_item(ADD);
+    branch1.set_enum_item(BR1);
+   // branch1.gen_decoder(u); // command probably changed or not implemented
+  }
+};  
+csl_isa_element f3: f{
+
+  f3() {
+    set_type(instr);
+    op.set_enum_item(SUB);
+    branch1.set_enum_item(BR1);
+   // branch1.gen_decoder(u); // command probably changed or not implemented
+  }
+};  

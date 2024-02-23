@@ -1,0 +1,15 @@
+csl_unit u{
+csl_signal clk; 
+
+u(){
+clk.set_attr(clock);
+}
+};
+
+csl_testbench tb {
+u u0;
+ csl_signal clk(reg); 
+tb() {
+clk.set_attr(clock);
+}
+};

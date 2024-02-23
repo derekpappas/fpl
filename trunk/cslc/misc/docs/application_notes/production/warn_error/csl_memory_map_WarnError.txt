@@ -1,0 +1,3 @@
+	instruction:memory_map_name.name_max_length(length);
+warning/error: the compiler should flag an error if the max length is smaller than the lentghs of other memory elements combined or standalone
+

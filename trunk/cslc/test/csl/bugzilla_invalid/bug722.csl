@@ -1,0 +1,6 @@
+csl_memory_map mm{
+  fp fpag;
+  mm(){
+    set_type(cvhbg);//should give a error message 
+  }
+};

@@ -1,0 +1,52 @@
+//Monica
+//13 November, 2007 
+
+csl_interface ifc{
+  csl_port stim_data(input), stim_v(input);
+  csl_port exp_data (output), exp_v(output);
+   csl_port clk(input);
+  ifc(){
+       clk.set_attr(clock);
+  }
+};
+
+csl_unit DUT{
+  ifc ifc1; 
+  DUT(){
+    }
+};
+
+csl_unit a {
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(output);
+  csl_port p4(output);
+  csl_port p5(input);
+  DUT dut1(.ifc1.stim_data(p1),.ifc1.stim_v(p2),.ifc1.exp_data(p3),.ifc1.exp_v(p4),.ifc1.clk(p5));
+  a (){}
+};
+
+csl_vector stim{
+
+  stim(){
+    set_unit_name(DUT);
+    set_direction(input);
+  }
+};
+
+csl_vector exp{
+
+  exp(){
+    set_unit_name(DUT);
+    set_direction(output);
+  }
+};
+
+csl_testbench TB{
+  csl_signal clk(reg);
+  DUT DUT;
+  TB(){
+    clk.set_attr(clock);
+    add_logic(clock, clk, 10, ns);
+  }
+};

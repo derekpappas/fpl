@@ -1,0 +1,30 @@
+//oanab
+//27 oct 2007
+//tb has no clock
+
+csl_unit dut{
+  csl_port clk(input);
+  csl_port stim(input),exp(output);
+  dut(){
+    clk.set_attr(clock);
+}
+};
+
+csl_vector stim{
+  stim(){
+    set_unit_name(dut);
+    set_direction(input);
+  }
+};
+
+csl_vector exp{
+  exp(){
+    set_unit_name(dut);
+    set_direction(output);
+  }
+};
+
+csl_testbench tb{   // tb has no clock 
+dut dut;
+  tb(){}
+};

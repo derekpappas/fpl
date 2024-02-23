@@ -1,0 +1,21 @@
+//oanab
+//10 nov 2007
+
+csl_enum en{
+  x,y,z
+    };
+
+csl_field f1{
+  f1(){
+    set_enum(en);
+  }
+};
+
+csl_field f2{
+   f1 f12;
+  f2(){
+    set_offset(4); 
+  }
+};
+
+

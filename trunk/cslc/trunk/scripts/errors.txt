@@ -1,0 +1,27 @@
+# Description: Contains a list of errors
+# Structure:
+# 0 priority is for important errors: seg faults and assertion
+# failures
+# 1 priority is for memory leaks
+# 2 priority is for normal errors
+# 3 priority is for warnings
+# 4 is for errors reported correctly
+# error | priority (0 for highest, the others: 1+)
+"Assertion failure"          0
+"Segmentation fault"         0
+"Assertion"                  0
+"ANTLR exception"            0
+"Leak summary"               1
+"exception"                  2
+"Missmatch"                  2
+"Abbort"                     2
+"NoViableAlt"                2
+"unexpected"                 2
+#"Expecting identifier"       2
+"Source skipped"             2
+"Type check on cast failure" 2
+"Invalid option"             2
+"Warning"                   3
+"WARNING"                   3
+"Error"                     4
+

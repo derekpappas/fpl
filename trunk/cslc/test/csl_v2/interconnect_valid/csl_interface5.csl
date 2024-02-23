@@ -1,0 +1,41 @@
+//author: Monica
+//test: add instance list 
+
+csl_interface ifc {
+  csl_port i0(input);
+  csl_port i1(input);
+  csl_port i2(input);
+  csl_port i3(output);
+  ifc(){
+
+  }
+};
+
+csl_unit A {
+  ifc ifc;
+  csl_port a1(input, 2);
+  csl_port a2(input, 2);
+  csl_port a3(output, 2);
+  A(){
+
+  }
+};
+
+csl_unit B {
+ 
+  ifc ifc;
+  csl_list A(A0, A1, A2, A3);
+  csl_signal b1(2);
+  csl_signal b2(2);
+  csl_signal b3(2);
+
+  B(){ }
+};
+csl_unit C{
+csl_signal a1, a2;
+csl_list ports1(a1,a2);
+ A A;
+ B B;
+ C(){}
+};
+

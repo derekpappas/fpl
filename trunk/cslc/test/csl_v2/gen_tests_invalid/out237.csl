@@ -1,0 +1,132 @@
+csl_enum nr {
+	ey = 66,
+	in = 3,
+	ba = 31,
+	qg = 60
+};
+csl_enum dh {
+	hs,
+	wm,
+	wi,
+	te,
+	gg,
+	qk,
+	ur,
+	me,
+	nx,
+	id,
+	pm,
+	fx,
+	di
+};
+csl_enum bt {
+	qe,
+	by,
+	ya,
+	nv,
+	ih,
+	ar,
+	ns,
+	ck,
+	mq,
+	ob
+};
+csl_isa_instruction_format ow{
+    ow( ){
+     set_width( 6);
+     generate_decoder( wdtsok);
+  }
+}
+;
+csl_isa_instruction ea : ow{
+    ea( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa pa{
+    pa( ){
+     set_decoder_name( "ug");
+     set_decoder_out_name_prefix( "dh");
+     set_decoder_out_name_suffix( "ib");
+     generate_decoder( ostsok);
+  }
+}
+;
+csl_fifo ms{
+   ms( ){
+     add_logic( output_rd_addr);
+  }
+}
+;
+csl_memory_map_page mw{
+    mw( ){
+     add_address_range( 1, 5);
+     set_next_address( 1);
+     set_access_rights( access_read_write, none);
+     get_aligment( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page cb{
+    cb( ){
+     get_address_increment( );
+     add_reserved_address_range( 5, 7);
+     get_upper_bound( );
+     set_data_word_width( 9);
+     get_data_word_wodth( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page id{
+  mw qo;
+  cb ds;
+  cb bl;
+  cb gf;
+    id( ){
+     get_address_increment( );
+     set_access_rights( access_write, access_read_write);
+     add_reserved_address_range( 6, 8);
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 9);
+     set_endianess( big_endianbig_endian);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map vw{
+    vw( ){
+     auto_gen_memory_map( );
+     set_type( hierach);
+     set_data_word_width( 3);
+     set_prefix( ws);
+     get_prefix( );
+     set_suffix( is);
+  }
+}
+;
+csl_register bq{
+    bq( ){
+     set_type( STATIC);
+     set_atribute( shadow);
+     constant( 3);
+     add_logic( rd_en);
+     add_logic( wr_en);
+     init_value( 3);
+     reset_value( 3);
+     add_logic( gray_output);
+     set_count_amount( 0);
+     set_start_value( 0);
+  }
+}
+;
+csl_register xm{
+    xm( ){
+     set_width( 7);
+  }
+}
+;

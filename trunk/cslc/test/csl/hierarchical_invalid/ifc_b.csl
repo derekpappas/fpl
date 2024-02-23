@@ -1,0 +1,15 @@
+// Author : CristiL
+//
+// Creating a interface with a bitrange
+
+csl_interface interfaceA {
+  csl_bitrange bitrange0(32);
+};
+
+csl_unit unitTop {
+  interfaceA interfaceA0;
+
+  unitTop() {
+    interfaceA0.reverse();
+  }
+};

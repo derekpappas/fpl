@@ -1,0 +1,31 @@
+//illegal commands from mm in isa4
+//illegal: mm_page can't be instanciate into a isa_format
+
+csl_isa_field f_field(2);
+csl_isa_field f_field2(2);
+
+csl_memory_map_page mm_page{
+    mm_page(){
+       set_data_word_width(4);
+       set_endianess(big_endian);
+    }
+}; 
+
+csl_isa_element format{
+    mm_page mm_page_i;   //can't instanciate  mmp into a isa_format
+    field field_i;
+    field field2_i;
+    format(){
+	set_type(instr_format);
+       set_width(4);            
+       set_position(field_i, 2);
+       set_next(field_i,field2_i);
+    }
+};
+
+csl_isa_element instr : mm_page{  //mm_page is not a format
+     instr(){
+	set_type(instr);
+     }
+};
+

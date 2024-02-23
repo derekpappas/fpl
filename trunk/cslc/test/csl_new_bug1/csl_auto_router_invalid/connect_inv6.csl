@@ -1,0 +1,11 @@
+//oanab
+//18 ian 2008
+//2 ports in the same interface connected
+//can connect be used in the interface's scope?
+
+csl_interface ifc {
+  csl_port x1(input,2),x2(input,4),y1(input,2),y2(output);
+  ifc () {
+    x1.connect(y1);
+  }
+};

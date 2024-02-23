@@ -1,0 +1,14 @@
+csl_memory_map_page mpage {
+};
+
+csl_memory_map mmap{
+  mpage mpage;
+	mmap(){
+		set_data_word_width(32);
+		mpage.address_range.set_access_rights(swr, RW);
+		mpage.address_range.set_access_rights(hwr, R);
+	}
+};
+
+csl_unit top {
+};

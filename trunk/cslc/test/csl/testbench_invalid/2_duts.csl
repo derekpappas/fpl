@@ -1,0 +1,42 @@
+//oanab
+//29 oct 2007
+//the testbench has 2 top units
+
+csl_fifo ff{
+  ff(){
+    set_width(4);
+    set_depth(8);
+}
+};
+
+csl_unit dut{
+  csl_port clk(input);
+  csl_port stim_i1(input),exp_o1(output);
+  dut(){
+    clk.set_attr(clock);
+  }
+};
+
+csl_vector stim{
+  stim(){
+    set_unit_name(dut);
+    set_direction(input);
+  }
+};
+
+csl_vector exp{
+  exp(){
+   set_unit_name(dut);
+   set_direction(output);
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+  dut dut(.clk(clk));     
+  ff ff;                // the 2nd top unit in the tb 
+  tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,4,ns);
+  }
+};

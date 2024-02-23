@@ -1,0 +1,16 @@
+//Petronela
+csl_interface ifc1{
+    csl_port p1(input,wire,0,8);
+    csl_port p2(output,wire,0,7);
+    ifc1(){
+  }
+};
+csl_unit a{
+    ifc1 intf;
+  a(){
+   // s1.set_width(7);//error we don't have a signal s1 declarated
+    set_unit_prefix("aaa");
+    ifc1.reverse();
+    p3.reverse();//error we don't have declarated a port p3
+  }
+};

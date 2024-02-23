@@ -1,0 +1,9 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="spi_cntl">
+<interface name="lba" >
+<port name="dummy3" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+</unit>
+</design>

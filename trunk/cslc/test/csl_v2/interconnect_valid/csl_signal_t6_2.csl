@@ -1,0 +1,27 @@
+//author: Monica
+//testing: set_bitrange(bitrange_object_name), get_bitrange().
+
+
+csl_unit u3_t6 {
+  csl_bitrange br3_1_t6(6);
+  csl_signal sgn3_1_t6;
+
+  u3_t6() {
+    sgn3_1_t6.set_bitrange(br3_1_t6);
+  }
+};
+
+csl_unit u4_t6 {
+  csl_signal sgn4_1_t6;
+
+  u4_t6() {
+    sgn4_1_t6.set_bitrange(u3_t6.sgn3_1_t6.get_bitrange());
+  }
+};
+
+csl_unit top{
+  u3_t6 u1;
+  u4_t6 u2;
+ 
+  top(){}
+};

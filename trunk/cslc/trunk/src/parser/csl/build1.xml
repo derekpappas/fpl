@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+  <project name="CSL Parser" default="debug">
+
+<!-- !!!Modify: projectDir, srcList, driverList, libraryName, dependencies and linker settings !!! Search for MODIFYME !!! -->
+
+    <target name="setDebugFlag">
+      <property name="debugFlag" value="yes"/>
+    </target>
+    
+    <target name="setCoverageFlag">
+      <property name="coverageFlag" value="yes"/>
+    </target>
+
+    <target name="setWallFlag">
+      <property name="wallFlag" value="yes"/>
+    </target>
+
+    <property name="projectDir" value="csl_parser"/>
+
+    <!-- the setDebug flag is set when this target is called -->
+    <target name="debug" depends="setDebugFlag,doDependencies,doBuild"/>
+
+    <!-- location of the sources directory -->
+    <property name="srcDirPath" value="."/>
+    
+    <!-- the list of objects(sources) -->
+    <property name="srcList" value="CParser.cpp, Base.cpp,
+    CslNumber.cpp, CslToken.cpp, CslLexerUtils.cpp, Tools.cpp,
+    CslLexer.cpp, CslParser.cpp, CslTreeWalker.cpp, SymTree.cpp"/>
+
+    <!-- the list of files generated in the homedir at build time -->
+    <property name="generatedSrcList" value="CslParser.cpp, CslParser.hpp, CslTreeWalker.cpp, CslTreeWalker.hpp, CslLexer.cpp, CslLexer.hpp,
+    CslParserTokenTypes.hpp, CslParserTokenTypes.txt, CslTokenTypes.hpp, CslTokenTypes.txt, CslTreeWalkerTokenTypes.hpp, CslTreeWalkerTokenTypes.txt"/>
+
+    <!-- the list of drivers(sources)  -->
+    <property name="driverList" value=""/>
+
+    <!-- relative path to build_utils -->
+    <property name="scriptsPath" value="../../../build_utils"/>
+
+    <!-- the output name of the Library -->
+    <property name="libraryName" value="cslParser_Library"/>
+    
+    <!-- grammar list -->
+    <property name="grammarsList" value="csl.lexer.g,csl.parser.g,csl.walker.g"/>
+
+    <target name="getAntlrDirs">
+        <property name="antlrHome" value="${topDir}/antlr"/>
+        <property name="antlrLibDir" value="${antlrHome}/lib/cpp/src"/>
+        <property name="antlrJarLocation" value="${antlrHome}/antlr.jar"/>
+    </target>
+                                                
+    <!-- ANTLR library name -->
+    <property name="antlrLibraryName" value="antlr"/>
+                        
+    <!-- compiles the executables using the WarnErr library and each driver file -->
+    <target name="buildDrivers" depends="">
+      <foreach list="${driverList}" delimiter="," param="driverFileName" target="compileDriverBinary" inheritall="true">
+      </foreach>
+    </target>
+
+    <!-- needed for cpptask aditional module -->
+    <taskdef resource="cpptasks.tasks"/>
+    <typedef resource="cpptasks.types"/> 
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+    <!-- calls external ANT script for retrieving the build path for testing general dependencies -->
+    <target name="doDependencies" unless="NoDeps">
+      <echo message="Geting General Dependencies" level="verbose"/>
+      <antfetch dir="${scriptsPath}" antfile="dependencies.xml" inheritAll="true" inheritRefs="true" return="platformTypeOut,topDir,binDir,libDir,vparserBuildPath" target="generalDependencies">
+      </antfetch>
+    </target>
+
+    <target name="removeBinaries" depends="">
+      <delete>
+        <fileset dir="${binDir}/${projectDir}" casesensitive="yes">
+	  <include name="**/*"/>
+	</fileset>
+      </delete>
+    </target>
+ 
+    <!-- clean task: deletes all files generated in the parser source directory -->
+    <target name="removeGeneratedFiles" depends="">
+	<delete>
+          <fileset dir="." includes="${generatedSrcList}"/>
+        </delete>
+    </target>
+                                
+    <target name="antlrBuildGrammars" depends="getAntlrDirs">
+    <!-- Check whether the ANTLR generated files are OOD -->
+        <uptodate property="NoANTLRReq" targetfile="${srcDirPath}/CslTokenTypes.hpp">
+            <srcfiles dir="${srcDirPath}" includes="${grammarsList}"/>
+        </uptodate>
+        <if>
+            <equals arg1="${NoANTLRReq}" arg2="true"/>
+            <then/>
+            <else>
+	    <antcall target="removeGeneratedFiles"/>
+	    </else>
+        </if>                                                                                                    
+      <if>
+	<and>
+        <equals arg1="${debugFlag}" arg2="yes" />
+        <equals arg1="${trace}" arg2="yes" />
+	</and>
+        <then>
+    	    <foreach list="${grammarsList}" delimiter="," param="grammarFile" target="callAntlrForGrammarFileTraceEnabled" inheritall="true"/>
+	</then>
+	<else>
+            <foreach list="${grammarsList}" delimiter="," param="grammarFile" target="callAntlrForGrammarFile" inheritall="true"/>
+        </else>
+      </if>
+    </target>
+                                                                                          
+    <!-- call Antlr for a grammar file -->
+    <target name="callAntlrForGrammarFile" unless="NoANTLRReq">
+      <antlr target="${grammarFile}" outputdirectory=".">
+          <classpath>
+            <pathelement location="${antlrJarLocation}"/>
+          </classpath>
+      </antlr>
+    </target>
+                                                  
+    <!-- call Antlr for a grammar file -->
+    <target name="callAntlrForGrammarFileTraceEnabled" unless="NoANTLRReq">
+      <antlr target="${grammarFile}" outputdirectory="." trace="yes">
+      <classpath>
+        <pathelement location="${antlrJarLocation}"/>
+      </classpath>
+      </antlr>
+    </target>
+    
+                                                  
+
+    <target name="compile" depends="antlrBuildGrammars">
+      <cc outfile="${binDir}/${projectDir}/${libraryName}" outtype="static">
+        <compiler name="g++">
+          <fileset dir="${srcDirPath}" casesensitive="YES" includes="${srcList}"/>
+          <compilerarg value="-g" if="debugFlag"/>
+          <compilerarg value="-I${antlrLibDir}/.." location="end"/>
+          <compilerarg value="-fprofile-arcs -ftest-coverage" if="coverageFlag"/>
+          <compilerarg value="-Wall" location="end" if="wallFlag"/>
+	  <compilerarg value="-D__RELEASE_VERSION" location="end" if="releaseFlag"/>
+          <compilerarg value="-I/opt/local/include"/>
+        </compiler>
+        <linker name="g++">
+	  <libset libs="stdc++"/>
+          <libset dir="${antlrLibDir}" libs="${antlrLibraryName}"/>
+	</linker>
+      </cc>
+    </target>
+    
+    <!-- compiles executables using the WE_ibrary and a driver file -->
+    <target name="compileDriverBinary">
+      <cc outfile="${binDir}/${projectDir}/${driverFileName}">
+        <compiler name="g++">
+          <fileset dir="${srcDirPath}" casesensitive="yes" includes="${driverFileName}.cpp"/>
+	  <compilerarg value="-g" if="debugFlag"/>
+	  <compilerarg value="-fprofile-arcs -ftest-coverage" location="end" if="coverageFlag"/>
+	  <compilerarg value="-D__RELEASE_VERSION" location="end" if="release"/>
+          <compilerarg value="-I/opt/local/include"/>
+	</compiler>
+        <linker name="g++">
+            <libset dir="${binDir}/${projectDir}" libs="${libraryName}"/>
+	    <libset libs="gcov" if="coverageFlag"/>
+	    <!-- MODIFYME IN CASE -->
+	 </linker>
+      </cc>
+    </target>
+
+    <!-- builds without testing dependencies(to be called from the project root) -->
+    <target name="doBuild" depends="doDependencies,getAntlrDirs,compile"/>
+    
+    <!-- builds the drivers -->
+    <target name="drivers" depends="doDependencies,getAntlrDirs,buildDrivers"/>
+
+    <!-- to be called from the src and not from the root -->
+    <target name="clean" depends="doDependencies,removeBinaries,removeGeneratedFiles"/>
+
+</project>

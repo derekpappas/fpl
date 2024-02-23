@@ -1,0 +1,21 @@
+//connect_units (p-c)
+//u2.p1 is not connected in the top unit.
+
+csl_unit u1{
+csl_port p1(input);
+u1(){}
+};
+
+csl_unit u2{
+csl_port p1(input);
+u1 u1;
+u2(){}
+};
+
+csl_unit top{
+u2 u2;
+top(){
+
+u2.connect_units(u2.u1);
+}
+};

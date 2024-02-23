@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="CSLC CSLOM Generators" default="help">
+
+  <property name="project.parent.dir"  value=".."/>
+  <property name="project.parent.file" value="build.xml"/>
+
+  <!-- Check all dependencies -->
+  <target name="check.dependencies" unless="no.dependencies">
+    <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+    <typedef resource="cpptasks.types"/>
+    <taskdef resource="cpptasks.tasks"/>
+
+    <antfetch dir="${project.parent.dir}" antfile="${project.parent.file}" target="set.project.list" inheritAll="false"
+              return="build.dir,
+                      support.dir,
+                      support.lib,
+                      cslom.dir,
+                      cslom.lib,
+                      we.dir,
+                      we.lib,
+                      error.lib,
+                      cslom_gen.dir,
+                      cslom_gen.lib"/>
+  </target>
+
+  <!-- Set all properties -->
+  <target name="set.all.properties" depends="check.dependencies" unless="properties.set">
+    <property name="no.dependencies"     value="on"/>
+    <property name="properties.set"      value="on"/>
+    <property name="project.root.dir"    value="${build.dir}/${cslom_gen.dir}"/>
+    <property name="project.build.lib"   value="lib${cslom_gen.lib}.a"/>
+    <property name="project.src.list"    value="CSLOM_CPP_Generator.cpp,
+                                                CSLOM_PDF_Draw.cpp,
+                                                CSLOM_PDF_Generator.cpp,
+                                                CSLOM_VerilogDefineGenerator.cpp,
+                                                CSLOM_VerilogTbCodeGenerator.cpp,
+                                                CSLOM_CslCodeGenerator.cpp,
+                                                html_template.cpp,
+                                                CSLOM_VerilogTbInterface.cpp,
+                                                CSLOM_VerilogTbTestbench.cpp,
+                                                CSLOM_CslTmplDriver.cpp,
+                                                CSIM_CPP_Generator.cpp,
+                                                CSLOM_GUI_XML_generator.cpp,
+                                                CSLOM_GUI_CSL_generator.cpp"/>
+    <property name="project.driver.list" value="CSLOmCPPGenerator_Driver,
+                                                CSLOM_PdfVisitor_Driver"/>
+
+    <mkdir dir="${project.root.dir}"/>
+  </target>
+
+  <!-- Create build directiory -->
+  <target name="create.build.dir">
+    <if>
+      <isset property="project.subdir"/>
+      <then>
+        <property name="project.build.dir" value="${project.root.dir}/${project.subdir}"/>
+      </then>
+      <else>
+        <property name="project.build.dir" value="${project.root.dir}"/>
+      </else>
+    </if>
+
+    <echo message="Build dir: '${project.build.dir}'" level="info"/>
+    <mkdir dir="${project.build.dir}"/>
+  </target>
+
+  <!-- Wall flag -->
+  <target name="wall">
+    <echo message="---------------------- wall flag on"/>
+    <property name="wall.flag" value="on"/>
+  </target>
+
+  <!-- Debug target -->
+  <target name="debug" depends="set.all.properties">
+    <echo message="---------------------- debug flag on"/>
+    <property name="debug.flag"     value="on"/>
+    <property name="project.subdir" value="debug"/>
+    <runtarget target="compile"/>
+  </target>
+
+  <!-- Clean target -->
+  <target name="clean" depends="set.all.properties">
+    <echo message="==================== Cleaning ${cslom_gen.dir} ===================="/>
+    <delete>
+      <fileset dir="${project.root.dir}" includes="**/*"/>
+    </delete>
+  </target>
+
+  <!-- Compile this project -->
+  <target name="compile" depends="set.all.properties,create.build.dir">
+    <echo message="==================== Compiling in ${cslom_gen.dir} ===================="/>
+    <cc outfile="${project.build.dir}/${cslom_gen.lib}" outtype="static">
+      <compiler name="g++">
+        <fileset dir="${basedir}" includes="${project.src.list}"/>
+        <compilerarg value="-g"                  if="debug.flag"/>
+        <compilerarg value="-ftest-coverage"     if="debug.flag"/>
+        <compilerarg value="-fprofile-arcs"      if="coverageFlag"/>
+        <compilerarg value="-D__RELEASE_VERSION" if="release.flag"/>
+        <compilerarg value="-DNDEBUG"            if="release.flag"/>
+        <compilerarg value="-Wall"               if="wall.flag"/>
+        <compilerarg value="-DQCSLOM_LIBRARY"/>
+        <compilerarg value="-DQT_NO_KEYWORDS"/>
+        <compilerarg value="-DQT_CORE_LIB"/>
+        <compilerarg value="-DQT_SHARED"/>
+        <compilerarg value="-I/opt/tools/qtsdk-2009.03/qt/include/QtCore"/>
+        <compilerarg value="-I/opt/tools/qtsdk-2009.03/qt/include"/>
+      </compiler>
+    </cc>
+
+    <symlink action="single" link="${project.root.dir}/${project.build.lib}" resource="${project.build.dir}/${project.build.lib}" overwrite="true"/>
+  </target>
+
+  <!-- Compile drivers -->
+  <target name="drivers" depends="set.all.properties">
+    <echo message="==================== Compiling drivers in ${cslom_gen.dir} ===================="/>
+    <for list="${project.driver.list}" param="driver" trim="true">
+      <sequential>
+        <echo message="File '${basedir}/@{driver}.cpp'"/>
+        <cc outfile="${project.root.dir}/@{driver}">
+          <compiler name="gcc">
+            <fileset dir="${basedir}" includes="@{driver}.cpp"/>
+            <compilerarg value="-g"                  if="debug.flag"/>
+            <compilerarg value="-D__RELEASE_VERSION" if="release.flag"/>
+            <compilerarg value="-DNDEBUG"            if="release.flag"/>
+            <compilerarg value="-Wall"               if="wall.flag"/>
+          </compiler>
+
+          <linker name="gcc">
+            <libset dir="${project.root.dir}"         libs="${cslom_gen.lib}"/>
+            <libset dir="${build.dir}/${cslom.dir}"   libs="${cslom.lib}"/>
+            <libset dir="${build.dir}/${support.dir}" libs="${support.lib}"/>
+            <libset dir="${build.dir}/${we.dir}"      libs="${we.lib},${error.lib}"/>
+            <libset libs="stdc++,hpdf,png"/>
+           </linker>
+        </cc>
+      </sequential>
+    </for>
+  </target>
+
+  <!-- Display the help/usage -->
+  <target name="help">
+    <ant dir="${project.parent.dir}" antfile="${project.parent.file}" target="help" inheritAll="false"/>
+  </target>
+
+</project>

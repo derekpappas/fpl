@@ -1,0 +1,65 @@
+//Monica
+// 04 January 2008
+//Ring node --Internal Block
+
+csl_unit in{
+  csl_port in_i(input),in_o1(output),in_o2(output);  
+in(){}
+};
+csl_unit dly{
+  csl_port dly_i(input),dly_o(output);  
+dly(){}
+};
+csl_unit out{
+  csl_port out_i1(input),out_i2(input),out_o(output);
+  out(){}
+};
+csl_unit bi{
+  csl_port bi_i(input),bi_o(output);
+  bi(){}
+};
+csl_unit bo{
+  csl_port bo_i(input),bo_o(output);
+  bo(){}
+};
+csl_fifo fifo{
+ fifo(){
+   set_width(32);
+   set_depth(2048);
+}
+};
+csl_memory mem{
+  mem(){
+    set_width(32);
+    set_depth(2048);
+  }
+};
+csl_unit cpu{
+  csl_port cpu_i1(input),cpu_i2(input),cpu_o1(output),cpu_o2(output); 
+ cpu(){}
+};
+csl_fifo qm{
+qm(){
+  set_width(32);
+  set_depth(1024);}
+};
+csl_unit cl{
+  csl_port out1(output);
+  cl(){}
+};
+
+csl_unit rn{
+  csl_signal in1,in_dly,in_bi,dly_out,out1,out_bo,bi_qm,qm_fifo,qm_cpu,fifo_cpu,cpu_mem,cpu_bo,cl_cpu;
+
+    in in(.in_i(in1),.in_o1(in_dly),.in_o2(in_bi));
+  dly dly(.dly_i(in_dly),.dly_o(dly_out));
+  out out(.out_i1(dly_out),.out_i2(out_bo),.out_o(out1));
+  bi bi(.bi_i(in_bi),.bi_o(bi_qm));
+  bo bo(.bo_i(cpu_bo),.bo_o(out_bo));
+  fifo fifo;
+  mem mem;
+  qm qm;
+  cpu cpu(.cpu_i1(fifo_cpu),.cpu_i2(qm_cpu),.cpu_o1(cpu_bo),.cpu_o2(cpu_mem));
+  cl cl(.out1(cl_cpu));
+  rn(){}
+};

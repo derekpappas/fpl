@@ -1,0 +1,48 @@
+//Monica
+// 05 may 2008
+
+csl_fifo f1{
+  f1(){
+    set_width(16);
+    set_depth(8);
+    //set_depth(1<<8); // asserts in adapter - check for bug !!!!!!!!
+    //    do_not_gen_rtl();
+  }};
+/*csl_register_file rf{
+  rf(){
+    set_width(32);
+    set_depth(1<<16);
+}
+};*/
+csl_unit unit1{
+  csl_port p1_u1(input,2);
+  csl_port p2_u1(output,4);
+  csl_signal s1(2);
+  unit1(){
+    p2_u1= {p1_u1,s1};
+  }};
+csl_unit u1{
+  csl_port in0(input),data_in(input,2);
+  csl_port in1(input);
+  csl_port sel(input);
+  csl_port out(output),data_out(output,4);
+  unit1 ui(.p1_u1(data_in),.p2_u1(data_out));
+  u1(){
+    out= (sel)? in1: in0;
+  }};
+
+csl_unit u_top{
+  csl_port p1(input,16);
+  csl_port p2(output,16);
+  csl_signal s1(16), s2;
+  csl_signal push,pop,full,empty,data(16),clk,valid;
+  f1 f1i(.push(push),.pop(pop),.full(full),.empty(empty),.rd_data(data),
+         .wr_data(data),.reset_(s2),.clock(clk),.valid(valid));
+  unit1 unit_i;
+  u1 u1i(.data_in(data[15:14]),.data_out(data[12:9]));
+  u_top(){
+    p2= s1 + p1;
+    u1i.out.connect_by_name(s2);
+    do_not_gen_rtl();
+}
+};

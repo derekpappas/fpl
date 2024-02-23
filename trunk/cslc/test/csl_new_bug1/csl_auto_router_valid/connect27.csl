@@ -1,0 +1,51 @@
+//oanab
+//21 apr 2008
+
+csl_interface ifc1 {
+  csl_port x1(input),x2(input),y1(output);
+  ifc1 () {}
+};
+
+csl_interface ifc2 {
+  csl_port x3(input),y2(output);
+  ifc1 ifc10;
+  ifc2 () {}
+};
+
+csl_interface ifc3 {
+  ifc1 ifc11;
+  ifc1 ifc12;
+  ifc2 ifc20;
+  ifc3 () {}
+};
+
+csl_unit a {
+  ifc3 ifc30;
+  a () {}
+};
+
+csl_unit b {
+  ifc1 ifc14;
+  ifc2 ifc21;
+  a a0(.ifc30.ifc12(ifc14),.ifc30.ifc20(ifc21));
+  ifc1 ifc13;
+  b () {
+ //   ifc13.reverse();
+  }
+};
+
+csl_unit c {
+  ifc1 ifc15;
+  ifc2 ifc22;
+  b b0(.ifc14(ifc15),.ifc21(ifc22),.ifc13(ifc15));
+  c () {}
+};
+
+csl_unit d {
+  c c0(.ifc15(ifc31.ifc11),.ifc22(ifc31.ifc20));
+  //c c1(.ifc15(ifc31.ifc12),.ifc22(ifc31.ifc20));
+  ifc3 ifc31;
+  d () {
+      c0.b0.a0.ifc30.ifc11.connect_by_name(ifc31.ifc12);
+  }
+};

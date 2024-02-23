@@ -1,0 +1,184 @@
+//-------------lower level units---------------
+
+csl_unit unit_aa{
+  csl_port clk(input);
+  csl_port in_a(input);
+  csl_port out_a(output);
+unit_aa(){
+  clk.set_attr(clock);
+}
+};
+csl_unit unit_bb{
+  csl_port clk(input);
+  csl_port in_b(input);
+  csl_port out_b(output);
+unit_bb(){
+  clk.set_attr(clock);
+}
+};
+csl_unit unit_cc{
+  csl_port clk(input);
+  csl_port in_c(input);
+  csl_port out_c(output);
+unit_cc(){
+  clk.set_attr(clock);
+}
+};
+
+//--------------middle level units---------------
+
+csl_unit unit_a{
+  csl_port clk(input);
+  csl_port in_a(input),out_a(output);
+
+  unit_aa aa0(.clk(clk),.in_a(in_a),.out_a(out_a));
+unit_a(){
+  clk.set_attr(clock);
+}
+};
+csl_unit unit_b{
+  csl_port clk(input);
+  csl_port in_b(input),out_b(output);
+  unit_bb bb0(.clk(clk),.in_b(in_b),.out_b(out_b));
+unit_b(){
+  clk.set_attr(clock);
+}
+};
+csl_unit unit_c{
+  csl_port clk(input);
+  csl_port in_c(input),out_c(output);
+  unit_cc cc0(.clk(clk),.in_c(in_c),.out_c(out_c));
+unit_c(){
+  clk.set_attr(clock);
+}
+};
+
+//------------top level unit-----------------
+csl_unit top{
+   csl_signal clk;
+   csl_signal in_a,in_b,in_c;
+   csl_signal out_a, out_b, out_c;
+
+   unit_a a0(.clk(clk),.in_a(in_a),.out_a(out_a));
+   unit_b b0(.clk(clk),.in_b(in_b),.out_b(out_b));
+   unit_c c0(.clk(clk),.in_c(in_c),.out_c(out_c));	
+top(){
+  clk.set_attr(clock);
+  }
+};
+
+//------------------stim/exp vectors for unit_aa----------------
+
+csl_vector stim_a {
+
+    stim_a () {
+
+        set_unit_name(unit_aa);
+        set_direction(input);
+        set_vc_capture_edge_type(rise);
+
+    }
+
+};
+
+csl_vector exp_a {
+
+    exp_a () {
+
+        set_unit_name(unit_aa);
+        set_direction(output);
+        set_vc_capture_edge_type(rise);
+
+    }
+
+};
+
+//-------------------stim/exp vectors for unit_bb--------------
+csl_vector stim_b {
+
+    stim_b () {
+
+        set_unit_name(unit_bb);
+        set_direction(input);
+        set_vc_capture_edge_type(rise);
+
+    }
+
+};
+
+csl_vector exp_b {
+
+    exp_b () {
+
+        set_unit_name(unit_bb);
+        set_direction(output);
+        set_vc_capture_edge_type(rise);
+
+    }
+
+};
+
+//-------------------stim/exp vectors for unit_cc-----------------
+csl_vector stim_c {
+
+    stim_c () {
+
+        set_unit_name(unit_cc);
+        set_direction(input);
+        set_vc_capture_edge_type(rise);
+
+    }
+
+};
+
+csl_vector exp_c {
+
+    exp_c () {
+
+        set_unit_name(unit_cc);
+        set_direction(output);
+        set_vc_capture_edge_type(rise);
+
+    }
+
+};
+
+//---------------------testbench for unit unit_aa-----------------
+csl_testbench tb_a {
+
+    unit_aa  aa1(.clk(clk));
+    csl_signal clk(reg);
+    tb_a () {
+
+        clk.set_attr(clock);
+        add_logic(clock,clk,20,ns);
+
+    }
+
+};
+//---------------------testbench for unit unit_bb-----------------
+csl_testbench tb_b {
+
+    unit_bb  bb1(.clk(clk));
+    csl_signal clk(reg);
+    tb_b () {
+
+        clk.set_attr(clock);
+        add_logic(clock,clk,20,ns);
+
+    }
+
+};
+//---------------------testbench for unit unit_cc-----------------
+csl_testbench tb_c {
+
+    unit_cc  cc1(.clk(clk));
+    csl_signal clk(reg);
+    tb_c () {
+
+        clk.set_attr(clock);
+        add_logic(clock,clk,20,ns);
+
+    }
+
+};

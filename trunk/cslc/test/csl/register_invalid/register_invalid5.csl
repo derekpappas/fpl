@@ -1,0 +1,9 @@
+//Petronela
+csl_register rg{
+  rg(){
+//    set_range(0,3);
+    set_width(16);
+    set_feedback_element(xorr);//should be xor or xnor
+  }
+};
+

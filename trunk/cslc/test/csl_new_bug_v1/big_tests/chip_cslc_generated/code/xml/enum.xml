@@ -1,0 +1,33 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="enum.xsl"?>
+<design>
+<enum name="e_opcode">
+<item name="halt" value= "4"/>
+<item name="reti" value= "5"/>
+<item name="trap" value= "6"/>
+<item name="bcc" value= "8"/>
+<item name="callm" value= "12"/>
+<item name="callry" value= "13"/>
+<item name="jmpm" value= "14"/>
+<item name="jmpry" value= "15"/>
+<item name="and_op" value= "17"/>
+<item name="or_op" value= "18"/>
+<item name="xor_op" value= "19"/>
+<item name="sll" value= "20"/>
+<item name="sra" value= "21"/>
+<item name="srl" value= "22"/>
+<item name="rotl" value= "23"/>
+<item name="add_op" value= "24"/>
+<item name="adc" value= "25"/>
+<item name="sub" value= "28"/>
+<item name="subc" value= "29"/>
+<item name="subr" value= "30"/>
+<item name="subrc" value= "31"/>
+<item name="const_add" value= "33"/>
+<item name="const_sub" value= "34"/>
+<item name="consth" value= "35"/>
+<item name="lp" value= "59"/>
+<item name="sq" value= "60"/>
+<item name="nop" value= "61"/>
+</enum>
+</design>

@@ -1,0 +1,25 @@
+csl_enum enum1{
+  a=2,
+  b=2
+};
+
+csl_field f1{
+  f1(){
+    set_enum_item(a);
+  }
+};
+
+
+csl_field f2{
+  f1(){
+    set_enum_item(b);
+  }
+};
+
+
+csl_field f3{
+  f1(){
+    set_enum(enum1);
+  }
+};
+

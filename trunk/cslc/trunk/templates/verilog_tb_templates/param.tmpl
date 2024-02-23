@@ -1,0 +1,24 @@
+`include "<TMPL_VAR stim_expect_mem_file>.v"
+<TMPL_LOOP unit_list>`include "<TMPL_VAR unit_name>.v"</TMPL_LOOP>
+module <TMPL_VAR tb_name>();                                                                              
+//------------- stimulus vector parameters---------------------
+  parameter <TMPL_VAR SIM_TIMEOUT_CNT > = <TMPL_VAR SIM_TIMEOUT_CNT_val> ;
+  parameter <TMPL_VAR STIM_MEM_WIDTH > = <TMPL_VAR STIM_MEM_WIDTH_val> ;
+  parameter <TMPL_VAR STIM_ADDR_WIDTH > = <TMPL_VAR STIM_ADDR_WIDTH_val> ;
+  parameter <TMPL_VAR STIM_VECTOR_ID > = <TMPL_VAR STIM_VECTOR_ID_val> ;
+  parameter <TMPL_VAR STIM_VECTOR_VERSION > = <TMPL_VAR STIM_VECTOR_VERSION_val> ;
+  parameter <TMPL_VAR STIM_VECTOR_NAME > = "<TMPL_VAR STIM_VECTOR_NAME_val>" ;
+  parameter <TMPL_VAR STIM_VECTOR_FILE > = "<TMPL_VAR STIM_VECTOR_FILE_val>" ;
+  parameter <TMPL_VAR STIM_VECTOR_RADIX > = <TMPL_VAR STIM_VECTOR_RADIX_val> ;
+  parameter <TMPL_VAR STIM_VECTOR_MAX_ERR > = <TMPL_VAR STIM_VECTOR_MAX_ERR_val> ;
+
+//------------- expected vector parameters---------------------
+  parameter <TMPL_VAR EXP_MEM_WIDTH > = <TMPL_VAR EXP_MEM_WIDTH_val> ;
+  parameter <TMPL_VAR EXP_ADDR_WIDTH > = <TMPL_VAR EXP_ADDR_WIDTH_val> ;
+  parameter <TMPL_VAR EXP_VECTOR_ID > = <TMPL_VAR EXP_VECTOR_ID_val> ;
+  parameter <TMPL_VAR EXP_VECTOR_VERSION > = <TMPL_VAR EXP_VECTOR_VERSION_val> ;
+  parameter <TMPL_VAR EXP_VECTOR_NAME > = "<TMPL_VAR EXP_VECTOR_NAME_val>" ;
+  parameter <TMPL_VAR EXP_VECTOR_FILE > = "<TMPL_VAR EXP_VECTOR_FILE_val>" ;
+  parameter <TMPL_VAR EXP_VECTOR_RADIX > = <TMPL_VAR  EXP_VECTOR_RADIX_val> ;
+  parameter <TMPL_VAR EXP_VECTOR_MAX_ERR > = <TMPL_VAR EXP_VECTOR_MAX_ERR_val> ;
+//--------------------------------------------------------------

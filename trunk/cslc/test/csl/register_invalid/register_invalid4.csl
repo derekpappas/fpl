@@ -1,0 +1,9 @@
+//Petronela
+csl_reg rg{
+  rg(){
+    set_range(0,3);
+//    set_width(16);
+    set_shift_type(shll);//should be shr or shl
+  }
+};
+

@@ -1,0 +1,5 @@
+"csl_type","type_decl","from_instance_unit_name","from_connect_obj_inst_name","from_width","from_direction","to_instance_unit_name","to_connect_obj_inst_name","to_width","to_direction","actual_name"
+"interface","ifca","d","ifca0",,,"c0","ifca1",,,
+"interface","ifcb","a0","ifcb0",,,"c0","ifcb1",,,"ifcc"
+"port",,"b0","pb",,"output","c0","pc",,"input","pr"
+"interface","ifcb","c0","ifcb0",,,"b0","ifcb1",,,

@@ -1,0 +1,47 @@
+//Monica
+
+csl_signal_group sg1{
+  csl_signal s1,s2,s3;
+  sg1(){
+    set_prefix("sg1_");
+  }};
+csl_signal_group sg2{
+  csl_signal s21(8),s22(16),s23(8);
+  sg2(){
+    set_prefix("");
+  }};
+csl_signal_group sg3{
+  csl_signal s31(32);
+  sg2 sg2_i1;
+  sg3(){
+    sg2_i1.no_prefix();
+    set_prefix("sg3_");
+  }
+};
+csl_signal_group sg4{
+  csl_signal s41(2);
+  sg3 sg3_i1;
+  sg3 sg3_i2;
+  sg4(){
+    sg3_i1.sg2_i1.set_prefix("");
+    sg3_i2.set_prefix("sg3_");
+  }
+};
+
+csl_unit u_unit{
+  csl_port p1(output,4);
+  csl_port p2(output,64);
+  csl_port p3(output,16);
+  csl_port p4(input,16);
+  
+  sg4 sg4_i;
+  
+  u_unit(){
+        p1 = {2{sg4_i.s41}};
+        p2 = {sg4_i.sg3_i1.s31,sg4_i.sg3_i2.s31};
+        p3 = {sg4_i.sg3_i1.sg2_i1.s21,sg4_i.sg3_i1.sg2_i1.s23};
+        p3 = sg4_i.sg3_i1.sg2_i1.s22;
+        p4 = {sg4_i.sg3_i2.sg2_i1.s21,sg4_i.sg3_i2.sg2_i1.s23};
+        p4 = sg4_i.sg3_i2.sg2_i1.s22;
+ }
+};

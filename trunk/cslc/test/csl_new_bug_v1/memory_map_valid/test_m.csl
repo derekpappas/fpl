@@ -1,0 +1,77 @@
+//oanab
+//24 oct 2007
+
+csl_enum enm{
+  p1,
+  p2,
+  p3
+ };
+
+csl_register reg{
+  reg(){
+    set_type(register);
+    set_width(8);
+  }
+};
+
+csl_unit u1{
+  reg reg1;
+  u1(){}
+};
+
+csl_unit u2{
+  u1 u1;
+  reg reg2;
+  u2(){}
+};
+
+csl_unit u3{
+  u2 u2;
+  reg reg3;
+  u3(){}
+};
+
+csl_memory_map_page mpag1{
+  mpag1(){
+    add_address_range(0,127);
+    set_unit_name(u1);
+    add(reg1,"reg");
+    // set_address_increment(4);
+    set_data_word_width(16);
+    //set_access_rights(100:120,HWR,access_read_write);
+  }
+};
+
+csl_memory_map_page mpag2{
+  mpag2(){
+    add_address_range(128,176);
+    set_unit_name(u2);
+    add(reg2,"reg");
+    //set_address_increment(2);
+    set_data_word_width(32);
+    // set_next_address(150);
+    // set_symbol_max_length(2);   ?
+  }
+};
+
+csl_memory_map_page mpag3{
+  mpag3(){
+    add_address_range(177,230);
+    set_unit_name(u3);
+    set_data_word_width(128);
+    set_alignment(64);
+    add(reg3,"register",180);
+  }
+};
+
+csl_memory_map mmap1{
+  mmap1(){
+    set_data_word_width(16);
+    set_type(hierarchical);
+    //set_access_rights_enum(enm);
+    set_prefix("memory");
+  }
+};
+
+
+

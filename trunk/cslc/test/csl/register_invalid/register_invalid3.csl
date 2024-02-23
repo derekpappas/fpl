@@ -1,0 +1,12 @@
+//Petronela
+csl_register rf;
+csl_register rg{
+  rf rf1;//error don't instanciated a register in another register
+  rg(){
+//    set_range(0,3);
+    set_width(16);
+    set_type(sft);
+    rf1.set_mask(3);//error 
+  }
+};
+

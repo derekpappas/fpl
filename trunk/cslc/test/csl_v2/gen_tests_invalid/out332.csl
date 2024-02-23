@@ -1,0 +1,148 @@
+csl_enum nw {
+	jr = 25,
+	qt = 57,
+	bv = 1,
+	yv = 99,
+	wy = 62
+};
+csl_enum no {
+	fg = 71,
+	cn = 72,
+	ke = 82,
+	vy = 58,
+	sm = 88,
+	xk = 6,
+	nv = 89,
+	sd = 82,
+	ci = 95,
+	cn = 68,
+	au = 60,
+	ib = 72,
+	qj = 34,
+	wp = 64
+};
+csl_isa_instruction_format mf{
+    mf( ){
+     set_width( 0);
+     generate_decoder( ut);
+  }
+}
+;
+csl_isa_instruction ua : mf{
+    ua( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa_instruction jd : mf{
+    jd( ){
+    set_asm_mnemonic( rm);
+  }
+}
+;
+csl_isa qu{
+  ua ah;
+  jd ye;
+  ua bo;
+  jd ym;
+  jd xi;
+  ua sy;
+  jd jb;
+  ua kl;
+  jd er;
+  jd xp;
+  jd bm;
+  ua up;
+  jd ho;
+  ua po;
+  ua ns;
+  jd qd;
+  ua ex;
+  jd yy;
+  ua if;
+  jd ut;
+  jd aw;
+  ua rc;
+  jd iq;
+  ua rg;
+  jd ma;
+  ua re;
+  ua di;
+  ua aj;
+  jd fi;
+  jd hw;
+  ua jo;
+    qu( ){
+     set_decoder_name( "yp");
+     set_decoder_out_name_suffix( "gd");
+     print( isa.txt);
+  }
+}
+;
+csl_fifo fl{
+   fl( ){
+     add_logic( parallel_output, all);
+     add_logic( stall_rd_side);
+     add_logic( rd_credit);
+  }
+}
+;
+csl_memory_map_page jm{
+    jm( ){
+     get_next_address( );
+     set_aligment( 7);
+  }
+}
+;
+csl_memory_map_page tx{
+  jm kj;
+    tx( ){
+     get_address_increment( );
+     set_access_rights( access_read_write, access_write);
+     add_reserved_address_range( 6, 5);
+     add( fl, "nj");
+     get_data_word_wodth( );
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page yp{
+    yp( ){
+     set_next_address( 5);
+     get_upper_bound( );
+     set_aligment( 5);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map lj{
+    lj( ){
+     auto_gen_memory_map( );
+     set_top_unit( kyfhut);
+txyp.add_to_memory_map( 7,access_read); 
+     set_type( hierach);
+txyp.set_access_rights_enum( jmtx); 
+     set_suffix( wl);
+     get_suffix( );
+  }
+}
+;
+csl_register ic{
+    ic( ){
+     set_atribute( shadow);
+     add_logic( wr_en);
+     reset_value( 8);
+     add_logic( cnt_dir_signal);
+  }
+}
+;
+csl_register bx{
+    bx( ){
+     set_width( 1);
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 6);
+     add_logic( bypass);
+  }
+}
+;

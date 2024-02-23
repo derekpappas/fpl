@@ -1,0 +1,62 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="Reg_int">
+<port name="Reset" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Clk_reg" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="CSB" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="WRB" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="CD_in" offset="0" upper="16-1" lower="0" direction = "input" type = "wire" />
+<port name="CD_out" offset="0" upper="16-1" lower="0" direction = "output" type = "reg" />
+<port name="CA_" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="Tx_Hwmark" offset="0" upper="5-1" lower="0" direction = "output" type = "wire" />
+<port name="Tx_Lwmark" offset="0" upper="5-1" lower="0" direction = "output" type = "wire" />
+<port name="pause_frame_send_en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="pause_quanta_set" offset="0" upper="16-1" lower="0" direction = "output" type = "wire" />
+<port name="MAC_tx_add_en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="FullDuplex" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="MaxRetry" offset="0" upper="4-1" lower="0" direction = "output" type = "wire" />
+<port name="IFGset" offset="0" upper="6-1" lower="0" direction = "output" type = "wire" />
+<port name="MAC_tx_add_prom_data" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="MAC_tx_add_prom_add" offset="0" upper="3-1" lower="0" direction = "output" type = "wire" />
+<port name="MAC_tx_add_prom_wr" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="tx_pause_en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="xoff_cpu" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="xon_cpu" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="MAC_rx_add_chk_en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="MAC_rx_add_prom_data" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="MAC_rx_add_prom_add" offset="0" upper="3-1" lower="0" direction = "output" type = "wire" />
+<port name="MAC_rx_add_prom_wr" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="broadcast_filter_en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="broadcast_bucket_depth" offset="0" upper="16-1" lower="0" direction = "output" type = "wire" />
+<port name="broadcast_bucket_interval" offset="0" upper="16-1" lower="0" direction = "output" type = "wire" />
+<port name="RX_APPEND_CRC" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Rx_Hwmark" offset="0" upper="5-1" lower="0" direction = "output" type = "wire" />
+<port name="Rx_Lwmark" offset="0" upper="5-1" lower="0" direction = "output" type = "wire" />
+<port name="CRC_chk_en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="RX_IFG_SET" offset="0" upper="6-1" lower="0" direction = "output" type = "wire" />
+<port name="RX_MAX_LENGTH" offset="0" upper="16-1" lower="0" direction = "output" type = "wire" />
+<port name="RX_MIN_LENGTH" offset="0" upper="7-1" lower="0" direction = "output" type = "wire" />
+<port name="CPU_rd_addr" offset="0" upper="6-1" lower="0" direction = "output" type = "wire" />
+<port name="CPU_rd_apply" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="CPU_rd_grant" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="CPU_rd_dout" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+<port name="Line_loop_en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Speed" offset="0" upper="3-1" lower="0" direction = "input" type = "wire" />
+<port name="Divider" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="CtrlData" offset="0" upper="16-1" lower="0" direction = "output" type = "wire" />
+<port name="Rgad" offset="0" upper="5-1" lower="0" direction = "output" type = "wire" />
+<port name="Fiad" offset="0" upper="5-1" lower="0" direction = "output" type = "wire" />
+<port name="NoPre" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="WCtrlData" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="RStat" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="ScanStat" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Busy" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="LinkFail" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Nvalid" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Prsd" offset="0" upper="16-1" lower="0" direction = "input" type = "wire" />
+<port name="WCtrlDataStart" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="RStatStart" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="UpdateMIIRX_DATAReg" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</unit>
+</design>

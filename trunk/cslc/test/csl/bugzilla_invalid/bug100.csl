@@ -1,0 +1,18 @@
+//bug 1000
+csl_unit a{
+  csl_signal s0(reg,32);
+  csl_signal s1(reg,32);
+  a(){
+  }
+};
+
+csl_unit top{
+  a a1;
+  top(){
+  }
+};
+csl_memory_map_page fp{
+  fp(){
+    add(top.a1.s0,"a1_s0");//error
+  }
+};

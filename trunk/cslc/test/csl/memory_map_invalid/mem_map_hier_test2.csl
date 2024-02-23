@@ -1,0 +1,21 @@
+csl_unit top2{
+	csl_signal s2(4);
+	csl_port p2(inout,8);
+	top2(){
+	}
+};
+
+csl_memory_map_page pg{	
+	pg(){
+		add_address_range(0,255);
+	  add(top2,"unit_top");//error we can't add a unit
+	  add(top2,"unit_top_bis");//error we can't add the same object
+	}
+};
+
+csl_memory_map m_map1{
+	pg pg0;
+	m_map1(){
+		set_type(hierarchical);
+	}
+};

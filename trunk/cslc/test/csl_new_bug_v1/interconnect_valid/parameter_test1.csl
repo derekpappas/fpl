@@ -1,0 +1,16 @@
+//Monica
+
+csl_unit u1{
+  csl_parameter x(4);
+  csl_port p_x(input,x);
+  csl_port p_y(output,x);
+  u1(){}
+};
+
+csl_unit u2{
+  csl_signal s_x1(8);
+  csl_signal s_y1(8);
+
+  u1 #(8) u11(.p_x(s_x1),.p_y(s_y1));
+  u2(){}
+};

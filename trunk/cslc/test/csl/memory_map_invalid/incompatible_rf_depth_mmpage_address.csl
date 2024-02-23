@@ -1,0 +1,23 @@
+// when adding rf1 to mmpage page0 rf1 depth should be in conflict with mpage address range
+// rf depth (4) > page0_address (2);
+// andreim
+
+csl_register_file rf1{
+   rf1(){
+     set_width(64); set_depth(4);
+   }
+};
+
+csl_memory_map_page page0{
+	page0(){
+		add_address_range(0,1);
+		set_endianess(big_endian);
+	}
+};
+
+l_memory_map mm{
+  page0 page_0(rf1);  // 
+  mm(){
+     set_data_word_width(128);
+}
+

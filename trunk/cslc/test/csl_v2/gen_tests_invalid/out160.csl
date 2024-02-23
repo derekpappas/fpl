@@ -1,0 +1,137 @@
+csl_enum tk {
+	wy,
+	ed,
+	cy,
+	ia,
+	ti,
+	td,
+	tv
+};
+csl_enum qg {
+	pd,
+	wr,
+	uv,
+	dg,
+	au,
+	sq,
+	co,
+	by,
+	pf,
+	ds
+};
+csl_enum fn {
+	ub = 16,
+	yp = 65,
+	es = 40,
+	lw = 30,
+	bd = 64
+};
+csl_isa_instruction_format gx{
+    gx( ){
+     set_width( 1);
+     generate_decoder( vy);
+  }
+}
+;
+csl_isa an{
+    an( ){
+     set_decoder_name( "rv");
+     set_decoder_out_name_prefix( "lw");
+     set_decoder_out_name_suffix( "se");
+     generate_decoder( tovyqw);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo ic{
+   ic( ){
+     add_logic( string_through, 4);
+     add_logic( output_rd_addr);
+  }
+}
+;
+csl_memory_map_page og{
+    og( ){
+     add_address_range( 9, 6);
+     get_next_address( );
+     add_reserved_address_range( 7, 0);
+     get_lower_bound( );
+     set_data_word_width( 9);
+     get_data_word_wodth( );
+     set_aligment( 9);
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page bo{
+    bo( ){
+     add_address_range( 9, 4);
+     set_address_increment( 7);
+     get_address_increment( );
+     set_next_address( 8);
+     get_next_address( );
+     add_reserved_address_range( 7, 5);
+     add( ic, "pv", 2);
+     add( og);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page bs{
+    bs( ){
+     set_address_increment( 6);
+     get_address_increment( );
+     set_next_address( 3);
+     add_reserved_address_range( 0, 5);
+     add( ic, "sk");
+     add( bo);
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_endianess( big_endianbig_endian);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map pu{
+    pu( ){
+     set_top_unit( vypoqw);
+ogbo.add_to_memory_map( 1); 
+     set_type( page);
+ogbo.set_access_rights_enum( bo); 
+     set_prefix( es);
+     get_prefix( );
+  }
+}
+;
+csl_register xn{
+    xn( ){
+     set_type( LFSR);
+     set_address( pu, );
+     get_atributes( );
+     add_logic( neg_output);
+     add_logic( rd_en);
+     init_value( 3);
+     reset_value( 4);
+     add_logic( gray_output);
+     set_end_value( 6);
+     stop_at_end_value( );
+     add_logic( cnt_dir_signal);
+  }
+}
+;
+csl_register lm{
+    lm( ){
+     set_width( 7);
+     get_width( );
+     create_rtl_module( );
+  }
+}
+;

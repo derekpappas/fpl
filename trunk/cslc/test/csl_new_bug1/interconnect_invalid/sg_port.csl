@@ -1,0 +1,11 @@
+//oanab
+//22 feb 2008
+//a signal and a port with the same name in the same unit
+
+csl_unit u {
+  csl_port clk(input);
+  csl_signal clk;
+  u () {
+    clk.set_attr(clock);
+  }
+};

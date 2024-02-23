@@ -1,0 +1,24 @@
+CC=/usr/bin/g++
+CFLAGS=-g -Wall -o
+MAKEPATH=./
+CSIMLIBPATH=$$WORK/trunk/build/linux/x86_64/csim/
+CSIMLIBNAME=Csim
+CSIMSHLIBNAME=CsimShell
+GENPATHOBJ=csim/
+GENNAME=gen
+USERPATHOBJ=csim/user/
+USERNAME=user
+MAINFILE=main.cpp
+EXECUTABLE=mainBinary
+
+all: libgen libuser
+	$(CC) $(CFLAGS) $(EXECUTABLE) $(MAINFILE) -L$(CSIMLIBPATH) -l$(CSIMSHLIBNAME) -L$(USERPATHOBJ) -l$(USERNAME) -L$(GENPATHOBJ) -l$(GENNAME) -l$(CSIMLIBNAME) 
+
+libgen:
+	make -f $(MAKEPATH)Makelib PATHOBJ=$(GENPATHOBJ) NAME=$(GENNAME)
+
+libuser:
+	make -f $(MAKEPATH)Makelib PATHOBJ=$(USERPATHOBJ) NAME=$(USERNAME)
+
+clean:
+	rm -rf $(USERPATHOBJ)*o $(USERPATHOBJ)*a $(GENPATHOBJ)*o $(GENPATHOBJ)*a

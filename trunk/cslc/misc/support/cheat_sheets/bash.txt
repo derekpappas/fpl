@@ -1,0 +1,3 @@
+Redirect de output and the standard err of a program (myProgram) to a file (myFile):
+myProgram >myFile 2>&1
+

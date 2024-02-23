@@ -1,0 +1,32 @@
+//
+
+csl_unit a {
+  csl_signal s_m(9);
+  a () {
+  }
+};
+
+csl_unit b {
+  a a0;
+  csl_port p_m(output,9);
+  b () {
+  }
+};
+
+csl_unit c {
+  csl_signal s_n(9);
+  b b0(.p_m(s_n));
+  csl_port p_n(input,9);
+  c () {
+    b0.a0.s_m.connect_by_name(p_n);  
+    s_n = p_n;
+  }
+};
+
+csl_unit d {
+  csl_signal s_p(9);
+  c c0(.p_n(s_p));
+  //b b1(.p_m(s_p));  // the port generated in the b0 conn stmt is not connected here
+  d () {
+  }
+};

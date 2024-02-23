@@ -1,0 +1,40 @@
+//AV legal
+
+csl_fifo f1{
+  f1 () {
+    set_width(32);
+    set_depth(8);
+  }
+};    
+
+csl_unit unit_top{
+  f1 f1;
+    unit_top(){
+    }
+};
+
+csl_unit top4{
+	csl_signal s4(4);
+	csl_port p4(input,8);
+	unit_top unit_top;
+};
+
+csl_memory_map_page pg{
+	pg(){
+	    add_address_range(0,255);
+            set_unit_name(unit_top);
+	}
+};
+
+csl_memory_map m_map1{
+	m_map1(){
+		set_type(hierarchical);
+	}
+};
+/*
+csl_memory_map m_map2{
+	pg pg2(top4.unit_top);
+	m_map2(){
+		set_type(hierarchical);
+	}
+};*/

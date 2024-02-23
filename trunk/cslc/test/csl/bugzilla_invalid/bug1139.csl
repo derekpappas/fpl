@@ -1,0 +1,6 @@
+csl_register gfsf1{
+    gfsf1(){
+     add_logic(dec_signal);
+  }
+}
+;

@@ -1,0 +1,32 @@
+HOW TO addErr - ( add errors)
+
+-first the error needs to be added to
+ src/csl_xml_warn_error/csl_warn_error.xml, so check to see if the
+ error already exists, if not add it. REMEBER to set the correct
+ category ( generic error types), phase ( component) and type ( exact
+ type).
+
+-the 'name' part of the error is the enum for the error
+
+-the 'we' part is :'e' - error
+                   'w' - warning
+
+- the 'desc' part of the error is the exact error, the message you
+  will see on screen, where @ are the arguments of the error(line
+  number, file name)
+
+-read src/csl_xml_warn_error/HOW_TO_libCSLC_Errors.txt to know how to
+ create the error library.
+
+REMINDER 1 : the error will be added only after you recreate the
+warn_error library and recompile
+
+REMINDER 2 : you need to check in the library
+(svn/trunk/build/linux/x86_64/csl_xml_warn_error/libCSLC_Errors.a) or
+you will BREAK THE BUILD!!! because it will compile only for you!
+
+REMINDER 3 : you need to check in the
+src/csl_xml_warn_error/csl_warn_error.xml or you will (indirectly)
+break the build because the next guy/girl that creates the warn_error
+library won't have your warnings/errors in his/hers .xml so the build
+will FAIL!!!

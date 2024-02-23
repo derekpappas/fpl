@@ -1,0 +1,141 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u_mbist">
+<port name="p_clock" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="p_reset" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="p_enable" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="p_sram_addr" offset="0" upper="15" lower="0" direction = "output" type = "wire" />
+<signal name="s_pc_im" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="s_opcode" offset="0" upper="4" lower="0" type = "wire"/>
+<signal name="s_reg_dest" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="s_op1" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="s_op2" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="s_cond" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="s_branch_addr" offset="0" upper="10" lower="0" type = "wire"/>
+<signal name="s_branch_addr_e" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="s_br_sel" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="s_shift_ammount" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="s_const_val" offset="0" upper="7" lower="0" type = "wire"/>
+<signal name="s_rom_addr" offset="0" upper="7" lower="0" type = "wire"/>
+<signal name="s_direction" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="s_mux_shift" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="s_mem_mux" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="s_status" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="s_status_in" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="s_rf_mux" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="s_es_mux" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="s_alu_mux" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="s_haddr_cmp" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="s_c_f" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="s_ir_im" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="s_rf_alu" offset="0" upper="15" lower="0" type = "wire"/>
+<signal name="s_controls" offset="0" upper="14-1" lower="0" type = "wire"/>
+<signal name="s_ld_caddr_sel" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="s_caddr_en" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="s_caddr_direction" offset="0" upper="0" lower="0" type = "wire"/>
+<instantiation type = "m_im">
+<instance name="im0">
+</instance>
+</instantiation>
+<instantiation type = "r_pc">
+<instance name="r_pc0">
+<f2a formal = "p_addr_out" actual = "s_pc_im" />
+<f2a formal = "p_br_addr" actual = "s_branch_addr_e" />
+<f2a formal = "p_clock" actual = "p_clock" />
+<f2a formal = "p_enable" actual = "p_enable" />
+<f2a formal = "p_reset" actual = "p_reset" />
+<f2a formal = "p_sel" actual = "s_br_sel" />
+</instance>
+</instantiation>
+<instantiation type = "u_ir">
+<instance name="ir0">
+<f2a formal = "p_braddr" actual = "s_branch_addr" />
+<f2a formal = "p_c" actual = "s_cond" />
+<f2a formal = "p_clock" actual = "p_clock" />
+<f2a formal = "p_const8" actual = "s_const_val" />
+<f2a formal = "p_d" actual = "s_direction" />
+<f2a formal = "p_i" actual = "s_ir_im" />
+<f2a formal = "p_op1" actual = "s_op1" />
+<f2a formal = "p_op2" actual = "s_op2" />
+<f2a formal = "p_opcode" actual = "s_opcode" />
+<f2a formal = "p_rdst" actual = "s_reg_dest" />
+<f2a formal = "p_romaddr" actual = "s_rom_addr" />
+<f2a formal = "p_sha" actual = "s_shift_ammount" />
+</instance>
+</instantiation>
+<instantiation type = "u_alu">
+<instance name="alu0">
+<f2a formal = "p_cin" actual = " offset="0" upper="1" lower="1"/>
+s_status" />
+<f2a formal = "p_cout" actual = "s_c_f" />
+<f2a formal = "p_op1" actual = "s_mux_shift" />
+<f2a formal = "p_op2" actual = "s_rf_alu" />
+<f2a formal = "p_opsel" actual = " offset="0" upper="2" lower="0"/>
+s_opcode" />
+<f2a formal = "p_res" actual = "s_alu_mux" />
+</instance>
+</instantiation>
+<instantiation type = "rf">
+<instance >
+<f2a formal = "clock" actual = "p_clock" />
+<f2a formal = "data_in" actual = "s_mem_mux" />
+<f2a formal = "data_out1" actual = "s_rf_mux" />
+<f2a formal = "data_out2" actual = "s_rf_alu" />
+<f2a formal = "rd_addr1" actual = "s_op1" />
+<f2a formal = "rd_addr2" actual = "s_op2" />
+<f2a formal = "rd_en1" actual = " offset="0" upper="11" lower="11"/>
+s_controls" />
+<f2a formal = "rd_en2" actual = " offset="0" upper="10" lower="10"/>
+s_controls" />
+<f2a formal = "reset" actual = "p_reset" />
+<f2a formal = "wr_addr" actual = "s_reg_dest" />
+<f2a formal = "wr_en" actual = " offset="0" upper="12" lower="12"/>
+s_controls" />
+</instance>
+</instantiation>
+<instantiation type = "m_rom">
+<instance >
+</instance>
+</instantiation>
+<instantiation type = "u_es">
+<instance name="es0">
+<f2a formal = "p_c" actual = "s_const_val" />
+<f2a formal = "p_ec" actual = "s_es_mux" />
+</instance>
+</instantiation>
+<instantiation type = "r_caddr">
+<instance name="caddr">
+<f2a formal = "p_addr_out" actual = "p_sram_addr" />
+<f2a formal = "p_br_addr" actual = "s_rf_alu" />
+<f2a formal = "p_clock" actual = "p_clock" />
+<f2a formal = "p_direction" actual = "s_caddr_direction" />
+<f2a formal = "p_enable" actual = "s_caddr_en" />
+<f2a formal = "p_reset" actual = "p_reset" />
+<f2a formal = "p_sel" actual = "s_ld_caddr_sel" />
+</instance>
+</instantiation>
+<instantiation type = "r_ha">
+<instance name="haddr">
+<f2a formal = "clock" actual = "p_clock" />
+<f2a formal = "enable" actual = "p_enable" />
+<f2a formal = "reg_in" actual = "s_rf_alu" />
+<f2a formal = "reg_out" actual = "s_haddr_cmp" />
+<f2a formal = "reset_" actual = "p_reset" />
+</instance>
+</instantiation>
+<instantiation type = "r_status">
+<instance name="status">
+<f2a formal = "clock" actual = "p_clock" />
+<f2a formal = "enable" actual = "p_enable" />
+<f2a formal = "reg_in" actual = "s_status_in" />
+<f2a formal = "reg_out" actual = "s_status" />
+<f2a formal = "reset_" actual = "p_reset" />
+</instance>
+</instantiation>
+<instantiation type = "u_control">
+<instance name="control">
+</instance>
+</instantiation>
+</unit>
+</design>

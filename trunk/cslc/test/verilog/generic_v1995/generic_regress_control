@@ -1,0 +1,30 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+
+#exceptions:
+acs.v                       skip    "module/fixed"
+bmg.v                       skip    "module/fixed"
+functions.v                 skip    "module in stations.v"
+fw_host_tasks.v             skip    "module in unknown file"
+J3a.v                       skip    "unknown defines"
+J3a.vf                      skip    "wrong define values/need tweaking"
+K7R643684M_R06.v            skip    "module/fixed"
+microlib.v                  skip    "not a source file"
+microtest.v                 skip    "missing include file"
+net.v                       skip    "module/fixed"
+opcodes.v                   skip    "module in unknown file"
+ps2_test_bench.v            skip    "module/fixed"
+ram.v                       skip    "module/fixed"
+rts_header.v                skip    "not a valid test"
+station.v                   skip    "undefined macros/partialy fixed, needs tweaking"
+testbench.v                 skip    "undefined macros/fixed"
+testing.v                   skip    "not a source file"
+mmu.v                       skip    "undefined macros/fixed"
+mfm_read.v                  skip    "undefined function"
+#MD_Block_Ram.v              skip    "undefined module present RAMB4_S16_S16"
+#HP_Block_Ram.v              skip    "undefined module present RAMB4_S16_S16"
+tbu.v                       skip    "missing macros/fixed"
+

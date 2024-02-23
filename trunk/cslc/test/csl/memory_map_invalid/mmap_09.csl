@@ -1,0 +1,25 @@
+csl_register_file rf{
+	rf(){
+		set_width(32);
+		set_depth(128);
+	}
+};
+csl_unit u1{
+  rf rf;
+  u1(){
+    
+  }
+};
+csl_memory_map_page mpage {
+
+};
+
+csl_memory_map mmap{
+
+	mpage mpage0;
+	mmap(){
+		set_data_word_width(32);
+		mpage0.set_next_address(64);
+       	mpage0.add(u1.rf, "RF");
+	}
+};

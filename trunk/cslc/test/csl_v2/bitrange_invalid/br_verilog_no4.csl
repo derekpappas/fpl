@@ -1,0 +1,4 @@
+//illegal test : bug1717
+csl_bitrange a(2'h12345 + something b37);
+something
+csl_unit u{}

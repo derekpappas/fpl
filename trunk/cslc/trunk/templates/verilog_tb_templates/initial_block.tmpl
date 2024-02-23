@@ -1,0 +1,36 @@
+//----------------# of cycles----------------------
+always @(posedge <TMPL_VAR clk> or negedge <TMPL_VAR testbench_reset_>) begin
+ if(~(<TMPL_VAR testbench_reset_>)) begin
+ 	<TMPL_VAR cycle_cnt> <= 0;
+ end
+ else begin
+	<TMPL_VAR cycle_cnt> <= <TMPL_VAR cycle_cnt> + 1;   
+ end
+end
+//--------------------------------------------------
+//---------------initial---------------------------
+   initial
+   begin
+//----------Open vectors file------------------------
+     <TMPL_VAR file_mcd> = $fopen("<TMPL_VAR vectors_file>");
+     if(<TMPL_VAR file_mcd> == 0) begin
+       $display("Error opening <TMPL_VAR vectors_file> file");
+       $finish;
+     end
+    $fwrite(<TMPL_VAR file_mcd>, "Dut outputs vs expected vectors:\n");
+    $dumpfile("<TMPL_VAR wavesDefaultOutputFile_dump>");
+    $dumpvars(0,<TMPL_VAR tb_name>);
+    $dumpon;
+ 
+//-----------------------------------------------------
+       <TMPL_VAR clk> = <TMPL_VAR clk_init>;
+       <TMPL_VAR rand_valid> = <TMPL_VAR rand_valid_init>;
+       <TMPL_VAR testbench_reset_> = <TMPL_VAR testbench_reset_init>; 
+       <TMPL_VAR match_count> = 0;
+       <TMPL_VAR mismatch_count> = 0;
+       <TMPL_VAR transaction_count> = 0;
+       #10 <TMPL_VAR testbench_reset_> = 1'b0;
+       #20 <TMPL_VAR testbench_reset_> = 1'b1;
+ end
+//---------------------------------------------------       
+

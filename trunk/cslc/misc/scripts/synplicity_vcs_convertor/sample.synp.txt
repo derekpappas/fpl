@@ -1,0 +1,38 @@
+add_file -verilog "../src/xinport.v"
+add_file -verilog "../src/xoutport.v"
+add_file -verilog "../src/xbar.v"
+add_file -constraint "./xbar.sdc"
+set_option -technology VIRTEX4
+set_option -part XC4VLX15
+set_option -package FF668
+impl -add xbar
+set_option -default_enum_encoding default
+set_option -symbolic_fsm_compiler 1
+set_option -resource_sharing 1
+set_option -use_fsm_explorer 0
+set_option -top_module "xbar"
+#map options
+set_option -run_prop_extract 0
+set_option -no_sequential_opt 0
+set_option -write_vif 0
+set_option -frequency 15.0
+set_option -fanout_limit 10000
+set_option -disable_io_insertion 0
+set_option -pipe 1
+set_option -update_models_cp 0
+set_option -verification_mode 0
+set_option -fixgatedclocks 0
+set_option -modular 0
+set_option -retiming 0
+#simulation options
+set_option -write_verilog 0
+set_option -write_vhdl 0
+#automatic place and route (vendor) options
+set_option -write_apr_constraint 1
+#set result format/file last
+project -result_file "./xbar.edf"
+#implementation attributes
+set_option -vlog_std v2001
+set_option -include_path "../src/irte/vlog/fcver2/mac/common"
+# the top level module.. prj files usually define the top level module
+set_option -top_module "xbar"

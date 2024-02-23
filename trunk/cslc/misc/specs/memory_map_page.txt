@@ -1,0 +1,110 @@
+Memory Map Page - MMP
+
+//******************************************************************
+// Properties
+//******************************************************************
+Address range:
+   - bounded within a lower and an upper value
+   - types of address ranges in between those boundaries:
+      - reserved (cannot be associated explicitly to addressable objects)
+      - invalid (cannot be associated to addressable objects)
+
+Unit name:
+   - the name of the unit to which the MMP is associated
+
+Address increment:
+   - the amount the memory address increments from word to word
+
+Word width:
+   - the word width 
+
+List of address access rights:
+   - the list contains either addresses of ranges of address and the access right for a group
+   - types of groups (predefined):
+      - sw (software group)
+      - hw (hardware group)
+      - test (testing group)
+      - driver (driver group)
+      - user (user group)
+   - types of access rights:
+      - access_none (no access to the address / address range)
+      - access_read (read access to the address / address range)
+      - access_write (write access to the address / address range)
+      - access_read_write (read and write access to the address / address range)
+
+List of addressable objects:
+   - the list of the addresses associated to objects
+
+Alignment:
+   - the alignment of addresses
+
+Endianess:
+   - the address binary representation
+   - types of endianess:
+      - little_endian (left-most significant)
+      - big_endian (right-most significant)
+
+Symbol name maximum lenght:
+   - to each addressable object can be associated a symbol
+
+//******************************************************************
+// Predefining
+//******************************************************************
+Rules:
+   - must be predefined on global scope (it is a scope holder afterall)
+
+csl_memory_map_page mmp_name;
+//creates an 'empty' MMP
+
+csl_memory_map_page mmp_name(<numeric>lower_bound, <numeric>upper_bound[, <numeric>increment_amount]);
+//creates a MMP with address range 'lower_bound', 'upper_bound' and increment amount 'increment_amount'
+
+csl_memory_map_page mmp_name(<csl_memory_map_page>mmp_name1);
+//creates a MMP copying addrees ranges, data word width, increment amount and type from 'mmp_name1'
+
+//******************************************************************
+// Defining
+//******************************************************************
+Rules:
+   - must be defined on global scope (it is a scope holder afterall)
+
+csl_memory_map_page mmp_name {
+  mmp_name() {
+    //method calls
+  }
+;
+//defines a MMP
+
+//******************************************************************
+// Methods
+//******************************************************************
+Rules:
+   - all methods must be called inside MMP's scope
+   - must set address range upon definition
+   - must associate it with an unit upon definition
+   - addressable objects are: csl_field, csl_memory, csl_register, csl_register_file, csl_fifo
+   - endianess types: little_endian, big_endian
+
+add_address_range(<numeric>lower_bound, <numeric>upper_bound);
+//sets the address range of the MMP if not set before; if already set calling this will issue an error
+
+set_unit_name(<csl_unit>unit_name);
+//associates the MMP to 'unit_name' if not set before; if already set calling this will issue an error
+
+add_reserved_address_range(<numeric>lower_bound, <numeric>upper_bound);
+//adds reserved address range, both 'lower_bound' and 'upper_bound' must be in MMP's address range
+
+add_invalid_address_range(<numeric>lower_bound, <numeric>upper_bound);
+//adds invalid address range, both 'lower_bound' and 'upper_bound' must be in MMP's address range
+
+set_base_address(<numeric>base_address);
+//sets the base address of the MMP if not set before; if already set calling this will issue an error
+
+add(<addressable_object>obj, <string>symbol[, <numeric>base_address]);
+//searches for a free address, starting from 'base_address', if one found adds 'obj' to the MMP, occupying the address; if no free address is available an error will be issued
+
+set_increment_amount(<numeric>increment_amount);
+//sets increment amount, defaults to 32, if not set before; if already set calling this will issue an error
+
+set_endianess(<endianess_type>endianess);
+//sets endianess of MMP, default is little_endian, if not set before; if already set calling this will issue an error

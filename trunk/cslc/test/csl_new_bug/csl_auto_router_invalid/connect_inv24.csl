@@ -1,0 +1,33 @@
+// processed by the pattern generator
+csl_interface cdrv_ifc {
+   csl_port  cmd  (input    );    // emac rx ix bus
+   csl_port  data (input, 32);
+   csl_port  ready(input    );
+   csl_port  valid(input    );
+};
+
+csl_unit u0 { cdrv_ifc u0_u1_cdrv; cdrv_ifc u1_u2_cdrv; u0 () {}};
+
+csl_unit u1 { cdrv_ifc u1_u2_cdrv; cdrv_ifc u2_u3_cdrv; u1 () {}};
+
+
+
+csl_unit top {
+u0 u0;
+
+u1 u1;
+
+ top() {
+                                              //       Detected
+                                              //       by
+                                              //       compiler
+u0_u1_cdrv.connect(top.u1.u0_u1_cdrv);        // 22 :: NO  :: missing LHS scope name
+u0.u0_u1_cdrv.connect(top.u1.u0_u1_cdrv);     // 23 :: YES :: should be ok-relative path
+top.u0.u1_u1_cdrv.connect(top.u1.u0_u1_cdrv); // 24 :: YES :: wrong port name in LHS
+top.u1.u1_u2_cdrv.connect(u1_u2_cdrv);        // 25 :: NO  :: missing RHS scope name
+u0_u1_cdrv.connect(top.u1.u0_u1_cdrv);        // 26 :: YES :: missing LHS scope name
+top.u0.u0_u1_cdrv.connect(u0.u0_u1_cdrv);     // 27 :: NO  :: should be ok-relative path
+top.u0.u0_u1_cdrv.connect(top.u0.u0_u2_cdrv); // 28 :: YES :: bad RHS port name
+
+}
+};

@@ -1,0 +1,82 @@
+//Petronela
+
+csl_register pc {
+  pc() {
+    set_type(register);
+    set_width(8);
+      }
+};
+
+csl_register stat {
+  stat() {
+    set_type(register);
+    set_width(8);
+  }
+};
+
+csl_register error {
+  error() {
+    set_type(register);
+    set_width(8);
+  }
+};
+
+csl_register interrupt {
+  interrupt() {
+    set_type(register);
+    set_width(8);
+  }
+};
+
+csl_unit proc0 {
+  pc pc0;
+  stat status0;
+  error error0;
+  interrupt interrupt0;
+ proc0() {
+  }
+};
+
+csl_unit proc1 {
+  pc pc1;
+  stat status1;
+  error error1;
+  interrupt interrupt1;
+ proc1() {
+  }
+};
+
+csl_memory_map_page proc_map {
+  proc_map() {
+    add_address_range(0, 512);
+    set_unit_name(proc0);
+    add(pc0, "PC0",0); // assign addres 0
+    add(status0, "STATUS0",8); // assign addres 1 
+    add(error0, "ERROR0",20); // assign addres 2
+    add(interrupt0, "INTERRUPT0",30); // assign addres 3
+    set_data_word_width(16);
+    set_address_increment(4);
+    set_alignment(32);
+  };
+};
+
+csl_memory_map_page mem_map {
+  mem_map() {
+   add_address_range(0, 1024);
+   set_unit_name(proc1);
+   add(pc1, "PC1",0); // assign addres 0
+   add(status1, "STATUS1",8); // assign addres 1 
+   add(error1, "ERROR1",10); // assign addres 2
+   add(interrupt1, "INTERRUPT1",20); // assign addres 3
+   set_data_word_width(16);
+    set_address_increment(4);
+   set_alignment(32);
+  };
+};
+
+
+csl_memory_map map {
+  map() {
+    set_type(hierarchical); 
+  }
+};

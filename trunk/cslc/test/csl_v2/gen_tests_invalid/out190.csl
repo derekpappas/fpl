@@ -1,0 +1,128 @@
+csl_enum hh {
+	dg,
+	yn,
+	bn,
+	tl,
+	sf,
+	ru,
+	co,
+	oh,
+	cg,
+	il,
+	fa
+};
+csl_enum vd {
+	ly = 56,
+	xg = 54,
+	fh = 7,
+	pk = 2
+};
+csl_enum pp {
+	yr,
+	fs,
+	fx,
+	ax,
+	uc,
+	ok,
+	kq,
+	su,
+	fy,
+	xb
+};
+csl_isa_instruction_format kw{
+    kw( ){
+     set_width( 9);
+     generate_decoder( pyavhi);
+  }
+}
+;
+csl_isa aw{
+    aw( ){
+     set_decoder_name( "kk");
+     set_decoder_out_name_prefix( "ah");
+     set_decoder_out_name_suffix( "ps");
+     generate_decoder( jnhi);
+  }
+}
+;
+csl_fifo vm{
+   vm( ){
+     add_logic( parallel_input, all);
+     add_logic( almost_empty, 4);
+  }
+}
+;
+csl_memory_map_page of{
+    of( ){
+     set_address_increment( 3);
+     set_access_rights( access_write, access_read_write);
+     add_reserved_address_range( 2, 5);
+     get_data_word_wodth( );
+     set_aligment( 3);
+     set_endianess( little_endianlittle_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page gp{
+  of ak;
+  of gc;
+  of ht;
+    gp( ){
+     get_next_address( );
+     add( vm, "yi", 2);
+     add( of);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 2);
+     get_data_word_wodth( );
+  }
+}
+;
+csl_memory_map_page sr{
+    sr( ){
+     set_address_increment( 5);
+     get_next_address( );
+     set_access_rights( access_read, access_write);
+     add_reserved_address_range( 9, 1);
+     add( ofgp);
+     get_lower_bound( );
+     set_data_word_width( 1);
+     get_data_word_wodth( );
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map ls{
+  of ws;
+  sr ft;
+  of hr;
+    ls( ){
+     set_type( flat);
+sr.set_access_rights_enum( ofgpsr); 
+     set_data_word_width( 9);
+     get_data_word_width( );
+     set_prefix( ok);
+  }
+}
+;
+csl_register sh{
+    sh( ){
+     index_data_pair( ls, 5);
+     add_logic( rd_en);
+     add_logic( wr_en);
+     reset_value( 7);
+     add_logic( gray_output);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register ut{
+    ut( ){
+     set_width( 9);
+     add_logic( bypass);
+  }
+}
+;

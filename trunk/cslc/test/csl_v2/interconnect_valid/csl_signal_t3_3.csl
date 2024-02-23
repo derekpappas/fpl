@@ -1,0 +1,58 @@
+//author: Monica
+//testing: add_port,bitrange,add_instance,set_width,get_width,set_bitrange,get_bitrange
+//         set_range,set_upper_index,set_lower_index,set_offset,get_offset,get_range
+//         get_upper_index,get_lower_index
+
+csl_unit u4_t3 {
+
+  csl_signal s4_1_t3;
+  csl_signal sgn4_1_t3;
+  csl_signal sgn4_2_t3;
+  csl_signal sgn4_3_t3;
+  csl_signal sgn4_4_t3;
+  
+  u4_t3() {
+
+    s4_1_t3.set_width(2);
+    sgn4_1_t3.set_width(10);
+    sgn4_2_t3.set_width(1);
+    sgn4_3_t3.set_width(1-10+20/2+1 << 1);
+    sgn4_4_t3.set_width(sgn4_3_t3.get_width());
+  }
+};
+
+csl_unit u5_t3 {
+
+  csl_signal sgn5_1_t3;
+  csl_signal sgn5_2_t3;
+  csl_signal sgn5_3_t3;
+  csl_signal sgn5_4_t3(6,8);
+  csl_signal sgn5_5_t3;
+  csl_signal sgn5_6_t3(8);
+  csl_signal sgn5_7_t3(7,1);
+  csl_signal sgn5_8_t3;
+  csl_signal sgn5_9_t3;
+  csl_signal sgn5_10_t3,sgn5_11_t3(2,7),sgn5_12_t3,sgn5_13_t3;
+  csl_signal sgn5_14_t3(1,7),sgn5_15_t3,sgn5_16_t3(7,1),sgn5_17_t3;
+  csl_signal sgn4_1_t3;
+
+  u5_t3() {
+    sgn5_1_t3.set_width(u4_t3.sgn4_4_t3.get_width());
+    sgn5_2_t3.set_width(u4_t3.sgn4_1_t3.get_width());
+    sgn4_1_t3.set_width(6);
+    sgn5_3_t3.set_width(sgn4_1_t3.get_width());
+    sgn5_5_t3.set_width(sgn5_4_t3.get_width());
+    sgn5_9_t3.set_width(sgn5_6_t3.get_width());
+    sgn5_8_t3.set_width(sgn5_7_t3.get_width());
+    sgn5_10_t3.set_width(sgn5_7_t3.get_width()-1);
+    sgn5_12_t3.set_width(sgn5_11_t3.get_width()+20/2-10);
+    sgn5_13_t3.set_width(sgn5_7_t3.get_width()+20/2-8>>1);
+    sgn5_15_t3.set_width(sgn5_14_t3.get_width());
+    sgn5_17_t3.set_width(sgn5_16_t3.get_width());
+  }
+};
+csl_unit top{
+  u4_t3 u1;
+  u5_t3 u2;
+  top(){}
+};

@@ -1,0 +1,36 @@
+//Petronela
+
+//csl_register rf;
+csl_register rg{
+  rg(){
+    //    set_range(0,3);
+    //  set_width(16);
+    set_type(sft);
+    //    set_address(abc,255);//should give an error message because i haven't declarated a memory_map abc
+    //index_data_pair(abc,0,3);//the same
+  }
+};
+//csl_register r1{
+//  r1(){
+//    //set_width(5);
+//    //set_attribute(read);
+//  }
+//};
+//csl_register r2{
+//  r2(){
+//    //set_range(6,9);
+//    // add_logic(neg_output);
+//  }
+//};
+//
+//csl_unit u1{
+//  //  rf rf; 
+//  //  rg rg;  
+////  r1 r1;  
+////  r2 r2;  
+//  u1(){
+//    
+//  }
+//};
+//
+//

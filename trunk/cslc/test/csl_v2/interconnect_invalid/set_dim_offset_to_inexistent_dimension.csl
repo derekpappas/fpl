@@ -1,0 +1,22 @@
+//set_dim_offset to a dimension that does not exist
+//andreim
+//20 June 2007
+
+csl_bitrange br_bitrange(0, 7);
+
+csl_unit u_unit1{
+	csl_signal 	sgn_sgn1,
+							sgn_sgn2(wire, 4),     
+							sgn_sgn3(reg, 0,3),  //lower & upper
+							sgn_sgn4,
+							sgn_sgn5,
+							sgn_sgn6;
+	u_unit1(){
+		sgn_sgn4.set_number_of_dimensions(4);
+		sgn_sgn4.set_dim_bitrange(0,br_bitrange);
+		sgn_sgn4.set_dim_range(1,1,5);
+		sgn_sgn4.set_dim_range(2, sgn_sgn4.get_dim_lower_index(1), sgn_sgn4.get_dim_upper_index(1));
+		sgn_sgn4.set_dim_offset(2,2);
+		sgn_sgn4.set_dim_offset(99, signal.get_dim_offset(2));  //dimension 99 does not exist
+	}
+};

@@ -1,0 +1,142 @@
+csl_enum cq {
+	vb = 67,
+	rq = 71,
+	fu = 67,
+	co = 38,
+	bc = 3,
+	fg = 22,
+	rp = 11,
+	la = 44,
+	io = 59,
+	qh = 65,
+	fg = 52,
+	je = 39
+};
+csl_enum yw {
+	sr = 27,
+	lx = 90,
+	kj = 92,
+	yc = 20,
+	be = 58,
+	wf = 93,
+	ub = 87,
+	kc = 69,
+	hc = 21,
+	ru = 99,
+	cb = 52,
+	lu = 87,
+	kq = 81,
+	dv = 72,
+	wc = 85,
+	ts = 80,
+	th = 71,
+	qe = 15
+};
+csl_enum qr {
+	gt = 49,
+	yg = 40,
+	ct = 37,
+	jm = 9,
+	ws = 79,
+	qq = 79,
+	ns = 81,
+	ty = 53
+};
+csl_isa_instruction_format fe{
+    fe( ){
+     set_width( 6);
+     generate_decoder( wlxu);
+  }
+}
+;
+csl_isa_instruction ob : fe{
+    ob( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa bd{
+    bd( ){
+     set_decoder_name( "ks");
+     set_decoder_out_name_prefix( "xp");
+     set_decoder_out_name_suffix( "py");
+     generate_decoder( wl);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo rt{
+   rt( ){
+     add_logic( depth_extend, 6);
+     add_logic( pushback);
+     add_logic( wr_release);
+     add_logic( flow);
+  }
+}
+;
+csl_memory_map_page nt{
+    nt( ){
+     set_address_increment( 5);
+     set_next_address( 7);
+     get_next_address( );
+     set_access_rights( access_read_write, access_read);
+     set_data_word_width( 5);
+     set_aligment( 0);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page oh{
+  nt ei;
+  nt ks;
+  nt bo;
+    oh( ){
+     add_address_range( 9, 8);
+     set_address_increment( 1);
+     get_address_increment( );
+     set_next_address( 9);
+     set_access_rights( access_read_write, access_read_write);
+     add_reserved_address_range( 7, 2);
+     add( rt, "lo", 3);
+     get_lower_bound( );
+     get_data_word_wodth( );
+     set_aligment( 2);
+     set_endianess( little_endianbig_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map dc{
+  oh ui;
+    dc( ){
+     auto_gen_memory_map( );
+     set_top_unit( xuta);
+nt.add_to_memory_map( access_read_write); 
+     set_type( page);
+nt.set_access_rights_enum( nt); 
+     set_data_word_width( 3);
+     get_data_word_width( );
+     set_suffix( eg);
+  }
+}
+;
+csl_register xg{
+    xg( ){
+     reset_value( 5);
+     set_lock_enable_bit( 4);
+  }
+}
+;
+csl_register lx{
+    lx( ){
+     set_width( 6);
+     get_width( );
+     set_depth( 4);
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 4);
+  }
+}
+;

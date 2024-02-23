@@ -1,0 +1,23 @@
+//oanab
+//24 feb 2008
+//signal group - interface concatenation
+
+csl_signal_group sg {
+  csl_signal s1(8),s2(8);
+  sg () {}
+};
+
+csl_interface ifc {
+  csl_port y1(output,8),y2(output,8);
+  ifc () {}
+};
+
+csl_unit u3 {
+  csl_port x(input,16);
+  sg sg0;
+  ifc ifc0;
+  u3 () {
+    x={sg0.s1,ifc0.y2};
+    ifc0.y1 = sg0.s2;
+  }
+};

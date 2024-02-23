@@ -1,0 +1,18 @@
+AndreiB
+
+notes:
+2nd review stage
+
+- 1.22 Maybe add the company meeting examples here as a conceptual explanation: (the two units deep within many modules) ?
+- Move grammar section to the grammar file ?
+- 1.22 The sentence "The CSL language is divided into different categories." seems out of context as it does not give out further details on the different categories of CSL
+- 1.22 	(below Figure 1.58) written cslc in bold letters. Is it ok ?
+	In the sentence "The cslc interconnect syntax is documented in the CSL language specification document." should it be another section or is it going to be an entire new document fot the CSL language specification ?
+	In the bulleted list:
+	-what exactly is "interconnect generation" in the bulleted list (page 2) ? Shouldn't this be performed at the end of the process when we have all the pieces ?
+	-In the sentence "the elements in the leaf level modules are defined using a different part of the CSL." What part of CSL is that ? 
+	-In the sentence "all SE’s are labeled with a valid phase suffix and pipestage" Is it pipestage name ?
+	-"this can be used later to check if the SE’s are correctly connected" the suffixes can be used ? and what does later mean ?
+	- what exactly are these lint rules ? They might be the criteria that the lint tool uses to perform its checks, yet what exactly is the tool looking at for each rule ? Clocks for example: does it look for a correct clock tree or clock enable logic ?
+
+change dangling net to unconnected net

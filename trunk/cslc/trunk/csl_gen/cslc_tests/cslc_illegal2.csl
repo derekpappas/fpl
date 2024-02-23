@@ -1,0 +1,20 @@
+//PASSED
+csl_unit Z {
+  csl_port x(input, 4);
+};
+
+csl_unit B {
+  void initialize() {
+    add_instance(Z, z0);
+    add_instance(Z, z1);
+
+    z0.x.connect(z1.x);
+  }
+};
+
+csl_unit A {
+  void initialize() {
+    add_instance(B, b0);
+    add_instance(B, b1);
+  }
+};

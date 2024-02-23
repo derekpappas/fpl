@@ -1,0 +1,11 @@
+csl_unit a{
+  a(){}
+};
+csl_memory_map_page netn1{
+    netn1(){
+      set_unit_name(a);
+      add_address_range(1,10);
+      set_data_word_width(1);
+  }
+}
+;

@@ -1,0 +1,36 @@
+//Monica
+
+csl_isa_field op{
+  op(){
+ set_type(opcode);
+ set_width(5);
+  }};
+csl_isa_field alu{
+  alu(){
+set_type(selector);
+ set_width(5);
+  }};
+csl_isa_element base{
+  base(){
+    set_type(root_format);
+    set_width(32);
+  }
+};
+csl_isa_element format:base{
+  op op;
+  alu alu;
+  format(){
+    set_type(instr_format);
+    set_position(op,0);
+    set_previous(op,alu);
+  }};
+csl_isa_element f : format{
+  
+  f() {
+    set_type(instr);
+    
+  }
+};
+
+csl_unit top {
+};

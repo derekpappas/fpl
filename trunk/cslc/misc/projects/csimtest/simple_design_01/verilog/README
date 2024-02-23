@@ -1,0 +1,4 @@
+This reference model contains the verilog equivalent of the csimtest
+file (from a hierarchical point of view). It also contains logic that
+drives the behavior of the units. These logic blocks will be extracted
+into include files that will be used by the CSL code

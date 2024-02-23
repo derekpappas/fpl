@@ -1,0 +1,31 @@
+//csl_signal signal_object_name([signal_data_type][,width]); example 
+//(from csl_interconnect.fm docs) modified after the new sintax
+//Monica
+//30 August 2007
+
+
+csl_unit receiver{
+
+	csl_port state(output);
+	csl_port p_clk(output); //clk is a reserved word
+	csl_port in(input,4);
+	receiver(){
+	}
+};
+
+csl_unit sender{
+	csl_port state(output);
+	csl_port p_clk(output); //clk is a reserved word
+	csl_port out(output,4);
+	sender(){
+	}
+};
+csl_unit top{
+
+csl_signal sgn_clk(wire);
+csl_signal state(reg,2);
+ receiver rec( .state(state),.p_clk(sgn_clk));
+ sender send( .state(state),.p_clk(sgn_clk));
+
+ top(){}
+};

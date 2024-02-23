@@ -1,0 +1,17 @@
+//illegal commands from mm in isa
+
+csl_isa_field field(2);
+csl_isa_field field2(2);
+
+
+csl_isa_element format{
+    field field_i;
+    field field2_i;
+    format(){
+       set_type(instr_format);
+       set_width(4);
+       set_data_word_width(12);   //can't set the data word width to a format
+       set_position(field_i, 2);
+       set_next(field_i,field2_i);
+    }
+};

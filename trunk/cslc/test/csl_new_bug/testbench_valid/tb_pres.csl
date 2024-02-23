@@ -1,0 +1,41 @@
+//oanab
+//15 mar 2008
+
+csl_unit u_ref {
+  csl_port in(input, 8); 
+  csl_port out(output, 8); 
+  u_ref () {}   
+  };
+
+csl_unit u_check {
+   csl_port x_in (input, 8);
+   csl_port x_out(output, 8);
+   csl_signal sgn_ref_data;
+   csl_port clk(input);
+   u_ref ref1(.in(x_in),.out(x_out));
+   u_check() {
+    sgn_ref_data.set_width(8);
+    clk.set_attr(clock);
+    clk = sgn_ref_data[4];
+   }
+};
+
+csl_vector v_stim {
+ v_stim () {
+      set_unit_name(u_check);
+      set_direction(input); }
+};
+csl_vector v_exp {
+  v_exp () {
+      set_unit_name(u_check);  
+      set_direction(output);   }
+};
+
+csl_testbench tb {
+  csl_signal clk(reg);
+  u_check u_check(.clk(clk));
+  tb () {
+    clk.set_attr(clock);
+    add_logic(clock,clk,100,ps);
+  }
+};

@@ -1,0 +1,18 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="h264">
+<interface name="mbc_out_ifc" >
+<port name="address" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+<port name="write_data" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+<port name="write" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="read" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="read_data" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="control" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<instantiation type = "me">
+<instance name="me">
+</instance>
+</instantiation>
+</unit>
+</design>

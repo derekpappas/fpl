@@ -1,0 +1,29 @@
+
+csl_interface ifca{
+  csl_port x1(input,68);
+  csl_port x2(input,68);
+ifca(){}
+};
+csl_signal_group sga {
+  csl_parameter param_x(68);
+  csl_parameter param_y(68);
+  csl_signal x1(param_y);  
+  csl_signal x2(param_x);
+  sga() {
+  }
+};
+
+csl_unit u1{
+ifca ifca1;
+
+u1(){}
+};
+
+csl_unit u2{
+sga sga1;
+u1 u1i;
+u2(){
+
+sga1.connect_by_pattern(ifca1);
+}
+};

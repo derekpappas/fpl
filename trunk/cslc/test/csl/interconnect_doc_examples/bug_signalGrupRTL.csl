@@ -1,0 +1,15 @@
+
+
+csl_signal_group sg{
+  csl_signal x_d(wire), y_d(wire), z_d(wire);
+  sg(){
+    
+  }
+};
+
+
+csl_unit top {
+  top(){
+    gen_unique_rtl_modules();
+  }
+};

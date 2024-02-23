@@ -1,0 +1,96 @@
+Subject:   	Altera NIOS2 ring of processors
+From:   	"Derek Pappas" <dpappas@fastpathlogic.ro>
+Date:   	Mon, February 26, 2007 05:40
+------------------------------------------------------------
+
+We need test cases and a demonstration projection running in real HW.
+We have a simple test case which is the csl example unit  ( simple micro
+engine). We need a more complex test case. We will build a multiprocessor
+system on an FPGA with a Ethernet bus, Power PC bus, and a FLASH
+memory bus/unit, and maybe a DRAM interface.
+
+Here is what we need to do.
+Learn System-C and use the classes that the SW team is writing to write, 
+compile,
+ and simulate. System-C code. Spend 80% of your time on this task
+
+In the mean time spend 20% of your time on the ring processor project.
+Look at the ring processor code and help with the spec and the logic.
+DO NOT DESIGN ANYTHING UNTIL YOU UNDERSTAND HOW THE SYSTEM WORKS
+AND CAN DRAW A SIMPLE BLOCK DIAGRAM AND SHOW THE CONTROL LOGIC/
+DATAPATH. Show this to me. WE will assign units to individuals.
+
+Understand what a spinlock in SW/HW is and how a sending processor
+uses a send instruction and a bus framer to send a packet to a receiver
+processor which is executing a wait/receive instruction pair. This is a 
+multiprocessor
+system. If you have questions I can explain this to you and any other 
+topics
+below.
+
+Distributed system design and implementation
+-Understand how the ring processor distributed system works
+-Build the ring logic and the paths in and out of the ring logic
+-Understand how to build a distributed system that has software (NIOS2
+ instructions) and HW (state machines and bus protocol) distributed control.
+
+NIOS2 issues
+-Understand how to interface the command FIFO to the NIOS2 to change the 
+execution
+ stream
+-Understand how to add custom logic and instructions to the NIOS2
+-Understand how to interface the instruction and data memories to the NIOS2
+ and build the solution
+
+Ring bus HW
+-Understand what a framer/deframer pair in a sender and receiver node 
+pair does
+-Understand what a DVS bus is-see docs
+-Build the bus framer unit
+-Build the bus deframer unit
+-Build the bus send controller
+-Build the bus receive controller
+
+Ring bus operation
+-Understand the ring bus protocol for accepting messages from the ring
+-Understand the ring bus protocol for rejecting (deflecting) messages 
+from the ring
+-Understand the ring bus protocol for inserting messages into from the ring
+-Understand the ring bus commands
+-Understand what the packets associated with the ring bus commands look like
+
+Addressing
+-Understand the address map and address decoder scheme
+-Understand the unit id scheme and how units are addressed on the ring bus
+-Build the ring node address decoder unit
+-Build the local address decoder unit
+-External devices
+--Understand how to address the Ethernet unit
+--Understand how to address the Power PC or other external bus
+
+Internal and external memories
+-Build the DMA controller logic that interfaces to the memories
+-External Memory, How is it addressed
+--DRAM
+--FLASH
+
+Ethernet
+-Constructing Ethernet packets
+--Does the NIOS2 in the ring node attached to the Ethernet create the
+  Ethernet packets in software?
+
+===================================================
+
+WHAT IS BELOW IS FUTURE WORK-ADD IT TO THE LIST BUT DO NOT WORK
+ON IT!
+
+Look at the  GNU ASM
+-how is it modified
+-how can we write custom instructions for GNU ASM
+
+How can the NIOS2 processor be stripped down to the "bare bones"
+using the SOC BUILDER TOOLS
+
+Need opencores ethernet module interfaced to ring node
+-need module interface
+-need input and output queues and controllers/schedulers

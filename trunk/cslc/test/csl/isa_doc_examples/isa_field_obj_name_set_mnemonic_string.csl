@@ -1,0 +1,15 @@
+//isa_field_obj_name.set_mnemonic( string); 
+
+csl_isa_field f_op(2);
+f_op.set_type(opcode);
+csl_isa_field f_alu{ 
+  f_alu(){ 
+    set_type(selector); 
+    set_mnemonic("alu"); 
+    set_width(2); 
+  }
+};
+
+
+csl_unit top {
+};

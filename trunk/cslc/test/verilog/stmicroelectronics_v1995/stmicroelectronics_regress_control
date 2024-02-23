@@ -1,0 +1,35 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+
+#exceptions:
+M25PE10_macro.v			skip		"macros"
+M25PE20_macro.v			skip		"macros"
+M25PE40_macro.v			skip		"macros"
+M45PE10_Macro.v			skip		"macros"
+M45PE40_Macro.v			skip		"macros"
+M45PE80_Macro.v			skip		"macros"
+M50FLW040_MACRO.v		skip		"macros"
+M50FLW080_MACRO.v		skip		"macros"
+#parameter2.v			skip		"macros"
+#parameter3.v			skip		"macros"
+#parameter4.v			skip		"macros"
+#parameter5.v			skip		"macros"
+#parameter6.v			skip		"macros"
+#parameter7.v			skip		"macros"
+#parameter8.v			skip		"macros"
+#parameter9.v			skip		"macros"
+#parameter10.v			skip		"macros"
+#parameter11.v			skip		"macros"
+#parameter12.v			skip		"macros"
+
+internal_logic10.v              skip   "missing defines/iverilog -E bug/fixed"
+internal_logic4.v            skip      "missing defines/iverilog -E bug/fixed"
+internal_logic7.v            skip      "missing defines/iverilog -E bug/fixed"
+
+#M45PE10_Memory.v            skip              "bug 27/iverilog -E bug"
+#M45PE40_Memory.v            skip              "bug 27/iverilog -E bug"
+#M45PE80_Memory.v            skip              "bug 27/iverilog -E bug"
+

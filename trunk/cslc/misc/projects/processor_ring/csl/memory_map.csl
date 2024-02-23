@@ -1,0 +1,292 @@
+//oanab
+//20 mar 2008
+//pr memory map
+
+// csl_port fabric_node_id  (input); // should be in CSL memory map
+
+
+// instruction memory - 16k (0,16383)
+csl_memory_map_page rn_im_pg {
+  rn_im_pg () {
+    set_unit_name(IM);
+    add_address_range(0,16383);
+    set_data_word_width(32);
+    // add(mem_im);    // instr memory added to the page
+  }
+};
+
+// data memory - 16k (16384,32767)
+csl_memory_map_page rn_dm_pg {
+  rn_dm_pg () {
+    set_unit_name(DM);
+    add_address_range(0,16383);
+    set_data_word_width(32);
+    // add(mem_dm);     // data memory added to the page
+  }
+};
+
+// reset reg : resets node - 1 (32768,32768)
+csl_memory_map_page rn_rst_pg {
+  rn_rst_pg () {
+    set_unit_name(PIE_REGS); 
+    add_address_range(0,0);
+    set_data_word_width(32);
+    // add(rst_reg);
+  }
+};
+
+// read response reg - 1 (32772,32772)
+csl_memory_map_page rn_rresp_pg {
+  rn_rresp_pg () {
+    set_unit_name(PIE_REGS); 
+    add_address_range(0,0);
+    set_data_word_width(32);
+    // add(rd_resp_reg);
+  }
+};
+
+// doorbell - 128 (33024,33151)
+csl_memory_map_page rn_dbell_pg {
+  rn_dbell_pg () {
+    set_unit_name(PIE_REGS);
+    add_address_range(0,127);
+    set_data_word_width(32);
+    // add(d_bell);
+  }
+};
+
+//queue manager (message queue) - 32 (33280,33311)
+csl_memory_map_page rn_qm_pg {
+  rn_qm_pg () {
+    set_unit_name(MQ);
+    add_address_range(0,31);
+    set_data_word_width(32);
+    // add(qm_mq);
+  }
+};
+
+//buf mgr rd - 1 (33792,33792)
+csl_memory_map_page rn_buf_mgr_rd {
+  rn_buf_mgr_rd () {
+    set_unit_name(BUF_RD_WR);
+    add_address_range(0,0);
+    set_data_word_width(32);
+    // add(buf_mgr_wr);
+  }
+};
+
+//buf mgr wr - 1 (33796,33796)
+csl_memory_map_page rn_buf_mgr_wr {
+  rn_buf_mgr_wr () {
+    set_unit_name(BUF_RD_WR);
+    add_address_range(0,0);
+    set_data_word_width(32);
+    // add(buf_mgr_wr);
+  }
+};
+
+//mac lut - 2k (34816,36863)
+csl_memory_map_page rn_mac_lut {
+  rn_mac_lut () {
+    set_unit_name(MAC_LUT);
+    add_address_range(0,2046);
+    set_data_word_width(32);
+    //add(mac_lut);
+  }
+};
+
+//emac regs 0 - 4k (36864,40959)
+csl_memory_map_page rn_emac0 {
+  rn_emac0 () {
+    set_unit_name(EMAC_REGS);
+    add_address_range(0,4094);
+    set_data_word_width(32);
+    // add(em_mod);
+    //add(em_int);
+    //add(em_int_mask);
+    //add(em_ipgt);
+    //add(em_ipgr1);
+    //add(em_ip
+  }
+};
+
+//emac regs 1 - 4k (40960,45055)
+csl_memory_map_page rn_emac1 {
+  rn_emac1 () {
+    set_unit_name(EMAC_REGS);
+    add_address_range(0,4094);
+    set_data_word_width(32);
+  }
+};
+
+//ipc window - 512 (45056,46079)
+csl_memory_map_page rn_ipc_win {
+  rn_ipc_win () {
+    set_unit_name(IPC_REGS);
+    add_address_range(0,511);
+    set_data_word_width(32);
+  }
+};
+
+//ipc irq c - 64 (33024,33087)
+csl_memory_map_page rn_ipc_irqc {
+  rn_ipc_irqc () {
+    set_unit_name(IPC_REGS);
+    add_address_range(0,63);
+    set_data_word_width(32);
+  }
+};
+
+//ipc irq d - 64 (33088,33151)
+csl_memory_map_page rn_ipc_irqd {
+  rn_ipc_irqd () {
+    set_unit_name(IPC_REGS);
+    add_address_range(0,63);
+    set_data_word_width(32);
+  }
+};
+
+//ipc led on - 1 (36864,36864)
+csl_memory_map_page rn_ipc_led_on {
+  rn_ipc_led_on () {
+    set_unit_name(IPC_REGS);
+    add_address_range(0,0);
+    set_data_word_width(32);
+  }
+};
+
+//ipc led off - 1 (36868,36868)
+csl_memory_map_page rn_ipc_led_off {
+  rn_ipc_led_off () {
+    set_unit_name(IPC_REGS);
+    add_address_range(0,0);
+    set_data_word_width(32);
+  }
+};
+
+//ipc fpga rev - 1 (36872,36872)
+csl_memory_map_page rn_ipc_fpga_rev {
+  rn_ipc_fpga_rev () {
+    set_unit_name(IPC_REGS);
+    add_address_range(0,0);
+    set_data_word_width(32);
+  }
+};
+
+//flash dma regs - 64 (49664,49727)
+csl_memory_map_page rn_flash_dma {
+  rn_flash_dma () {
+    set_unit_name(FLASH_DMA_REGS);
+    add_address_range(0,63);
+    set_data_word_width(32);
+  }
+};
+
+//flash dma size - 1 (49712,49712)
+//csl_memory_map_page rn_flash_size {
+//  rn_flash_size () {
+//    set_unit_name(FLASH_DMA_REGS);
+//    add_address_range(0,0);
+//    set_data_word_width(32);
+//  }
+//};
+
+//flash dma target nid - 1 (49664,49664)
+//csl_memory_map_page rn_flash_tar_nid {
+//  rn_flash_tar_nid () {
+//    set_unit_name(FLASH_DMA_REGS);
+//    add_address_range(0,0);
+//    set_data_word_width(32);
+//  }
+//};
+
+//flash dma target addr - 1 (49670,49670)
+//csl_memory_map_page rn_flash_tar_addr {
+//  rn_flash_tar_addr () {
+//    set_unit_name(FLASH_DMA_REGS);
+//    add_address_range(0,0);
+//    set_data_word_width(32);
+//  }
+//};
+
+//flash dma flash addr - 1 (49672,49672)
+//csl_memory_map_page rn_flash_addr {
+//  rn_flash_addr () {
+//    set_unit_name(FLASH_DMA_REGS);
+//    add_address_range(0,0);
+//    set_data_word_width(32);
+//  }
+//};
+
+//flash dma notify nid - 1 (49680,49680)
+//csl_memory_map_page rn_flash_not_nid {
+//  rn_flash_not_nid () {
+//    set_unit_name(FLASH_DMA_REGS);
+//    add_address_range(0,0);
+//    set_data_word_width(32);
+//  }
+//};
+
+//flash dma notify addr - 1 (49684,49684)
+//csl_memory_map_page rn_flash_not_addr {
+//  rn_flash_not_addr () {
+//    set_unit_name(FLASH_DMA_REGS);
+//    add_address_range(0,0);
+//    set_data_word_width(32);
+//  }
+//};
+
+//flash dma notify data - 1 (49688,49688)
+//csl_memory_map_page rn_flash_not_data {
+//  rn_flash_not_data () {
+//    set_unit_name(FLASH_DMA_REGS);
+//    add_address_range(0,0);
+//    set_data_word_width(32);
+//  }
+//};
+
+//flash dma fail nid - 1 (49696,49696)
+//csl_memory_map_page rn_flash_fail_nid {
+//  rn_flash_fail_nid () {
+//    set_unit_name(FLASH_DMA_REGS);
+//    add_address_range(0,0);
+//    set_data_word_width(32);
+//  }
+//};
+
+//flash dma fail addr - 1 (49700,49700)
+//csl_memory_map_page rn_flash_fail_addr {
+//  rn_flash_fail_addr () {
+//    set_unit_name(FLASH_FAIL_ADDR);
+//    add_address_range(0,0);
+//    set_data_word_width(32);
+//  }
+//};
+
+//flash dma fail data - 1 (49704,49704)
+//csl_memory_map_page rn_flash_fail_data {
+//  rn_flash_fail_data () {
+//    set_unit_name(FLASH_FAIL_DATA);
+//    add_address_range(0,0);
+//    set_data_word_width(32);
+//  }
+//};
+
+
+
+
+csl_memory_map pr_mm {
+  pr_mm () {
+    set_type(hierarchical);
+    set_data_word_width(32);
+    // rn1.set_base_address(0);
+    // rn2.set_base_address(1);
+    // rn3.set_base_address(2);
+    // rn4.set_base_address(3);
+    // rn5.set_base_address(4);
+    // rn6.set_base_address(5);
+    // rn7.set_base_address(6);
+    // rn8.set_base_address(7);
+    // rn9.set_base_address(8);
+  }
+};

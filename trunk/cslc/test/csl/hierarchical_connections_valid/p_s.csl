@@ -1,0 +1,23 @@
+// Author : CristiL
+// 
+// This test represents the connection between one port  and one signal
+
+
+
+csl_unit u {
+  csl_port port0(input,32);
+
+  u() {   
+  }
+};
+
+
+csl_unit unitTop {
+  csl_signal signal0(32);
+
+  u u0(.port0(signal0));
+
+  unitTop() {   
+  }
+};
+

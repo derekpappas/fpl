@@ -1,0 +1,100 @@
+//Petronela
+csl_signal_group sg3{
+  csl_signal s3;
+  csl_signal s4;
+  csl_signal s5;
+  sg3(){
+     generate_individual_rtl_signals(on);
+  }
+};
+csl_signal_group sg5{
+  csl_signal s6;
+  sg5(){
+    generate_individual_rtl_signals(on);
+  }
+};
+csl_signal_group sg7{
+  csl_signal s8;
+  csl_signal s9;
+  sg7(){
+    generate_individual_rtl_signals(on);
+  }
+};
+csl_signal_group sg9{
+  csl_signal s11;
+  csl_signal s12;
+  csl_signal s13;
+  sg9(){
+    generate_individual_rtl_signals(on);
+  }
+};
+csl_signal_group sg1{
+  csl_signal s1;
+  csl_signal s2;
+  sg3 sg3;
+  sg5 sg5;
+  csl_signal s7;
+  sg7 sg7;
+  csl_signal s10;
+  sg9 sg9;
+  sg1(){
+     generate_individual_rtl_signals(on);
+  }
+};
+
+csl_unit u1{
+  sg1 sg1;
+  u1(){
+  }
+};
+csl_signal_group sg6{
+  csl_signal s5;
+  csl_signal s6;
+  sg6(){
+    generate_individual_rtl_signals(on);
+  }
+};
+csl_signal_group sg4{
+  csl_signal s4;
+  sg4(){
+     generate_individual_rtl_signals(on);
+  }
+};
+csl_signal_group sg8{
+  csl_signal s10;
+  sg8(){
+    generate_individual_rtl_signals(on);
+  }
+};
+csl_signal_group sg10{
+  csl_signal s12;
+  sg10(){
+    generate_individual_rtl_signals(on);
+  }
+};
+csl_signal_group sg2{
+  csl_signal s1;
+  csl_signal s2;
+  csl_signal s3;
+  sg4 sg4;
+  sg6 sg6;
+  csl_signal s7;
+  csl_signal s8;
+  csl_signal s9;
+  sg8 sg8;
+  csl_signal s11;
+  sg10 sg10;
+  csl_signal s12;
+  sg2(){
+    generate_individual_rtl_signals(on);
+  }
+};
+
+
+csl_unit u2{
+  sg2 sg2;
+  u1 u1(.sg1(sg2)); 
+  u2(){
+      
+  }
+};

@@ -1,0 +1,24 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="b">
+<port name="in_b1" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="in_b2" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out_b1" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="out_b2" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="clk" offset="0" upper="0" lower="0" direction = "input" type = "wire" attr = "clk" />
+<signal name="s1" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="s2" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="s3" offset="0" upper="0" lower="0" type = "wire"/>
+<instantiation type = "a">
+<instance name="a0">
+<f2a formal = "clk" actual = "clk" />
+<f2a formal = "in_a" actual = "in_b1" />
+<f2a formal = "out_a" actual = "out_b1" />
+</instance>
+</instantiation>
+<assign-stmt lhs="s1" rhs="in_b2&s3"/>
+<assign-stmt lhs="out_b1" rhs="s1"/>
+<assign-stmt lhs="out_b2" rhs="s2^s3"/>
+</unit>
+</design>

@@ -1,0 +1,41 @@
+//oanab
+//9 ian 20008
+
+csl_interface ifc {
+  csl_port stim_i(input,2),stim_o(input,2);
+  csl_port exp_i(output,2),exp_o(output,2);
+ ifc () {}
+};
+
+csl_unit dut {
+  csl_port clk(input);
+  ifc ifc_0,ifc_1;
+  csl_signal s;
+  dut () {
+    clk.set_attr(clock);
+    clk = s;
+    ifc_1 = ifc_0;
+  }
+};
+
+csl_vector stim {
+  stim () {
+    set_unit_name(dut);
+    set_direction(input);
+  }
+};
+csl_vector exp {
+  exp () {
+    set_unit_name(dut);
+    set_direction(output);
+  }
+};
+
+csl_testbench tb {
+  csl_signal clk(reg);
+  dut dut_0;
+ tb () {
+   clk.set_attr(clock);
+   add_logic(clock,clk,100,ps);
+  }
+};

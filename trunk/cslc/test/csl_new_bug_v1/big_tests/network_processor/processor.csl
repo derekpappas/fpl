@@ -1,0 +1,539 @@
+//Define fields
+//csl_unit un{
+//  un(){
+//  }
+//};
+csl_isa_field  b1(27,25);
+b1.set_type(selector);
+csl_isa_field  c1(27,25);
+c1.set_type(constant);
+csl_isa_field  c10(21,20);
+c10.set_type(constant);
+csl_isa_field  c11(19,0);
+c11.set_type(constant);
+csl_isa_field  c12(21,20);
+c12.set_type(constant);
+csl_isa_field  c13(27,25);
+c13.set_type(constant);
+csl_isa_field  c14(27,25);
+c14.set_type(constant);
+csl_isa_field  c15(24,5);
+c15.set_type(constant);
+csl_isa_field  c16(31,28);
+c16.set_type(constant);
+csl_isa_field  c17(27,27);
+c17.set_type(constant);
+csl_isa_field  c18(26,0);
+c18.set_type(constant);
+csl_isa_field  c19(27,25);
+c19.set_type(constant);
+csl_isa_field  c2(24,21);
+c2.set_type(constant);
+csl_isa_field  c20(24,0);
+c20.set_type(constant);
+csl_isa_field  c21(27,25);
+c21.set_type(constant);
+csl_isa_field  c22(27,25);
+c22.set_type(constant);
+csl_isa_field  c23(27,24);
+c23.set_type(constant);
+csl_isa_field  c24(27,24);
+c24.set_type(constant);
+csl_isa_field  c25(23,0);
+c25.set_type(constant);
+csl_isa_field  c26(6,5);
+c26.set_type(constant);
+csl_isa_field  c3(19,5);
+c3.set_type(constant);
+csl_isa_field  c4(3,0);
+c4.set_type(constant);
+csl_isa_field  c5(19,8);
+c5.set_type(constant);
+csl_isa_field  c6(24,8);
+c6.set_type(constant);
+csl_isa_field  c7(27,25);
+c7.set_type(constant);
+csl_isa_field  c8(24,23);
+c8.set_type(constant);
+csl_isa_field  c9(22,22);
+c9.set_type(constant);
+csl_isa_field  cond(31,28);
+cond.set_type(selector);
+csl_isa_field  cpnum(11,8);
+cpnum.set_type(unused);
+csl_isa_field  crd(15,12);
+crd.set_type(address);
+csl_isa_field  crm(3,0);
+crm.set_type(address);
+csl_isa_field  crn(19,16);
+crn.set_type(address);
+csl_isa_field  h(24,24);
+h.set_type(selector);
+csl_isa_field  immediate(7,0);
+immediate.set_type(constant);
+csl_isa_field  immediate2(11,0);
+immediate2.set_type(constant);
+csl_isa_field  l(24,24);
+l.set_type(selector);
+csl_isa_field  lu(20,20);
+lu.set_type(selector);
+csl_isa_field  mask(19,16);
+mask.set_type(constant);
+csl_isa_field  n(22,22);
+n.set_type(selector);
+csl_isa_field  o(4,4);
+o.set_type(constant);
+csl_isa_field  offs24(23,0);
+offs24.set_type(address);
+csl_isa_field  offs8(7,0);
+offs8.set_type(address);
+csl_isa_field  opcode(24,21);
+opcode.set_type(opcode);
+csl_isa_field  opcode1(23,20);
+opcode1.set_type(opcode);
+csl_isa_field  opcode2(7,5);
+opcode2.set_type(opcode);
+csl_isa_field  opcode12(23,21);
+opcode12.set_type(opcode);
+csl_isa_field  oup(7,7);
+oup.set_type(constant);
+csl_isa_field  p(24,24);
+p.set_type(selector);
+csl_isa_field  r(22,22);
+r.set_type(constant);
+csl_isa_field  rd1(15,12);
+rd1.set_type(address);
+csl_isa_field  rlist(15,0);
+rlist.set_type(address);
+csl_isa_field  rm(3,0);
+rm.set_type(address);
+csl_isa_field  rn(19,16);
+rn.set_type(address);
+csl_isa_field  rotate(11,8);
+rotate.set_type(constant);
+csl_isa_field  rs(11,8);
+rs.set_type(address);
+csl_isa_field  s1(20,20);
+s1.set_type(selector);
+csl_isa_field  sbo(15,12);
+sbo.set_type(constant);
+csl_isa_field  sh(6,5);
+sh.set_type(selector);
+csl_isa_field  sham(11,7);
+sham.set_type(constant);
+csl_isa_field  sup(22,22);
+sup.set_type(selector);
+csl_isa_field  swin(23,0);
+swin.set_type(constant);
+csl_isa_field  u(23,23);
+u.set_type(selector);
+csl_isa_field  w(21,21);
+w.set_type(selector);
+csl_isa_field  z(4,4);
+z.set_type(constant);
+csl_isa_field  zm(7,7);
+zm.set_type(constant);
+csl_isa_field  zup(20,20);
+zup.set_type(constant);
+
+
+//Define formats
+csl_isa_element baseformat{
+  baseformat(){
+    set_type(root_format);
+    set_width(32);
+  }
+};
+csl_isa_element Format1 :baseformat {cond cond0; c1 c10; opcode opcode0; s1 s10; rn rn0; rd1 rd10; sham sham0; sh sh0; z z0; rm rm0; Format1(){set_type(instr_format);}  };
+csl_isa_element Format10 :baseformat{cond cond0; c14 c140; p p0; u u0; b1 b10; w w0; lu lu0; rn rn0; rd1 rd10; sham sham0; sh sh0; z z0; rm rm0; Format10(){set_type(instr_format);} };
+csl_isa_element Format11:baseformat {cond cond0; c14 c140; c15 c150; o o0; c4 c40;  Format11(){set_type(instr_format);} };
+csl_isa_element Format12 :baseformat{c16 c160; c17 c170; c18 c180;  Format12(){set_type(instr_format);} };
+csl_isa_element Format13 :baseformat{cond cond0; c19 c190; p p0; u u0; sup sup0; w w0; lu lu0; rn rn0; rlist rlist0; Format13(){set_type(instr_format);}  };
+csl_isa_element Format14 :baseformat{c16 c160; c19 c190; c20 c200;  Format14(){set_type(instr_format);} };
+csl_isa_element Format15 :baseformat{cond cond0; c21 c210; l l0; offs24 offs240; Format15(){set_type(instr_format);}  };
+csl_isa_element Format16 :baseformat{c16 c160; c21 c210; h h0; offs24 offs240;  Format16(){set_type(instr_format);} };
+csl_isa_element Format17 :baseformat{cond cond0; c22 c220; p p0; u u0; n n0; w w0; lu lu0; rn rn0; crd crd0; cpnum cpnum0; offs8 offs80;  Format17(){set_type(instr_format);} };
+csl_isa_element Format18 :baseformat{cond cond0; c23 c230; opcode1 opcode10; crn crn0; crd crd0; cpnum cpnum0; opcode2 opcode20; z z0; crm crm0;  Format18(){set_type(instr_format);} };
+csl_isa_element Format19 :baseformat{cond cond0; c23 c230; opcode12 opcode120; lu lu0; crn crn0; rd1 rd10; cpnum cpnum0; opcode2 opcode20; o o0; crm crm0; Format19(){set_type(instr_format);}  };
+csl_isa_element Format2 :baseformat{cond cond0; c1 c10; c2 c20; zup zup0; c3 c30; z z0; c4 c40;  Format2(){set_type(instr_format);} };
+csl_isa_element Format20 :baseformat{cond cond0; c24 c240; swin swin0;  Format20(){set_type(instr_format);} };
+csl_isa_element Format21 :baseformat{c16 c160; c24 c240; c25 c250;  Format21(){set_type(instr_format);} };
+csl_isa_element Format3 :baseformat{cond cond0; c1 c10; opcode opcode0; s1 s10; rn rn0; rd1 rd10; rs rs0; zm zm0; sh sh0; o o0; rm rm0;  Format3(){set_type(instr_format);} };
+csl_isa_element Format4 :baseformat{cond cond0; c1 c10; c2 c20; zup zup0; c5 c50; zm zm0; c26 c260; o o0; c4 c40;  Format4(){set_type(instr_format);} };
+csl_isa_element Format5 :baseformat{cond cond0; c1 c10; c6 c60; oup oup0; c26 c260; o o0; c4 c40; Format5(){set_type(instr_format);} };
+csl_isa_element Format6 :baseformat{cond cond0; c7 c70; opcode opcode0; s1 s10; rn rn0; rd1 rd10; rotate rotate0; immediate immediate0;  Format6(){set_type(instr_format);} };
+csl_isa_element Format7 :baseformat{cond cond0; c7 c70; c8 c80; c9 c90; c10 c100; c11 c110;  Format7(){set_type(instr_format);} };
+csl_isa_element Format8 :baseformat{cond cond0; c7 c70; c8 c80; r r0; c12 c120; mask mask0; sbo sbo0; rotate rotate0; immediate immediate0;  Format8(){set_type(instr_format);} };
+csl_isa_element Format9 :baseformat{cond cond0; c13 c130; p p0; u u0; b1 b0; w w0; lu lu0; rn rn0; rd1 rd10; immediate2 immediate20; Format9(){set_type(instr_format);} };
+// Intel XScale Core
+
+// instruction cache unit
+csl_unit ic {
+ ic(){};
+  };
+  
+// Data cache unit
+csl_unit dc {
+  dc(){};
+  };
+
+// Mini-Data cache
+csl_unit mdc{
+  mdc(){};
+  };
+
+//Power management unit
+csl_unit pmu{
+  pmu(){};
+  };
+  
+//Intel ARM Core unit
+csl_unit iac {
+  iac(){};
+  };
+  
+//Performance monitor unit
+csl_unit pfm {
+  pfm(){};
+  };
+  
+//I-MMU instruction memory management unit
+csl_unit immu{
+  immu(){};
+  };
+
+//D-MMU data memory management unit
+csl_unit dmmu{
+  dmmu(){};
+  };
+  
+// Fill Buffer unit
+csl_unit fb{
+  fb(){};
+  };
+  
+// Debug unit
+csl_unit du{
+  du(){};
+  };
+  
+// Branch Target Cache unit
+csl_unit btc{
+  btc(){};
+  };
+  
+// Co-processor unit
+csl_unit cp {
+  cp(){};
+  };
+  
+// Write Buffer unit
+csl_unit wb {
+  wb(){};
+  };
+
+csl_register_file csr{
+  csr(){
+    set_width(32);
+    set_depth(128);
+  }
+};
+ //XScale Core  
+csl_unit xscalecore{
+  ic ic;
+  dc dc;
+  mdc mdc;
+  pmu pmu;
+  iac iac;
+  pfm pfm;
+  immu immu;
+  dmmu dmmu;
+  fb fb;
+  du du;
+  btc btc;
+  cp cp;
+  wb wb;
+  csr csr;
+  xscalecore(){}
+  }; 
+// 
+// IXP2400 Network Processor
+
+csl_bitrange iow(0,31);
+/*  
+csl_interface rfifc{
+  rfifc(){
+    add_port(input,iow);
+    add_port(output,iow);
+  };
+*/
+// --------------------Microengine units
+// local memory
+ csl_register_file localmem{
+   //csl_unit localmem{
+    localmem(){
+      set_width(32);
+      set_depth(64);
+    }
+ };
+
+// local memory address register  
+//csl_register lm_addr{};
+//csl_register t_index{};
+//csl_register nn_get{};
+
+//control unit  
+csl_unit ctrlstore{
+  ctrlstore() {
+      }
+  };
+
+//execution unit - Shift, Add, Substract, Mutiply .....  
+csl_unit execu{
+  execu(){
+    }
+  };
+
+
+// general purpos register file
+csl_register_file rf128{
+  rf128(){
+    set_width(32);
+    set_depth(32);
+    }
+  };
+
+  
+// CRC unit
+csl_unit crc {
+  crc(){
+    }
+  };
+  
+// CRC reminder unit
+csl_unit crcr {
+  crcr(){
+    }
+  };
+
+csl_unit opmux{
+  opmux(){
+    }
+  };
+  
+csl_unit rfmux{
+  rfmux(){
+    }
+    };
+    
+    
+//---------------------IPX2400 units
+//Media switch fabric interface
+csl_register_file msf_reg{
+  msf_reg(){
+    set_width(32);
+    set_depth(128);
+  }
+};
+csl_unit msf {
+  msf_reg msf0;
+  msf(){
+    }
+  };
+
+// Scratchpad memory
+// csl_memory scratch {
+csl_register_file scratch {
+  scratch() {
+    set_width(32);
+    set_depth(128);
+  }
+  };
+
+
+// SRAM controller  
+csl_unit sramctrl {
+  csr csr;
+  sramctrl(){
+    }
+  };
+
+//DRAM controller  
+csl_unit dramctrl {
+  csr csr;
+  dramctrl(){
+  }
+};
+
+//Hash unit  
+csl_unit hash{
+  hash(){
+    }
+};
+
+
+// Chip wide control status register
+csl_unit cap{
+  csr csr;
+  cap(){}
+  };
+
+//microengine unit
+csl_unit me{
+  localmem lm;
+  rf128 gpra;
+  rf128 gprb;
+  rf128 nn;
+  rf128 xferind;
+  rf128 xferins;
+  rf128 xferoutd;
+  rf128 xferouts;
+  execu eu0;
+  ctrlstore cs0;
+  opmux opmuxa, opmuxb;
+  crc crc0;
+  crcr crcr0;
+  rfmux rfmux0;
+  me(){
+ 
+    }
+  };
+
+// microengine cluster - contains 4 ME  
+csl_unit mecluster{
+  me me0, me1, me2, me3;
+  mecluster(){
+    }
+  };  
+
+// XScale Core periferals
+csl_unit xpi{
+  xpi(){
+    }
+  };  
+
+csl_register_file pci_mem {
+	pci_mem(){
+      set_width(32);
+      set_depth(128);
+    }
+};
+//PCI controller
+csl_register_file pci_ctrl {
+	pci_ctrl(){
+      set_width(32);
+      set_depth(128);
+    }
+};
+csl_register_file sram {
+  sram(){
+    set_width(32);
+    set_depth(128);
+  }
+};
+
+csl_register_file dram {
+  dram() {
+    set_width(32);
+    set_depth(128);
+  }
+};
+csl_unit pci{
+  pci_mem pci_mem;
+  pci_ctrl io,cfg,spec;
+};
+csl_unit chip{
+  pci pci0;
+  sram sram0;
+  dram dram0;
+  msf msf0;
+  scratch sch0;
+  sramctrl sramctrl0;
+  sramctrl sramctrl1;
+  dramctrl dramctrl0;
+  hash hash0;
+  pci_ctrl pcictrl0;
+  cap cap0;
+  mecluster mecluster0, mecluster1;
+  xpi xpi0;
+  xscalecore xscalecore0;
+  chip(){
+  }
+};
+// Microengine Memory map
+
+// Creating memory map for microengine
+
+ csl_memory_map_page me_page{
+	me_page(){
+      add_address_range(0,800);
+      set_unit_name(me);
+      add(me.lm,"LM");
+      add(me.gpra,"GPRA");
+      add(me.gprb,"GPRB");
+      add(me.nn,"NEXT_N");
+      add(me.xferind,"XFERIND");
+      add(me.xferins,"XFERINDS");
+      add(me.xferoutd,"XFEROUTD");
+      add(me.xferouts,"XFEROUTS");
+}
+};
+
+csl_memory_map_page cluster_page {
+	me_page mep0, mep1, mep2, mep3;
+	cluster_page(){
+	}
+};
+
+csl_memory_map_page chip_page{
+   cluster_page clusterp0, clusterp1;
+	chip_page(){
+      set_unit_name(chip);
+      add_address_range(0,512);
+      add(chip.sch0,"SCRATCHPAD",0);
+	}
+};
+
+csl_memory_map mm {
+  //    chip_page chipp;
+  mm() {
+    set_type(hierarchical);
+    set_top_unit(chip);
+    }
+  };
+// Memory map example for the Intel XScale core address space
+// downsized memory address numbers by 0x400 (1024) to
+// fit 32 bit integers
+
+csl_memory_map_page x_memp {
+x_memp() {
+  set_unit_name(xscalecore);
+  add_address_range(0,4194304);
+  add(chip.dram0,"DRAM",0);
+  add(chip.sram0,"SRAM",2097152); // 0x80000000/400
+  add(pci.pci_mem,"PCI_MEM");// 0xe0000000/400
+  add(cap.csr,"CAP_CSR",3145728);// 0xc000_0000/400
+  add_reserved_address_range(3178496,3211264); // 0xc200_0000/400 to 0xc400_0000/400 
+  //add FLASH ROM
+  add(msf.msf0,"MSF", 3276800); // 0xc800_0000/400
+  add(chip.sch0,"SCRATCH", 3309568); // 0xca00_0000/400
+  add(sramctrl.csr,"SRAM_CSR",3342336);// 0xcc00_0000/400
+  // add SRAM Ring
+  add(dramctrl.csr,"DRAM_CSR",3407872);// 0xd000_0000/400
+  // add reserved 2
+  add(xscalecore.csr,"XSCALE_CSR",3506176);// 0xd600_0000/400
+  add(pci.io, "PCI_IO",3538944);// 0xd800_0000/400
+  add(pci.cfg, "PCI_CFG",3571712);// 0xda00_0000/400
+  add(pci.spec, "PCI_SPEC",3604480);// 0xdc00_0000/400
+// add PCI Config Regs
+// add Local CSRs
+}
+};
+
+//csl_memory_map mmp{
+//	x_memp xm;
+//	mmp(){
+//set_type(flat);
+//set_top_unit(chip);
+//}
+//};

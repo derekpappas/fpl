@@ -1,0 +1,107 @@
+// costelc
+// 02.Apr.2008
+/*
+ *          +-------------------------------------------------------------------------------------------------------------------------------------+
+ *          |            +--------------------------------------------------------------------------------+                                       |
+ *          |            |                                                                                |                                       |
+ *          |            |                                                                                |                                       |
+ *          |            |                                                                                |                                       |
+ *          |            |                     +---------+                                                +           +--------------+            |
+ *          |            |                     |         |                                                +           |              |            |
+ *          |            |       +----+--------+-----+   |                                                |           |              |            |
+ *          |            |       |p_a_in     p_a_out | +-+------------------------------------------------+-----------+-- p1_in      |            |
+ *          |            |       |          +--------+ | |                                                |           |    ifc_top   |            |
+ *          |            |       |          ifc_a p1-+-+ |   +--------------------------------------------+-----+     |              |            |
+ *    clk---+---------+--+-------+ck        |        |   |   |         +---------+------------+           |     +-----+-- p2_out     |            |
+ *          |         |  |       |          |     p2-+---+---+         |         |p1_in     --+-----+     |           |              |            |
+ *          |         |  |       |        | +--------+   |             |         |            |     |     |           |              |            |
+ *          |         |  |       |a       rst        |   |             |         |   ifc_c    |     |     |           +--------------+            |
+ *          |         |  |       +--------+----------+   |             |         |            |     |     |                                       |
+ *    reset-+---+-----+--+----------------+--------------+-----|       |         |p2_out    --+-----+-----+------------------------+              |
+ *          |   |     +--+-------------------------------+-----+-------+ck       +------------+     |     |                        +--------------+p_out
+ *          |   |     |  |            +------------------+     |       |                      |     |     |                                       |
+ *          |   |     |  |            |           +-------+    |       |                      |     |     |                                       |
+ *          |   |     |  |       +----+-----------+--+    |    |       |c          rst        |     |     |                                       |
+ *          |   |     |  |       |  p_b_in    p_b_out|    |    |       +-----------|----------+     |     |                                       |
+ *          |   |     |  |       |                   |    |    |                   |                |     |                                       |
+ *          |   |     |  |       |                   |    |    |                   |                |     |                                       |
+ *          |   |     +--+-------+ck-                |    |    |                   |                |     |                                       |
+ *          |   |        |       |                   |    |    +-------------------+                |     |                                       |
+ *          |   |        |       |        o          |    |                                         |     |                                       |
+ *          |   |        |       |b         rst      |    +-----------------------------------------+     |                                       |
+ *          |   |        |       +----------|--------+                                                    |                                       |
+ *          |   +--------+------------------+                                                             |                                       |
+ *          |            |d                                                                               |                                       |
+ *          |top         +--------------------------------------------------------------------------------+                                       |
+ *          +-------------------------------------------------------------------------------------------------------------------------------------+
+ *
+o*/
+
+csl_interface ifc{ 
+  csl_port ifc_p1_in(input,8), ifc_p2_out(output,8), p_sg(input,8);
+  ifc() {}
+};
+csl_signal_group sg{
+  csl_signal  s1(8),s2(8), p_sg(8);
+  sg() {}
+};
+csl_unit a{
+  csl_port ck(input), reset(input);
+  csl_port p_a_out(output,8), p_a_in(input,8);
+  sg sg_a;
+  ifc ifc_a;
+  a() {}
+};
+
+csl_unit b{
+  csl_port ck(input), reset(input);
+  csl_port p_b_out(output,8), p_b_in(input,8);
+  sg sg_b;
+  b() {}
+};
+
+csl_unit c{
+  csl_port ck(input), reset(input);
+  csl_port p_c_out(output,8), p_c_in(input,8);
+  ifc ifc_c;
+  c() {}
+};
+csl_unit d{
+  a a;
+  b b;
+  c c;
+  d() {}
+};
+csl_interface ifc_top{
+  csl_port ifc_p1_in(input,8), ifc_p2_out(output,8);
+  csl_port p_sg(input,8);
+  ifc_top() {}
+};
+csl_unit top{
+  csl_port clk(input), rst(input);
+  csl_port p_out(output,8);
+  csl_signal s(8);
+  
+  sg sg_top;
+  d d;
+  ifc_top ifc_top;
+  
+  top() {
+          clk.connect_by_name(ck);
+    rst.connect_by_name(reset);                                            
+    d.a.p_a_out.connect_by_name(p_b_in);  // output_port-input_port       (child / child)
+    d.c.ifc_c.ifc_p1_in.connect_by_name(p_b_out);  //input_port-output_port (child /child)
+    p_out.connect_by_name(ifc_c.ifc_p2_out); 
+    ifc_top.connect_by_name(ifc_a);           // interface-interface (parrent / child )
+    d.b.p_b_out.connect_by_name(s);         //port-signal
+    s.connect_by_name(p_a_out);             //signal-port    
+      
+    d.a.ifc_a.connect_by_name(sg_top);            //interface-signal_group (top.d.a.ifc_a.p_sg  -to-  top.sg_top.p_sg)
+   d.a.sg_a.connect_by_name(ifc_top);                 //signal_group-interface (d.a.sg_a.p_sg to   -to-  top.ifc_top.p_sg
+
+  }
+};
+  
+  
+
+

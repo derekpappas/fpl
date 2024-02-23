@@ -1,0 +1,264 @@
+
+/*  MBIST processor data path  */
+
+
+// instruction bitrange
+csl_bitrange br_i(15,0);
+
+// data bitrange  
+csl_bitrange br_d(15,0);
+
+// operation selection bitrange
+
+csl_bitrange br_sop(3,0);
+
+
+// program counter
+
+csl_register r_pc {
+  r_pc(){
+    set_type(counter);
+    //    add_logic(reset,0);
+    add_logic(count_direction, up);
+    set_width(16);
+  }
+};
+
+// instruction memory
+
+csl_memory m_im {
+  m_im(){
+    set_width(16);
+    set_depth(1024);
+  }
+};
+
+// register file
+csl_register_file rf{
+  rf() {
+    set_width(16);
+    set_depth(16);
+  }
+};
+
+// define a one stage alu made of an arithmetic unit
+// and a logic unit selected with a 2-to-1 mux
+
+// define interfaces
+
+// define operands interface
+csl_interface ifc_op {
+  csl_port op1(input,br_d);
+  csl_port op2(input,br_d);
+};
+
+// define selection signal interface
+csl_interface ifc_sel{
+  csl_port sel(input, br_sop);
+};
+
+// define output interface
+csl_interface ifc_out {
+  csl_port o(output,br_d);
+};
+
+// define arithmetic unit
+csl_unit u_arith {
+
+// add interfaces
+  ifc_op ifc_op0;
+  ifc_sel ifc_sel0;
+  ifc_out ifc_out0;
+
+  // add additional ports
+
+  // add carry in port
+  csl_port cin(input);
+  // add carry out port
+  csl_port cout(output);
+    
+    u_arith(){
+  }
+};
+
+// define logic unit
+csl_unit u_logic{
+
+  // add interfaces
+  ifc_op ifc_op0;
+  ifc_sel ifc_sel0;
+  ifc_out ifc_out0;
+  u_logic(){
+  }
+  };
+
+//  // define a 2-to-1 mux
+//  csl_unit u_mux21 {
+//    // add interfaces
+//    csl_port in0(input,br_d), in1(input,br_d);
+//    csl_port sel(input);
+//    ifc_out ifc_out0;
+//    u_mux21() {
+//    }
+//  };
+
+// define a 4-to-1 mux
+ csl_unit u_mux41 {
+    // add interfaces
+   csl_port in0(input,br_d),in1(input,br_d),in2(input,br_d), in3(input,br_d);
+   csl_port sel(input,4);
+    ifc_out ifc_out0;
+    u_mux41() {
+    }
+  };
+
+// // define alu
+//
+// csl_unit u_alu {
+//   // add interfaces
+//   ifc_op ifc_op_alu;
+//   ifc_out ifc_out_alu;
+//   // define additional ports
+//   csl_port sel_alu(input,2);
+//   // add signals for connection of units to mux
+//   csl_signal_group tomux0(br_d), tomux1(brd); 
+//   // instantiate logic and aritmetic unit
+//   u_arith u_arith0(.ifc_op0(ifc_op_alu),.ifc_out(tomux0));
+//   u_logic u_logic0(.ifc_op0(ifc_op_alu),.ifc_out(tomux1));
+//   // instantiate mux
+//   u_mux21 u_mux210(.in0(tomux0),.in1(tomux1),.sel(sel_alu),.ifc_out0(ifc_out_alu));
+//   u_alu(){
+// }
+// };
+    
+csl_unit u_cmp {
+  // add interfaces
+  ifc_op ifc_op_cmp;
+  // add additional port
+  csl_port res(output);
+  u_cmp(){
+  }
+};
+
+csl_unit u_sh {
+  // add interfaces
+  ifc_out ifc_din; // direction is output, it must be reversed to be input, see below
+  ifc_out ifc_dout;
+  // add additional ports
+  csl_port p_sham(input,br_d);
+ u_sh(){
+   ifc_din.reverse();
+ }
+};
+csl_signal_group sg_tomux40{
+  csl_signal p_op1(br_d),p_op2(br_d);
+  sg_tomux40(){
+  }
+};
+csl_interface sel_op{
+  csl_port p_sel(input,br_sop);
+};
+csl_signal_group sg_tomux42{
+  csl_signal p_o(br_d);
+  sg_tomux42(){
+  }
+};
+
+csl_unit u_alu_sh_cmp {
+  // add interfaces
+  ifc_op ifc_op0;
+  ifc_out ifc_out0;
+  sel_op sel_op;
+  //add signal group
+  sg_tomux40 tomux40;
+  sg_tomux40 tomux41;
+  sg_tomux42 tomux42;
+  // declare additional ports
+  //csl_port p_sel_op(input,4);
+  csl_port sham(input,16);
+  csl_port compres(output);
+  csl_signal cin,cout;
+  // declare signal for connecting modules
+  csl_signal p_tomux40(br_d),p_tomux41(br_d),p_tomux42(br_d),p_tomux43(br_d);
+  // instantiate modules
+  u_arith u_arith0(.ifc_op0(ifc_op0),.ifc_sel0(sel_op),.ifc_out0(tomux40),.cin(cin),.cout(cout));
+  u_logic u_logic0(.ifc_op0(ifc_op0),.ifc_sel0(sel_op),.ifc_out0(tomux41));
+  u_cmp u_cmp0(.ifc_op_cmp(ifc_op0),.res(compres));
+  u_sh u_sh0(.ifc_din(ifc_op0),.p_sham(sham),.ifc_dout(tomux42));
+
+  u_mux41 u_mux410(.in0(p_tomux40),.in1(p_tomux41),.in2(p_tomux42),.in3(p_tomux43),.sel(sel_op.p_sel),.ifc_out0(ifc_out0)); 
+    u_alu_sh_cmp(){
+ }
+};
+   
+//define control unit
+csl_unit u_control {
+  csl_port s_status(input,8); // status signal
+  csl_port op_instr(output); // operation instruction
+  csl_port r_instr(output); // register instruction
+  csl_port wr_haddr(output); // write high address register
+  csl_port wr_crtaddr(output); //write ram address counter
+  csl_port wr_ram(output); //write ram
+  csl_port rd_ram(output); // read ram
+  csl_port rd_im(output); // read instruction memory
+  csl_port rd_rom(output); // read rom
+  csl_port incr(output); // increment ram address counter
+  csl_port decr(output); // decrement ram address counter
+  csl_port wr_dm(output); // write data memory
+  csl_port rd_dm(output); // read data memory
+  u_control(){
+  }
+};
+
+// define mbist controler unit  
+
+csl_unit u_mbist {
+  csl_signal sham(16),compres,sel(4);
+  ifc_op ifc_op0;
+  ifc_out ifc_out0;    
+  csl_signal status(8),op,r,wr,rd,no;
+  csl_signal in(16);
+  csl_signal rst,clk,en,data(16),clr,addr(4),valid;
+  // instantiate modules in the controler
+
+  // program counter
+  r_pc r_pc(.reset_(rst),.clock(clk),.enable(en),.reg_out(data));
+  
+  // branch/increment mux
+  //  u_mux21 mux_br;
+  
+  //  instruction memory
+  m_im im;
+  
+  // instruction decoder
+  //  u_idec idec;  
+  
+  // rom memory containing test paterns
+  //  m_rom pattern_rom;
+  
+  // memory selection mux
+  u_mux41 mux_mem(.in0(in),.in1(in),.in2(in),.in3(in),.sel(sel),.ifc_out0(ifc_out0));
+  
+  //register file
+  rf rf(.reset(rst),.clear(clr),.clock(clk),.wr_addr(addr),.rd_addr0(addr),.rd_addr1(addr),.data_in(data),.data_out0(data),.data_out1(data),
+        .wr_en(en),.rd_en0(en),.rd_en1(en),.valid(valid));
+  
+  // alu/shift/compare unit
+  u_alu_sh_cmp alusc(.sham(sham),.compres(compres),.ifc_op0(ifc_op0),.ifc_out0(ifc_out0),.sel_op.p_sel(sel));
+  
+  // data memory
+  //  m_dm dm;
+  
+  // ram address counter
+  //  r_ac addrcnt;
+  
+  // load/increment ram address counter mux
+  //  u_mux21 mux_ac;
+  
+  // control unit
+  u_control control(.s_status(status),.op_instr(op),.r_instr(r),.wr_haddr(wr),.wr_crtaddr(wr),.wr_ram(wr),.rd_ram(rd),.rd_im(rd),.rd_rom(rd),.incr(no),.decr(no),
+                    .wr_dm(wr),.rd_dm(rd));
+   
+  u_mbist(){
+  }
+};

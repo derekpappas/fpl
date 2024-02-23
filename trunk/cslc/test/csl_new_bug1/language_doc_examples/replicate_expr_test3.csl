@@ -1,0 +1,15 @@
+//Monica
+// 13 may 2008
+//replicate in f2a
+
+csl_unit u_1{
+  csl_port p11(output,16);
+  csl_port p12(input,32);
+  u_1(){}
+};
+csl_unit u_2{
+  csl_signal s21(4);
+  csl_signal s22(4);
+  u_1 u1_i(.p11({4{s21}}),.p12({8{s22}}));
+  u_2(){}
+};

@@ -1,0 +1,32 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="usb_phy">
+<interface name="phy_rx" >
+<port name="valid" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="cmd" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="data" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="ready" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="usb" >
+<port name="rpu1_en" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="rpu2_en" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="data_in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="force_se0" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="drv_enable" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="suspend" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="se_dp" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="enable_se" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="se_dn" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="data_out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="strobe" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="enable_diff" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="phy_tx" >
+<port name="valid" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="cmd" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="data" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="ready" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+</unit>
+</design>

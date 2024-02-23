@@ -1,0 +1,20 @@
+csl_register reg_cnt1{
+  reg_cnt1(){
+    set_type(counter);
+    set_width(8);
+    add_logic(direction_control);
+  }
+};
+csl_register reg_cnt2{
+  reg_cnt2(){
+    set_type(counter);
+    set_width(8);
+    add_logic(direction_control);
+  }
+};
+csl_unit top{
+  csl_signal cnt_dir_signal;
+  reg_cnt1 reg_cnt1(.cnt_port(cnt_dir_signal));
+    reg_cnt2 reg_cnt2(.cnt_port(reg_cnt1.get_cnt_dir_signal()));
+  top(){}
+};

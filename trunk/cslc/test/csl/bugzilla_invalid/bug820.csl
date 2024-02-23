@@ -1,0 +1,19 @@
+csl_unit test {
+
+csl_signal sgn69,sgn70,sgn71,sgn72;
+csl_signal sgn73,sgn74,sgn75,sgn76;
+csl_signal sgn77,sgn78,sgn79;
+ csl_bitrange br75(2);
+
+  test() {
+    sgn69.set_range(7,0);
+    sgn70.set_range(1,0);
+    sgn71.set_range(4,0);
+    sgn72.set_range(9,8);
+    sgn73.set_range(3,1);
+    sgn74.set_range(8,5);
+    sgn75.set_bitrange(br75);
+    sgn75.set_dim_range(1,2,0);             //PASSED without error
+
+  }
+};

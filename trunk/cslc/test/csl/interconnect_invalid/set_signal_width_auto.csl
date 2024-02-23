@@ -1,0 +1,19 @@
+csl_enum e {
+a = 0
+};
+
+
+csl_field f {
+f () {
+   set_enum(e); // this should set the width automatically
+                        // set_width should be optional-is it?
+}
+};
+csl_unit top {
+csl_signal s(wire,32);
+
+top() {
+  s.set_bitrange(f); // this should set the width automatically
+  // set_width should be optional-is it?
+}
+};

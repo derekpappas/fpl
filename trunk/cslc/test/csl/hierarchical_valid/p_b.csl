@@ -1,0 +1,13 @@
+// Author : CristiL
+//
+// Creating a port which has a bitrange
+
+csl_unit unitTop {
+  csl_bitrange bitrange0(32);
+  csl_port port0(input);
+  csl_signal s1(32);
+  unitTop() {
+    port0.set_bitrange(bitrange0);
+    s1 = port0;
+  }
+};

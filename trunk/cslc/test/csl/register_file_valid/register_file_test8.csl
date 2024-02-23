@@ -1,0 +1,168 @@
+//Petronela
+csl_register_file rf{
+    rf(){
+    set_depth(30);
+    set_width(31);
+    set_reset_name("rst");
+    }
+};
+csl_register_file regf{
+  regf(){
+    set_width(4);
+    set_depth(7);
+    set_clock_name("clock");
+  }
+};
+
+csl_register_file r1{
+  r1(){   
+    set_depth(6);
+    set_width(9);
+    set_wr_data_name("wr_data");
+  }
+};
+csl_register_file r2{
+  r2(){ 
+    set_width(32);
+    set_depth(33);
+    add_logic(read_valid);
+  }
+};
+csl_register_file r3{
+  r3(){   
+    set_width(34);
+    set_depth(35);
+    create_rtl_module();
+  }
+};
+csl_register_file r5{
+  r5(){
+    set_width(38);
+    set_depth(39);
+    set_wr_addr_name("wr_addr");
+  }
+};
+csl_register_file r16{
+  r16(){
+    set_width(40);
+    set_depth(41);
+    set_rd_addr_name("rd_addr");
+  }
+};
+csl_register_file r7{
+  r7(){
+    set_width(42);
+    set_depth(43);
+    add_logic(read_valid);
+  }
+};
+csl_register_file r8{
+  r8(){ 
+    set_width(44);
+    set_depth(45);
+    set_valid_name("valid");
+  }
+};
+csl_register_file r19{
+  r19(){
+    set_depth(46);
+    set_width(47);
+    set_rd_en_name("en_name");
+  }
+};
+csl_register_file r10{
+  r10(){
+    set_width(48);
+    set_depth(49);
+    set_wr_en_name("en_wr");
+  }
+};
+csl_register_file r12{
+  r12(){
+    set_width(50);
+    set_depth(51);  
+  }
+};
+csl_register_file r11{
+  r11(){
+  set_width(50);
+  set_depth(52); 
+  }
+};
+
+csl_register_file r4{
+  r4(){
+  set_width(50);
+  set_depth(55); 
+  }
+};
+csl_unit u1{
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(input);                  
+  csl_port p4(input,5);
+  csl_port p5(input,5);
+  csl_port p6(input,5);
+  csl_port p7(input,31);
+  csl_port p8(output,31);
+  csl_port p9(output,31);
+  csl_port p10(input);
+  csl_port p11(input);
+  csl_port p12(input);
+  csl_port p13(output);
+  csl_port p14(input,4);
+  csl_port p15(output,4);
+  csl_port p16(output,4);
+  // csl_port p17(input,9);
+  csl_port p18(output,9);
+  csl_port p19(output,9);
+  csl_port p20(input,3);
+  csl_port p21(input,3);
+  csl_port p22(input,3);
+  csl_port p23(input,32);
+  csl_port p24(output,32);
+  csl_port p25(output,32);
+  csl_port p26(input,6);
+  csl_port p27(input,34);
+  csl_port p28(output,34);
+  csl_port p29(output,34);
+  csl_port p30(input,38);
+  csl_port p31(output,38);
+  csl_port p32(output,38);
+  csl_port p33(input,40);
+  csl_port p34(output,40);
+  csl_port p35(output,40);
+  csl_port p36(input,42);
+  csl_port p37(output,42);
+  csl_port p38(output,42);
+  csl_port p39(input,44);
+  csl_port p40(output,44);
+  csl_port p41(output,44);
+  csl_port p42(input,47);
+  csl_port p43(output,47);
+  csl_port p44(output,47);
+  csl_port p45(input,48);
+  csl_port p46(output,48);
+  csl_port p47(output,48);
+  csl_port p48(input,50);
+  csl_port p49(output,50);
+  csl_port p50(output,50);
+  rf rf(.rst(p1),.clear(p2),.clock(p3),.wr_addr(p4),.rd_addr0(p5),.rd_addr1(p6),.data_in(p7),.data_out0(p8),.data_out1(p9),.wr_en(p10),.rd_en0(p11),.rd_en1(p12),.valid(p13));
+  regf regf(.reset(p1),.clear(p2),.clock(p3),.wr_addr(p20),.rd_addr0(p21),.rd_addr1(p22),.data_in(p14),.data_out0(p15),.data_out1(p16),.wr_en(p10),.rd_en0(p11),.rd_en1(p12),.valid(p13));
+  r1 r1(.reset(p1),.clear(p2),.clock(p3),.wr_addr(p20),.rd_addr0(p21),.rd_addr1(p22),.wr_data(p1),.data_out0(p18),.data_out1(p19),.wr_en(p10),.rd_en0(p11),.rd_en1(p12),.valid(p13));
+  r2 r2(.reset(p1),.clear(p2),.clock(p3),.wr_addr(p26),.rd_addr0(p26),.rd_addr1(p26),.data_in(p23),.data_out0(p24),.data_out1(p25),.wr_en(p10),.rd_en0(p11),.rd_en1(p12),.valid(p13));
+  r3 r3(.reset(p1),.clear(p2),.clock(p3),.wr_addr(p26),.rd_addr0(p26),.rd_addr1(p26),.data_in(p27),.data_out0(p28),.data_out1(p29),.wr_en(p10),.rd_en0(p11),.rd_en1(p12),.valid(p13));
+  r4 r4(.reset(p1),.clear(p2),.clock(p3),.wr_addr(p26),.rd_addr0(p26),.rd_addr1(p26),.data_in(p48),.data_out0(p49),.data_out1(p50),.wr_en(p10),.rd_en0(p11),.rd_en1(p12),.valid(p13));
+  r5 r5(.reset(p1),.clear(p2),.clock(p3),.wr_addr(p1),.rd_addr0(p26),.rd_addr1(p26),.data_in(p30),.data_out0(p31),.data_out1(p32),.wr_en(p10),.rd_en0(p11),.rd_en1(p12),.valid(p13));
+  r16 r16(.reset(p1),.clear(p2),.clock(p3),.wr_addr(p26),.rd_addr(p1),.rd_addr1(p26),.data_in(p33),.data_out0(p34),.data_out1(p35),.wr_en(p10),.rd_en0(p11),.rd_en1(p12),.valid(p13));
+  r7 r7(.reset(p1),.clear(p2),.clock(p3),.wr_addr(p26),.rd_addr0(p26),.rd_addr1(p26),.data_in(p36),.data_out0(p37),.data_out1(p38),.wr_en(p10),.rd_en0(p11),.rd_en1(p12),.valid(p13));
+  r8 r8(.reset(p1),.clear(p2),.clock(p3),.wr_addr(p26),.rd_addr0(p26),.rd_addr1(p26),.data_in(p39),.data_out0(p40),.data_out1(p41),.wr_en(p10),.rd_en0(p11),.rd_en1(p12),.valid(p13));
+  r19 r19(.reset(p1),.clear(p2),.clock(p3),.wr_addr(p26),.rd_addr0(p26),.rd_addr1(p26),.data_in(p42),.data_out0(p43),.data_out1(p44),.wr_en(p10),.en_name(p11),.rd_en1(p12),.valid(p13));
+  r10 r10(.reset(p1),.clear(p2),.clock(p3),.wr_addr(p26),.rd_addr0(p26),.rd_addr1(p26),.data_in(p45),.data_out0(p46),.data_out1(p47),.en_wr(p10),.rd_en0(p11),.rd_en1(p12),.valid(p13));
+  r11 r11(.reset(p1),.clear(p2),.clock(p3),.wr_addr(p26),.rd_addr0(p26),.rd_addr1(p26),.data_in(p48),.data_out0(p49),.data_out1(p50),.wr_en(p10),.rd_en0(p11),.rd_en1(p12),.valid(p13));
+  r12 r12(.reset(p1),.clear(p2),.clock(p3),.wr_addr(p26),.rd_addr0(p26),.rd_addr1(p26),.data_in(p48),.data_out0(p49),.data_out1(p50),.wr_en(p10),.rd_en0(p11),.rd_en1(p12),.valid(p13));
+  
+  u1(){
+    
+  }
+};

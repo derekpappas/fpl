@@ -1,0 +1,5 @@
+csl_enum e {
+  a = 4'd13+2'd3,// here must be an warning 
+    b = 4'd13+5'd3
+};
+

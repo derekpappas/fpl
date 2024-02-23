@@ -1,0 +1,19 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="register_file.xsl"?>
+<design>
+<register_file name="localmem" width ="1"  depth ="64" >
+<port name="reset" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="clear" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="clock" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="wr_addr" offset="0" upper="log2641" lower="0" direction = "input" type = "wire" />
+<port name="rd_addr0" offset="0" upper="log2641" lower="0" direction = "input" type = "wire" />
+<port name="rd_addr1" offset="0" upper="log2641" lower="0" direction = "input" type = "wire" />
+<port name="data_in" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+<port name="data_out0" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="data_out1" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="wr_en" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="rd_en0" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="rd_en1" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="valid" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</register_file>
+</design>

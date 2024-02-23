@@ -1,0 +1,93 @@
+Fastpath Logic™ License Agreement
+
+Please read and accept the license below to continue.
+
+IMPORTANT - read carefully before DOWNLOADING, ACCESSING or USING the
+Chip Specification Language Compiler(cslc) (collectivelly, "SOFTWARE"
+of Fastpath Logic, INC.
+Your use of the SOFTWARE is expressly conditioned upon and subject to
+your agreement to these terms and conditions. If you do not agree to
+these terms and conditions, do not DOWNLOAD, ACCESS or USE the SOFTWARE
+(refer to license.txt documents for more information).
+
+This License Agreement ("Agreement") is an agreement between Fastpath Logic,
+Inc. ("Fastpath Logic") and the company or organization you represent ("You")
+for the Software, both in electronic and other media, as well as any
+updated versions thereof which Fastpath Logic may provide.
+
+The Software is an unsupported proprietary work of Fastpath Logic and its
+third-party licensors. The Software IS
+NOT an item of Licensed Software or Licensed Product under any End User
+Software License Agreement or other agreement for a licensed product
+with Fastpath Logic or any supplement thereto. Upon Your acceptance of this
+Agreement, Fastpath Logic grants You a non-exclusive, non-transferable,
+worldwide license to use the Software for Your own business purposes.
+You are permitted to use the Software in the forms provided,
+only as permitted under this Agreement. You may not: (i) decompile,
+disassemble, reverse engineer or attempt to reconstruct, identify or
+discover any source code (if the item is provided in object/binary code form),
+underlying ideas, underlying user interface techniques or algorithms of
+the Software by any means whatsoever, or disclose any of the foregoing;
+(ii) distribute, lease, lend, use for timesharing, service bureau,
+and/or application service provider purposes the Software; (iii) use the
+Software for the benefit of third parties or allow third parties to use
+the Software except as expressly provided in this Agreement; (iv)
+modify, incorporate into or with other software, or create a derivative
+work of any part of the Software; (v) disclose the results of any
+benchmarking of the Software (whether or not obtained with Fastpath Logic'
+assistance) to third parties; (vi) use the Software to develop or
+enhance any product that competes with the Software or any other
+Fastpath Logic products, or use the software to program, configure, operate or
+optimize the operation of any tool that is not provided by Fastpath Logic;
+or (vii) employ the Software in, or in the development of, life critical
+applications or in any other application where failure of such Software
+or any results from the use thereof can reasonably be expected to result
+in personal injury. You may not view, use, disclose, copy or distribute
+the Software or any information contained herein except as expressly
+provided in this Agreement from Fastpath Logic. If You do not agree with the
+terms and conditions of this Agreement, including the disclaimer below,
+then You are not authorized to use the Software. Other Fastpath Logic tools must
+be separately licensed.
+
+THIS SOFTWARE IS BEING DISTRIBUTED SOLELY ON AN "AS IS" BASIS, WITHOUT
+ANY SUPPORT OR MAINTENANCE, AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+ARE HEREBY DISCLAIMED. FURTHER, NEITHER FASTPATH LOGIC NOR ITS LICENSORS
+WARRANTS THE RESULTS THAT MAY BE ATTAINED BY USING THE SOFTWARE, THAT
+THE SOFTWARE IS WITHOUT DEFECTS OR ERRORS, OR THAT ITS USE WILL BE
+UNINTERRUPTED. IN NO EVENT SHALL FASTPATH LOGIC OR ITS LICENSORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+OR SERVICES; LOSS OF USE, DATA, OR PROFITS, OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+You may not assign or transfer the Agreement or the license granted
+hereunder without the prior written consent of Fastpath Logic, and any attempt
+to do so shall be void. Fastpath Logic may assign this Agreement in whole or
+in part. If any provision of this Agreement shall be adjudged by any
+court of competent jurisdiction to be unenforceable or invalid, that
+provision shall be limited or eliminated to the minimum extent necessary
+so that this Agreement shall otherwise remain in full force and effect,
+and enforceable. A waiver of any condition or breach of condition of
+this Agreement in any one instance does not constitute a waiver of the
+condition or any subsequent breach. This Agreement shall be deemed to
+have been made in, and shall be construed pursuant to the laws of, the
+State of California and the United States without regard to conflicts of
+laws provisions thereof, and without regard to the United Nations
+Convention on the International Sale of Goods. Any legal action relating
+to this Agreement will be brought in California
+U.S.A., and You agree to be subject to the jurisdiction of a state or
+federal court in such state. This Agreement constitutes the entire
+agreement between You and Fastpath Logic, and supersedes all prior agreements,
+understandings and representations, written or oral, express or implied,
+regarding the subject matter hereof. This Agreement may be modified only
+by a written instrument signed by You and Fastpath Logic. It is expressly
+agreed that the terms of this Agreement supersede the terms in any
+purchase order or other ordering document for the Software.
+
+© 2006-2008 Fastpath Logic, Inc. All Rights Reserved.
+

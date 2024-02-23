@@ -1,0 +1,6 @@
+//bug 777
+csl_register_file regf{
+  regf(){
+    set_field(f,5);//shoul give an error because i haven't declarated a field f
+  }
+};

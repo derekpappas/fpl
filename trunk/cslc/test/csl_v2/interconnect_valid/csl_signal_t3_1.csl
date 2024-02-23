@@ -1,0 +1,52 @@
+//author: Monica 
+//testing:bitrange,add_instance,set_width,get_width,set_bitrange,get_bitrange
+//         set_range,set_upper_index,set_lower_index,set_offset,get_offset,get_range
+//         get_upper_index,get_lower_index
+
+
+csl_unit u1_t3 {
+
+  csl_port in(input);
+  csl_bitrange brx(3);
+  csl_bitrange br1_1_t3(4);
+  csl_bitrange br1_2_t3(4,3);
+  csl_bitrange br1_3_t3(2, 0);
+  csl_bitrange br1_4_t3(0,0);
+  csl_bitrange br_t3(1, 0);
+  csl_signal in1;
+  csl_signal sgn1_1_t3(wire,br1_1_t3);
+  csl_signal sgn1_2_t3(wire,br1_2_t3);
+  csl_signal sgn1_3_t3(br1_3_t3);
+
+  u1_t3() {
+
+
+  }
+};
+
+csl_unit u2_t3 {
+
+  csl_bitrange br_t3(3);
+  csl_signal sgn2_1_t3(wire,u1_t3.br1_1_t3);
+  csl_signal sgn2_2_t3(br_t3);
+  u2_t3() {
+
+  }
+};
+
+csl_unit u3_t3 {
+  csl_signal sgn3_1_t3,sgn3_2_t3;
+  u1_t3 inst_u1_t3;
+
+  u3_t3() {
+    sgn3_1_t3.set_width(6);
+    sgn3_2_t3.set_width(sgn3_1_t3.get_width());
+  }
+};
+csl_unit top{
+  u1_t3 u1;
+  u2_t3 u2;
+  u3_t3 u3;
+
+  top(){}
+};

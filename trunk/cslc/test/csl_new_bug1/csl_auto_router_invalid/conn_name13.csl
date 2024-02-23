@@ -1,0 +1,40 @@
+//oanab
+//10 july 2008
+
+csl_interface ifc {
+  csl_port p_a(input);
+  csl_port p_b(output);
+  ifc () {}
+};
+
+csl_unit a {
+  csl_port x(input);
+  ifc ifc0;
+  a () {}
+};
+
+csl_unit b {
+  a a0;
+  ifc ifc1;
+  csl_port ar_y_x_in(input);
+  b () {
+    ifc1.set_prefix("ifc0"); // the ports are not prefixed correct
+  }
+};
+
+csl_unit c {
+  b b0;
+  b b1;
+  ifc ifc1;
+  csl_port y(input);
+  c () {
+    y.connect_by_name(b0.a0.x);
+  }
+};
+
+csl_unit d {
+  c c0;
+  d () {
+    c0.b1.a0.ifc0.connect_by_name(c0.ifc1); // generates ports in unit b
+  }
+};

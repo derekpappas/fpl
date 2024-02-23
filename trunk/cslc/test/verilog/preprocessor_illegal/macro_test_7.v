@@ -1,0 +1,3 @@
+`define first_half "start of string
+$display(`first_half end of string");
+

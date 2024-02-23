@@ -1,0 +1,124 @@
+csl_enum ci {
+	tc = 62,
+	gw = 61,
+	hd = 20,
+	hg = 64,
+	lw = 79,
+	ny = 50,
+	ts = 22,
+	go = 88,
+	iw = 0,
+	yd = 71
+};
+csl_enum fb {
+	rb,
+	sl,
+	fx,
+	nj,
+	gh,
+	lo
+};
+csl_enum gs {
+	ro,
+	cg,
+	lp,
+	fi,
+	in,
+	ws,
+	kx,
+	xs
+};
+csl_isa ey{
+    ey( ){
+     set_decoder_out_name_prefix( "in");
+     set_decoder_out_name_suffix( "rf");
+  }
+}
+;
+csl_fifo fh{
+   fh( ){
+     add_logic( depth_extend, 2);
+     add_logic( wr_words, 7);
+     add_logic( wr_release);
+     add_logic( output_wr_addr);
+  }
+}
+;
+csl_memory_map_page jh{
+    jh( ){
+     set_address_increment( 6);
+     get_next_address( );
+     get_lower_bound( );
+     get_data_word_wodth( );
+     set_aligment( 6);
+     get_aligment( );
+     set_endianess( little_endian);
+  }
+}
+;
+csl_memory_map_page pf{
+    pf( ){
+     set_next_address( 2);
+     get_next_address( );
+     set_access_rights( access_read_write, access_read);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page ba{
+  pf rv;
+  jh xp;
+  pf am;
+    ba( ){
+     set_next_address( 6);
+     set_data_word_width( 0);
+     get_data_word_wodth( );
+     get_aligment( );
+     set_endianess( little_endian);
+  }
+}
+;
+csl_memory_map wx{
+    wx( ){
+     auto_gen_memory_map( );
+pf.add_to_memory_map( access_write); 
+     set_type( page);
+pf.set_access_rights_enum( jhpf); 
+     set_prefix( al);
+     get_prefix( );
+  }
+}
+;
+csl_register gw{
+    gw( ){
+     set_range( [8:1]);
+     set_width( 6);
+     constant( 1);
+     add_logic( neg_output);
+     add_logic( serial_output);
+     add_logic( rd_en);
+     add_logic( wr_en);
+     init_value( 0);
+     clear_value( 7);
+     set_lock_enable_bit( 0);
+     add_logic( gray_output);
+     set_end_value( 4);
+  }
+}
+;
+csl_register qr{
+    qr( ){
+     set_width( 3);
+     get_width( );
+     set_depth( 2);
+     get_depth( );
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 6);
+  }
+}
+;

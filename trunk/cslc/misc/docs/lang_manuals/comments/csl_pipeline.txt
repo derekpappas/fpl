@@ -1,0 +1,65 @@
+AndreiB
+
+reffered documents:
+.fm file is /docs/manuals/production/csl_files/csl_pipeline.fm
+
+document notes:
+- should there be a Command Summary section added ?
+- 1.1 the sentence "Each pipe stage consists of a combinational logic cone feeding a set of sequential elements."; I don't understand what does "cone feeding" mean.
+- 1.2 pipeline description and pipeline building process need to be added ?
+- 1.2.2 In this phrase
+"Output stages which are enabled by a stall from a down stream block and which have a valid need to qualify the valid with the inverse of stall to avoid sending duplicates to the down stream pipeline"
+should "valid" be replaced with "valid bit" ? Also, more contents to be added here ?
+- 1.2.3 Valid bit pipeline types - no content under this heading
+- under Figure 1.2 there is a "Pipeline transactions with no stall" (formatted as code); Should it be explained what is represented there ? Eg: the 1's passing through each block as the clk is enabled and what does 0,1,2,3,4 mean.
+- 1.2.3.1 and 1.2.3.2 - should there be an explanation of the functioning besides Figures ?
+- 1.2.3.3 "The valid bit should not be duplicated" - How does valid bit duplication occur ?
+In the following paragraph:
+
+"The valid (bit?) is qualified with the stall signal to turn off the valid bit when the stall is off. If the valid bit is not qualified then when the valid bit is 1 and the stall is off and the down stream logic is not controlled by the stall signal as in Figure  1.4 then the transaction will be duplicated each cycle that the stall signal is on."
+
+ the valid bit qualification is not clearly explained.
+ I have added a new crossreference type for figures: only the figure number (not the page where the figure is or the figure name). 
+Should we use this type ?
+
+- under "Pipeline operation" is the bulleted list required ?
+- under Figure 1.4, at "Pipeline transactions with stall" the same observation as for "Pipeline transactions with no stall"
+- disambiguation request: I have encountered multiple instances of "valid bit" and "valid". Do they refer to the same thing and if so, use only one version ? eg. "Down stream logic uses the valid in stage 4" or Figure 1.5 title: "Using valid to qualify data" versus "The valid bit can be used to zero out data that feeds combinational logic"
+
+- 1.2.4 although clearly described should there be more explanations about micro pipelining ?
+- 1.2.6 What does "collapse bubbles in pipelines" mean ?
+- 1.2.6.1 In the bulleted list, the sentence:
+		"Data does not flow when the stall signal is on the flip flop enable signals are disabled."
+		is not very clear. Maybe rephrase to:
+		"Data does not flow when the stall signal is on and the flip flop enable signals are off." ?
+- Figure 1.8: Each enable signal for the flip flops is labeled as en_1: shouldn't the number correspond to each ff ? 
+like en_2, en_3? Also what are the values for s_en's ns_en's and ms's (just below the pipestages)
+- 1.2.8 within the paragraph there is the expression " entering the semaphore branch and merge" - although it may seem obvious, would it be more appropriate to detail or at least explain what a semaphore is in this context, and/or how it is applied to pipeline branches ?
+- Figure 1.11: Where does pipe_stall connect to ?
+- 1.2.9 More details on the duplication of data in a pipeline with branches ?
+- 1.2.10 "For example a simple pipeline may span the following units" - Maybe add a cross-reference to Figure 1.13 here ?
+- 1.3 Units with more than two stall inputs or Units with two or more stall inputs cand have register leaks ? The text was incomplete here and I chose: "Units with two or more stall inputs"
+- Figure 1.14 is missing title and contents
+- 1.4 In the sentence "The loop can only be replaced by a branching solution when the loop is not a SCC." - What is a branching solution and what does SCC stand for ?
+- Figure 1.15 is missing title and contents
+- Figure 1.16 title too long ? Maybe take "We need to automatically generate the signal names for the different pipe stages" and turn it into body text with a reference to the Figure ?
+- below Figure 1.17 there is a bulleted list that seems incomplete or out of context.
+- under the bulleted list aforementioned, there is a discussion about pipeline latency match generator and checker: should that be contained in a new header ? Also, could there be more details about the process: The sentence "The pipeline will measure the number (n) of pipestages between two specified signals and generate n pipe stages" is not clear enough: how does the pipeline measure the number of pipestages and then generate pipestages ?
+- Figure 1.18 has no title. In the figure there is this line "genout n generated out sig" which is not very clear. Below this figure, in the code section, I have replaced the line:
+		"csl_pipeline_latency_match(in0,outn,in0,outn);"
+		with
+		"csl_pipeline_latency_match(in0,outn,in10,out1n);"
+- Figure 1.19 Is "Valid clk gating" line still required ?
+- 1.6: 
+	 in the description of command "pipeline_name.associate_pipeline(pipeline_name1);" there is this text: "driving the same relative pipe stages, and ... " - what should replace the ...'s ?
+- Figure 1.20 has no title
+- "longest path determines the setup time" and "shortest path determines the hold time" should be left as heading 3 or turned to body text ?
+- 1.7.2.4 "Clock to Q delay" has no contents
+
+------------------------------
+17 August 2007
+Pipeline 2.0 Release future:
+- power efficient pipeline designs
+- Clock control on a per pipe stage basis can be controlled using the  previous
+- valid bits from the previous 2-3 pipe stages.
+------------------------------

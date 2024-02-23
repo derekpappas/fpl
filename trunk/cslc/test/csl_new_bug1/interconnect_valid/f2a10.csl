@@ -1,0 +1,13 @@
+//oanab
+//11 aug 2008
+
+csl_unit a {
+  csl_port p(input);
+  a () {}
+};
+
+csl_unit b {
+  csl_signal s(4);
+  a a0(.p(s[3-:1]));
+  b () {}
+};

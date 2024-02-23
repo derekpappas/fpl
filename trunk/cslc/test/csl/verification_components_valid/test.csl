@@ -1,0 +1,58 @@
+//oanab
+
+csl_bitrange br(4,1);
+
+csl_interface ifc{
+  csl_port stim_i1(input,br),stim_i2(input,br);
+  csl_port exp_o1(output,br),exp_o2(output,br);
+  ifc(){}
+};
+
+csl_unit dut{
+  csl_port clk(input);
+  ifc ifc_1;
+  dut(){ 
+    clk.set_attr(clock);}
+};
+
+csl_unit a {
+  csl_port p1(input,4);
+  csl_port p2(input,4);
+  csl_port p3(output,4);
+  csl_port p4(output,4);
+  csl_port p5(input);
+  dut dut1(.ifc_1.stim_i1(p1),.ifc_1.stim_i2(p2),.ifc_1.exp_o1(p3),.ifc_1.exp_o2(p4),.clk(p5));
+  a (){}
+};
+
+
+csl_vector stim{
+  stim(){
+    set_unit_name(dut);
+    set_direction(input);
+    exclusion_list(ifc_1.stim_i2);
+    set_vc_header_comment("stim_vect");
+    set_radix(bin);
+  }
+};
+
+csl_vector exp{
+  exp(){
+   set_unit_name(dut);
+   set_direction(output);
+   include_only(ifc_1.exp_o1);
+   set_vc_header_comment("exp_vect");
+   set_vc_max_number_of_valid_transactions(20);
+   set_vc_output_filename("exp_vect");
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+   dut dut_1;
+  tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,200,ps);
+   
+  }
+};

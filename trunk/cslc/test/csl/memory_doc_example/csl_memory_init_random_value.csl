@@ -1,0 +1,9 @@
+// Monica 
+
+csl_memory mem{
+  mem(){
+    set_width(8);
+    set_depth(64);
+    initialize_random_values(8);
+  }
+};

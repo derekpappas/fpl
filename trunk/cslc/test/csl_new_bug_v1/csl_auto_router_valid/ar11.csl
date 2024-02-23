@@ -1,0 +1,150 @@
+// Author: cghaba
+// Date: April 3, 2008
+
+/*
+                +------------------------------------------------------------------+
+                |    +---------------------------------------------------------+   |
+                |    |                                                         |   |
+                |    |             +---------------------------+               |   |
+                |    |+-----------+|         +-----------+     |  +---------+  |   |
+                |    || +-------+ ||         | +-------+ |     |  |+-------+|  |   |
+                |    || |       | ||         | |       | |     |  ||       ||  |   |
+                |    ++-+       +-++  +------+-+       +-+---+ +--++       ++--+   |
+                |     | |  bu   | |   |      | |  bu   | |   |    ||  bu   ||      |
+                |     | |       | |   |      | |       | |   |    ||       ||      |
+             ---+-----+-+       +-+---|    +-+-+       +-+-| | +--++       ++--+   |
+                |     | |       | |        | | |       | | | | |  ||       ||  |   |
+                |     | +-------+ |        | | +-------+ | | | |  |+-------+|  |   |
+                |     |           |        | |           | | | |  |         |  |   |
+                |     |           |        +-+-----------+-+----------------+--+   |
+                |     |           |          |           | | | |  |         |      |
+                |  +--+-----------+------------------------+ | |  |         |      |
+                |  |  |           |          |           |   | |  |         |      |
+                |  |  | +-------+ |          | +-------+ |   | |  |+-------+|      |
+                |  |  | |       | |          | |       | |   | |  ||       ||      |
+                |  +--+-+  su   +-+----------+-+   su  +-+---|-+  ||  su   ++------+---
+                |     | |       | |          | |       | |   +----++       ||      |
+                |     | +-------+ |          | +-------+ |        |+-------+|      |
+                |     +-----------+          +-----------+        +---------+      |
+                |top        u0                     u1                  u2          |
+                +------------------------------------------------------------------ 
+
+*/
+
+
+// defining constants 
+
+csl_enum e_const{
+  DATA_WIDTH=16,
+    SEL_WIDTH=3,         // to be used in other versions
+    DOUBLE_DATA_WIDTH=32 // to be used in other versions
+    };
+
+// define bitranges
+
+csl_bitrange br_d(DATA_WIDTH);                     
+csl_bitrange br_s(SEL_WIDTH);                      // to be used in other versions
+csl_bitrange br_dd(DOUBLE_DATA_WIDTH);             // to be used in other versions
+csl_bitrange br_lw(0,DATA_WIDTH-1);                // to be used in other versions
+csl_bitrange br_hw(DATA_WIDTH,DOUBLE_DATA_WIDTH-1);// to be used in other versions
+
+// define interfaces
+csl_interface ifcresclk{
+  csl_port reset(input);
+  csl_port clock(input);
+  ifcresclk(){
+  }
+};
+
+// interface for small unit
+csl_interface ifc_su{
+  csl_port iin(input,br_d);
+  csl_port iout(output,br_d);
+  ifc_su(){
+  }
+};
+
+// interface for big unit
+csl_interface ifc_bu{
+  ifc_su ifcup;
+  ifc_su ifcdw;
+  ifc_bu(){
+  }
+};
+
+// small unit
+csl_unit usu{
+  ifc_su ifc0;
+  ifcresclk ifcrc;
+  usu(){
+  }
+};
+
+// big unit
+csl_unit ubu{
+  ifc_bu ifc0;
+  ifcresclk ifcrc;
+  ubu(){
+  }
+};
+
+// pair unit
+
+csl_unit upair{
+  usu su;
+  ubu bu;
+  upair(){
+  }
+};
+
+// top unit
+csl_unit utop{
+  //ports
+  csl_port clk(input);
+  csl_port rst(input);
+
+  // interfaces
+
+  ifc_su ifct;
+
+  //unit instances
+
+  upair u0;
+  upair u1;
+  upair u2;
+
+  utop(){
+
+    //connecting clock and reset
+    clk.connect_by_pattern(ifcrc.clock);
+    rst.connect_by_pattern(ifcrc.reset);
+
+    //connect_by_name by units
+
+    //connecting top unit ports
+    ifct.iin.connect_by_name(u0.bu.ifc0.ifcdw.iin);
+    ifct.iout.connect_by_name(u2.su.ifc0.iout);
+
+    //connecting u0.bu
+    u0.bu.ifc0.ifcup.iin.connect_by_name(u2.bu.ifc0.ifcup.iout);
+    u0.bu.ifc0.ifcup.iout.connect_by_name(u2.bu.ifc0.ifcup.iin);
+    u0.bu.ifc0.ifcdw.iout.connect_by_name(u1.bu.ifc0.ifcup.iin);
+    
+    //connecting u0.su
+    u0.su.ifc0.iin.connect_by_name(u1.bu.ifc0.ifcdw.iout);
+    u0.su.ifc0.iout.connect_by_name(u1.su.ifc0.iin);
+    
+    // connecting u1.bu
+    u1.bu.ifc0.ifcdw.iin.connect_by_name(u2.bu.ifc0.ifcdw.iout);
+    u1.bu.ifc0.ifcup.iout.connect_by_name(u2.su.ifc0.iin);
+    
+    // connecting u1.su
+    u1.su.ifc0.iout.connect_by_name(u2.bu.ifc0.ifcdw.iin);
+    
+    //connecting u2.bu
+    // already done before
+
+    //connecting u2.su
+    // already done before
+  }
+};

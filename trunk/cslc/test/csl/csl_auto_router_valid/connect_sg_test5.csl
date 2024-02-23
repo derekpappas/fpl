@@ -1,0 +1,58 @@
+//monicah
+//18 feb 2008
+
+csl_signal_group sg1{
+  csl_signal s1(4),s2(16);
+  sg1(){}
+};
+csl_signal_group sg2{
+  csl_signal s1(16),s2(32);
+  sg2(){}
+};
+csl_signal_group sg3{
+  csl_signal s1(2),s2(4);
+  sg3(){}
+};
+
+csl_signal_group sg4{
+  csl_signal s1,s2;
+  sg4(){}
+};
+
+csl_interface ifc1{
+  csl_port s1(output,4),s2(output,16);
+  ifc1(){}
+};
+csl_interface ifc2{
+  csl_port s1(output,16),s2(output,32);
+  ifc2(){}
+};
+csl_interface ifc3{
+  csl_port s1(input,2),s2(input,4);
+  ifc3(){}
+};
+csl_interface ifc4{
+  csl_port s1(input),s2(input);
+  ifc4(){}
+};
+csl_unit u1{
+  ifc1 ifc1;
+  ifc2 ifc2;
+  ifc3 ifc3;
+  ifc4 ifc4;
+  u1(){}
+};
+
+csl_unit top{
+  u1 u1;
+  sg1 sg1;
+  sg2 sg2;
+  sg3 sg3;
+  sg4 sg4;
+  
+top(){
+  u1.ifc1.connect_by_name(sg1);
+  u1.ifc2.connect_by_name(sg2);
+  u1.ifc3.connect_by_name(sg3);
+  u1.ifc4.connect_by_name(sg4);
+ }};

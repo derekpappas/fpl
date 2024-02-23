@@ -1,0 +1,16 @@
+//input: ILLEGAL TEST - enum e is not defined
+
+ csl_field fa{
+  fa(){
+    set_width(3);
+  }
+};
+
+csl_field f1{
+  fa fa_1;
+  f1(){
+    set_width(32);
+    set_field_position(fa_1, 29);
+    set_enum_item(e);// e is not defined ; an error should appear here
+  }
+};

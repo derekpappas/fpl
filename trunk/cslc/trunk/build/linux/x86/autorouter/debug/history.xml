@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="g++ noversion nomachine-g -ftest-coverage -DQCSLOM_LIBRARY -DQT_NO_KEYWORDS -DQT_CORE_LIB -DQT_SHARED -I/opt/tools/qtsdk-2009.03/qt/include/QtCore -I/opt/tools/qtsdk-2009.03/qt/include -c">
+      <target file="Autorouter.o" lastModified="12db27f43e8">
+         <source file="../../../../../src/autorouter/Autorouter.cpp" lastModified="12db2172790"/>
+      </target>
+      <target file="CSLOM_InstTreeVisitor.o" lastModified="12db27f3060">
+         <source file="../../../../../src/autorouter/CSLOM_InstTreeVisitor.cpp" lastModified="12db2172790"/>
+      </target>
+      <target file="CSLOM_InstTree.o" lastModified="12db27f5388">
+         <source file="../../../../../src/autorouter/CSLOM_InstTree.cpp" lastModified="12db2172790"/>
+      </target>
+      <target file="CSLOM_ConnectionChecker.o" lastModified="12db27f4bb8">
+         <source file="../../../../../src/autorouter/CSLOM_ConnectionChecker.cpp" lastModified="12db2172790"/>
+      </target>
+   </processor>
+   <processor signature="ar">
+      <target file="libAR.a" lastModified="12db27f5388">
+         <source file="CSLOM_InstTreeVisitor.o" lastModified="12db27f3060"/>
+         <source file="Autorouter.o" lastModified="12db27f43e8"/>
+         <source file="CSLOM_ConnectionChecker.o" lastModified="12db27f4bb8"/>
+         <source file="CSLOM_InstTree.o" lastModified="12db27f5388"/>
+      </target>
+   </processor>
+</history>

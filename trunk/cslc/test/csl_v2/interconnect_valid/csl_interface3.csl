@@ -1,0 +1,30 @@
+//author: Monica
+//test: add instance list and use a group of signals to create an interface
+
+csl_unit A {
+  csl_port a1(input, 2);
+  csl_port a2(input, 2);
+  csl_port a3(output, 2);
+  A(){
+
+  }
+};
+
+csl_unit B {
+  csl_signal b1, b2, b3;
+  csl_list port_list(b1, b2, b3);
+  csl_list A(A0, A1, A2, A3);
+
+  B(){
+
+  }
+};
+csl_unit C{
+
+csl_signal a1, a2;
+csl_list ports(a1, a2);
+
+ A A;
+ B B;
+ C(){}
+};

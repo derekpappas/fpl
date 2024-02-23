@@ -1,0 +1,10 @@
+//Monica
+//20 feb 2008
+//nios processor interfaces
+
+
+csl_unit nios_pr{
+  ifc_cpu_in  ifc_in_nios;
+  ifc_cpu_out ifc_out_nios;
+  nios_pr (){}
+};

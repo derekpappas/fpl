@@ -1,0 +1,146 @@
+//RISC 16 ISA
+//14 mar 2008
+//monica
+
+csl_unit u_decoder_unit{
+  u_decoder_unit(){
+  }
+}; 
+
+csl_enum e_opcodes { 
+    ADD = 0, 
+    SLL = 3, 
+    SW = 4, 
+    BNE = 6
+};
+
+csl_isa_field op{
+  op(){
+    set_width(3);
+    set_enum(e_opcodes);
+    set_type(opcode);
+  }
+};
+csl_isa_field f_rega{
+  f_rega(){
+    set_width(3);
+    set_type(rf_address);
+  }
+};
+csl_isa_field f_regb{
+ f_regb(){
+    set_width(3);
+    set_type(rf_address);
+  }
+};
+ 
+csl_isa_field f_imm{
+f_imm(){
+set_type(constant);
+ set_width(7);
+ }};
+
+csl_isa_element isa_format{
+  isa_format(){
+    set_type(root_format);
+    set_width(16);
+  }
+};
+csl_isa_element baseformat :isa_format{
+   op op;
+   f_rega rega;
+   f_regb regb;
+  baseformat(){
+    set_type(instr_format);
+    set_position(op, 13);
+    set_next(op, rega);
+    set_next(rega, regb);
+   }
+};
+
+csl_isa_element format1 : baseformat { 
+//f_imm imm; 	
+format1() { 
+  set_type(instr_format);
+ // set_next(regb, imm);
+    }						
+};
+csl_isa_field unused{
+  unused(){
+set_type(constant);
+ set_width(4);
+  }};
+csl_isa_field regc{
+  regc(){
+ set_type(rf_address);
+ set_width(3);
+  }};
+csl_isa_element format2 : format1 {
+  unused unused;
+  regc regc;
+  format2() { 
+          set_type(instr_format);
+          set_next(regb, unused);
+          set_next(unused, regc);
+	}
+};
+
+csl_isa_element alu : format2 {
+ alu() {
+ set_type(instr);
+ op.set_enum_item(ADD);
+}
+};
+
+
+csl_isa_element shift:format2 {		
+ shift() {
+       set_type(instr); 
+       op.set_enum_item(SLL);
+ }
+};
+csl_isa_element sw: format2 {
+ sw() {
+ set_type(instr);
+ op.set_enum_item(SW);
+}
+};
+
+
+csl_isa_element br:format2 {		
+ br() {
+       set_type(instr); 
+       op.set_enum_item(BNE);
+ }
+};
+
+//enum items already associated
+
+/*csl_isa_element alu_ : format1 {
+ alu_() {
+ set_type(instr);
+ op.set_enum_item(ADD);
+}
+};
+
+
+csl_isa_element shift_:format1 {		
+ shift_() {
+       set_type(instr); 
+       op.set_enum_item(SLL);
+ }
+};
+csl_isa_element mem : format1 {
+ mem() { 
+       set_type(instr);
+       op.set_enum_item(SW);
+ }
+};
+
+
+csl_isa_element branch1 : format1 { 
+ branch1() {
+ set_type(instr);
+ op.set_enum_item(BNE);
+ }
+}; */

@@ -1,0 +1,19 @@
+//THIS CODE WAS GENERATED USING THE FASTPATHLOGIC HDL COMPILER
+//COPYRIGHT (c) 2006, 2007 FastpathLogic Inc
+//OUTPUT FILE NAME  : f_core.vf
+//FILE GENERATED ON : Thu Sep 25 13:15:09 2008
+
+usb_tm_packetizer.v
+usb_tm_dispatcher.v
+fab.v
+usb_transaction_mgr.v
+usb_protocol_mgr.v
+uart.v
+uart_mgr.v
+usb_phy.v
+fifo_regs.v
+fab_filter.v
+RAM.v
+i2c.v
+avalon_bridge.v
+f_core.v

@@ -1,0 +1,69 @@
+csl_enum fqs {
+        lcs = 72,
+        hrd = 29,
+        mqf = 29,
+        uag = 90,
+        ggg = 22,
+        ros = 33,
+        wpg = 5,
+        iie = 94,
+        ktd = 71,
+        lae = 87
+};
+csl_enum rs {
+        eux = 0,
+        dgy = 38,
+        fpx = 65,
+        enu = 14,
+        fdl = 95,
+        ehq = 37,
+        ftb = 46,
+        vee = 52,
+        edf = 22,
+        efm = 35,
+        lga = 82,
+        hxy = 0
+};
+csl_enum mu {
+        lhj = 39,
+        mfn = 18,
+        tdv = 79,
+        bsb = 35,
+        ofu = 0
+};
+csl_field xke(85);
+csl_field dbh(49,tv);
+csl_field pvc(xke);
+csl_field oi{
+        xke wr;
+        pvc vt;
+        dbh ll;
+        xke hi;
+        dbh ap;
+        dbh jv;
+        pvc dj;
+        dbh uk;
+        xke nu;
+        xke ko;
+        dbh yp;
+        dbh rm;
+        pvc rn;
+        xke fr;
+        dbh pn;
+        xke is;
+        dbh hf;
+        xke bu;
+        dbh rf;
+        pvc jt;
+        pvc nx;
+        xke jg;
+        xke hk;
+        xke ji;
+        dbh fc;
+        pvc rt;
+        oi() {
+        set_enum(rs);
+        set_range(34,46);
+        set_value(12);
+        }
+};

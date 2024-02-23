@@ -1,0 +1,193 @@
+An ISA contains instruction formats and instructions which contain
+fields. To one or more fields of the instruction format we can associate
+enums.
+
+The ISA can be associated with a signal, port or register. In this
+association all isa tree structure must be available in order to generate
+decoders, selection signals, address signals, immediat constants etc
+which drive the processor datapath.
+
+We associate the isa to port/signal/register object by associating the
+object with csl_isa root_format. The association can be made using the command
+
+port/signal/register.set_isa(isa_root);
+
+The object must have the same width as the isa_root.
+
+The fields of csl_isa_elements of type format indicate how the bits of
+the instruction register are interpreted when different instruction are
+decoded. The interpretation defines the field type. Fields can have
+the following types:
+
+opcode: opcode
+subopcode: subopcode
+rf_address: register file address
+mem_address: memory address
+im: immediate constant
+selector: selector
+reserved: reserved by designer
+constant: constant value
+
+Field types can be used to make checks that the generated signals are
+connected to the right units (ex. register file address signals to register
+file address ports and not to memory address ports etc)
+
+Based on the field type, signals needed in the datapath must be
+generated.
+
+The generation of the signals are made by using the command:
+
+signal/port/register.generate_signals(); // this command can be called
+// on that object only if user has previously associtated to that 
+// object an isa 
+
+In this case the signal can be
+referred in the following way:
+
+signal.instruction_format.field
+
+Examples:
+
+ir.base_format.opcode // signal corresponding to the opcode field of
+//the instruction. ir is the signal to which the isa has been assciated 
+ 
+ir.aluk_format.kfield // signal corresponding to the field containing
+// the immemdiat constant for an arithmetic instruction
+
+
+Some fields of the instruction register must be decoded. Based on
+these fields the compiler must generate the corresponding decoders.
+Fields that will be decoded must have associated an enum that will be
+used to generate the names of the decoder outputs.
+
+The generation of the decoders is specified using the command:
+
+signal/port/register.generate_decoder(); // this command can be called
+// on that object only if user has previously associtated to that 
+// object an isa 
+
+If user doesn't need to generate all decoders corresponding to the
+fields that have associated enum, he can use the command:
+
+
+signal/port/register.instruction_format.field.generate_decoder();
+// this command can be called on that object only if user has 
+// previously associated to that object an isa and the field 
+// has an associated enum 
+
+
+For each field that has associated an enum a decoder will be
+generated. In this case the output signals of the decoder will be 
+referred in the following way:
+
+
+signal/port/register.instruction_format.field[enum_item]
+
+Examples:
+
+ir.base_format.opcode[ADD] // signal that will be active when the ADD
+// instruction is decoded
+
+ir.jcrbase_format.cfield[NC] // signal that will be active when the
+// conditional jump if not carry instruction will be decoded
+
+ir.base_format.opcode[STORE] // signal that will be active when the
+// the store to scratchpad memory instruction will be active
+
+Sometimes, an ISA can define a second field (subopcode) in order to code a subfamily
+of instructions. In this case the generated decoder for the subopcode
+field must be qualified by the decode of the opcode for the
+instruction format that contains the subopcode field. CSL ISA
+specification automatically generate the qualification signal for the
+generated subopcode decoders.
+
+Example
+
+csl_enum e_op{ 
+  ALU, 
+  MOV, 
+  BR 
+};
+
+csl_enum e_aluop{ 
+  XOR, 
+  OR, 
+  AND
+};
+
+csl_isa_field f_op(2, e_op);
+f_op.set_type(opcode);
+
+csl_isa_field f_subop(2, e_aluop);
+f_subop.set_type(opcode);
+
+csl_isa_element isa {
+  isa(){
+    set_type(root_format);
+    set_width(32);
+  }
+};
+
+csl_isa_element base_format: isa {
+  f_op opcode;
+  base_format() {
+    set_type(inst_format);
+    set_position(opcode, 30);
+  }
+};
+
+csl_isa_element alu_format : base_format {
+  f_subop subop;
+  alu_format() {
+    set_type(inst_format);
+    opcode.set_enum_item(ALU);
+    set_position(subop, 16);
+  }
+};
+
+csl_signal ir(32);
+
+ir.set_isa(isa);
+
+ir.base_format.opcode.generate_decoder();
+ir.alu_format.f_subop.generate_decoder();
+
+
+The opcode qualification of subopcodes will be generated automatically.
+
+The Verilog RTL code for the above CSL code looks like the following:
+
+Verilog Code
+
+`define ALU 0
+`define MOV 1
+`define BR  2
+
+`define XOR 0
+`define OR  1
+`define AND 2
+
+`define F_OPCODE_UPPER_INDEX 31
+`define F_OPCODE_LOWER_INDEX 30
+`define F_SUBOP_UPPER_INDEX  17
+`define F_SUBOP_LOWER_INDEX  16
+
+
+wire [F_OPCODE_UPPER_INDEX - F_OPCODE_LOWER_INDEX : 0] opcode =
+s_ir[[F_OPCODE_UPPER_INDEX : F_OPCODE_LOWER_INDEX];
+
+wire [F_SUBOP_UPPER_INDEX - F_SUBOP_LOWER_INDEX : 0] subop =
+s_ir[F_SUBOP_UPPER_INDEX : F_SUBOP_LOWER_INDEX];
+
+
+wire [3:0] dec_opcode = 1'b1 << opcode;
+
+wire dec_opcode_alu   = dec_opcode[ADD]; 
+wire dec_opcode_mov = dec_opcode[MOV];
+wire dec_opcode_br     = dec_opcode[BR];
+
+wire [3:0] dec_subop =  dec_opcode[ALU]  & (1'b1 << subop); // qualify the sub opcode decode 
+
+wire dec_subop_xor  = dec_subop[XOR]; 
+wire dec_subop_or    = dec_subop[OR];
+wire dec_subop_and  = dec_subop[AND];

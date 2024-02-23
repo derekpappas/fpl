@@ -1,0 +1,137 @@
+csl_enum fu {
+	pm,
+	if,
+	hu,
+	xw,
+	uk,
+	ti
+};
+csl_enum ip {
+	dt = 68,
+	uj = 45,
+	mn = 14,
+	he = 15,
+	qe = 28,
+	tl = 71,
+	uu = 22,
+	sd = 54,
+	pk = 89,
+	pa = 80,
+	ra = 9,
+	up = 65,
+	wr = 23,
+	dt = 11,
+	bl = 91
+};
+csl_enum le {
+	gg = 1,
+	nu = 25,
+	vu = 59,
+	yn = 37,
+	bu = 99,
+	by = 84,
+	pt = 13,
+	cf = 4,
+	gt = 15
+};
+csl_isa_instruction_format br{
+    br( ){
+     set_width( 4);
+     generate_decoder( apqa);
+  }
+}
+;
+csl_isa_instruction cs : br{
+    cs( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa db{
+    db( ){
+     set_decoder_name( "iu");
+     set_decoder_out_name_prefix( "yi");
+     set_decoder_out_name_suffix( "bo");
+     generate_decoder( ma);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo mt{
+   mt( ){
+     add_logic( wr_words, 3);
+     add_logic( stall);
+     add_logic( credit);
+  }
+}
+;
+csl_memory_map_page sh{
+    sh( ){
+     set_address_increment( 7);
+     set_next_address( 9);
+     set_access_rights( access_read_write, access_read_write);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 5);
+     get_data_word_wodth( );
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page un{
+    un( ){
+     set_address_increment( 5);
+     get_upper_bound( );
+  }
+}
+;
+csl_memory_map_page eo{
+    eo( ){
+     add_address_range( 1, 0);
+     set_next_address( 5);
+     get_next_address( );
+     set_access_rights( access_read_write, access_read_write);
+     add( mt, "ns", 0);
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 3);
+     get_aligment( );
+     set_endianess( little_endian);
+  }
+}
+;
+csl_memory_map cm{
+    cm( ){
+     auto_gen_memory_map( );
+     set_top_unit( apqauu);
+shun.set_access_rights_enum( shuneo); 
+     set_prefix( it);
+     get_prefix( );
+     set_suffix( tj);
+  }
+}
+;
+csl_register oc{
+    oc( ){
+     set_type( SEMA);
+     index_data_pair( cm);
+     set_atribute( write);
+     constant( 8);
+     add_logic( serial_input);
+     add_logic( serial_output);
+     clear_value( 7);
+     set_count_direction( 7);
+     set_end_value( 9);
+     set_start_value( 8);
+     add_logic( inc_signal);
+  }
+}
+;
+csl_register lp{
+    lp( ){
+     set_depth( 8);
+     get_depth( );
+     set_const_value( 7);
+  }
+}
+;

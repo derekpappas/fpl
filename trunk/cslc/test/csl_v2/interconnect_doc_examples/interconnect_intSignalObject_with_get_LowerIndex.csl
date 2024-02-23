@@ -1,0 +1,17 @@
+csl_unit check{
+csl_port check_i(input);
+ check(){}};
+csl_unit prod0{
+csl_port prod_p(output);
+ prod0(){}};
+csl_unit prod1{
+csl_port prod_p(output);
+ prod1(){}};
+csl_unit seq_gen{
+  csl_signal sig0(wire,8), sig1(wire,8), sig2;
+    check check( .check_i(sig2));
+    prod0 prod0( .prod_p(sig0));
+     prod1 prod1( .prod_p(sig1));
+   seq_gen(){
+  sig2.set_range(sig0.get_lower(), sig0.get_upper() + sig1.get_upper() +1);
+}};

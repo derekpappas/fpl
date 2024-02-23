@@ -1,0 +1,9 @@
+//bug 2234 - not fixed
+
+csl_unit a {
+  csl_port p(input);
+  csl_signal s;
+  a () {
+    s.connect_by_name(p);
+  }
+};

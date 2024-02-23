@@ -1,0 +1,79 @@
+//connections between hid ifc and single ifc
+//connections between hid unit .hid ifc and single ifc
+//connections between single ifc and hid ifc
+//intermediate units connections
+
+//--------ifc declarations------------------
+csl_interface ifc1{
+  csl_port p11(input,4);
+  ifc1(){}
+};
+
+csl_interface ifc2{
+  csl_port p12(input,8);
+  ifc1 ifc10;
+
+ifc2(){}
+};
+
+csl_interface ifc3{
+  csl_port p13(output);
+  ifc2 ifc20;
+
+ifc3(){}
+};
+
+csl_interface ifc4{
+  csl_port p14(output,2);
+  ifc3 ifc30;
+
+ifc4(){}
+};
+
+//----------units declarations----------------------
+csl_unit a{
+ ifc1 ifc10;
+
+a(){}
+};
+
+csl_unit b{
+  ifc4 ifc40;
+  a a0;
+
+b(){
+
+a0.ifc10.connect_by_name(ifc40.ifc30.ifc20.ifc10);   //single ifc->hid ifc
+}
+};
+
+csl_unit c{
+  ifc2 ifc20;
+  b b0;
+
+c(){
+
+b0.ifc40.ifc30.ifc20.connect_by_name(ifc20);   //hid ifc-> single ifc
+}
+};
+
+csl_unit d{
+  ifc3 ifc30;
+ 
+  c c0;
+
+d(){
+c0.b0.ifc40.ifc30.connect_by_name(ifc30); //hid unit.hid ifc -> single ifc
+}
+};
+
+csl_unit e{
+  ifc4 ifc40;
+  d d0;
+
+e(){
+
+d0.c0.b0.ifc40.connect_by_name(ifc40);  //hid unit.hid ifc -> single ifc
+}
+};
+

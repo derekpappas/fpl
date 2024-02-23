@@ -1,0 +1,35 @@
+
+//******************
+// Unit eth_miim
+//******************
+
+csl_unit eth_miim{ 
+
+  csl_port Clk(input);                
+  csl_port Reset(input);              
+  csl_port Divider(input,8);          
+  csl_port CtrlData(input,16);      
+  csl_port Rgad(input,5);             
+  csl_port Fiad(input,5);             
+  csl_port NoPre(input);              
+  csl_port WCtrlData(input);          
+  csl_port RStat(input);              
+  csl_port ScanStat(input);           
+  csl_port Mdio(input);               
+                                      
+  csl_port Mdc(output);               
+                                      
+  csl_port Busy(output);              
+  csl_port LinkFail(output);          
+  csl_port Nvalid(output);          
+                                      
+  csl_port Prsd(output,16);         
+                                      
+  csl_port WCtrlDataStart(output);  
+  csl_port RStatStart(output);      
+  csl_port UpdateMIIRX_DATAReg(output);
+
+  eth_miim(){
+  }
+};
+

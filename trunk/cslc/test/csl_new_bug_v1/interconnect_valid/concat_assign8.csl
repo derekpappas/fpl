@@ -1,0 +1,17 @@
+//oanab
+//24 mar 2008
+//port - signal group concatenation
+
+csl_signal_group sg {
+  csl_signal s1(2),s2(8);
+  sg () {}
+};
+
+csl_unit u3 {
+  csl_port x(input,18);
+  csl_port y(output,9);
+  sg sg0;
+  u3 () {
+    x={sg0.s2,y,sg0.s1};
+  }
+};

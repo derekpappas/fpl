@@ -1,0 +1,87 @@
+Subject:   	Re: FW: Processor ring node documentation from California
+From:   	"Derek Pappas" <dpappas@fastpathlogic.ro>
+Date:   	Wed, March 14, 2007 08:57
+----------------------------------------------------------------------------
+
+>>
+>> 1. Is there an input message queue for new messages received at the
+>> remote processor?
+>>
+>
+> Each processor has a message queue that is used to receive messages
+> from other processors.  However, the message queue is bypassed for
+> memory reads and writes, which go directly to the memory.
+>
+>> 2. Is the NIOS2 processor interrupted by the queue manager so that the
+>> input message queue can be processed?
+>>
+>
+> Our model has been poll-driven by the processor.  We think of the
+> message queue as a work queue in which the processor extracts messages
+> from the queue when the processor is ready for the next item.  There
+> is no need for interrupts because the hardware queue manager accepts
+> or rejects the incoming message without consulting the processor.
+>
+>> 3. How are the instruction and data memories read/written?
+>>     Via the custom logic shadow register?
+>>
+>
+> The instruction memory has two 32-bit read/write ports.  One port is
+> used exclusively by the processor, and the other is shared between the
+> custom instruction logic and the ring node logic.  The ring node logic
+> has strict priority over the custom instruction logic.
+>
+> The data memory is organized the same way as the instruction memory.
+>
+>> 4. Can a bus read command that is received in stage 1 be read in stage 2
+>> and sent out in stage three in the same
+>> bus token that sent the read?
+>>
+>
+> Yes!  That is why we designed three stages in each node.
+>
+>> 5. Is there an out fifo for sending out new bus transactions or reply
+>> transactions?
+>>
+>
+> No.  We used a single output register stage that is shared by the
+> memory read responses, processor message transmission, and the DMA
+> engines.  The memory read responses have strict priority over the
+> other two because the read response must go out in the same slot as
+> the read request.  The processor message transmission has strict
+> priority over the DMA engines because the processor will stall if
+> another attempt to send a message is made before the prior one is sent
+> out.  The DMA engines generally are longer running, and use the
+> remaining bandwidth.
+>
+>> 6. Is there a traffic manager for the token allocation on the bus for
+>> handling fairness, guarenteed bandwidth,
+>> high priority interrupts, reserving space for burst operations ...
+>>
+>
+> We considered this problem, but did not attempt to solve it because a
+> general solution can become quite complicated and interfere with the
+> otherwise simple operation of the ring.  Our simple solution was to
+> add a register setting for fairness at each node that would specify
+> the number of time slots that the node would have to skip after each
+> time slot that it used sending something on the fabric other than a
+> memory read response.
+>
+> We set the default value to 3, which meant that each node would send
+> data no more than once every four clocks.  This worked well in our
+> application because only a couple of nodes ever attempted to send
+> relatively high bandwidth.  In addition, the overall bandwidth using
+> 64-bit bursts with the entire ring running at 166 MHz provided a lot
+> of headroom.
+>
+>> 7. Is there a control processor for bringing up the processor ring and
+>> for interrupting it?
+>>
+>
+> We used an external processor (PowerPC) that had a specialized node on
+> the ring.  The PowerPC could read and write the memory from all of the
+> processors on the ring.  In addition, the PowerPC could send and
+> receive messages on the ring.
+>
+>> 8. I will send something on the virtual memory map tomorrow.
+>>

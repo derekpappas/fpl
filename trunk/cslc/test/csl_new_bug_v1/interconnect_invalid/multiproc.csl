@@ -1,0 +1,428 @@
+csl_unit proc { 
+csl_port out(output, 32);
+csl_port in0(input, 32);
+csl_port in1(input, 32);
+csl_port in2(input, 32);
+csl_port in3(input, 32);
+csl_port in4(input, 32);
+csl_port in5(input, 32);
+csl_port in6(input, 32);
+csl_port in7(input, 32);
+};
+
+
+csl_unit cluster { 
+csl_port mc_out(output, 32);
+csl_port in0(input, 32);
+csl_port in1(input, 32);
+csl_port in2(input, 32);
+csl_port in3(input, 32);
+csl_port in4(input, 32);
+csl_port in5(input, 32);
+csl_port in6(input, 32);
+csl_port in7(input, 32);
+csl_port in8(input, 32);
+csl_port in9(input, 32);
+csl_port in10(input, 32);
+csl_port in11(input, 32);
+csl_port in12(input, 32);
+csl_port in13(input, 32);
+csl_port in14(input, 32);
+csl_port in15(input, 32);
+
+
+proc p0 (
+.in0(p0.out), 
+.in1(p1.out), 
+.in2(p2.out), 
+.in3(p3.out), 
+.in4(p4.out), 
+.in5(p5.out), 
+.in6(p6.out), 
+.in7(p7.out)
+ ) ;
+
+proc p1 (
+.in0(p0.out), 
+.in1(p1.out), 
+.in2(p2.out), 
+.in3(p3.out), 
+.in4(p4.out), 
+.in5(p5.out), 
+.in6(p6.out), 
+.in7(p7.out)
+ ) ;
+
+proc p2 (
+.in0(p0.out), 
+.in1(p1.out), 
+.in2(p2.out), 
+.in3(p3.out), 
+.in4(p4.out), 
+.in5(p5.out), 
+.in6(p6.out), 
+.in7(p7.out)
+ ) ;
+
+proc p3 (
+.in0(p0.out), 
+.in1(p1.out), 
+.in2(p2.out), 
+.in3(p3.out), 
+.in4(p4.out), 
+.in5(p5.out), 
+.in6(p6.out), 
+.in7(p7.out)
+ ) ;
+
+proc p4 (
+.in0(p0.out), 
+.in1(p1.out), 
+.in2(p2.out), 
+.in3(p3.out), 
+.in4(p4.out), 
+.in5(p5.out), 
+.in6(p6.out), 
+.in7(p7.out)
+ ) ;
+
+proc p5 (
+.in0(p0.out), 
+.in1(p1.out), 
+.in2(p2.out), 
+.in3(p3.out), 
+.in4(p4.out), 
+.in5(p5.out), 
+.in6(p6.out), 
+.in7(p7.out)
+ ) ;
+
+proc p6 (
+.in0(p0.out), 
+.in1(p1.out), 
+.in2(p2.out), 
+.in3(p3.out), 
+.in4(p4.out), 
+.in5(p5.out), 
+.in6(p6.out), 
+.in7(p7.out)
+ ) ;
+
+proc p7 (
+.in0(p0.out), 
+.in1(p1.out), 
+.in2(p2.out), 
+.in3(p3.out), 
+.in4(p4.out), 
+.in5(p5.out), 
+.in6(p6.out), 
+.in7(p7.out)
+ ) ;
+};
+csl_unit chip { 
+csl_port mc_out(output, 32);
+csl_port in0(input, 32);
+csl_port in1(input, 32);
+csl_port in2(input, 32);
+csl_port in3(input, 32);
+csl_port in4(input, 32);
+csl_port in5(input, 32);
+csl_port in6(input, 32);
+csl_port in7(input, 32);
+csl_port in8(input, 32);
+csl_port in9(input, 32);
+csl_port in10(input, 32);
+csl_port in11(input, 32);
+csl_port in12(input, 32);
+csl_port in13(input, 32);
+csl_port in14(input, 32);
+csl_port in15(input, 32);
+
+cluster c0 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+
+cluster c1 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+
+cluster c2 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+
+cluster c3 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+
+cluster c4 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+
+cluster c5 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+
+cluster c6 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+
+cluster c7 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+
+cluster c8 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+
+cluster c9 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+
+cluster c10 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+
+cluster c11 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+
+cluster c12 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+
+cluster c13 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+
+cluster c14 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+
+cluster c15 (.in0(c0.mc_out), 
+.in1(c1.mc_out), 
+.in2(c2.mc_out), 
+.in3(c3.mc_out), 
+.in4(c4.mc_out), 
+.in5(c5.mc_out), 
+.in6(c6.mc_out), 
+.in7(c7.mc_out), 
+.in8(c8.mc_out), 
+.in9(c9.mc_out), 
+.in10(c10.mc_out), 
+.in11(c11.mc_out), 
+.in12(c12.mc_out), 
+.in13(c13.mc_out), 
+.in14(c14.mc_out), 
+.in15(c15.mc_out)
+ ) ;
+};

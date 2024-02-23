@@ -1,0 +1,17 @@
+
+//isa_field_obj_name.set_name(string)
+//20 August 2007
+
+csl_isa_field f_op{ 
+  f_op(){ 
+    set_name("opcode"); 
+    set_type(opcode); 
+    set_width(2); 
+  }
+}; 
+csl_isa_field f_alu(2); 
+f_alu.set_type(selector); 
+
+
+csl_unit top {
+};

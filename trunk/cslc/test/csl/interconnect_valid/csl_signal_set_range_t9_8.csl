@@ -1,0 +1,28 @@
+//author: Monica
+//testing: csl_signal signal_object_name([signal_data_type,] upper_limit,lower_limit);
+//         reg,wire,tri,trireg,triand,trior,wand,wor,supply0,supply1
+
+
+csl_unit u15_t9 {
+
+  csl_signal sgn15_1_t9(supply0);
+  csl_signal sgn15_2_t9(supply0,7,1);
+
+  u15_t9() {
+    sgn15_1_t9.set_width(7);
+    sgn15_1_t9 = sgn15_2_t9;
+  }
+};
+
+csl_unit u16_t9 {
+
+  //csl_signal sgn15_2_t9(supply0,1,7);
+
+  u16_t9() {
+
+  }
+};
+csl_unit top{
+  u15_t9 u1;
+  u16_t9 u2;
+  top(){}};

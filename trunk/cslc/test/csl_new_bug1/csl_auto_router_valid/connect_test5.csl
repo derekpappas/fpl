@@ -1,0 +1,20 @@
+//Monica
+//15 January 2008
+
+csl_unit a{
+  csl_port a_p1(input),a_p2(output);
+  a(){}
+};
+csl_unit b{
+  csl_port b_p1(output),b_p2(input);
+  b(){}
+};
+
+csl_unit top{
+  a a1;
+  b b1;
+
+  top(){
+      a1.a_p1.connect_by_name(b1.b_p1);
+      a1.a_p2.connect_by_name(b1.b_p2);
+     }};

@@ -1,0 +1,270 @@
+<?xml version="1.0"?>
+<project name="ProjectX" default="default">
+
+<!-- SUBPROJECTS LISTS -->
+
+  <!-- COMPLETE list of subprojects. Add here the projects as they get born. Don't forget to update dependencies.xml -->
+  <property name="completeProjectPathList"
+  value="csl_xml_warn_error,support,csim,parser/verilog,parser/csl,preproc,cdom,cslom,cslom2cdom_adapter,cslom_generators,autorouter,cslom_design_checker,cslc"/>
+
+  <!-- V2V subprojects list -->
+  <property name="v2v_ProjectPathList" 
+  value="csl_xml_warn_error,cdom,preproc,parser/verilog,support,cslc"/>
+
+
+<!-- MISCELANEOUS FLAGS AND VARIABLES -->
+
+  <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+  <property environment="env"/>
+  
+  <property name="NoDeps" value="yes"/>
+  
+  <target name="setDebugFlag">
+    <property name="debugFlag" value="yes"/>
+    <echo message="==== Debugging Enabled"/>
+  </target>
+    
+  <target name="setCoverageFlag">
+    <property name="coverageFlag" value="yes"/>
+    <echo message="==== Coverage Enabled"/>
+  </target>
+
+  <target name="setWallFlag">
+    <property name="wallFlag" value="yes"/>
+    <echo message="==== All Warnings Enabled"/>
+  </target>
+  
+  <target name="setReleaseFlag">
+    <property name="releaseFlag" value="yes"/>
+    <echo message="==== Building release version"/>
+  </target>
+  
+  <!-- Get the general dependecies from the ../build_utils/dependencies.xml file -->
+  <target name="generalDependencies">
+    <antfetch dir="../build_utils"
+    antfile="dependencies.xml" target="generalDependencies"
+    return="platformTypeOut,topDir,binDir,libDir,autorouterBuildPath,csimBuildPath,csl_cpp_libBuildPath,cslomBuildPath,cslom_design_checkerBuildPath,csl_parserBuildPath,supportBuildPath,vpreprocessorBuildPath,cdomBuildPath,cslcBuildPath,csl_genBuildPath,cslom2cdom_adapterBuildPath,cslomelabBuildPath,csl_xml_warn_errorBuildPath,vparserBuildPath,cslom_generatorsBuildPath"/>
+  </target>
+
+<!-- HELPER TARGETS THAT BUILD BEHIND THE CURTAIN -->
+
+  <!-- Check the antlr library -->
+  <target name="checkANTLR">
+  	<echo message="Checking ANTLR library. Please wait..."/>
+  	<exec executable="${topDir}/antlr/lib/cpp/src/compile.sh">
+  		<arg line="${topDir}/antlr/lib/cpp/src"/>
+  	</exec>
+  	<echo message="Done with ANTLR Library check. Going on..."/>
+  </target>
+
+  <!-- Build the VERILOG parser code -->
+  <target name="verilogANTLR" depends="checkANTLR">
+    <ant dir="parser/verilog" antfile="old_build.xml" inheritAll="true" target="antlrBuildGrammars"/>
+  </target>
+
+  <!-- Build the CSL parser code -->
+  <target name="cslANTLR" depends="checkANTLR">
+    <ant dir="parser/csl" antfile="old_build.xml" inheritAll="true" target="antlrBuildGrammars"/>
+  </target>
+
+  <!-- this builds the subprojects. To be called only from the launcher targets! (see below) -->
+  <target name="buildSubProjects" depends="generalDependencies">
+    <condition property="ANT_THREADS" value="${env.ANT_THREADS}" else="1">
+	<isset property="env.ANT_THREADS"/>
+    </condition>
+    <for list="${currentProjectPathList}" delimiter="," param="subProjectPath" parallel="true" threadCount="${ANT_THREADS}">
+	<sequential>
+	    <echo message="Building in @{subProjectPath}"/>
+	    <if>
+	    <equals arg1="@{subProjectPath}" arg2="cslc"/>
+	    <then/>
+	    <else>
+		<ant dir="@{subProjectPath}" antfile="old_build.xml" inheritAll="true" target="doBuild"/>
+	    </else>
+	    </if>
+	</sequential>
+    </for>
+<!-- We make sure that all the libs are built BEFORE we get to the CSLC link-editing in case of multithreaded compile -->
+    <ant dir="cslc" antfile="old_build.xml" inheritAll="true" target="doBuild"/>
+
+    <echo message="Done building the CSLC."/>
+  </target>
+
+  <!-- this builds the subproject drivers. To be called only from the launcher targets! (see below) -->
+  <target name="buildSubProjectDrivers" depends="generalDependencies">
+    <condition property="ANT_THREADS" value="${env.ANT_THREADS}" else="1">
+	<isset property="env.ANT_THREADS"/>
+    </condition>
+    <for list="${currentProjectPathList}" delimiter="," param="subProjectPath" parallel="true" threadCount="${ANT_THREADS}">
+	<sequential>
+	    <echo message="Building in @{subProjectPath}"/>
+	    <if>
+	    <equals arg1="@{subProjectPath}" arg2="cslc"/>
+	    <then/>
+	    <else>
+		<ant dir="@{subProjectPath}" antfile="old_build.xml" inheritAll="true" target="drivers"/>
+	    </else>
+	    </if>
+	</sequential>
+    </for>
+    <echo message="Done building the CSLC drivers."/>
+  </target>
+
+<!-- HELP TARGET -->
+
+  <target name="default">
+    <echo message="--------- CSLC ANT Build System ---------"/>
+    <echo message="Usage: ant [TARGET [OPTIONS]]"/>
+    <echo message=""/>
+    <echo message="Targets:"/>
+    <echo message="errors -> build the warn-error library"/>
+    <echo message="drivers -> build the drivers for all subprojects"/>
+    <echo message="debug -> builds the CSLC using debug symbols. Useful for gdb debugging. This target compiles ALL the components into the CSLC"/>
+    <echo message="release -> builds the CSLC without debug symbols. This target compiles ALL the components into the CSLC"/>
+    <echo message="v2v -> builds the CSLC including only the Verilog flow of components (NO CSL Support)"/>
+    <echo message=""/>
+    <echo message="Options:"/>
+    <echo message="-q -> Print only important info during the build process"/>
+    <echo message="-v -> Be verbose while building"/>
+    <echo message="-DOPTION=yes -> use the option in the building process (example: -DreleaseFlag=yes)"/>
+    <echo message=""/>
+    <echo message="Possible build options:"/>
+    <echo message="releaseFlag -> builds the CSLC without any debug information and makes it not print walker information"/>
+    <echo message="staticFlag -> links the libraries into the CSLC in static mode"/>
+    <echo message="debugFlag -> builds the CSLC using debug symbols. Useful for gdb debugging."/>
+    <echo message="coverageFlag -> builds the CSLC with coverage."/>
+    <echo message="wallFlag -> builds the CSLC and shows all warnings during compilation."/>
+    <echo message=""/>
+    <echo message="Also note that you can set the ANT_THREADS environment variable, which will tell ANT on how many"/>
+    <echo message="simultaneous threads to compile the libraries. Please do not set it to more than the number of CPU Cores available."/>
+    <echo message=""/>
+  </target>
+
+<!-- LAUNCHER TARGETS. THESE ARE THE TARGETS LAUNCHED BY [ant TARGET] -->
+
+  <!-- this is called when [ant clean] is launched -->
+  <target name="clean" depends="generalDependencies">
+    <echo message="Cleaning SubProjects..."/>
+    <for list="${completeProjectPathList}" delimiter="," param="subProjectPath">
+      <sequential>
+        <echo message="------------------- Cleaning subProject @{subProjectPath} -----------------------"/>
+        <ant dir="@{subProjectPath}" antfile="old_build.xml" target="clean" inheritAll="true"/>
+      </sequential>
+    </for>
+  </target>
+
+  <!-- this is called when [ant debug] is launced -->
+  <target name="debug" depends="setDebugFlag,generalDependencies,verilogANTLR,cslANTLR">
+    <property name="currentProjectPathList" value="${completeProjectPathList}"/>
+    <if>
+	<equals arg1="${releaseFlag}" arg2="yes"/>
+        <then>
+	    <echo message="You cannot build debug and release versions at the same time!"/>
+	</then>
+    <else>
+        <antcall target="buildSubProjects"/>
+    </else>
+    </if>
+  </target>
+
+  <!-- this is called when [ant debug] is launced -->
+  <target name="errors" depends="generalDependencies">
+	<ant dir="csl_xml_warn_error" antfile="old_build.xml" inheritAll="true" target="errors"/>
+  </target>
+
+  <!-- this is called when [ant drivers] is launced -->
+  <target name="drivers" depends="generalDependencies">
+    <property name="currentProjectPathList" value="${completeProjectPathList}"/>
+    <if>
+	<and>
+	<equals arg1="${debugFlag}" arg2="yes"/>
+	<equals arg1="${releaseFlag}" arg2="yes"/>
+	</and>
+        <then>
+	    <echo message="You cannot build debug and release versions at the same time!"/>
+	</then>
+    <else>
+        <antcall target="buildSubProjectDrivers"/>
+    </else>
+    </if>
+  </target>
+
+  <!-- this is called when [ant release] is launced -->
+  <target name="release" depends="setReleaseFlag,generalDependencies,verilogANTLR,cslANTLR">
+    <property name="currentProjectPathList" value="${completeProjectPathList}"/>
+    <if>
+	<equals arg1="${debugFlag}" arg2="yes"/>
+        <then>
+	    <echo message="You cannot build debug and release versions at the same time!"/>
+	</then>
+    <else>
+        <antcall target="buildSubProjects"/>
+    </else>
+    </if>
+  </target>
+
+  <!-- build realease without the RLM -->
+  <target name="release_no_rlm">
+    <echo message="==================== RELEASE WITHOUT RLM ===================="/>
+
+    <property name="rlmOff" value="yes"/>
+    <antcall target="release"/>
+  </target>
+
+  <!-- this is called when [ant v2v] is launced -->
+  <target name="v2v" depends="generalDependencies,verilogANTLR">
+    <property name="currentProjectPathList" value="${v2v_ProjectPathList}"/>
+    <antcall target="buildSubProjects"/>
+  </target>
+
+
+
+  <!-- Get all properties -->
+  <target name="get.all.properties">
+    <!-- dependency -->
+    <property name="dependencies.dir" value="../build_utils/"/>
+    <property name="dependencies.file" value="dependencies.xml"/>
+
+    <antfetch dir="${dependencies.dir}" antfile="${dependencies.file}" target="getTopDir"
+              return="topDir,
+                      buildPath,
+                      scriptPath"/>
+
+    <!-- ANTLR -->
+    <property name="antlr.dir"     value="${topDir}/antlr"/>
+    <property name="antlr.src"     value="${antlr.dir}/lib/cpp/src"/>
+    <property name="antlr.jar"     value="${antlr.dir}/antlr.jar"/>
+    <property name="antlr.library" value="antlr"/>
+  </target>
+
+  <!-- Set all flags -->
+  <target name="set.all.flags">
+    <property name="debug.flag"   value="on"/>
+    <property name="release.flag" value="on"/>
+    <property name="rlm.off.flag" value="on"/>
+    <property name="v2v.flag"     value="on"/>
+  </target>
+
+  <!-- Display the help -->
+  <target name="help">
+    <echo message="--------- ANT Usage ---------"/>
+    <echo message="Command: ant TARGET [OPTIONS]"/>
+    <echo message=""/>
+    <echo message="TARGET:"/>
+    <echo message="     errors  -> build the warn-error library"/>
+    <echo message="     drivers -> build the drivers for all subprojects"/>
+    <echo message="     debug   -> build the CSLC using debug symbols. Useful for gdb debugging. This target compiles ALL the components into the CSLC"/>
+    <echo message="     release -> build the CSLC without debug symbols. This target compiles ALL the components into the CSLC"/>
+    <echo message="     v2v     -> build the CSLC including only the Verilog flow of components (NO CSL Support)"/>
+    <echo message=""/>
+    <echo message="OPTIONS:"/>
+    <echo message="     -q -> Print only important info during the build process"/>
+    <echo message="     -v -> Be verbose while building"/>
+    <echo message=""/>
+    <echo message="Also note that you can set the ANT_THREADS environment variable, which will tell ANT on how many"/>
+    <echo message="simultaneous threads to compile the libraries. Please do not set it to more than the number of CPU Cores available."/>
+    <echo message=""/>
+  </target>
+
+</project>

@@ -1,0 +1,24 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="pie_aud_dq1">
+<interface name="fab_add" >
+<port name="addr" offset="0" upper="17" lower="0" direction = "output" type = "wire" />
+<port name="data" offset="0" upper="31" lower="0" direction = "output" type = "wire" />
+<port name="nid" offset="0" upper="3" lower="0" direction = "output" type = "wire" />
+<port name="ready" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="reject" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="type" offset="0" upper="3" lower="0" direction = "output" type = "wire" />
+<port name="valid" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="fab_drop" >
+<port name="addr" offset="0" upper="17" lower="0" direction = "input" type = "wire" />
+<port name="data" offset="0" upper="31" lower="0" direction = "input" type = "wire" />
+<port name="nid" offset="0" upper="3" lower="0" direction = "input" type = "wire" />
+<port name="ready" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="reject" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="type" offset="0" upper="3" lower="0" direction = "input" type = "wire" />
+<port name="valid" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+</unit>
+</design>

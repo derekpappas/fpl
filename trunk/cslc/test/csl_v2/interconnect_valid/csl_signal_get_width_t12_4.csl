@@ -1,0 +1,28 @@
+//author: Monica
+//tesing:  int signal_object_name.get_width(); 
+
+
+csl_unit u7_t12 {
+
+  csl_signal sgn7_1_t12(3,7),sgn7_2_t12(7,3);
+  
+  u7_t12() {
+
+  }
+};
+
+csl_unit u8_t12 {
+
+  csl_signal sgn8_1_t12, sgn8_2_t12;
+  
+  u8_t12() {
+    sgn8_1_t12.set_width(u7_t12.sgn7_1_t12.get_width());
+    //  sgn8_2_t12.set_width(u7_t12.sgn7_2_t12.get_width());
+  }
+};
+
+csl_unit top{
+  u7_t12 u1;
+  u8_t12 u2;
+  top(){}
+};

@@ -1,0 +1,43 @@
+//oanab
+//11 feb 2008
+//Command Bus Decoder - provides control signals
+
+  
+csl_unit CD {
+  ifc_rn_msg rn_msg_st0;  // input message, only cmd port is used
+  csl_signal s_rd,s_wr,s_rd_burst,s_wr_burst,s_dma_en;
+  csl_signal w1,w2,w3,w4,w5,w6,w7,w8;
+  ifc_ctrl ifc_ctrl;      // output control ports
+  CD () {
+    ifc_ctrl.reverse();
+    w1 =(pr_msg_st0.cmd==read_resp_32);
+    w2 =(pr_msg_st0.cmd==read_resp_64);
+    s_rd=(w1 | w2);
+    w3=(pr_msg_st0.cmd==write_sing_32);
+    w4=(pr_msg_st0.cmd==write_sing_64);
+    s_wr=(w3 | w4);
+    s_rd_burst= s_rd & p_burst;
+    //   s_wr_burst=  // must be decoded from dma controller
+    w5=(pr_msg_st0.cmd==read_req);
+    w6=(pr_msg_st0.cmd==read_dma);
+    w7=(pr_msg_st0.cmd==write_dma);
+    w8= w5 | w6;
+    s_dma_en=(w8 | w7);
+    
+  }
+};
+
+csl_register cp0 {
+  cp0 () {
+    set_width(12);
+    set_type(register);
+  }
+};
+
+csl_register cp1 {
+  cp1 () {
+    set_width(12);
+    set_type(register);
+  }
+};
+

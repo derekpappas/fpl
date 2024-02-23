@@ -1,0 +1,7 @@
+//bug 964
+csl_isa_field f_op{
+      f_op(){
+         set_range(31,30);
+         set_width(4);
+      }
+};

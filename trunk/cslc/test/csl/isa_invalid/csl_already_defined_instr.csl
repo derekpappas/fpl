@@ -1,0 +1,69 @@
+csl_enum op_code{ 
+    ALU =1, 
+    MOV =2, 
+    BR  =3,
+    SUB =8   
+};
+
+csl_isa_field op{ 
+  op(){ 
+    set_type(opcode); 
+    set_width(4); 
+    set_enum(op_code); 
+  }
+};
+
+csl_isa_element root{
+  root(){
+    set_type(root_format);
+    set_width(8);
+  }
+};
+
+csl_isa_element instr:root{
+  op op0;
+  op op1;
+  instr(){
+    set_type(instr_format);
+  }
+};
+
+csl_isa_element leaf:instr{
+  leaf(){
+    set_type(instr);
+    op0.set_enum_item(ALU);
+    op1.set_enum_item(ALU);
+  }
+};
+
+csl_isa_element leaf2:instr{
+  leaf2(){
+    set_type(instr);
+    op0.set_enum_item(MOV);
+    op1.set_enum_item(MOV);
+  }
+};
+
+csl_isa_element leaf3:instr{
+  leaf3(){
+    set_type(instr);
+    op0.set_enum_item(BR);
+    op1.set_enum_item(BR);
+  }
+};
+
+csl_isa_element leaf4:instr{
+  leaf4(){
+    set_type(instr);
+    op0.set_enum_item(SUB);
+    op1.set_enum_item(SUB);
+  }
+};
+
+csl_isa_element leaf5:instr{
+  leaf5(){
+    set_type(instr);
+    op0.set_enum_item(SUB);
+    op1.set_enum_item(SUB);
+  }
+};

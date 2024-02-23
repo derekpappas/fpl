@@ -1,0 +1,35 @@
+//author: Ines
+//test: add instance list and use a group of signals to create an interface
+csl_bitrange br(2);
+csl_interface ifc {
+  csl_port i0(input),i1(input), i2(input), i3(output);
+  ifc(){
+  }
+};
+csl_signal_group sg{
+  csl_signal a1, a2;
+  sg(){}};
+
+csl_unit B  {
+  ifc ifc;
+  csl_port b_in(input,br);
+  B(){
+
+  }
+};
+
+csl_unit A {
+  ifc ifc;
+  B B0;
+  csl_bitrange br(2);
+  csl_list a(a1, a2);
+  csl_port a3(output, 2);
+  
+  A(){
+  
+  }
+};
+
+
+
+

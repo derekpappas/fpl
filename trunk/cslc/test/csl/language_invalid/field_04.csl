@@ -1,0 +1,10 @@
+// CristiL
+//
+// Field
+
+csl_enum SET {
+  RDY
+};
+
+csl_field f0 (2,4,SET);
+csl_field f1 (2,3,RDY);

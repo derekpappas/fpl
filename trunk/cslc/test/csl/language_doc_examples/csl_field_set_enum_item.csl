@@ -1,0 +1,20 @@
+//danielt
+//november 07,2007
+
+csl_enum eee{
+  ADD,
+    SUB
+};
+
+csl_field fd{
+  fd(){
+    set_enum(eee);
+  }
+};
+
+csl_unit u{
+  fd fd;
+  u(){
+    fd.set_enum_item(SUB);
+  }
+};

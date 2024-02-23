@@ -1,0 +1,29 @@
+//Monica
+
+csl_bitrange br1(4);
+
+csl_unit u1{
+  csl_port p11(input,4);
+  csl_port p12(output,4);
+  csl_signal s11(4);
+  u1(){
+    s11=p11;
+    p12=s11;
+  }};
+
+csl_unit u2{
+  csl_port p21(input,4);
+  csl_signal s21;
+  csl_signal s22;
+  csl_signal s23;
+  u1 u11(.p12(s21),.p11(p21));
+  u2(){
+    s22.set_type(reg);
+    s21.set_width(4);
+    s22.set_bitrange(br1);
+    s23.set_range(0,3);
+    s23=p21;
+    p21 = s22;
+    p21.set_type(wire);
+  }
+};

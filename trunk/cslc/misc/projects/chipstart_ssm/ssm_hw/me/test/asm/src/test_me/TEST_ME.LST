@@ -1,0 +1,180 @@
+			     1	 .use     "..\SSM_ME.tbl"
+			     2	 .option  lines = 1000
+			     3	;=============================================================================
+			     4	;
+			     5	;    Copyright © 2010 Advanced Architectures
+			     6	;
+			     7	;    All rights reserved
+			     8	;    Confidential Information
+			     9	;    Limited Distribution to Authorized Persons Only
+			    10	;    Created and Protected as an Unpublished Work under
+			    11	;    the U.S.Copyright act of 1976.
+			    12	;
+			    13	;    Project Name         : SSM Microengine
+			    14	;    Description          : SSM me assembler test
+			    15	;
+			    16	;    Author               : RTT
+			    17	;    Creation Date        : 2010/03/13
+			    18	;
+			    19	;
+			    20	;=============================================================================
+			    21	;    THIS  SOFTWARE IS  PROVIDED "AS IS" AND  WITHOUT  ANY EXPRESS  OR IMPLIED
+			    22	;    WARRANTIES, INCLUDING, BUT  NOT LIMITED  TO, THE  IMPLIED  WARRANTIES  OF
+			    23	;    MERCHANTABILITY AND FITNESS  FOR A PARTICULAR PURPOSE. IN  NO EVENT SHALL
+			    24	;    THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+			    25	;    SPECIAL, EXEMPLARY, OR  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+			    26	;    TO, PROCUREMENT OF  SUBSTITUTE GOODS  OR SERVICES; LOSS  OF USE, DATA, OR
+			    27	;    PROFITS; OR  BUSINESS INTERRUPTION) HOWEVER  CAUSED AND ON  ANY THEORY OF
+			    28	;    LIABILITY,  WHETHER  IN  CONTRACT,  STRICT LIABILITY, OR  TORT (INCLUDING
+			    29	;    NEGLIGENCE  OR OTHERWISE) ARISING  IN  ANY WAY  OUT OF  THE  USE  OF THIS
+			    30	;    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+			    31	;=============================================================================
+			    32	;
+			     1	;=============================================================================
+			     2	;
+			     3	;    Copyright © 2010 Advanced Architectures
+			     4	;
+			     5	;    All rights reserved
+			     6	;    Confidential Information
+			     7	;    Limited Distribution to Authorized Persons Only
+			     8	;    Created and Protected as an Unpublished Work under
+			     9	;     the U.S.Copyright act of 1976.
+			    10	;
+			    11	;    Project Name         : SSM Microengine
+			    12	;    Description          : Register names header file
+			    13	;
+			    14	;=============================================================================
+			    15	;    THIS  SOFTWARE IS  PROVIDED "AS IS" AND  WITHOUT  ANY EXPRESS  OR IMPLIED
+			    16	;    WARRANTIES, INCLUDING, BUT  NOT LIMITED  TO, THE  IMPLIED  WARRANTIES  OF
+			    17	;    MERCHANTABILITY AND FITNESS  FOR A PARTICULAR PURPOSE. IN  NO EVENT SHALL
+			    18	;    THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+			    19	;    SPECIAL, EXEMPLARY, OR  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+			    20	;    TO, PROCUREMENT OF  SUBSTITUTE GOODS  OR SERVICES; LOSS  OF USE, DATA, OR
+			    21	;    PROFITS; OR  BUSINESS INTERRUPTION) HOWEVER  CAUSED AND ON  ANY THEORY OF
+			    22	;    LIABILITY,  WHETHER  IN  CONTRACT,  STRICT LIABILITY, OR  TORT (INCLUDING
+			    23	;    NEGLIGENCE  OR OTHERWISE) ARISING  IN  ANY WAY  OUT OF  THE  USE  OF THIS
+			    24	;    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+			    25	;=============================================================================
+			    26	;
+			    27	; Primary Registers
+   0			    28	 .memory REGISTERS
+   0			    29	 .equ  r0      $ + 0
+   1			    30	 .equ  r1      $ + 1
+   2			    31	 .equ  r2      $ + 2
+   3			    32	 .equ  r3      $ + 3
+   4			    33	 .equ  r4      $ + 4
+   5			    34	 .equ  r5      $ + 5
+   6			    35	 .equ  r6      $ + 6
+   7			    36	 .equ  r7      $ + 7
+   8			    37	 .equ  r8      $ + 8
+   9			    38	 .equ  r9      $ + 9
+   a			    39	 .equ  r10     $ + 10
+   b			    40	 .equ  r11     $ + 11
+   c			    41	 .equ  r12     $ + 12
+   d			    42	 .equ  r13     $ + 13
+   e			    43	 .equ  r14     $ + 14
+   f			    44	 .equ  r15     $ + 15
+  10			    45	 .equ  r16     $ + 16
+  11			    46	 .equ  r17     $ + 17
+  12			    47	 .equ  r18     $ + 18
+  13			    48	 .equ  r19     $ + 19
+  14			    49	 .equ  r20     $ + 20
+  15			    50	 .equ  r21     $ + 21
+  16			    51	 .equ  r22     $ + 22
+  17			    52	 .equ  r23     $ + 23
+  18			    53	 .equ  r24     $ + 24
+  19			    54	 .equ  r25     $ + 25
+  1a			    55	 .equ  r26     $ + 26
+  1b			    56	 .equ  r27     $ + 27
+  1c			    57	 .equ  r28     $ + 28
+  1d			    58	 .equ  r29     $ + 29
+  1e			    59	 .equ  r30     $ + 30
+  1f			    60	 .equ  r31     $ + 31
+  1c			    61	 .equ  SSM0    $ + 28
+  1d			    62	 .equ  SSM1    $ + 29
+  1e			    63	 .equ  SSM2    $ + 30
+  1f			    64	 .equ  SSM3    $ + 31
+			    65	 
+   8			    66	 .equ  TEST    $ + 8
+			    67	 
+			    68	 
+   0			    34	 .memory PROGRAM
+   0			    35	 .org  0
+			    36	 
+			    37	start:
+   0         00000102	    38	   r0 = r1 + r2;
+   1         01010203	    39	   r1 = r2 - r3;
+   2         04020304	    40	   r2 = r3 & r4;
+   3         05030405	    41	   r3 = r4 | r5;
+   4         06040506	    42	   r4 = r5 ^ r6;
+   5         07050607	    43	   r5 = r6 ^~ r7;
+			    44	 
+   6         10000100	    45	   r0 = r1 + 0;
+   7         11010203	    46	   r1 = r2 - 3;
+   8         14020304	    47	   r2 = r3 & 4;
+   9         15030405	    48	   r3 = r4 | 5;
+   a         16040506	    49	   r4 = r5 ^ 6;
+   b         17040500	    50	   r4 = r5 ^~ 0;
+			    51	 
+   c         20000701	    52	   r0 = 7  + r1;
+   d         21010902	    53	   r1 = 9  - r2;
+   e         24020a03	    54	   r2 = 10 & r3;
+   f         25030b04	    55	   r3 = 11 | r4;
+  10         26040c05	    56	   r4 = 12 ^ r5;
+  11         27040d06	    57	   r4 = 13 ^~ r6;
+			    58	 
+			    59	Label:
+  12         41050607	    60	   r5 = r6[r7];
+  13         51060708	    61	   r6 = r7[8];
+			    62	 
+  14         40070809	    63	   r7[r8] = r9;
+  15         50080901	    64	   r8[r9] = 1;
+  16         6009170d	    65	   r9[23] = r13;
+  17         70121700	    66	   r18[23]= 0;
+			    67	 
+  18         4e070809	    68	   r7 <> r8[r9];
+  19         5e0c0911	    69	   r12<> r9[17];
+  1a         7f1c0100	    70	   SSM0 <> r1;
+			    71	 
+  1b         c0090007	    72	   r9  = 0x7;
+  1c         c00af1d0	    73	   r10 = 0xf1d0;
+  1d         c10afeed	    74	   r10 = 0xfeed <<;
+			    75	 
+  1e         e00b0012	    76	   if (r11 == 0) goto Label;
+  1f         e10c0012	    77	   if (r12 != 0) goto Label;
+  20         e30d0012	    78	   if (r13 >  0) goto Label;
+  21         e20e0012	    79	   if (r14 <  0) goto Label;
+  22         e50f0012	    80	   if (r15 >= 0) goto Label;
+  23         e4100012	    81	   if (r16 <= 0) goto Label;
+			    82	 
+  24         bf00002a	    83	   msg 42;
+			    84	;
+			    85	;  Aliases
+			    86	;
+  25         11070001	    87	   r7++;
+  26         121f0001	    88	   r31--;
+  27         17080400	    89	   r8 = ~r4;
+  28         15170000	    90	   r23 = r0;
+			    91	;
+			    92	; Polling Input and Output
+			    93	;
+			    94	WaitNonZero:
+  29         e01c0029	    95	   if (SSM0 == 0) goto WaitNonZero;
+			    96	 
+			    97	WaitBitSet:
+  2a         51001c0d	    98	   r0 = SSM0[13];
+  2b         e000002a	    99	   if (r0 == 0) goto WaitBitSet;
+			   100	 
+			   101	;
+			   102	; This meachanism assumes that the SSM will clear the register after
+			   103	; it accepts the Non Zero Message
+			   104	;
+  2c         151c0100	   105	   SSM0 = r1;     /* Non zero message  */
+  2d			   106	WaitForZero;
+  2d         e101002d	   107	   if (r1 != 0) goto WaitForZero;
+			   108	;
+			   109	;
+			   110	;
+  2e         f0000000	   111	   goto start;
+			   112	;
+			   113	 .end

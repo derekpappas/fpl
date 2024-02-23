@@ -1,0 +1,8 @@
+
+csl_interface interface1 {
+  csl_port port_obj1(inout);
+  interface1() {
+    port_obj1.set_offset(1);
+  }
+};
+    

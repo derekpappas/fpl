@@ -1,0 +1,13 @@
+//author: Ines
+//testing:  int signal_object_name.get_width(); 
+
+
+csl_unit u12_t12 {
+
+  csl_signal sgn12_1_t12;
+
+  u12_t12() {
+
+  }
+};
+

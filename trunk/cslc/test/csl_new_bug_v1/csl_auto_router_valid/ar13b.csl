@@ -1,0 +1,133 @@
+// Author: cghaba
+// Date: April 4, 2008
+
+csl_enum e_const{
+  W_WIDTH=8,
+  SEL_WIDTH=3
+    };
+
+// define bitranges
+
+csl_bitrange br_w(W_WIDTH);
+csl_bitrange br_dw(W_WIDTH<<1);  // double word
+csl_bitrange br_s(SEL_WIDTH);
+
+// define interfaces
+
+csl_interface ifcresclk{
+  csl_port reset(input);
+  csl_port clock(input);
+  ifcresclk(){
+  }
+};
+
+csl_interface ifc12{
+  csl_port pin(input,br_w);
+  csl_port pout1(output,br_w);
+  csl_port pout2(output,br_w);
+    ifc12(){
+  }
+};
+
+csl_interface ifc11{
+  csl_port pin(input,br_w);
+  csl_port pout(output,br_w);
+  ifc11(){
+  }
+};
+
+// defining units
+
+csl_unit u12{
+  ifcresclk ifcrc;
+  ifc12 ifc0;
+  u12(){
+  }
+};
+
+csl_unit u11{
+  ifcresclk ifcrc;
+  ifc11 ifc0;
+  u11(){
+  }
+};
+
+
+csl_unit u21{
+  ifcresclk ifcrc;
+  csl_port pin1(input,br_w);
+  csl_port pin2(input,br_w);
+  csl_port pout(output,br_dw);
+  u21(){
+  }
+};
+
+csl_unit ubc{
+  u12 ub;
+  u12 uc;
+  ubc(){
+  }
+};
+
+csl_unit uabc{
+  u12 ua;
+  ubc ubc0;
+  uabc(){
+  }
+};
+
+csl_unit udef{
+  u11 ud;       
+  u11 uf;       
+  u21 ue;
+  udef(){
+  }
+};
+
+csl_unit utop{
+  //ports
+  csl_port rst(input);
+  csl_port clk(input);
+  csl_port tin(input,br_w);
+  csl_port tout1(output,br_w);
+  csl_port tout2(output,br_dw);
+  csl_port tout3(output,br_w);
+
+  // unit instances
+
+  uabc u0;
+  udef u1;
+
+  utop(){
+    //connecting top unit ports
+    rst.connect_by_pattern(ifcrc.reset);
+    clk.connect_by_pattern(ifcrc.clock);
+
+    tin.connect_by_pattern(ua.ifc0.pin);
+    tout1.connect_by_pattern(ud.ifc0.pout);
+    tout2.connect_by_pattern(ue.pout);
+    tout3.connect_by_pattern(uf.ifc0.pout);
+
+    //connecting ua
+    u0.ua.ifc0.pout1.connect_by_pattern(ub.ifc0.pin);
+    u0.ua.ifc0.pout2.connect_by_pattern(uc.ifc0.pin);
+    
+    //connecting ub
+    u0.ubc0.ub.ifc0.pout1.connect_by_pattern(ud.ifc0.pin);
+    u0.ubc0.ub.ifc0.pout2.connect_by_pattern(ue.pin1);
+    
+    // connecting uc
+    u0.ubc0.uc.ifc0.pout1.connect_by_pattern(ue.pin2);
+    u0.ubc0.uc.ifc0.pout2.connect_by_pattern(uf.ifc0.pin);
+
+    // connecting ud
+    //already connected before
+
+    // connecting ue
+    //already connected before
+
+    // connecting uf
+    // already connected before
+    
+  }
+};

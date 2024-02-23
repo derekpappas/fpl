@@ -1,0 +1,319 @@
+{\rtf1\ansi \deff4\deflang1033{\fonttbl{\f3\fmodern\fcharset0\fprq1 Courier{\*\falt Courier};}{\f4\froman\fcharset0\fprq2 Times New Roman;}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;
+\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;
+\red128\green128\blue128;\red192\green192\blue192;}{\stylesheet{\f4\fs20 \snext0 Normal;}{\*\cs10 \additive Default Paragraph Font;}{\s15\tqc\tx4320\tqr\tx8640 \f4\fs20 \sbasedon0\snext15 header;}{\s16\tqc\tx4320\tqr\tx8640 \f4\fs20 \sbasedon0\snext16 
+footer;}}{\info{\author Nicholas L. Pappas, Ph.D.}{\creatim\yr1910\mo2\dy1}{\revtim\yr1910\mo2\dy1}{\version1}{\edmins1}{\nofpages0}{\nofwords0}{\nofchars0}{\vern49203}}\margl1440\margr1152\margt720\margb720 
+\facingp\ftnbj\aenddoc\ftnrestart\pgnstart101\notabind\noextrasprl\sprsspbf\brkfrm\hyphcaps0 \fet0\sectd \sbknone\pgnrestart\pgnstarts101\linex576\footery480\endnhere {\headerl \pard\plain \qj\li-1440\ri-1152\sl-240\slmult0 \f4\fs20 {\f3\fs24 
+                                Computer Architecture and Design
+\par }}{\headerr \pard\plain \qj\li-1440\ri-1152\sl-240\slmult0 \f4\fs20 {\f3\fs24                                 Computer Architecture and Design
+\par }}{\footerl \pard\plain \qj\li-1440\ri-1152\sl-240\slmult0 \f4\fs20 {\f3\fs24  (C) Copyright 1991 Nicholas. L. Pappas, PhD.  910801          \chpgn 
+\par }}{\footerr \pard\plain \qj\li-1440\ri-1152\sl-240\slmult0 \f4\fs20 {\f3\fs24  (C) Copyright 1991 Nicholas. L. Pappas, PhD.  910801          \chpgn 
+\par }}{\*\pnseclvl1\pnucrm\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl2\pnucltr\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl3\pndec\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl4\pnlcltr\pnstart1\pnindent720\pnhang{\pntxta )}}
+{\*\pnseclvl5\pndec\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl6\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl7\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl8
+\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl9\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}\pard\plain \sl-240\slmult0 \f4\fs20 {\b\f3\fs24 1. The Digital Computer}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 1.1 Computer Elements
+\par 1.2 Computer Levels
+\par 1.3 Computer Architecture
+\par 1.4 Levels of Instructions
+\par 1.5 Computer Performance
+\par }\pard {\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 Overview:}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+We show that a computer is awake when power is turned on because there is a permanently programmed control computer inside managing the computer's affairs.  The permanent program in this hidden computer implements the user instruction set available to the
+ using programmer.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Next we view the computer as a hierarchy of levels ranging from the bottom digital logic level to the top level high level language.  This leads into a brief discussion defining computer architecture.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Then we discuss the levels of instructions used in a computer: user instructions, microinstructions, and control instructions.
+\par Finally we touch on the performance issue.
+\par }\pard {\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \page }{\b\f3\fs24 Introduction}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+The digital computer solves a problem by executing a sequence of instructions a user gives to it.  The sequence of instructions is called a computer program.  The instructions in the program are drawn from the user set of instructions.  We will show that 
+this user instruction set defines the computer.  A designer transforms the user instruction set into a computer schematic.  The designer may also participate in formulating the user instruction set.  We call the transformation process computer design.  Th
+is process leads to many hardware implementations for the same instruction set because synthesis is not unique, and because many technologies are available.  
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 1.1 Computer Elements}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+The computer block diagram shows an ALU (arithmetic logic unit) interacting with a memory and input/output units in a controlled environment (figure 1.1).  The traditional story explaining this block diagram is something like the following.  The ALU perfo
+rms arithmetic and logical operations as required by a user's program.  The
+ operations are performed on data stored in the memory.  This means the ALU loads data from, and stores data in, the memory.  The input block allows a user to enter programs and data into the computer.  The computer delivers results to the user via the ou
+tput block.  In the background the control manages the process.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 Figure 1.1  Traditional Computer Block Diagram}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \page 
+We prefer to present the substance of this matter in another way (figure 1.2) because the story above does not explain why a computer functions even before you have entered a program.  If the computer is not awake how can you enter the program?  Furthermo
+re, the story does not point the way to a design process.  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 First know that every computer is managed by an internal computer a user does not have access to.  To show this we start by partitioning the computer into two parts as if it were simply another st
+ate machine (which it is).  The two parts are the uData Path and the mControl (figure 1.2a).  U means user accessible and m means inaccessible micro.  In turn the internal computer mControl partitions into the mData Path and the mCtrl (control) because it
+ also is a state machine (figure 1.2b).  Finally, we make the memory and clock explicit (figure 1.2c).
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Presumably the next question is:  who programs the internal computer?  The answer is the designer does by using the computer's microprogramming language.  This language may be bits stored permanently in a non\_
+volatile memory or simply wiring.  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 Figure 1.2  Evolution of a Computer Block Diagram}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 a)
+\par }\pard {\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 b)
+\par }\pard {\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 c)
+\par }\pard {\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \page A }{\b\f3\fs24 microprocessor }{\f3\fs24 
+is a specialized form of computer wherein the memory and clock are literally external to the microprocessor (figure 1.3).  Otherwise, nothing is different from the designer's point of view.  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 Figure 1.3  Microprocessor Configuration 
+\par }\pard {\b\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 \page 1.2 Computer Levels}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 A computer may be viewed as a hierarchy of levels (figure 1.4).  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The bottom level}{\f3\fs24\dn60 0}{\f3\fs24  consists of digital logic circuits controlled by the next level}{\f3\fs24\dn60 1}{\f3\fs24 .  This is the microprogrammed instruction (mI) level.  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The mI are stored in what we call the mROM as a set of mI sequences.  Any sequence is selected by addressing the first mI in the sequence.  This is done by level}{\f3\fs24\dn60 2}{\f3\fs24 
+ known as the machine binary code level.  Note: mI level}{\f3\fs24\dn60 1}{\f3\fs24  may appear to be missing in some computers (e.g. RISC).  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Machine codes are generated by the assembler translating assembly language into binary code.  Assembly language level}{\f3\fs24\dn60 3}{\f3\fs24  is written with user instructions uI.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 In turn the assembly language may be generated by the compiler translating high level language level}{\f3\fs24\dn60 4}{\f3\fs24  into assembly language.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+Now reverse the process.  Moving from top to bottom write a program in C (for example) and compile it into an assembly language whose words are taken from the uI defining the computer.  The uI are translated by the assembler into binary codes which sele
+ct sequences of mI.  Sequences of mI execute to control digital logic and solve the problem programmed in C in the first place.  Each sequence of mI executes one uI.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 Figure 1.4  Computer Levels
+\par }\pard {\b\f3\fs24 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 \page 1.3 Computer Architecture}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+Instruction set architecture is the instruction set visible to the programmer.  Given this uI set we move on to implementation which is mostly organization and hardware.  In simple terms organization is the computer's block diagram and bus structure.  Har
+dware is the digital design and physical implementation.  Hardware is the working machine.  Finally, we say that to us computer architecture is all of the above.  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 A more common and circumscribed notion of computer architecture is one which an assembly or 
+machine language programmer understands as he or she writes programs that work.  Programs that work independently of the timing of the machine.  This notion allows for a family of machines where each member is tailored for a specific market.
+\par }\pard {\f3\fs24 
+\par 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 1.4 Levels of Instructions}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+In general there are three levels of instructions built into a computer: user instructions uI, microprogram instructions mI, and control instructions cI.  We find the distinctive names uI, mI, and cI facilitate the discussion.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 uI set:  }{\f3\fs24 Top
+ down design starts from the uI set.  How do you know what uI set you need?  You don't know until you analyze the problems you want to solve on the computer.  Clearly this is an issue separate from the task of designing a computer.  We will pull uI sets o
+ut of thin air and proceed (Tables 2.1 and 3.1).  We presume the sets allow us to write any program we please.  We will not digress to discuss the issue concerning whether or not the uI set is complete in the Euclidean sense.  From Euclid's axioms you can
+ prove anything (well almost) because the set of Euclidean axioms is complete.  We assume our uI sets are complete.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+Any computer program is essentially a list of instructions.  The instructions used in any program are taken from the uI instruction set defined for your computer.  The uI specify what the computer must be able to do.  This is the computer designer's point
+ of view.  In turn the designer uses the uI set as a basis for computer organization and hardware design.  In this way a design starts from the top and works its way down to the minute details.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Analysis of what each uI must do reveals actions common to many uI.  For example most uI move data.  Later we show that each uI is a small program with its list of "sub\_instructions".  We show the number of different sub
+\_instructions is much smaller than the number of uI.  The practical consequence from use of these sub\_instructions is simplified implementation of the uI codes in the computer.  In practice the sub\_instructions are the microprogram instruc
+tions, or microinstructions (mI).
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \page }{\b\f3\fs24 mI set: }{\f3\fs24 Later we demonstrate heuristically that any uI can be implemented by a microprogram that uses 4 different mI in some combination.  They are
+\par           mALU           arithmetic and logic
+\par           mMOV           copy words
+\par           mBR            branch decisions
+\par           mNOP           do nothing
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The following is not obvious.  In most computers uI are not implemented directly by the hardware because the
+y cannot execute in one computer cycle.  Each uI is implemented by a list of mI.  In turn each mI is implemented directly by the hardware so that each mI executes in one computer cycle.  This is why each uI is implemented as a program consisting of a list
+ of microinstructions mI. In some architectures (e.g. RISC) each mI list has only one mI in it. 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Reminder: the user does not know about the mI.  The designer does.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\b\f3\fs24 cI set: }{\f3\fs24 Finally there are the very few cI.  The mControl section of the computer performs a
+ sequence of fetch and execute cycles.  This implies a control program built into the computer hardware.  The control program is a list of control instructions we call the cI.  The cI are not used in programs by anyone:  they are out of sight.  
+\par This is why three sets of instructions concern the designer
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24           cI   control
+\par           mI   micro
+\par           uI   user
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Note: Later we show the cI are mI used to implement control functions.  This is why when you look for cI in texts you will find them disguised as mI.  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+How is any user program uI list placed in computer memory?  First, a computer memory stores binary digits or bits, 0 and 1.  More to the point a memory is organized to store bit groups called words.  It is organized in the sense each word has a unique mem
+ory address so that the word at any address can be fetched (a read).  Conversely a new word can be stored in any addressed memory location (a write).
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Next, usually your computer program is written in uI assembly language (e.g. ADD r3 r7) or in
+ a language such as Pascal ( e.g. r7 := r3 + r7).  Clearly the text of your computer program must be translated (compiled) into binary words before you can store your program in memory.  The binary words describing your program are also a language:  the m
+achine language of your computer.  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Compilers are user tools that create binary word files stored on disks.  A loader is another tool that copies your machine language computer program from disk to memory.  Tools allow you to place your program in memory a
+nd to pass control to the computer's control section.  An assembler is a specific type of compiler.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 \page }{\b\f3\fs24 1.5 Computer Performance}{\f3\fs24 
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+Performance is not understood in the sense that there is no process you can implement at the end of which you have a predictable increase in performance.  Furthermore there is no definitive process by which you can evaluate performance.  Nevertheless perf
+ormance design and evaluation methods and guidelines exist.  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 The computer that performs a unit of work in the least time is the
+ fastest.  Time may be elapsed time; the total time required to do the job.  However elapsed time measures more than your job in a multitasking system.  So matters are more complicated than one might think at first.  Part of the elapsed time is cpu time s
+pent on the program and part is cpu time spent on the operating system.  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Time spent on a user program can be estimated as follows.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 seconds       avg # of clock cycles   uI executed   seconds
+\par \_\_\_\_\_\_\_\_\_\_\_ * \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ * \_\_\_\_\_\_\_\_\_\_\_ = \_\_\_\_\_\_\_
+\par clock cycle   instruction executed    program       program
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 Example:
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24      50  10}{\f3\fs24\up6 -9}{\f3\fs24   * 6 * 10}{\f3\fs24\up6 5}{\f3\fs24  = 300 10}{\f3\fs24\up6 -4}{\f3\fs24  = 30 milliseconds/program
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 
+Please note that instructions executed by a running program are NOT the number of instructions in the program.  Think about loops and branches.  Also note the cpu time spent in the user's program depends upon the data.  Again think about time spent in loo
+ps and branches.  Try to calculate the average number of clock cycles and one may reasonably conclude time spent is hard to pin down.  As a practical matter you run the same program with the same data on various computers and compare results.
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 There are alternatives to execution time known as MIPS (million instructions per second) and MFLOPS (million floating point operations per second).  
+\par }\pard {\f3\fs24 
+\par }\pard \sl-240\slmult0 {\f3\fs24 This subject so complex that entire books have been written on it.  We refer you to the literature because many aspects of performance are related to specifying the machine.
+\par }\pard {\f3\fs24 
+\par 
+\par }}

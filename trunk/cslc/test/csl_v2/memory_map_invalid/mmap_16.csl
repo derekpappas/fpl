@@ -1,0 +1,22 @@
+csl_memory_map_page mpage {
+};
+csl_memory_map mmap_0{
+  mpage mpage;
+	mmap_0(){
+		set_data_word_width(32);
+		mpage.set_endianess(little_endian);
+	}
+};
+/*
+csl_memory_map mmap_1{
+  mpage mpage1;
+	mmap_1(){
+		set_data_word_width(32);
+		mpage1.set_endianess(mpage.get_endianess());
+	}
+};
+*/
+
+
+csl_unit top {
+};

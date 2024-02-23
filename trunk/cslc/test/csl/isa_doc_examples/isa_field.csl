@@ -1,0 +1,17 @@
+
+//isa_field_obj.set_type( opcode | subopcode | address | selector | constant | unused | reserved); 
+//20 August 2007
+
+csl_isa_field f_op(2);
+f_op.set_type(opcode);
+csl_isa_field f_op2(3);
+f_op2.set_type(subopcode);
+csl_isa_field f_rd(5);
+f_rd.set_type(rf_address);
+csl_isa_field f_rs1(5);
+f_rs1.set_type(rf_address);
+csl_isa_field f_rs2(5);
+f_rs2.set_type(rf_address); 
+
+csl_unit top {
+};

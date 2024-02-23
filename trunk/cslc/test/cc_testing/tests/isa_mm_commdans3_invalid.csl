@@ -1,0 +1,29 @@
+//illegal commands from mm in isa3
+//illegal: declaring a isa_instrction from a mm
+
+csl_isa_field field(2);
+csl_isa_field field2(2);
+
+csl_memory_map mm1{
+    mm1(){
+       set_type(flat);
+       set_data_word_width(4);
+    }
+}; 
+
+csl_isa_element format{
+    field field_i;
+    field2 field2_i;
+    format(){
+	set_type(instr_format);
+       set_width(4);            
+       set_position(field_i, 2);
+       set_next(field_i,field2_i);
+    }
+};
+
+csl_isa_element instr : mm1{  //mm1 is not a format
+     instr(){
+	set_type(instr);
+     }
+};

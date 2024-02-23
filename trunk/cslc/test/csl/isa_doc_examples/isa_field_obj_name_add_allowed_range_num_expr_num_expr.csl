@@ -1,0 +1,17 @@
+//isa_field_obj_name.add_allowed_range(num_expr, num_expr)
+
+csl_isa_field op(2);
+op.set_type(opcode);
+csl_isa_field rega(6);
+rega.set_type(rf_address);
+csl_isa_field imm{ 
+imm(){ 
+set_width(24); 
+set_type(constant); 
+add_allowed_range(1245,36); 
+}
+}; 
+
+
+csl_unit top {
+};

@@ -1,0 +1,16 @@
+//Monica
+//15 January 2008
+//invalid = signal to signal connections
+
+csl_unit test1{
+  csl_signal in1(2),in2(4);
+    test1(){}
+};
+csl_unit top{
+  csl_signal sig_in1(2),sig_in2(4);
+  test1 test1;
+  top(){
+    test1.in1.connect(sig_in1);
+    test1.in2.connect(sig_in2);
+   
+  }};

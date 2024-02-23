@@ -1,0 +1,110 @@
+# "/opt/he_fpl_svn/fpl_repo/cslc/test/csl_new_bug1/big_tests/./network_processor/microengine.csl" 1
+
+
+ csl_register_file localmem{
+
+    localmem(){
+      set_width(32);
+      set_depth(64);
+    }
+ };
+
+
+
+
+
+
+
+csl_unit ctrlstore{
+  ctrlstore() {
+      }
+  };
+
+
+csl_unit execu{
+  execu(){
+    }
+  };
+
+
+
+csl_register_file rf128{
+  rf128(){
+    set_width(32);
+    set_depth(32);
+    }
+  };
+
+
+
+csl_unit crc {
+  crc(){
+    }
+  };
+
+
+csl_unit crcr {
+  crcr(){
+    }
+  };
+
+csl_unit opmux{
+  opmux(){
+    }
+  };
+
+csl_unit rfmux{
+  rfmux(){
+    }
+    };
+
+
+
+csl_unit me{
+  localmem lm;
+  rf128 gpra;
+  rf128 gprb;
+  rf128 nn;
+  rf128 xferind;
+  rf128 xferins;
+  rf128 xferoutd;
+  rf128 xferouts;
+  execu eu0;
+  ctrlstore cs0;
+  opmux opmuxa, opmuxb;
+  crc crc0;
+  crcr crcr0;
+  rfmux rfmux0;
+  me(){
+
+    }
+  };
+
+
+
+
+
+
+csl_memory_map_page me_page{
+	me_page(){
+      set_unit_name(me);
+      add_address_range(0,800);
+      add(me.lm,"LM");
+      add(me.gpra,"GPRA");
+      add(me.gprb,"GPRB");
+      add(me.nn,"NEXT_N");
+      add(me.xferind,"XFERIND");
+      add(me.xferins,"XFERINDS");
+      add(me.xferoutd,"XFEROUTD");
+      add(me.xferouts,"XFEROUTS");
+}
+};
+
+
+csl_memory_map mm {
+
+  mm() {
+    set_type(hierarchical);
+    set_top_unit(me);
+    }
+  };

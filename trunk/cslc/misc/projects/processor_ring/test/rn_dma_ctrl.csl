@@ -1,0 +1,75 @@
+//oanab
+//3 ian 2008
+//DMA Controller
+
+csl_register idb {
+  idb () {
+    set_width(20);
+    set_type(register);
+  }
+};
+
+csl_register idl {
+  idl () {
+    set_width(20);
+    set_type(register);
+    add_logic(set);
+  }
+};
+
+csl_register lmt {
+  lmt () {
+    set_width(20);
+    set_type(register);
+    add_logic(set);
+  }
+};
+
+csl_register cnt {
+  cnt () {
+    set_width(20);
+    set_type(counter);
+    add_logic(count_direction,up);
+    add_logic(load);
+    add_logic(reset);
+  }
+};
+
+csl_unit mux {
+  csl_port m0(input,20),m1(input,20),out(output,20),sel(input);
+  mux () {
+    sel.set_attr(mux_sel);
+  }
+};
+
+csl_unit sum {
+  csl_port s_in1(input,20),s_in2(input,20),s_out(output,20);
+  sum () {}
+};
+
+ 
+
+csl_unit comp {
+  csl_port c_in1(input,20),c_in2(input,20),c_not_eq(output,20),c_eq(output,20);
+  comp () {}
+};
+
+csl_unit dc {
+  csl_port write(input),red(input),burst(input),addr(input,20),data_in(input,32),data_out(output,32),wr_en(output);
+  csl_signal write_burst,read_burst,dma_en,clk_,en_idb,mux_out(20);  
+  csl_signal base(20),length(20),zero(20),bus_burst,idl_ld,idb_out(20),idl_out(20);
+  csl_signal sum_out(20),lmt_ld,lim,cnt_ld,cnt_clr,cnt_out(20),lmt_out(20),cmp_out(20);
+  mux mux0(.m1(length),.m0(zero),.sel(bus_burst),.out(mux_out));
+  idb idb0(.enable(en_idb),.reg_in(base),.clock(clk_),.reg_out(idb_out));
+  idl idl0(.enable(dma_en),.clock(clk_),.reg_in(mux_out),.reg_out(idl_out),.set(idl_ld));
+  lmt lmt0(.reg_in(sum_out),.set(lmt_ld),.reg_out(lmt_out),.enable(lim),.clock(clk_));
+  cnt cnt0(.enable(dma_en),.load_en(cnt_ld),.load(idb_out),.reset_(cnt_clr),.reg_out(cnt_out));
+  sum sum0(.s_in1(idb_out),.s_in2(idl_out),.s_out(sum_out));
+  comp comp0(.c_in1(lmt_out),.c_in2(cnt_out),.c_not_eq(cmp_out));
+  dc () {
+    en_idb = write_burst|read_burst;
+    clk_.set_attr(clock);
+    dma_en.set_attr(en);
+    lim.set_attr(en);
+  }
+};

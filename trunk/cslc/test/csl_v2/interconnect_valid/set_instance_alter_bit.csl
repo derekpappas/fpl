@@ -1,0 +1,18 @@
+//oanab
+//20 oct 2007
+csl_unit u{
+   csl_port a(output),b(input);
+   csl_port clk(input);
+   u(){
+   set_instance_alteration_bit(on);
+   }
+};
+
+csl_unit top{
+   csl_signal clk;
+   u u(.clk(clk));
+   top(){
+     clk.set_attr(clock);
+ }
+};
+  

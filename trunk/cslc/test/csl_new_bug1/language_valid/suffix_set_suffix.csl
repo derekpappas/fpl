@@ -1,0 +1,26 @@
+     // costelc
+// set_suffix() method    
+
+csl_interface ifc{
+  csl_port p_ifc1(input,8); 
+  csl_port p_ifc2(output,8);
+  ifc() {}
+};
+
+csl_signal_group sg{
+  csl_signal s_sg1(8);
+  csl_signal s_sg2(8);
+  sg() {
+    set_suffix("sgxx");
+}
+};
+  
+csl_unit top{                    
+  ifc ifc0;                              
+  sg sg0;                                                     
+  top(){
+     ifc0.set_suffix("ixx");  
+     ifc0.p_ifc1 = sg0.s_sg1;         
+     ifc0.p_ifc2 = sg0.s_sg2;         
+ }
+};

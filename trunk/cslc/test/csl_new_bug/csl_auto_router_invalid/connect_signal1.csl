@@ -1,0 +1,57 @@
+//AnamariaH
+//04.04.08
+//auto-router
+//connection between two signals from different units.
+
+
+csl_interface i1{
+    csl_port a(input,2),b(output);
+    i1(){}
+};
+
+csl_interface i2{
+    csl_port x(input), y(output);
+   i2(){}
+};
+
+csl_unit u1{
+    i1 inter1;
+    csl_signal s_u1(2);
+    u1(){}
+};
+
+csl_unit u2{
+   i2 inter2;
+   csl_signal s_u2;
+   u2(){}
+};
+
+csl_unit u3{
+   i1 inter3;
+   u3(){}
+};
+
+csl_unit u4{
+   i2 inter4;
+   csl_signal s1_u4(2),s2_u4;
+   u4(){}
+};
+
+csl_unit top{
+   csl_signal s_top;
+    u1 u1;
+    u2 u2;
+    u3 u3;
+    u4 u4;
+    top(){
+    u1.s_u1.connect(u4.s1_u4);  /* Cannot connect 'u1.s_u1' and 'u4.s1_u4' because connection between these two types isn't supported.*/
+
+    u2.s_u2.connect(u4.s2_u4); /*  Cannot connect 'u2.s_u2' and 'u4.s2_u4' because connection between these two types isn't supported. */
+
+    s_top.connect(u4.s2_u4);  /* Cannot connect 's_top' and 'u4.s2_u4' because connection between these two types isn't supported. */
+
+    u4.s1_u4.connect(u1.inter1.a);
+    }
+};
+
+    

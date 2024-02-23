@@ -1,0 +1,335 @@
+
+csl_interface sb_ifc {
+   csl_port start(output), busy(input); 
+   sb_ifc () {}
+};
+
+csl_interface sbhp_ifc {
+   csl_port start(input), busy(output), hit(output), port(output) ; 
+   sbhp_ifc () {}
+};
+
+csl_interface vrr_ifc {
+   csl_port valid(output), rd(input), result(output, 32); 
+   vrr_ifc () {}
+};
+
+csl_interface vsr_ifc {
+   csl_port read_response_valid(output), fabric_start(input), read_resonse(output, 32); 
+   vsr_ifc () {}
+};
+
+csl_interface adrv_ifc {
+   csl_port addr(output,18), data(output,32), ready(input), valid(output); 
+   adrv_ifc () {}
+};
+
+csl_interface adwr_ifc {
+   csl_port addr(output,18), data(output,32), wr(output), rd(output); 
+   adwr_ifc () {}
+};
+
+csl_interface cdrv_ifc {
+   csl_port cmd(output), data(output,32), ready(input), valid(output); 
+   cdrv_ifc () {}
+};
+
+csl_interface dw_ifc {
+   csl_port data(output,32), wr(input); 
+   dw_ifc () {}
+};
+
+csl_interface adw_ifc {
+   csl_port addr(output,18), data(output,32), wr(input); 
+   adw_ifc () {}
+};
+
+
+csl_interface ram_ifc {
+  csl_port 	address	(input	, 11);
+  csl_port 	byteena	(input	, 4);
+  csl_port 	clock	(input	, 1);
+  csl_port 	data	(input	, 32);
+  csl_port 	enable	(input	, 1);
+  csl_port 	q	(output	, 16);
+  csl_port 	wren	(input	, 1);
+  ram_ifc () {}
+};
+
+csl_interface nios_tcm_ifc {
+//   csl_port clk        (input); //	( core_clk 	),
+//   csl_port reset_n    (input); //	( nios_run 	),
+
+   csl_port address(output, 18);  // address_to_the_data_tcm     
+   csl_port byteena(output,  4);  // byteenable_to_the_data_tcm  
+   csl_port chipsel(output,  1);  // chipselect_to_the_data_tcm  
+   csl_port enable (output,  1);  // clken_to_the_data_tcm       
+   csl_port dout   (input , 32);  // readdata_from_the_data_tcm
+   csl_port wren   (output,  1);  // write_to_the_data_tcm     
+   csl_port din    (output, 32);  // writedata_to_the_data_tcm 
+   
+   nios_tcm_ifc () {}
+};
+   
+csl_interface nios_cii_ifc {
+   csl_port a 	    (output,  1);   //	( e_a_from_the_custominstruction_nq_cpu           e_a 	),
+   csl_port b 	    (output,  1);   //	( e_b_from_the_custominstruction_nq_cpu           e_b 	),
+   csl_port c 	    (output,  1);   //	( e_c_from_the_custominstruction_nq_cpu           e_c 	),
+   csl_port clk_en  (output,  1);   //	( e_clk_en_from_the_custominstruction_nq_cpu      e_clk_en 	),
+   csl_port clk     (output,  1);   //	( e_clk_from_the_custominstruction_nq_cpu         e_clk 	),
+   csl_port dataa   (output, 32);   //	( e_dataa_from_the_custominstruction_nq_cpu       e_dataa 	),
+   csl_port datab   (output, 32);   //	( e_datab_from_the_custominstruction_nq_cpu       e_datab 	),
+   csl_port done    ( input,  1);   //	( e_done_to_the_custominstruction_nq_cpu          e_done 	),
+   csl_port n 	    (output,  8);   //	( e_n_from_the_custominstruction_nq_cpu           e_n 	),
+   csl_port readra  ( input, 32);   //	( e_readra_from_the_custominstruction_nq_cpu      e_readra 	),
+   csl_port readrb  ( input, 32);   //	( e_readrb_from_the_custominstruction_nq_cpu      e_readrb 	),
+   csl_port reset   (output,  1);   //	( e_reset_from_the_custominstruction_nq_cpu       	),
+   csl_port result  ( input, 32);   //	( e_result_to_the_custominstruction_nq_cpu        e_result 	),
+   csl_port start   (output,  1);   //	( e_start_from_the_custominstruction_nq_cpu       e_start 	),
+   csl_port writerc ( input, 32);   //	( e_writerc_from_the_custominstruction_nq_cpu     e_writerc 	),
+
+   nios_cii_ifc () {}
+};
+                                   
+csl_interface nios_int_ifc {
+   csl_port irq_i_to_the_interrupt_0(input); //	( exception[0] 	),
+   csl_port irq_i_to_the_interrupt_1(input); //	( exception[1] 	),
+   csl_port irq_i_to_the_interrupt_2(input); //	( exception[2] 	),
+   csl_port irq_i_to_the_interrupt_3(input); //	( exception[3] 	),
+
+   nios_int_ifc () { }
+};
+
+csl_unit altsyncram { // leaf
+   altsyncram () {
+   }
+};
+
+csl_unit sdpram_128x32 {
+   altsyncram altsyncram;
+   sdpram_128x32 () {
+   }
+};
+
+csl_unit fabric_if { // leaf
+   fabric_if () {
+   }
+};
+
+csl_unit fabric_add { // leaf
+   adrv_ifc fdma0_fadd_adrv_;
+   adrv_ifc fdma1_fadd_adrv_;
+
+   fabric_add () {
+   fdma0_fadd_adrv_.reverse();
+   //error: Cannot find 'pie_dq_ci.pie_fabdma0.fdma_fadd_adrv_' given as parameter to connect function. Connection failed.
+   fdma0_fadd_adrv_.connect(pie_dq_ci.pie_fabdma0.fdma_fadd_adrv_);
+
+   fdma1_fadd_adrv_.reverse();
+   fdma1_fadd_adrv_.connect(pie_dq_ci.pie_fabdma1.fdma_fadd_adrv_);
+   }
+};
+
+csl_unit fabric_drop { // leaf
+   dw_ifc fdrop_db_dw_;
+   dw_ifc fdrop_rr_dw_;
+   adw_ifc fdrop_malt_adw_;
+   adw_ifc fdrop_qm_adw_  ;
+   adwr_ifc fdrop_arb_adwr_;
+   adwr_ifc fdrop_itcm_adwr_;
+   fabric_drop () {
+     //error:Cannot find 'pie_dq_ci.pie_malt.fdrop_malt_adw_' given as parameter to connect function. Connection failed.
+     fdrop_db_dw_.connect(pie_dq_ci.pie_doorbell.fdrop_db_dw_);
+     fdrop_rr_dw_.connect(pie_dq_ci.pie_readresp.fdrop_rr_dw_);
+     fdrop_malt_adw_.connect(pie_dq_ci.pie_malt.fdrop_malt_adw_);
+     fdrop_qm_adw_.connect(pie_dq_ci.pie_qmgr.fdrop_qm_adw_);
+     fdrop_arb_adwr_.connect(pie_dq_ci.pie_arb.fdrp_arb_adwr_);
+     fdrop_itcm_adwr_.connect(pie_dq_ci.itcm.fdrp_itcm_adwr_);
+      
+   }
+};
+
+csl_unit pie_fabdma { // leaf
+   adrv_ifc fdma_fadd_adrv_;
+   pie_fabdma () {
+   }
+};
+
+csl_unit pie_doorbell { // leaf
+   vrr_ifc db_cii_vrr_;
+   dw_ifc fdrop_db_dw_;
+
+   pie_doorbell () {
+      fdrop_db_dw_.reverse();
+   }
+};
+
+
+csl_unit pie_readresp { // leaf
+   vsr_ifc rr_cii_vsr_;
+   dw_ifc fdrop_rr_dw_;
+
+   pie_readresp () {
+      fdrop_rr_dw_.reverse();
+   }
+};
+
+csl_unit pie_dq_ctl { // leaf
+   pie_dq_ctl () {
+   }
+};
+
+csl_unit pie_malt { // leaf
+   sbhp_ifc malt_cii_sbhp_;
+   pie_malt () {
+     malt_cii_sbhp_.connect(pie_dq_ci.tdma0.malt_cii_sbhp_);
+   }
+};
+
+csl_unit pie_qmgr {
+   sdpram_128x32 sdpram_128x32;
+   pie_qmgr () {
+   }
+};
+
+csl_unit pie_arb {
+   adwr_ifc fdrop_arb_adwr_;
+   pie_arb() {
+     fdrop_arb_adwr_.connect(pie_dq_ci.pie_arb.fdrop_arb_adwr_);
+
+   }
+
+};
+
+// ------------------------------------------------------------
+// Unit dpram_1kx32x16 
+// ------------------------------------------------------------
+//   adwr_ifc fdrop_itcm_adwr_;
+//      adwr_ifc fdrop_itcm_adwr_.connect(pie_dq_ci.itcm.fdrp_itcm_adwr_);
+
+csl_unit dpram_1kx32 {
+   ram_ifc a_, b_;
+// Locals
+
+  csl_signal 	sub_wire0	(wire	, 16);
+
+// FIX f2a ifc's    altsyncram altsyncram_component(
+// FIX f2a ifc's      .aclr0	(1'b0	),
+// FIX f2a ifc's      .aclr1	(1'b0	),
+// FIX f2a ifc's      .address_a	(a_.address	),
+// FIX f2a ifc's      .address_b	(b_.address	),
+// FIX f2a ifc's      .addressstall_a	(1'b0	),
+// FIX f2a ifc's      .addressstall_b	(1'b0	),
+// FIX f2a ifc's      .byteena_a	(a_.byteena	),
+// FIX f2a ifc's      .byteena_b	(1'b1	),
+// FIX f2a ifc's      .clock0	(a_.clock	),
+// FIX f2a ifc's      .clock1	(b_.clock	),
+// FIX f2a ifc's      .clocken0	(clocken	),
+// FIX f2a ifc's      .clocken1	(rdclocken	),
+// FIX f2a ifc's      .data_a	(data	),
+// FIX f2a ifc's  // FIX    .data_b	({16{1'b1}}	),
+// FIX f2a ifc's      .q_a	(	),
+// FIX f2a ifc's      .q_b	(sub_wire0	),
+// FIX f2a ifc's      .rden_b	(1'b1	),
+// FIX f2a ifc's      .wren_a	(wren	),
+// FIX f2a ifc's      .wren_b	(1'b0	)
+// FIX f2a ifc's    );
+  dpram_1kx32 () {}
+  
+};
+
+
+
+csl_unit pie_put { // leaf
+   cdrv_ifc cdrv_ifc; // connect to some unit in at the upper level
+   sb_ifc sb_ifc_;  
+   pie_put () {
+   }
+};
+
+csl_unit nios_core { // leaf
+   nios_tcm_ifc nios_dtcm_;
+   nios_tcm_ifc nios_itcm_;
+   nios_cii_ifc nios_cii_;
+   nios_int_ifc nios_int_; // FIX where does this connect-upper level?
+
+   nios_core () {
+   }
+};
+
+csl_unit dtcm { // leaf
+   nios_tcm_ifc nios_dtcm_;
+
+   dtcm () {
+      nios_dtcm_.reverse();
+   }
+};
+
+csl_unit itcm { // leaf
+   nios_tcm_ifc nios_itcm_;
+
+   itcm () {
+      nios_itcm_.reverse();
+   }
+};
+
+csl_unit pie_cii {
+   vrr_ifc db_cii_vrr_;
+   vsr_ifc rr_cii_vsr_;
+   nios_cii_ifc nios_cii_;
+   sb_ifc cii_pdma0_sb_;
+   sb_ifc cii_pdma1_sb_;
+   sbhp_ifc malt_cii_sbhp_;
+
+
+   pie_cii () {
+      db_cii_vrr_.reverse();
+      rr_cii_vsr_.reverse();
+      nios_cii_.reverse();
+      malt_cii_sbhp_.reverse();
+
+      //error:Cannot find 'pie_dq_ci.pie_readresp.rr_cii_vsr_' given as parameter to connect function. Connection failed.
+      db_cii_vrr_.connect(pie_dq_ci.pie_doorbell.db_cii_vrr_);
+      rr_cii_vsr_.connect(pie_dq_ci.pie_readresp.rr_cii_vsr_);
+
+      cii_pdma0_sb_.connect(pie_dq_ci.pie_put_dma0.sb_ifc_);
+      cii_pdma1_sb_.connect(pie_dq_ci.pie_put_dma1.sb_ifc_);
+      nios_cii_.connect(pie_dq_ci.nios_core.nios_dtcm_);
+   }
+};
+
+
+csl_unit pie_dq_ci {
+   cdrv_ifc pdma0_mac0ix_cdrv; // to MAC0
+   cdrv_ifc pdma1_mac1ix_cdrv; //.. to MAC1
+   
+   fabric_if fabric_if;
+   fabric_add fabric_add;
+   fabric_drop fabric_drop;
+   pie_fabdma pie_fabdma0;
+   pie_fabdma pie_fabdma1;
+   pie_doorbell pie_doorbell;
+   // no unit with this name exists
+   pie_registers pie_registers;
+   pie_readresp pie_readresp;
+   pie_malt pie_malt;
+   pie_qmgr pie_qmgr;
+   pie_put pie_put_dma0;
+   pie_put pie_put_dma1;
+   nios_core nios_core;
+   dtcm dtcm;
+   itcm itcm;
+   pie_dq_ctl pie_dq_cii;
+   pie_arb pie_arb; // I added this because there are multiple units
+   dpram_1kx32 dpram; // I added this because there are multiple units
+   pie_cii pie_cii; // I added this because there are multiple units
+   pie_dq_ci () {
+      pdma0_mac0ix_cdrv.connect(pie_put_dma0.cdrv_ifc);
+      pdma1_mac1ix_cdrv.connect(pie_put_dma0.cdrv_ifc);
+
+      // errors for these: Cannot find 'pie_dq_ci.dtcm.nios_dtcm_' given as parameter to connect function. Connection failed.
+      dtcm.nios_dtcm_.connect(pie_dq_ci.dtcm.nios_dtcm_); 
+      itcm.nios_itcm_.connect(pie_dq_ci.itcm.nios_itcm_);
+   }
+};
+

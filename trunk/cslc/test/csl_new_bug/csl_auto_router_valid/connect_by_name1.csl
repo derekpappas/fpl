@@ -1,0 +1,44 @@
+//Monica
+// doc example
+
+csl_unit u1{
+  csl_port p11(output,4);
+  csl_port p12(output,8);
+  csl_port p13(input,16);
+  csl_port p14(output,7);
+  u1(){
+}
+};
+csl_unit u2{
+  csl_port p21(input,4);
+  csl_port p22(input,4);
+  csl_port p23(output,4);
+  u2(){
+}
+};
+csl_unit u11{
+  csl_port p1_in(input,2);
+  csl_port p1_out(output,4);
+  u1 u1_i;
+  u11(){}
+};
+csl_unit u22{
+  csl_port p2_in(input,4);
+  csl_port p2_out(output,4);
+  u2 u2_i;
+  u22(){}
+};
+csl_unit top{
+  csl_port p_top(output,8);
+  csl_signal s1(2),s2(4);
+  u11 u11_i(.p1_in(s1));
+  u22 u22_i(.p2_out(s2));
+  top(){
+    u11_i.p1_out.connect_by_name(u22_i.p2_in);           //c-c connection
+    u11_i.u1_i.p11.connect_by_name(u22_i.u2_i.p22);      //c-c connection
+    p_top.connect_by_name(u11_i.u1_i.p12);               //p-c connection
+    u22_i.u2_i.p23.connect_by_name(u22_i.p2_out);        //c-p connection
+    u11_i.p1_in.connect_by_name(u11_i.u1_i.p13[1:0]);    //p-c with part select
+    u11_i.u1_i.p14[3:0].connect_by_name(u22_i.u2_i.p21); //c-c with part select
+  }
+};

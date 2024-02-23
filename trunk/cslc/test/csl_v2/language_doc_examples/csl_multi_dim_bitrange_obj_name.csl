@@ -1,0 +1,6 @@
+csl_multi_dim_bitrange mbr1(3);
+csl_multi_dim_bitrange mbr2(mbr1);
+csl_unit u{
+  csl_signal s1(mbr1), s2(mbr2);
+  u(){}
+};

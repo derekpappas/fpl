@@ -1,0 +1,3 @@
+`define x
+`ifndef x
+

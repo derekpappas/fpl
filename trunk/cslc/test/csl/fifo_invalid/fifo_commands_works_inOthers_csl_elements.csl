@@ -1,0 +1,42 @@
+//fifo commands work also in csl_unit, memory map page , register file etc
+//andrei
+//22 June 2007
+
+csl_fifo fifo_name{
+	fifo_name(){
+		set_dimensions(8, 32); //error width,depth	
+		add_logic(programmable_depth, 12);		
+		set_physical_implementation (SRAM);  //SRAM | Flip Flop Array
+		add_logic(priority_bypass);
+		add_logic(sync_fifo);
+		add_logic(depth_extend, 8);  //32+8=40
+	}
+};
+
+csl_unit u_unit{
+	u_unit(){
+		add_logic(depth_extend, 10);
+		set_dimensions(8, 32); //error width,depth
+		add_logic(priority_bypass);
+		add_logic(sync_fifo);	
+	}
+};
+
+csl_memory_map_page pg {
+	pg(){
+		add_logic(depth_extend, 10);
+		set_dimensions(8, 32); //error width,depth
+		add_logic(priority_bypass);
+		add_logic(sync_fifo);	
+	}
+};
+
+csl_register_file rf {
+	rf(){
+		add_logic(depth_extend, 10);
+		set_dimensions(8, 32); //error width,depth
+		add_logic(priority_bypass);
+		add_logic(sync_fifo);	
+		
+	}
+};

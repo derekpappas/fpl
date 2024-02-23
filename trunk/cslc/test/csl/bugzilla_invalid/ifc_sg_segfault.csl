@@ -1,0 +1,30 @@
+csl_interface ifc{
+  csl_port in(input), out(output);
+  ifc(){}};
+
+csl_unit a{
+  ifc ifca;
+  a(){}
+};
+
+csl_unit b{
+  ifc ifcb;
+  b(){
+    ifcb.reverse();
+  }
+};
+
+
+csl_signal_group sg{
+  csl_signal i(1);
+  csl_signal o(1);
+  sg(){}
+};
+
+csl_unit top{
+  sg sg0
+  a a0(.ifca(sg0));
+  b b0(.ifcb(sg0));
+  top(){}
+};
+

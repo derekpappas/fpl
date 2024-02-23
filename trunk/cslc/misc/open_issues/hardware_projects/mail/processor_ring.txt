@@ -1,0 +1,24 @@
+Subject:   	processor_ring
+From:   	"Derek Pappas" <dpappas@fastpathlogic.ro>
+Date:   	Sun, February 25, 2007 12:24
+----------------------------------------------------------
+
+Hi Catalin,
+
+Why are there three versions of the csl file?
+Use SVN to check in each new version of a single file.
+Create a make or ant build.xml file to build the project (.v files).
+Check in the make or build.xml file.
+
+Add the clk, reset_, data and valid signals in the lower level modules.
+
+$ ls -ltr ./misc/test/example/processor_ring/
+total 32K
+-rwxr-xr-x 1 dpappas dpappas 6.6K 2007-02-22 19:06 processor_ring.csl
+-rwxr-xr-x 1 dpappas dpappas 5.7K 2007-02-24 12:16 
+processor_ring_generated_ver_code.v
+-rwxr-xr-x 1 dpappas dpappas 5.5K 2007-02-24 12:16 
+processor_ring_corrected.csl
+-rw-r--r-- 1 dpappas dpappas 6.1K 2007-02-25 08:51 
+processor_ring_correct.csl
+

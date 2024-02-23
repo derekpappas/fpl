@@ -1,0 +1,441 @@
+- f2a signal names
+- width checking and calculation
+- temporary creation of the top NCA scope
+- direction setting and checking
+- type checking
+- algorithm
+- visit each module(instance)
+- start with the leaf levels first
+- signal loop detection
+- ovidiu to supply f2a mapping and CSLOm
+-CSLOm needs some flags to mark that width/type/directions are checked inside each node
+
+-for each leaf in the leaf_level_list
+   for each port in leaf.port_list
+     trace(port, leaf)
+
+trace(port_name, leaf) {
+ port_direction = port_name->getDirection();
+ width = port_name->getWidth();
+ type = port_name->getType();
+ curLevel = leaf;
+}
+
+// do not push an instance into the stack if the instance does not have any instantiations
+// ask CSLOm guys to put in a credit kit in the instance class that sais: hasChildren()
+// hasChildren = 0 in the constructor, and 1 when it has an instance
+bfsModule (CInstTree node) {
+ stack s;
+ s.push(node);
+ while (!stack.empty()) {
+  node=s.pop();
+  if (node.hasChildren()) {
+    foreach instance (node.getInstList()) {
+      checkInterface(node, instance);
+    }
+  }
+  childList = node->getChildList();
+  // push children in stack
+  foreach child (node->getChildList()) {
+   s.push(child);
+  }
+
+ }
+}
+
+checkInterface(node, instance) {
+  foreach f2a(node.f2a_list) {
+    checkWidth(f2a.getFormal(), f2a.getActual());
+    checkType(f2a.getFormal(), f2a.getActual());
+    checkDirections(f2a.getFormal(), f2a.getActual());
+  }
+  foreach port(instance.getChild().getPortList()) {
+    if ( ! port.checked()) {
+      cout << "port not connected";
+    }
+  }
+}
+
+bfsModule (CInstTree node) {
+ stack s;
+ s.push(node);
+ while (!stack.empty()) {
+  node=s.pop();
+  if (node.hasChildren()) {
+    foreach instance (node.getInstList()) {
+      checkInterface(node, instance);
+    }
+  }
+  childList = node->getChildList();
+  // push children in stack
+  foreach child (node->getChildList()) {
+   s.push(child);
+  }
+
+ }
+}
+
+========================================================
+Function Autorouter Connect
+
+AutorouterConnect (vector_of_modules) {
+ stack s;
+ s.push(node);
+ while (!stack.empty()) {
+  node=s.pop();
+  if (node.hasChildren()) {
+    foreach instance (node.getInstList()) {
+      checkInterface(node, instance);
+    }
+  }
+  childList = node->getChildList();
+  // push children in stack
+  foreach child (node->getChildList()) {
+   s.push(child);
+  }
+
+ }
+}
+
+========================================================
+Function ConnectionTrace
+
+ConnectionTrace (vector_of_modules) {
+}
+
+========================================================
+int computeNCA (hid1, hid2) {
+  vector id1 = hid1;
+  vector id2 = hid2;
+  ASSERT (!id1.empty(), "");
+  ASSERT (!id2.empty(), "");
+  if (hid1.size() > hid2.size()) {
+    //swap (hid1, hid2);
+    temp = hid1;
+    hid1 = hid2;
+    hid2 =temp;
+  }
+  
+  ASSERT(hid1.getInstNum(0) == hid2.getInstNum(0), "");
+  
+  for (int i=1 i< hid1.size(); ++i) {
+   if (hid1.getInstNum(i) != hid2.getInstNum(i)) {
+     return hid1->getInstNum(at(i-1));
+     // change getID to getInstNum
+   }
+  }
+  cout << "NCA not found";;
+}
+
+
+
+Checker:
+--------
+// if is not a wire or a reg output,
+// or 2 or more signals are outputs
+// and those signals are connected to the same singal
+//-> bus contention
+
+if it's a trireg, then it's 
+the select for each tristate device has to be mutually exclussive
+otherwise only a single tristate device can be able to select
+if 2 or more selects are enabled the same time, then we have driver contention and the driver has x value
+
+outputs collide
+inputs collide
+type mismatch
+go through the WE doc, and find different types of errors and check for them
+-go through the IT doc, and find all the illegal cases and write tests for each one
+
+
+========================================================
+
+Instance Tree should contain:
+
+- unit declaration
+- instances
+- refer the original module to print out a line where there is an error
+- create copies of the original objects inside the Instance Tree
+
+-create a map from HID to the instance name and a map for reverse
+instance->getHIDPath, getInstName, getNode
+
+- tranform from non-elab to Elaborate using a copy constructor or something equivalent
+-CSLOm elaboration model
+
+-the Autorouter will add port/wire/f2a from the IT to the CSLOm ( Elaborated and Non-Elaborated CSLOm models)
+
+-test the wires from one module to another with 2 or more bits width
+-need to check if the design is broken and there is no direct connection between 2 nodes (NCA not defined)
+-MST check (minimum spanning tree check)
+
+
+========================================================
+
+module m = root;
+
+DFS_connection_check(m);
+
+
+void DFS_connection_check(m) {
+ portlist pl =  m.getPortList();
+ foreach port (portlist) {
+  list l = findNameInLocals(port);
+  if (l.isNotEmpty()) {
+   foreach s (l) {
+    checkPortDirection(port, s);
+    checkType(port, s);
+    checkWidth(port, s);
+    checkAttribute(port, s);
+   }
+  }
+  list a = findNameInInstanceActuals(m.port);
+  unsigned int nums = a.size() + b.size();
+  // if output must have one driver if not multidrive type
+  if (port.isOutput() && !port.type.isMultidrive()) {
+    switch (nums) {
+     case 0:
+        cout << "signal is not connected";
+        break;
+     case 1:
+        cout << "signal is connected";
+        break;
+     default:
+        if (nums > 1) {
+	    cout << "output is not driven by multiple signals" << endl;
+	}    
+    }
+    
+  }
+ }
+}
+
+
+checkPortDirection(port, s) {
+ case (IN-LHS):
+ case (IN-RHS):
+ case (OUT-LHS):
+ case (OUT-RHS):
+ case (INOUT-LHS): { case (IN, case OUT) }
+ case (INOUT-RHS): { case (IN, case OUT) }
+}
+
+
+checkType(port, s) {
+ case (wire-wire):
+ case (wire-reg):
+ case (reg-wire):
+ case (reg-reg):
+}
+
+checkWidth(port, s) {
+ return p.getWidth == s.getWidth;
+}
+
+checkAttribute(port, s) {
+ //TBD
+ attribute pa = port.attribute;
+ attribute sa = signal.attribute;
+ checkAttributes (pa, sa);
+}
+
+checkAttributes (pa, sa) {
+ //check combinations of (pa, sa) based on a lookup table
+}
+
+foreach scope construct a connect by name list;
+foreach elem (list) {
+ // each connection should have a report
+}
+
+
+Write table(matrix) for:
+-directions
+-types;
+-attributes
+
+
+class connectionReport {
+  private:
+    csl_signal *a, *b; // all the informations about signals :attr, type, direction, width
+    TBool attrOK, typeOK, dirOK, widthOK;
+};
+
+segmentInferrence_duringNCA(node1, node2) {
+ int level = 0;
+ while (!Empty(node1) && !Empty(node2) && node1 == node2) {
+  level++;
+ }
+ parent2child(node1[level], node1[level+1]);
+ parent2child(node2[level], node2[level+1]);
+ sibling2sibling(node1[level+1], node2[level+1]);
+}
+
+
+==========================================================================
+
+class SignalInfo {
+private:
+    name, bitrange
+}
+
+T* getNextT () {
+  if (currentT == NcaT) {
+    currentT = getNextLeafT();
+    currentSignalInfo = createSignalInfo();
+  }
+  else {
+    currentT = currentT->getParent();
+    currentSignal = nextSignal;
+    nextSignalInfo = createNextSignalInfo(currentT);  // 
+  }
+}
+
+void joinNcaPathEnds () {
+ // joinNCAPath will connect the tops of the 2 nca paths by creating a temporary signal and inserting that signal in the actual arguments of the 2 nca paths
+}
+
+
+class SignalInfo {
+ private:
+  RefString name;
+  RefCSLOmBitRange bitrange;
+  RefCSLOmExpr width;
+  RefCSLOmDirection direction;
+  RefCSLOmType type;
+  RefCSLOmAttr attribute;
+ protected:
+ public:
+}
+
+T* getNextT () {
+  if (currentT == NcaT) {
+    currentT = getNextLeafT();
+    currentSignalInfo = createSignalInfo();
+  }
+  else {
+    currentT = currentT->getParent();
+    currentSignal = nextSignal;
+    nextSignalInfo = createNextSignalInfo(currentT);  //
+  }
+}
+
+void joinNcaPathEnds () {
+ // joinNCAPath will connect the tops of the 2 nca paths by creating a temporary signal and inserting that signal in the actual arguments of the 2 nca paths
+}
+
+void connectSibling2Sibling(node1, node2) {
+  switch(node1) {
+   case INPUT:
+    {
+     switch (node2) {
+       case INPUT:
+        ASSERT ("Error");
+        break;
+       case OUTPUT:
+        add_wire(node1, node2);
+        break;
+       default:
+        {
+         node2.type = OUTPUT;
+         add_wire(node1, node2);
+         break;
+        }
+      }
+    }
+   case OUTPUT:
+    {
+     switch (node2) {
+       case INPUT:
+        add_wire(node1, node2);
+        break;
+       case OUTPUT:
+        ASSERT ("Error");
+        break;
+       default:
+        {
+         node2.type = INPUT;
+         add_wire(node1, node2);
+         break;
+        }
+      }
+
+    }
+  }
+}
+
+void connectParent2Child(node1, node2) {
+}
+
+void connectChild2Parent(node1, node2) {
+}
+
+class autorouter (node1, node2) {
+  while ((node1->getNextT != getNcaHid()) || node2->getNextT != getNcaHid()) {
+   parent2child(node1, node1->getNextT);
+   parent2child(node2, node2->getNextT);
+   child2parent(node1, node1->getNextT);
+   child2parent(node2, node2->getNextT);
+   if (node1->getNextT == node2->getNextT) {
+     sibling2sibling(node1, node2);
+   }
+  }
+}
+
+// AUTOROUTER PSEUDO CODE
+
+//Simple Auto- Router
+traverse CT child,TNCA, Signalcn{
+   if(chield ==NCA){
+     return;
+   }
+   TcurrentUnit = chield; //cu
+   TnextUnit = cu->getParent();//nu
+   signal current_signal = cs;
+   while (cu!=NCA){
+     bolean ParentPort = false;
+     vector<signal> sl= findSIgnalslnScope(nu, signal.get);
+foreach ns in sl
+
+  bool ck = check signal(cs, ns);
+ if (ck){
+   printf("ok");
+ }
+ else{
+     printf("error");
+}
+ if(!foundPaternPort && ns.getType()==port){
+   foundPatern = true;
+ }
+ else{
+   createSignal(nu, cs);
+   createPort(nu, cs);
+   createFZA(nu, cs);
+ }
+ nu = cu;
+ cu = cu -> getParent();
+   }
+}
+check Signal(cs, ns){
+  n = ckName(cs, ns);
+  w = ckwidth(cs, ns);
+  k = ckType(cs, ns);
+  d = ckDirection(cs, ns);
+  a = ckAttriute(cs, ns);
+}
+/*
+foreach connection in connection list{
+  unit NCA = connection.getNCA();
+  traverse (connection.lhs, NCA, connection.lh.unit.signal);//add to top signal list
+  foreach rhsu connection.rhlist{
+    traverse(rhsu, NCA, connection.rhsumit.signal);
+    connectsignalsinNCA(NCA, connection.rhsumit.signal);
+  }
+
+connect signalslnNCA
+  NCA contains list of the connection endpoints in the NCA
+see contantion diagram for cases
+if 1 parent part
+
+else if 2 temp
+*/ 

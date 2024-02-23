@@ -1,0 +1,19 @@
+csl_bitrange br1(4,1);
+
+csl_unit pd{
+  csl_port out(output);
+pd(){}
+};
+
+csl_unit ctrl_b{
+  csl_port in(input);
+ctrl_b(){}
+};
+
+csl_unit top{
+csl_signal dif_sgn (wire, br1);
+
+pd  pd (.out(dif_sgn));
+ctrl_b ctrl_b ( .in(dif_sgn));
+top(){}
+}; 

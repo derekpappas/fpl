@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="g++ noversion nomachine-c">
+      <target file="WESAXHandlers.o" lastModified="12db27a2750">
+         <source file="../../../../src/csl_xml_warn_error/WESAXHandlers.cpp" lastModified="12db213a908"/>
+      </target>
+      <target file="warn_err.o" lastModified="12db27a2368">
+         <source file="../../../../src/csl_xml_warn_error/warn_err.cpp" lastModified="12db213a908"/>
+      </target>
+   </processor>
+   <processor signature="gcc -lstdc++ -lxerces-c -lstdc++">
+      <target file="warnerr" lastModified="12db27a2750">
+         <source file="warn_err.o" lastModified="12db27a2368"/>
+         <source file="WESAXHandlers.o" lastModified="12db27a2750"/>
+      </target>
+   </processor>
+</history>

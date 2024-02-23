@@ -1,0 +1,75 @@
+sudo yum -y upgrade
+sudo rpm --import http://dag.wieers.com/rpm/packages/RPM-GPG-KEY.dag.txt
+sudo rpm --import http://dag.wieers.com/rpm/packages/RPM-GPG-KEY.dag.txt
+sudo rpm -K rpmforge-release-0.3.6-1.el5.rf.*.rpm
+sudo yum install yum-priorities
+sudo rpm -Uhv http://apt.sw.be/redhat/el5/en/x86_64/rpmforge/RPMS//rpmforge-release-0.3.6-1.el5.rf.rpm
+sudo yum -y install xerces
+sudo yum -y install ncftp
+sudo yum -y check-update
+sudo yum -y install perl-MIME-Lite
+sudo yum -y install perl-Readonly
+sudo yum -y install perl-HTML-Template
+sudo yum -y install xerces-c xerces-c-devel 
+sudo yum -y install libstdc++  
+sudo yum -y install libstdc++-devel    
+sudo yum -y install ant     
+sudo yum -y install ant
+sudo yum -y install ant-contrib
+sudo yum -y install cpptasks
+sudo yum -y install libpng libpng-devel
+sudo mkdir /opt/tools
+sudo chown -R fpl:fpl /opt/tools
+sudo chmod -R 775 /opt/tools
+sudo mkdir /storage
+sudo chown -R fpl:fpl /storage/
+sudo chmod -R 775 /opt/stor
+sudo chmod -R 775 /storage/
+sudo rpm --import http://www.jpackage.org/jpackage.asc  
+sudo rpm -q jpackage-utils
+sudo emacs /etc/yum.repos.d/jpackage.repo&
+
+sudo chmod +x jdk-6u6-linux-x64-rpm.bin
+sudo ./jdk-6u6-linux-x64-rpm.bin 
+sudo sudo rpm -Uvh jdk*rpm 
+sudo cat /etc/profile
+sudo cd /usr/share/ant
+sudo cd /usr/share/ant/lib
+sudo cp /opt/tools/ant-contrib/lib/ant-contrib.jar  .
+sudo cp /opt/tools/cpptasks-1.0b4/cpptasks.jar .
+sudo iptables -A INPUT -p tcp --dport 22 --syn -m limit --limit 1/m --limit-burst 3 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 22 --syn -j DROP
+
+sudo yum -y install ant-antlr                         
+sudo yum -y install ant-antlr.noarch                         
+sudo yum -y install ant-commons-logging               
+sudo yum -y install ant-commons-logging.noarch               
+sudo yum -y install ant-commons-net.noarch                   
+sudo yum -y install ant-contrib.noarch                       
+sudo yum -y install ant-contrib-javadoc.noarch               
+sudo yum -y install ant-contrib-manual.noarch                
+sudo yum -y install ant-javadoc.noarch                       
+sudo yum -y install ant-javadoc                       
+sudo yum -y install ant-jdepend.noarch                       
+sudo yum -y install ant-jdepend                       
+sudo yum -y install ant-jmf.noarch                           
+sudo yum -y install ant-jmf                           
+sudo yum -y install ant-jsch.noarch                          
+sudo yum -y install ant-jsch                          
+sudo yum -y install ant-junit                         
+sudo yum -y install ant-junit.noarch                         
+sudo yum -y install ant-manifest-only                 
+sudo yum -y install ant-manifest-only.noarch                 
+sudo yum -y install ant-manual.noarch                        
+sudo yum -y install ant-manual                        
+sudo yum -y install ant-nodeps.noarch                        
+sudo yum -y install ant-nodeps                        
+sudo yum -y install ant-scripts.noarch                       
+sudo yum -y install ant-scripts                       
+sudo yum -y install ant-trax.noarch                          
+sudo yum -y install ant-trax                          
+sudo cd /usr/share/ant
+sudo ln -s /usr/share/java/ant-* .
+
+
+echo NOW INSTALL BOOST BY DOWNLOADING 1.34.1 

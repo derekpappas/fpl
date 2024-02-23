@@ -1,0 +1,18 @@
+//danielt
+//november 07,2007
+
+csl_unit reg1{
+  csl_port out(output);
+  reg1(){
+    out.set_range(31, 0);}
+};
+csl_unit comp{
+  csl_port in(input);
+  comp(){
+    in.set_range(31, 0);}
+};
+csl_unit top{
+  csl_signal reg_out(32);
+  reg1 reg1( .out(reg_out));
+  comp comp( .in(reg_out));
+  top(){}};

@@ -1,0 +1,17 @@
+// Author: cghaba
+// November 1, 2007
+csl_isa_field f1(0,7);
+f1.set_type( opcode);
+csl_isa_field f2(0,7);
+f2.set_type(subopcode);
+csl_isa_field f3(0,7);
+f3.set_type(rf_address);
+csl_isa_field f4(0,7);
+f4.set_type(selector);
+csl_isa_field f5(0,7);
+f5.set_type(constant);
+csl_isa_field f6(0,7);
+f6.set_type(unused);
+csl_isa_field f7(0,7);
+f7.set_type(reserved);
+

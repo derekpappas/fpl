@@ -1,0 +1,14 @@
+csl_memory_map_page mpage_0 {
+};
+csl_memory_map_page mpage_1 {
+};
+csl_memory_map mmap{
+  mpage_0 mpage_0;
+  mpage_1 mpage_1;
+  mmap(){
+		set_type(hierarchical);
+		mpage_0.set_alignment(64);
+		mpage_1.set_alignment(mpage_0.get_alignment());
+		
+	}
+};

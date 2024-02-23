@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="g++ noversion nomachine-g -I/opt/local/include -c">
+      <target file="Tools.o" lastModified="11d07dde148">
+         <source file="../../../../src/parser/csl/Tools.cpp" lastModified="11c061bc7e0"/>
+      </target>
+      <target file="CslLexer.o" lastModified="11d07de17f8">
+         <source file="../../../../src/parser/csl/CslLexer.cpp" lastModified="11d07c52928"/>
+      </target>
+      <target file="CslNumber.o" lastModified="11d07de3738">
+         <source file="../../../../src/parser/csl/CslNumber.cpp" lastModified="11a04f28888"/>
+      </target>
+      <target file="CslParser.o" lastModified="11d07de1028">
+         <source file="../../../../src/parser/csl/CslParser.cpp" lastModified="11d07c52d10"/>
+      </target>
+      <target file="CslTreeWalker.o" lastModified="11d07de3350">
+         <source file="../../../../src/parser/csl/CslTreeWalker.cpp" lastModified="11d07c530f8"/>
+      </target>
+      <target file="CslToken.o" lastModified="11d07ddd590">
+         <source file="../../../../src/parser/csl/CslToken.cpp" lastModified="11a04f28888"/>
+      </target>
+      <target file="CParser.o" lastModified="11d07de3350">
+         <source file="../../../../src/parser/csl/CParser.cpp" lastModified="11a04f28888"/>
+      </target>
+      <target file="SymTree.o" lastModified="11d07ddd978">
+         <source file="../../../../src/parser/csl/SymTree.cpp" lastModified="11ae5274308"/>
+      </target>
+   </processor>
+   <processor signature="ar">
+      <target file="libcslParser_Library.a" lastModified="11d07de3738">
+         <source file="CslToken.o" lastModified="11d07ddd590"/>
+         <source file="SymTree.o" lastModified="11d07ddd978"/>
+         <source file="Tools.o" lastModified="11d07dde148"/>
+         <source file="CslParser.o" lastModified="11d07de1028"/>
+         <source file="CslLexer.o" lastModified="11d07de17f8"/>
+         <source file="CslTreeWalker.o" lastModified="11d07de3350"/>
+         <source file="CParser.o" lastModified="11d07de3350"/>
+         <source file="CslNumber.o" lastModified="11d07de3738"/>
+      </target>
+   </processor>
+</history>

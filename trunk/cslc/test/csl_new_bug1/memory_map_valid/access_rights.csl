@@ -1,0 +1,21 @@
+//Monica
+//19 oct 2007
+
+csl_unit u {
+};
+
+csl_memory_map_page mpage{
+  mpage(){
+    add_address_range(0,400); // set the range for the page
+    set_access_rights(200:300, SWR,access_write); 
+    set_unit_name(u);
+  }
+};
+
+
+csl_memory_map mmap{
+        mmap(){
+                set_data_word_width(32);
+		set_type(hierarchical);
+  }
+};

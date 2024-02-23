@@ -1,0 +1,91 @@
+Alex
+ add to field
+  csl_register ir; 
+  ir.add_isa(isa_name); 
+  ir.inst_fmt_name.field_name.connect(signal_name); 
+  creates a signal that is connected to the field in ir.inst_fmt_name.field_name
+ give register to CL to review
+ ISA syntax needs to be updated in example unit
+ add set_previous_pipestage to the csl_example_unit set_previous(ps_name, ps_name)
+ fix the pipeline chapter 
+ fix the processor ring schematics
+CL 
+ review register: each register now has a table with a list of ALL of the ports that are created automatically and which are optional. check that all ports have been added
+ add phase difference to clk gen
+ review VC and SD
+ add to fifo csl_fifo fn { fn(){ set_dimensions (width, depth);
+ review VC and SD
+ fix example unit
+
+SP 
+ read csl_example_unit
+ review signal generator
+ review VC and SD
+ update the tb doc using the notes from monday
+ example unit fix the ISA page
+
+AB
+ change the name from csl_example_unit to csl_example
+ move some files out of the manuals area to a new area called library 
+ csl_library 
+ csl_library->production (for fm files)
+ csl_library->released   (for pdf files)
+ move the following files out of manuals to csl_library
+ mbist
+ memory controller
+ micro engine
+ pscqn
+ producer consumer 
+
+OB
+ fix the memory controller
+ fix the asm chapter
+ fix the 
+ 
+ signal groups
+ memory map:
+ - set/get_word_width()
+ - set/get_align()
+ - set_unit_address_programmable()
+ - set_unit_instance_address()
+ - set/get_name_max_length()
+ - set/get_address_visibility()
+ - set/get_attribute()
+ - set/get_prefix()
+ - set/get_suffix() 
+ 
+ interconnect:
+ - signal group
+ 
+ pipeline
+ 
+ bitrange
+ enum
+ field
+ isa
+ interconnect
+ autorouter
+ fifo
+ register
+ register file
+ memory map
+ test bench
+ verification components
+ state data
+ isa
+ instruction_format
+ instruction
+ decoder
+
+
+
+
+
+
+
+
+
+
+
+
+

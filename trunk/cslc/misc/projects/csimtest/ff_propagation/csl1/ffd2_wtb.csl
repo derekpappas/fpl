@@ -1,0 +1,43 @@
+csl_unit ff {
+ csl_port in(input,2), out(output,2);
+ csl_port clk(input), reset(input);
+ ff(){
+   clk.set_attr(clock);
+ }
+};
+
+csl_unit top {
+ csl_port in(input,2), out(output,2);
+ csl_port clk(input), reset(input);
+ csl_signal wff(2);
+
+ ff ff0(.out(wff),.in(in),.clk(clk),.reset(reset));
+ ff ff1(.out(out),.in(wff),.clk(clk),.reset(reset));
+
+ top(){
+   clk.set_attr(clock);
+ }
+};
+
+csl_vector top_in{
+  top_in(){
+    set_unit_name(top);
+    set_direction(input);
+  }
+};
+
+csl_vector top_out{
+  top_out(){
+    set_unit_name(top);
+    set_direction(output);
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+  top top;
+  tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,2,ps);
+  }
+};

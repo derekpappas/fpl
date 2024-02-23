@@ -1,0 +1,7 @@
+//csl_signal declaration parameter invalid
+csl_unit unit{
+	csl_signal sg1(wire,2);
+	csl_signal sg2(bla); //should give an error
+	unit(){		
+	}
+};

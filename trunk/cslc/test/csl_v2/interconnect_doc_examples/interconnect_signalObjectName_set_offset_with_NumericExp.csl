@@ -1,0 +1,26 @@
+csl_unit _2bit_flip_flop, decoder, top;
+
+csl_unit  _2bit_flip_flop {
+csl_port data(input,2), clock (input), enable(input), q(output,reg,2);
+_2bit_flip_flop(){}
+};
+csl_unit decoder { 
+csl_port dec_in(input,6), dec_out(output,reg,64);
+decoder(){}
+};
+csl_unit  top {
+csl_signal clk_a, clk_b, clk_c, in_a(2), in_b(2), in_c(2), enable, dec_in(6), dec_out(64), out_a(2), out_b(2), out_c(2);
+
+_2bit_flip_flop flip_flop_a( .data(in_a), .enable(enable), .clock(clk_a), .q(out_a));
+_2bit_flip_flop flip_flop_b( .data(in_b), .enable(enable), .clock(clk_b), .q(out_b));
+_2bit_flip_flop flip_flop_c( .data(in_c), .enable(enable), .clock(clk_c), .q(out_c));
+decoder decoder( .dec_in(dec_in), .dec_out(dec_out));
+
+top(){
+
+out_b.set_offset(2);
+out_c.set_offset(out_b.get_offset()+2);
+//out_c.set_offset(4);
+//set_autorouter(ON);
+ }
+};

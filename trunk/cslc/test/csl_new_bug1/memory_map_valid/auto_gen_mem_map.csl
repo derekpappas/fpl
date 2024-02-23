@@ -1,0 +1,19 @@
+//
+
+csl_unit u {
+};
+
+csl_memory_map_page pg1{
+  pg1(){
+    add_address_range(0, 512);
+    set_unit_name(u);
+     }
+};
+
+csl_memory_map mmap{
+  mmap(){
+    auto_gen_memory_map();
+    set_type(hierarchical);
+  }
+};
+

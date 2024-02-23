@@ -1,0 +1,17 @@
+//author: Ines
+//testing: set_width,set_dim_width,set_number_of_dimensions,add_signal,add_instance
+//         set_dim_bitrange,set_type,set_range,add_signal,set_bitrange
+
+csl_unit u12_t2 {
+
+  csl_bitrange br12_2_t2(99,98);
+  csl_signal sgn12_1_t2(reg);
+  csl_signal sgn12_2_t2(wire);
+  
+  
+  u12_t2(){
+    sgn12_1_t2.set_range(2,3);
+    sgn12_2_t2.set_bitrange(br12_2_t2);
+    sgn12_2_t2 = sgn12_1_t2;
+  }
+};

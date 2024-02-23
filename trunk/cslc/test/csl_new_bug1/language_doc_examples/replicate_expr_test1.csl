@@ -1,0 +1,13 @@
+//Monica
+//13 may 2008
+
+//replicate in assign
+ csl_unit u_1{
+  csl_port p21(input,8);
+  csl_port p22(input,4);
+  csl_signal s1,s3(32);
+  u_1(){
+    s3={4{p21}};
+    p22={2{s1}};
+  }
+};

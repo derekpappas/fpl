@@ -1,0 +1,112 @@
+//Monica
+//10 mar 2008
+csl_enum op_code{
+     ADD,
+     MOV,
+     SUB,
+     BR
+};
+csl_enum eALU{
+   ALU0,
+   ALU1,
+   ALU2
+};
+csl_enum eBranch{
+   BR0,
+   BR1
+}; 
+csl_isa_field op{
+   op(){
+     set_type(opcode);
+     set_width(2); 
+     set_enum(op_code); 
+   }
+};
+csl_isa_field alu{
+   alu(){
+     set_type(selector);
+     set_width(2); 
+     set_enum(eALU); 
+   }
+};
+csl_isa_field branch1{
+   branch1(){
+     set_type(selector);
+     set_width(2); 
+     set_enum(eBranch); 
+   }
+};
+csl_isa_element isa {
+ 
+   isa() {
+      set_type(root_format);
+      set_width(32);
+     }
+};
+
+csl_isa_element format: isa {
+  op op;
+   format() {
+     set_type(instr_format);
+     set_position(op, 0);
+   }
+};  
+
+csl_isa_element i1: format{
+  alu alu;
+   i1() {
+     set_type(instr);
+     op.set_enum_item(ADD);
+     alu.set_enum_item(ALU1);
+   }
+};  
+csl_isa_element i2: format{
+  alu alu;
+   i2() {
+     set_type(instr);
+     op.set_enum_item(ADD);
+     alu.set_enum_item(ALU2);
+   }
+};  
+csl_isa_element i3: format{
+  alu alu;
+   i3() {
+     set_type(instr);
+     op.set_enum_item(ADD);
+     alu.set_enum_item(ALU0);
+    
+   }
+};  
+csl_isa_element i4: format{
+  
+  i4() {
+     set_type(instr);
+     op.set_enum_item(MOV);
+    
+   }
+};  
+
+csl_isa_element i5: format{
+  branch1 br;
+   i5() {
+     set_type(instr);
+     op.set_enum_item(BR);
+     br.set_enum_item(BR0);
+   }
+};  
+csl_isa_element i6: format{
+  branch1 br;
+   i6() {
+     set_type(instr);
+     op.set_enum_item(BR);
+     br.set_enum_item(BR1);
+   }
+};  
+
+csl_isa_element i7:format{
+  i7(){
+    set_type(instr);
+    op.set_enum_item(SUB);
+  }};
+csl_unit top {
+};

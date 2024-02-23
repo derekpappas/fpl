@@ -1,0 +1,16 @@
+//Petronela
+//error we don't have set_width sau set_range
+csl_register rg{
+  rg(){
+    set_attribute(read);
+    set_start_value(3);
+
+  }
+};
+
+csl_unit u1{
+  rg rg;
+  u1(){
+    
+  }
+};

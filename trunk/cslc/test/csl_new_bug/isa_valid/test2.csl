@@ -1,0 +1,173 @@
+//oanab
+//21 dec 2007
+
+csl_enum opcodes {
+		BR = 0,
+		CALL = 1
+		};
+csl_enum opcodes2 {
+		A0 = 0,
+		A1 = 1
+		};
+
+csl_enum cond {		
+					BPA = 8,   
+					BPNE = 9,	 
+					BPG = 10  };
+csl_unit decoder { 
+ decoder () 
+ {}  
+	};
+csl_isa_field op{
+ op(){
+ set_type(opcode);
+ set_width(2);  //30-31
+ set_enum(opcodes);
+ }
+};
+csl_isa_field rd_f1{
+  rd_f1(){
+
+ set_type(rf_address);
+ set_width(5);    //25-29
+  }
+};
+csl_isa_field op2{
+  op2(){
+
+ set_type(subopcode);
+ set_width(2);      //23-24
+ set_enum(opcodes2);
+  }
+};
+csl_isa_field imm2{
+
+ imm2(){
+set_type(constant);
+ set_width(23);    //0-22
+ }
+};
+
+csl_isa_field a{
+ 
+ a(){
+ set_type(constant);
+ set_width(1);  //29-29
+ }
+};
+csl_isa_field cond0{
+ 
+ cond0(){
+ set_type(selector);
+ set_width(7);   //22-29
+ set_enum(cond);
+ }
+};
+csl_isa_field p{
+	 
+ p(){
+set_type(constant);
+ set_width(1);   //21-21
+ }
+};		
+csl_isa_field c0{
+ c0(){
+ set_type(constant);
+ set_width(1);    //20 -20
+ }
+   };
+csl_isa_field c1{
+ c1(){
+ set_type(constant);
+ set_width(1);    //19-19
+   }
+};
+
+csl_isa_field disp19{
+disp19(){
+ set_type(constant);
+ set_width(19);
+ }
+};
+
+csl_isa_element root {	
+     root() { 
+       set_type(root_format);
+       set_width(32);  
+	} 
+   };
+csl_isa_element baseformat : root {
+  op opc;
+  baseformat () {
+    set_type(instr_format);
+    set_position(opc,30);
+  }
+};
+
+csl_isa_element format1:baseformat{
+  rd_f1 rd_f11;
+  op2 opc2; 
+  imm2 imm22;
+  format1 ()  { 
+    set_type(instr_format);
+    set_position(opc2,28);
+    set_next(opc2,rd_f11);
+    set_next(rd_f11,imm22);
+  } 
+};
+
+csl_isa_element format2:baseformat {
+  a  a1;
+  cond0  cond01;
+  p  p1;
+  c0  c01; 
+  c1  c11;  
+  disp19  disp191;	
+  format2() {
+    set_type(instr_format);
+    set_position(cond01,23);
+    set_next(cond01,a1);
+    set_next(a1,p1);
+    set_next(p1,c01);
+    set_next(c01,c11);
+    set_next(c11,disp191);
+  }
+};
+
+csl_isa_element call1_instr : format1 {
+  call1_instr () {
+    set_type(instr);
+    opc.set_enum_item(CALL);
+    opc2.set_enum_item(A0);
+  }
+};
+
+csl_isa_element call2_instr : format1 {
+  call2_instr () {
+    set_type(instr);
+    opc.set_enum_item(CALL);
+    opc2.set_enum_item(A1);
+  }
+};
+
+ csl_isa_element branch_always :format2{
+ branch_always() { 
+				    set_type(instr);
+				    opc.set_enum_item(BR);
+				    cond01.set_enum_item(BPA);
+				  }     };
+
+csl_isa_element branch_on_not_equal : format2 { 
+ branch_on_not_equal() { 
+					  set_type(instr);
+					  opc.set_enum_item(BR);
+					  cond01.set_enum_item(BPNE);
+					}    	};
+
+csl_isa_element branch_on_greater : format2 { 
+ branch_on_greater() { 
+					set_type(instr);
+					opc.set_enum_item(BR);
+					cond01.set_enum_item(BPG);
+					//	gen_decoder(decoder);
+		                  }  };

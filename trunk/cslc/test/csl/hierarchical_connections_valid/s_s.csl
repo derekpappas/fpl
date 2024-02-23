@@ -1,0 +1,13 @@
+// Author : CristiL
+// 
+// This test represents the connection between 2 signals
+
+csl_unit unitTop {
+  
+  csl_signal signal0(32);
+  csl_signal signal1(32);
+
+  unitTop() {   
+    signal1=signal0;
+  }
+};

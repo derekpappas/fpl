@@ -1,0 +1,65 @@
+What they don't tell is to add the following in your ~/.bashrc to override the Mac's JAVA_HOME which points to 
+/usr/bin/java.
+
+##################################################
+# Java lib class path
+##################################################
+
+export SOY_LATTEJAVA_1_6_HOME=/opt/soylatte/soylatte16-i386-1.0.2
+
+#export JAVA_HOME=/Library/Java/Home
+export JAVA_HOME=${SOY_LATTEJAVA_1_6_HOME}
+
+export JAVA_LIB=$JAVA_HOME/lib
+
+...
+
+export SOY_LATTE_JAVA_1_6=${SOY_LATTEJAVA_1_6_HOME}/bin
+
+export export PATH=${SOY_LATTE_JAVA_1_6}:${USR_LOCAL_BIN}:${OPT_LOCAL_BIN}:${MYSQL_DIR}:${HOME}/bin:${PATH}
+
+
+Ant Issue
+Ant uses JAVA_HOME to set ant.java.version.
+
+And if your build.xml file checks for the ant.java.version it will not find the soy latte version unless you have the JAVA_HOME over ridden.
+
+Example ant build.xml file segment that was causing a problem:
+
+ <!-- get JVM version -->
+    <target name="getJVMversion">
+      <!-- "OR" Condition; property is the property where it will be saved -->
+      <condition property="JVMversion.ok">
+        <or>
+            <!-- tests to see if the JVM's version is 1.5, on equalitty JVMversion.ok is set to 1 otherwise to 0 -->
+            <!-- ${ant.java.version} is an ANT built-in property that contains the JVM's version -->
+            <!-- the following statement is equivalent to: ${ant.java.version} == ${JVMversion} ? 1 : 0 -->
+            <equals arg1="${ant.java.version}" arg2="${JVMversion}"/>
+        </or>
+      </condition>
+    </target>
+If someone has a better hack please let me know. Thank.s
+
+
+
+2. Rebuild the libantlr.a for your architecture.
+This file should not be checked in.
+derek-pappas-computer:/opt/he_fpl_svn/fpl_repo/trunk/cslc/trunk/antlr/lib/cpp/src dpappas$ rm libantlr.a 
+remove libantlr.a? y
+derek-pappas-computer:/opt/he_fpl_svn/fpl_repo/trunk/cslc/trunk/antlr/lib/cpp/src dpappas$ cat ./compile.sh
+#!/bin/bash
+cd "$1"
+if [ -f libantlr.a ];
+then
+	echo ANTLR library up2date.
+else
+	echo ANTLR library NOT up2date. Building...
+	rm -rf *.o *.a
+	gcc -c -I.. *.cpp
+	ar q libantlr.a *.o
+	echo ANTLR built. Going on...
+fi
+derek-pappas-computer:/opt/he_fpl_svn/fpl_repo/trunk/cslc/trunk/antlr/lib/cpp/src dpappas$ ./compile.sh
+ANTLR library NOT up2date. Building...
+ar: creating archive libantlr.a
+ANTLR built. Going on...

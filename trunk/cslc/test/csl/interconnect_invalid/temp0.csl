@@ -1,0 +1,15 @@
+csl_unit _2bit_flip_flop{
+	csl_port p_data(input);
+	csl_port p_clock(input)
+  _2bit_flip_flop() {
+	   	p_data.set_width(2);
+	}
+};
+
+ add_instance(_2bit_flip_flop,ff_[[a-c]](.data(in_[\1]),.enable(enable), .clock(clk_[\1]),.q(out_[\1])));
+ add_instance(decoder,decoder(.dec_in(dec_in),.dec_out(dec_out)));
+out_b.set_offset(2);
+out_c.set_offset(4);
+csl_list(ff_[[a-c]]).connect(dcd.d_in);
+
+csl_unit _2bit_flip_flop,dcd,top;

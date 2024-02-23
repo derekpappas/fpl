@@ -1,0 +1,19 @@
+//author: Ines
+//testing the command set_width() in field
+
+
+csl_field field {
+  field(){
+    set_width(2);
+  }
+};
+
+
+csl_field field1{
+    field1(){
+	set_width(20);
+	}
+};
+
+csl_unit top {
+};

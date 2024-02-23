@@ -1,0 +1,17 @@
+//danielt
+//illegal: wrong format constructor name 
+
+csl_field field(2);
+csl_field field2(2);
+
+csl_isa_element format{
+    field field_i;
+    field2 field2_i;
+    instruction_format(){   
+   // constructor name must be the same with instruction format
+       set_type(instr_format);
+       set_width(4);            
+       set_position(field_i, 2);
+       set_next(field_i,field2_i);
+    }
+};

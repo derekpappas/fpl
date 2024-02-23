@@ -1,0 +1,73 @@
+# "/opt/he_fpl_svn/fpl_repo/cslc/test/csl_new_bug1/language_valid/./param_ex1.csl" 1
+
+
+
+csl_interface ifc1{
+    csl_parameter param1(4'b1111);
+    csl_parameter param2(8);
+    csl_port p1(input,param1);
+    csl_port p2(output,param2);
+    ifc1(){}
+};
+csl_signal_group sg1{
+    csl_parameter param1(6,20);
+    csl_parameter param2(2,16);
+    csl_parameter param3(3,24);
+    csl_parameter param4(4,8);
+    csl_signal s1(param1);
+    csl_signal s2(param2);
+    csl_signal s3(param4);
+    csl_signal s4(param2);
+    csl_signal s5(param3);
+    sg1(){}
+};
+csl_interface ifc2{
+    csl_parameter param1(10);
+    csl_parameter param2(8);
+    csl_parameter param3(16);
+    csl_parameter param4(24);
+
+    csl_port p1(input,param1);
+    csl_port p2(input,param2);
+    csl_port p3(input,param3);
+    csl_port p4(output,param4);
+    ifc2(){}
+};
+csl_unit a{
+    csl_parameter param1(8);
+    csl_parameter param2(4);
+    csl_port p1(input, param1);
+    csl_port p2(output, param2);
+    csl_port p3(input, param2);
+    csl_signal s1(param2-1);
+    csl_signal s2(24);
+    ifc1 #(8,24) ifc10;
+    a(){
+    s1 = p3;
+    s2 ={ifc10.p1, p3};
+    p2 = s1;
+    ifc10.p2 = s2;
+    }
+};
+csl_unit b{
+    sg1 #(20,16,8,16) sg10;
+    ifc2 #(20,16,8,24) ifc20;
+    a #(20,16) a0(.p1(sg10.s1),.p3(sg10.s2),.p2(sg10.s4),.ifc10.p1(sg10.s5),.ifc10.p2({sg10.s2,sg10.s5}));
+
+    b(){
+    sg10.s1 = ifc20.p1;
+    sg10.s2 = ifc20.p2;
+    sg10.s5 = ifc20.p3;
+    ifc20.p4 = {sg10.s4,sg10.s5};
+    sg10.s3 = sg10.s2;
+    }
+};
+csl_unit c{
+    ifc2 #(2,8,32) ifc20;
+    ifc1 #(8,24) ifc11;
+    csl_signal s1(16),s2(32);
+    a #(16,32) a2(.p1(s1),.p2(s2),.p3(s2),.ifc10(ifc11));
+    b b0(.ifc20.p1({2{ifc20.p1,ifc20.p2}}),.ifc20.p2(ifc20.p3[15:0]),
+         .ifc20.p3(ifc20.p2),.ifc20.p4(ifc20.p4));
+    c(){}
+};

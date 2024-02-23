@@ -1,0 +1,25 @@
+//oanab
+//18 dec 2007
+
+csl_register regi{
+  regi() {
+    set_width(32);
+    set_type(register);
+    add_logic(neg_output);
+    add_logic(set,-5);
+  }
+};
+
+csl_unit u{
+  csl_port clk(input);
+  csl_signal rst,en,data(32),set;
+  regi regi0(.clock(clk),.enable(en),.reset_(rst),.reg_in(data),.reg_out(data),
+             .reg_out_(data),.set(set));
+  u() {
+    clk.set_attr(clock);
+  }
+};
+
+
+
+

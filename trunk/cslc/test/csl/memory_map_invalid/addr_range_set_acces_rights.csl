@@ -1,0 +1,15 @@
+csl_memory_map_page mp{
+mp(){
+set_access_rights(HWR, access_read_write);
+set_access_rights(SWR, access_read);
+}
+};
+csl_memory_map mmap{
+mp mp;
+mmap(){
+set_data_word_width(32);
+}
+};
+
+csl_unit top {
+};

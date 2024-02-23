@@ -1,0 +1,23 @@
+//author: Ines
+//testing: br_obj_name.set_offset(num_expr);
+//         - value to be added to both lower and upper index of the br. 
+
+
+csl_bitrange obj_name;
+obj_name.set_offset(2);
+
+csl_bitrange obj_name1(10);
+obj_name1.set_offset(bla);
+
+csl_bitrange obj_name2;
+obj_name2.set_offset();
+
+csl_unit u1{
+  csl_signal s1;
+  csl_signal s2;
+  u1(){
+    s1.set_bitrange(obj_name);
+    s2.set_bitrange(obj_name1);  
+  }
+};
+

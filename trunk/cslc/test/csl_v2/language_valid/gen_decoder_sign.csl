@@ -1,0 +1,34 @@
+//oanab
+//12 nov 2007
+//the signal's bitrange has to be specified by a field for gen_decoder to work
+
+
+csl_unit u_a{
+  csl_port p_in(input,4);
+  csl_port p_out(output,4);
+  u_a(){
+  }
+};
+
+csl_unit u_b{
+  csl_port p_in(input,4);
+  csl_port p_out(output,4);
+  u_b(){
+  }
+};
+
+csl_field f(4);
+
+csl_unit u_top{
+  csl_port p_in(input,4);
+  csl_port p_out(output,4);
+  csl_signal s_dec_in(4);
+  csl_signal s_dec_out(4);
+  dec dec;
+  u_a ua(.p_in(p_in),.p_out(s_dec_in));
+  u_b ub(.p_in(s_dec_out),.p_out(p_out));
+  u_top(){
+    s_dec_in.set_bitrange(f);
+    s_dec_in.gen_decoder(); // what parameter should gen_decoder have?
+  }
+};

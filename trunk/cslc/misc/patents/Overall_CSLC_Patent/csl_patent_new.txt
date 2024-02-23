@@ -1,0 +1,143 @@
+Who is involved in the design/verification process?
+1. Architecture/simulation team
+2. RTL design team
+3. Verification team
+4. Test team
+5. Software application development team
+
+The fundamental problem:
+The above teams share common information such as address maps and unit interfaces both between team members and between different teams. Each team implements its code using common specifications such as address maps and field widths. Oral and written communication often leads to misunderstanding which is translated into bugs. Different interpretations of documents and implementation mistakes lead to inconsistent views of the same set of data represented in different programming languages.
+
+A programming language describes the infrastructure for a computer chip simulator, RTL, software, design, and verification components. The programming language is a single specification written in one language as opposed to current chip design  methodology which use many languages to describe the common information used by the computer chip simulator, RTL, software, design, and verification components.
+
+Current RTL languages, including the most recent versions require long learning curves and are in fact incremental improvements over previous RTL languages. 
+
+What is required is a programming language that moves the software and hardware development process to a higher level of abstraction. A new language is compiled. The compiler generates the infrastructure code and docs for the software and hardware development teams. Using a single language automates the process of interpreting the common specifications and generating the code. The language requires a compiler which "translates" the single specification into the different languages used by the different development teams and generates documentation. Specifically, the language compiler should generate code for abstract modeling (e.g. C++ simulation), RTL design, verification, and software development and testing.
+
+Benefits
+Using a single source to generate all of the above removes the book keeping required to maintain consistent views in different programming languages. Maintaining a consistent view of the design without a high level specification language and without a centralized automation solution leads to bugs. Using a compiler to convert the specification into a set of consistent output language files and documentation leads to a consistent view of the design and architecture by all teams involved in the project. Using a single input language to describe the consistent view of the design as opposed to many simple languages for small tools as is common on many design projects today reduces the learning curve for those individuals involved in the design process. The main reasons for using a single input in conjunction with the input language compiler to describe the common infrastructure used by the software and hardware development teams are as follows:
+1. The initial infrastructure can be set up rapidly.
+2. Changes to the infrastructure can be made quickly and painlessly.
+3. The learning curve for a single language is lower than the learning curve for 
+   many languages.
+
+The following components use and/or share common definitions and constants when building a chip.
+
+1. Examples of C++ simulator consistency problems:
+   abstract models (e.g. C++ chip simulator communicates with the test benches, 
+   uses the same design hierarchy as the RTL design (abstracted), generates 
+   verification vectors and state data to verify the design under test,...)
+
+2. Examples of RTL model consistency problems:
+   The module to module connections must be consistent.
+   The module to test bench connections must be consistent.
+   The address map used by the RTL must be the same as the one used by the 
+   software teams
+
+3. verification environment (test benches)
+   must instantiate the designs under test (DUT) correctly.
+   Each time a DUT interface changes the corresponding vectors must change in the 
+   test bench and C++ simulator.
+
+4. software 
+   driver, test, and application level software use constants to interface with 
+   the chip
+
+INFRASTRUCTURE ELEMENTS 
+Design Hierarchy
+The design hierarchy consists of the function unit interfaces, the design instances in each unit and the formal to actual connections between each unit.
+The interfaces in a design must be the same at the comparison points in the C++ simulator, the RTL design, the comparison files (vectors and state data), and the test bench memories, connections, and comparators.
+
+Connections
+Each port has a direction, name and width. The outputs of one block drive the inputs of another block. Design bugs occur when the connections between two units do not have the correct widths or the names change in one unit only. Interface design bugs are propagated to the verification vector and state data writers which send the information to the test benches for stimulus and expected value checking. Verification vector and state data bugs are propagated to the test bench which is used to connect the vectors to the RTL design under test.  
+
+Constants
+Constants are used by the C++ simulator and the RTL model. The constants describe bit range widths, enumerated types, values, addresses, opcodes, and other values in a chip design. The constants are used by both the C++ simulator and the RTL models to ensure consistency between the two models. 
+
+Components
+Register files are often used to compare state between two different models to verify functionally equivalent behavior. 
+
+VERIFICATION METHODOLOGY
+One verification methodology uses an abstract/simplified model of the DUT to model the functional behavior of the design. This model is simplified in the sense that the logic implemented by the abstract model can be simplified and the model may not be cycle accurate. The simplified model is often implemented using the C++ programming language. Design teams often refer to the simplified model as the "C++ simulator".  
+
+Modeling abstraction: The C++ simulator design hierarchy may not contain all corresponding interfaces in the chip design hierarchy functional unit interfaces. Lower levels may be missing. Input and output vectors may be captured at the chip design hierarchy interfaces which do match in the C++ simulator and the RTL implementation of the chip deign. The vectors can be written to a file or the two models may be connected using sockets or some other inter process communication mechanism.
+
+The C++ simulator is built from the following code:
+1. generated C++ simulator code
+2. C++ simulator library code
+3. user written code
+4. generated C++ constants code
+
+The generated C++ simulator code contains the following:
+1. simulator command shell
+   controls the C++ simulation.
+   -run
+   -UNIX like commands to traverse the design hierarchy (ls, cd, pwd, grep, ...) 
+2. design hierarchy and connections between units in the design hierarchy
+
+3. instantiated vector writers connected to DUT ports
+   generates vector files which match the size of the memory in the test bench.
+   
+A C++ compiler such as gcc compiles the files and links the object files together to produce a binary executable. 
+
+The RTL model contains the following sets of code:
+1. user written RTL logic code
+   code which implements the algorithms, datapaths, and memories
+2. generated RTL interconnect/design hierarchy code
+3. generated RTL test bench code
+   -contain instantiations of DUT's with stimulus vector drivers and
+    expected vector checkers and state data checkers 
+   -contain vector and state data load file statements and corresponding memories
+   -contain address sequencing logic to sequence through the vector and state data 
+    memories
+   -contain comparators to compare the expected vectors and the expected state 
+    data 
+4. generated RTL constants code
+   See generated constants below
+5. generated RTL SOC code
+6. generated RTL component (i.e. FIFO, register file,...) code
+7. generated RTL on chip network code
+   performance, status, query, configure, and control network: used to measure, track,
+   inspect, and control the chip
+
+The generated C++ and RTL constants code contains the following:
+-constants for bit range, field, and enum ports
+-constants for instruction set architecture word, field, and enumerated types
+-constants for scalar (i.e. int, float,...) variables
+-constants for the address map: address ranges for units, address ranges for 
+ registers, register files, memories, ...
+
+RTL Code generators
+
+Perl Assembler Generator
+Using a CSL ISA description cslc can generate a Perl Assembler.
+The assembler does not support relocatable objects.
+The assembler is designed to support the rapid prototyping of "micro engines".
+
+Perl constant generator
+
+Example of consistency problems during the life time of the chip design project:
+Requirement:
+Processors and other "stateful" devices compare the state of an abstract model against the state in an RTl implementation model
+
+Summary:
+State data is "moved" from the abstract model to the test bench to compare against the updated state in the DUT. 
+
+Solution:
+Movement of state data from one simulator to another requires building a state data writer in the C++ simulator to capture the state data in the abstract model. The captured data is sent to the test bench via a file or inter-process communication mechanism. The test bench uses a comparator to compare the C++ simulator state data the state in the DUT. All of these components must be maintained throughout the development process. Maintainence means ensuring that that number of registers and the width of the registers is the same in the C++ simulator, the communication mechanism (file/inter-process communication), and the test bench comparator. Moreover, the event trigger which controls the generation of the state data in the C++ simulator and the comparison of the state data in the test bench must be functionally equivalent.
+
+C++ Simulator implementation details
+The output value of a flip flop or other state element is updated When the clock associated with the device is updated. Changed in the state elements outputs propagate through combinational blocks and signal connections to other state elements in the same block via local signals or to other blocks via ports and formal to actual connections.The names of the signals, the widths of the signals, and the signal connections to other signals through formal to actual statements and assign statements can be specified using a language. The input and output port values from one simulation model can be captured and used to verify another simulation model.
+
+The group of signals which connects each unit contains values at each clock edge.
+Input ports cause the functional unit to reevaluate on the controlling clock edge. 
+The result of the re-evaluation appears on the outputs ports of the functional unit.
+
+After the reset of the functional unit the output values are valid and if required when a signal(s) is asserted which indicates that the functional units outputs are valid. 
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+csl_memory_map_page mpage_0;
+csl_memory_map mmap{
+  mpage_0 mpage0;
+	mmap(){
+	
+	}
+};
+
+csl_unit top {
+};

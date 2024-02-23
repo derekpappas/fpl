@@ -1,0 +1,16 @@
+
+
+csl_unit a {
+  csl_port p1(input,4);
+  a () {}
+};
+
+csl_unit b {
+  a a0;
+  csl_signal s1,s2(4);
+  b () {
+    a0.p1.connect_by_name(s1+s2);
+  }
+};
+
+

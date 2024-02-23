@@ -1,0 +1,11 @@
+//danielt
+//november 07,2007
+
+csl_unit u{
+  u(){}
+};
+csl_unit top1{
+  u u1;
+  top1(){
+    u1.set_unit_id(4);}
+};

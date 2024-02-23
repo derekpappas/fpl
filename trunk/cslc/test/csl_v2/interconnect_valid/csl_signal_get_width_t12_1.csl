@@ -1,0 +1,15 @@
+//author: Monica
+//testing:  int signal_object_name.get_width(); 
+
+
+csl_unit u2_t12 {
+  
+  csl_signal sgn1_1_t12(2);
+  csl_signal sgn1_2_t12;
+    
+  u2_t12(){
+    sgn1_2_t12.set_width(sgn1_1_t12.get_width());
+
+  }
+};
+

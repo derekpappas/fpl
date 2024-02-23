@@ -1,0 +1,56 @@
+//Monica
+//7 apr 2008
+
+csl_bitrange br_data(16);
+csl_bitrange br_sel(1);
+
+csl_unit mux{
+  csl_port in0(input,br_data);
+  csl_port in1(input,br_data);
+  csl_port sel(input,br_sel);
+  csl_port out(output,br_data);
+
+  mux(){
+    out=(sel) ? in1 : in0;
+  }
+};
+csl_unit dut_unit{
+  csl_port clk(input);
+  csl_port p_in0(input,br_data);
+  csl_port p_in1(input,br_data);
+  csl_port p_sel(input,br_sel);
+  csl_port p_out(output,br_data);
+  csl_signal clk1;
+  mux mux1(.in0(p_in0),.in1(p_in1),.sel(p_sel),.out(p_out));
+
+ dut_unit(){
+   clk.set_attr(clock);
+   clk = clk1;
+}
+};
+
+csl_vector stim_vec{
+  stim_vec(){
+    set_unit_name(dut_unit);
+    set_direction(input);
+     set_vc_output_filename("mux_stim");
+     set_vc_max_cycles(100);
+  }
+};
+
+csl_vector exp_vec{
+  exp_vec(){
+    set_unit_name(dut_unit);
+    set_direction(output);
+    set_vc_output_filename("mux_exp");
+  }
+};
+
+csl_testbench tb_mux{
+  csl_signal clk(reg);
+  dut_unit dut(.clk(clk));
+  tb_mux(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,5,ns);
+  }
+};

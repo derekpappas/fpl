@@ -1,0 +1,6 @@
+csl_memory_map mm{
+                mm(){
+                        auto_gen_memory_map();
+                }
+};
+

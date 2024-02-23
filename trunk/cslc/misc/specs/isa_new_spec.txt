@@ -1,0 +1,510 @@
+-------------------------------------------------------------------------------------------
+
+//////////////
+// CSL Enum //
+//////////////
+
+C++ syntax (check any C++ manual)
+
+-------------------------------------------------------------------------------------------
+
+///////////////
+// CSL FIELD //
+///////////////
+
+  csl_field types: undefined, enum, enum_item, value, hierarchical
+
+undefined    -> the field type is not defined
+enum         -> the field has associated an enum
+enum_item    -> the field has associated an enum_item
+value        -> the field has associated a value
+hierarchical -> the field is hierarchical and cannot have value | enum | enum item
+
+Commands:
+
+csl_field field_name;
+Instantiate a field
+
+set_enum(csl_enum enum_name);
+Sets the enum associated with the field. If the type is "undefined" the type is changed
+to "enum".
+
+set_enum_item("csl identifier" identifier); 
+Sets the enum_item associated with the field. If the type is "undefined" the type is changed
+to "enum_item".
+
+set_value(numeric expression);
+Sets the value associated with the field. If the type is "undefined" the type is changed
+to "value".
+
+generate_decoder();
+Will generate a decoder in verilog. If the field is hierarchical it will generate a decoder
+for every child in the hierarchy.
+
+Allowed command combinations:
+
+             | set_enum() | set_enum_item() | set_value() | add instance | Note:
+--------------------------------------------------------------------------------------
+undefined    |     Y      |        Y        |     Y       |      Y       | any of the above commands will change the type from undef to enum/item/value/hierarchical etc 
+--------------------------------------------------------------------------------------
+value        |     N      |        N        |     Y       |      N       | any other command besided the allowed one will generate an error
+--------------------------------------------------------------------------------------
+enum         |     Y      |        N        |     N       |      N       | any other command besided the allowed one will generate an error
+--------------------------------------------------------------------------------------
+enum_item    |     N      |        Y        |     N       |      N       | any other command besided the allowed one will generate an error
+--------------------------------------------------------------------------------------
+hierarchical |     N      |        N        |     N       |      Y       | any other command besided the allowed one will generate an error
+
+  Where: Y = yes (allowed), N = no (not allowed)
+
+Example:                                   
+                                           
++--top_field---------------------------------------------------------------+
+|+-------------------------+ +field4--------------------------------------+|
+||                         | |+-------------------+  +-------------------+||
+|| field1                  | || field2            |  | field3            |||
+||                         | |+-------------------+  +-------------------+||
+|+-------------------------+ +--------------------------------------------+|
++--------------------------------------------------------------------------+
+31                        26 25                  16  15                    0
+
+csl_enum opcodes {
+  ADD  = 11,
+  ADDC = 12,
+  SUB  = 13,
+  SUBC = 14
+}
+
+csl_field field1 {
+  field1() {
+    set_range(31,26);
+    set_value(10);
+  }
+}
+
+csl_field field2 {
+  field2() {
+    set_range(25,16);     
+    set_enum(opcodes);
+    set_enum_item(ADD);
+  }                  
+}                    
+                     
+csl_field field3 {   
+  field3() {         
+    set_range(15,0); 
+  }                  
+}                    
+                     
+csl_field field4 {   
+  field2 f2; //instantiate fields2
+  field3 f3; //instantiate fields3
+  field4() {         
+  }                  
+}                                   
+                     
+csl_field top_field {
+  field1 f1; //instantiate field1
+  field4 f4; //instantiate field4
+  top_field() {                             
+                     
+  }                  
+}
+
+-------------------------------------------------------------------------------------------
+
+////////////////////////////////
+// CSL Isa Instruction Format //
+////////////////////////////////
+
+csl_isa_instruction_format format1; 
+Predeclare format1
+
+set_width(numeric expression);
+
+extend_format(csl_isa_instruction_format format); 
+Copy all fields from format "format" to the current one + register the format
+in the instruction (a reference to the format)
+
+split_field(rd, csl_list(a,cond)); //or rd.split_field(a,cond) -> choose one that you like
+Replace the current field with the one contained in the list (checks
+are performed)
+
+set_field_position(csl_field field_name, numeric_expression);
+Set the absolute position of a field.
+
+set_next_field(csl_field field1, csl_field field2);
+sets "the next" field position of a field inside a format in a "linked-list" way. field2 is next after field1.
+In this way if the size of the fields changes they will remain adjacent to each other.
+and there are no offsets to change.
+
+set_previous_field(csl_field1, csl_field2);
+sets "the previous" field position of a field inside a format in a "linked-list" way. field2 is previous to the field1.
+In this way if the size of the fields changes they will remain adjacent to each other
+and there are no offsets to change.
+
+generate_decoder();
+Generate a decoder for every field in the format.
+
+Restrictions in positioning of a field:
+
+                          p  p  p  p
+                          so|sn|sp|sfp
+=========================|==|==|==|=== 
+child.set_offset         |A |A |A |A 
+parent.set_next          |I |X |A |I 
+parent.set_previous      |I |A |X |I 
+parent.set_field_position|A |I |I |X 
+
+Where: so = set_offset(), sn = set_next(), sp = set_previous(), sfp = set_field_position()
+     p = parent, A = Allowed, X = not applicable, I = Illegal
+
+Example:
++-format------------------------------------------------------------------+
+|+--------+ +----+ +----------------+ +--------------+ +-----------------+|
+|| opcode | |####| | SRC A          | | SRC B        | | DEST            ||
+|+--------+ +----+ +----------------+ +--------------+ +-----------------+|
+|31      25 24  22 21              14 13             8 7                 0|
++-------------------------------------------------------------------------+
+
+csl_isa_instruction_format format {
+
+  csl_field dest(8);   //csl_field definition with parameter
+  csl_field srcb(6);   //csl_field definition with parameter
+  csl_field srca(8);   //csl_field definition with parameter
+  csl_field opcode(7); //csl_field definition with parameter
+
+  format() {                     //constructor
+    set_field_position(dest, 0); //sets absolute position of the field dest
+    set_next(dest, srcb);        //sets field "f_destb" as the next field to f_dest
+    set_previous(srcb, srca);    //sets field "f_srca" as previous to field "f_srcb"
+    opcode.set_offset(3);        //sets the unused 3 bits as offset for field opcode (offset is inherited from bitrange (field is derived from it))
+    set_next(opcode, srca);      //sets field "opcode" as the next field to "f_srca" field
+  }
+}
+
+-------------------------------------------------------------------------------------------
+
+/////////////////////////
+// CSL Isa Instruction //
+/////////////////////////
+
+set_instruction_format(csl_isa_instruction_format format2);
+Sets the field enum item
+
+csl_isa_instruction_format get_instruction_format();
+returns the associated instruction format
+
+set_mnemonic(string "mnemonic" | csl_list(list_of_fields));
+Sets up the mnemonic in the following ways:
+  - if set_mnemonic(...) is not used the mnemonic is the same as the identifier
+  - if set_mnemonic(string "name") is used the mnemonic is defined by the string
+  - if set_mnemonic(csl_list(list_of_fields)) is used, the mnemonic is defined by
+    a concatanation between the enum_items that are contained by the fields
+
+string get_mnemonic();
+return the associated mnemonic
+
+set_condition_register(csl_register register);
+sets the register that will be affected by the command
+
+-------------------------------------------------------------------------------------------
+
+/////////////
+// CSL Isa //
+/////////////
+
+csl_isa isa_name;
+
+instantiations of formats and commands (see example)
+
+generate_cpp_header();       //minor (later) don't know what that does
+
+generate_verilog_header();   //minor (later) don't know what that does    
+
+set_decoder_name("format1"); 
+Sets the decoders name_
+
+set_decoder_unit(csl_unit decoder);
+Sets the decoder unit
+
+set_decoder_out_name_prefix(string "prefix");    
+sets the decoder output signals prefix
+
+set_decoder_out_name_suffix(string "suffix");    
+sets the decoder output signals sufix
+
+generate_decoder(true);                
+Generates the decoder with corresponding signals (ready to be connected) for all the formats.
+
+print();
+creates a text|pdf|odf file that contains the isa description and spec.
+
+--------------------------------------------------------------------------------
+
+////////////////////////////////////////////////////////////////////
+// Sun Open Sparc SETHI and Branches Instruction Formats EXAMPLE: //
+////////////////////////////////////////////////////////////////////
+
+format1:
++---------------------------------------------------------------------+
+|  00 |    rd    | op2 |              imm22                           | 
++---------------------------------------------------------------------+
+|31 30|29      25|24 22|21                                           0|
+
+format2:
++---------------------------------------------------------------------+
+|  00 |a | cond  | op2 | c1 | c0 | p |         disp19                 |
++---------------------------------------------------------------------+
+|31 30|29|28   25|24 22|21  |20  |19 |18                             0|
+
+//------------------------
+//define enums:
+//------------------------
+csl_enum opcodes {
+  BR   = 0,
+  CALL = 1
+}
+
+csl_enum opcodes2 {
+  A0 = 0, //dummy
+  A1 = 1  //dummy
+}
+
+csl_enum cond {
+  BPA  = 8, //branch always
+  BPN  = 0, //branch never
+  BPNE = 9, //branch on not equal
+  BPE  = 1, //branch on equal
+  BPG  = 10 //branch on greater
+}
+
+//-----------------------
+//define decoder units:
+//-----------------------
+
+csl_unit decoder {
+  //...
+}
+
+//-----------------------
+//define formats:
+//-----------------------
+csl_isa_instruction_format format1 { 
+  csl_field op(30,31,opcodes);//define fields
+  csl_field rd_f1(25,29);     //define fields
+  csl_field op2(opcode2);     //define fields
+  csl_field imm2(21,0);       //define fields
+
+  format1() {
+    set_width(32);          //set the width of the format
+  }
+}
+
+//format2 is derived from format1
+csl_isa_instruction_format format2 : format1 {
+  csl_field a(29, 29);
+  csl_field cond(25, 28);
+  csl_field c1(21,21);
+  csl_field c0(20,20);
+  csl_field p(19,19);
+  csl_field disp19(0,19);
+
+  format2() {
+    set_width(32);
+    replace_field(rd, csl_list(a,cond)); 
+    replace_field(disp22, csl_list(c1,c0,p,disp19)); 
+  }
+}
+
+//-------------------------
+//define affected register:
+//-------------------------
+
+csl_register cond_reg;
+
+//-----------------------
+//define instructions:
+//-----------------------
+
+//branch always
+csl_isa_instruction branch_always {
+  branch_always() {
+    set_instruction_format(format2);
+    //set_field(cond, BPA); - to be fixed
+  }
+}
+
+
+//branch never
+csl_isa_instruction branch_never {
+  branch_never() {
+    set_instruction_format(format2);
+    //set_field(cond, BPN); - to be fixed
+  }
+}
+
+
+//branch on not equal
+csl_isa_instruction branch_on_not_equal {
+  branch_on_not_equal() {
+    set_instruction_format(format2);
+    //set_field(cond, BPNE); - to be fixed 
+  }
+}
+
+
+//branch on equal
+csl_isa_instruction branch_on_equal {
+  branch_on_equal() {
+    set_format(format2);
+    //set_field(cond, BPE); - to be fixed
+  }
+}
+
+
+//branch on greater
+csl_isa_instruction branch_on_greater {
+  branch_on_greater() {
+    set_instruction_format(format2);
+    //set_field(cond, BPG); - to be fixed
+  }
+}
+
+//-----------------------
+//define ISA:
+//-----------------------
+csl_isa open_sparc_isa {
+
+  branch_always       ba; //instantiate instruction
+  branch_never        bn; //instantiate instruction
+  branch_on_not_equal bne;//instantiate instruction
+  branch_on_equal     be; //instantiate instruction
+  branch_on_greater   bg; //instantiate instruction
+    
+  open_sparc_isa() {
+    set_decoder_name("instr_decoder"); //sets the decoder's name
+    
+    ba .set_asm_mnemonic("ba"); 
+    bn .set_asm_mnemonic("bn"); 
+    bne.set_asm_mnemonic("bne");
+    be .set_asm_mnemonic("be"); 
+    bg .set_asm_mnemonic("bg"); 
+
+    set_decoder_out_name_prefix("prefix");//sets the decoder output signals prefix
+    set_decoder_out_name_suffix("suffix");//sets the decoder output signals sufix
+    generate_decoder(decoder_unit);       //generates the decoder with corresponding signals (ready to be connected)
+    print("open_sparc_isa.txt");          //prints in a file the ISA description (instructions and their formats)
+  }
+
+}
+
+-------------------------------------------------------------------------------------------
+/////////////
+// RISC 16 //
+/////////////
+
+csl_unit decoder_unit; //define the unit to be used by the decoder
+
+ //define the opcodes enum (to be used by op field)
+ csl_enum opcodes {
+  ADD = 0,
+  SLL = 3,
+  SW  = 4,
+  BNE = 6
+ };
+
+ //define instruction format 1 (to be used by branch and mem commands)
+ csl_isa_instruction_format format1 {
+  csl_field op(13,15);         //define format1 fields
+  csl_field rega(10,12);       //define format1 fields
+  csl_field regb(7,9);         //define format1 fields
+  csl_field imm(0,6);          //define format1 fields
+
+  format1() {                  //the default constructor
+    set_width(16);             //set the width of the field
+    set_field_position(imm,0); //set the position of the first(LSB) field
+    set_next_field(imm,regb);  //set the next field
+    set_next_field(regb,rega); //set the next field
+    set_next_field(rega,op);   //set the next field
+    op.set_enum(opcodes);      //set what enum to use with op field
+  }
+ };
+
+//define instruction format 2 (to be used by shift and alu commands)
+//it is derived from format1 and contain all its fields
+csl_isa_instruction_format format2 : format1 {
+
+  csl_field unused(3,6); //define format 2 fields
+                         //that will replace imm field
+  csl_field regc(0,2);   //define format 2 fields
+                         //that will replace imm field
+
+  format2() {                                 //the default constructor
+    set_width(16);                            //set the width of the field
+  
+    replace_field(imm,csl_list(unused,regc)); //replace the imm field
+                                              //width "unused" and "regc" ones
+    set_field_position(regc,0);               //set the position of the
+                                              //first(LSB) field
+    set_next_field(regc,unused);              //set next field
+    set_next_field(unused,regb);              //set next field
+    set_next_field(regb,rega);                //set next field
+    set_next_field(rega,op);                  //set next field
+  }
+ };
+
+ //define alu instruction
+ csl_isa_instruction alu {
+  alu() {                            //default constructor
+    set_instruction_format(format2); //sets the instruction format to
+                                     //use: format2
+  }
+ };
+
+ //define the shift instruction
+ csl_isa_instruction shift {
+  shift() {                          //default constructor
+    set_instruction_format(format2); //sets the instruction format to
+                                     //use: format2
+  }
+ };
+
+ //define mem instruction
+ csl_isa_instruction mem {
+  mem() {                            //default constructor
+    set_instruction_format(format1); //sets the instruction format to
+                                     //use: format1
+  }
+ };
+
+ //define the branch instruction
+ csl_isa_instruction branch {         //default constructor
+  branch() {
+    set_instruction_format(format1);  //sets the instruction format to
+                                      //use: format1
+  }
+ };
+
+ //define risc 16 isa
+ csl_isa risc16_isa {
+  alu    add;                       //instantiate alu    instruction
+  shift  sll;                       //instantiate shift  instruction
+  mem    bne;                       //instantiate mem    instruction
+  branch bne;                       //instantiate branch instruction
+
+  risc16_isa() {                    //default constructor
+    add.set_mnemonic("add");        //set mnemonics for each instruction
+    sll.set_mnemonic("sll");        //set mnemonics for each instruction
+    mem.set_mnemonic("mem");        //set mnemonics for each instruction
+    bne.set_mnemonic("bne");        //set mnemonics for each instruction
+    generate_decoder(decoder_unit); //set where to generate the decoder
+                                    //logic
+    print("risc16_isa.txt");        //prints in a file the ISA 
+                                    //description - (instructions and
+                                    //their formats)
+  }
+ };
+
+
+//--------------------------------------------------------

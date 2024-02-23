@@ -1,0 +1,31 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+
+#exceptions:
+adders.v                skip    "missing included file"
+
+mfm_read.v              skip    "missing function implementation"
+
+dct_cos_table.v         skip    "module/included in a file"
+fw_host_tasks.v         skip    "module/included in unknown file"
+
+oc8051_uart_test.v      skip    "missing defines/fixed"
+oc8051_alu_test.v       skip    "missing define/random value assigned to OC8051_ALU_PCS, missing function"
+opcodes.v               skip    "module/included in a file"
+
+ps2_test_bench.v        skip    "missing defines/fixed"
+
+rts_header.v            skip    "incorrect test"
+rxcont_ent.v            skip    "not a source file"
+
+t160b3b.v               skip    "missing defines/fixed"
+t160b3t.v               skip    "missing defines/fixed"
+
+tests.v                 skip    "module/included in unknown file"
+
+HP_Block_Ram.v          skip    "module undefined, missing RAMB4_S16_S16 "
+MD_Block_Ram.v          skip    "module undefined, missing RAMB4_S16_S16"
+

@@ -1,0 +1,380 @@
+
+Fastpath Logic™ License Agreement
+
+Please read and accept the license below to continue.
+
+IMPORTANT - read carefully before DOWNLOADING, ACCESSING or USING the
+Chip Specification Language Compiler(cslc) (collectivelly, "SOFTWARE"
+of Fastpath Logic, INC.
+Your use of the SOFTWARE is expressly conditioned upon and subject to
+your agreement to these terms and conditions. If you do not agree to
+these terms and conditions, do not DOWNLOAD, ACCESS or USE the SOFTWARE
+(refer to license.txt documents for more information).
+
+input port:ifc11_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc11_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc11_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc11_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc11_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc11_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ss1_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ss1_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ss1_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ss1_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc11_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc11_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc11_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc11_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc11_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc11_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc11_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc11_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ss1_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ss1_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ss1_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ss1_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+input port:ifc11_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc11_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+input port:ifc11_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc11_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc11_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc11_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+ adding ports to unit
+
+
+
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ss1_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ss1_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ss1_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ss1_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc11_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc11_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc11_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc11_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc11_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc11_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc11_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc11_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ifc12_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ifc12_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ss1_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ss1_p_in
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+input port:ss1_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      
+output port:ss1_p_out
+************CVisitorTraversal::CDOMExpr type = EXPR_HID      

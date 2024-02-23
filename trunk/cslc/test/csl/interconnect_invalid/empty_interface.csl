@@ -1,0 +1,15 @@
+//oanab
+//26 oct 2007
+//the interface has no ports inside
+
+csl_interface ifc{    //there should be at least one port inside of ifc
+  ifc(){}
+};
+
+csl_unit u{
+  ifc ifc;
+  csl_signal clk;
+  u(){
+    clk.set_attr(clock);
+  }
+};

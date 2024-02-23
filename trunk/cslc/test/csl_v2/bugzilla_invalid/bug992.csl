@@ -1,0 +1,24 @@
+csl_interface ifc_srn {
+  csl_port vld(input,1);
+  csl_port age(input,1);
+  csl_port burst(input,1);
+  csl_port src_nid(input,4);
+  csl_port dst_nid(input,4);
+  csl_port be(input,4);
+  csl_port addr(input, 24);
+  csl_port data(input, 32);
+  csl_port cmd(input,4);
+  ifc_srn(){
+  }
+};
+
+csl_unit srn {
+  ifc_srn ifc_srn_in;
+  srn(){}
+};
+
+csl_register r_din_mg {
+r_din_mg(){
+  set_width(srn.ifc_srn_in.data.get_width());
+}
+};

@@ -1,0 +1,47 @@
+C:\fpl_new_co\trunk\src\wincslc\wincslc\debug>main.exe ifc_in_ifc.csl --info
+
+Please read and accept the license below to continue.
+
+IMPORTANT - read carefully before DOWNLOADING, ACCESSING or USING the
+Chip Specification Language Compiler(cslc) (collectivelly, "SOFTWARE"
+of Fastpath Logic, INC.
+Your use of the SOFTWARE is expressly conditioned upon and subject to
+your agreement to these terms and conditions. If you do not agree to
+these terms and conditions, do not DOWNLOAD, ACCESS or USE the SOFTWARE
+(refer to license.txt documents for more information).
+
+File: ifc_in_ifc.csl
+------------------------------
+---Stage 0 CSL_preprocessor_begin
+---Stage 0 CSL_preprocessor_end
+
+---Stage 1 CSL_lexer_begin
+---Stage 1 CSL_lexer_end
+
+---Stage 2 CSL_parser_begin
+DEBUG:PARSER - WARNING - Filename is not being set by preprocessor - setting it
+the old fashion way
+---Stage 2 CSL_parser_end
+
+---Stage 3 CSL_tree_walker_begin
+---Stage 3 CSL_tree_walker_end
+
+==============================
+
+---Stage 4 CSL_instance_tree_begin
+DEBUG:InstTreeVisitor::beforeVisitTreeNode(u, 0, 0)
+DEBUG:InstTreeVisitor::afterTraversalTreeNode(u, 0, 0)
+---Stage 4 CSL_instance_tree_end
+
+---Stage 5 CSL_autorouter_begin
+---Stage 5 CSL_autorouter_end
+
+---Stage 6 CSL_automapper_begin
+---Stage 6 CSL_automapper_end
+
+---Stage 7 CSLOM_checker_begin
+---Stage 7 CSLOM_checker_end
+
+---Stage 8 CSLOM_code_gen_begin
+
+C:\fpl_new_co\trunk\src\wincslc\wincslc\debug>

@@ -1,0 +1,54 @@
+
+
+csl_unit a_unit{
+  csl_port in1(input,4);
+  csl_port in2(input,wire);
+  csl_port out1(output,4);
+  csl_port clk(input);
+
+a_unit(){
+clk.set_attr(clock);
+}
+};
+
+csl_unit b_unit{
+ csl_port in1(input,4);
+ csl_port in2(input,wire);
+ csl_port out1(output,4);
+ csl_port out2(output,4);
+ csl_port out3(output,4);
+ csl_port out4(output,4);	
+ csl_port clk(input);
+
+a_unit a0(.in1(in1),.in2(in2),.out1(out1),.clk(clk));
+a_unit a1(.in1(in1),.in2(in2),.out1(out2),.clk(clk));
+//a_unit a2(.in1(in1),.in2(in2),.out1(out3),.clk(clk));
+//a_unit a3(.in1(in1),.in2(in2),.out1(out4),.clk(clk));
+
+b_unit(){
+clk.set_attr(clock);
+}
+};
+
+csl_unit c_unit{
+  csl_port in1(input,4);
+  csl_port in2(input,4);
+ // csl_port in3(input);
+ // csl_port in4(input);
+  csl_port out1(output,4);
+  csl_port out2(output,4);
+  csl_port out3(output,4);
+  csl_port out4(output,4);	
+  csl_port clk(input);
+
+ csl_signal s_in1(4), s_in2;
+
+  b_unit b0(.in1(s_in1),.in2(s_in2),.out1(out1),.out2(out2),.out3(out3),.out4(out4),.clk(clk));
+
+c_unit(){
+ clk.set_attr(clock);
+ s_in1 = in1 & in2;
+ //s_in2 = in3 | in4;
+ }
+};
+

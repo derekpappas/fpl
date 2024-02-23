@@ -1,0 +1,83 @@
+/*
+  connecting
+interface/interface -to- interface
+
+    +--------------------------------------------------------------------------------------------+-------------------+
+    |                                                                                            |                   |
+  --+---------------------------------------------+                                              |                   |
+p_in|                                             |                                       +------+--p_ifc2_in        |
+    |                                             |                                       | +----+--p_ifc2_out       |
+    |        +------------------------------------+--------------+-----------+            | |    |                   |
+    |        |                                    |              |           |            | |    |                   |
+    |        |                                    |         +----+-p_ifc1_in |            | |    |                   |
+    |        |       +-------+-------------+------+-----+   |+---+-p_ifc1_out|            | |    |                   |
+    |        |       |       |             |   p_a_in   |   ||   |           |            | |    |                   |
+    |        |       |       |ifc1_a   o --+\-----------+---+|   |ifc1_b     +            | |    |ifc2_top           |
+    |        |       |       +-------------+ -----------+----+   +-----------+            | |    +-------------------+
+    |        |       |       |             |            |                    |            | |                        |
+    |        |       |       |             |   p_a_out--+--------------------+------------+-+------------------------+-------
+    |        |       |ifc12_a|ifc2_a  | |  |            |                    |            | |                        |
+    |        |       +-------+--------+-+--+            |                    |            | |                        |
+    |        |       |a               | |               |                    |            | |                        |
+    |        |       +----------------+-+---------------+                    |            | |                        |
+    |        |                        | |                                    |            | |                        |
+    |        |                        | |                                    |            | |                        |
+    |        |b                       | |                                    |            | |                        |
+    |        +------------------------+-+------------------------------------+            | |                        |
+    |                                 | |                                                 | |                        |
+    |                                 | +-------------------------------------------------+ |                        |
+    |                                 +-----------------------------------------------------+                        |
+    |top                                                                                                             |
+    +----------------------------------------------------------------------------------------------------------------+
+*/
+csl_interface ifc1{
+  csl_port p_ifc1_in(input,8), p_ifc1_out(output,8);
+  ifc1() {}
+};
+csl_interface ifc2{
+  csl_port p_ifc2_in(input,8), p_ifc2_out(output,8);
+  ifc2() {}
+};
+csl_interface ifc12{
+  csl_port p_ifc12_in(input,8), p_ifc12_out(output,8);
+  ifc1 ifc1_12;                    
+  ifc2 ifc2_12;
+  ifc12() {}
+};
+csl_unit a{
+ csl_port p_a_in(input,8);
+  csl_port p_a_out(output,8);
+  ifc12 ifc12_a;
+  a() {}
+};
+csl_unit b{
+  csl_port p_b_in(input,8), p_b_out(output,8), p_b_in1(input,8), p_b_out1(output,8);
+  ifc1 ifc1_b;
+  a a(.ifc12_a.p_ifc12_in(p_b_in1),.ifc12_a.p_ifc12_out(p_b_out1));
+  b() {
+    //RHS routing
+    ifc1_b.connect_by_name(a.ifc12_a.ifc1_12);
+    p_b_in.connect_by_name(a.p_a_in);
+    p_b_out.connect_by_name(a.p_a_out); 
+  }
+};
+
+csl_unit top{
+  csl_port p_in(input,8), p_out(output,8),p_in1(input,8), p_out1(output,8);
+  ifc1 ifc1_t;
+  b b(.p_b_out1(p_out1),.p_b_in1(p_in1));
+  ifc2 ifc2_top;
+ // ifc12 ifc12_top;
+  top() {
+    //RHS routing
+     p_in.connect_by_pattern(p_a_in);  // port-port (parrent & child)
+     ifc2_top.connect_by_pattern(b.a.ifc12_a.ifc2_12); //interface-interface (parrent & child)
+     b.ifc1_b.connect_by_name(ifc1_t);
+
+      //LHS routing
+    b.a.p_a_out.connect_by_name(p_out);
+ 
+    
+    }
+};
+

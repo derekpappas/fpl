@@ -1,0 +1,20 @@
+//author: Monica
+//test07: signal_object_name.set_dim_width(dimension_number, numeric_expression);
+
+
+csl_unit test {
+
+  csl_signal sgn0,sgn1,sgn2;
+  csl_bitrange br(1);                        
+
+  test() {
+//    sgn0.set_number_of_dimensions(3);
+//    sgn0.set_dim_width(0,3);
+//    sgn0.set_dim_width(1,3); 
+//    sgn0.set_dim_width(2,3);              
+    sgn1.set_number_of_dimensions(2);         
+//    sgn1.set_dim_width(0,1);
+//    sgn1.set_dim_width(1,1); 
+   
+  }
+};

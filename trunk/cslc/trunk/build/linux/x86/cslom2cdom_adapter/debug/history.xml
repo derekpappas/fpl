@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="g++ noversion nomachine-g -ftest-coverage -DQCSLOM_LIBRARY -DQT_NO_KEYWORDS -DQT_CORE_LIB -DQT_SHARED -I/opt/tools/qtsdk-2009.03/qt/include/QtCore -I/opt/tools/qtsdk-2009.03/qt/include -c">
+      <target file="Adapter.o" lastModified="12db27e74e0">
+         <source file="../../../../../src/cslom2cdom_adapter/Adapter.cpp" lastModified="12db2172790"/>
+      </target>
+      <target file="Adapter_SpecialUnits.o" lastModified="12db27e8868">
+         <source file="../../../../../src/cslom2cdom_adapter/Adapter_SpecialUnits.cpp" lastModified="12db2172790"/>
+      </target>
+   </processor>
+   <processor signature="ar">
+      <target file="libAdapter.a" lastModified="12db27e8868">
+         <source file="Adapter.o" lastModified="12db27e74e0"/>
+         <source file="Adapter_SpecialUnits.o" lastModified="12db27e8868"/>
+      </target>
+   </processor>
+</history>

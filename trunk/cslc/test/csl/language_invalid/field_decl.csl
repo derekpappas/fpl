@@ -1,0 +1,27 @@
+//oanab
+//12 nov 2007
+//field constructor has an enum item as argument
+
+csl_enum e{
+  a,b,c
+    };
+
+csl_field f3(2,b); //instead of b should be e
+
+csl_signal_group sgn_gr{
+  csl_signal s1(wire),s2;
+  csl_field f1(2,a); //instead of a should be e
+  sgn_gr(){}
+};
+
+csl_field f2{
+  f2(){
+    set_enum(e);
+}
+};
+
+csl_unit u{
+  csl_signal x(wire);
+  sgn_gr sgn_gr;
+  u(){}
+};

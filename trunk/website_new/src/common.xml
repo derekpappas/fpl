@@ -1,0 +1,107 @@
+<!DOCTYPE project [
+	<!ENTITY thirdPartyLibs SYSTEM "3rdPartyLibs.xml">
+]>
+
+<project name="-common" basedir=".">
+	<description>common template</description>
+
+	<echo message="***********************************" />
+	<echo message="ant.project.name = ${ant.project.name}" />
+	<echo message="ant.file = ${ant.file}" />
+	<echo message="***********************************" />
+
+	<basename file="${basedir}" property="project.id" />
+	<property name="libs.dir" location="../../libs" />
+
+	<property name="src.dir" location="." />
+	<property name="bin.dir" location="../../bin/${project.id}" />
+
+	<property name="jar.file.name" value="${project.id}.jar" />
+	<property name="jar.file" value="${libs.dir}/${jar.file.name}" />
+
+	<!-- 3rd party libs -->
+	&thirdPartyLibs;
+
+	<!-- ant contrib -->
+
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<path refid="antContrib.libs" />
+		</classpath>
+	</taskdef>
+
+	<!-- targets -->
+
+	<macrodef name="display.boolean.property">
+		<attribute name="property" />
+		<sequential>
+			<if>
+				<isset property="@{property}" />
+			<then>
+				<echo message="@{property} = true" />
+			</then>
+			<else>
+				<echo message="@{property} = false" />
+			</else>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<path id="compile.classpath" /> <!-- intended to be overriden -->
+	<path id="additional.src.dirs" /> <!-- intended to be overriden -->
+
+	<target name="-check.uptodate.binaries" unless="force.update.binaries">
+		<uptodate property="uptodate.binaries">
+			<srcfiles dir="${src.dir}" includes="**/*.java" />
+			<globmapper from="*.java" to="${bin.dir}/*.class" handledirsep="true" />
+		</uptodate>
+		<display.boolean.property property="uptodate.binaries" />
+	</target>
+
+	<target name="-check.uptodate.jar">
+		<uptodate property="uptodate.jar" targetfile="${jar.file}">
+			<srcfiles dir="${bin.dir}" includes="**/*.class" />
+		</uptodate>
+		<display.boolean.property property="uptodate.jar" />
+	</target>
+
+	<target name="-clean.dependencies" /> <!-- intended to be overriden -->
+
+	<target name="clean" depends="-clean.dependencies" description="Removes all binaries and jar file">
+		<delete dir="${bin.dir}" />
+		<delete file="${jar.file}" />
+	</target>
+
+	<target name="compile" depends="-pre.compile, -compile, -post.compile" />
+
+	<target name="-pre.compile" /> <!-- intended to be overriden -->
+
+	<target name="-compile" depends="-pre.compile, -check.uptodate.binaries" unless="uptodate.binaries" description="Compiles the project if binaries are outdated">
+		<delete dir="${bin.dir}" />
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}" debug="on" nowarn="on" encoding="ISO-8859-1">
+			<classpath>
+				<path refid="compile.classpath" />
+				<path refid="log4j.libs" />
+				<path refid="junit.libs" />
+			</classpath>
+			<src>
+				<path path="${src.dir}" />
+				<path refid="additional.src.dirs" />
+			</src>
+		</javac>
+	</target>
+
+	<target name="-post.compile" /> <!-- intended to be overriden -->
+
+	<target name="-build.jar.dependencies" depends="compile" /> <!-- intended to be overriden -->
+
+	<target name="build.jar" depends="-build.jar.dependencies, -check.uptodate.jar" unless="uptodate.jar" description="Builds the project jar file if it is outdated">
+		<delete file="${jar.file}" />
+		<jar destfile="${jar.file}" basedir="${bin.dir}" />
+	</target>
+
+	<target name="build" depends="compile, build.jar" description="Builds the project in light mode" />
+
+	<target name="build.clean" depends="clean, compile, build.jar" description="Builds the project from scratch" />
+</project>

@@ -1,0 +1,26 @@
+
+
+csl_interface ifc1{
+csl_parameter param1(30);
+csl_port p1(input,param1);
+ifc1(){}
+};
+
+csl_signal_group sg1{
+csl_parameter param2(10);
+csl_signal p1(param2);
+sg1(){}
+};
+
+csl_unit u1{
+ifc1 ifc11;
+u1(){}
+};
+
+csl_unit u2{
+//sg1 #(.param2(30)) sg11;
+  sg1 #(30) sg11;
+
+u1 u11(.ifc11(sg11));
+u2(){}
+};

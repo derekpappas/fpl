@@ -1,0 +1,165 @@
+csl_enum vd {
+	qx,
+	pm,
+	xc,
+	we,
+	at,
+	kx,
+	lu,
+	qq,
+	sf,
+	ic,
+	mp,
+	tu,
+	lr,
+	lr,
+	wh,
+	up,
+	gm
+};
+csl_enum fg {
+	oe = 7,
+	lr = 12,
+	yv = 51,
+	pm = 73,
+	qj = 52
+};
+csl_enum el {
+	oo = 33,
+	nd = 81,
+	ej = 42,
+	ap = 65,
+	bl = 45,
+	hb = 65,
+	ue = 31,
+	sb = 21,
+	sa = 36,
+	ii = 25,
+	fv = 16
+};
+csl_isa_instruction_format xj{
+    xj( ){
+     set_width( 1);
+     generate_decoder( lajk);
+  }
+}
+;
+csl_isa_instruction ma : xj{
+    ma( ){
+    set_asm_mnemonic( csl_list "hn", "fa", "cc", "yn", "xi", "ts");
+  }
+}
+;
+csl_isa_instruction gp : xj{
+    gp( ){
+    set_asm_mnemonic( bq);
+  }
+}
+;
+csl_isa xx{
+  ma ai;
+  gp hf;
+  gp we;
+  gp vo;
+  ma ev;
+  gp wb;
+  ma qa;
+  gp mf;
+  ma ye;
+  ma ot;
+  ma to;
+  gp an;
+  gp eo;
+  gp bt;
+  ma dc;
+  gp jg;
+  ma pq;
+  ma nd;
+  gp xd;
+  ma mo;
+  gp yq;
+  ma qp;
+  gp gr;
+  gp lj;
+  ma ne;
+  ma bn;
+  ma ud;
+  ma df;
+    xx( ){
+     set_decoder_name( "cf");
+     set_decoder_out_name_prefix( "ky");
+     set_decoder_out_name_suffix( "gm");
+     print( isa.txt);
+  }
+}
+;
+csl_fifo oq{
+   oq( ){
+     add_logic( rd_words, 6);
+     add_logic( stall_rd_side);
+  }
+}
+;
+csl_memory_map_page ja{
+    ja( ){
+     get_address_increment( );
+     get_next_address( );
+     add_reserved_address_range( 7, 9);
+     add( oq, "lh", );
+     get_upper_bound( );
+     set_data_word_width( 7);
+     get_data_word_wodth( );
+     set_aligment( 2);
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page bf{
+    bf( ){
+     get_upper_bound( );
+  }
+}
+;
+csl_memory_map_page vu{
+    vu( ){
+     add_address_range( 6, 8);
+     set_address_increment( 4);
+     set_next_address( 6);
+     add_reserved_address_range( 6, 8);
+     add( oq, "ps", 5);
+     add( ja);
+     get_data_word_wodth( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map ow{
+    ow( ){
+     auto_gen_memory_map( );
+jabfvu.set_access_rights_enum( jabfvu); 
+     set_prefix( vw);
+  }
+}
+;
+csl_register ww{
+    ww( ){
+     set_type( ATOM);
+     add_logic( neg_output);
+     init_value( 6);
+     clear_value( 7);
+     set_end_value( 0);
+     set_start_value( 5);
+  }
+}
+;
+csl_register ke{
+    ke( ){
+     add_logic( read_valid);
+     create_rtl_module( );
+     add_logic( bypass);
+  }
+}
+;

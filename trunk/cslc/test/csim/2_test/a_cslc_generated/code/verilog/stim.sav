@@ -1,0 +1,46 @@
+[size] 1331 770
+[pos] -332 -171
+*-16.000000 173600 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb.
+@28
+tb.stim_a0.clk
+tb.stim_a0.reset_
+tb.stim_a0.rd_en
+@22
+tb.stim_a0.rd_addr[15:0]
+tb.stim_a0.memory_out[2:0]
+tb.stim_a0.id[31:0]
+@28
+tb.stim_a0.mem_out_is_id
+tb.stim_a0.vector_id_match
+tb.stim_a0.id_err
+@22
+tb.stim_a0.rd_addr[15:0]
+tb.stim_a0.memory_out[2:0]
+tb.stim_a0.version[31:0]
+@28
+tb.stim_a0.version_err
+@100022
+tb.stim_a0.memory_out[2:0]
+@28
+tb.stim_a0.vector_version_match
+tb.stim_a0.mem_out_is_version
+tb.stim_a0.mem_out_is_id_or_version
+@22
+tb.stim_a0.memory_out[2:0]
+@28
+tb.stim_a0.mux_select
+tb.stim_a0.stim_expect_memory_loaded
+@22
+tb.stim_a0.rd_addr[15:0]
+@28
+tb.stim_a0.rd_en_d1
+@22
+tb.stim_a0.memory_out[2:0]
+tb.stim_a0.vector_out[2:0]
+@28
+tb.stim_a0.mem_out_is_id_or_version
+tb.stim_a0.valid
+tb.stim_a0.rd_en_d1
+tb.stim_a0.memory_out[2:0]
+tb.stim_a0.no_more_vectors

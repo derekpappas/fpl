@@ -1,0 +1,22 @@
+<property name="thirdPartyLibs.dir" location="${libs.dir}/3rdParty" />
+
+<property name="log4j.dir"            value="${thirdPartyLibs.dir}/log4j" />
+<property name="htmlParser.dir"       value="${thirdPartyLibs.dir}/htmlparser" />
+<property name="antlr.dir"            value="${thirdPartyLibs.dir}/antlr" />
+<property name="junit.dir"            value="${thirdPartyLibs.dir}/junit" />
+<property name="antContrib.dir"       value="${thirdPartyLibs.dir}/antcontrib" />
+<property name="servlets.dir"         value="${thirdPartyLibs.dir}/servlet" />
+<property name="stringTemplate.dir"   value="${thirdPartyLibs.dir}/stringtemplate" />
+<property name="lucene.dir"           value="${thirdPartyLibs.dir}/lucene" />
+<property name="retroguard.dir"       value="${thirdPartyLibs.dir}/retroguard" />
+
+<path id="log4j.libs"            path="${log4j.dir}/log4j-1.2.14.jar" />
+<path id="htmlParser.libs"       path="${htmlParser.dir}/htmlparser.jar" />
+<path id="antlr.libs"            path="${antlr.dir}/antlr-3.1.1.jar" />
+<path id="junit.libs"            path="${junit.dir}/junit-4.4.jar" />
+<path id="antContrib.libs"       path="${antContrib.dir}/ant-contrib-1.0b3.jar" />
+<path id="servlets.libs"         path="${servlets.dir}/servlet-api.jar" />
+<path id="stringTemplate.libs"   path="${stringTemplate.dir}/stringtemplate-3.2.jar" />
+<path id="lucene.libs"           path="${lucene.dir}/lucene-core.jar" />
+<!--<path id="lucene.demos.libs"     path="${lucene.dir}/lucene-demos-2.2.0.jar" />-->
+<path id="retroguard.libs"       path="${retroguard.dir}/retroguard.jar" />

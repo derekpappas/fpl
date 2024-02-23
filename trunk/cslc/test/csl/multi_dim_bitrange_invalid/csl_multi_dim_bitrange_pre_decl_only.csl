@@ -1,0 +1,2 @@
+//illegal can't have pre declaration only 
+csl_multi_dim_bitrange x;

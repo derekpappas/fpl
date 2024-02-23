@@ -1,0 +1,12 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="top">
+<signal name="s_t" offset="0" upper="8-1" lower="0" type = "wire"/>
+<instantiation type = "c">
+<instance name="c0">
+<f2a formal = "ar_p1_s_t" actual = "s_t" />
+</instance>
+</instantiation>
+</unit>
+</design>

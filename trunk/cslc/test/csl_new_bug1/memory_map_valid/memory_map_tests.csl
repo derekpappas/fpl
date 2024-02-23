@@ -1,0 +1,48 @@
+//Monica 
+//30 August 2007
+
+csl_fifo f{
+  f(){
+    set_width(8);
+    set_depth(23);
+  }
+};
+
+csl_unit u1{
+  f f0;
+  u1(){
+    }
+};
+
+csl_unit u2{
+  u1 u1;
+  u2(){
+    }
+};
+
+csl_memory_map_page mpage1{
+	mpage1(){
+   add_address_range(0,255);
+   set_unit_name(u1);
+   set_endianess(little_endian);
+   set_symbol_max_length(23);
+}
+};
+csl_memory_map_page mpage2{
+	mpage2(){
+        add_address_range(0,255);
+	set_unit_name(u2);
+	set_address_increment(34);
+        set_next_address(250);
+        add_reserved_address_range(34,45);
+}
+}; 
+csl_memory_map mm{
+	mm(){
+       set_type(hierarchical);
+       set_data_word_width(32);
+       set_prefix("abc");
+   
+}
+};
+

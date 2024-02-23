@@ -1,0 +1,303 @@
+// NIOS2 ring bus
+// CL - removed clk and reset from ifc; added them to units 
+
+//csl_unit chip, ring_node, in_0, delay_1, out_2, cmd_fifo, ingress, egress, ingress_fifo, egress_fifo, inst_mem, data_mem, nios2, custom_logic, custom_logic_regs, out_mux, def//ramer, framer;
+
+//const int DATA_WIDTH = 32;
+csl_signal data(32);
+
+//const int ADDR_WIDTH = 32;
+csl_signal addr(32);
+
+//const int CMD_WIDTH = 32;
+csl_signal cmd(32);
+
+//const int UNIT_ID_WIDTH=4;
+csl_signal unit_id(4);
+
+//const int NODE_ID_WIDTH=32;
+csl_signal node_id(32);
+
+csl_signal burst;
+
+csl_signal sgn_valid;
+
+
+
+//csl_list node_bus(data, addr, cmd, unit_id, node_id, burst, sgn_valid);
+
+//----------------
+// interfaces
+//----------------
+
+csl_interface node_ring_ifc{
+ 
+	csl_port data(input,32), addr(input,32), cmd(input,32), unit_id(input,4), node_id(input,32), burst(input), sgn_valid(input);
+	node_ring_ifc() {
+	  sgn_valid.reverse(); //reversing port direction
+	}
+};
+
+csl_interface if_im_ifc{
+  csl_port generic(input); // ports in this interface to be fixed
+	if_im_ifc(){
+
+	}
+};
+csl_interface im_if_ifc{
+  csl_port generic(input); // ports in this interface to be fixed
+
+	im_if_ifc(){
+}
+};
+csl_interface n2_im_ifc{
+  csl_port generic(input); // ports in this interface to be fixed
+
+	n2_im_ifc(){
+
+	}
+};
+
+csl_interface im_n2_ifc{
+  csl_port generic(input); // ports in this interface to be fixed
+
+	im_n2_ifc(){
+
+	}
+};
+
+csl_interface if_dm_ifc{
+  csl_port generic(input); // ports in this interface to be fixed
+//csl_interface if_dm_ifc(if_im_ifc); // ???????
+////if_dm_ifc.set_prefix("if_dm_");
+	if_dm_ifc(){
+	}
+};
+csl_interface dm_if_ifc{
+  csl_port generic(input); // ports in this interface to be fixed
+//csl_interface dm_if_ifc(dm_if_ifc); // ???????
+////dm_if_ifc.set_prefix("dm_if_");
+	dm_if_ifc(){
+	}
+};
+
+csl_interface n2_dm_ifc{
+  csl_port generic(input); // ports in this interface to be fixed
+//csl_interface n2_dm_ifc(n2_dm_ifc); // ???????
+////n2_dm_ifc.set_prefix("n2_dm_");
+	n2_dm_ifc(){
+	}
+};
+
+csl_interface dm_n2_ifc{
+  csl_port generic(input); // ports in this interface to be fixed
+//csl_interface dm_n2_ifc(dm_n2_ifc); // ???????
+////if_dm_ifc.set_prefix("dm_n2_");
+	dm_n2_ifc(){
+	}
+};
+
+csl_interface nios2_cl_ifc{
+  csl_port generic(input); // ports in this interface to be fixed
+
+// add signals
+	nios2_cl_ifc(){
+	}
+};
+
+
+//-----------------------
+// units in the ring node
+//-----------------------
+
+csl_unit in_0 {
+	
+	node_ring_ifc node_ring_ifc;
+    //	csl_port rst_(clock);	
+	in_0(){
+	}
+};
+
+csl_unit delay_1 {
+	node_ring_ifc node_ring_ifc;
+    //	csl_port rst_(clock);		
+	delay_1(){
+	}
+};
+
+csl_unit out_2 {
+	node_ring_ifc node_ring_ifc;
+
+    //	csl_port rst_(clock);		
+	out_2(){
+	}
+};
+csl_unit cmd_fifo {
+	node_ring_ifc node_ring_ifc;
+
+    //	csl_port rst_(clock);		
+	cmd_fifo(){
+	}
+};
+
+csl_unit ingress {
+
+	node_ring_ifc node_ring_ifc_ingress;
+
+    //	csl_port rst_(clock);		
+	ingress(){
+	}
+};
+
+csl_unit egress {
+	node_ring_ifc node_ring_ifc_egress;
+    //	csl_port rst_(clock);		
+	egress(){
+	}
+};
+csl_unit ingress_fifo {
+	node_ring_ifc node_ring_ifc;
+    //	csl_port rst_(clock);		
+	ingress_fifo(){
+	}
+};
+csl_unit egress_fifo {
+	node_ring_ifc node_ring_ifc;
+    //	csl_port rst_(clock);		
+	egress_fifo(){
+	}
+};
+
+
+csl_unit inst_mem {
+	if_im_ifc i_if_im_ifc;
+  im_if_ifc i_im_if_ifc;
+  n2_im_ifc i_n2_im_ifc;
+  im_n2_ifc i_im_n2_ifc;
+	inst_mem(){
+	}
+};
+
+
+csl_unit data_mem {
+//  add_interface(if_dm_ifc); // how do we set the direction input
+//  add_interface(dm_if_ifc); // how do we set the direction output
+//  add_interface(n2_dm_ifc); // how do we set the direction input
+//  add_interface(dm_n2_ifc); // how do we set the direction output
+	if_dm_ifc i_if_dm_ifc;
+	dm_if_ifc i_dm_if_ifc;
+	n2_dm_ifc i_n2_dm_ifc;
+	dm_n2_ifc i_dm_n2_ifc;
+	data_mem(){
+	}
+};
+
+
+csl_unit nios2 {
+//  add_interface(nios2_cl_ifc); // how do we set the direction input
+	nios2_cl_ifc i_nios2_cl_ifc;
+	nios2(){
+	}
+};
+
+csl_unit custom_logic {
+//  add_interface(nios2_cl_ifc); // how do we set the direction input
+	nios2_cl_ifc i_nios2_cl_ifc;
+	custom_logic(){
+	}
+};
+
+csl_unit custom_logic_regs {
+//  add_interface(nios2_cl_ifc); // how do we set the direction output
+	nios2_cl_ifc i_nios2_cl_ifc;
+	custom_logic_regs(){
+	}
+};
+
+// uses winner take all logc to read back a value since only one mux input should be valid?
+csl_unit out_mux {
+	out_mux(){	
+	}
+};
+
+csl_unit deframer {
+	deframer(){
+	}	
+};
+
+csl_unit framer {
+	framer(){
+	}
+};
+
+csl_unit ring_node {
+  
+	node_ring_ifc node_ring_ifc_in;
+	node_ring_ifc node_ring_ifc_out;	
+ 
+    //	csl_port rst_(clock);
+    //module instantiation
+    in_0 in_0;
+    delay_1 delay_1;
+    out_2 out_2;
+    cmd_fifo cmd_fifo;
+    ingress ingress;
+    egress egress;
+    ingress_fifo ingress_fifo;
+    egress_fifo egress_fifo;
+    inst_mem inst_mem;
+    data_mem data_mem;
+    nios2 nios2;
+    custom_logic custom_logic;
+    custom_logic_regs custom_logic_regs;
+    out_mux out_mux;
+    framer framer;
+    deframer deframer;
+
+	ring_node() {
+	  node_ring_ifc_out.reverse();
+	}
+};
+
+
+csl_unit chip {
+	ring_node rn0;
+	ring_node rn1;
+	ring_node rn2;
+	ring_node rn3;
+	ring_node rn4;
+	ring_node rn5;
+	ring_node rn6;
+	ring_node rn7;
+	ring_node rn8;
+	ring_node rn9;
+	chip(){
+	
+//     rn0.node_ring_ifc_out.reverse();
+//
+//     rn1.node_ring_ifc_out.reverse();
+//
+//     rn2.node_ring_ifc_out.reverse();
+//
+//     rn3.node_ring_ifc_out.reverse();
+//
+//
+//     rn4.node_ring_ifc_out.reverse();
+//
+//
+//     rn5.node_ring_ifc_out.reverse();
+//
+//     rn6.node_ring_ifc_out.reverse();
+//
+// 
+//     rn7.node_ring_ifc_out.reverse();
+//
+//
+//     rn8.node_ring_ifc_out.reverse();
+//
+//    rn9.node_ring_ifc_out.reverse();
+  }
+
+
+
+    };

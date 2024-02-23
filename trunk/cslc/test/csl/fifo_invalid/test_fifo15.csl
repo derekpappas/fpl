@@ -1,0 +1,122 @@
+//Petronela
+// the add_logic cmds can't be called for a fifo instance
+
+csl_fifo f1{
+  f1(){
+    set_width(23);
+    set_depth(12);
+  }
+};
+csl_fifo f2{
+  f2(){
+    set_width(34);
+    set_depth(23);
+    
+  }
+};
+csl_fifo f3{
+  f3(){
+    set_width(12);
+    set_depth(10);
+
+    
+  }
+};
+csl_fifo f4{
+  f4(){
+    set_width(15);
+    set_depth(11);
+    
+  }
+};
+csl_fifo f5{
+  f5(){
+    set_width(2);
+    set_depth(4);
+    
+  }
+};
+csl_fifo f6{
+  f6(){
+    set_width(5);
+    set_depth(7);
+    
+    
+  }
+};
+csl_fifo f7{
+  f7(){
+    set_width(8);
+    set_depth(10);
+   
+  }
+};
+csl_fifo f8{
+  f8(){
+    set_width(7);
+    set_depth(5);
+    
+    
+  }
+};
+csl_fifo f9{
+  f9(){
+    set_width(5);
+    set_depth(7);
+    
+    
+  }
+};
+
+csl_fifo f10{
+  f10(){
+    set_width(2);
+    set_depth(2);
+    
+   
+  }
+};
+csl_fifo f11{
+  f11(){
+    set_width(23);
+    set_depth(7);
+    
+  }
+};
+csl_fifo f12{
+  f12(){
+    set_width(30);
+    set_depth(35);
+    
+    
+  }
+};
+
+csl_unit u1{
+  f1 f1;
+  f2 f2;
+  f3 f3;
+  f4 f4;
+  f5 f5;
+  f6 f6;
+  f7 f7;
+  f8 f8;
+  f9 f9;
+  f10 f10;
+  f11 f11;
+  f12 f12;
+  u1(){
+    f1.add_logic(async_fifo);
+    f2.add_logic(priority_bypass);
+    f3.add_logic(sync_fifo);
+    f4.set_prefix("abc");
+    f5.add_logic(sram_rd);
+    f6.add_logic(sram_wr);
+    f7.add_logic(pushback);
+    f8.add_logic(stall);
+    f9.add_logic(stall_rd_side);
+    f10.add_logic(stall_wr_side);
+    f11.add_logic(credit);
+    f12.add_logic(wr_release);
+  }
+};

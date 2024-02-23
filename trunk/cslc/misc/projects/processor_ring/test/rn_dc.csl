@@ -1,0 +1,106 @@
+//Monica
+//08 feb 2008
+// DMA controler
+
+
+//contains the address of the  first transaction
+csl_register r_base_addr{
+  r_base_addr(){
+    set_type(register);
+    set_width(addr_width);
+  }
+};
+
+//contains the number of transactions --burst_length
+csl_register r_blen{
+  r_blen(){
+    set_type(register);
+    set_width(burst_length);
+  }
+};
+
+csl_unit u_mux{
+  csl_port in1(input,br_blen);
+  csl_port blen(input,br_blen);
+  csl_port sel(input);           //burst bit : sel=1 -> input=burst_length  else input={br_blen{1'b0}}
+  csl_port out(output,br_blen);
+  u_mux(){
+    out=(sel)? blen : in1;
+  }
+};
+
+//increments the address 
+csl_register r_cnt_addr{
+  r_cnt_addr(){
+    set_type(counter);
+    set_width(32);
+    add_logic(count_direction,up);
+    add_logic(reset,0);
+  }
+};
+
+//contains the last transaction  address 
+csl_register r_end_addr{
+  r_end_addr(){
+    set_type(register);
+    set_width(32);
+  }
+};
+
+// adder for : first_addr + burst_length = last addr
+csl_unit u_add{
+  csl_port p_op1(input,br_addr);
+  csl_port p_op2(input,br_blen);
+  csl_port p_last_addr(output,reg,br_addr);
+  u_add(){
+    p_last_addr=p_op1+p_op2;
+  }
+};
+
+
+//DMA controler
+csl_unit dc {
+   csl_port clk(input);
+   csl_signal s_reset,s_en(reg);
+   csl_signal s_op1(br_addr),s_op2(br_blen);
+   csl_signal s_mux_out(br_blen);
+   csl_signal s_addr(br_addr);
+   csl_signal s_add_out(br_addr),s_end_addr(br_addr); 
+   csl_signal s_equal(reg),s_zero(br_blen);      //show the end of transactions
+
+  r_base_addr base_addr(.reset_(s_reset),
+                        .enable(s_en),
+                        .clock(clk),
+                        .reg_out(s_op1),
+                        .reg_in(dma_ifc.addr_in));
+  r_blen burst_length(.reset_(s_reset),
+                      .enable(dma_ifc.dma_en),
+                      .clock(clk),
+                      .reg_out(s_op2),
+                      .reg_in(s_mux_out));
+  u_mux  mux(.p_in1(s_zero),
+             .p_blen(dma_ifc.blen),
+             .p_sel(dma_ifc.burst),
+             .p_out(s_mux_out));
+  
+  r_cnt_addr cnt_addr(.reset_(s_equal),            // if equal==1 than reset_=0 ==> end of count
+                      .enable(dma_ifc.dma_en),
+                      .clock(clk),
+                      .reg_out(s_addr));
+  r_end_addr end_addr(.reset_(s_reset),
+                      .enable(dma_ifc.dma_en),
+                      .clock(clk),
+                      .reg_out(s_end_addr),
+                      .reg_in(s_add_out)); 
+  u_add adder(.p_op1(s_op1),
+              .p_op2(s_op2),
+              .p_last_addr(s_end_addr));
+
+  u_dc () {
+    clk.set_attr(clock);
+
+    // s_en=dma_ifc.wr_burst | dma_ifc.rd_burst;     // or gate between  wr_burst and rd_burst signals
+    //  s_equal =(s_end_addr == s_addr);                 // =1  if output of counter register is equal with the end transaction address
+                                                    // =0 if not
+  }
+};

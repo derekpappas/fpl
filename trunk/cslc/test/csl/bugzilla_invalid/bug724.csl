@@ -1,0 +1,27 @@
+csl_unit a{
+  csl_signal s0(reg,32);
+  csl_signal s1(reg,32);
+  a(){
+  }
+};
+
+csl_unit top{
+  a a0;
+  a a1;
+  top(){
+  }
+};
+csl_memory_map_page fp{
+  fp(){
+    add_address_range(0,32);
+ }
+};
+csl_memory_map mm{
+  fp fpag;
+  mm(){
+    set_type(flat);
+    set_top_unit(ygyg);//should give a error message because it does't exit a
+//unit with name:ygyg
+
+  }
+};

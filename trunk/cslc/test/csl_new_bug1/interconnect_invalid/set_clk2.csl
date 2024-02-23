@@ -1,0 +1,12 @@
+//oanab
+//31 may 2008
+
+
+
+csl_unit a {
+  csl_port clk(input);
+  a () {
+    clk.set_attr(clock);
+    clk.set_clock(clk);
+  }
+};

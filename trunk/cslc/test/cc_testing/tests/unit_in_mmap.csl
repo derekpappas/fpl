@@ -1,0 +1,24 @@
+//oanab
+//10 nov 2007
+//csl_unit can't be instantiated in a memory map
+
+csl_unit u{
+  csl_port a(input),b(output);
+  u(){}
+};
+
+csl_memory_map_page mpg{
+  mpg(){
+    set_data_word_width(32);
+    add_address_range(0,9);
+  }
+};
+
+csl_memory_map mp{
+  mpg mpg;
+  u u1;   // this should be in a unit or testbench
+   mp(){
+  set_data_word_width(32);
+  set_type(hierarchical);
+  }
+};

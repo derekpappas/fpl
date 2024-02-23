@@ -1,0 +1,5 @@
+// illegal test because the mandatory cmd set_type is missing
+csl_isa_element f4{
+   f4(){
+   }
+};

@@ -1,0 +1,28 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="output.xsl"?>
+<design>
+<unit  name="r_pc" > 
+ </unit>
+<unit  name="r_caddr" > 
+ </unit>
+<memory  name="m_im" > 
+ </memory>
+<unit  name="rf" > 
+ </unit>
+<memory  name="m_rom" > 
+ </memory>
+<unit  name="u_es" > 
+ </unit>
+<unit  name="u_ir" > 
+ </unit>
+<unit  name="u_alu" > 
+ </unit>
+<register  name="r_ha" > 
+ </register>
+<register  name="r_status" > 
+ </register>
+<unit  name="u_control" > 
+ </unit>
+<unit  name="u_mbist" > 
+ </unit>
+</design>

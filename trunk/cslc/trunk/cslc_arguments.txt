@@ -1,0 +1,52 @@
+cslc help/usage
+--help
+--info
+
+
+cslc CSL commands
+--I <dirname>
+--D 
+--csl_maxerror <number> default = 30
+--csl_maxwarnings <number> default = 30
+--f foo.cf
+--config_file config_file.xml
+--csl_pp on/off/only 
+  default = run
+  on - run the CSL pp
+  off- do not run the CSL pp
+  only - only run the CSL pp and stop after running the CSL pp
+--csl_pp_filename <filename> // create a single file for each CSL file processed by the CSL pp
+cslc Verilog commands
+--verilog_pp on/off/only 
+  default = run
+  on - run the Verilog pp
+  off- do not run the Verilog pp
+  only - only run the Verilog pp and stop after running the Verilog pp
+--verilog_pp_filename <filename> // create a single file for each Verilog file processed by the Verilog pp
+
+cslc vcs/vxl compatible commands
+-f
+-y
++libdir
++incdir
+...
+
+cslc debug
+--cdom_ast  // not supported in release mode
+--cslom_ast // not supported in release mode
+--trace on/off default = off // what does this do
+--exectution_stage <stage_name> // the stage to stop the cslc
+
+
+config_file.xml
+<cslc_config>
+<file type="isa" filename="filename" output_directory="directory_name">
+<file type="memmap" filename="filename" output_directory="directory_name">
+<file type="interconnect" filename="filename" output_directory="directory_name" single_file="true|false">
+<file type="register_file" filename="filename" output_directory="directory_name" inline_file="true|false" instance_name="instance_name">
+<file type="file" filename="filename" output_directory="directory_name" inline_file="true|false" instance_name="instance_name">
+<file type="" filename="filename" output_directory="directory_name">
+</cslc_config>
+
+
+

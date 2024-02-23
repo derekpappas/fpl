@@ -1,0 +1,25 @@
+//author: Ines
+//purpose: test csl_list
+
+csl_bitrange br1(5);
+csl_bitrange br2(0, 3);
+csl_bitrange br3(3);
+csl_list l1(sl1);
+csl_list l2(s121,sl22);
+csl_list l3(sl3);
+csl_list l4(sl4);
+
+csl_unit u1 {
+  //csl_port_list u1(input, wire, 5, csl_list(s1,s2,s3));
+  //u1.add_port_list(input, wire, [0:4], csl_list(s4,s5,s6));
+  //
+  //u1.add_port_list(output, wire, 5, csl_list(s7,s8,s9));
+  //u1.add_port_list(inout,l1);
+  //
+  //u1.add_port_list(output, reg, br1, l2);
+  //u1.add_port_list(input, br2, l3);   
+  //u1.add_port_list(input, wire, l4);
+  u1(){
+
+  }
+};

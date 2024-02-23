@@ -1,0 +1,38 @@
+//oanab
+//3 nov 2007
+//counter type regs specific command used for a register type reg
+
+csl_register reg{
+  reg(){
+    set_width(16);
+    set_type(register);
+    add_logic(gray_output); //specific command for counter type regs
+  }
+};
+
+csl_register counter{
+  counter(){
+    set_width(16);
+    set_type(counter);
+  }
+};
+
+csl_unit u{
+  reg reg1;
+  counter counter1; 
+  u(){}
+};
+
+csl_memory_map_page mpg{
+  mpg(){
+    add_address_range(0,512);
+    add(u.reg1,"reg",100);
+  }
+};
+
+csl_memory_map mmap{
+  mpg mpg1;
+  mmap(){
+    set_type(hierarchical);
+  }
+};

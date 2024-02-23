@@ -1,0 +1,416 @@
+//Monica
+//15 january 2008
+// Processor Ring
+
+
+// phy-mac interface
+csl_interface ifc_phy_mac {
+  csl_port p_tx_er(input);
+  csl_port p_rx_er(input);
+  csl_port p_rx_dv(input);
+  csl_port p_rxd(input,8);
+  csl_port p_crs(input);
+  csl_port p_col(input);
+
+  ifc_phy_mac() {}
+};
+
+//mac-phy interface
+csl_interface ifc_mac_phy {
+  csl_port p_gtx_clk(input);
+  csl_port p_tx_en(input);
+  csl_port p_txd(input,8);
+  csl_port rx_clk(input);
+  
+  ifc_mac_phy() {}
+};
+
+//mac-rn interface
+csl_interface ifc_mac_rn {
+  csl_port p_rx_mac_ro(input);
+  csl_port p_rx_mac_data(input,br_data);
+  csl_port p_rx_mac_be(input,2);
+  csl_port p_rx_mac_pa(input);
+  csl_port p_rx_mac_sop(input);
+  csl_port p_rx_mac_eop(input);
+  csl_port p_tx_mac_wa(input);
+
+ ifc_mac_rn() {}
+};
+
+//rn-mac interface
+csl_interface ifc_rn_mac {
+  csl_port p_rx_mac_rd(input);
+  csl_port p_tx_mac_data(input,br_data);
+  csl_port p_tx_mac_be(input,2);
+  csl_port p_tx_mac_wr(input);
+  csl_port p_tx_mac_sop(input);
+  csl_port p_tx_mac_eop(input);
+
+  ifc_rn_mac() {}
+};
+
+
+// rn-bus interface
+csl_interface ifc_rn_bus{
+  csl_port  p_valid(input);  // valid port
+  csl_port p_age(input);     //age port
+  csl_port p_burst(input);
+  csl_port p_src_nid(input,br_nid);
+  csl_port p_dst_nid(input,br_nid);
+  csl_port  p_be(input,4);
+  csl_port p_addr(input,br_addr);
+  csl_port p_data(input,br_data);
+  csl_port p_cmd(input,br_cmd);
+ 
+ ifc_rn_bus() {}
+};
+
+//Command Bus Decoders interfaces
+csl_interface ifc_cd0 {
+  csl_port p_slot_empty(input);
+  csl_port p_rd(input);
+  csl_port p_wr(input);
+  csl_port p_rd_burst(input);
+  csl_port p_wr_burst(input);
+  csl_port dma_en(input);
+  csl_port pass_through(input);
+  
+ ifc_cd0() {}
+};
+
+csl_interface ifc_cd1 {
+  csl_port p_slot_empty(input);
+  csl_port p_rd(input);
+  csl_port p_wr(input);
+  csl_port p_rd_burst(input);
+  csl_port p_wr_burst(input);
+  csl_port p_dma_en(input);
+  csl_port p_im_en(input);
+  csl_port p_dm_en(input);
+  csl_port p_reg_en(input);
+
+  ifc_cd1() {}
+};
+
+csl_interface ifc_cd2{
+  csl_port p_rd_mux_sel(input);
+  csl_port p_pass_through(input);
+  
+ifc_cd2() { }
+};
+
+//address unit interface from rn_au.csl
+/*csl_interface ifc_au {
+  csl_port p_wr(input);
+  csl_port p_rd(input);
+  csl_port p_wr_burst(input);
+  csl_port p_rd_burst(input);
+  csl_port p_burst(input);
+  csl_port p_dma_en(input);
+  csl_port p_data(input,br_data);
+  csl_port p_wr_en(output);
+  csl_port p_addr_out(output,br_addr);
+  csl_port p_data_out(output,br_data);
+  
+ifc_au() {}
+};*/
+
+//message queue interface
+csl_interface ifc_mq {
+  csl_port p_mq_push(input);
+  csl_port p_mq_pop(input);
+  csl_port p_mq_in(input,br_mq_data);
+  csl_port p_mq_full(output);
+  csl_port p_mq_empty(output);
+  csl_port p_mq_out(output,br_mq_data);
+  ifc_mq() {}
+};
+
+// nios2 interfaces
+csl_interface ifc_in_nios {
+  csl_port p_in_from_mq(input,br_mq_data);
+  csl_port p_in_from_qm(input);
+  ifc_in_nios() {}
+};
+
+csl_interface ifc_out_nios {
+  csl_port p_me_stb_o(output);
+  csl_port p_me_cyc_o(output);
+  csl_port p_me_we_o(output);
+  csl_port p_me_clk_o(output);
+  csl_port p_me_rst_o(output);
+  csl_port p_me_adr_o(output,br_addr);
+  csl_port p_me_dat_o(output,br_data);
+  csl_port p_me_sel_o(output,4);
+  csl_port nios_bo_bus(output,br_msg);
+  ifc_out_nios() {}
+};
+/////////////////////////////////////////////////////////////
+//ring node units
+//stages
+
+csl_unit u_st {
+  //instanciations of interfaces
+  ifc_rn_bus rn_bus_in;
+  ifc_rn_bus rn_bus_out;
+
+  //ports declaration
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+
+ u_st() {
+    rn_bus_out.reverse();
+    p_clk.set_attr(clock);
+    p_reset.set_attr(reset);
+  }
+};
+
+//command decoders  
+csl_unit u_cd0 {
+  //instantiation of interface
+  ifc_cd0 cd0_ifc0;
+  ifc_cd0  cd0_ifc1;
+  //port declarations
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+  
+ u_cd0 () {
+    cd0_ifc1.reverse();
+    p_clk.set_attr(clock);
+    p_reset.set_attr(reset);
+  }
+};
+
+csl_unit u_cd1 {
+  //instantiation of interface
+  ifc_cd1 cd1_ifc0;
+  ifc_cd1 cd1_ifc1;
+  //port declarations
+  csl_port p_clk(input);
+  csl_port p_reset(input);  
+
+ u_cd1() {
+    cd1_ifc1.reverse();
+    p_clk.set_attr(clock);
+    p_reset.set_attr(reset);
+  }
+};
+
+csl_unit u_cd2 {
+  
+  ifc_cd2 cd2_ifc0;
+  ifc_cd2 cd2_ifc1;
+ 
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+  
+u_cd2() {
+    cd2_ifc1.reverse();
+    p_clk.set_attr(clock);
+    p_reset.set_attr(reset);
+  }
+};
+
+// DMA controler
+csl_unit u_dc {
+ 
+  ifc_au au_ifc0;
+  csl_port p_clk(input);
+  csl_port p_reset(input); 
+  csl_port p_int_mem_addr(input,br_addr);
+  
+  u_dc () {
+    p_clk.set_attr(clock);
+    p_reset.set_attr(reset);
+  }
+};
+
+// address convertor
+csl_unit u_ac {
+  csl_port p_addr_in(input,br_addr);
+  csl_port p_int_mem_addr(output,br_addr);
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+  u_ac () {
+    p_clk.set_attr(clock);
+    p_reset.set_attr(reset);
+  }
+};
+
+//Address Unit
+/*csl_unit u_au {
+  ifc_au au_ifc1;
+  
+  csl_port p_addr_in(input,br_addr);
+  csl_port p_int_mem_addr(output,br_addr);
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+
+  u_ac ac_0(.p_addr_in(p_addr_in),
+            .p_int_mem_addr(au_ifc1.p_addr_out),
+            .p_clk(p_clk),
+            .p_reset(p_reset));
+  u_dc dc_0(.p_int_mem_addr(p_int_mem_addr),
+            .au_ifc0.p_wr(au_ifc1.p_wr),
+            .au_ifc0.p_rd(au_ifc1.p_rd),
+            .au_ifc0.p_wr_burst(au_ifc1.p_wr_burst),
+            .au_ifc0.p_rd_burst(au_ifc1.p_rd_burst),
+            .au_ifc0.p_burst(au_ifc1.p_burst),
+            .au_ifc0.p_dma_en(au_ifc1.p_dma_en),
+            .au_ifc0.p_data(au_ifc1.p_data),
+            .au_ifc0.p_wr_en(au_ifc1.p_wr_en),
+            .au_ifc0.p_addr_out(au_ifc1.p_addr_out),
+            .au_ifc0.p_data_out(au_ifc1.p_data_out),
+            .p_clk(p_clk),.p_reset(p_reset));
+  u_au () {
+    p_clk.set_attr(clock);
+    p_reset.set_attr(reset);
+  }
+  };*/
+
+//Queue Manager
+csl_unit u_qm {
+  csl_port p_cmd_bus(input,br_cmd);
+  csl_port p_qm_full(input);
+  csl_port p_qm_push(output);
+  csl_port p_mqf(output);
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+ u_qm () {
+    p_clk.set_attr(clock);
+    p_reset.set_attr(reset);
+  }
+};
+
+//Message Queue
+csl_unit u_mq {
+ 
+  ifc_mq mq_ifc0;
+
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+  
+  u_mq () {
+    p_clk.set_attr(clock);
+    p_reset.set_attr(reset);
+  }
+};
+
+//Bus Interface Out
+csl_unit u_mux{
+  csl_port p_in1(input,br_msg);
+  csl_port p_in0(input,br_msg);
+  csl_port p_out(output,br_msg);
+  csl_port p_sel(input);
+  u_mux () {
+    p_sel.set_attr(mux_sel);
+  }
+};
+
+// Bus Interface Unit output
+csl_unit u_bo{
+  csl_port p_rn_bus_st1(output,br_msg);
+  csl_port p_st1_st2_bus(input,br_msg);
+  csl_port p_pass_through(input);
+  csl_port p_n_bo(input,br_msg);
+  csl_port p_cl_bo_bus(input,br_msg);
+  csl_port p_rd_mux_sel(input);
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+
+  csl_signal s_rd_data(br_msg);
+
+  u_mux mux1(.p_in1(p_n_bo),
+             .p_in0(p_cl_bo_bus),
+             .p_sel(p_rd_mux_sel),
+             .p_out(s_rd_data));
+  u_mux mux2(.p_in0(s_rd_data),
+             .p_in1(p_st1_st2_bus),
+             .p_out(p_rn_bus_st1),
+             .p_sel(p_pass_through));
+  u_bo () {
+    p_clk.set_attr(clock);
+    p_reset.set_attr(reset);
+  }
+};
+
+
+//Nios2
+csl_unit u_nios {
+ 
+ ifc_in_nios nios_in;
+ ifc_out_nios nios_out;
+
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+ 
+ u_nios() {
+    p_clk.set_attr(clock);
+    p_reset.set_attr(reset);
+  }
+};
+
+//Ring Node
+csl_unit u_rn {
+  ifc_rn_bus rn_bus_in;
+  ifc_rn_bus rn_bus_out;
+  
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+
+  u_cd0 cd0(.p_clk(p_clk),
+            .p_reset(p_reset));
+  u_cd1 cd1(.p_clk(p_clk),
+            .p_reset(p_reset));
+  u_cd2 cd2(.p_clk(p_clk),
+            .p_reset(p_reset));
+  u_qm qm(.p_clk(p_clk),
+          .p_reset(p_reset));
+  u_mq mq(.p_clk(p_clk),
+          .p_reset(p_reset));
+  u_nios nios(.p_clk(p_clk),
+              .p_reset(p_reset));
+  u_bo bo(.p_clk(p_clk),
+          .p_reset(p_reset));
+  u_st st0(.p_clk(p_clk),
+           .p_reset(p_reset));
+  u_st st1(.p_clk(p_clk),
+           .p_reset(p_reset));
+  u_st st2(.p_clk(p_clk),
+           .p_reset(p_reset));
+  u_au au(.p_clk(p_clk),
+          .p_reset(p_reset),
+          .p_addr_in(rn_bus_in.p_addr));
+  
+u_rn () {
+    rn_bus_out.reverse();
+    p_clk.set_attr(clock);
+    p_reset.set_attr(reset);
+  }
+};
+
+
+//Proccessor Ring
+csl_unit u_proc_ring {
+  u_rn rn1;
+  u_rn rn2;
+  u_rn rn3;
+  u_rn rn4;
+  u_rn rn5;
+  u_rn rn6;
+  u_rn rn7;
+  u_rn rn8;
+  u_rn rn9;
+  u_proc_ring () {
+    rn1.set_unit_id(1);
+    rn2.set_unit_id(2);
+    rn3.set_unit_id(3);
+    rn4.set_unit_id(4);
+    rn5.set_unit_id(5);
+    rn6.set_unit_id(6);
+    rn7.set_unit_id(7);
+    rn8.set_unit_id(8);
+    rn9.set_unit_id(9);
+  }
+};

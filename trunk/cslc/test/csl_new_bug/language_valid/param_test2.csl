@@ -1,0 +1,77 @@
+//Monica
+
+csl_interface ifca {
+  csl_parameter ifa_x(20);
+  csl_parameter ifa_y(27);
+  csl_port p_ifca(input,ifa_x);
+  csl_port p_ifa(input,ifa_y);
+  csl_port p_ifa1(input,51);
+  ifca() {
+  }
+};
+
+csl_interface ifcb {
+  csl_parameter ifb_x(27);
+  csl_parameter ifb_y(51);
+  csl_parameter ifb_z(27);
+  csl_port p_ifca(input,ifb_x);
+  csl_port p_ifa(input,ifb_y);
+  csl_port pt_ita(output,ifb_z);
+  csl_parameter ifcb_t(23);
+  csl_port p_b(output,43);
+  ifca #(,51) ifca0;
+  ifcb() {
+  }
+};
+
+csl_signal_group sga{
+  csl_parameter sga_x(27);
+  csl_parameter sga_y(51);
+  csl_parameter sga_z(20);
+  csl_signal p_ifca(sga_z);
+  csl_signal p_ifa(sga_x);
+  csl_signal p_ifa1(sga_y);
+  sga(){}
+};
+
+csl_signal_group sgb{
+  sga sga0;
+  csl_parameter sgb_x(35,20);
+  csl_parameter sgb_y(62,30);
+  csl_parameter sgb_z(26,6);
+  csl_parameter sgb_t(43,7);
+  csl_signal p_ifca(sgb_z);
+  csl_signal p_ifa(sgb_x);
+  csl_signal pt_ita(sgb_y);
+  csl_signal p_b(sgb_t);
+  sgb(){}
+};
+
+/csl_unit b{
+  csl_parameter b_x(27);
+  csl_parameter b_z(20);
+  csl_port p_b(input,b_x);
+  csl_port pb(output,b_z);
+  ifca ifca0;
+  ifcb ifcb0;
+  sga sga0;
+  sgb sgb0;
+  b(){}
+};
+
+csl_unit top {
+  csl_parameter top_x(27);
+  csl_parameter top_y(27);
+  csl_port p_top(input,top_x);
+  csl_signal s_top(top_y);
+  sga sga1;
+  sgb sgb1;
+  ifca #(,27) ifca1;
+  ifcb #(26,35,62,)  ifcb1;
+  b #(,27) b1(.ifca0(sga1),.ifcb0(sgb1),.p_b(p_top),.pb(s_top));
+  top(){
+    b1.sga0.connect_by_name(ifca1);
+    b1.sgb0.connect_by_name(ifcb1);
+    b1.override_parameter(b_z,27);
+  }
+};

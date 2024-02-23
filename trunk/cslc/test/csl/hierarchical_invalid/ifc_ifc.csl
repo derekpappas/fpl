@@ -1,0 +1,52 @@
+// Author : CristiL
+// Creating  a hid item using iterfaces
+
+csl_interface interfaceA {
+};
+
+csl_interface interfaceB {
+  interfaceA interfaceA0;
+};
+
+csl_interface interfaceC {
+  interfaceB interfaceB0;
+};
+
+csl_interface interfaceD {
+  interfaceB interfaceB0;
+  interfaceC interfaceC0;
+};
+
+csl_interface interfaceE {
+  interfaceD interfaceD0;
+};
+
+csl_interface interfaceF {
+  interfaceA interfaceA0;
+  interfaceE interfaceE0;
+};
+
+//      Interfaces hierarchy :
+//
+//                F0
+//               /  \
+//              A0   E0  
+//                   |
+//                   D0     
+//                  /  \    
+//                 B0   C0
+//                 |    |    
+//                 A0   B0
+//                      | 
+//                      A0
+//                                                               
+
+csl_unit unitTop {      
+  interfaceF interfaceF0;
+ 
+  unitTop() {
+    //interfaceF0.interfaceA0.reverse();
+    //interfaceF0.interfaceE0.interfaceD0.interfaceB0.interfaceA0.reverse();
+    //interfaceF0.interfaceE0.interfaceD0.interfaceC0.interfaceB0.interfaceA0.reverse();
+  }
+};

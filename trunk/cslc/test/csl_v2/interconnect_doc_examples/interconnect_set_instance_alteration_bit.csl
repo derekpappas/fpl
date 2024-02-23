@@ -1,0 +1,5 @@
+csl_unit u {
+  csl_port x(output), y(input);
+  u(){
+    set_instance_alteration_bit(on);
+  }};

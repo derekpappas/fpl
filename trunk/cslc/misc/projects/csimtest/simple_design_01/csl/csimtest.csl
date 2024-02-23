@@ -1,0 +1,84 @@
+csl_unit cnt{
+  csl_port out(output, reg, 2);
+  csl_port reset_(input);
+  csl_port clk1   (input);
+  csl_port en    (input);
+  csl_include(file_verilog,"../../../includes/cnt_logic.v");
+  cnt(){
+      clk1.set_attr(clock);
+  }
+};
+
+csl_unit select {
+  csl_port out0(output, reg);
+  csl_port out1(output, reg);
+  csl_port out2(output, reg);
+  csl_port out3(output, reg);
+  csl_port in (input,2);
+  csl_port reset_(input);
+  csl_port clk(input);
+  csl_include(file_verilog,"../../../includes/select_logic.v");
+  select(){
+      clk.set_attr(clock);
+  }
+};
+
+
+csl_unit top {
+  csl_port even (output);
+  csl_port odd  (output);
+  csl_port valid(output);
+  csl_port reset_(input);
+  csl_port en    (input);
+  csl_port clk   (input);
+
+  //signals
+  csl_signal out0;
+  csl_signal out1;
+  csl_signal out2;
+  csl_signal out3;
+  csl_signal weven;
+  csl_signal wodd;
+  csl_signal wvalid;
+  csl_signal wcntcase(2);
+
+  //design
+  cnt cnt0(.out(wcntcase), .reset_(reset_), .en(en), .clk1(clk));
+  select select0(.out0(out0), .out1(out1), .out2(out2), .out3(out3), .in(wcntcase), .reset_(reset_), .clk(clk));
+
+  top(){
+    clk.set_attr(clock);
+    //logic in CSL
+    weven = out0 ^ out2;
+    wodd  = out1 ^ out3;
+    even = weven;
+    odd  = wodd;
+    wvalid = weven ^ wodd;
+    valid = wvalid & en;
+  }
+};
+
+csl_vector vec_stim {
+ vec_stim(){
+ set_unit_name(top);
+ set_direction(input);
+ set_vc_capture_edge_type(rise);
+ }
+};
+
+csl_vector vec_expect {
+  vec_expect(){
+    set_unit_name(top);
+    set_direction(output);
+    set_vc_capture_edge_type(rise);
+  }
+};
+
+csl_testbench tb {
+ csl_signal clk(reg);
+ top top;
+ tb(){
+   clk.set_attr(clock);
+   add_logic(clock,clk,2,ps);
+ }
+};

@@ -1,0 +1,555 @@
+// csl_example_unit
+// date: 7 August 2007
+// andreim
+
+//creating interfaces 
+csl_interface ifc_p{
+    csl_port p_clk(input), p_rst(input),p_stall(input);
+    ifc_p(){
+    }
+};
+
+csl_interface ifc_unit{
+    csl_port p_unitOut(output), p_unitIn(input);
+    ifc_unit(){
+    }
+};
+
+// creating the CSL units
+// r=right, l=left
+csl_unit u_pc{
+    ifc_p ifc_pc;
+    ifc_unit ifc_unit_pc_r;
+    u_pc(){
+    }
+};
+csl_unit u_im{     
+    ifc_p ifc_im;
+    ifc_unit ifc_unit_im_l, ifc_unit_im_r;
+    u_im(){
+    }
+};
+csl_unit u_id{
+    ifc_p ifc_id;
+    ifc_unit ifc_unit_id_l, ifc_unit_id_r;
+    u_id(){
+    }
+};
+csl_unit u_rf{
+    ifc_p ifc_rf;
+    ifc_unit ifc_unit_rf_l, ifc_unit_rf_r;
+    u_rf(){
+    }
+};
+csl_unit u_alu{
+    ifc_p ifc_alu;
+    ifc_unit ifc_unit_alu_l, ifc_unit_alu_r;
+    u_alu(){
+    }
+};
+
+csl_unit chip{
+    // add clock and signal ports to the chip unit
+    csl_signal sgn_clock; // must be outside the chip
+    csl_signal sgn_reset; // and conected throw 
+    csl_signal sgn_stall; // fallowing ports:p_*-
+    csl_port p_clock(input);
+    csl_port p_reset(input);
+    csl_port p_stall_chip(input);
+    // add units to top unit,connect clk,rst signals to/between them
+    u_pc pc(.ifc_pc.p_clk(sgn_clk),.ifc_pc.p_rst(sgn_reset),.ifc_unit_pc_r.p_unitOut(ifc_unit_im_l.p_unitIn),.ifc_unit_pc_r.p_unitIn(ifc_unit_im_l.p_unitOut),.ifc_pc.p_stall(sgn_stall));
+    u_im im(.ifc_im.p_clk(sgn_clk),.ifc_im.p_rst(sgn_reset),.ifc_unit_im_r.p_unitOut(ifc_unit_id_l.p_unitIn),.ifc_unit_im_r.p_unitIn(ifc_unit_id_l.p_unitOut),.ifc_im.p_stall(sgn_stall));
+    u_id id(.ifc_id.p_clk(sgn_clk),.ifc_id.p_rst(sgn_reset),.ifc_unit_id_r.p_unitOut(ifc_unit_rf_l.p_unitIn),.ifc_unit_id_r.p_unitIn(ifc_unit_rf_l.p_unitOut),.ifc_id.p_stall(sgn_stall));
+    u_rf rf(.ifc_rf.p_clk(sgn_clk),.ifc_rf.p_rst(sgn_reset),.ifc_unit_rf_r.p_unitOut(ifc_unit_alu_l.p_unitIn),.ifc_unit_rf_r.p_unitIn(ifc_unit_alu_l.p_unitOut),.ifc_rf.p_stall(sgn_stall));
+    u_alu alu(.ifc_alu.p_clk(sgn_clk),.ifc_alu.p_rst(sgn_reset),.ifc_alu.p_stall(sgn_stall));
+
+    chip(){
+       sgn_clock.set_attr(clk);
+       sgn_reset.set_attr(rst);
+       sgn_stall.set_attr(stall);
+       //p_stall_chip.inverse(); // how can the signal be inversed?
+    }
+};
+
+// declaring opcode enum:
+csl_enum e_opcode{
+	halt = 4,         //000100b,
+	reti = 5,          //000101b,
+	trap = 6,         //000110b,
+	bcc = 8,         //001000b,
+	callm = 12,     //001100b,
+	callry = 13,     //001101b,
+	jmpm = 14,     //001110b,
+	jmpry = 15,     //001111b,
+	and_op =  17,       //010001b,
+	or_op =  18,          //010010b,
+	xor_op = 19,         //010011b,
+	sll = 20,          //010100b,
+	sra = 21,         //010101b,
+	srl = 22,          //010110b,
+	rotl = 23,         //010111b,
+	add_op = 24,        //011000b,	
+	adc =  25,       //011001b,
+	scc = 26,        //011010b,
+	sub =  28,       //011100b,
+	subc = 29,      //011101b,
+	subr = 30,       //011110b,
+	subrc = 31,     //011111b,
+	const_add =33, 	//100001b,
+	const_sub = 34, //100010b,
+	consth = 35,     //100011b,
+	lw = 38, 	//100110b,
+	lhu = 40,	//101000b,
+	lhs = 42,	//101010b,
+	lbu = 44,	//101100b,
+	lbs = 46,	//101110b,
+	sw = 54,	//110110b,
+	sh = 58,	//111011b,
+	sb = 62		//111110b	
+};
+
+//declaring csl_isa_fields that will be instanciated in more than one instr_format:
+csl_isa_field f_opcode {
+	f_opcode(){
+		set_type (opcode);
+		set_width( 6 );
+		set_enum( e_opcode );
+	} 
+};
+
+csl_isa_field f_field{
+	f_field() {
+		set_type( address );
+		set_width( 6 );
+	}
+};
+
+csl_isa_field f_imm {
+	f_imm() {
+		set_type ( selector );
+		set_width( 1 );
+	}
+};
+
+//declaring root_format
+csl_isa_element RISC_isa {
+	RISC_isa(){
+		set_type(root_format);
+		set_width(32);
+	}
+};  
+
+//declaring base_format derived from RISC_isa
+csl_isa_element  base_format : RISC_isa {
+	f_opcode f_opcode;
+	f_field operand1;
+	base_format() {
+		set_type( instr_format );
+		set_position( f_opcode, 31 );
+		set_next( f_opcode, operand1 );
+	}
+};
+
+//declaring formats(format1, format2, format3) derived from base_format
+csl_isa_element format1 : base_format{
+	csl_isa_field f1_operand2(1);
+	csl_isa_field f1_rez(19);
+	format1(){
+		set_type( instr_format);
+		f1_operand2.set_type( address );
+		f1_rez.set_type( constant ); //m or 16 bit n
+		set_next(operand1, f1_operand2);
+		set_next(f1_operand2, f1_rez);
+	}
+};
+
+csl_isa_element format2 : base_format{
+	f_field f2_operand2;
+	f_imm f2_imm;  //imm = 1
+	csl_isa_field f2_operand(13);
+	format2(){
+		set_type( instr_format);
+		f2_operand.set_type ( address );
+		set_next(operand1, f2_operand2);
+		set_next(f2_operand2, f2_imm);
+		set_next(f2_imm, f2_operand);		
+	}
+};
+
+csl_isa_element format3 : base_format{
+	f_field f3_operand2;
+	f_imm f3_imm; //imm = 0
+	csl_isa_field f3_spare(7);
+	csl_isa_field f3_rx(6);
+	format3(){
+		set_type( instr_format);
+		f3_spare.set_type( address  );
+		f3_rx.set_type( address );
+		set_next(f1_operand, f3_operand2);
+		set_next(f3_operand2, f3_imm);
+		set_next(f3_imm, f3_spare);
+		set_next(f3_spare, f3_rx); 
+	}
+};
+
+
+// adding instructions
+// for instructions that don't have set an mnemonic the default
+// value is the enum item name
+//#########################################################
+//Operators - these uI clear and set N C Z V status bits
+//#########################################################
+
+csl_isa_element i_add : format3 {
+	i_add() {
+		set_type( instr );
+		//f_opcode.set_enum_item( add_op );
+	}
+};
+
+csl_isa_element i_addc : format3 {
+	i_addc() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( addc );
+	}
+};
+
+csl_isa_element i_and : format3 {
+	 i_and() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( and_op );
+	}
+};
+
+csl_isa_element i_const_add : format1 {
+	 i_const_add() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( const_add );
+	}
+};
+
+csl_isa_element i_const_sub : format1 {
+	 i_const_sub() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( const_sub );
+	}
+};
+
+csl_isa_element i_const_h  : format1 {
+	 i_const_h() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( const_h );
+	}
+};
+
+csl_isa_element i_or : format3 {
+	 i_or() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( or_op );
+	}
+};
+
+csl_isa_element i_rotl : format3 {
+	 i_rotl() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( rotl );
+	}
+};
+
+csl_isa_element i_sll : format3 {
+	 i_sll() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( sll );
+	}
+};
+
+csl_isa_element i_sra : format3 {
+	 i_sra() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( sra );
+	}
+};
+
+csl_isa_element i_srl : format3 {
+	 i_srl() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( srl );
+	}
+};
+
+csl_isa_element i_sub : format3 {
+	 i_sub() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( sub );
+	}
+};
+
+csl_isa_element i_subc : format3 {
+	 i_subc() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( subc );
+	}
+};
+
+csl_isa_element i_subr : format3 {
+	 i_subr() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( subr );
+	}
+};
+
+csl_isa_element i_subrc : format3 {
+	 i_subrc() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( subrc );
+	}
+};
+
+csl_isa_element i_xor : format3 {
+	 i_xor() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( xor_op );
+	}
+};
+
+
+//#######################################################
+// Load & Store Instructions - do not affect status bit
+//#######################################################
+
+csl_isa_element i_lp : format2 {
+	 i_lp() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( lp );
+	}
+};
+
+csl_isa_element i_sq : format3 {
+	 i_sq() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( sq );
+	}
+};
+
+//#######################################################
+// Program Control - These uI do not affect status bit
+//#######################################################
+csl_isa_element i_bcc : format1 {
+	 i_bcc() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( bcc );
+                //f_opcode.set_mnemonic("BCC");
+	}
+};
+
+csl_isa_element i_callm : format1 {
+	 i_callm() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( callm );
+                //f_opcode.set_mnemonic("CALLM");
+	}
+};
+
+csl_isa_element i_callry : format1 {
+	 i_callry() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( callry );
+                //f_opcode.set_mnemonic("CALLRY");
+	}
+};
+
+csl_isa_element i_jmpm : format1 {
+	 i_jmpm() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( jmpm );
+                //f_opcode.set_mnemonic("JMPM");
+       }
+};
+
+csl_isa_element i_jmpry : format1 {
+	 i_jmpry() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( jmpry);
+                //f_opcode.set_mnemonic("JMPRY");
+	}
+};
+
+csl_isa_element i_halt : format1 {
+	 i_halt() {
+		set_type ( instr );
+		//f_opcode.set_enum_item( halt );
+                // f_opcode.set_mnemonic("HALT");
+	}
+};
+
+csl_isa_element i_nop : format1 {
+	 i_nop () {
+		set_type ( instr );
+		//f_opcode.set_enum_item( nop );
+                //f_opcode.set_mnemonic("NOP");
+	}
+};
+
+csl_isa_element i_reti : format1 {
+	 i_reti () {
+		set_type ( instr );
+		//f_opcode.set_enum_item( reti );
+                //f_opcode.set_mnemonic("RETI");
+	}
+};
+
+csl_isa_element i_trap : format3 {
+	 i_trap () {
+		set_type ( instr );
+		//f_opcode.set_enum_item( trap );
+                //f_opcode.set_mnemonic("TRAP");
+	}
+};
+
+//declaring register for pipestages
+csl_register pc_reg{
+    pc_reg(){
+       set_type(cnt); //pc???
+       set_width(32);//instr width
+       //how I connect the clk signal to the register?
+       //pc_reg.connect_clock(clk); 
+    }
+};
+
+csl_register rf_reg{
+    rf_reg(){
+       set_type(cnt); 
+       set_width(32);
+       //how I connect the clk signal to the register? 
+    }
+};
+
+csl_register alu_reg{
+    alu_reg(){
+       set_type(cnt); //pc???
+       set_width(32);
+       //how I connect the clk signal to the register? 
+    }
+};
+
+csl_signal sgn_stall;
+
+// declare pipeline
+csl_pipeline chip_pipeline(5); //5=nr of pipestages
+//chip_pipeline.connect_stall(sgn_stall);
+
+// declaring pipestages
+//csl_pipestage pc_stage();
+//csl_pipestage im_stage();
+//csl_pipestage id_stage();
+//csl_pipestage rf_stage();
+//csl_pipestage alu_stage();
+
+// set names to pipestages
+//pc_stage.set_pipestage_name("pc");
+//im_stage.set_pipestage_name("im");
+//id_stage.set_pipestage_name("id");
+//rf_stage.set_pipestage_name("rf");
+//alu_stage.set_pipestage_name("alu");
+
+// set number to pipestages
+//pc_stage.set_pipestage_number(0);
+//im_stage.set_pipestage_number(1);
+//id_stage.set_pipestage_number(2);
+//rf_stage.set_pipestage_number(3);
+//alu_stage.set_pipestage_number(4);
+
+//setting possition for pipestages
+//pc_stage.set_next(im_stage);
+//im_stage.set_next(id_stage);
+//id_stage.set_next(rf_stage);
+//rf_stage.set_next(alu_stage);
+
+// add pipestages to pipeline
+//chip_pipeline.add_pipestage(pc);
+//chip_pipeline.add_pipestage(im);
+//chip_pipeline.add_pipestage(id);
+//chip_pipeline.add_pipestage(rf);
+//chip_pipeline.add_pipestage(alu);
+
+// +adding register to pipestages
+//pc_stage.add(pc_reg);
+//rf_stage.add(rf_reg);
+//alu_stage.add(alu_reg);
+
+
+//### add IM unit(csl_ram)
+//csl_int instr_mem_num_wds(1 < 10); // 1K memory words
+//csl_sram instr_mem(instr_mem_num_wds, instruction_width);
+
+// connect the read and write ports of the instruction memory to the IM interface
+//instr_mem.connect_wr_data(im_wr_data);
+//instr_mem.connect_wr_addr(im_wr_addr);
+//instr_mem.connect_wr_en (im_wr_en );
+//instr_mem.connect_rd_addr(pc_addr);
+//instr_mem.connect_rd_en(pc_v);
+//instr_mem.connect_rd_addr(pc_addr);
+
+
+//### add ID(Instruction Decoder)
+//RISC_isa.gen_decoder_unit(inst_dec);
+
+// add output pipestage delay of 1
+//inst_dec.set_output_delay(1);
+
+// create a signal group using the inputs of the inst_dec
+//csl_signal_group inst_dec_in(inst_dec.get_inputs());
+
+// create a signal group using the outputs of the inst_dec
+//csl_signal_group inst_dec_out(inst_dec.get_outputs());
+
+// connect the signal groups to the id unit interface
+//id.add_interface(inst_dec_in);
+//id.add_interface(inst_dec_out);
+
+//### add RF
+// delay the outputs of the register file
+// add a pipeline to the output of the unit with a delay of 1
+//rf_reg.add_pipeline_delay(output, 1);
+//reg_file.gen_unit(regfile); // generate a register file unit named
+//.rf_reg.
+
+// create a signal group using the inputs of the inst_dec
+//csl_signal_group rf_in(regfile.get_inputs());
+
+// create a signal group using the outputs of the inst_dec
+//csl_signal_group rf_out(regfile.get_outputs());
+
+//regfile.add_interface(rf_in);
+//regfile.add_interface(rf_d0.get_output());
+//rf.set_address(31,0); //add the rf to the chip.s address space
+
+csl_register r_shr{
+   r_shr(){
+      set_width(32);
+      //connect_clock( clk );
+      set_type(sft);    //register type is shifter
+      //set_clock(clk);
+      //set_output(sr_out, 1);
+      //set_shift_type(shl, 0); //shift logical left and assign opcode
+      //set_shift_type(shr, auto); //slr, auto increment opcode
+      //set_shift_type(sar, auto); //shift arithmetic left
+      //set_shift_type(sal, auto); //shift arithmetic right
+      //set_shift_type(ral, auto); // rotate arithmetic left
+      //set_shift_type(rar, auto); // rotate arithmetic right
+   }
+};
+
+// add the valid logic to the pipeline
+//RISC_isa.add_valid(input_valid_bit);
+
+
+// define testbench clock that drives the DUT (ALU)
+
+csl_testbench tb_alu;
+
+csl_signal_pattern_generator sgn_pat_gen_clk{
+    sgn_pat_gen_clk(){
+        set_generator_type(clk);
+    }
+};

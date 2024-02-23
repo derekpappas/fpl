@@ -1,0 +1,130 @@
+csl_enum nm {
+	ag = 44,
+	ry = 8,
+	im = 92,
+	ed = 90,
+	op = 33,
+	op = 0
+};
+csl_enum xf {
+	eg = 87,
+	fn = 70,
+	uq = 77,
+	vh = 96,
+	hk = 50,
+	oo = 92,
+	dy = 30
+};
+csl_enum ps {
+	lr,
+	yg,
+	rh,
+	sv,
+	lh,
+	oa,
+	wo,
+	he,
+	uo,
+	rp,
+	in
+};
+csl_isa_instruction_format ji{
+    ji( ){
+     set_width( 1);
+     generate_decoder( kv);
+  }
+}
+;
+csl_isa_instruction vb : ji{
+    vb( ){
+    set_asm_mnemonic( csl_list "dh", "fh", "to", "gl");
+  }
+}
+;
+csl_isa mf{
+    mf( ){
+     set_decoder_name( "mu");
+     set_decoder_out_name_prefix( "dq");
+     set_decoder_out_name_suffix( "dv");
+     generate_decoder( ixkv);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo dl{
+   dl( ){
+  }
+}
+;
+csl_memory_map_page mg{
+    mg( ){
+     add_address_range( 1, 2);
+     set_address_increment( 0);
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_read_write, access_write);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_aligment( 8);
+     get_aligment( );
+     set_endianess( big_endianbig_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page pw{
+  mg vf;
+  mg cu;
+  mg sp;
+    pw( ){
+  }
+}
+;
+csl_memory_map_page vc{
+  mg sd;
+  pw lm;
+  mg dj;
+  pw qk;
+    vc( ){
+     add_address_range( 8, 4);
+     set_next_address( 3);
+     set_access_rights( access_write, none);
+     add( pw);
+     get_upper_bound( );
+     set_aligment( 0);
+     set_endianess( little_endian);
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map ni{
+    ni( ){
+     auto_gen_memory_map( );
+     set_top_unit( ix);
+mgpw.add_to_memory_map( 4); 
+mgpw.set_access_rights_enum( pw); 
+     set_prefix( vw);
+  }
+}
+;
+csl_register yt{
+    yt( ){
+     index_data_pair( ni, 3);
+     add_logic( wr_en);
+     reset_value( 9);
+     add_logic( gray_output);
+     set_count_amount( 5);
+  }
+}
+;
+csl_register fp{
+    fp( ){
+     set_depth( 2);
+     add_logic( read_valid);
+     set_const_value( 3);
+     add_logic( bypass);
+  }
+}
+;

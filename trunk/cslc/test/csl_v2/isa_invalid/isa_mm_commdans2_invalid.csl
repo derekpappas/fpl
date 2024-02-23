@@ -1,0 +1,23 @@
+ //illegal commands from mm in isa2
+
+csl_isa_field field(2);
+csl_isa_field field2(2);
+
+csl_memory_map mm1{
+    mm1(){
+       set_type(flat);
+       set_data_word_width(4);
+    }
+};
+
+csl_isa_element format{
+    mm1 mm1_i;      //can't do this
+    field field_i;
+    field field2_i;
+    format(){
+	set_type(instr_format);
+       set_width(mm1_i.get_data_word_width());  // can't do this too
+       set_position(field_i, 2);
+       set_next(field_i,field2_i);
+    }
+};

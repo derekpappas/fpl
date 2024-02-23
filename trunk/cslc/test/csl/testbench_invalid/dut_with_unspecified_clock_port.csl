@@ -1,0 +1,21 @@
+//andreim
+//13 October 2007
+//testbench must have a signal clk name that matches a port in DUT w/
+//clk attr (invalid test)
+
+csl_unit dut{
+   csl_port clk_p ( input );
+   
+   dut(){
+    // here should be set the port attr:  clk_p.set_attr ( clock );
+   }
+};
+
+csl_testbench tb{
+  csl_signal clk_sgn(reg);
+   dut dut_ (.clk_p(clk_sgn));
+   tb(){
+      clk_sgn.set_attr ( clock );
+      add_logic (clock, clk_sgn, 2, ns);
+   }
+};

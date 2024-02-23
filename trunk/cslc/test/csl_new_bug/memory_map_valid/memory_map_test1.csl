@@ -1,0 +1,34 @@
+//Monica
+//30 August 2007
+
+
+csl_unit u1{
+  u1(){
+    }
+};
+
+csl_unit u2{
+  u1 u1;
+  u2(){
+    }
+};
+
+csl_memory_map_page mpage1{
+	mpage1(){
+	add_address_range(0,40);
+        set_unit_name(u1);
+}
+};
+
+csl_memory_map_page mpage2{
+	mpage2(){
+	  add_address_range(0,200);
+	  set_unit_name(u2);
+          add_reserved_address_range(34,45);
+}
+}; 
+csl_memory_map mm{
+	mm(){
+      set_type(hierarchical);
+}
+};

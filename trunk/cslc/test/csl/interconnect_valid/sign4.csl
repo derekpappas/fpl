@@ -1,0 +1,18 @@
+//oanab
+//9 nov 2007
+
+csl_unit u1{
+  csl_port x(inout,tri0,4);
+  csl_port clk(input);
+  u1(){
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit u2{
+  csl_signal y(wire,4),clk;
+  u1 u1(.x(y),.clk(clk));
+  u2(){
+    clk.set_attr(clock);
+  }
+};

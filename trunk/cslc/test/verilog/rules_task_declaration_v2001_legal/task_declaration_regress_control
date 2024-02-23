@@ -1,0 +1,15 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+
+#exceptions:
+task_declaration1.v    skip    "too big"
+task_declaration2.v    skip    "too big"
+task_declaration3.v    skip    "too big"
+task_declaration4.v    skip    "too big"
+task_declaration5.v    skip    "too big"
+task_declaration6.v    skip    "too big"
+task_declaration7.v    skip    "too big"
+task_declaration8.v    skip    "too big"

@@ -1,0 +1,73 @@
+// Author: cghaba
+// Date: January 17, 2008
+
+/*
+         in                                            out0   out1
+.. ......|...........................................................
+.        ............................................     .     .   .
+.        .               .        .............     .     .     .   .
+. .......c...............c.......c........    .     .     .     .   .
+. .      . in            .   out .       .    .     .     .     .   .
+. .      .               .       .       .    .     .     .     .   .
+. .      .   ........    .       .       .    .     .     .     .   .
+. .    ......|...   .   ............     .   .................  .   .
+. .    . in out .   .   .in   out  .     .   .in0  in1  out  .  .   .
+. .    .        .   .   .          .     .   .               .  .   .
+. .    .  u_a   .   .   .  u_b     .     .   . u_d           .  .   .
+. .    ..........   .   ......... ..     .   .................  .   .
+. .                 .                    .                      .   .
+. .             u_c .                    .                      .   .
+. ..................c.....................                      .   .
+.                   .                                           .   .
+.                   .............................................   .
+. u_top                                                             .
+.....................................................................
+
+*/
+
+
+csl_unit u_a{
+  csl_port p_a_in(input,2);
+  csl_port p_a_out(output);
+  u_a(){
+  }
+};
+
+csl_unit u_b{
+  csl_port p_b_in(input,2);
+  csl_port p_b_out(output);
+  u_b(){
+  }
+};                       
+
+csl_unit u_c{
+  u_a a;
+  u_b b;
+  u_c(){
+  }
+};
+
+csl_unit u_d{
+  csl_port p_d_in0(input);
+  csl_port p_d_in1(input,2);
+  csl_port p_d_out(output);
+  u_d(){
+  }
+};
+
+csl_unit u_top{
+  csl_port p_t_in(input,2);
+  csl_port p_t_out0(output);
+  csl_port p_t_out1(output);
+
+  u_c c;
+  u_d d;
+  u_top(){
+    p_t_in.connect_by_pattern(a.p_a_in);
+    p_t_in.connect_by_pattern(b.p_b_in);
+    p_t_in.connect_by_name(d.p_d_in1);
+    p_t_out1.connect_by_pattern(a.p_a_out);
+    d.p_d_in0.connect_by_pattern(b.p_b_out);
+    d.p_d_out.connect_by_name(p_t_out0);    
+  }
+};

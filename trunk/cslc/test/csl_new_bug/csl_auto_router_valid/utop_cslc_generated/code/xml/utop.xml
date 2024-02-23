@@ -1,0 +1,40 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="utop">
+<port name="rst" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="clk" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="tin1" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="tin2" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="tout1" offset="0" upper="36-1" lower="0" direction = "output" type = "wire" />
+<interface name="ifc11_i3" >
+<port name="pin" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="pout" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="ifc12_i3" >
+<port name="pin" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="pout1" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="pout2" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<instantiation type = "uabc">
+<instance name="u0">
+<f2a formal = "ar_clk_clock" actual = "clk" />
+<f2a formal = "ar_rst_reset" actual = "rst" />
+<f2a formal = "ifc11_i2.pin" actual = "ifc11_i3.pin" />
+<f2a formal = "ifc11_i2.pout" actual = "ifc11_i3.pout" />
+<f2a formal = "ifc12_i2.pin" actual = "ifc12_i3.pin" />
+<f2a formal = "ifc12_i2.pout1" actual = "ifc12_i3.pout1" />
+<f2a formal = "ifc12_i2.pout2" actual = "ifc12_i3.pout2" />
+</instance>
+</instantiation>
+<instantiation type = "u21">
+<instance name="u21_i">
+<f2a formal = "ifcrc2.clock" actual = "clk" />
+<f2a formal = "ifcrc2.reset" actual = "rst" />
+<f2a formal = "pin1" actual = "tin1" />
+<f2a formal = "pin2" actual = "tin2" />
+<f2a formal = "pout" actual = "tout1" />
+</instance>
+</instantiation>
+</unit>
+</design>

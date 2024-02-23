@@ -1,0 +1,11 @@
+//oanab
+//18 ian 2008
+//connecting 2 signals from the same signal group
+//can connect be used in the signal group's scope?
+
+csl_signal_group sg {
+  csl_signal s1,s2,s3(2);
+  sg () {
+    s1.connect(s2);
+  }
+};

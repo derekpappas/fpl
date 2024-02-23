@@ -1,0 +1,9 @@
+- copy this file to your home directory
+- add the following lines in your .emacs file
+
+(if (file-exists-p "~/verilog_mode.el")
+    (load-file "~/verilog_mode.el"))
+    
+- to turn on the verilog mode execute: 
+    M-x verilog-mode
+    

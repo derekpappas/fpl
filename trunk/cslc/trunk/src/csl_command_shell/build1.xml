@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+  <project name="CSLC - ProjectX" default="buildWithDependencies">
+
+    <!-- debug set property target -->
+    <target name="setDebugFlag">
+      <property name="debugFlag" value="yes"/>
+      <echo message="////////////// Debugging enabled /////////////"/>
+    </target>
+    
+    <!-- coverage set property target -->
+    <target name="setCoverageFlag">
+      <property name="coverageFlag" value="yes"/>
+      <echo message="////////////// Coverage Enabled /////////////"/>
+    </target>
+
+    <!-- coverage set property target -->
+    <target name="setWallFlag">
+      <property name="wallFlag" value="yes"/>
+      <echo message="///////////////// All Warnings Enabled ////////////////"/>
+    </target>
+
+    <!-- the setDebug flag is set when this target is called -->
+    <target name="debug" depends="setDebugFlag,buildWithDependencies"/>
+
+    <!-- the setDebug flag is set when this target is called (to be called from the root) -->
+    <target name="debugWithoutDependencies" depends="setDebugFlag,buildOnly"/>
+    
+    <!-- the setCoverage flag is set when this target is called -->
+    <target name="coverage" depends="setCoverageFlag,buildWithDependencies"/>
+    
+    <!-- the setCoverage flag is set when this target is called (to be called from the root) -->
+    <target name="coverageWithoutDependencies" depends="setCoverageFlag,buildOnly"/>
+
+    <!-- the setWall flag is set when this target is called -->
+    <target name="wall" depends="setWallFlag,buildWithDependencies"/>
+
+    <!-- the setWall flag is set when this target is called (target called from the top dir) -->
+    <target name="wallWithoutDependencies" depends="setWallFlag,buildOnly"/>
+    
+    <!-- location of the sources directory -->
+    <property name="srcDirPath" value="."/>
+    
+    <!-- the list of objects(sources) -->
+    <property name="srcList" value="WESAXHandlers.cpp,warn_err.cpp,we_logic.cpp"/>
+
+    <!-- the list of drivers(sources) for WarnErr -->
+    <property name="driverList" value="WE_Driver"/>
+
+    <!-- the list of sources for CSLC_Errors -->
+    <property name="errorsSourcesList" value="CSLC_Errors.cpp"/>
+
+    <!-- the name of sources of CSLC_Errors library -->
+    <property name="cslcErrorsLibraryName" value="CSLC_Errors"/>
+
+    <!-- relative path to build_utils -->
+    <property name="relUtilsPath" value="../../"/>
+
+    <target name="listDrivers">
+      <foreach list="${driverList}" delimiter="," param="name" target="printName" inheritall="true"/>
+    </target>
+
+    <!-- compiles the executables using the WarnErr library and each driver file -->
+    <target name="buildDrivers" depends="">
+      <foreach list="${driverList}" delimiter="," param="driverFileName" target="compileDriverBinary" inheritall="true">
+      </foreach>
+    </target>
+
+    <!-- WE library name -->
+    <property name="WELibraryName"   value="WE_Library"/>
+    <property name="WEBinaryName"    value="warnerr"/>
+    <property name="testLibraryName" value="test"/>
+    
+    <!-- needed for cpptask aditional module -->
+    <taskdef resource="cpptasks.tasks"/>
+    <typedef resource="cpptasks.types"/> 
+    <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+
+
+    <!-- calls external ANT script for testing corect dependencies: compiler version, ant version, and usefull property values -->
+    <target name="testDependencies" depends="getGeneralDependencies,getWEBuildPath">
+    </target>
+	
+    <!-- calls external ANT script for retrieving the build path for testing general dependencies -->
+    <target name="getGeneralDependencies" depends="">
+      <echo message="Geting General Dependencies" level="verbose"/>
+      <antfetch dir="${relUtilsPath}/build_utils" antfile="ant_check_dependencies1.xml" inheritAll="true" inheritRefs="true" return="platformTypeOut" target="generalDependencies">
+      </antfetch>
+    </target>
+
+    <!-- get platform type: used for lib directory name (lib64 on AMD64 and lib on i686) -->
+    <target name="getPlatformType">
+      <if>
+        <equals arg1="${platformTypeOut}" arg2="64" />
+          <then>
+	    <property name="platformType" value="64"/>
+          </then>
+      <else>
+        <property name="platformType" value=""/>
+      </else>
+      </if>
+    </target>
+        	      
+    <!-- calls external ANT script for retrieving the build path for XML Warn Error build path -->
+    <target name="getWEBuildPath" depends="">
+      <echo message="Getting Warn Error build Path" level="verbose"/>
+      <antfetch dir="${relUtilsPath}/build_utils" antfile="ant_check_dependencies.xml" inheritAll="true" inheritRefs="true" return="weBuildPath" target="createWEBuildPath">
+      </antfetch>
+      <echo message="returned weBuildPath: ${weBuildPath}" level="verbose"/>
+    </target>
+    
+    <!-- clean task: deteles all files from the build path except the xml logs and sub-build files -->
+    <target name="removeBinaries" depends="">
+      <delete>
+        <fileset dir="${weBuildPath}" casesensitive="yes">
+	  <include name="**/*"/>
+	  <!-- exclude from cleaning .xml files. They may contain usefull data -->
+	  <exclude name="*.xml"/>
+	  <exclude name="*.cpp"/>	  
+	  <exclude name="*.hpp"/>
+	  <exclude name="*.h"/>
+	  <exclude name="*.so*"/>
+	  <exclude name="*.a"/>
+	  <exclude name="**/*/*"/>
+	</fileset>
+      </delete>
+    </target>
+ 
+    <!-- clean task: deteles all files from the build path except the xml logs and sub-build files -->
+    <target name="removeObjects" depends="">
+      <delete>
+        <fileset dir="${weBuildPath}" casesensitive="yes">
+	  <include name="**/*.o"/>
+	  <exclude name="*.xml"/>
+	  <exclude name="*.cpp"/>	  
+	  <exclude name="*.hpp"/>
+	  <exclude name="*.h"/>
+	  <exclude name="*.so*"/>
+	  <exclude name="*.a"/>
+	  <exclude name="**/*/*"/>
+	</fileset>
+      </delete>
+    </target>
+    
+    <property name="down" value=".."/>
+    <!--exec executable="pwd" os="Linux"/-->
+    
+    <!-- compile WE library -->
+    <target name="compileWE">
+      <cc outfile="${weBuildPath}/${WELibraryName}" outtype="static">
+        <compiler name="g++">
+	  <fileset dir="${srcDirPath}" casesensitive="YES" includes="${srcList}"/>
+	  <compilerarg value="-g" if="debugFlag"/>
+	  <compilerarg value="-fprofile-arcs -ftest-coverage" if="coverageFlag"/>
+          <compilerarg value="-I/usr/include/xercesc"/>
+	  <compilerarg value="-Wall" location="end" if="wallFlag"/>
+	</compiler>
+      </cc>
+      </target>
+
+    <!-- compile test library -->
+    <target name="compileCslcErrorsLib" depends="">
+      <cc outfile="${weBuildPath}/${cslcErrorsLibraryName}" outtype="static">
+        <compiler name="g++">
+	  <fileset dir="${srcDirPath}" casesensitive="YES" includes="${errorsSourcesList}"/>
+	  <compilerarg value="-g" if="debugFlag"/>
+	  <compilerarg value="-fprofile-arcs -ftest-coverage" if="coverageFlag"/>
+          <compilerarg value="-I/usr/include/xercesc"/>
+	  <compilerarg value="-Wall" location="end" if="wallFlag"/>
+	</compiler>
+      </cc>
+      </target>
+      
+    <!-- build WE binary -->
+    <target name="buildWE" depends="getPlatformType">
+      <cc outfile="${weBuildPath}/${WEBinaryName}">
+        <linker name="g++">
+	  <libset libs="stdc++"/>
+	  <libset dir="${weBuildPath}" libs="${WELibraryName}"/>
+	<libset dir="/usr/lib${platformType}" libs="xerces-c"/>
+	</linker>
+      </cc>
+    </target>
+
+    <!-- compiles executables using the WE_ibrary and a driver file -->
+    <target name="compileDriverBinary">
+      <cc outfile="${weBuildPath}/${driverFileName}">
+        <compiler name="g++">
+          <fileset dir="${srcDirPath}" casesensitive="yes" includes="${driverFileName}.cpp"/>
+	  <compilerarg value="-g" if="debugFlag"/>
+	  <compilerarg value="-fprofile-arcs -ftest-coverage" location="end" if="coverageFlag"/>
+	</compiler>
+	<linker name="g++">
+	  <libset dir="${weBuildPath}" libs="WE_Library,gcov"/>
+        </linker>
+      </cc>
+    </target>
+
+    <!-- default target name: triggers all other targets -->
+    <target name="buildWithDependencies" depends="testDependencies,compileWE,buildWE,buildDrivers"/>
+
+    <!-- default target name: triggers all other targets -->
+    <target name="errors" depends="testDependencies,compileCslcErrorsLib"/>
+    
+    <!-- builds without testing dependencies(to be called from the project root) -->
+    <target name="buildOnly" depends="compileWE,buildWE,buildDrivers"/>
+    
+    <!-- to be called from the src and not from the root -->
+    <target name="clean" depends="testDependencies,removeBinaries"/>
+    
+    <!-- to be called from root -->
+    <target name="cleanWithoutDependencies" depends="removeBinaries"/>
+    
+  </project>

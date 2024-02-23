@@ -1,0 +1,19 @@
+csl_isa_field f_op(2);
+csl_isa_field f_op2(3);
+
+csl_isa_element format{
+    csl_isa_element format2:format{
+       format2(){
+       set_width(5);
+       }
+    };
+    format(){
+    set_width(5);
+    }
+};
+
+csl_isa_element add : format{
+    add(){
+    set_type(instr);
+    }
+};

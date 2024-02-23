@@ -1,0 +1,16 @@
+
+CC = g++ 
+OPT    = -O3  
+DEBUG  =    
+CFLAGS = $(DEBUG) $(OPT) -fexceptions 
+
+MODULE = main 
+SRCS = Va2r_tap.cpp \
+Va2r_tap.h \
+Va2r_tap__Syms.cpp \
+Va2r_tap__Syms.h \
+ main.cpp 
+
+OBJS = $(SRCS:.cpp =  main.o)  $(SSM_HOME)/hw/verilator-3.801/test_sc/obj_dir/verilated.o
+
+include ./Makefile.defs

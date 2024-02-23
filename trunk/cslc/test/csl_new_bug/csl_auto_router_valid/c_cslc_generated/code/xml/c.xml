@@ -1,0 +1,30 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="c">
+<interface name="ifc10" >
+<port name="p_x" offset="0" upper="88-1" lower="0" direction = "input" type = "wire" />
+<interface name="ifc00" >
+<port name="p_m" offset="0" upper="78-1" lower="0" direction = "input" type = "wire" />
+<port name="p_n" offset="0" upper="64-1" lower="0" direction = "output" type = "wire" />
+<port name="p_o" offset="0" upper="78-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifc01" >
+<port name="p_m" offset="0" upper="78-1" lower="0" direction = "input" type = "wire" />
+<port name="p_n" offset="0" upper="64-1" lower="0" direction = "output" type = "wire" />
+<port name="p_o" offset="0" upper="78-1" lower="0" direction = "input" type = "wire" />
+</interface>
+</interface>
+<signal name="s_m" offset="0" upper="78-1" lower="0" type = "wire"/>
+<signal name="s_c" offset="0" upper="152-1" lower="0" type = "wire"/>
+<instantiation type = "b">
+<instance name="b0">
+<f2a formal = "ifc10.ifc00.p_n" actual = "ifc10.ifc00.p_n" />
+<f2a formal = "ifc11" actual = "ifc10" />
+<f2a formal = "p_c" actual = " offset="0" upper="151" lower="88"/>
+s_c" />
+<f2a formal = "p_m" actual = "s_m" />
+</instance>
+</instantiation>
+</unit>
+</design>

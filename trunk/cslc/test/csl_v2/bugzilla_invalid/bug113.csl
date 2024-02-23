@@ -1,0 +1,3 @@
+csl_signal sgn85,sgn86,sgn87,sgn88,sgn89;
+//sgn85 don't have a lower index set
+sgn85.set_lower_index(sgn85.get_lower_index());

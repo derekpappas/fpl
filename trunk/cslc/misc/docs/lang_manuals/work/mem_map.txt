@@ -1,0 +1,58 @@
+
+This goes in the mem map doc
+The page size needs to be specified for a virtual memory.
+<page_number>_<address>
+  000_0..(n-1)
+  001_0..(n-1)
+  010_0..(n-1)
+  011_0..(n-1)
+  100_0..(n-1)
+  101_0..(n-1)
+  110_0..(n-1)
+  111_0..(n-1)
+
+Rules for adding one memory map to another memory map
+
+  F H V
+F 1 1 1
+H 0 1 0
+V 0 0 0 
+
+F = flat
+H = hierarchical
+V = virtual
+
+If the source memory map size exceeds the space ramaining of the page, it is an error!
+
+hierarchical memory map
+Unit addresses
+1. The unit addresses can be automatically generated which guarentees that the unit 
+   addresses are not duplicated.
+
+2. The unit addresses are specfied by the user and the mem map elab unit checks that 
+there are no dpulicate addresses. 
+
+
+Broadcasting -> only in CSLOM (in lib only after interconnect gets implemented in library)
+send the same information to all units in the scope based on a broadcast bit.
+If the scope_name is the top of the design then all units listen to the broadcast bit
+
+unit_name.set_broadcast(); 
+
+Hierarchical broadcast can be created by setting broadcast on lower level units.
+
+csl_unit top, a,b,d;
+top.add_instance(a);
+top.add_instance(b);
+top.add_instance(c);
+
+top.set_broadcast(); // all units listen to the "top" broadcast bit
+
+a.set_broadcast();  // all units listen to the "a" broadcast bit
+b.set_broadcast();  // all units listen to the "b" broadcast bit
+c.set_broadcast();  // all units listen to the "c" broadcast bit
+
+Global and local memory maps;
+
+
+

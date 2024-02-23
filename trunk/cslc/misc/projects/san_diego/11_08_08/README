@@ -1,0 +1,61 @@
+
+To run the script : csl_csv_gen.pl -f agent_cl.csv -i agent_cl.ifc.lib.csl -d agent_cl.hier 
+To compile the generated code : cslc agent_cl.ifc.lib.csl generated/agent_cl.csl
+
+
+Auto CSL generation
+This is a gui prototype. Enter the interface or signal once and it gets added to all the
+correct places in the sender/receiver.
+With the spreadsheet we can code complex design in a very short period of time
+We can build hierarchical designs with multiple spreadsheets
+
+CSL interface library (*.ifc.lib.csl)
+================================================================================
+This file contains the definitions of the CSL interfaces.
+The program should check that the interfaces used in the spreadsheet
+exist in the CSl interface library.
+
+Connectivity spreadsheet (*.csv)
+================================================================================
+The lefthand column and the upper row contain the same set of instance names.
+The cells contain the interfaces.
+The perl program reads the spreadsheet and creates the CSL code.
+The interface appears at the intersection of the from/to unit instances.
+
+In the spreadsheet cells the user adds different csl objects.
+connection: ifc(<from_instance_name>, <to_instance_name>, <actual_name>)
+Whatever goes between two blocks can be added:
+we can put csl_port, 
+
+The interface is placed in the sender and receiver and reversed in the receiver if the connection is SS. If a port is used, the script checks the directions and reverses the port if necessary.
+The connection is added to a global list which is then added to the top level.
+
+The interface/port is moved from the cell to both the sender and the receiver.
+The spreadsheet generates a csv file which is read by the Perl program
+which generates csl interconnect code.
+
+Hierarchy file (*.hier)
+================================================================================
+The hier file contains the design hierarchy.
+When the design hierarchy is read in, a map is constructed with the name of each instance and the HID path to the instance.
+When the connection list is read then each instance name in the connection list pair
+is converted to the HID path and added to the root unit constructor.
+
+
+
+Generated csl code.
+The file with the csl code is generated in the generated/ directory and contains the units with the interfaces connected in the top unit.
+
+
+Verilog code.
+The verilog code generated with cslc is copied in the verilog_gen_code/ directory and contains the .v files for every unit, the defines and a .vf file which can be used to compile all the verilog files in the following manner:
+   iverilog -c agent_cluster2.vf
+
+
+Vhdl code.
+The vhdl code generated with cslc is copied in the vhdl_gen_code/ directory and contains the .vhd files for every unit and a .vh file which can be used to compile all the vhdl files in the following manner:
+ - in the directory with the vhdl files : vhdlp /storage/users/*name*/fpl/cslc/trunk/src/cdom/vhdl_lib/csl_util_package.vhd -work csl_util
+ - then : vhdlp `cat agent_cluster2.vh`
+
+
+

@@ -1,0 +1,21 @@
+csl_memory_map_page mpage0{
+mpage0(){
+add_address_range(0,255);
+set_data_word_width(32);
+}
+};
+
+csl_memory_map_page mpage1{
+  mpage0 mpage0;
+mpage1(){
+add_address_range(0,255);
+set_data_word_width(mpage0.get_word_width());
+}
+};
+csl_memory_map mmap{
+mpage0 mp0;
+mpage1 mp1;
+mmap(){
+  
+}
+};

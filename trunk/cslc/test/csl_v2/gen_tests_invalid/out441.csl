@@ -1,0 +1,127 @@
+csl_enum xe {
+	rs = 2,
+	jw = 73,
+	dx = 52,
+	xj = 81,
+	hq = 18,
+	wq = 98,
+	pg = 41
+};
+csl_enum yk {
+	af = 40
+};
+csl_enum cw {
+	kl,
+	no,
+	yi,
+	iw,
+	mg,
+	eh,
+	yn,
+	ef,
+	lf,
+	ou,
+	vl,
+	nl,
+	tm
+};
+csl_isa_instruction_format qp{
+    qp( ){
+     set_width( 6);
+     generate_decoder( lualoc);
+  }
+}
+;
+csl_isa_instruction si : qp{
+    si( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa_instruction yy : qp{
+    yy( ){
+    set_asm_mnemonic( og);
+  }
+}
+;
+csl_isa_instruction or : qp{
+    or( ){
+    set_asm_mnemonic( cj);
+  }
+}
+;
+csl_isa_instruction yi : qp{
+    yi( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_memory_map_page ky{
+    ky( ){
+     set_address_increment( 7);
+     set_next_address( 4);
+     add_reserved_address_range( 7, 9);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 5);
+     get_data_word_wodth( );
+     set_aligment( 2);
+     set_endianess( little_endianbig_endian);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page im{
+    im( ){
+     get_address_increment( );
+     add_reserved_address_range( 8, 2);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 0);
+     get_aligment( );
+     set_endianess( little_endian);
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page er{
+  ky av;
+  im oo;
+  ky tt;
+  im xj;
+    er( ){
+     add_address_range( 2, 6);
+  }
+}
+;
+csl_memory_map fq{
+    fq( ){
+     auto_gen_memory_map( );
+     set_top_unit( vp);
+     set_type( flat);
+imer.set_access_rights_enum( kyim); 
+     set_data_word_width( 9);
+     set_prefix( wm);
+  }
+}
+;
+csl_register ke{
+    ke( ){
+     set_range( {[3:5], [8:9], [5:4], [0:7], [1:2], [8:2]});
+     add_logic( rd_en);
+     add_logic( wr_en);
+     add_logic( gray_output);
+     set_count_direction( 8);
+  }
+}
+;
+csl_register hi{
+    hi( ){
+     set_width( 0);
+     add_logic( read_valid);
+     create_rtl_module( );
+     add_logic( bypass);
+  }
+}
+;

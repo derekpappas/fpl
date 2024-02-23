@@ -1,0 +1,4 @@
+`include "sb200.vf"
+`include "CY7C1328F_PL_DCD.v"
+`include "CY7C1328G_PL_DCD.v"
+

@@ -1,0 +1,24 @@
+AndreiB
+
+reffered documents:
+.fm file is /docs/manuals/production/csl_files/csl_psqn.fm
+
+document notes:
+- section 1.3 contains only some notes. What does PSCQN stand for ? Performance status control query network ?
+					What is the Performance monitor ? or cycle counter the event counter
+					whatcdog timer is part of the PSCQN ? and if so, how does it work with it ?
+					what are 
+WTA winner take all network 
+Different status networks
+Sync  barrier network
+Error flag network
+?
+- Figure 1.1 has no title and it's contents is unclear
+- below Figure 1.1 what is CSR generator ? Maybe Control Status Register ? What are the Automatic control status registers, Status registers, Control registers and memory mapped registers below ? How do they integrate in the context of PSCQN ?
+- section 1.7.1 Description Should it be moved somewhere in Concepts or it belongs to misc ?
+- Figure 1.2 has no title
+- below figure 1.2 what does JTAG interface mean ?
+- Tables 1.2, 1.3 and 1.4 have no title
+- text below Figure 1.4 is incomplete
+- tables 1.5 and 1.6 have no title
+- text below Table 1.6 is incomplete

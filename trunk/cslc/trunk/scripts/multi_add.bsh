@@ -1,0 +1,13 @@
+# CristiL
+# this script add to svn all the *csl file and then checks them in
+
+#!/bin/bash
+
+echo This scripts file will add all *csl files from the curent
+directory to svn and then check them in
+for i in $( ls *.csl ); do
+    # echo test : $i
+    svn add $i
+done
+
+svn ci -m "Update"

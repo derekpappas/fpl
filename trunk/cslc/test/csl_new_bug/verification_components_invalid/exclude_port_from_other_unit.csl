@@ -1,0 +1,37 @@
+//Monica
+//13 november 2007
+//invalid test --- exclusion_list for a port from other unit
+
+csl_unit top{
+  csl_port exp_data(output);
+  top(){}
+};
+csl_unit dut{
+    csl_port stim_d(input),stim_v(input);
+    csl_port exp_v(output),exp_d(output);
+    csl_port clk(input);
+  dut(){
+    clk.set_attr(clock);
+  }
+};
+csl_vector stim{
+  stim(){
+    set_unit_name(dut);
+    set_direction(input);
+  }
+};
+csl_vector exp{
+  exp(){
+    set_unit_name(dut);
+    set_direction(output);
+    exclusion_list(exp_data);    //error  exp_data doesn't exist in DUT , it is from top unit
+  }
+};
+csl_testbench tb{
+  csl_signal clk(reg);
+  dut dut;
+  tb(){
+    clk.set_attr(clock);
+    add_logic(clock, clk, 10, ns);
+  }
+};

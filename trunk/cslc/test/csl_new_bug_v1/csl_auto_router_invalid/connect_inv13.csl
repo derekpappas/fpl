@@ -1,0 +1,23 @@
+//oanab
+//1 feb 2008
+//connecting a port and a signal from the same unit
+
+csl_interface ifc {
+  csl_port x(input),y(output);
+  ifc () {}
+};
+
+csl_unit u1 {
+  ifc ifc1;
+  csl_port a(input);
+  u1 () {}
+};
+
+csl_unit u {
+  ifc ifc;
+  u1 u1;
+  csl_signal s;
+  u () {
+    ifc.x.connect(s); // s and x are in the same unit
+  }
+};

@@ -1,0 +1,15 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="block4">
+<interface name="a2r_block_in_ifc" >
+<port name="address" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="write_data" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="read" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="write" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="read_data" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="ready" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="error" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+</interface>
+</unit>
+</design>

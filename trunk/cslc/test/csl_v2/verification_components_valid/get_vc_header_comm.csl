@@ -1,0 +1,35 @@
+//oanab
+//7 nov 2007
+
+csl_unit dut{
+  csl_port stim_i(input),exp_o(output);
+  csl_port clk(input);
+dut(){
+  clk.set_attr(clock);
+ }
+};
+
+csl_vector stim{
+stim(){
+set_unit_name(dut);
+set_direction(input);
+ set_vc_header_comment("stim_vec");
+ }
+};
+
+csl_vector exp{
+exp(){
+set_unit_name(dut);
+set_direction(output);
+//set_vc_header_comment(stim.get_vc_header_comment());
+ }
+};
+
+csl_testbench tb{
+  csl_signal clk;
+  dut dut;
+  tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,10,ns);
+  }
+};

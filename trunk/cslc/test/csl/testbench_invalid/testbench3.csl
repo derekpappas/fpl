@@ -1,0 +1,57 @@
+//cghaba
+//October 2007
+
+// define the unit to be tested
+
+csl_register_file rf{
+  rf(){
+    set_width(16);
+    set_depth(16);
+  }
+};
+
+csl_state_data sd_s {
+  sd_s() {
+    set_mem_instance_name(rf);
+    set_vc_header_comment("State data for register file");
+    set_version(1);
+    set_radix(hex);
+    set_vc_max_number_of_valid_transactions(10);
+    set_vc_max_number_of_mismatches(2);
+  }
+};
+
+csl_vector v_stim_rf {
+  v_stim_rf(){
+    set_unit_name(rf);
+    set_direction(input);
+    set_vc_header_comment("Stimulus vector for register file");
+    set_version(1);
+    set_radix(bin);
+    //sev_vc_max_number_of_valid_transactions(16);
+    set_vc_max_number_of_mismatches(16);
+  }
+  };
+
+  csl_vector v_expect_rf{
+    v_expect_rf(){
+      set_unit_name(rf);
+      set_direction(output);    
+      set_vc_header_comment("Expected vector from register file");
+      set_version(1);
+      set_radix(bin);
+      //sev_vc_max_number_of_valid_transactions(16);
+      set_vc_max_number_of_mismatches(16);
+    }
+  };
+csl_testbench rf_tb {
+  rf rf;
+  csl_signal clk(reg);
+  rf_tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,10,ns);
+    add_logic(generate_waves,"alu_tb_waves",fsdb);
+    set_testbench_verilog_filename("alu_tb1");
+    add_logic(simulation_timeout_counter, 500);
+  }
+};

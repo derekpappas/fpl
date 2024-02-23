@@ -1,0 +1,12 @@
+//bug 946
+csl_memory_map_page pdqh1{
+    pdqh1(){
+     set_symbol_max_length(9);
+  }
+};
+
+csl_memory_map_page albj1{
+    albj1(){
+    set_symbol_max_length(spqu1.get_symbol_length());//the error appreas here
+  }
+};

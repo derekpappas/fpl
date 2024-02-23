@@ -1,0 +1,132 @@
+csl_enum ah {
+	gg = 72,
+	lr = 16,
+	hi = 64,
+	cp = 59,
+	wh = 94,
+	ln = 28,
+	hu = 7,
+	ig = 61
+};
+csl_enum wt {
+	tj = 15,
+	sf = 88,
+	pj = 72,
+	sl = 56,
+	mp = 38,
+	no = 15,
+	wu = 41,
+	wj = 29,
+	oe = 14,
+	tt = 47
+};
+csl_enum wr {
+	bi = 66,
+	hl = 5,
+	dp = 88,
+	rc = 52,
+	jl = 95,
+	ne = 36,
+	qd = 16,
+	ol = 18,
+	qd = 68,
+	cf = 74,
+	rb = 79
+};
+csl_isa_instruction_format ui{
+    ui( ){
+     generate_decoder( qfgwvp);
+  }
+}
+;
+csl_isa ws{
+    ws( ){
+     set_decoder_name( "gm");
+     set_decoder_out_name_prefix( "ua");
+     set_decoder_out_name_suffix( "tv");
+     print( isa.txt);
+  }
+}
+;
+csl_fifo xd{
+   xd( ){
+     add_logic( priority_bypass);
+  }
+}
+;
+csl_memory_map_page ln{
+    ln( ){
+     set_next_address( 2);
+     get_next_address( );
+     add_reserved_address_range( 6, 0);
+     get_lower_bound( );
+     set_data_word_width( 3);
+     get_aligment( );
+     set_endianess( big_endian);
+  }
+}
+;
+csl_memory_map_page nv{
+    nv( ){
+     add_address_range( 1, 8);
+     set_address_increment( 3);
+     get_address_increment( );
+     set_access_rights( access_write, access_write);
+     add( xd, "nu", 5);
+     get_lower_bound( );
+     set_data_word_width( 5);
+     set_endianess( big_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page td{
+  ln bc;
+  ln gd;
+  nv am;
+    td( ){
+     add_address_range( 9, 1);
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_read, access_read_write);
+     add_reserved_address_range( 0, 1);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 1);
+     set_aligment( 5);
+     get_aligment( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map fg{
+    fg( ){
+     set_top_unit( vfvp);
+     set_data_word_width( 2);
+     set_suffix( wp);
+  }
+}
+;
+csl_register kh{
+    kh( ){
+     index_data_pair( fg, 8);
+     get_atributes( );
+     add_logic( serial_output);
+     add_logic( wr_en);
+     set_value( 1);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register uk{
+    uk( ){
+     set_width( 3);
+     get_width( );
+     set_depth( 2);
+     set_const_value( 9);
+     add_logic( bypass);
+  }
+}
+;

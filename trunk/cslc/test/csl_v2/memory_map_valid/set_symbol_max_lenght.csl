@@ -1,0 +1,17 @@
+csl_memory_map_page mpage_0 {
+  mpage_0(){
+    add_address_range(0, 63);
+    set_symbol_max_length(10);
+  }};
+csl_memory_map_page mpage_1 {
+  mpage_0 mpage_0;
+  mpage_1(){
+    add_address_range(64, 512);
+     set_symbol_max_length(mpage_0.get_symbol_length()+10);
+  }};
+csl_memory_map mmap{
+  mpage_1 mpage_1;
+mmap(){
+
+}
+};

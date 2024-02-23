@@ -1,0 +1,42 @@
+//Monica
+//test for documentation
+
+csl_interface ifc1{
+  csl_port p1(output,8);
+  csl_port p2(output,4);
+  ifc1(){}
+};
+csl_interface ifc2{
+  csl_port p1(input,8);
+  csl_port p2(input,4);
+  ifc2(){}
+};
+csl_signal_group sg{
+  csl_signal p1(8);
+  csl_signal p2(4);
+  sg(){}
+};
+csl_unit a{
+  csl_signal sig1(16);
+  sg sg_i;
+  a(){}
+};
+csl_unit b{
+  csl_port pb1(input,16);
+  ifc2 ifc_i;
+  b(){}
+};
+csl_unit a1{
+  ifc1 ifc_i;
+  a a_i;
+  a1(){}
+};
+csl_unit top{
+  a1 a1_i;
+  b b_i;
+  top(){
+    a1_i.a_i.sig1.connect_by_name(b_i.pb1);
+    a1_i.a_i.sg_i.connect_by_name(a1_i.ifc_i);
+    a1_i.ifc_i.connect_by_name(b_i.ifc_i);
+  }
+};

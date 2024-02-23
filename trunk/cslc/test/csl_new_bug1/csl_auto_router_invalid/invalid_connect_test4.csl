@@ -1,0 +1,18 @@
+//monicah
+//01 feb 2008
+//invalid --  wrong objects type
+
+csl_unit u{
+  csl_port p1(input),p2(output);
+  u(){}
+};
+csl_unit u2{
+  csl_port p1(output),p2(input);
+  u2(){}
+};
+csl_unit top{
+  u u;
+  u2 u2;
+  top(){
+    u.connect(u2.p1); //error
+  }};

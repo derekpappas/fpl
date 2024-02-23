@@ -1,0 +1,19 @@
+//author: Ines
+//testing: br_obj_name.get_width();
+//         - returns the width of the bitrange. 
+
+
+csl_bitrange obj_name;
+
+
+csl_bitrange obj_name1(11);
+obj_name1.set_offset(obj_name.get_width());
+
+csl_unit u1{
+  csl_signal s1;
+  csl_signal s2;
+  u1(){
+    s1.set_bitrange(obj_name);  
+    s2.set_bitrange(obj_name1);  
+  }
+};

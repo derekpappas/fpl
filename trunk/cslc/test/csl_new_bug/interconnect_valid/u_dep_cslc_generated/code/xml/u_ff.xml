@@ -1,0 +1,11 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u_ff">
+<port name="d" offset="0" upper="width-1" lower="0" direction = "input" type = "wire" />
+<port name="q" offset="0" upper="width-1" lower="0" direction = "output" type = "wire" />
+<port name="reset" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="enable" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="clk" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+name="width"1</unit>
+</design>

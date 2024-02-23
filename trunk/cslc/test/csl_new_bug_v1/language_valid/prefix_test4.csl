@@ -1,0 +1,65 @@
+//Monica
+
+csl_interface ifc1_in{
+  csl_port p_p1(input);
+  csl_port p_p2(input);
+  ifc1_in(){
+    set_prefix("");
+  }};
+csl_interface ifc2_in{
+  ifc1_in ifc11_in;
+  csl_port p_in1(input,4);
+  csl_port p_in2(input,16);
+  ifc2_in(){
+    set_prefix("input");
+  }
+};
+csl_interface ifc3_in{
+  ifc2_in ifc21_in;
+  ifc2_in ifc22_in;
+
+  csl_port p_in3(input,8);
+  ifc3_in(){
+    set_prefix("in_msg_ifc");
+    ifc21_in.set_prefix("in_");
+  }
+};
+
+csl_interface ifc1_out{
+  csl_port p_out1(output);
+  csl_port p_out2(output);
+  ifc1_out(){
+    set_prefix("");
+  }
+};
+csl_interface ifc2_out{
+  csl_port p_out3(output,4);
+  csl_port p_out4(output,32);
+  ifc1_out ifc11_out;
+
+  ifc2_out(){
+    set_prefix("out_");
+  }
+};
+csl_interface ifc3_out{
+  csl_port p_out5(output,8);
+  ifc2_out ifc21_out;
+  ifc2_out ifc22_out;
+
+  ifc3_out(){
+    ifc21_out.set_prefix("out2_ifc");
+    ifc22_out.set_prefix("");
+    no_prefix();
+  }
+};
+
+csl_unit u_u1{
+
+  ifc3_in ifc_input0,ifc_input1;
+  ifc3_out ifc_output0,ifc_output1;
+
+  u_u1(){
+       ifc_input0 = ifc_input1;
+       ifc_output0 = ifc_output1;
+  }
+};

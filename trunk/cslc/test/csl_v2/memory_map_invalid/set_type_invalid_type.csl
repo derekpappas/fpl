@@ -1,0 +1,30 @@
+//illegal: set_type gets invalid argument
+//andreim
+//15 June 2007
+ 
+csl_register_file rf1{
+        rf1(){
+            set_width(64); set_depth(4);
+        }
+};
+
+csl_register_file rf2{
+        rf1(){
+            set_width(64); set_depth(16);
+        }
+};
+
+csl_memory_map_page page0{
+	page0(){
+		add_address_range(0,127);
+		set_endianess(big_endian);
+	}
+};
+
+csl_memory_map mm{
+	page1 page_1(rf1);
+	page1 page_1(rf2); 
+	mm(){
+	set_type(bla);  // invalid type
+	}
+};

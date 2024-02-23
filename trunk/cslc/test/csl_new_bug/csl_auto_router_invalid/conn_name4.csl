@@ -1,0 +1,29 @@
+//oanab
+//23 iun 2008
+
+csl_interface ifc {
+  csl_port x(input),y(output);
+  ifc () {}
+};
+
+csl_unit a {
+  ifc ifc0;
+  a () {}
+};
+
+csl_unit b {
+  a a0;
+  ifc ifc1;
+  b () {
+    ifc1.reverse();
+    ifc1.set_prefix("ifc0");
+  }
+};
+
+csl_unit c {
+  b b0;
+  b b1;
+  c () {
+    b0.ifc1.connect_by_name(b1.a0.ifc0);
+  }
+};

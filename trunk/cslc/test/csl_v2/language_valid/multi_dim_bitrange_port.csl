@@ -1,0 +1,11 @@
+//oanab
+//12 nov 2007
+
+csl_multi_dim_bitrange mbr1(6);
+
+csl_unit u{
+  csl_multi_dim_bitrange mbr2(mbr1);
+  csl_signal a(wire,mbr1);
+  csl_port b(input,mbr2); 
+  u(){}
+};

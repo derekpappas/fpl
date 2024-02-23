@@ -1,0 +1,12 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u_alu">
+<port name="p_op1" offset="0" upper="15" lower="0" direction = "input" type = "wire" />
+<port name="p_op2" offset="0" upper="15" lower="0" direction = "input" type = "wire" />
+<port name="p_opsel" offset="0" upper="2" lower="0" direction = "input" type = "wire" />
+<port name="p_cin" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="p_res" offset="0" upper="15" lower="0" direction = "output" type = "wire" />
+<port name="p_cout" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</unit>
+</design>

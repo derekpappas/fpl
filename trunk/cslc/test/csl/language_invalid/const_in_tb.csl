@@ -1,0 +1,35 @@
+//oanab
+//12 nov 2007
+//constants can't be declared in a testbench
+
+csl_unit u{
+  csl_port x(input),y(output);
+  csl_port clk(input);
+  u(){
+    clk.set_attr(clock);
+  }
+};
+
+csl_vector stim{
+  stim(){
+    set_unit_name(u);
+    set_direction(input);
+  }
+};
+
+csl_vector exp{
+  exp(){
+    set_unit_name(u);
+    set_direction(output);
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk;
+  u u1;
+  const int a=10; // constants can only be declared in units or global scope
+  tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,4,ns);
+  }
+};

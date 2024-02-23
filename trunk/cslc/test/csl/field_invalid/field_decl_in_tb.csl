@@ -1,0 +1,36 @@
+//oanab
+//10 nov 2007
+//non-hier csl_field can't be declared in a tb
+
+
+csl_unit u{
+  csl_port stim_i(input),exp_o(output);
+  csl_port clk(input);
+  u(){
+    clk.set_attr(clock);
+  }
+};
+
+csl_vector stim{
+  stim(){
+    set_unit_name(u);
+    set_direction(input);
+  }
+};
+
+csl_vector exp{
+  exp(){
+   set_unit_name(u);
+   set_direction(output);
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(wire);
+  u u;
+ csl_field f(4,1);  // declaration should be in a unit, signal group, interface or global scope
+   tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,4,ns);
+  }
+};

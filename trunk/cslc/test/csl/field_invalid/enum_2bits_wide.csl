@@ -1,0 +1,17 @@
+// the enum has 5 values and is therefor 3-bits wide
+
+csl_enum enum1{
+  a,
+    b,
+    c,
+    d,
+    e,
+    f
+    };
+
+csl_field field1{
+  field1(){
+    set_width(2);
+    set_enum(enum1);
+  }
+};

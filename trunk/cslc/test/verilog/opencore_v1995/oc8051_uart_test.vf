@@ -1,0 +1,2 @@
+`include "oc8051_defines.v"
+`include "oc8051_uart_test.v"

@@ -1,0 +1,32 @@
+csl_unit im{
+  csl_port im_p(input);
+  im(){}
+};
+csl_unit id{
+  csl_port id_p(input);
+  id(){}
+};
+csl_unit rf{
+  csl_port rf_p(input);
+  rf(){}
+};
+csl_unit alu{
+  csl_port alu_p(input);
+  alu(){}
+};
+csl_unit wb{
+  csl_port wb_p(input);
+  wb(){}
+};
+csl_unit chip{
+  csl_signal clk1;
+   im im( .im_p(clk1));
+   id id( .id_p(clk1));
+   rf rf( .rf_p(clk1));
+   alu alu( .alu_p(clk1));
+  wb wb( .wb_p(clk1));
+  chip(){
+clk1.set_type(reg);}
+};
+
+

@@ -1,0 +1,7 @@
+//a bitrange can't have negative value
+csl_bitrange br(-5);
+
+csl_unit u{
+  csl_port p(input,br);
+  u(){}
+};

@@ -1,0 +1,65 @@
+// costelc
+// 02.Apr.2008
+
+
+csl_interface ifc{ 
+  csl_port ifc_p1_in(input,8), ifc_p2_out(output,8), p_sg(input,8);
+  ifc() {}
+};
+
+csl_unit a{
+  csl_port ck(input), reset(input);
+  csl_port p_out(output,8), p_in(input,8);
+    ifc ifc1;
+  a() {}
+};
+
+csl_unit b{
+  csl_port ck(input), reset(input);
+  csl_port p_out(output,8), p_in(input,8);
+  a a0;
+  b() {}
+};
+
+csl_unit c{
+  csl_port ck(input), reset(input);
+  csl_port p_out(output,8), p_in(input,8);
+
+  ifc ifc1;
+  b b0;
+  c() {}
+};
+csl_unit d{
+
+  c c0;
+  d() {
+
+}
+};
+csl_interface ifc_top{
+  csl_port ifc_p1_in(input,8), ifc_p2_out(output,8);
+  csl_port p_sg(input,8);
+  ifc_top() {}
+};
+csl_unit top{
+  csl_port clk(input), rst(input);
+  csl_port p_out1(output,8),p_in1(input,8);
+
+  
+  d d;
+  ifc_top ifc_top;
+  
+  top() {
+    clk.connect_by_pattern(ck);
+    rst.connect_by_pattern(reset);                                            
+    p_out1.connect_by_pattern(p_out);  // output_port-output_port       (parent / child)
+    p_in1.connect_by_pattern(p_in);  
+   ifc_top.connect_by_pattern(ifc1);  
+
+
+  }
+};
+  
+  
+
+

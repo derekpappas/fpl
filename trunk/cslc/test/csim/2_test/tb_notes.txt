@@ -1,0 +1,280 @@
+
+
+-------- Original Message --------
+Subject: 	problems with 2_test testbench
+Date: 	Mon, 16 Nov 2009 17:53:03 -0800
+From: 	Derek Pappas <depappas@yahoo.com>
+Reply-To: 	depappas@yahoo.com
+To: 	oana botez <oana_just_me@yahoo.com>
+CC: 	MONICA HELGIU <helgiu@yahoo.com>, Bettadapur Dinesh <dinesh.bettadapur@gmail.com>
+
+
+Hi,
+
+See number 8 below for the main reason that the simulation is not working.
+
+I created a file with the instructions for compiling and simulating the 
+verilog and viewing
+the generated waveforms.
+
+repos/trunk/cslc/test/csim/2_test/how_to_compile_sim_and_view_verilog.readme
+
+1. a.logic.v is an empty file-nothing is driving a.v's outputs
+
+2. don't rename the vector files in the testbench. Set a softlink instead
+ln -s vector_file_name name_in_tb
+
+3. The testbench module name does not match the file name
+a_cslc_generated/code/verilog$ grep module tb_testbench.v
+module tb();
+
+4. The address width is 16
+ parameter STIM_ADDR_WIDTH = 16;
+
+which means that the depth is set to
+
+ parameter MEM_DEPTH = ((1 << ADDR_WIDTH) - 1'b1);
+
+or 64k
+
+And there are three vectors in the file.
+
+5. You can see that the vector memory is loaded and you cans ee why 
+there is an error.
+There are 64k memory words and 3 memory locations loaded.
+
+VECTOR_FILE= stim
+WARNING: stim_expect_mem_template.v:68: $readmemb(stim): Not enough 
+words in the file for the requested range [0:65535].
+VECTOR_FILE= exp
+WARNING: stim_expect_mem_template.v:68: $readmemb(exp): Not enough words 
+in the file for the requested range [0:65535].
+Initial state of vector file stim
+mem[          0] = 1
+mem[          1] = 1
+mem[          2] = 1
+mem[          3] = x
+mem[          4] = x
+mem[          5] = x
+mem[          6] = x
+
+6. The defines files are empty
+2_test/a_cslc_generated/code/verilog$ cat stim_define.v
+`ifndef INC_GUARD_stim
+`define INC_GUARD_stim
+
+
+`endif
+
+2_test/a_cslc_generated/code/verilog$ cat exp_define.v
+`ifndef INC_GUARD_exp
+`define INC_GUARD_exp
+
+
+`endif
+
+7. The Verilog needs one Makefile that uses the steps in the 
+how_to_compile_sim_and_view_verilog.readme
+to compile, simulate, and view the waves
+
+8. AND THE MAIN REASON THAT THIS IS NOT WORKING IS:
+The reset_ signal is always 1 and is not reset.
+
+
+-dp
+
+1. The initial block in the testbench has issues.
+See the checked in block for an updated initial block that resets the testbench_reset
+signal.
+
+2. a.logic.v needs to be a register
+ always @( posedge clk or negedge testbench_reset )  begin
+   if ( ~(testbench_reset) )  begin
+     s_out <= 0;
+   end
+   else  begin
+     s_out <= s_out + 1;
+   end
+ end
+
+
+3. Change the CSL logic type for the s_out signal to be a reg not a default wire
+s_out is a wire which is internal to the module.
+s_out SHOULD BE A REG which is driven by a flip flop.
+
+
+4. Is a.v generated?
+Why is this signal assigned incorrectly?
+This means that this was never tested.
+
+If it is the out signal is not correct. See ***** below
+
+
+Also
+ assign   s_out = out; // *****
+
+SHOULD BE
+
+ assign out = s_out; // output = wire!!!!!!!
+
+module a(in,
+        out,
+        clk);
+// Location of source csl unit: file name = 2.csl line number = 1
+ input in;
+ input clk;
+ output out;
+ wire s_in;
+ wire s_out;
+ wire s_clk;
+ assign   s_in = in;
+ assign   s_out = out; // *****
+ assign   s_clk = clk;
+ `include "a.logic.v"
+endmodule
+
+5. It is not necessary to use continuous assigns for the input signal and to buffer them
+
+module a(in,
+        out,
+        clk);
+// Location of source csl unit: file name = 2.csl line number = 1
+ input in;
+ input clk;
+ output out;
+ wire s_in;
+ reg  s_out;
+ wire s_clk;
+ assign   s_in = in;
+ assign   out = s_out;
+ assign   s_clk = clk;
+ `include "a.logic.v"
+endmodule
+
+Should probably be
+
+module a(in,
+        out,
+        clk);
+// Location of source csl unit: file name = 2.csl line number = 1
+ input in;
+ input clk;
+ output out;
+ reg  s_out;
+
+ assign   out = s_out;
+
+ `include "a.logic.v"
+endmodule
+
+Comments about this one?
+1. module a needs a reset since it is a counter and should start counting after reset
+
+ a a0(.clk(clk),
+      .in(a0_in_in),
+      .reset_(testbench_reset_),
+      .out(a0_out_out));
+
+2. the reset signal in the testbench is low true and needs an underscore '_' after the name to  indicate the low assertion level.
+
+always @( posedge clk or negedge testbench_reset_ )  begin
+   if ( ~(testbench_reset_) )  begin
+     exp_a0_mismatch_count = {EXP_ADDR_WIDTH {1'b0}};
+   end
+   else  begin
+     if ( a0_out_out_mismatch_en )  begin
+       exp_a0_transaction_count = exp_a0_transaction_count + 1'b1;
+       exp_a0_mismatch_count = exp_a0_mismatch_count + 1'b1;
+       $display("mismatch detected: dut %s shows value %b; evepect vector %s shows value %b\n ", "a0", a0_out_out, "exp_a0", a0_out_out_expect);
+     end
+     if ( exp_a0_mismatch_count > EXP_VECTOR_MAX_ERR )  begin
+       $display("Maximum number or errors allowed for vector %s has been reached", "exp_a0");
+       $finish; // **** ADDED THIS LINE
+     end
+   end
+ end
+
+NOW THE SIMULATION EXITS
+
+derek@zurich:/storage1/fpl_svn_2009_09/repos/trunk/cslc/test/csim/2_test/a_cslc_generated/code/verilog$ vvp a.sim
+VECTOR_FILE= stim
+WARNING: stim_expect_mem_template.v:68: $readmemb(stim): Not enough words in the file for the requested range [0:65535].
+VECTOR_FILE= exp
+WARNING: stim_expect_mem_template.v:68: $readmemb(exp): Not enough words in the file for the requested range [0:65535].
+         2Dut outputs vs expected vectors:
+
+VCD info: dumpfile wavesDefaultOutputFile_dump opened for output.
+match detected: a0_out_out_match_en x
+
+match detected: a0_out_out_match_en 0
+
+mismatch detected: dut a0 shows value 1; evepect vector exp_a0 shows value 0
+
+Maximum number or errors allowed for vector exp_a0 has been reached
+
+
+The 2_test testbench is now working
+
+I checked the code.
+
+The 2_test verilog should be used as a template for the cslc testbenches.
+
+There are more fixes to make such as using the valid bit as a conditional for the vector compare.
+
+A report is generated at the end of the file.
+
+VCD info: dumpfile wavesDefaultOutputFile_dump opened for output.
+VECTOR_FILE= exp
+WARNING: stim_expect_mem_template.v:105: $readmemh(exp): Not enough words in the file for the requested range [0:65535].
+VECTOR_FILE= stim
+WARNING: stim_expect_mem_template.v:105: $readmemh(stim): Not enough words in the file for the requested range [0:65535].
+cycle:           0 mismatch detected: dut a0 shows value 000; expect vector exp_a0 shows value 110
+
+match detected: dut a0 shows value 100; evepect vector exp_a0 shows value 110
+
+cycle:           2 mismatch detected: dut a0 shows value 000; expect vector exp_a0 shows value 000
+
+match detected: dut a0 shows value 000; evepect vector exp_a0 shows value 000
+
+match detected: dut a0 shows value 000; evepect vector exp_a0 shows value 000
+
+match detected: dut a0 shows value 001; evepect vector exp_a0 shows value 001
+
+match detected: dut a0 shows value 010; evepect vector exp_a0 shows value 010
+
+match detected: dut a0 shows value 011; evepect vector exp_a0 shows value 011
+
+match detected: dut a0 shows value 100; evepect vector exp_a0 shows value 100
+
+match detected: dut a0 shows value 101; evepect vector exp_a0 shows value 101
+
+match detected: dut a0 shows value 110; evepect vector exp_a0 shows value 110
+
+match detected: dut a0 shows value 111; evepect vector exp_a0 shows value 111
+
+match detected: dut a0 shows value 000; evepect vector exp_a0 shows value 000
+
+match detected: dut a0 shows value 001; evepect vector exp_a0 shows value 001
+
+match detected: dut a0 shows value 010; evepect vector exp_a0 shows value 010
+
+match detected: dut a0 shows value 011; evepect vector exp_a0 shows value 011
+
+match detected: dut a0 shows value 100; evepect vector exp_a0 shows value 100
+
+match detected: dut a0 shows value 101; evepect vector exp_a0 shows value 101
+
+match detected: dut a0 shows value 110; evepect vector exp_a0 shows value 110
+
+no more expected vectors exiting
+
+************************************************
+end of simulation
+Match count =         17
+   Mismatch count =          2
+
+Transaction count  =         19
+
+************************************************
+Vermin: Verilog Parser v0.3.0 (w)1999-2007 BSI
+

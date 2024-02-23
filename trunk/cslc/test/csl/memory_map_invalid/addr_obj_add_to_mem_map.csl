@@ -1,0 +1,19 @@
+
+csl_fifo f1{
+  f1(){
+    set_width(8);
+    set_depth(8);
+    add_to_memory_map();
+   }
+};
+csl_unit top{
+  f1 f;
+
+  top(){
+  }
+};
+csl_memory_map mmap{  
+
+  mmap(){
+  }
+};

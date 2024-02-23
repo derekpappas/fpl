@@ -1,0 +1,97 @@
+
+CSL Regression              
+  Builder type  Command builder
+  Build command    /usr/bin/perl /srv/luntbuild/work/CSLC/trunk/scripts/run_regress.pl -hdl csl -mail 
+  Run command in directory    /srv/luntbuild/work/CSLC/trunk/scripts/ 
+  Wait for process to finish before continuing?    Yes 
+  Environment variables    PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/srv/luntbuild/work/CSLC/trunk/scripts
+REGRESSION_PATH=/srv/luntbuild/work/CSLC/trunk/scripts/
+WORK=/srv/luntbuild/work/CSLC
+JAVA_HOME=/usr/java/latest 
+  Build success condition    builderLogContainsLine("CSL REGRESSION DONE !")
+
+CSL_V2 Regression              
+  Builder type  Command builder
+  Build command    /usr/bin/perl /srv/luntbuild/work/CSLC/trunk/scripts/run_regress.pl -hdl csl_v2 -mail 
+  Run command in directory    /srv/luntbuild/work/CSLC/trunk/scripts/ 
+  Wait for process to finish before continuing?    Yes 
+  Environment variables    PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/srv/luntbuild/work/CSLC/trunk/scripts
+REGRESSION_PATH=/srv/luntbuild/work/CSLC/trunk/scripts/
+WORK=/srv/luntbuild/work/CSLC
+JAVA_HOME=/usr/java/latest 
+  Build success condition    builderLogContainsLine("CSL_V2 REGRESSION DONE !")
+
+CSL_NEW_BUG Regression              
+  Builder type  Command builder
+  Build command    /usr/bin/perl /srv/luntbuild/work/CSLC/trunk/scripts/run_regress.pl -hdl csl_new_bug -mail 
+  Run command in directory    /srv/luntbuild/work/CSLC/trunk/scripts/ 
+  Wait for process to finish before continuing?    Yes 
+  Environment variables    PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/srv/luntbuild/work/CSLC/trunk/scripts
+REGRESSION_PATH=/srv/luntbuild/work/CSLC/trunk/scripts/
+WORK=/srv/luntbuild/work/CSLC
+JAVA_HOME=/usr/java/latest 
+  Build success condition    builderLogContainsLine("CSL_NEW_BUG REGRESSION DONE !")
+
+ Associated builders  Debug , TestGen , CSL Regression, CSL V2 Regression, CSL_NEW_BUG Regression, 
+
+Build: Release
+Associated builders  Debug , TestGen , CSL_NO_POST_COMPILE Regression, CSL_V2_NO_POST_COMPILE Regression, CSL_NEW_BUG_NO_POST_COMPILE Regression, 
+
+CSL_NO_POST_COMPILE Regression              
+  Builder type  Command builder
+  Build command    /usr/bin/perl /srv/luntbuild/work/CSLC/trunk/scripts/run_regress.pl -hdl csl -mail -no_post_compile 
+  Run command in directory    /srv/luntbuild/work/CSLC/trunk/scripts/ 
+  Wait for process to finish before continuing?    Yes 
+  Environment variables    PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/srv/luntbuild/work/CSLC/trunk/scripts
+REGRESSION_PATH=/srv/luntbuild/work/CSLC/trunk/scripts/
+WORK=/srv/luntbuild/work/CSLC
+JAVA_HOME=/usr/java/latest 
+  Build success condition    builderLogContainsLine("CSL_NO_POST_COMPILE REGRESSION DONE !")
+
+
+CSL_V2_NO_POST_COMPILE Regression              
+  Builder type  Command builder
+  Build command    /usr/bin/perl /srv/luntbuild/work/CSLC/trunk/scripts/run_regress.pl -hdl csl_v2 -mail -no_post_compile 
+  Run command in directory    /srv/luntbuild/work/CSLC/trunk/scripts/ 
+  Wait for process to finish before continuing?    Yes 
+  Environment variables    PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/srv/luntbuild/work/CSLC/trunk/scripts
+REGRESSION_PATH=/srv/luntbuild/work/CSLC/trunk/scripts/
+WORK=/srv/luntbuild/work/CSLC
+JAVA_HOME=/usr/java/latest 
+  Build success condition    builderLogContainsLine("CSL_V2_NO_POST_COMPILE REGRESSION DONE !")
+
+CSL_NEW_BUG_NO_POST_COMPILE Regression              
+  Builder type  Command builder
+  Build command    /usr/bin/perl /srv/luntbuild/work/CSLC/trunk/scripts/run_regress.pl -hdl csl_new_bug -mail -no_post_compile 
+  Run command in directory    /srv/luntbuild/work/CSLC/trunk/scripts/ 
+  Wait for process to finish before continuing?    Yes 
+  Environment variables    PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/srv/luntbuild/work/CSLC/trunk/scripts
+REGRESSION_PATH=/srv/luntbuild/work/CSLC/trunk/scripts/
+WORK=/srv/luntbuild/work/CSLC
+JAVA_HOME=/usr/java/latest 
+  Build success condition    builderLogContainsLine("CSL_NEW_BUG_NO_POST_COMPILE REGRESSION DONE !")
+
+CSL_TEST_GEN_NO_POST_COMPILE Regression              
+  Builder type  Command builder
+  Build command    /usr/bin/perl /srv/luntbuild/work/CSLC/trunk/scripts/run_regress.pl -hdl csl_test_gen -mail -no_post_compile 
+  Run command in directory    /srv/luntbuild/work/CSLC/trunk/scripts/ 
+  Wait for process to finish before continuing?    Yes 
+  Environment variables    PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/srv/luntbuild/work/CSLC/trunk/scripts
+REGRESSION_PATH=/srv/luntbuild/work/CSLC/trunk/scripts/
+WORK=/srv/luntbuild/work/CSLC
+JAVA_HOME=/usr/java/latest 
+  Build success condition    builderLogContainsLine("CSL_TEST_GEN_NO_POST_COMPILE REGRESSION DONE !")
+
+runs hourly
+Build: Hourly_Regression
+Associated builders  Debug , TESTGEN, CSL_TEST_GEN NO_POST_COMPILE Regression, CSL_NO_POST_COMPILE Regression, CSL_V2_NO_POST_COMPILE Regression, CSL_NEW_BUG_NO_POST_COMPILE 
+Regression
+
+we run testgen and then run_regress.pl with -no_post_compile because there are 100k tests and if we post compile the generated coded the regression will take days
+
+runs nightly
+Build: Nightly_Regression
+Associated builders  Debug , CSL Regression, CSL_V2 Regression, CSL_NEW_BUG 
+Regression
+
+

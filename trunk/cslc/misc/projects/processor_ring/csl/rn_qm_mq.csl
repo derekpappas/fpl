@@ -1,0 +1,22 @@
+//oanab
+//21 feb 2008
+//queue manager and message queue
+
+csl_unit QM {
+  ifc_rn_msg rn_msg_st0; // input message - only cmd is used
+  csl_signal qm_cntl_st1; // set if proc is busy ???
+  csl_signal qm_mq_push;  // push message
+  csl_signal qm_mq_pop;   // pop message
+  csl_signal mq_qm_empty; // queue not empty
+  QM () {
+    qm_mq_push = rn_msg_st0.v & (qm_cntl_st1 | ~mq_qm_empty);
+    qm_mq_pop = ~qm_cntl_st1;
+  }
+};
+
+csl_unit MQ {
+  qm_mq qm_mq;
+  MQ () {}
+};
+
+

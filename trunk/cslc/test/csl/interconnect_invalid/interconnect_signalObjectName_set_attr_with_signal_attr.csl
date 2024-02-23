@@ -1,0 +1,15 @@
+csl_unit ff{
+  csl_port en1(input), clk1(input), data (input);
+  csl_port q(output);
+  ff(){}
+};
+
+csl_unit top{
+  ff ff1;
+  ff ff2;
+  csl_signal data_path, clock, enable, data_in, data_out;
+  top(){
+    clock.set_attr(clk);
+    enable.set_attr(en);
+
+     }};

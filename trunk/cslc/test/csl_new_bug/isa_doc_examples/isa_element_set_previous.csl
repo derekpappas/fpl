@@ -1,0 +1,45 @@
+//Monica
+
+csl_isa_field op{
+  op(){
+set_type(opcode);
+ set_width(5);
+  }
+};
+csl_isa_field d{
+  d(){
+set_type(selector);
+ set_width(2);
+  }
+};
+csl_isa_field file1{
+  file1(){
+set_type(selector);
+ set_width(7);
+  }};
+csl_isa_element format {
+  format() {
+    set_type(root_format);
+    set_width(14);
+  }
+};
+csl_isa_element format1: format{
+  op op;
+  d d;
+  file1 file1;  
+format1(){
+    set_type(instr_format);
+  }
+};
+csl_isa_element isa : format1 {
+  
+  isa() {
+    set_type(instr);
+    set_position(file1,0);
+    set_previous(file1,d);
+    set_previous(d,op);
+  }
+};
+
+csl_unit top {
+};

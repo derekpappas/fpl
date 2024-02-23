@@ -1,0 +1,371 @@
+<html>
+    <head>
+          <title>Current HDL: <TMPL_VAR NAME="currentHdl"> Test Summary</title>
+          <link href="<TMPL_VAR NAME="styleCss">" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+    <p align="left" class="title1">Current HDL: <TMPL_VAR NAME="currentHdl"> Test Summary</p>
+    <hr>
+    <div align="left">
+    Total Number of Tests            :&nbsp; <TMPL_VAR NAME="totalNumTests"       > <br>
+    Total Number of Tests that Passed:&nbsp; <TMPL_VAR NAME="totalNumTestsPassed" > <br> 
+    Total Number of Tests that Failed:&nbsp; <TMPL_VAR NAME="totalNumTestsFailed" > <br> 
+    Total Percentage Passed          :&nbsp; <TMPL_VAR NAME="totalPercentPassed"  > <br>
+    SVN Revision                     :&nbsp; <TMPL_VAR NAME="svnRevision"> <br>
+
+    Time to execute the regression  <TMPL_VAR NAME="regression_elapsed_time"> seconds
+    Date/Time              : <TMPL_VAR NAME="dateTime"            > <br>
+
+<!-- add these error cnts to the template
+    my @numberOfErrors=("Tests passed: cntValues{pass_cnt} of total_noskip \n",
+                        "Sources cnt for this testsuite: cntErrorValues{num_tests}\n",
+                         "Warnings:              cntErrorValues{warnings}\n",
+                        "Memcheck errors:       cntErrorValues{memcheckErrors}\n",
+                        "Exception errors:      cntErrorValues{exception_error}\n",      
+                        "Assert errors:         cntErrorValues{assert_error}\n",
+                        "Seg fault errors:      cntErrorValues{seg_fault_error}\n",
+                        "Abort errors:          cntErrorValues{abort_error}\n",
+                        "No via alt errors:     cntErrorValues{no_via_alt}\n",
+                        "Mismatch errors:       cntErrorValues{mismatch_error}\n",
+                        "Unexpect token errors: cntErrorValues{unexpected_token}\n",
+                        "Normal Error:          cntErrorValues{normal_error}\n",
+# FIX - RM                        "Errors preprocessing Verilog program: cntErrorValues{pps_error}\n",
+                        "Passed percentage:     percent_passed\n");
+-->
+    <br>
+    <table cellpadding="1" cellspacing="1" class="table" width="100%">
+       <tr align="center">
+           <td class="table_header"> HDL   </td>
+           <td class="table_header"> Test_Directory</td>
+           <td class="table_header"> total Dir Valgrind Errors</td>
+           <td class="table_header"> total Dir Major Errors</td>
+           <td class="table_header"> total Num Tests      </td>
+           <td class="table_header"> total Num Tests Pass</td>
+           <td class="table_header"> total Num Tests Fail</td>
+           <td class="table_header"> total Percent Pass </td>
+           <td class="table_header"> Over all</td>
+           <td class="table_header"> lexer Stage Pass Cnt         </td>
+           <td class="table_header"> parser Stage Pass Cnt        </td>
+           <td class="table_header"> walker Stage Pass Cnt        </td>
+           <td class="table_header"> auto route Stage Pass Cnt    </td>
+           <td class="table_header"> auto map Stage Pass Cnt    </td>
+           <td class="table_header"> cslom check Stage Pass Cnt  </td>
+           <td class="table_header"> cslom conn check Stage Pass Cnt    </td>
+           <td class="table_header"> inst Tree Stage Pass Cnt      </td>
+           <td class="table_header"> adapt Stage Pass Cnt       </td>
+           <td class="table_header"> cdom Check Stage Pass Cnt   </td>
+           <td class="table_header"> vlog Code Gen Stage Pass Cnt</td>
+           <td class="table_header"> C++ Code Gen Stage Pass Cnt    </td>
+           <td class="table_header"> CSim Code Gen Stage Pass Cnt    </td>
+	   <td class="table_header"> vhdl Code Gen Stage Pass Cnt</td>
+           <td class="table_header"> sysC Code Gen Stage Pass Cnt</td>
+           
+           <td class="table_header"> lexer Stage Pass          </td>
+           <td class="table_header"> parser Stage Pass         </td>
+           <td class="table_header"> walker Stage Pass         </td>
+           <td class="table_header"> auto route Stage Pass     </td>
+           <td class="table_header"> auto map Stage Pass     </td>
+           <td class="table_header"> cslom check Stage Pass     </td>
+           <td class="table_header"> cslom conn check Stage Pass     </td>
+           <td class="table_header"> inst Tree Stage Pass       </td>
+           <td class="table_header"> adapt Stage Pass        </td>
+           <td class="table_header"> cdom check Stage Pass    </td>
+           <td class="table_header"> vlog Code Gen Stage Pass </td>
+           <td class="table_header"> C++ Code Gen Stage Pass     </td>
+           <td class="table_header"> CSim Code Gen Stage Pass     </td>
+           <td class="table_header"> vhdl Code Gen Stage Pass </td>
+           <td class="table_header"> sysC Code Gen Stage Pass </td>
+
+           <td class="table_header"> cslc Compile Verilog Code </td>
+           <td class="table_header"> gcc Compile C++ Code      </td>
+           <td class="table_header"> gcc Compile Csim Code     </td>
+           <td class="table_header"> gcc Compile VHDL Code  </td>
+           <td class="table_header"> gcc Compile SystemC Code  </td>
+           <td class="table_header"> SystemC/Verilog simulation </td>
+       </tr>
+       <TMPL_LOOP NAME="testDirStatusLoop">
+       <tr align="center">
+           <td class="file_name"><TMPL_VAR NAME="currentHdl" ></td>
+           <td class="file_name"><a href="<TMPL_VAR NAME="testListSummaryFile">" target="mainframe"><TMPL_VAR NAME="currentTestDirectory"></a></td>
+           <td class="<TMPL_VAR NAME="directoryStatusCSS">"   ><TMPL_VAR NAME="totalDirValgrindErrorCnt">  </td>  
+           <td class="<TMPL_VAR NAME="directoryStatusCSS">"   ><TMPL_VAR NAME="totalDirMajorErrorCnt"   >  </td>  
+           <td class="<TMPL_VAR NAME="directoryStatusCSS">"   ><TMPL_VAR NAME="totalDirNumTests"      >  </td>
+           <td class="<TMPL_VAR NAME="directoryStatusCSS">"   ><TMPL_VAR NAME="totalDirNumTestsPassed">  </td> 
+           <td class="<TMPL_VAR NAME="directoryStatusCSS">"   ><TMPL_VAR NAME="totalDirNumTestsFailed">  </td> 
+           <td class="<TMPL_VAR NAME="directoryStatusCSS">"   ><TMPL_VAR NAME="totalDirPercentPassed" > </td>
+           <td class="<TMPL_VAR NAME="directoryStatusCSS">"   ><TMPL_VAR NAME="overall"               >  </td>
+           <td class="<TMPL_VAR NAME="lexerStatusCSS"         >"   ><TMPL_VAR NAME="lexerStagePassedCnt"         >  </td>
+           <td class="<TMPL_VAR NAME="parserStatusCSS"        >"   ><TMPL_VAR NAME="parserStagePassedCnt"        >  </td>
+           <td class="<TMPL_VAR NAME="walkerStatusCSS"       >"   ><TMPL_VAR NAME="walkerStagePassedCnt"        >  </td>
+           <td class="<TMPL_VAR NAME="autorouterStatusCSS"    >"   ><TMPL_VAR NAME="autorouterStagePassedCnt"    >  </td>
+           <td class="<TMPL_VAR NAME="automapperStatusCSS"    >"   ><TMPL_VAR NAME="automapperStagePassedCnt"    >  </td>
+           <td class="<TMPL_VAR NAME="cslom_checkerStatusCSS" >"  ><TMPL_VAR NAME="cslom_checkerStagePassedCnt"    >  </td>
+           <td class="<TMPL_VAR NAME="cslom_connection_checkerStatusCSS" >"   ><TMPL_VAR NAME="cslom_connection_checkerStagePassedCnt"    >  </td>
+           <td class="<TMPL_VAR NAME="instance_treeStatusCSS" >"   ><TMPL_VAR NAME="instance_treeStagePassedCnt"      >  </td>
+           <td class="<TMPL_VAR NAME="adapterStatusCSS"       >"   ><TMPL_VAR NAME="adapterStagePassedCnt"       >  </td>
+           <td class="<TMPL_VAR NAME="cdom_checkerStatusCSS"  >"   ><TMPL_VAR NAME="cdom_checkerStagePassedCnt"   >  </td>
+           <td class="<TMPL_VAR NAME="verilogcodegenStatusCSS">"   ><TMPL_VAR NAME="verilogcodegenStagePassedCnt">  </td>
+           <td class="<TMPL_VAR NAME="cppcodegenStatusCSS"    >"   ><TMPL_VAR NAME="cppcodegenStagePassedCnt"    >  </td>
+           <td class="<TMPL_VAR NAME="csimcodegenStatusCSS"   >"   ><TMPL_VAR NAME="csimcodegenStagePassedCnt"    >  </td>
+           <td class="<TMPL_VAR NAME="vhdlcodegenStatusCSS"    >"   ><TMPL_VAR NAME="vhdlCodeGenStagePassedCnt">  </td>
+           <td class="<TMPL_VAR NAME="syscodegenStatusCSS"    >"   ><TMPL_VAR NAME="sysCodeGenStagePassedCnt">  </td>
+           <td class="<TMPL_VAR NAME="lexerStatusCSS"         >"   ><TMPL_VAR NAME="lexerStagePassedPercentage"         > </td>
+           <td class="<TMPL_VAR NAME="parserStatusCSS"        >"   ><TMPL_VAR NAME="parserStagePassedPercentage"        > </td>
+           <td class="<TMPL_VAR NAME="walkerStatusCSS"       >"   ><TMPL_VAR NAME="walkerStagePassedPercentage"        > </td>
+           <td class="<TMPL_VAR NAME="autorouterStatusCSS"    >"   ><TMPL_VAR NAME="autorouterStagePassedPercentage"    > </td>
+           <td class="<TMPL_VAR NAME="automapperStatusCSS"    >"   ><TMPL_VAR NAME="automapperStagePassedPercentage"    > </td>
+           <td class="<TMPL_VAR NAME="cslom_checkerStatusCSS" >"   ><TMPL_VAR NAME="cslom_checkerStagePassedPercentage"    > </td>
+           <td class="<TMPL_VAR NAME="cslom_connection_checkerStatusCSS" >"   ><TMPL_VAR NAME="cslom_connection_checkerStagePassedPercentage"    > </td>
+           <td class="<TMPL_VAR NAME="instance_treeStatusCSS" >"   ><TMPL_VAR NAME="instance_treeStagePassedPercentage"      > </td>
+           <td class="<TMPL_VAR NAME="adapterStatusCSS"       >"   ><TMPL_VAR NAME="adapterStagePassedPercentage"       > </td>
+           <td class="<TMPL_VAR NAME="cdom_checkerStatusCSS"  >"   ><TMPL_VAR NAME="cdom_checkerStagePassedPercentage"   > </td>
+           <td class="<TMPL_VAR NAME="verilogcodegenStatusCSS">"   ><TMPL_VAR NAME="verilogcodegenStagePassedPercentage"> </td>
+           <td class="<TMPL_VAR NAME="cppcodegenStatusCSS"    >"   ><TMPL_VAR NAME="cppcodegenStagePassedPercentage"    > </td>
+           <td class="<TMPL_VAR NAME="csimcodegenStatusCSS"   >"   ><TMPL_VAR NAME="csimcodegenStagePassedPercentage"    > </td>
+           <td class="<TMPL_VAR NAME="vhdlcodegenStatusCSS"    >"   ><TMPL_VAR NAME="vhdlCodeGenStagePassedPercentage"> </td>
+           <td class="<TMPL_VAR NAME="syscodegenStatusCSS"    >"   ><TMPL_VAR NAME="sysCodeGenStagePassedPercentage"> </td>
+
+           <td class="<TMPL_VAR NAME="totalCslcCompVerilogCodeStagesPassedCSS" >" pninvpp="cslcCompileVerilogCode"><TMPL_VAR NAME="totalDirCslcCompVerilogCodeStagesPassed"> / <TMPL_VAR NAME="totalDirNumTests"> </td>
+           <td class="<TMPL_VAR NAME="totalGccCompCppCodeStagesPassedCSS"      >" pninvpp="gccCompileCppCode"     ><TMPL_VAR NAME="totalDirGccCompCppCodeStagesPassed"     > / <TMPL_VAR NAME="totalDirNumTests"> </td>
+           <td class="<TMPL_VAR NAME="totalGccCompCsimCodeStagesPassedCSS"     >" pninvpp="gccCompileCsimCode"    ><TMPL_VAR NAME="totalDirGccCompCsimCodeStagesPassed"    > / <TMPL_VAR NAME="totalDirNumTests"> </td>
+           <td class="<TMPL_VAR NAME="totalGccCompVHDLCodeStagesPassedCSS"  >" pninvpp="gccCompileVHDLCode "><TMPL_VAR NAME="totalDirGccCompVHDLCodeStagesPassed" > / <TMPL_VAR NAME="totalDirNumTests"> </td>
+           <td class="<TMPL_VAR NAME="totalGccCompSystemCCodeStagesPassedCSS"  >" pninvpp="gccCompileSystemCCode "><TMPL_VAR NAME="totalDirGccCompSystemCCodeStagesPassed" > / <TMPL_VAR NAME="totalDirNumTests"> </td>
+           <td class="<TMPL_VAR NAME="totalSysCVerilogSimStagesPassedCSS"  >" pninvpp="SysCVerilogSim "><TMPL_VAR NAME="totalDirSysCVerilogSimStagesPassed" > / <TMPL_VAR NAME="totalDirNumTests"> </td>
+       </tr>
+       </TMPL_LOOP>
+
+       <tr align="center">
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+      <td>*****</td>
+      <td>*****</td>
+      <td>*****</td>
+      <td>*****</td>
+      <td>*****</td>
+      <td>*****</td>
+      <td>*****</td>
+      <td>*****</td>
+      <td>*****</td>
+       </tr>
+       <tr align="center">
+           <td class="file_name"><TMPL_VAR NAME="currentHdl" >                                    </td>
+           <td class="file_name"> TOTAL Valid/Invalid                                             </td>
+           <td class="<TMPL_VAR NAME="overallStatusCSS">" total_invval="total_invval_valgrind_error_cnt" > <TMPL_VAR NAME="totalValgrindErrorCnt"> </td>
+           <td class="<TMPL_VAR NAME="overallStatusCSS">" total_invval="total_invval_major_error_cnt" > <TMPL_VAR NAME="totalMajorErrorCnt"> </td>
+           <td class="total_tests" total_invval="total_invval_num_tests"       > <TMPL_VAR NAME="totalNumTests"       > </td>
+           <td class="passed" total_invval="total_invval_num_tests_passed"> <TMPL_VAR NAME="totalNumTestsPassed" > </td> 
+           <td class="<TMPL_VAR NAME="overallStatusCSS">" total_invval="total_invval_num_tests_failed"> <TMPL_VAR NAME="totalNumTestsFailed" > </td> 
+           <td class="<TMPL_VAR NAME="overallStatusCSS">"                                        > <TMPL_VAR NAME="totalPercentPassed"  ></td>
+           <td class="<TMPL_VAR NAME="overallStatusCSS">"                                        > <TMPL_VAR NAME="totalOverall"        > </td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+           <td class="<TMPL_VAR NAME="totalCslcCompVerilogCodeStagesPassedCSS" >" pninvpp="cslcCompileVerilogCode"><TMPL_VAR NAME="totalCslcCompVerilogCodeStagesPassed"> / <TMPL_VAR NAME="totalNumTests"> </td>
+           <td class="<TMPL_VAR NAME="totalGccCompCppCodeStagesPassedCSS"      >" pninvpp="gccCompileCppCode"     ><TMPL_VAR NAME="totalGccCompCppCodeStagesPassed"     > / <TMPL_VAR NAME="totalNumTests"> </td>
+           <td class="<TMPL_VAR NAME="totalGccCompCsimCodeStagesPassedCSS"     >" pninvpp="gccCompileCsimCode"    ><TMPL_VAR NAME="totalGccCompCsimCodeStagesPassed"    > / <TMPL_VAR NAME="totalNumTests"> </td>
+	<td class="<TMPL_VAR NAME="totalGccCompVHDLCodeStagesPassedCSS"  >" pninvpp="gccCompileVHDLCode "><TMPL_VAR NAME="totalGccCompVHDLCodeStagesPassed" > / <TMPL_VAR NAME="totalNumTests"> </td>
+           <td class="<TMPL_VAR NAME="totalGccCompSystemCCodeStagesPassedCSS"  >" pninvpp="gccCompileSystemCCode "><TMPL_VAR NAME="totalGccCompSystemCCodeStagesPassed" > / <TMPL_VAR NAME="totalNumTests"> </td>
+           <td class="<TMPL_VAR NAME="totalSysCVerilogSimStagesPassedCSS"  >" pninvpp="SysCVerilogSim "><TMPL_VAR NAME="totalSysCVerilogSimStagesPassed" > / <TMPL_VAR NAME="totalNumTests"> </td>
+       </tr>
+       <tr align="center">
+           <td class="file_name"><TMPL_VAR NAME="currentHdl" >                                    </td>
+           <td class="file_name"> TOTAL Valid Tests                                               </td>
+           <td class="">******</td>                                                               
+           <td class="">******</td>                                                               
+           <td class="total_tests"  pnvalpc="total_valid_num_tests"       ><TMPL_VAR NAME="totalValNumTests"       > </td>
+           <td class="passed" pnvalpc="total_valid_num_tests_passed"><TMPL_VAR NAME="totalValNumTestsPassed" > </td> 
+           <td class="<TMPL_VAR NAME="overallValStatusCSS">" pnvalpc="total_valid_num_tests_failed"><TMPL_VAR NAME="totalValNumTestsFailed" > </td> 
+           <td class="<TMPL_VAR NAME="overallValStatusCSS">"   ><TMPL_VAR NAME="totalValPercentPassed"  ></td>
+           <td class="<TMPL_VAR NAME="overallValStatusCSS">"   ><TMPL_VAR NAME="totalValOverall"        > </td>
+ 
+           <td class="<TMPL_VAR NAME="lexerOverallValStatusCSS"         >" pnvalpc="lexer"         ><TMPL_VAR NAME="lexerStageTotalValPassCnt"         >  </td>
+           <td class="<TMPL_VAR NAME="parserOverallValStatusCSS"        >" pnvalpc="parser"        ><TMPL_VAR NAME="parserStageTotalValPassCnt"        >  </td>
+           <td class="<TMPL_VAR NAME="walkerOverallValStatusCSS"       >" pnvalpc="walker"       ><TMPL_VAR NAME="walkerStageTotalValPassCnt"        >  </td>
+           <td class="<TMPL_VAR NAME="autorouterOverallValStatusCSS"    >" pnvalpc="autorouter"    ><TMPL_VAR NAME="autorouterStageTotalValPassCnt"    >  </td>
+           <td class="<TMPL_VAR NAME="automapperOverallValStatusCSS">" pnvalpc="automapper"    ><TMPL_VAR NAME="automapperStageTotalValPassCnt"    >  </td>
+           <td class="<TMPL_VAR NAME="cslom_checkerOverallValStatusCSS" >" pnvalpc="cslom_checker" ><TMPL_VAR NAME="cslom_checkerStageTotalValPassCnt"    >  </td>
+           <td class="<TMPL_VAR NAME="cslom_connection_checkerOverallValStatusCSS" >" pnvalpc="cslom_connection_checker" ><TMPL_VAR NAME="cslom_connection_checkerStageTotalValPassCnt"    >  </td>
+           <td class="<TMPL_VAR NAME="instance_treeOverallValStatusCSS" >" pnvalpc="instance_tree" ><TMPL_VAR NAME="instance_treeStageTotalValPassCnt"      >  </td>
+           <td class="<TMPL_VAR NAME="adapterOverallValStatusCSS"       >" pnvalpc="adapter"       ><TMPL_VAR NAME="adapterStageTotalValPassCnt"       >  </td>
+           <td class="<TMPL_VAR NAME="cdom_checkerOverallValStatusCSS"  >" pnvalpc="cdom_checker"  ><TMPL_VAR NAME="cdom_checkerStageTotalValPassCnt"   >  </td>
+           <td class="<TMPL_VAR NAME="verilogcodegenOverallValStatusCSS">" pnvalpc="verilogcodegen"><TMPL_VAR NAME="verilogcodegenStageTotalValPassCnt">  </td>
+           <td class="<TMPL_VAR NAME="cppcodegenOverallValStatusCSS"    >" pnvalpc="cppcodegen"    ><TMPL_VAR NAME="cppcodegenStageTotalValPassCnt"    >  </td>
+           <td class="<TMPL_VAR NAME="csimcodegenOverallValStatusCSS"   >" pnvalpc="csimcodegen"   ><TMPL_VAR NAME="csimcodegenStageTotalValPassCnt"    >  </td>
+           <td class="<TMPL_VAR NAME="vhdlcodegenOverallValStatusCSS"    >" pnvalpc="vhdlCodeGen"    ><TMPL_VAR NAME="vhdlCodeGenStageTotalValPassCnt">  </td>
+           <td class="<TMPL_VAR NAME="syscodegenOverallValStatusCSS"    >" pnvalpc="sysCodeGen"    ><TMPL_VAR NAME="sysCodeGenStageTotalValPassCnt">  </td>
+           <td class="<TMPL_VAR NAME="lexerOverallValStatusCSS"         >" pnvalpp="lexer"         ><TMPL_VAR NAME="lexerStageTotalValPassPercent"         > </td>
+           <td class="<TMPL_VAR NAME="parserOverallValStatusCSS"        >" pnvalpp="parser"        ><TMPL_VAR NAME="parserStageTotalValPassPercent"        > </td>
+           <td class="<TMPL_VAR NAME="walkerOverallValStatusCSS"        >" pnvalpp="walker"       ><TMPL_VAR NAME="walkerStageTotalValPassPercent"         > </td>
+           <td class="<TMPL_VAR NAME="autorouterOverallValStatusCSS"    >" pnvalpp="autorouter"    ><TMPL_VAR NAME="autorouterStageTotalValPassPercent"    > </td>
+           <td class="<TMPL_VAR NAME="automapperOverallValStatusCSS"    >" pnvalpp="automapper"    ><TMPL_VAR NAME="automapperStageTotalValPassPercent"    > </td>
+           <td class="<TMPL_VAR NAME="cslom_checkerOverallValStatusCSS" >" pnvalpp="cslom_checker" ><TMPL_VAR NAME="cslom_checkerStageTotalValPassPercent" > </td>
+           <td class="<TMPL_VAR NAME="cslom_connection_checkerOverallValStatusCSS" >" pnvalpp="cslom_connection_checker" ><TMPL_VAR NAME="cslom_connection_checkerStageTotalValPassPercent" > </td>
+           <td class="<TMPL_VAR NAME="instance_treeOverallValStatusCSS" >" pnvalpp="instance_tree" ><TMPL_VAR NAME="instance_treeStageTotalValPassPercent" > </td>
+           <td class="<TMPL_VAR NAME="adapterOverallValStatusCSS"       >" pnvalpp="adapter"       ><TMPL_VAR NAME="adapterStageTotalValPassPercent"       > </td>
+           <td class="<TMPL_VAR NAME="cdom_checkerOverallValStatusCSS"  >" pnvalpp="cdom_checker"  ><TMPL_VAR NAME="cdom_checkerStageTotalValPassPercent"  > </td>
+           <td class="<TMPL_VAR NAME="verilogcodegenOverallValStatusCSS">" pnvalpp="verilogcodegen"><TMPL_VAR NAME="verilogcodegenStageTotalValPassPercent"> </td>
+           <td class="<TMPL_VAR NAME="cppcodegenOverallValStatusCSS"    >" pnvalpp="cppcodegen"    ><TMPL_VAR NAME="cppcodegenStageTotalValPassPercent"    > </td>
+           <td class="<TMPL_VAR NAME="csimcodegenOverallValStatusCSS"   >" pnvalpp="csimcodegen"   ><TMPL_VAR NAME="csimcodegenStageTotalValPassPercent"   > </td>
+           <td class="<TMPL_VAR NAME="vhdlcodegenOverallValStatusCSS"    >" pnvalpp="vhdlCodeGen"    ><TMPL_VAR NAME="vhdlCodeGenStageTotalValPassPercent"> </td>
+           <td class="<TMPL_VAR NAME="syscodegenOverallValStatusCSS"    >" pnvalpp="sysCodeGen"    ><TMPL_VAR NAME="sysCodeGenStageTotalValPassPercent"> </td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+
+       <tr align="center">
+           <td class="file_name"><TMPL_VAR NAME="currentHdl" >                                    </td>
+           <td class="file_name"> TOTAL Invalid Tests                                             </td>
+           <td class="">******</td>                                                               
+           <td class="">******</td>                                                               
+           <td class="total_tests" pninvpc="total_invalid_num_tests"       ><TMPL_VAR NAME="totalInvNumTests"       > </td>
+           <td class="passed" pninvpc="total_invalid_num_tests_passed"><TMPL_VAR NAME="totalInvNumTestsPassed" > </td> 
+           <td class="<TMPL_VAR NAME="overallInvStatusCSS">" pninvpc="total_invalid_num_tests_failed"><TMPL_VAR NAME="totalInvNumTestsFailed" > </td> 
+           <td class="<TMPL_VAR NAME="overallInvStatusCSS">"  ><TMPL_VAR NAME="totalInvPercentPassed"  ></td>
+           <td class="<TMPL_VAR NAME="overallInvStatusCSS">"  ><TMPL_VAR NAME="totalInvOverall"        > </td>
+ 
+           <td class="<TMPL_VAR NAME="lexerOverallInvStatusCSS"         >" pninvpc="lexer"         ><TMPL_VAR NAME="lexerStageTotalInvPassCnt"         ></td>
+           <td class="<TMPL_VAR NAME="parserOverallInvStatusCSS"        >" pninvpc="parser"        ><TMPL_VAR NAME="parserStageTotalInvPassCnt"        ></td>
+           <td class="<TMPL_VAR NAME="walkerOverallInvStatusCSS"       >" pninvpc="walker"       ><TMPL_VAR NAME="walkerStageTotalInvPassCnt"       ></td>
+           <td class="<TMPL_VAR NAME="autorouterOverallInvStatusCSS"    >" pninvpc="autorouter"    ><TMPL_VAR NAME="autorouterStageTotalInvPassCnt"    ></td>
+           <td class="<TMPL_VAR NAME="automapperOverallInvStatusCSS"    >" pninvpc="automapper"    ><TMPL_VAR NAME="automapperStageTotalInvPassCnt"    ></td>
+           <td class="<TMPL_VAR NAME="cslom_checkerOverallInvStatusCSS" >" pninvpc="cslom_checker" ><TMPL_VAR NAME="cslom_checkerStageTotalInvPassCnt" ></td>
+           <td class="<TMPL_VAR NAME="cslom_connection_checkerOverallInvStatusCSS" >" pninvpc="cslom_connection_checker" ><TMPL_VAR NAME="cslom_connection_checkerStageTotalInvPassCnt" ></td>
+           <td class="<TMPL_VAR NAME="instance_treeOverallInvStatusCSS" >" pninvpc="instance_tree" ><TMPL_VAR NAME="instance_treeStageTotalInvPassCnt" ></td>
+           <td class="<TMPL_VAR NAME="adapterOverallInvStatusCSS"       >" pninvpc="adapter"       ><TMPL_VAR NAME="adapterStageTotalInvPassCnt"       ></td>
+           <td class="<TMPL_VAR NAME="cdom_checkerOverallInvStatusCSS"  >" pninvpc="cdom_checker"  ><TMPL_VAR NAME="cdom_checkerStageTotalInvPassCnt"  ></td>
+           <td class="<TMPL_VAR NAME="verilogcodegenOverallInvStatusCSS">" pninvpc="verilogcodegen"><TMPL_VAR NAME="verilogcodegenStageTotalInvPassCnt"></td>
+           <td class="<TMPL_VAR NAME="cppcodegenOverallInvStatusCSS"    >" pninvpc="cppcodegen"    ><TMPL_VAR NAME="cppcodegenStageTotalInvPassCnt"    ></td>
+           <td class="<TMPL_VAR NAME="csimcodegenOverallInvStatusCSS"   >" pninvpc="csimcodegen"   ><TMPL_VAR NAME="csimcodegenStageTotalInvPassCnt"   ></td>
+           <td class="<TMPL_VAR NAME="vhdlcodegenOverallInvStatusCSS"    >" pninvpc="vhdlCodeGen"    ><TMPL_VAR NAME="vhdlCodeGenStageTotalInvPassCnt">  </td>
+           <td class="<TMPL_VAR NAME="syscodegenOverallInvStatusCSS"    >" pninvpc="sysCodeGen"    ><TMPL_VAR NAME="sysCodeGenStageTotalInvPassCnt">  </td>
+
+           <td class="<TMPL_VAR NAME="lexerOverallInvStatusCSS"         >" pninvpp="lexer"         ><TMPL_VAR NAME="lexerStageTotalInvPassPercent"         > </td>
+           <td class="<TMPL_VAR NAME="parserOverallInvStatusCSS"        >" pninvpp="parser"        ><TMPL_VAR NAME="parserStageTotalInvPassPercent"        > </td>
+           <td class="<TMPL_VAR NAME="walkerOverallInvStatusCSS"        >" pninvpp="walker"       ><TMPL_VAR NAME="walkerStageTotalInvPassPercent"       > </td>
+           <td class="<TMPL_VAR NAME="autorouterOverallInvStatusCSS"    >" pninvpp="autorouter"    ><TMPL_VAR NAME="autorouterStageTotalInvPassPercent"    > </td>
+           <td class="<TMPL_VAR NAME="automapperOverallInvStatusCSS"    >" pninvpp="automapper"    ><TMPL_VAR NAME="automapperStageTotalInvPassPercent"    > </td>
+           <td class="<TMPL_VAR NAME="cslom_checkerOverallInvStatusCSS" >" pninvpp="cslom_checker" ><TMPL_VAR NAME="cslom_checkerStageTotalInvPassPercent" > </td>
+           <td class="<TMPL_VAR NAME="cslom_connection_checkerOverallInvStatusCSS" >" pninvpp="cslom_connection_checker" ><TMPL_VAR NAME="cslom_connection_checkerStageTotalInvPassPercent" > </td>
+           <td class="<TMPL_VAR NAME="instance_treeOverallInvStatusCSS" >" pninvpp="instance_tree" ><TMPL_VAR NAME="instance_treeStageTotalInvPassPercent" > </td>
+           <td class="<TMPL_VAR NAME="adapterOverallInvStatusCSS"       >" pninvpp="adapter"       ><TMPL_VAR NAME="adapterStageTotalInvPassPercent"       > </td>
+           <td class="<TMPL_VAR NAME="cdom_checkerOverallInvStatusCSS"  >" pninvpp="cdom_checker"  ><TMPL_VAR NAME="cdom_checkerStageTotalInvPassPercent"  > </td>
+           <td class="<TMPL_VAR NAME="verilogcodegenOverallInvStatusCSS">" pninvpp="verilogcodegen"><TMPL_VAR NAME="verilogcodegenStageTotalInvPassPercent"> </td>
+           <td class="<TMPL_VAR NAME="cppcodegenOverallInvStatusCSS"    >" pninvpp="cppcodegen"    ><TMPL_VAR NAME="cppcodegenStageTotalInvPassPercent"    > </td>
+           <td class="<TMPL_VAR NAME="csimcodegenOverallInvStatusCSS"   >" pninvpp="csimcodegen"   ><TMPL_VAR NAME="csimcodegenStageTotalInvPassPercent"   > </td>
+	<td class="<TMPL_VAR NAME="vhdlcodegenOverallInvStatusCSS"    >" pninvpp="vhdlCodeGen"    ><TMPL_VAR NAME="vhdlCodeGenStageTotalInvPassPercent"    > </td>
+          <td class="<TMPL_VAR NAME="syscodegenOverallInvStatusCSS"    >" pninvpp="sysCodeGen"    ><TMPL_VAR NAME="sysCodeGenStageTotalInvPassPercent"    > </td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       <td>*****</td>
+       </tr>
+       <tr align="center">
+           <td class="table_header"> HDL   </td>
+           <td class="table_header"> Test_Directory</td>
+           <td class="table_header"> total Dir Valgrind Errors</td>
+           <td class="table_header"> total Dir Major Errors</td>
+           <td class="table_header"> total Num Tests      </td>
+           <td class="table_header"> total Num Tests Pass</td>
+           <td class="table_header"> total Num Tests Fail</td>
+           <td class="table_header"> total Percent Pass </td>
+           <td class="table_header"> Over all</td>
+           <td class="table_header"> lexer Stage Pass Cnt         </td>
+           <td class="table_header"> parser Stage Pass Cnt        </td>
+           <td class="table_header"> walker Stage Pass Cnt        </td>
+           <td class="table_header"> auto route Stage Pass Cnt    </td>
+           <td class="table_header"> auto map Stage Pass Cnt    </td>
+           <td class="table_header"> cslom check Stage Pass Cnt    </td>
+           <td class="table_header"> cslom conn check Stage Pass Cnt    </td>
+           <td class="table_header"> inst Tree Stage Pass Cnt      </td>
+           <td class="table_header"> adapt Stage Pass Cnt       </td>
+           <td class="table_header"> cdom Check Stage Pass Cnt   </td>
+           <td class="table_header"> vlog Code Gen Stage Pass Cnt</td>
+           <td class="table_header"> C++ Code Gen Stage Pass Cnt    </td>
+           <td class="table_header"> csim Code Gen Stage Pass Cnt    </td>
+           <td class="table_header"> vhdl Code Gen Stage Pass Cnt</td>
+           <td class="table_header"> sysC Code Gen Stage Pass Cnt</td>
+
+           <td class="table_header"> lexer Stage Pass          </td>
+           <td class="table_header"> parser Stage Pass         </td>
+           <td class="table_header"> walker Stage Pass         </td>
+           <td class="table_header"> auto route Stage Pass     </td>
+           <td class="table_header"> auto map Stage Pass     </td>
+           <td class="table_header"> cslom check Stage Pass     </td>
+           <td class="table_header"> cslom conn check Stage Pass     </td>
+           <td class="table_header"> inst Tree Stage Pass       </td>
+           <td class="table_header"> adapt Stage Pass        </td>
+           <td class="table_header"> cdom check Stage Pass    </td>
+           <td class="table_header"> vlog Code Gen Stage Pass </td>
+           <td class="table_header"> C++ Code Gen Stage Pass      </td>
+           <td class="table_header"> csim Code Gen Stage Pass     </td>
+           <td class="table_header"> vhdl Code Gen Stage Pass </td>
+           <td class="table_header"> sysC Code Gen Stage Pass </td>
+           <td class="table_header"> cslc Compile Verilog Code </td>
+           <td class="table_header"> gcc Compile C++ Code      </td>
+           <td class="table_header"> gcc Compile Csim Code     </td>
+           <td class="table_header"> gcc Compile VHDL Code  </td>
+           <td class="table_header"> gcc Compile SystemC Code  </td>
+           <td class="table_header"> SystemC/Verilog simulation  </td>
+       </tr>
+    </table>
+    <p></p>
+    Regression script path : <TMPL_VAR NAME="scriptDir"           > <br>
+    Machine architecture   : <TMPL_VAR NAME="machineArchitecture" > <br>
+    CPU         	         <TMPL_VAR NAME="cpuName"             > <br>
+                             <TMPL_VAR NAME="cpuMhz"              > <br>
+                             <TMPL_VAR NAME="bogomips"            > <br>
+    Available memory       : <TMPL_VAR NAME="availableMemory"     > <br>
+
+    </body>
+</html>

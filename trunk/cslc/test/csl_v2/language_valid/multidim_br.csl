@@ -1,0 +1,11 @@
+//oanab
+//25 feb 2008
+
+csl_multi_dim_bitrange mbr(3); 
+mbr.set_dim_width(0,8);
+mbr.set_dim_width(1,8);
+mbr.set_dim_width(2,8);
+csl_unit u {
+ csl_signal s(mbr);
+  u () {}
+};

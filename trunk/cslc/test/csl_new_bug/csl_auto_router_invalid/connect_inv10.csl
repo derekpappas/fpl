@@ -1,0 +1,21 @@
+//oanab
+//1 feb 2008
+//signal connected to interface
+
+csl_interface ifc {
+  csl_port x(input),y(output);
+  ifc () {}
+};
+
+csl_unit u1 {
+  ifc ifc;
+  u1 () {}
+};
+
+csl_unit u {
+  u1 u1;
+  csl_signal s;
+  u () {
+    s.connect(u1.ifc); // connecting a signal to an interface
+  }
+};

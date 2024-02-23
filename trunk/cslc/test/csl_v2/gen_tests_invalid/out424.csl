@@ -1,0 +1,148 @@
+csl_enum ow {
+	ew = 70,
+	fq = 69,
+	xe = 70,
+	fc = 82,
+	vb = 6
+};
+csl_enum us {
+	oy,
+	ee,
+	fy,
+	un,
+	mb,
+	wj,
+	ds,
+	po,
+	be,
+	lh,
+	bs,
+	xc,
+	ad,
+	gv,
+	hc,
+	qv,
+	bw,
+	ag,
+	vw,
+	uk,
+	xt,
+	td,
+	nj,
+	tq
+};
+csl_enum pf {
+	ar,
+	bx,
+	vd,
+	dc,
+	bk,
+	er,
+	gi,
+	qj,
+	qp,
+	gn,
+	ah
+};
+csl_isa_instruction_format vb{
+    vb( ){
+     set_width( 9);
+     generate_decoder( jwpv);
+  }
+}
+;
+csl_isa_instruction av : vb{
+    av( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa yn{
+    yn( ){
+     set_decoder_name( "wq");
+     set_decoder_out_name_prefix( "pi");
+     set_decoder_out_name_suffix( "ct");
+     generate_decoder( jwpvbr);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo jo{
+   jo( ){
+     add_logic( rd_words, 6);
+     add_logic( string_through, 6);
+  }
+}
+;
+csl_memory_map_page ts{
+    ts( ){
+     get_next_address( );
+     set_access_rights( access_read, access_write);
+     add( jo, "jt");
+     get_upper_bound( );
+     set_data_word_width( 2);
+     set_aligment( 6);
+     set_endianess( big_endianlittle_endian);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page dp{
+  ts xx;
+  ts ac;
+  ts dt;
+    dp( ){
+     set_access_rights( none, none);
+     add( jo, "fs");
+     set_aligment( 4);
+     get_aligment( );
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page hc{
+    hc( ){
+     get_address_increment( );
+     set_next_address( 5);
+     get_next_address( );
+     set_access_rights( access_read, access_read);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 8);
+     get_aligment( );
+     set_endianess( little_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map kw{
+    kw( ){
+     set_prefix( mr);
+     get_prefix( );
+     set_suffix( lq);
+  }
+}
+;
+csl_register mv{
+    mv( ){
+     set_width( 6);
+     set_atribute( write);
+     constant( 2);
+     reset_value( 2);
+     add_logic( gray_output);
+  }
+}
+;
+csl_register mh{
+    mh( ){
+     set_width( 1);
+     get_width( );
+     set_depth( 6);
+     add_logic( read_valid);
+     create_rtl_module( );
+  }
+}
+;

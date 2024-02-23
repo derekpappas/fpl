@@ -1,0 +1,17 @@
+//oanab
+//24 mar 2008
+//signal group - constant concatenation
+
+csl_signal_group sg {
+  csl_signal s1(2),s2(8);
+  sg () {}
+};
+
+csl_unit u2 {
+  csl_port x(input,6);
+  sg sg0;
+   u2 () {
+    x={sg0.s1,4'b1101};
+    sg0.s2[5:4] = sg0.s1;
+  }
+};

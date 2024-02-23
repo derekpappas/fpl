@@ -1,0 +1,35 @@
+//author: Ines
+//testing: obj_multi_dim.get_dim_width(num_expr);
+//         - param 1 : dimension index(dimension indexes start from 0 and go up to num_of_dims-1)
+//         - returns : numeric expresion that represents the width of the specified dimension 
+
+
+csl_multi_dim_bitrange obj_name0(10);
+obj_name0.set_dim_width(0, 1);
+obj_name0.set_dim_width(1, 2);
+obj_name0.set_dim_width(2, 3);
+//obj_name0.set_dim_width(3, 4);
+//obj_name0.set_dim_width(4, 5);
+//obj_name0.set_dim_width(5, 6);
+//obj_name0.set_dim_width(6, 7);
+//obj_name0.set_dim_width(7, 8);
+//obj_name0.set_dim_width(8, 9);
+//obj_name0.set_dim_width(9, 10);
+
+csl_multi_dim_bitrange obj_name1(5);
+obj_name1.set_dim_width(0, obj_name0.get_dim_width(5));
+obj_name1.set_dim_width(1, obj_name0.get_dim_width(6));
+obj_name1.set_dim_width(2, obj_name0.get_dim_width(7));
+obj_name1.set_dim_width(3, obj_name0.get_dim_width(8));
+obj_name1.set_dim_width(4, obj_name0.get_dim_width(9));
+
+csl_unit u1{
+    csl_signal s0;
+    csl_signal s1;
+ 
+    u1(){
+      s0.set_bitrange(obj_name0);
+      s1.set_bitrange(obj_name1);
+
+    }
+};

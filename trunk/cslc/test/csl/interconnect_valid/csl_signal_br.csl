@@ -1,0 +1,15 @@
+//author: Monica
+//testing: csl_signal, csl_bitrange
+
+csl_unit test {
+  csl_bitrange br2(8);                    //legal
+  csl_signal sgn26(br2);              //legal -give an error
+  csl_signal sgn100(reg,7,0);
+  csl_signal sgn101(wire), sgn102(wire), sgn103(wire ,1,0), sgn104(reg,3,2);
+  
+  test(){
+    sgn26 = sgn100;
+    sgn101 = sgn102;
+    sgn103 = sgn104;
+  }
+};

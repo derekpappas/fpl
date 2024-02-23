@@ -1,0 +1,23 @@
+//oanab
+//12 feb 2008
+
+csl_interface ifc {
+  csl_port x1(input),x2(input),y1(output);
+  ifc () {}
+};
+
+csl_unit u1 {
+  csl_signal s1,s2;
+  csl_port a(input),b(output);
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_port x(input);
+  u1 u11(.a(ifc1.x2),.b(ifc1.y1));
+  ifc ifc1;
+  u2 () {
+    ifc1.x1.connect_by_name(u11.s1);
+    u11.s2.connect_by_name(x);
+  }
+};

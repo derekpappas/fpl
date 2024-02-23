@@ -1,0 +1,139 @@
+csl_enum vh {
+	wt,
+	np,
+	gk,
+	be,
+	rx,
+	fx,
+	nt,
+	cs,
+	tr,
+	av,
+	yk,
+	jt,
+	ec,
+	fc
+};
+csl_enum dd {
+	kc,
+	xx,
+	rg,
+	ku,
+	me,
+	ss,
+	ci,
+	mf,
+	ch,
+	ye,
+	fx,
+	po,
+	tv,
+	ty,
+	yy
+};
+csl_enum fj {
+	bd = 53,
+	ju = 68,
+	lt = 22,
+	px = 13,
+	xk = 39,
+	qc = 10,
+	tg = 50,
+	hv = 1,
+	ni = 28,
+	au = 32,
+	ir = 9
+};
+csl_isa_instruction_format ly{
+    ly( ){
+     set_width( 7);
+     generate_decoder( pote);
+  }
+}
+;
+csl_isa go{
+    go( ){
+     set_decoder_out_name_prefix( "in");
+     print( isa.txt);
+  }
+}
+;
+csl_fifo ns{
+   ns( ){
+  }
+}
+;
+csl_memory_map_page gl{
+    gl( ){
+     set_address_increment( 9);
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( none, none);
+     add( ns, "ra");
+     get_lower_bound( );
+     get_upper_bound( );
+     set_aligment( 8);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page qn{
+  gl fs;
+  gl no;
+    qn( ){
+     add_address_range( 3, 5);
+     set_address_increment( 4);
+     get_next_address( );
+     set_access_rights( access_read_write, none);
+     add_reserved_address_range( 6, 1);
+     add( gl);
+     get_lower_bound( );
+     set_data_word_width( 9);
+     get_data_word_wodth( );
+     set_aligment( 1);
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page kt{
+    kt( ){
+     get_aligment( );
+  }
+}
+;
+csl_memory_map iy{
+    iy( ){
+     auto_gen_memory_map( );
+     set_top_unit( nite);
+     set_type( flat);
+glqnkt.set_access_rights_enum( gl); 
+     set_data_word_width( 2);
+     get_data_word_width( );
+     set_prefix( vw);
+     set_suffix( wi);
+  }
+}
+;
+csl_register pn{
+    pn( ){
+     set_type( INT);
+     set_address( iy, );
+     constant( 4);
+     add_logic( rd_en);
+     reset_value( 9);
+     set_count_amount( 7);
+     set_end_value( 5);
+     add_logic( inc_signal);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register fi{
+    fi( ){
+     set_width( 2);
+     get_width( );
+  }
+}
+;

@@ -1,0 +1,36 @@
+//oanab
+//1 feb 2008
+//ss connection between 2 ports that have the same direction
+
+csl_unit u1 {
+  csl_port x1(input);
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_port x2(input),y2(output);
+  u2 () {}
+};
+
+csl_unit u3 {
+  csl_port x3(input),x4(input),y3(output);
+  u3 () {}
+};
+
+csl_unit u {
+  u1 u1;
+  u2 u2;
+  u3 u3;
+  u () {
+    u1.x1.connect(u2.x2); //x1 and x2 have the same direction after the 2nd reverse command in the top unit
+    u2.x2.reverse();
+  }
+};
+
+csl_unit top {
+  u u;
+  top () {
+    u.u3.y3.connect(u.u2.x2); 
+    u.u2.x2.reverse();
+  }
+};

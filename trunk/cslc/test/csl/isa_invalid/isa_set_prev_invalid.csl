@@ -1,0 +1,15 @@
+//illegal: set_previous parameters
+
+csl_isa_field op(2);
+csl_isa_field field(2);
+
+csl_isa_element format{
+    op op_i;
+    field field_i;
+    format(){
+	set_type(instr_format);
+       set_width(4);            
+       set_position(field_i, 0);  
+       set_previous(field_i,0,op_i); // only 2 parameters(right and left field)
+    }
+};

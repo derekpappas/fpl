@@ -1,0 +1,9 @@
+csl_memory_map mm{
+                mm(){
+                set_type(flat);
+          set_data_word_width(128);
+                set_endianess(big_endian);  //big_endianess should work only
+                //with mmpage
+          }
+};
+

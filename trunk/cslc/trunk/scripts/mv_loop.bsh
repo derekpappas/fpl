@@ -1,0 +1,10 @@
+ #!/bin/bash
+
+#for i in $( ls -d * ); do
+#          mkdir "log_tests/$i"
+#done
+
+for i in $( ls rules_v2001/legal/ ); do
+    echo svn mv rules_v2001/legal/$i rules_${i}_v2001_legal
+done
+

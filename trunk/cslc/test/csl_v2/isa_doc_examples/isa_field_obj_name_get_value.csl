@@ -1,0 +1,16 @@
+//isa_field_obj_name.get_value()
+
+csl_isa_field rd{ 
+  rd(){ 
+    set_width(6); 
+    set_type(constant); 
+    set_value(20); 
+  }
+};
+csl_isa_field rs {
+  rs(){ 
+    set_width(6); 
+    set_type(constant); 
+    set_value(rd.get_value()); 
+  }
+};

@@ -1,0 +1,11 @@
+// CristiL
+//
+// List
+csl_unit u{
+csl_signal signal1;
+csl_signal signal2;
+csl_signal signal3;
+
+csl_list l(signal1, signal2, signal3);
+ u(){}
+};

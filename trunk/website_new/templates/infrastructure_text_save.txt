@@ -1,0 +1,46 @@
+Designs are becoming so complex that a higher level design
+		specification system is required to build the RTL design,
+		verification components, functional simulators, and system software
+		hooks. 
+		
+		The Fastpath speciification language is C++ with additional hardware
+		extensions. C++ is 
+		used to describe a chip design's infrastructure design,
+		simulation, and verification components at a high level of abstraction using C++ object oriented classes and
+		constructs. The language is simple and intuitive and closely
+		parallels existing RTL languages such as Verilog and SystemC at
+		the experssion and statement level. 
+		<br/>
+		Fastpath Logic's C++ specification is designed to raise the level of
+		abstraction used to specify and describe a chip design. Fastpath Logic
+		provides the end user with a flexible specification system that
+		facilitates rapid changes and design exploration. In addition
+		the extended C++
+		is a single source for the common design, verification, and
+		simulation components. Using a single source guarentees
+		consistency between the different domains and eliminates parallel
+		bookkeeping between the different domains. The C++ specification is compiled by the
+		Fastpath Logic synthesis engine which in turn synthesizes the specification
+		and generates industry standard RTL (Verilog/VHDL), C++, SystemC,
+		and documentation.	The user then adds the control logic and any
+		low level implementation details and the combined infrastructure
+		and user written logic is then compiled with industry standard
+		RTL, C++, and SystemC compilers. 
+		<br/>
+		Future development will include
+		interfaces to popular specification languages such as Denali's RDL
+		and SPIRIT EXACT. Fastpath Logic's tool is design to be the
+		central management system for chip design projects and interfaces
+		seemlessly with existing languages and existing EDA
+		tools. Fastpath Logic's synthesis engine can be used in
+		ASIC, FPGA, and custom design environments. 
+		<br/>
+		C++ reduces the amount of work required to develop the infrastructure
+		on a chip design project by a factor of 30x-50x. The time to
+		learn C++ with a few hardware extensions 
+		is short relative to the learning curve required to learn
+		other more proprietary solutions. Furthermore, since th
+		Fastpath Logic synthesis engine generates output in 
+		existing industry standards it easily integrates into
+		existing and new design projects.    
+		

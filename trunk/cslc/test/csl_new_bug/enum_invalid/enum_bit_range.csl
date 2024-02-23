@@ -1,0 +1,5 @@
+//Monica
+
+csl_enum e {
+ s=[3:0]
+};

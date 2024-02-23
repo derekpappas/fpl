@@ -1,0 +1,1 @@
+g++ main.cpp -I/opt/tools/systemc/systemc-2.2.0/objdir/include/ -L/opt/tools/systemc/systemc-2.2.0/objdir/lib-linux64/ -lsystemc -I$WORK/trunk/src/cdom/ -I/opt/tools/systemc/scv/scv-1.0p2-sysc2.2/src/ -L/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/cdom/libCdom.a

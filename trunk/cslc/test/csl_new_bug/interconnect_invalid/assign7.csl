@@ -1,0 +1,22 @@
+//oanab
+
+csl_signal_group sg {
+  csl_signal s_a(14);
+  csl_signal s_c(14);
+  sg () {}
+};
+
+csl_signal_group sgg {
+  sg sg0;
+  sg sg1;
+  sgg () {}
+};
+
+csl_unit c {
+  sgg sgg1;
+  sg sg2;
+  c () {
+    sgg1.sg1 = sg2.s_a[14:2] | sg2.s_c;   
+  }
+};
+

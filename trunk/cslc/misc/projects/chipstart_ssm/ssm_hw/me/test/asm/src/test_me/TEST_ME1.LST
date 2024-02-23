@@ -1,0 +1,195 @@
+			     1	 .use     "..\SSM_ME.tbl"
+			     2	 .option  lines = 1000
+			     3	;=============================================================================
+			     4	;
+			     5	;    Copyright © 2010 Advanced Architectures
+			     6	;
+			     7	;    All rights reserved
+			     8	;    Confidential Information
+			     9	;    Limited Distribution to Authorized Persons Only
+			    10	;    Created and Protected as an Unpublished Work under
+			    11	;    the U.S.Copyright act of 1976.
+			    12	;
+			    13	;    Project Name         : SSM
+			    14	;    Description          : SSM me tests
+			    15	;
+			    16	;           SIMPLE BRANCH TEST
+			    17	;
+			    18	;
+			    19	;    Author               : RTT
+			    20	;    Creation Date        : 2010/03/13
+			    21	;
+			    22	;
+			    23	;=============================================================================
+			    24	;    THIS  SOFTWARE IS  PROVIDED "AS IS" AND  WITHOUT  ANY EXPRESS  OR IMPLIED
+			    25	;    WARRANTIES, INCLUDING, BUT  NOT LIMITED  TO, THE  IMPLIED  WARRANTIES  OF
+			    26	;    MERCHANTABILITY AND FITNESS  FOR A PARTICULAR PURPOSE. IN  NO EVENT SHALL
+			    27	;    THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+			    28	;    SPECIAL, EXEMPLARY, OR  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+			    29	;    TO, PROCUREMENT OF  SUBSTITUTE GOODS  OR SERVICES; LOSS  OF USE, DATA, OR
+			    30	;    PROFITS; OR  BUSINESS INTERRUPTION) HOWEVER  CAUSED AND ON  ANY THEORY OF
+			    31	;    LIABILITY,  WHETHER  IN  CONTRACT,  STRICT LIABILITY, OR  TORT (INCLUDING
+			    32	;    NEGLIGENCE  OR OTHERWISE) ARISING  IN  ANY WAY  OUT OF  THE  USE  OF THIS
+			    33	;    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+			    34	;=============================================================================
+			    35	;
+			     1	;=============================================================================
+			     2	;
+			     3	;    Copyright © 2010 Advanced Architectures
+			     4	;
+			     5	;    All rights reserved
+			     6	;    Confidential Information
+			     7	;    Limited Distribution to Authorized Persons Only
+			     8	;    Created and Protected as an Unpublished Work under
+			     9	;     the U.S.Copyright act of 1976.
+			    10	;
+			    11	;    Project Name         : SSM Microengine
+			    12	;    Description          : Register names header file
+			    13	;
+			    14	;=============================================================================
+			    15	;    THIS  SOFTWARE IS  PROVIDED "AS IS" AND  WITHOUT  ANY EXPRESS  OR IMPLIED
+			    16	;    WARRANTIES, INCLUDING, BUT  NOT LIMITED  TO, THE  IMPLIED  WARRANTIES  OF
+			    17	;    MERCHANTABILITY AND FITNESS  FOR A PARTICULAR PURPOSE. IN  NO EVENT SHALL
+			    18	;    THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+			    19	;    SPECIAL, EXEMPLARY, OR  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+			    20	;    TO, PROCUREMENT OF  SUBSTITUTE GOODS  OR SERVICES; LOSS  OF USE, DATA, OR
+			    21	;    PROFITS; OR  BUSINESS INTERRUPTION) HOWEVER  CAUSED AND ON  ANY THEORY OF
+			    22	;    LIABILITY,  WHETHER  IN  CONTRACT,  STRICT LIABILITY, OR  TORT (INCLUDING
+			    23	;    NEGLIGENCE  OR OTHERWISE) ARISING  IN  ANY WAY  OUT OF  THE  USE  OF THIS
+			    24	;    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+			    25	;=============================================================================
+			    26	;
+			    27	; Primary Registers
+   0			    28	 .memory REGISTERS
+   0			    29	 .equ  r0      $ + 0
+   1			    30	 .equ  r1      $ + 1
+   2			    31	 .equ  r2      $ + 2
+   3			    32	 .equ  r3      $ + 3
+   4			    33	 .equ  r4      $ + 4
+   5			    34	 .equ  r5      $ + 5
+   6			    35	 .equ  r6      $ + 6
+   7			    36	 .equ  r7      $ + 7
+   8			    37	 .equ  r8      $ + 8
+   9			    38	 .equ  r9      $ + 9
+   a			    39	 .equ  r10     $ + 10
+   b			    40	 .equ  r11     $ + 11
+   c			    41	 .equ  r12     $ + 12
+   d			    42	 .equ  r13     $ + 13
+   e			    43	 .equ  r14     $ + 14
+   f			    44	 .equ  r15     $ + 15
+  10			    45	 .equ  r16     $ + 16
+  11			    46	 .equ  r17     $ + 17
+  12			    47	 .equ  r18     $ + 18
+  13			    48	 .equ  r19     $ + 19
+  14			    49	 .equ  r20     $ + 20
+  15			    50	 .equ  r21     $ + 21
+  16			    51	 .equ  r22     $ + 22
+  17			    52	 .equ  r23     $ + 23
+  18			    53	 .equ  r24     $ + 24
+  19			    54	 .equ  r25     $ + 25
+  1a			    55	 .equ  r26     $ + 26
+  1b			    56	 .equ  r27     $ + 27
+  1c			    57	 .equ  r28     $ + 28
+  1d			    58	 .equ  r29     $ + 29
+  1e			    59	 .equ  r30     $ + 30
+  1f			    60	 .equ  r31     $ + 31
+  1c			    61	 .equ  SSM0    $ + 28
+  1d			    62	 .equ  SSM1    $ + 29
+  1e			    63	 .equ  SSM2    $ + 30
+  1f			    64	 .equ  SSM3    $ + 31
+			    65	 
+   8			    66	 .equ  TEST    $ + 8
+			    67	 
+			    68	 
+   0			    37	 .memory PROGRAM
+   0			    38	 .org  0
+			    39	 
+			    40	start:
+   0         bf000000	    41	   msg 0;
+   1         e000000c	    42	   goto one;
+			    43	 
+   c			    44	 .org 12
+			    45	one:
+   c         bf000001	    46	   msg 1;
+   d         e0000016	    47	   goto two;
+			    48	 
+  16			    49	 .org 22
+			    50	two:
+  16         bf000002	    51	   msg 2;
+  17         e0000024	    52	   goto three;
+			    53	 
+  19			    54	 .org 25
+			    55	four:
+  19         bf000004	    56	   msg 4;
+  1a         e0000040	    57	   goto five;
+			    58	 
+  24			    59	 .org 36
+			    60	three:
+  24         bf000003	    61	   msg 3;
+  25         e0000019	    62	   goto four;
+			    63	 
+  40			    64	 .org 64
+			    65	five:
+  40         80010005	    66	   r1 = 5;
+  41         80000000	    67	   r0 = 0;
+  42         c0000048	    68	   if (r0 == 0) goto first;
+  43         8001007f	    69	   r1 = 127;
+  44         bf000005	    70	   msg 5;
+			    71	 
+			    72	error:
+  45         e0000045	    73	   goto error;
+			    74	 
+  48			    75	 .org 72
+			    76	first:
+  48         10010111	    77	   r1 = r1 + 17;
+  49         c3010051	    78	   if (r1 > 0) goto second;
+  4a         bf000006	    79	   msg 6;
+  4b         8001007f	    80	   r1 = 127;
+  4c         e0000045	    81	   goto error;
+			    82	 
+  51			    83	 .org 81
+			    84	second:
+  51         11010103	    85	   r1 = r1 - 3;
+  52         8002ffff	    86	   r2 = -1;
+  53         c202005d	    87	   if (r2 < 0) goto third;
+  54         bf000007	    88	   msg 7;
+  55         8001007f	    89	   r1 = 127;
+  56         e0000045	    90	   goto error;
+			    91	 
+			    92	fifth:
+  57         1001012a	    93	   r1 = r1 + 42;
+  58         8005007f	    94	   r5 =127;
+  59         c10503e8	    95	   if (r5 != 0) goto sixth;
+  5a         bf00000a	    96	   msg 10;
+  5b         8001007f	    97	   r1 = 127;
+  5c         e0000045	    98	   goto error;
+			    99	 
+			   100	third:
+  5d         10010109	   101	   r1 = r1 + 9;
+  5e         80030007	   102	   r3 = 7;
+  5f         c5030063	   103	   if (r3 >= 0) goto fourth;
+  60         bf000008	   104	   msg 8;
+  61         8001007f	   105	   r1 = 127;
+  62         e0000045	   106	   goto error;
+			   107	 
+			   108	fourth:
+  63         1001015c	   109	   r1 = r1 + 92;
+  64         8004fffb	   110	   r4 = -5;
+  65         c4040057	   111	   if (r4 <= 0) goto fifth;
+  66         bf000009	   112	   msg 9;
+  67         8001007f	   113	   r1 = 127;
+  68         e0000045	   114	   goto error;
+			   115	 
+ 3e8			   116	 .org 1000
+			   117	sixth:
+ 3e8         800600a2	   118	   r6 = 162;
+ 3e9         01010106	   119	   r1 = r1 - r6;
+ 3ea         c1010045	   120	   if (r1 != 0) goto error;
+ 3eb         bf00000b	   121	   msg 11;
+			   122	 
+			   123	finish:
+ 3ec         e00003ec	   124	   goto finish;
+			   125	 
+			   126	 
+			   127	 
+			   128	 .end

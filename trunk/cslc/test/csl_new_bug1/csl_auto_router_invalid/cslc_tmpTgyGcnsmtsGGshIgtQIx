@@ -1,0 +1,21 @@
+# "/opt/he_fpl_svn/fpl_repo/cslc/test/csl_new_bug1/csl_auto_router_invalid/./conn_name11.csl" 1
+
+
+
+csl_unit a {
+  csl_port p(input);
+  a () {}
+};
+
+csl_unit b {
+  a a0;
+  csl_port p(input);
+  b () {}
+};
+
+csl_unit c {
+  b b0;
+  c () {
+    b0.p.connect_by_name(2);
+  }
+};

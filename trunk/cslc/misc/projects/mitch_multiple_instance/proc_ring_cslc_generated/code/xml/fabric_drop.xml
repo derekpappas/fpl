@@ -1,0 +1,30 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="fabric_drop">
+<interface name="db_dw" >
+<port name="data" offset="0" upper="31" lower="0" direction = "output" type = "wire" />
+<port name="wr" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="dreg_dw" >
+<port name="data" offset="0" upper="31" lower="0" direction = "output" type = "wire" />
+<port name="wr" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="maclu_adw" >
+<port name="addr" offset="0" upper="17" lower="0" direction = "output" type = "wire" />
+<port name="data" offset="0" upper="31" lower="0" direction = "output" type = "wire" />
+<port name="wr" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="qm_adw" >
+<port name="addr" offset="0" upper="17" lower="0" direction = "output" type = "wire" />
+<port name="data" offset="0" upper="31" lower="0" direction = "output" type = "wire" />
+<port name="wr" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="adwr" >
+<port name="addr" offset="0" upper="17" lower="0" direction = "output" type = "wire" />
+<port name="data" offset="0" upper="31" lower="0" direction = "output" type = "wire" />
+<port name="wr" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="rd" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+</unit>
+</design>

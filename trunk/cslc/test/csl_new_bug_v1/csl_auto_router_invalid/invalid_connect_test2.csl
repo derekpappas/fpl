@@ -1,0 +1,12 @@
+//Monica
+//15 January 2008
+//invalid = different range connection
+
+csl_unit test2{
+  csl_port p1(input,2),p2(input,4),p3(input);
+  csl_signal s1(2),s2,s3;
+  test2(){
+    s1.connect(p1);
+    s2.connect(p2); //error (1 bit signal connect to 4 bits port)
+    p3.connect(s3);
+  }};

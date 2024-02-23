@@ -1,0 +1,155 @@
+The following objects can have addresses; all objects can be adressed
+by a signal which is an address bus:
+csl_unit, csl_bus_ifc, csl_mem_map_obj, csl_pscqn
+
+bus
+|
+|______________________________
+ |        |        |        
+biu0     biu1     biu2     
+unit0    unit1    unit2     
+
+Address map:
+biu_name  unit_name  
+biu_0 (0) unit_0 
+biu_1 (1) unit_1 
+biu_2 (2) unit_2
+
+csl_bus_ifc biu[0-2]
+//1 set the addresses
+biu_0.set_address(0);
+biu_1.set_address(1);
+biu_2.set_address(2);
+
+//2 connect address bus to units
+biu_0.connect(rn_bus);
+biu_1.connect(rn_bus);
+biu_2.connect(rn_bus);
+
+//3 generate address decoder in each unit
+biu_0.add_decoder(rn_bus_cmd.cmd);
+biu_1.add_decoder(rn_bus_cmd.cmd);
+biu_2.add_decoder(rn_bus_cmd.cmd);
+
+decoder generator 'sees' rn_bus.cmd has an enum and builds logic like this:
+
+switch (rn_bus_cmd){
+  case(RD      ) : //;
+  case(WR      ) : //;
+  case(RD_BURST) : //;
+  case(WR_BURST) : //;
+
+}
+
+now we add additional decoders by adding a table:
+
+csl_decoder bus_cmd_decode;
+//create input equations
+csl_signal_value_pair rn_bus_rd(rn_bus.cmd(), READ);
+csl_signal_value_pair rn_bus_wr(rn_bus.cmd(), WRITE);
+csl_signal_value_pair rn_bus_rd_burst(rn_bus.cmd(), READ);
+csl_signal_value_pair rn_bus_wr_burst(rn_bus.cmd(), WRITE);
+
+//A decoder can be written in verilog very easily, however in order to
+check that the decoder outputs are one-hot or one-cold or that they
+are mutex you have to write assertions and than either statically
+check the assertions using a formal verifications tool or simulate all
+possible inputs into decoder and then verify that no assertions fire
+
+Note: file a bug to implement a check to verify that the decoders are
+one hot or one cold
+type for decoder outputs:
+enum {ONE_HOT,
+      ONE_COLD, 
+      STRONG_MUTEX_ONE_HOT,
+      STRONG_MUTEX_ONE_COLD} dec_type;
+
+ Dec_output_type      |  Mutex  |  One output must be on  |
+ ONE_HOT              |  X      |  -                      |
+ ONE_COLD             |  X      |  -                      |
+ STRONG_MUTEX_ONE_HOT |  X      |  X                      |
+ STRONG_MUTEX_ONE_COLD|  X      |  X                      |
+
+
+csl_decoder rn_bus_cmd_dec();
+rn_bus_cmd_dec.set_input_type(equations);
+rn_bus_cmd_dec.set_output_type(one_hot);
+rn_bus_cmd_dec.set_input_cond_signal_pair(rn_b_rd && ~rn_b.burst, rd      );
+rn_bus_cmd_dec.set_input_cond_signal_pair(rn_b_wr && ~rn_b.burst, wr      );
+rn_bus_cmd_dec.set_input_cond_signal_pair(rn_b_rd &&  rn_b.burst, rd_burst);
+rn_bus_cmd_dec.set_input_cond_signal_pair(rn_b_wr &&  rn_b.burst, wr_burst);     
+
+creates:
+   ___________
+   |          |-- rn_bus_cmd_dec_rd
+___|          |-- rn_bus_cmd_dec_wr
+   |          |-- rn_bus_cmd_dec_rd_burst
+   |__________|-- rn_bus_cmd_dec_wr_burst
+
+
+csl_signal_value_compare
+class {
+  int value;
+  csl_signal_address_compare sig_ac; //is the signal to compare to the value
+};
+
+class bus_ifc : public unit 
+
+csl_signal_value_compare(ba, rn_bus.addr());
+int broadcast_address ba;
+
+vector <csl_signal> bus; //can also be csl_bus_signal
+csl_enum rn_bus_cmd(WR,RD)
+
+csl_enum_signal cmd;
+
+class csl_signal
+
+class csl_enum_signal : public csl_signal
+vector <csl_enum>
+
+csl_cmd.set_enum
+
+csl_signal data, addr, valid, burst, rn_id, unit_id;
+
+csl_signal_group rn_bus (csl_list(data,
+                                  addr,
+                                  cmd,
+                                  valid,
+                                  burst,
+                                  rn_id,
+                                  unit_id));
+rn_bus.set_prefix("rn_bus");
+
+csl decoder
+bool has_enable
+enable_cond enum output_type ot {one_hot, one_cold } // ?repeat
+vector <csl_signal> enable
+vector <int> UNUSED_OUTPUTS
+csl_enum_signal name
+csl_decoder cmd_bus_dec.connect_signal
+
+1) simple decode
+in[n] -> out 2^n
+2) minus some outputs 
+in[2] -> out: 0,1,3 (missing 2)
+3) w/ enable
+4) decoder based on boolean conditions
+bus_rd = bus_rd & burst_0
+bus_wr = bus_wr & burst_0
+bus_rd = bus_rd & burst_1
+bus_wr = bus_wr & burst_1
+
+one-hot decoder use for buses,ISA, mem map addressing
+
+
+Decoder based on boolean conditions
+csl_decoder dec;
+dec.set_type(truth_table);
+dec.is_boolean_cond();
+dec.add_truth_table_entry(boolean_eq, output_signal);
+dec.add_ifc()
+dec.onehot(); // decoder equations will be checked to
+              // ensure that the decoder outputs are one hot
+A csl decoder woth the type truth table will build a decoder and then
+check the decoder outputs equations to ensure that they are one hot

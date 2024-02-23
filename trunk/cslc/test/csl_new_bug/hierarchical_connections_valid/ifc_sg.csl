@@ -1,0 +1,38 @@
+// CristiL
+//
+// Connection between 1 interface and 1 signal group
+
+csl_signal_group signalGroupA {
+
+  csl_signal A0(32);  
+
+  csl_signal A1(32);
+
+};
+
+csl_interface interfaceA {
+
+  csl_port A0(input, 32);
+
+  csl_port A1(output, 32);
+
+};
+
+
+// interface -> interface
+csl_unit unitDeviceA {
+
+  signalGroupA signalGroupA0;
+
+  interfaceA interfaceA0;
+
+  unitDeviceA() {
+
+    // THIS SHOULD BE VALID
+    interfaceA0 = signalGroupA0;
+
+  };
+
+};
+
+

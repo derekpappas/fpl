@@ -1,0 +1,31 @@
+//signal_object_name.set_offset(numeric_expression);
+//(from old csl_interconnect.fm docs) modified after the new sintax
+// monicah
+// 26 July 2007
+
+csl_unit top;
+csl_unit _2bit_flip_flop {
+	csl_port data(input,2),clock_p(input), enable_p(input), q(output,reg,2);
+	_2bit_flip_flop(){
+	}
+};
+csl_unit decoder { 
+	csl_port dec_in(input,6), dec_out(output,reg,64);
+	decoder(){
+	}
+};
+csl_unit top {
+	//signal definitions
+	csl_signal clk_a,clk_b,clk_c,in_a(2),in_b(2),in_c(2),enable_sgn,dec_in(6),dec_out(64), out_a, out_b, out_c;
+	//instantiation and interconnection of modules
+	_2bit_flip_flop flip_flop_a(.data(in_a),.enable_p(enable_sgn),.clock_p(clk_a),.q(out_a));
+	_2bit_flip_flop flip_flop_b(.data(in_b),.enable_p(enable_sgn),.clock_p(clk_b),.q(out_b));
+	_2bit_flip_flop flip_flop_c(.data(in_c),.enable_p(enable_sgn),.clock_p(clk_c),.q(out_c));
+	decoder decoder(.dec_in(dec_in),.dec_out(dec_out));
+	top(){
+		//set_offset illustration
+		out_b.set_offset(2);
+		out_c.set_offset(4);
+		//set_autorouter(ON); 
+	}
+};

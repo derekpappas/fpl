@@ -1,0 +1,5 @@
+csl_signal_pattern_generator sgn_pat_gen_clk{
+    sgn_pat_gen_clk(){
+        set_generator_type(clk);
+    }
+};

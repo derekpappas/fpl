@@ -1,0 +1,19 @@
+//oanab
+//9 nov 2007
+//the width of the port is smaller than signal connected to it
+
+csl_unit u1{
+  csl_port x(output,wire,4);
+  csl_port clk(input);
+  u1(){
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit u2{
+  csl_signal y(wire,8),clk; // width should be smaller or equal to the port's width
+  u1 u1(.x(y));
+  u2(){
+    clk.set_attr(clock);
+  }
+};

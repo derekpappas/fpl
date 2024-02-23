@@ -1,0 +1,14 @@
+// enum elements should can take negative integer value
+//andreim
+//22 June 2007
+
+csl_enum op_enum{
+	CALL = -1,
+	SETHI_Branches = 0,
+	Arithmetic = 2,
+	Logical = 3
+};
+
+
+csl_unit top {
+};

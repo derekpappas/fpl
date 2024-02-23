@@ -1,0 +1,27 @@
+//author: andreim
+//date: 10 October 2007
+//State data mandatoty commands
+
+csl_register_file rf{
+   rf(){
+      set_width(4);
+      set_depth(8);
+   }
+};
+
+csl_unit top{
+   csl_signal sd_clk;
+   csl_signal clk_sgn;
+   rf rf_;
+   top(){
+     sd_clk.set_attr  ( clock );
+     clk_sgn.set_attr ( clock ); 
+   }
+};
+
+csl_state_data tb_sd{
+   tb_sd(){
+    set_mem_instance_name (top.rf_ );
+    set_vc_clock( top.sd_clk  );
+   }
+};

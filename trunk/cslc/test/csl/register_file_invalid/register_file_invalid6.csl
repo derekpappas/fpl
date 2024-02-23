@@ -1,0 +1,37 @@
+//Petronela
+//don't instantiated a register_file in another register_file
+csl_register_file r1{
+  r1(){
+    set_width(3);
+    set_depth(2);
+    create_rtl_module(); 
+  }
+};
+csl_register_file r2{
+  r1 r1;
+  r2(){
+    set_width(4);
+    set_depth(5);
+    r1.set_prefix("abc");  
+  }
+};
+
+csl_register_file r3{
+  r1 r10;
+  r2 r2;
+  r3(){
+    set_width(10);
+    set_depth(11);
+    r2.set_const_value(6);  
+    r10.add_logic(bypass);
+  }
+};
+
+
+csl_unit u1{
+  r1 r11;
+  r2 r2;
+  r3 r3;
+  u1(){
+  }
+};

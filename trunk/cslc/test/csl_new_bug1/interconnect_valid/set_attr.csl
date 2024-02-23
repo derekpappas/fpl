@@ -1,0 +1,20 @@
+//Monica
+
+csl_unit u1{
+  csl_port en(input);
+  csl_port data_in(input,4);
+  csl_port data_out(output,4);
+  u1(){
+    data_out = en ? data_in : 4'b0000;
+    en.set_attr(en);
+}
+};
+csl_unit u2{
+csl_signal en;
+csl_signal s21(reg,4);
+u1 u11(.en(en),.data_in(s21));
+u2(){
+en.set_attr(en);
+en=1'b1;
+}
+};

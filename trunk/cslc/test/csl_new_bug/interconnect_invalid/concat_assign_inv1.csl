@@ -1,0 +1,27 @@
+//oanab
+//24 mar 2008
+//different widths
+
+csl_interface ifc {
+  csl_port y1(output),y2(output,3);
+  ifc () {}
+};
+
+csl_unit u1 {
+  ifc ifc0;
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_signal s(3);
+  u2 () {}
+};
+
+csl_unit u3 {
+  csl_port x(input,8); // ifc0 and s concatenated have width 7
+  u1 u10;
+  u2 u20;
+  u3 () {
+    x={u10.ifc0,u20.s};
+  }
+};

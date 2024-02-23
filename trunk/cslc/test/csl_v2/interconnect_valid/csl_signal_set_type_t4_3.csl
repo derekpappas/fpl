@@ -1,0 +1,15 @@
+//author: Ines
+//testing:set_type,set_range,set_bitrange,set_width,set_upper_index,set_lower_index,
+//      set_attr,set_offset,set_dim_width,set_number_of_dimensions,set_dim_bitrange,
+//      get_upper_index,get_type,get_width,get_attr,get_bitrange,get_offset,get_range,
+//      get_lower_index,get_dim_width,get_number_of_dimensions
+
+
+csl_unit u5_t4 {
+
+  csl_signal sgn5_1_t4(3,0),sgn5_2_t4(0,0),sgn5_3_t4(1,1),sgn5_4_t4(2,2),sgn5_5_t4(3,3);
+
+  u5_t4() {
+    
+  }
+};

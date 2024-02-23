@@ -1,0 +1,10 @@
+-check figure 1.1. It's integrated from 2006_02_24_sram_bist.fm and if does not belong here let me (BM) know.
+-right after figure 1.1 there is a section (in bold) in which things are kind of mixt. There are only ideas I think. Maybe You could develop a bit each of them.
+-same thing with 1.2.1.1 
+-1.2.2 Memory parameters: and which are the memory parameters though?
+-1.2.3 contains less information than it should. I think memory clocks deserve more than one line and a half.
+-1.2.4 : on which consits the trade off between using a flip flop array or an SRAM ?
+-the text from 1.2.2, 1.2.3, 1.2.4 and 1.2.5 appears in csl_application_specific_memory.fm too (1.2.9 Memory design for on chip producer/consumer engines). Maybe we should merge somehow csl_sram.fm and csl_application_specific_memory.fm because they are relating same issues concerning SRAM memories. What do You think about that?
+-1.3 contains only blank figures, no text. You could draw the figures on paper, scan them and send them to us along with the text, so we can transcribe all of it.
+-there are no examples in the Example section. After the concepts are finished maybe we can help too on creating the examples (I hope there will be enough information that can allow us to do that).
+-all the CSL commands (except include_redudant_sram_cells) can be found in csl_application_specific_memory.fm too. There's another reason to merge SRAM with ASM.

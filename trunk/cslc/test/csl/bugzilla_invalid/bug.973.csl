@@ -1,0 +1,11 @@
+csl_register register1 {
+  register1() {
+    set_type(hierarchical);//error....invalid type for register
+  }
+};
+
+csl_register register1 {
+  register1() {
+    set_type(integer);//error
+  }
+};

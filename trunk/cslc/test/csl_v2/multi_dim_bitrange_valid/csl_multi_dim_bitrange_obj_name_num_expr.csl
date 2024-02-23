@@ -1,0 +1,16 @@
+//author: Ines
+//testing: csl_multi_dim_bitrange obj_name(num_expr);
+//         - param number of dimensions; 
+
+csl_multi_dim_bitrange obj_name(10);
+
+csl_unit u1{
+    csl_signal s0;
+    csl_signal s1;
+
+    u1(){
+      s0.set_bitrange(obj_name);
+      s1.set_bitrange(s0.get_bitrange());
+      
+    }
+};

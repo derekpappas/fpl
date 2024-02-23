@@ -1,0 +1,34 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="h264">
+<interface name="slave_Va2r_tap_h264" >
+<port name="read_data" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="ready" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="error" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="address" offset="0" upper="20-1" lower="0" direction = "output" type = "wire" />
+<port name="data" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="read" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="write" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gbl" >
+<port name="clk" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="reset_" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="enable" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<instantiation type = "me">
+<instance name="me">
+<f2a formal = "gbl.clk" actual = "gbl.clk" />
+<f2a formal = "gbl.enable" actual = "gbl.enable" />
+<f2a formal = "gbl.reset_" actual = "gbl.reset_" />
+<f2a formal = "slave_Va2r_tap_arm.address" actual = "slave_Va2r_tap_h264.address" />
+<f2a formal = "slave_Va2r_tap_arm.data" actual = "slave_Va2r_tap_h264.data" />
+<f2a formal = "slave_Va2r_tap_arm.error" actual = "slave_Va2r_tap_h264.error" />
+<f2a formal = "slave_Va2r_tap_arm.read" actual = "slave_Va2r_tap_h264.read" />
+<f2a formal = "slave_Va2r_tap_arm.read_data" actual = "slave_Va2r_tap_h264.read_data" />
+<f2a formal = "slave_Va2r_tap_arm.ready" actual = "slave_Va2r_tap_h264.ready" />
+<f2a formal = "slave_Va2r_tap_arm.write" actual = "slave_Va2r_tap_h264.write" />
+</instance>
+</instantiation>
+</unit>
+</design>

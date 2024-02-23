@@ -1,0 +1,15 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="fifo.xsl"?>
+<design>
+<fifo name="fifo" width ="y"  depth ="x" >
+<port name="push" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="pop" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="full" offset="0" upper="1-1" lower="0" direction = "output" type = "reg" />
+<port name="empty" offset="0" upper="1-1" lower="0" direction = "output" type = "reg" />
+<port name="rd_data" offset="0" upper="y-1" lower="0" direction = "output" type = "reg" />
+<port name="wr_data" offset="0" upper="y-1" lower="0" direction = "input" type = "wire" />
+<port name="reset_" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="clock" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="valid" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+name="x"5name="y"8</fifo>
+</design>

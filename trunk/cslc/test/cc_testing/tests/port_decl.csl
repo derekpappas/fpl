@@ -1,0 +1,12 @@
+//oanab
+//10 nov 2007
+//csl_port can't be declared in the global scope
+
+csl_port x(input);  //this should be inside a unit or interface
+
+csl_unit u1{
+  csl_port a(input),clk(input);
+  u1(){
+    clk.set_attr(clock);
+  }
+};

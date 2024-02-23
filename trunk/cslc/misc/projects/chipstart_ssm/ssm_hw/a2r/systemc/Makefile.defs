@@ -1,0 +1,45 @@
+ifeq ($(TARGET_ARCH), linux64)
+SYSTEMC_INCLUDE_DIR=$(SYSTEMC_INCLUDE)/include
+BOOST_INCLUDE_DIR=$(BOOST_HOME)
+SYSTEMC_LIB_DIR=$(SYSTEMC)/lib-linux64
+else ifeq ($(TARGET_ARCH), x86_64)
+SYSTEMC_INCLUDE_DIR=$(SYSTEMC_INCLUDE)/include
+BOOST_INCLUDE_DIR=$(BOOST_HOME)
+SYSTEMC_LIB_DIR=$(SYSTEMC)/lib-linux64
+else
+SYSTEMC_INCLUDE_DIR=$(SYSTEMC_INCLUDE)/include
+BOOST_INCLUDE_DIR=$(BOOST_HOME)
+SYSTEMC_LIB_DIR=$(SYSTEMC)
+endif
+
+
+INCDIR = -I. -I.. -I../../verilator-3.801/include -I$(SYSTEMC_INCLUDE_DIR) -I$(WORK)/trunk/src/cdom/ -I$(BOOST_INCLUDE_DIR)
+LIBDIR = -L$(SYSTEMC_LIB_DIR)
+LIBS   =  -lsystemc -lm $(EXTRA_LIBS) 
+EXE    = $(MODULE).x
+.SUFFIXES: .cc .cpp .o .x 
+$(EXE): $(OBJS) $(SYSTEMC_LIB_DIR)/libsystemc.a 
+	 $(CC) $(CFLAGS) $(INCDIR) $(LIBDIR) -o $@ $(OBJS) $(LIBS) 2>&1 | c++filt
+
+.cc.o: 
+	$(CC) $(CFLAGS) $(INCDIR) -c $< 
+
+clean:: 
+	rm -f $(OBJS) *~ $(EXE) core 
+
+ultraclean: clean 
+	rm -f Makefile.deps 
+
+Makefile.deps: 
+#	$(CC) $(CFLAGS) $(INCDIR) -M $(SRCS) >> Makefile.deps 
+
+
+#include Makefile.deps
+
+print:
+	echo SYSTEMC_LIB_DIR = ${SYSTEMC_LIB_DIR}
+	echo BOOST_INCLUDE_DIR = ${BOOST_INCLUDE_DIR}
+	echo SYSTEMC_INCLUDE_DIR = ${SYSTEMC_INCLUDE_DIR}
+	echo TARGET_ARCH = $(TARGET_ARCH)
+	echo BOOST_INCLUDE_DIR = $(BOOST_INCLUDE_DIR)
+

@@ -1,0 +1,56 @@
+//oanab
+//17 mar 2008
+//processor ring
+
+csl_unit pr {
+  sg_pr_msg pr1_msg_in; // rn1 input message
+  sg_pr_msg pr1_msg_out; // rn1 output message
+  sg_pr_msg pr2_msg_out; // rn2 output message
+  sg_pr_msg pr3_msg_out; // rn3 output message
+  sg_pr_msg pr4_msg_out; // rn4 output message
+  sg_pr_msg pr5_msg_out; // rn5 output message
+  sg_pr_msg pr6_msg_out; // rn6 output message
+  sg_pr_msg pr7_msg_out; // rn7 output message
+  sg_pr_msg pr8_msg_out; // rn8 output message
+  sg_pr_msg pr9_msg_out; // rn9 output message
+  sg_flash flash_mem; // in/out flash signals  
+  sg_ltc selects;   // ltc test selects
+  sg_phy_mux2 phy_mux2_bus; // signals from phy to M2
+  sg_mac_mux1 mac_mux1_bus; // signals from mac to M1
+  sg_mac_mux4 mac_mux4_bus; // signals from mac to M4
+  sg_sys_mux3 sys_mux3_bus; // signals from sys to M3
+  rn rn1(.pr_msg_in(pr1_msg_in),
+	 .pr_msg_out(pr1_msg_out));
+  rn rn2(.pr_msg_in(pr1_msg_out),
+	 .pr_msg_out(pr2_msg_out));
+  rn rn3(.pr_msg_in(pr2_msg_out),
+	 .pr_msg_out(pr3_msg_out));
+  rn rn4(.pr_msg_in(pr3_msg_out),
+	 .pr_msg_out(pr4_msg_out));
+  rn rn5(.pr_msg_in(pr4_msg_out),
+	 .pr_msg_out(pr5_msg_out));
+  rn rn6(.pr_msg_in(pr5_msg_out),
+	 .pr_msg_out(pr6_msg_out));
+
+  // flash memory connected to rn6
+  FLASH FLASH(.flash_mem.addr(pr6_msg_out.addr),
+	      .flash_mem.data_in(pr6_msg_out.data),
+	      .flash_mem.data_out(flash_mem.data_out),
+	      .flash_mem.cs(flash_mem.cs),
+	      .flash_mem.oe(flash_mem.oe),
+	      .flash_mem.we(flash_mem.we));
+  ltc ltc(.data_in_test_bus(pr6_msg_out.data),.selects(selects));
+  rn rn7(.pr_msg_in(pr6_msg_out),
+	 .pr_msg_out(pr7_msg_out));
+  PHY_MAC PHY_MAC(.mux_sel(selects), 
+	  .phy_mux2_bus(phy_mux2_bus),
+	  .mac_mux1_bus(mac_mux1_bus));
+  SYS_MAC SYS_MAC(.mux_sel(selects),
+	  .mac_mux4_bus(mac_mux4_bus),
+	  .sys_mux3_bus(sys_mux3_bus));
+  rn rn8(.pr_msg_in(pr7_msg_out),
+	 .pr_msg_out(pr8_msg_out));
+  rn rn9(.pr_msg_in(pr8_msg_out),
+	 .pr_msg_out(pr1_msg_in));
+  pr () {}
+};

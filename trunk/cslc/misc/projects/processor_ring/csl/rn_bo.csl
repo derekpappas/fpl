@@ -1,0 +1,23 @@
+//oanab
+//03 january 2008
+//Bus Interface Unit out (bo)
+
+
+//counter - how many cycles the node should wait before sending a message
+csl_register counter {
+  counter () {
+    set_type(counter);
+    set_width(4);
+    add_logic(count_direction,up);
+  }
+};
+
+csl_unit BO {
+  ifc_rn_msg mux_bo_msg_st2; // input message
+  ifc_pr_msg bo_msg_st2; // output message
+  BO () {
+    bo_msg_st2.reverse();
+  }
+};
+
+

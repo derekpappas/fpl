@@ -1,0 +1,386 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="isa.xsl"?>
+<design>
+<isaField name="f_opcode" type = "opcode" offset="0" upper="6-1" lower="0" enum = "e_opcode">
+</isaField>
+<isaField name="f_field" type = "rf_address" offset="0" upper="6-1" lower="0">
+</isaField>
+<isaField name="f_imm" type = "selector" offset="0" upper="1-1" lower="0">
+</isaField>
+<isaElement name="RISC_isa" type="root_format" offset="0" upper="32-1" lower="0">
+</isaElement>
+<isaElement name="base_format" type="instr_format" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enum = "e_opcode">
+</isaField>
+>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="format1" type="instr_format" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enum = "e_opcode">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f1_operand2" type = "rf_address" offset="0" upper="1-1" lower="0">
+</isaField>
+>
+<isaField name="f1_rez" type = "constant" offset="0" upper="13-1" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="format2" type="instr_format" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enum = "e_opcode">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f2_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f2_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+>
+<isaField name="f2_operand" type = "rf_address" offset="0" upper="12-1" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="format3" type="instr_format" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enum = "e_opcode">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="7-1" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="5-1" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_add" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "add_op">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="6" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="4" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_addc" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "adc">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="6" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="4" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_and" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "and_op">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="6" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="4" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_const_add" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "const_add">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f1_operand2" type = "rf_address" offset="0" upper="0" lower="0">
+</isaField>
+>
+<isaField name="f1_rez" type = "constant" offset="0" upper="12" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_const_sub" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "const_sub">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f1_operand2" type = "rf_address" offset="0" upper="0" lower="0">
+</isaField>
+>
+<isaField name="f1_rez" type = "constant" offset="0" upper="12" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_const_h" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "consth">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f1_operand2" type = "rf_address" offset="0" upper="0" lower="0">
+</isaField>
+>
+<isaField name="f1_rez" type = "constant" offset="0" upper="12" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_or" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "or_op">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="6" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="4" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_rotl" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "rotl">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="6" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="4" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_sll" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "sll">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="6" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="4" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_sra" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "sra">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="6" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="4" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_srl" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "srl">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="6" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="4" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_sub" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "sub">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="6" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="4" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_subc" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "subc">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="6" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="4" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_subr" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "subr">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="6" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="4" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_subrc" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "subrc">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="6" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="4" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_xor" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "xor_op">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="6" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="4" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_lp" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "lp">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f2_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f2_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+>
+<isaField name="f2_operand" type = "rf_address" offset="0" upper="11" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_sq" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "sq">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="6" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="4" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_bcc" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "bcc">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f1_operand2" type = "rf_address" offset="0" upper="0" lower="0">
+</isaField>
+>
+<isaField name="f1_rez" type = "constant" offset="0" upper="12" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_callm" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "callm">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f1_operand2" type = "rf_address" offset="0" upper="0" lower="0">
+</isaField>
+>
+<isaField name="f1_rez" type = "constant" offset="0" upper="12" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_callry" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "callry">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f1_operand2" type = "rf_address" offset="0" upper="0" lower="0">
+</isaField>
+>
+<isaField name="f1_rez" type = "constant" offset="0" upper="12" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_jmpm" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "jmpm">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f1_operand2" type = "rf_address" offset="0" upper="0" lower="0">
+</isaField>
+>
+<isaField name="f1_rez" type = "constant" offset="0" upper="12" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_jmpry" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "jmpry">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f1_operand2" type = "rf_address" offset="0" upper="0" lower="0">
+</isaField>
+>
+<isaField name="f1_rez" type = "constant" offset="0" upper="12" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_halt" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "halt">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f1_operand2" type = "rf_address" offset="0" upper="0" lower="0">
+</isaField>
+>
+<isaField name="f1_rez" type = "constant" offset="0" upper="12" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_nop" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "nop">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f1_operand2" type = "rf_address" offset="0" upper="0" lower="0">
+</isaField>
+>
+<isaField name="f1_rez" type = "constant" offset="0" upper="12" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_reti" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "reti">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f1_operand2" type = "rf_address" offset="0" upper="0" lower="0">
+</isaField>
+>
+<isaField name="f1_rez" type = "constant" offset="0" upper="12" lower="0">
+</isaField>
+</isaElement>
+<isaElement name="i_trap" type="instr" offset="0" upper="32-1" lower="0"<isaField name="f_opcode" type = "opcode" offset="0" upper="5" lower="0" enumItem = "trap">
+</isaField>
+<isaField name="operand1" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_operand2" type = "rf_address" offset="0" upper="5" lower="0">
+</isaField>
+<isaField name="f3_imm" type = "selector" offset="0" upper="0" lower="0">
+</isaField>
+<isaField name="f3_spare" type = "rf_address" offset="0" upper="6" lower="0">
+</isaField>
+>
+<isaField name="f3_rx" type = "rf_address" offset="0" upper="4" lower="0">
+</isaField>
+</isaElement>
+</design>

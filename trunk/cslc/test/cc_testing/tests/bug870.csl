@@ -1,0 +1,2 @@
+//bug 870
+csl_port idew1(output, integer, 6);

@@ -1,0 +1,13 @@
+//author: Ines 
+//testing: add_port,bitrange,add_instance,set_width,get_width,set_bitrange,get_bitrange
+//         set_range,set_upper_index,set_lower_index,set_offset,get_offset,get_range
+//         get_upper_index,get_lower_index
+
+csl_unit ux {
+
+  csl_signal bla;
+
+  ux() {
+
+  }
+};

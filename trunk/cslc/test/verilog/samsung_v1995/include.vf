@@ -1,0 +1,7 @@
+`define S10
+`ifndef X32
+  `define X4
+`endif
+`define M64
+`define S70
+

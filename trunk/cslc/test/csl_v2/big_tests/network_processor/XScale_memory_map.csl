@@ -1,0 +1,32 @@
+// Memory map example for the Intel XScale core address space
+
+csl_memory_map_page x_memp {
+x_memp() {
+add(dram,"DRAM",0);
+add(sram,"SRAM",2147483648);  //0x8000_0000
+add(cap.csr,"CAP_CSR",201326592); //0xC000_0000
+ add_reserved_address_range(3254779904,3288334336); //0xc200_0000 to 0xc400_0000 add reserved 1
+//add FLASH ROM
+add(msf,"MSF", 3355443200); //0xc800_0000
+add(scrtch,"SCRATCH", 3388997632); //0xca00_0000
+add(sramctrl.csr,"SRAM_CSR", 3422552064); //0xcc00_0000
+// add SRAM Ring
+add(dramctrl.csr,"DRAM_CSR", 3489660928); //0xd000_0000
+// add reserved 2
+add(xscalecore.csr,"XSCALE_CSR", 3590324224); //0xd600_0000
+add(pci.io, "PCI_IO", 3623878656); //0xd800_0000
+add(pci.cfg, "PCI_CFG", 3657433088); //0xda00_0000
+add(pci.spec, "PCI_SPEC", 3690987520); //0xdc00_0000
+// add PCI Config Regs
+// add Local CSRs
+add(pci,"PCI_MEM",3758096384); //0xE000_0000
+}
+};
+
+csl_memory_map XSmm{
+	x_memp xm;
+	XSmm(){
+set_type(flat);
+set_top_unit(chip);
+}
+};

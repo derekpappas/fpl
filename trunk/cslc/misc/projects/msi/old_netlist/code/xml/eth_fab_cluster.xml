@@ -1,0 +1,30 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="eth_fab_cluster">
+<instantiation type = "eth_tx">
+<instance name="eth_tx">
+</instance>
+</instantiation>
+<instantiation type = "eth_mac">
+<instance name="eth_mac">
+</instance>
+</instantiation>
+<instantiation type = "eth_io">
+<instance name="eth_io">
+</instance>
+</instantiation>
+<instantiation type = "eth_bridge">
+<instance name="eth_bridge">
+</instance>
+</instantiation>
+<instantiation type = "msi_fabric_if">
+<instance name="eth_fab">
+</instance>
+</instantiation>
+<instantiation type = "eth_rx">
+<instance name="eth_rx">
+</instance>
+</instantiation>
+</unit>
+</design>

@@ -1,0 +1,98 @@
+{\rtf1\ansi\ansicpg1252\deff0
+{\fonttbl
+{\f0\fnil\fcharset0\fprq0\fttruetype Times New Roman;}
+{\f1\fnil\fcharset0\fprq0\fttruetype Nimbus Sans L;}
+{\f2\fnil\fcharset0\fprq0\fttruetype Dingbats;}
+{\f3\fnil\fcharset0\fprq0\fttruetype Symbol;}
+{\f4\fnil\fcharset0\fprq0\fttruetype Courier New;}}
+{\colortbl
+\red0\green0\blue0;
+\red255\green255\blue255;}
+{\stylesheet
+{\s1\fi-429\li720\sbasedon28\snext28 Contents 1;}
+{\s2\fi-429\li1440\sbasedon28\snext28 Contents 2;}
+{\s3\fi-429\li2160\sbasedon28\snext28 Contents 3;}
+{\s8\fi-429\li720\sbasedon28 Lower Roman List;}
+{\s5\tx431\sbasedon24\snext28 Numbered Heading 1;}
+{\s6\tx431\sbasedon25\snext28 Numbered Heading 2;}
+{\s7\fi-429\li720 Square List;}
+{\*\cs11\sbasedon28 Endnote Text;}
+{\s4\fi-429\li2880\sbasedon28\snext28 Contents 4;}
+{\s9\fi-429\li720 Diamond List;}
+{\s10\fi-429\li720 Numbered List;}
+{\*\cs12\fs20\super Endnote Reference;}
+{\s13\fi-429\li720 Triangle List;}
+{\s14\tx431\sbasedon26\snext28 Numbered Heading 3;}
+{\s15\fi-429\li720 Dashed List;}
+{\s16\fi-429\li720\sbasedon10 Upper Roman List;}
+{\s17\sb440\sa60\f1\fs24\b\sbasedon28\snext28 Heading 4;}
+{\s18\fi-429\li720 Heart List;}
+{\s34\fi-429\li720 Box List;}
+{\s20\fi-429\li720\sbasedon10 Upper Case List;}
+{\s21\fi-429\li720 Bullet List;}
+{\s22\fi-429\li720 Hand List;}
+{\*\cs23\fs20\sbasedon28 Footnote Text;}
+{\s24\sb440\sa60\f1\fs34\b\sbasedon28\snext28 Heading 1;}
+{\s25\sb440\sa60\f1\fs28\b\sbasedon28\snext28 Heading 2;}
+{\s19\qc\sb240\sa118\f1\fs32\b\sbasedon28\snext28 Contents Header;}
+{\s27\fi-429\li720 Tick List;}
+{\s26\sb440\sa60\f1\fs24\b\sbasedon28\snext28 Heading 3;}
+{\s29\fi-429\li720\sbasedon10 Lower Case List;}
+{\s30\li1440\ri1440\sa118\sbasedon28 Block Text;}
+{\s36\f4\sbasedon28 Plain Text;}
+{\s32\tx1584\sbasedon5\snext28 Section Heading;}
+{\s33\fi-429\li720 Implies List;}
+{\s28\f0\fs24\lang1033 Normal;}
+{\s35\fi-429\li720 Star List;}
+{\*\cs31\fs20\super Footnote Reference;}
+{\s37\tx1584\sbasedon5\snext28 Chapter Heading;}}
+\kerning0\cf0\ftnbj\fet2\ftnstart1\ftnnar\aftnnar\ftnstart1\aftnstart1\aenddoc\facingp\titlepg\revprop3{\info}\deftab720\viewkind1\paperw11905\paperh16837\margl1440\margr1440\widowctl
+\sectd\sbknone\colsx360\headery0\footery0\pgncont\ltrsect
+\pard\plain\ltrpar\qc\s28\sl240\slmult1\itap0{\s28\f0\fs36\b\lang1033{\*\listtag0}\abinodiroverride\ltrch Regression steps required for testing:}{\s28\f0\fs36\b\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs36\b\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch The  <regressiontest.pl> must show up on the perforce server and be used to run the regressions on the IVL2003 test suite that are checked in.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch For example we should try to figure out what string is associated with a failure in the parser }{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch then use a regexp in the Perl script to look for that string then every time we see the string increment a counter for that specific error.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch We must know what kind of failures we are looking look for in each test.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch Separate the strings in:}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab - warnings}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab - error categories}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab - lexical token errors}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch We need a regression script that can identify when there is a problem with the BSS software or a problem with the test. We must define error strings. The parser should contain error handling code for each rule. If it does not then we must file one enhancement request against the entire parser that says.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch We must add error handling to each parser rule and break down the testing into phases.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch We must test the lexer with:}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab - legal tokens}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab - illegal tokens}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch We must look for success and failure respectively.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch There are 4 possible outcomes from a lexer test:}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch  i = illegal}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch  l = legal}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch  p = pass}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch  f == failure}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch  dnf == dd not finish}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch There are 5 possibilities. Each test should have a status:}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab 1. dnf}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab 2. l p}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab 3. l f}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab 4. i p}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab 5. i f}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch  We must print a report that lists the date the version of the software,  the machine architecture type at the top of the report.  Then add a line item for each test with test name status where status is the test type}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab - l or i}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab - p or f or dnf}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch We need to write the tests to test the lexer. The BSS software should use a warning and error string format. That is common for all software.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch The string should indicate whether the warning or error is a development team type of error or a production type of error, the line number and file name that caused the error.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab - all errors and warnings should have a number associated with them.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab - all error and warning strings should be in a file and should be stored in an array.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch The BSS software should reference the error warning number.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch There should be a function which prints out the warning number.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch If we see a warning which is generated using another method, then a BUG must be filed.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch We must print out the status for each test and the summary which included the total number of errors. Then print the results to an HTML page and send out email to the development team with the status of the tests. The mail should include the test summary results and a pointer to the results page and the directory which contains the actual regression run.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch Each software component will be tested like this.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch We must try to write modular code in Perl with a small number of lines per function so that the code is readable. Testing is hard, difficult.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch We will separate the command line commands from the CSL igen docs.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch The igen syntax documentation includes some examples. We must write out more examples for several reasons:}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab  1. we will need CSL igen tests}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab  2. we need to check what we have done}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch \tab  3. we need to understand the new language}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\abinodiroverride\ltrch  We should create a new book for the CSL language and another book for the CSL command line language.}{\s28\f0\fs24\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\qj\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1033{\*\listtag0}\par}}

@@ -1,0 +1,6 @@
+csl_memory_map_page mmpage{
+  mmpage(){
+    add_address_range(0, 31);
+    set_address_increment(34);
+  }
+};

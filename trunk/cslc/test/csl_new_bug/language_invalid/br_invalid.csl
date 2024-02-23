@@ -1,0 +1,18 @@
+//Monica
+//csl_bitrange invalid with
+
+csl_bitrange br1(a, r);  //a, r  are  unknown
+
+csl_unit a{
+//  csl_port p(input,br1);
+  csl_port p(input,4);
+a(){}
+};
+
+csl_unit b{
+//  csl_port p(input,br1);
+  csl_port p(input,4);
+  a a1(.p(p));
+
+b(){}
+};

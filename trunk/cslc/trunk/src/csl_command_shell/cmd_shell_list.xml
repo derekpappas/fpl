@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XML>
+
+<command name="show" args="-instance <instance> -async_reset -before_event -before_reset -after_event  -after_reset" description=" ">
+</command>
+
+<command name="analyze" args="<top_level_module>" description="(application analyzes the CDOM for errors/statistics and generates reports on statistics/errors)">
+</command>
+<command name="analyze" args="<top_level_module>" description="(application analyzes the CDOM for errors/statistics and generates reports on statistics/errors)">
+</command>
+
+
+
+<command name="apropos" args="<keyword>" description="returns all commands and options which have the <keyword> strong in them.">
+</command>
+
+
+
+
+<command name="report" args=" -state_element -incompatible" description="  A report command will generate the list of the state elements which have incompatible specifications. ">
+</command>
+<command name="report" args=" -state_element -incomplete" description="    A report command will generate the list of the state elements which have incomplete   specifications. ">
+</command>
+<command name="report" args=" -state_element -specification" description=" A report command will generate the list of the state elements which have specification problems. ">
+</command>
+
+
+
+
+
+<command name="cd" args="- <dir> <hierarchical_path_to_instance><instance_name_in_current_scope> <instance_name_in_current_workspace>" description="">
+</command>
+
+<command name="check_autoroute" args=" " description="check all autoroutes or specific autoroute.">
+</command>
+
+<command name="check_connectivity" args="-[_all|inst];" description=" ">
+</command>
+
+<command name="Checker" args="-" description=" check width">
+</command>
+
+<command name="check_file" args="-file_name" description="Check if there are any syntax errors in the CSL input file">
+</command>
+
+<command name="check_formal" args="-" description=" all forward names  in deriveCalc calculates the number of bits each signal drives ">
+</command>
+
+<command name="check_hierarchy" args="-" description=" (root)">
+</command>
+
+<command name="check_interfaces" args="-<scope_name> (<signal_name>)*" description="checks the connections in the instance formal to actual port mappings">
+</command>
+
+<command name="check_power_on" args="-" description="plls need to lock then reset chip">
+</command>
+
+<command name="check_power_on" args="-" description="power on grids">
+</command>
+
+<command name="check_power_on" args="-" description="Reset check only clock nets which fanout from reset to state elements">
+</command>
+
+<command name="check_power_on" args="-" description="Reset check that all regs have either an sync or async reset">
+</command>
+
+<command name="check_power_on" args="-reset problems" description=" memory output is x">
+</command>
+
+<command name="check_power_on" args="-" description="reset registers">
+</command>
+
+<command name="check_signal" args="-" description="  helps discover width and driver problems">
+</command>
+
+<command name="check_signals" args="-" description=" checks the connections in the instance formal to actual port mappings">
+</command>
+
+<command name="checks" args="-" description=" the connections inthe instance formal to actual port mappings">
+</command>
+
+<command name="check" args="-interconnect" description="">
+</command>
+
+<command name="compile" args="-" description="//aaaaa<top_level_module>(application parses the file and creates the CDOM objects)"> 
+</command>
+
+<command name="Component" args="-" description=" loops cannot be be simulated in cycle based simulators since elements in the loop need to be evaluated more than once per clock cycle.">
+</command>
+
+<command name="calc_dependencies" args="-" description="Compute the dependencies from the design hierarchy.//aaaaacontinue_through_boolean continue trace through logic">
+</command>
+
+<command name="continue_thru_boolean" args="-" description="">
+</command>
+
+<command name="cslc" args="-verilog" description="Generate all Verilog files. "> 
+</command>
+
+<command name="cslc" args="-vhdl" description="Add VHDL support.">
+</command>
+
+<command name="current_unit" args="-name" description="Set the current unit with the name argument which sets the current scope.">
+</command>
+
+<command name="design_hierarchy" args="- [-block|<-tree" description=" [depth|breadth]>]  The output format is either a tree format or a block diagram. If it is a tree the default traversal order is depth first. Depth or breadth first may be specified.">
+</command>
+
+<command name="dump_waves" args="-" description=" <format> file name">
+</command>
+
+<command name="elaborate" args="-" description="Run the elaboration step and instantiate all the units.">
+</command>
+
+<command name="elaborate" args="-" description=" <top_level_module> (application elaborates the file and modifies the/creates new CDOM objects)">
+</command>
+
+<command name="find" args="-<HW_COMPONENT_TYPE>" description="Only search for  <HW_COMPONENT_TYPE> in the current search space.">
+</command>
+
+<command name="find" args="-" description=" <identfier> [(<scope_name>)+]">
+</command>
+
+<command name="find" args="-memory [<memory_name>] [<-display [-ascii|-gui]" description="Display the results in ascii format or using the GUI. ">
+</command>
+
+<command name="find" args="-port_ifc [<DIRECTION>]" description="Only search in the port interface of the current or named module(s). The direction of the port to search for may be optionally specified.">
+</command>
+
+<command name="find" args="-signal_name_list <signal_name_list>" description="Search for the signals in the list <signal_name_list> in the search space">
+</command>
+
+<command name="find" args="-signal_namesignal_name" description="Search for the signal namedsignal_name in the search space">
+</command>
+
+<command name="flatten" args=""  description="" >
+</command>
+
+<command name="floor_plan" args="-balance_clk_tree" description="  ">
+</command>
+
+<command name="floor_plan_cluster" args="-" description=" ( <module list> ) ">
+</command>
+
+<command name="floor_plan_flatten" args="-" description=" ( <module list> ) ">
+</command>
+
+<command name="floor_plan" args="-insert_clk_tree" description="">
+</command>
+
+<command name="floor_plan" args="-insert_pad_macros" description="">
+</command>
+
+<command name="floor_plan" args="-insert_pads" description="">
+</command>
+
+<command name="gen_ifc_verilog" args="-[-all]" description="Generate the interfaces for the leaf level files. ">
+</command>
+
+<command name="gen_sch" args="-" description="Generate PCD files.">
+</command>
+
+<command name="gen_tb" args="- [-all | -unit modulename ]"	description="Generate all the test benches or a specific test bench.">
+</command>
+
+<command name="gen_ucf" args="-" description="File format which specifies the interface to the FPGA.">
+</command>
+
+<command name="get_connections" args="- clock_name -state_elements" description="given a clk net return the list of state elements connected to clk net">
+</command>
+
+<command name="get_connections" args="- net_name  -objects" description="given a net return all objects connected to it">
+</command>
+
+<command name="get_connections" args="- object_name  -fan_in_cone" description="given an input pin return the fan in cone">
+</command>
+
+<command name="get_connections" args="- object_name -fan_out_cone" description="  an output pin return the fan out cone">
+</command>
+
+<command name="get_connections" args="- object_name  -input_pins" description="given an object return all input pins for obj">
+</command>
+
+<command name="get_connections" args="- object_name  -modules" description="get module list">
+</command>
+
+<command name="get_connections" args="- object_name  -output_pins" description="given an object return all output pins for obj">
+</command>
+
+<command name="get_connections" args="- object_name -state_elements" description="given an object return a list of all nets connected to it">
+</command>
+
+<command name="get_connections" args="- object_name  -statements" description="get the list of statements that the object name is derived from">
+</command>
+
+<command name="get_connections" args="- signal_name  -assignment" description="get the assignment(s) of the signal">
+</command>
+
+<command name="get_connections" args="- signal_name -state_elements" description="return a list of all state elements connected to the signal">
+</command>
+
+<command name="grep" args="-" description=" (<regular_expression>) + (<scope_name>) regular_expression> can be a module, instance or signal name \nregular_expression> can be a regular expression \nscope_name> is a scope that the search should take place in">
+</command>
+
+<command name="help" args="-" description=" <cmd> lists all options for a command ">
+</command>
+
+<command name="help" args="-" description=" lists all commands ">
+</command>
+
+<command name="histogram" args="-" description=" of memory sizes. sort by number of bits | memory ">
+</command>
+
+<command name="info" args="-" description=" hyper linked help ">
+</command>
+
+<command name="info" args="-" description=" module errors Show all module errors.">
+</command>
+
+<command name="info" args="-" description=" <module_name> Show all signals in module.">
+</command>
+
+<command name="info" args="-" description=" (signal < name > | enum name | const name) Show all modules that a given signal name is connected to">
+</command>
+
+<command name="input" args="-" description=" connected to input ">
+</command>
+
+<command name="levelize" args="-" description=" <top_level_module> (application topologically sorts the CDOM) ">
+</command>
+
+<command name="level" args="- <#> - levels <number> [-up | -down]" description=" levels to report ">
+</command>
+
+<command name="Lint" args="- Reset checker cells{<celllist>} -flatten -design" description=" {hierarchy}">
+</command>
+
+<command name="list_connections" args="- signal_name -port" description=" //only lists the ports which the signal is connected to ">
+</command>
+
+<command name="list_connections" args="- signal_name -scope" description=" <scope_name> //only check in the scope <scope_name> lists the signals thesignal_names connected to ">
+</command>
+
+<command name="list_connections" args="- signal_name -state_element" description=" //only lists the state elements that the signals are connected to ">
+</command>
+
+<command name="load_mem" args="-" description=" <file> <mem> ">
+</command>
+
+<command name="ls"  args="-" description=" <file> <mem> ">
+</command>
+
+<command  name="ls" args="-instances" description=" module_name/*.*showsall instances in module_name"> 
+</command>
+
+<command name="ls" args="-module" description=" module_name/*.* shows all signal names in module_name">
+</command>
+
+<command name="ls" args="-" description=" open access a ">
+</command>
+
+<command name="ls" args="-signal_names" description=" module_name/*.* shows all signal names in module_name">
+</command>
+
+<command name="report" args="-report_clocks" description=" number of clocks in the scope">
+</command>
+
+<command name="report" args="-report_gates" description=" number of gates in each modules, unit, and the chip ">
+</command>
+
+<command name="report" args="-report_io_s" description=" number of io's in the target package, number of io's in the design ">
+</command>
+
+<command name="report" args="-report_memories" description="number of memories, bits per memory, memory configurations, and total memory bits in the chip design ">
+</command>
+
+<command name="report" args="-report_register" description="number of register files ">
+</command>
+
+<command name="report" args="-report_wires" description="number of top level wires(used for congestion analysis) ">
+</command>
+
+<command name="show_connections" args="-port" description=" only lists the ports which the signal is connected to ">
+</command>
+
+<command name="preprocess_macros" args="- [-o output file] [-m modulename] | -all" description="Preprocesses macros and expand meta language code so we can read the code and debug the macros.">
+</command>
+
+<command name="print" args="-all [<module_name list |file_name>|-f <file_containing_list of_files>] [-o" description=" <filename>]  print all modules or files to the screen or file ">
+</command>
+
+<command name="print_env" args="-cslc" description="Prints the cslc_interconnect program environment variables">
+</command>
+
+<command name="print" args="-" description=" help show ">
+</command>
+
+<command name="print_hierarchy_tree" args="- [-no instances ]" description = "Prints out the hierarchy tree. ">
+</command>
+
+<command name="print" args="- <module_name|file_name> [-o" description=" <filename>]  print the module or filename to the screen or file ">
+</command>
+
+<command name="Prints" args="-" description=" all the environment variables that are currently read into the shell. ">
+</command>
+
+<command name="print_source_of_code" args="-" description="  ">
+</command>
+
+<command name="print" args="-subtree <module_name> [-o <filename>]  print the modules at and below the specified sub-tree" description=" root  to the screen or file ">
+</command>
+
+<command name="pwd"  args="" description="">
+</command>
+
+<command  name="quit|exit" args="" description="  "> 
+</command>
+
+<command name="read" args="-f <file.cslc_i>" description=" (application reads in the file name) ">
+</command>
+
+<command name="read" args="-f <file.cslc_i>" description=" (application reads in the file name) ">
+</command>
+
+<command name="read" args="-interface <filename> or <file containing list of files> read_ifc" description="Read the files interface.">
+</command>
+
+<command name="report" args="-" description=" a clock gate with a constant enable. This report can find power problems. ">
+</command>
+
+<command name="report" args="-" description=" a clock tree element with a stuck at value. Statically analyze the design for stuck at values ">
+</command>
+
+<command name="report" args="-" description=" a clock tree sequential loop. A clock tree sequential loop contains a clock element that has an output which drives sequential logic which feeds back into the clock tree element. This can cause problems prior to or after reset. The output of the clock tree element may be undefined. ">
+</command>
+
+<command name="report" args="-all -clock_synchronizer" description=" elements. Optionally only report the specified types. ">
+</command>
+
+<command name="report" args="-all -clock_synchronizers" description="">
+</command>
+
+<command name="report" args="-all -clock_synchronizers sigle_pulse       \nsingle_bit        \nbus               \n-" description=" fifo              \ntemporal_delay    \nDesign Quality Checks\n">
+</command>
+
+<command name="report" args="-all -clock_synchronizers ([-single_pulse|-single_bit|-bus|-fifo|-temporal_delay|-asynch|-other])+ -report_design_flaws" description="">
+</command>
+
+<command name="report" args="-all -components" description=" in the optionally defined <search_space> of the optionally defined <search_type> ">
+</command>
+
+<command name="report" args="-all -counters" description="">
+</command>
+
+<command name="report" args="-all -counters -sync_reset" description="">
+</command>
+
+<command name="report" args="-all -counters -sync_reset -async_reset -reset_violation" description="show all counters that will not reset correctly due to asynch reset">
+</command>
+
+<command name="report" args="-all -decoders" description="">
+</command>
+
+<command name="report" args="-all -fifos" description="">
+</command>
+
+<command name="report" args="-all -fsm" description=" finite state machines">
+</command>
+
+<command name="report" args="-all -flipflop_arrays" description="  ">
+</command>
+
+<command name="report" args="-all -flipflops" description="">
+</command>
+
+<command name="report" args="-all -fsms" description="">
+</command>
+
+<command name="report" args="-all -fsms -one_hot" description="">
+</command>
+
+<command name="report" args="-all -hw_components" description="">
+</command>
+
+<command name="report" args="-all -instances" description=" below a hierarchy level.  ">
+</command>
+
+<command name="report" args="-all -latches" description="">
+</command>
+
+<command name="report" args="-all -memory_arrays [-type <memory_type>] [-imp [ latch | flipflop | sram ] ] [-histogram] -xls <output_file_name>" description="">
+</command>
+
+<command name="report" args="-all -memory_arrays [-type <type>]  [-implementation latch  | FF | SR" description="">
+</command>
+
+<command name="report" args="-all -memory_arrays [-type <type>] implementation latch  | FF | SRAM ]" description="">
+</command>
+
+<command name="report" args="-all -of" description=" the connections in the optionally defined <search_space> of the optionally defined <search_type> ">
+</command>
+
+<command name="report" args="-all -of" description=" the instances in the optionally defined <search_space> of the optionally defined <search_type> ">
+</command>
+
+<command name="report" args="-all -of" description=" the modules connected in the optionally defined <search_space> of the optionally defined <search_type> ">
+</command>
+
+<command name="report" args="-all -of" description=" the unconnected signals in the optionally defined <search_space> of the optionally defined <search_type> ">
+</command>
+
+<command name="report" args="-all -srams" description="">
+</command>
+
+<command name="report" args="-all -srffs" description="">
+</command>
+
+<command name="report" args="-all -state_elements [-with_asynch_reset|-with_synch_reset] -reset_violation" description="">
+</command>
+
+<command name="report" args="-all -unconnected -" description=" signal name ">
+</command>
+
+<command name="report" args="-all -unconnected - signal name -instance -source -sink" description="report if the source or sink of name is unconnected">
+</command>
+
+<command name="report" args="-" description=" any asynchronous clock synchronizers which cannot be verified. ">
+</command>
+
+<command name="report" args="-" description=" any clock synchronization violations. ">
+</command>
+
+<command name="report" args="-" description=" any clock synchronizers which cannot be identified. ">
+</command>
+
+<command name="report" args="-" description=" a reset tree element with a stuck at value. Statically analyze the design for stuck at values ">
+</command>
+
+<command name="report" args="-" description=" a reset tree sequential loop. A reset tree sequential loop contains a reset element that has an output which drives sequential logic which feeds back into the reset tree element. This can cause problems prior to or after reset. The output of the reset tree element may be undefined. ">
+</command>
+
+<command name="report_clk_gate_enable_constant " args = "" description="">
+</command>
+
+<command name="report_clk_gate_enable_constant" args =  "report clk gate with constant enable" description=""> 
+</command>
+
+<command name="report_clk_gate_granularity" args="" description="">
+</command>
+
+<command  name="report_clk_gate_granularity " args = "" description = "report the level of clk gating for a hierarchy\nlevels to report\n instance is gated\n modules below instance are gated\npipelines are gated\n"> 
+</command>
+
+<command name="" args="-" description=" report clk gate with constant enable ">
+</command>
+
+<command name="report_clk_tree_gate_stuck_at_value" args="-value" description=" (x | z | 0 | 1) ">
+</command>
+
+<command name="report_clk_tree_gate_stuck_at_value" args="-value (x | z | 0 | 1)" description = "report stack at values that occur before or after reset or an event before_reset\n after_reset \nbefore_event \nafter_event \n ">
+</command>
+
+<command name="report_clk_tree_loop " args ="" description ="">
+</command>
+
+<command  name="report_clk_tree_loop" args= " " description = "report the clock tree elements in a sequential loop that will cause a stuck_at value in the clk tree all options take -instance <instance> open"> 
+</command>
+
+<command name="report_clock_gate_granularity" args="- <search_space> <search_type> <display_options> -number_of_gates_per_clock <number> " description="">
+</command>
+
+<command name="report_clock_gate_with_constant_enable" args="- <search_space> <search_type> <display_options> " description="">
+</command>
+
+<command name="report_clock_tree_seq_loop" args="- <search_space> <search_type> <display_options>  " description="">
+</command>
+
+<command name="report_clock_tree_stuck_at_value" args="- <search_space> <search_type> <display_options> -before_reset -after_reset -before_event -after_event " description="">
+</command>
+
+<command name="<report_components>" args="- (regfile, FF) " description="">
+</command>
+
+<command name="report_components" args="- (regfile, FF) " description="">
+</command>
+
+<command name="report_components" args="- <search_space> <search_type> <display_options> -component_type <component_type> " description="">
+</command>
+
+<command name="<report_connections>" args="- port interface <instance> ( <module> ) show the signal type " description="">
+</command>
+
+<command name="report_connections" args="- port interface <instance> ( <module>  show the signal type"  description="">
+</command>
+
+<command name="report_connectivity " args = "" description="">
+</command>
+
+<command  name="report_connectivity<signal_name>" args =" -text -gui -continue_thru_boolean -levels <number> [-up | -down] Should draw in GUI or display in text from the starting point ofsignal_name the fanout of the signal.level <#> # of levels to go down or up" description=""> 
+</command>
+
+<command name="report_csl_incompatible_specs" args="- <search_space> <search_type> <display_options>  " description="">
+</command>
+
+<command name="report_csl_incomplete_specs" args="- <search_space> <search_type> <display_options>  " description="">
+</command>
+
+<command name="report_csl_specs" args="- <search_space> <search_type> <display_options> -incomplete -incompatible " description="">
+</command>
+
+<command name="report" args="- if the instances are gated in the search space. " description="">
+</command>
+
+<command name="report" args="- if the pipelines are gated in the search space. " description="">
+</command>
+
+<command name=""  args="-" description="    report if the source or sink of name is unconnected ">
+</command>
+
+<command name="report_instance_hierarchy" args="- <search_space> <display_options>  " description="">
+</command>
+
+<command name="report_instances" args="- <search_space> <search_type> [-type|functional_type] <display_options> " description="">
+</command>
+
+<command name="report_instances" args="-type <type> show all instances of <type> (e.g. show all FFs, or show all modules)" description="">
+</command>
+
+<command name="report_instances" args="-type <type> show all instances of <type> (e.g. show all FFs, or show all modules)" description="">
+</command>
+
+<command name="report_loops" args="- [-combinational | -component ] " description="">
+</command>
+
+<command name="report" args="- memory statistics " description="">
+</command>
+
+<command name="report_memory" args="-statistics Total bits\n  Total size\nNumber of memories\nhistogram of memory sizes. sort by number of bits | memory\n report_all_fsms - one_hot" description="">
+</command>
+
+<command name="report_modules" args="- [-hier, <instances>] " description="">
+</command>
+
+<command name="report_modules" args="- [-hier, <instances>] [-tree ( breadth first | depth first )] show all instances below a hierarchy first\n show all instances in a tree view\n specify a depth first or breadth first traversal\n"  description="">
+</command>
+
+<command name="report_modules" args="- <search_space> <search_type> <start_search_point>  <end_search_point> [-type|functional_type] <display_options> " description="">
+</command>
+
+<command name="report" args="-ram -statistics " description="">
+</command>
+
+<command name="report_reset_tree_seq_loop" args="- <search_space> <search_type> <display_options>  " description="">
+</command>
+
+<command name="report_reset_tree_stuck_at_value" args="- <search_space> <search_type> <display_options> -before_reset -after_reset -before_event -after_event " description="">
+</command>
+
+<command name="reports " args = "" description="">
+</command>
+
+<command name="report_signal_connections <search_space> <search_type>" args=" -srch_point_start <start_search_point> -srch_point_end <end_search_point> [-type|functional_type] <display_options> "description=""> 
+</command>
+
+<command name="report" args="- signalName <bit_unit> " description="">
+</command>
+
+<command name="" args="-    report stack at values that occur before or after reset or an event  " description="">
+</command>
+
+<command name="" args="-    report the clock tree elements in a sequential loop that will cause a stuck_at value in the clk tree " description="">
+</command>
+
+<command name="report" args="- the estimated size of the memory of each memory. " description="">
+</command>
+
+<command name="report" args="- the granularity of the clock gating. This report can find power problems. " description="">
+</command>
+
+<command name="" args="-    report the level of clk gating for a hierarchy " description="">
+</command>
+
+<command name="report" args="- the number clocks of each memory. " description="">
+</command>
+
+<command name="report" args="- the number of memories. " description="">
+</command>
+
+<command name="report" args="- the number read ports in each memory. " description="">
+</command>
+
+<command name="report" args="- the number write ports in each memory. " description="">
+</command>
+
+<command name="report" args="- the total number of memory bits of each memory.  " description="">
+</command>
+
+<command name="report" args="- the type of the FSM (one hot/cold, ...). " description="">
+</command>
+
+<command name="report_unconnected_signals" args="- <search_space> <search_type> <start_search_point>  <end_search_point> [-type|functional_type] <display_options>  " description="">
+</command>
+
+<command name="report" args="- whether the memory is synchronous or asynchronous. " description="">
+</command>
+
+<command name="" args="- - reset_violation " description="">
+</command>
+
+<command name="set_current_instance" args="- <instance_name> Sets the CSL variable current_instance_name to <instance_name>\n-sub_tree <instance_name> Only search for the current search term in the sub-tree which <instance_name> is the root of.\n-instance <instance_name> Only search in the <instance_name>\n-instance_list <instance_name_list> Only search in the <instance_name_list>\n-module <module_name> " description="">
+</command>
+
+<command name="set_current_module" args="- <module_name> Sets the CSL variable current_module_name to <module_name>"  description="">
+</command>
+
+<command name="shell " args = "" description="">
+</command>
+
+<command  name="report" args="-reset_counter_problems Show all counters that will not reset correctly due to asynchronous reset. " description=""> 
+</command>
+
+<command name="show" args="- all signals in interface -name name show all instances that name is conveied to" description="">
+</command>
+
+<command name="show" args="-calculate_widths " description="">
+</command>
+
+<command name="show_clks_in_fan_in_cone " args = "" description="">
+</command>
+
+<command  name="show_commands " args = "" description="">
+</command>
+
+<command name="show_connections" args="- <sn> instances " description="">
+</command>
+
+<command name="show" args="- connections <sn> tree " description="">
+</command>
+
+<command name="show_direction" args="-conflicts <scope_name> " description="">
+</command>
+
+<command name="show_direction" args="- conflicts <scope_name> show the signals which have direction mismatches at the portlist instantiations...output connected to output...input connected to input" description="">
+</command>
+
+<command name="show_disconnected_clks" args="- (<scope_list>)  ( - clk <clk_name> ) " description="">
+</command>
+
+<command name="show_disconnected_resets" args="- ( - reset reset_name ) " description="">
+</command>
+
+<command name="show_disconnected_resets" args="- ( - reset reset_nameshow_memory_map " description="">
+</command>
+
+<command name="show" args="- <signal_name> -fan_in " description="">
+</command>
+
+<command name="show" args="- <signal_name> fan_out " description="">
+</command>
+
+<command name="show_histogram" args="- of memory sizes-sort by bits per memory. Create an xls spreadsheet with the memory statistics.  " description="">
+</command>
+
+<command name="show" args="-inferred_port_declarations  -inferred_wires " description="">
+</command>
+
+<command name="show_memory_map" args="- <adress> -instance name -module name -name name -name <regex> -range <addr>:<addr> -show_memory_map -type [SRAM | FF | RF | FIFO] " description="">
+</command>
+
+<command name="show" args="-module_clock mcclk; " description="">
+</command>
+
+<command name="show" args="-module_name <module_name>; " description="">
+</command>
+
+<command name="show" args="-module_reset mcrstn; show_connections <sn>, sn = signal name"  description="">
+</command>
+
+<command name="show_path" args="-from <sig> -to <sig> " description="">
+</command>
+
+<command name="show_ramlist " args ="" description="">
+</command>
+
+<command  name="show_ram_report" args ="clocks ( read / write )\n " description=""> 
+</command>
+
+<command name="show_ram_report" args="-names -modules -total bits " description="">
+</command>
+
+<command name="show_ram_total_rambits " args = "" description="">
+</command>
+
+<command  name="show" args=" -save_parameters " description=""> 
+</command>
+
+<command name="show_spec" args="-show_input_spec <objects or object_list> " description="Shows the input specification for a specfied object or object list.">
+</command>
+
+<command name="show_spec" args="-show_output_spec <objects or object_list>" description="Shows the output specification for a specfied object or object list.">
+</command>
+
+<command name="show" args="- the signals which have direction mismatches at the portlist instantiations " description ="">
+</command>
+
+<command name="show_width_mismatchessignal_name" args="-width" description=" //show the width mismatches for a signal_name ">
+</command>
+
+<command name="show" args="-scope <scope_name>" description="only check in the scope <scope_name> ">
+</command>
+
+<command name="trace_fanin" args="-show_ff_driver" description = "">
+</command>
+
+<command name="trace-signal" args="- <signal>" description="Traces signal through all the  F2A mappings. ">
+</command>
+
+<command name="ungroup" args="-prefix " description="">
+</command>
+
+<command name="ungroup" args="-simple_names " description="">
+</command>
+
+<command name="view_generated_code" args="- <source> " description="">
+</command>
+
+<command name="voltage" args="- " description="of each I/O in the die and the target PCB socket ">
+</command>
+
+<command name="write_file" args="- " description=" (user writes the design specificationin cslc_i) ">
+</command>
+
+<command name="write_meta_file" args="- " description="This should create a new meta file with the date. appended to them a should not overwrite the previous meta files.">
+</command>
+
+<command name="write" args="-verilog <filename(s)>.v -ext <extension> -flat|-hierarchical " description="">
+</command>
+
+
+</XML>

@@ -1,0 +1,3 @@
+//illegal verilog number - bug1716
+
+csl_bitrange br(129'b1bbbbbbbbbbbb23);

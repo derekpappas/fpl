@@ -1,0 +1,86 @@
+//cghaba
+//October 2007
+
+// defining bitranges
+
+csl_bitrange br_d(0,15);
+csl_bitrange br_c(0,3);
+
+// defining interfaces
+
+// define data interface
+// this interface has both input and output ports
+
+csl_interface ifc_d {
+  csl_port p_data_in(input,br_d);
+  //  csl_port p_data_out(output,br_d);
+  ifc_d(){
+  }
+};
+
+// define control/status interface
+// interface has both input and output ports
+
+csl_interface ifc_c {
+  csl_port p_ctrl(input,br_c);
+  csl_port p_stat(output,br_c);
+  ifc_c(){
+  }
+};
+
+// defining first unit under test
+csl_unit u_struc {
+  csl_port flg(output);
+  csl_port clk(input);
+  u_struc(){
+    clk.set_attr(clock);
+  }
+};
+
+// define second unit under test
+csl_unit u_behav {
+  u_struc u_struc;
+  ifc_d ifc_d;
+  ifc_c ifc_c;
+  csl_port clk(input);
+  u_behav() {
+ clk.set_attr(clock);
+  }
+};
+
+csl_vector v_stim_b {
+  v_stim_b(){
+    set_unit_name(u_behav);
+    set_direction(input);
+// this is to test if include_only and set_direction(input) commands include
+// the right input  ports of u_struct unit
+    include_only(ifc_d);
+    set_vc_header_comment("Stimulus for u_behav unit");
+    set_version(1);
+    set_radix(bin);
+  }
+};
+
+csl_vector v_expect_b {
+  v_expect_b(){
+    set_unit_name(u_behav);
+    set_direction(output);
+    exclusion_list(ifc_c);
+    set_vc_header_comment("Expected vector for u_behav unit");
+    set_version(1);
+    set_radix(bin);
+  };
+};
+
+csl_testbench sb_tb {
+  csl_signal clk(reg);    
+    u_behav u_behav;
+    sb_tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,10,ns);
+    add_logic(generate_waves,"alu_tb_waves",fsdb);
+    set_testbench_verilog_filename("alu_tb1");
+    add_logic(simulation_timeout_counter, 500);
+  }
+};
+

@@ -1,0 +1,49 @@
+//author: Ines
+//testing: set_width,set_dim_width,set_number_of_dimensions,add_signal,add_instance
+//         set_dim_bitrange,set_type,set_range,add_signal,set_bitrange
+
+csl_unit u1_t2 {
+  csl_signal s1_1_t2;                                                             
+  csl_signal s1_2_t2;
+  csl_signal s1_3_t2;
+  csl_signal s1_4_t2;
+  csl_signal s1_5_t2;
+  csl_signal s1_6_t2(3,2);
+  csl_signal s1_7_t2;
+  csl_signal s1_8_t2;
+  csl_signal s1_9_t2; 
+  
+  u1_t2() {
+    s1_1_t2.set_number_of_dimensions(2);
+    //    s1_1_t2.set_dim_width(0,4);
+    //    s1_1_t2.set_dim_width(1,8);
+    s1_2_t2.set_number_of_dimensions(3);
+    //    s1_2_t2.set_dim_width(0,5);
+    //    s1_2_t2.set_dim_width(1,7);
+    //    s1_2_t2.set_dim_width(2,3);
+    s1_8_t2.set_number_of_dimensions(3);
+    //    s1_8_t2.set_dim_width(0,s1_2_t2.get_dim_width(1));
+    //    s1_8_t2.set_dim_width(1,s1_2_t2.get_dim_width(0));
+    s1_9_t2.set_number_of_dimensions(s1_2_t2.get_dim_width(2));
+  }   
+};
+
+csl_signal sgn2_t2;
+
+csl_unit u2_t2 {
+  csl_signal sgn2_1_t2;
+  csl_signal sgn2_2_t2;
+  csl_signal sgn2_3_t2;  
+  
+  u1_t2 inst_u1;  
+ 
+  u2_t2() {
+    sgn2_1_t2.set_number_of_dimensions(10);
+//    sgn2_1_t2.set_dim_width(0,u1_t2.s1_2_t2.get_dim_width(0));
+//    sgn2_1_t2.set_dim_width(1,20);
+//    sgn2_1_t2.set_dim_width(5,sgn2_1_t2.get_dim_width(1));
+//    sgn2_1_t2.set_dim_width(9,2);
+    sgn2_2_t2.set_number_of_dimensions(3);
+    //    sgn2_2_t2.set_dim_width(0,3);
+  }
+};

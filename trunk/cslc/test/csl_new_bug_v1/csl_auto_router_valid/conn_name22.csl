@@ -1,0 +1,51 @@
+//oanab
+
+csl_bitrange br1(78);
+
+csl_bitrange br2(88);
+
+csl_bitrange br3(64);
+
+csl_interface ifc0 {
+  csl_port p_m(input,br1);
+  csl_port p_n(output,br3);
+  csl_port p_o(input,78);
+  ifc0 () {
+  }
+};
+
+csl_interface ifc1 {
+  csl_port p_x(input,br2);
+  ifc0 ifc00;
+  ifc0 ifc01;
+  ifc1 () {
+  }
+};
+
+csl_unit a {
+  ifc0 ifc00;
+  csl_port p_n(inout,64);
+  a () {
+  }
+};
+
+csl_unit b {
+  a a0(.ifc00.p_n(p_c),.ifc00.p_o(p_m));
+  csl_port p_m(input,78);
+  csl_port p_c(output,br3);
+  ifc1 ifc11;
+  b () {
+    a0.ifc00.p_m.connect_by_name(p_m,pa_m);  // ifc.p---port (CP)
+  }
+};
+
+csl_unit c {
+  b b0(.ifc11(ifc10),.p_m(s_m),.p_c(s_c[151:88]));  // f2a : ifc---ifc, port--sig, port---s.ps
+  ifc1 ifc10;
+  csl_signal s_m(br1);
+  csl_signal s_c(152);
+  c () {
+    ifc10.ifc00.p_n.connect_by_name(b0.a0.p_n);  // ifc.ifc.p---port (PC)
+  }
+};
+

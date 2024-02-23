@@ -1,0 +1,19 @@
+//invalid test: it should be only one type of access in the set_attribute parameters list.
+
+csl_register hplj1{
+    hplj1(){
+     set_attribute(shadow);
+     init_value(5);
+     init_value(5);
+     //     add_logic(dec_signal);
+     add_to_memory_map(532131231);
+
+     set_attributes( csl_list (read,read_write,write )); //error
+     set_attributes( csl_list (read,read_write,write ));//error
+     set_attributes( csl_list (read,read_write,write )); //error
+
+     set_attributes( csl_list (shadow,write,write,write ));
+     //     add_logic(dec_signal);
+  }
+}
+;

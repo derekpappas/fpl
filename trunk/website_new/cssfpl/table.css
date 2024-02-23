@@ -1,0 +1,75 @@
+/* http://www.digital-web.com/articles/everything_you_know_about_CSS_Is_wrong/  */
+/* need IE8 */
+
+.header_container {
+             display: table;
+             background-color: #FFFFFF;
+             }
+
+.row {
+       display: table-row;
+       }
+
+.cell_top_row_padding {
+               display: table-cell;
+               width: 60%; 
+               height: 15px;
+/*               border: 1px solid blue; */
+               }
+
+.cell_nav_menu {
+                display: table-cell;
+                width: 25%;
+                height: 15px;
+/*                border: 1px solid blue; */
+                 background-color: #FFFFFF;
+                }
+
+.cell_logo_row_padding { 
+               display: table-cell;
+               width: 1%; 
+               height: 15px;
+/*               border: 1px solid blue; */
+ }
+
+.cell_company_logo {
+                display: table-cell;
+                width: 10%;
+                border: 1px solid yellow;
+                }
+
+.cell_system_design_automation {
+                display: table-cell;
+                width: 50%;
+               border: 1px solid orange;
+	}
+
+                }
+
+.cell_search_box {
+                display: table-cell;
+                width: 100%;
+                height: 15px;
+/*                border: 1px solid blue; */
+                padding: 10 0 0 0;
+                }
+
+.cell_menu_row_padding { 
+               display: table-cell;
+               height: 15px;
+               width: 50%; 
+/*               border: 1px solid blue; */
+ }
+
+.cell_menu {
+             display: table-cell;
+             width: 30%;
+             height: 15px;
+/*             border: 1px solid blue; */
+             padding: 10 0 0 0;
+             background-color: #FFFFFF;
+             }
+
+
+.white_line {border-bottom: 2px solid #FFFFFF}
+.blue_line {border-bottom: 2px solid #0000FF}

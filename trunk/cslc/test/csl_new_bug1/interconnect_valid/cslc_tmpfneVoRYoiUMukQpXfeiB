@@ -1,0 +1,18 @@
+# "/opt/he_fpl_svn/fpl_repo/cslc/test/csl_new_bug1/interconnect_valid/./concat_assign6.csl" 1
+
+
+
+
+csl_unit u1 {
+  csl_port y(output,4);
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_port x(input,8);
+  csl_port y(output,4);
+  u1 u10(.y(y));
+  u2 () {
+    x={y,4'bz};
+  }
+};

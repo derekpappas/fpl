@@ -1,0 +1,6 @@
+//Petronela - an enum item can't have a string like value
+
+csl_enum e{
+	A=r,
+	B=1
+};

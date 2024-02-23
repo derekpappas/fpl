@@ -1,0 +1,41 @@
+csl_enum opcodes {
+  RD  = 0,
+  WR  = 1,
+  BR  = 2,
+  NOP = 3
+};
+
+csl_field op {
+  op() {
+    set_width(2);
+    set_enum(opcodes);
+  }
+};
+
+csl_field reg_addr {
+  reg_addr() {
+    set_width(9);
+  }
+};
+
+csl_field instr_fmt {
+  reg_addr srca;
+  reg_addr srcb;
+  reg_addr dest;
+
+  instr_fmt() {
+    set_width(32);
+
+  }
+};
+
+
+csl_unit a {
+  // csl_signal sgn;
+  instr_fmt alu_fmt;
+
+  a() {
+    alu_fmt.generate_decoder();
+  }
+};
+

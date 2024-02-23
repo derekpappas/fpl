@@ -1,0 +1,8 @@
+//bug 867
+csl_unit u{
+  csl_signal juat1(1);
+  csl_signal sjrj1(juat1); //should work
+  u(){
+    juat1 =sjrj1;
+  }
+};

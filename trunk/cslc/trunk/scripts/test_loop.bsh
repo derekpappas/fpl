@@ -1,0 +1,12 @@
+ #!/bin/bash
+
+#for i in $( ls -d * ); do
+#          mkdir "log_tests/$i"
+#done
+
+for i in $( ls *.csl ); do
+    echo test : $i
+    cslc $i > 1 &> $i.log
+done
+
+grep -i "Error:  In file " *log | sort -u

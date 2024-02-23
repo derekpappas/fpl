@@ -1,0 +1,10 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+
+#exceptions:
+#|file_name			|all		|comments
+M50FLW040_MACRO.v		skip		"macros"
+M50FLW080_MACRO.v		skip		"macros"

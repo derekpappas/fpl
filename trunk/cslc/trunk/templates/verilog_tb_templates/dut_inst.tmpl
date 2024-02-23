@@ -1,0 +1,6 @@
+//----------------DUT instance--------------------
+
+<TMPL_VAR dut_name> <TMPL_VAR dut_inst>(.<TMPL_VAR dutClk>(<TMPL_VAR clk>), 
+<TMPL_LOOP port_list>     .<TMPL_VAR port_name>(<TMPL_VAR wire_name>)<TMPL_UNLESS  __last__>,<TMPL_ELSE>);</TMPL_UNLESS> </TMPL_LOOP>
+                                                                              
+//------------------------------------------------

@@ -1,0 +1,9 @@
+# This is the input test file for CTestGate class
+# <> means obligatory
+# [] means optional
+# {} means group
+# *x means this should repeat x times
+# Syntax: ( <LOWER_EXPR_TYPE> <LOWER_EXPR_TEST> <UPPER_EXPR_TYPE> <UPPER_EXPR_TEST> <EXPECTED_WIDTH> )
+# examples:
+
+( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 )

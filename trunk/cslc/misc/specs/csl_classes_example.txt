@@ -1,0 +1,284 @@
+
+==================================================
+
+// C++ simulator library code
+
+typedef unsigned int uint;
+typedef unsigned long long ull;
+
+class CsimPort {
+  string name;
+  uint width; // can form mask
+
+  CsimPort() {
+  }
+}
+
+class CsimPort_uint : public CsimPort { 
+ 
+  uint value;
+
+  CsimPort() {
+  }
+}
+
+
+class CsimPort_ull : public CsimPort { 
+ 
+  ull value;
+
+  CsimPort() {
+  }
+}
+
+class CsimPort_ubn : public CsimPort { 
+ 
+  ubn value;
+
+  CsimPort() {
+  }
+}
+
+
+// trees of interfaces can be built
+
+class CsimInterface {
+
+  vector<CsimPort> vp;
+  vector<CsimInterface> vi;
+  
+  CsimInterface() {
+  }
+  
+  void addPort(CsimPort p) { vp.add(p);}
+  void addInterface(CsimInterface i) { vi.add(i);} 
+}
+
+class CsimUnit {
+  string moduleName;
+  string instanceName;
+  vector<CsimUnit> vu;
+  CsimInterface ifc;
+
+  CsimUnit(string mn, string in) {
+     moduleName  = mn;
+     instanceName= in;
+  }
+  
+  void addIfc(CsimInterface i) { vp.add(i);}
+  void addUnit(CsimUnit u) { vu.add(u);}
+}
+
+// the ports form the interface are written to the vector
+// {a,b,c}
+// vector file output
+// 
+// a_b_c
+// 345_6444_334455666
+//
+// 1. every time there is an event write this set of numbers to a string
+// 
+// if (q_value) {
+// a_value
+// b_value
+// c_value
+// }
+// 
+// 2. put string in output file stream
+
+class CsimVectorWriter {
+  string vectorName;
+  string instanceName;
+  stream str;
+  string filename;
+
+  string currentVector;
+  bool writeVector; // set by the event int he execute function
+
+  CsimVectorWriter() {
+    // register this vector class with the simulator class
+  }
+  
+  void putString() { // write the string to the file
+    if(writeVector) {
+      // write vectorString to the stream that writes to the filename
+    }
+  }
+
+
+  virtual void vectorExecute(); // create the string and set it in
+                                // this class.
+
+
+}
+
+
+
+
+
+
+==================================================
+
+// CSL code
+
+csl_interface ifc {
+  csl_port p(input, 4);
+  csl_port q(input, 4);
+  csl_port r(input, 4);
+
+  x() {
+  }
+}
+
+csl_unit x_unit {
+  csl_port a(input, 5);
+  csl_port b(input, 1);
+  csl_port c(input, 32);
+  csl_port d(input, 1);
+  csl_port e(input, 8);
+
+  x_unit() {
+  }
+}
+
+csl_unit y_unit  {
+  csl_port e(input, 32);
+  csl_port f(input, 32);
+
+  y_unit() {
+  }
+}
+
+csl_unit top_unit {
+  x_unit x0;
+  y_unit y0;
+
+  top_unit() {
+  }
+}
+
+==================================================
+
+// Generated C++ code which uses the C++ simulator library code
+
+class ifc : public CsimInterface {
+  CsimPort p(input, 4);
+  CsimPort q(input, 4);
+  CsimPort r(input, 4);
+
+  x() {
+    addPort(p);
+    addPort(q);
+    addPort(r);
+  }
+}
+
+class x_unit : public CsimUnit {
+uint a_value;
+uint a_width;
+direction a_dir; // input output-DO WE NEED THIS
+
+uint b_value;
+uint b_width;
+direction b_dir; // input output-DO WE NEED THIS
+
+ubn c_value;
+ubn c_width;
+direction c_dir; // input output-DO WE NEED THIS
+
+uint q_value;
+ubn q_width;
+direction q_dir; // input output-DO WE NEED THIS
+
+// add set/get for value
+// add get for the other two
+
+  x_unit(string mn, string in) : CsimUnit(mn, in) {
+  }
+}
+
+class y_unit : public CsimUnit  {
+  CsimPort e(input, 32);
+  CsimPort f(input, 32);
+
+  y_unit(string mn, string in) : CsimUnit(mn, in) {
+    addPort(e);
+    addPort(f);
+  }
+}
+
+class top_unit  : public CsimUnit  {
+  shared_ptr<x_unit> x0;
+  shared_ptr<y_unit> y0;
+
+  top_unit(string mn, string in) : CsimUnit(mn, in) {
+    x0 = new x_unit("x_unit", "x0");
+    y0 = new y_unit("y_unit", "y0");
+    addUnit(x0);
+    addUnit(y0);
+  }
+}
+
+// vector for the inputs into the x_unit
+
+class a_vec  : public CsimVector  {
+  shared_ptr<uint> a_value;
+  shared_ptr<uint> b_value;
+  shared_ptr<uint> c_value;
+
+  a_vec {
+  }
+
+  void vectorExecute() {  
+    writeVector = // event equation;
+
+    if (writeVector) {
+      // create the vector string 
+      sstring cv a_value << "_" <<  b_value << "_" << c_value;
+      // add to string in parent 
+      currentVector = cv;
+    }
+
+  }
+
+  uint get_a_value() { return *a_value; };
+  uint get_b_value() { return *b_value; };
+  uint get_c_value() { return *c_value; };
+
+
+
+}
+
+
+
+// 1. every time there is an event write this set of numbers to a string
+// 
+// if (q_value) {
+// a_value
+// b_value
+// c_value
+// }
+// 
+// 2. put string in output file stream
+
+
+
+
+
+CsimUnit x_unit("x");
+
+
+simulator sim() {
+
+top_unit t0("top_unit", "t0");
+
+setTopUnit(t0);
+
+}
+
+
+
+
+
+
+// code generator adds the top unit automatically

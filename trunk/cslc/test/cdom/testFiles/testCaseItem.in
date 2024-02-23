@@ -1,0 +1,17 @@
+# This is the input test file for CTestCaseItem class
+# <> means obligatory
+# [] means optional
+# {} means group
+# *x means this should repeat x times
+# Syntax: ( <PARENT_STMT_CASE_TEST> <1..2> [CASE_ITEM_TYPE] <NUMBER_OF_MATCH_EXPRS> {<EXPR_TYPE> <EXPR_TEST>}*NUMBER_OF_MATCH_EXPRS <NUMBER_OF_STATEMENTS> {<STMT_TYPE> <STMT_TEST>}*NUMBER_OF_STATEMENTS )
+# 1 constructor without CASE_ITEM_TYPE
+# 2 constructor with CASE_ITEM_TYPE
+# examples:
+
+( ( 1 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 0 ) 1 0 0 )
+( ( 2 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 0 0 ) 2 0 0 0 )
+( ( 2 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 1 0 ) 2 1 0 0 )
+( ( 2 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 2 0 ) 2 2 0 0 )
+( ( 2 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 2 0 ) 2 2 0 1 COmStmtIfElse ( 1 1 COmStmtIfElse ( 1 0 0 ) 0 ) )
+( ( 2 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 3 0 ) 1 1 COmSignalSingleton ( 1 14 jsafoiw COmModule ( n bibi n 0 0 ) ) 0 )
+

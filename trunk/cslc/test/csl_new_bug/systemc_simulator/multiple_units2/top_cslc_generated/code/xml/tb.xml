@@ -1,0 +1,12 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="testbench.xsl"?>
+<design>
+<testbench name="tb">
+<signal name="clk" offset="0" upper="0" lower="0" type = "reg" attr = "clk"/>
+<instantiation type = "c">
+<instance name="c0">
+<f2a formal = "clk" actual = "clk" />
+</instance>
+</instantiation>
+</testbench>
+</design>

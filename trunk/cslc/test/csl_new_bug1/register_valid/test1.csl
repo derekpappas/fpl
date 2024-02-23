@@ -1,0 +1,48 @@
+//oanab
+//17 dec 2007
+
+csl_register rs{
+  rs() {
+    set_width(32);
+    set_type(register);
+    set_attributes(rd_wr);
+    add_logic(reset);
+  }
+};
+
+csl_unit u{
+  csl_port clk(input);
+  csl_port stim_v(input),exp_v(output);
+  csl_signal stim,exp;
+  csl_signal res(wire),reg_in(wire,32),reg_out(wire,32),enable(wire); 
+  rs rs(.clock(clk),.reset_(res),.reg_in(reg_in),.reg_out(reg_out),.enable(enable));
+  u() {
+    clk.set_attr(clock);
+    stim_v = stim;
+    exp = exp_v;
+  }
+};
+
+csl_vector stim{
+  stim(){
+    set_unit_name(u);
+    set_direction(input);
+  }
+};
+
+csl_vector exp{
+  exp(){
+   set_unit_name(u);
+   set_direction(output);
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+  u u;
+   tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,4,ns);
+  }
+};
+

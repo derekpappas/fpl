@@ -1,0 +1,148 @@
+csl_enum kh {
+	ay = 0,
+	xy = 68,
+	wh = 87,
+	km = 29,
+	dq = 34,
+	sl = 71,
+	tf = 9,
+	co = 22,
+	ow = 67,
+	rf = 75
+};
+csl_enum wo {
+	dk,
+	lw,
+	gi
+};
+csl_enum ms {
+	pp = 44,
+	up = 35,
+	or = 13,
+	xc = 15,
+	fd = 97,
+	sx = 20,
+	oo = 44,
+	dq = 84,
+	et = 67,
+	px = 56,
+	bm = 43,
+	of = 91,
+	xc = 4,
+	cg = 25,
+	kq = 61,
+	bc = 54,
+	gv = 79,
+	rx = 19,
+	or = 42,
+	av = 69,
+	uu = 54,
+	vl = 23,
+	ly = 14
+};
+csl_isa_instruction_format bu{
+    bu( ){
+     generate_decoder( lf);
+  }
+}
+;
+csl_isa_instruction pp : bu{
+    pp( ){
+    set_asm_mnemonic( fb);
+  }
+}
+;
+csl_isa_instruction am : bu{
+    am( ){
+    set_asm_mnemonic( csl_list "us", "nm", "ij");
+  }
+}
+;
+csl_isa hy{
+    hy( ){
+     set_decoder_name( "la");
+     set_decoder_out_name_prefix( "cx");
+     set_decoder_out_name_suffix( "xq");
+     print( isa.txt);
+  }
+}
+;
+csl_fifo uy{
+   uy( ){
+     set_physical_implementation( SRAM);
+     add_logic( width_extend, 7);
+     add_logic( flow);
+  }
+}
+;
+csl_memory_map_page st{
+    st( ){
+     set_address_increment( 1);
+     get_address_increment( );
+     set_next_address( 5);
+     set_access_rights( none, access_read_write);
+     add_reserved_address_range( 0, 1);
+     add( uy, "ut");
+     get_upper_bound( );
+     set_data_word_width( 5);
+     get_data_word_wodth( );
+     get_aligment( );
+     set_endianess( big_endian);
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page et{
+  st tn;
+    et( ){
+     add_address_range( 2, 8);
+     set_address_increment( 0);
+     get_address_increment( );
+     set_next_address( 4);
+     get_next_address( );
+     set_access_rights( access_read, access_read_write);
+     add_reserved_address_range( 6, 9);
+     set_data_word_width( 7);
+     set_aligment( 6);
+     get_aligment( );
+     set_endianess( big_endian);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page bv{
+  st kb;
+  et fo;
+  st xu;
+  st rw;
+    bv( ){
+     set_address_increment( 0);
+     set_next_address( 9);
+     get_next_address( );
+     add_reserved_address_range( 5, 9);
+     add( uy, "un", 2);
+     get_lower_bound( );
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_register rk{
+    rk( ){
+     constant( 6);
+     add_logic( serial_input);
+  }
+}
+;
+csl_register dc{
+    dc( ){
+     set_width( 7);
+     get_width( );
+     set_depth( 0);
+     add_logic( read_valid);
+     add_logic( bypass);
+  }
+}
+;

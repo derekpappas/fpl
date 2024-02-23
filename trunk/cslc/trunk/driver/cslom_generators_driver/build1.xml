@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+  <project name="cslom generators" default="debug">
+
+<!-- !!!Modify: projectDir, srcList, driverList, libraryName, dependencies and linker settings !!! Search for MODIFYME !!! -->
+
+    <target name="setDebugFlag">
+      <property name="debugFlag" value="yes"/>
+    </target>
+    
+    <target name="setCoverageFlag">
+      <property name="coverageFlag" value="yes"/>
+    </target>
+
+    <target name="setWallFlag">
+      <property name="wallFlag" value="yes"/>
+    </target>
+
+    <!-- the directory name of the output files (located in build/linux/x86_ARCH/ -->
+    <property name="projectDir" value="cslom_generators"/>
+
+    <!-- the setDebug flag is set when this target is called -->
+    <target name="debug" depends="setDebugFlag,doDependencies,doBuild"/>
+
+    <!-- location of the sources directory -->
+    <property name="srcDirPath" value="."/>
+    
+    <!-- the list of objects(sources) -->
+    <property name="srcList" value="CSLOM_CPP_Generator.cpp,CSLOM_PDF_Draw.cpp,CSLOM_PDF_Generator.cpp,CSLOM_VerilogDefineGenerator.cpp,CSLOM_CPP_Visitor.cpp,CSIM_CPP_Generator.cpp,CSLOM_XML_generator.cpp"/>
+
+    <!-- the list of drivers(sources) -->
+    <property name="driverList" value="CSLOmCPPGenerator_Driver,CSLOM_PdfVisitor_Driver,Driver_visitor"/>
+
+    <!-- relative path to build_utils -->
+    <property name="scriptsPath" value="../../build_utils"/>
+
+    <!-- the output name of the Library -->
+    <property name="libraryName" value="CSLOmGenerators"/>
+    
+    <!-- compiles the executables and each driver file -->
+    <target name="buildDrivers" depends="">
+      <foreach list="${driverList}" delimiter="," param="driverFileName" target="compileDriverBinary" inheritall="true">
+      </foreach>
+    </target>
+
+    <!-- needed for cpptask aditional module -->
+    <taskdef resource="cpptasks.tasks"/>
+    <typedef resource="cpptasks.types"/> 
+    <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+
+    <!-- calls external ANT script for retrieving the build path for testing general dependencies -->
+    <target name="doDependencies" unless="NoDeps">
+      <echo message="Geting General Dependencies" level="verbose"/>
+      <antfetch dir="${scriptsPath}" antfile="dependencies1.xml" inheritAll="true" inheritRefs="true" return="platformTypeOut,binDir,libDir,topDir,cslomBuildPath,supportBuildPath,csl_xml_warn_errorBuildPath" target="generalDependencies">
+      </antfetch>
+    </target>
+
+    <target name="removeBinaries" depends="">
+      <delete>
+        <fileset dir="${binDir}/${projectDir}" casesensitive="yes">
+	  <include name="**/*"/>
+	</fileset>
+      </delete>
+    </target>
+ 
+    <target name="compile">
+      <cc outfile="${binDir}/${projectDir}/${libraryName}" outtype="static">
+        <compiler name="g++">
+          <fileset dir="${srcDirPath}" casesensitive="YES" includes="${srcList}"/>
+          <compilerarg value="-g" if="debugFlag"/>
+          <compilerarg value="-fprofile-arcs -ftest-coverage" if="coverageFlag"/>
+          <compilerarg value="-Wall" location="end" if="wallFlag"/>
+	  <compilerarg value="-D__RELEASE_VERSION" location="end" if="releaseFlag"/>
+	  <compilerarg value="-I${topDir}/src/cslom"/>
+          <compilerarg value="-I/opt/local/include"/>
+          <compilerarg value="-L/opt/local/lib"/>
+        </compiler>
+        <linker name="g++">
+	  <libset libs="stdc++"/>
+	</linker>
+      </cc>
+    </target>
+    
+    <!-- compiles executables and a driver file -->
+    <target name="compileDriverBinary">
+      <cc outfile="${binDir}/${projectDir}/${driverFileName}">
+        <compiler name="g++">
+          <fileset dir="${srcDirPath}" casesensitive="yes" includes="${driverFileName}.cpp"/>
+	  <compilerarg value="-g" if="debugFlag"/>
+	  <compilerarg value="-fprofile-arcs -ftest-coverage" location="end" if="coverageFlag"/>
+	  <compilerarg value="-D__RELEASE_VERSION" location="end" if="release"/>
+          <compilerarg value="-I/opt/local/include"/>
+	</compiler>
+        <linker name="g++">
+	    <libset libs="stdc++"/>
+            <libset dir="${binDir}/${projectDir}" libs="${libraryName}"/>
+            <libset dir="${cslomBuildPath}" libs="CSLOM_Library"/>
+            <libset dir="${supportBuildPath}" libs="Support_Library"/>
+            <libset dir="${csl_xml_warn_errorBuildPath}" libs="WE_Library"/>
+            <libset dir="${csl_xml_warn_errorBuildPath}" libs="CSLC_Errors"/>
+            <libset dir="${libDir}" libs="hpdf,png"/>
+            <libset libs="gcov" if="coverageFlag"/>
+	    <!-- MODIFYME IN CASE -->
+	 </linker>
+      </cc>
+    </target>
+
+    <!-- builds without testing dependencies(to be called from the project root) -->
+    <target name="doBuild" depends="doDependencies,compile"/>
+    
+    <!-- builds the drivers -->
+    <target name="drivers" depends="doDependencies,buildDrivers"/>
+
+    <!-- to be called from the src and not from the root -->
+    <target name="clean" depends="doDependencies,removeBinaries"/>
+
+</project>

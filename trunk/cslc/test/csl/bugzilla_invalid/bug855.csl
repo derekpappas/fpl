@@ -1,0 +1,11 @@
+//bug 855
+csl_bitrange br_br(0,7);
+
+csl_unit u_unit1{
+        csl_signal      sgn_sgn1,
+                                                        sgn_sgn2(wire, 4),     
+                                                        sgn_sgn3(wire, 0,3),   
+ //lower & upper
+                                                        sgn_sgn4(reg, br_br2); 
+  // br_br2 does not exist
+};

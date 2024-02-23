@@ -1,0 +1,27 @@
+//author: Monica
+//testing: signal_object_name.set_width(numeric_expr);
+
+csl_unit u1_t11 {
+
+  csl_signal sgn1_1_t11;
+  csl_signal s1(3);
+  u1_t11(){
+    sgn1_1_t11.set_width(3); 
+    s1 = sgn1_1_t11;
+  } 
+ 
+};
+csl_unit u2_t11 {
+
+  csl_signal sgn2_1_t11;
+  csl_signal s2(3);
+  u2_t11() {
+    sgn2_1_t11.set_width(3); 
+    s2 = sgn2_1_t11;
+  }
+};
+csl_unit top{
+  u1_t11 u1;
+  u2_t11 u2;
+  top(){}
+};

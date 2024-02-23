@@ -1,0 +1,5 @@
+csl_register prxa1{
+    prxa1(){
+      set_type(evnt);
+  }
+};

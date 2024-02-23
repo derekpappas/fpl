@@ -1,0 +1,23 @@
+//author: Ines
+//test_02: csl_signal signal_object_name([signal_data_type,]width)
+
+
+csl_unit test {
+
+  csl_signal sgn6, sgn7(3), sgn8(2,0);    //legal
+  //csl_signal sgn9(a);                   //illegal
+  csl_bitrange br1(4);                    //legal
+  csl_signal sgn11(wire);                 //legal
+  //csl_signal sgn12(as,br1);             //illegal
+  //csl_signal sgn13(1, br1);             //illegal
+  //csl_signal sgn14(sas);                //illegal
+  //csl_signal sgn15(sasa, sasa);         //illegal
+  //csl_signal sgn16(-1);                 //illegal
+  //csl_signal sgn17(0);                  //illegal
+
+
+  test() {
+    sgn6 = sgn11;       
+    sgn7 = sgn8; 
+  }
+};

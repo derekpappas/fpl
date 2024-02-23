@@ -1,0 +1,140 @@
+csl_enum yu {
+	tg = 20,
+	xw = 57,
+	aj = 66,
+	ol = 43,
+	de = 87,
+	qc = 85,
+	ib = 89,
+	xv = 71,
+	vd = 25,
+	ft = 96,
+	kp = 70,
+	id = 56,
+	qo = 70
+};
+csl_enum qm {
+	xr,
+	hr,
+	ag,
+	pa,
+	re,
+	ov,
+	kf,
+	as,
+	jx
+};
+csl_enum rh {
+	dw = 48,
+	dn = 25,
+	mm = 69,
+	qg = 3,
+	dk = 26,
+	sb = 7
+};
+csl_isa_instruction_format dk{
+    dk( ){
+     generate_decoder( jeauit);
+  }
+}
+;
+csl_isa_instruction fl : dk{
+    fl( ){
+    set_asm_mnemonic( csl_list "uv", "dg", "rl", "vk", "jg", "hk", "au", "sb");
+  }
+}
+;
+csl_isa yv{
+    yv( ){
+     set_decoder_name( "qi");
+     set_decoder_out_name_prefix( "do");
+     set_decoder_out_name_suffix( "jt");
+     generate_decoder( jevq);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo hm{
+   hm( ){
+     add_logic( wr_hold, 4);
+     add_logic( parallel_output, all);
+     add_logic( pushback);
+     add_logic( stall_wr_side);
+  }
+}
+;
+csl_memory_map_page np{
+    np( ){
+     set_access_rights( access_write, access_write);
+     add_reserved_address_range( 2, 1);
+     get_upper_bound( );
+     get_data_word_wodth( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page tw{
+  np xo;
+  np vl;
+    tw( ){
+     set_address_increment( 9);
+     add_reserved_address_range( 9, 1);
+     get_data_word_wodth( );
+     set_endianess( little_endianbig_endian);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page xi{
+  np bs;
+  tw tr;
+  np ra;
+  tw ml;
+  tw pb;
+    xi( ){
+     set_address_increment( 4);
+     set_access_rights( access_write, none);
+     add_reserved_address_range( 0, 0);
+     get_lower_bound( );
+     get_upper_bound( );
+  }
+}
+;
+csl_memory_map vk{
+    vk( ){
+     set_top_unit( it);
+xi.     set_type( flat);
+xi.set_access_rights_enum( xi); 
+     set_data_word_width( 1);
+     get_data_word_width( );
+  }
+}
+;
+csl_register ci{
+    ci( ){
+     set_width( 5);
+     set_address( vk, );
+     set_atribute( read);
+     constant( 9);
+     get_atributes( );
+     add_logic( neg_output);
+     add_logic( serial_output);
+     set_value( 3);
+     reset_value( 7);
+     add_logic( gray_output);
+     set_end_value( 9);
+     add_logic( cnt_dir_signal);
+  }
+}
+;
+csl_register rj{
+    rj( ){
+     set_width( 2);
+     get_width( );
+     set_depth( 8);
+     add_logic( read_valid);
+     set_const_value( 4);
+  }
+}
+;

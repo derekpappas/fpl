@@ -1,0 +1,37 @@
+//oanab
+//31 mar 2008
+//missing RHS scope name
+
+csl_interface ifc1 {
+  csl_port x1(input),y1(output);
+  ifc1 () {}
+};
+
+csl_interface ifc2 {
+  csl_port x1(input),y1(output);
+  ifc2 () {}
+};
+
+csl_unit u1 {
+  ifc1 ifc10;
+  u1 () {}
+};
+
+csl_unit u2 {
+  ifc1 ifc20;
+  csl_signal s;
+  u2 () {}
+};
+
+csl_unit u3 {
+  u1 u10;
+  u3 () {}
+};
+
+csl_unit u4 {
+  u2 u20;
+  u3 u30;
+  u4 () {
+    u30.u10.ifc10.x1.connect(ifc20.y1);
+  }
+};

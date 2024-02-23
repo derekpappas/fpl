@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+  <!-- project's name and the default target value -->
+  <project name="CSLC ANT Dependencies Check" default="generalDependencies">
+
+    <!-- the list of sub-projects -->
+    <property name="subProjectsList" value="cdom,cslom,cslom_generators,autorouter,cslom_design_checker,cslom2cdom_adapter,cslomelab,vparser,csl_parser,vpreprocessor,support,support/boost,cslc,csl_xml_warn_error,csim,csl_gen,csl_cpp_lib"/>
+
+    <!-- creates directories for binary files -->
+    <target name="createBinaryDirs" depends="getPlatformType,getTopDir">
+	<for list="${subProjectsList}" delimiter="," param="subProjectName">
+	<sequential>
+	    <echo message="Creating directory: ${buildPath}/linux/x86_${platformTypeOut}/@{subProjectName}" level="verbose"/>
+	    <mkdir dir="${buildPath}/linux/x86_${platformTypeOut}/@{subProjectName}"/>
+	</sequential>
+	</for>
+    </target>
+    
+    <!-- get Operating System name OK -->
+    <target name="getOSname">
+      <!-- "OR" Condition; property is the property where it will be saved -->
+      <condition property="OSname.ok">
+        <or>
+          <!-- tests to see if the OS is Linux, on equalitty OSname.ok is set to 1 otherwise to 0 -->
+          <!-- ${os.name} is an ANT built-in property that contains the OS name -->
+          <!-- the following statement is equivalent to: ${os.name} == "Linux" ? 1 : 0 -->
+          <equals arg1="${os.name}" arg2="Linux"/>
+        </or>
+      </condition>
+    </target>
+
+    <!-- Test for sane GCC version -->
+    <target name="testCompilerVersion">
+      <exec executable="/usr/bin/perl" outputproperty="GCCFlag">
+        <arg line="checkGccVersion.pl"/>
+      </exec>
+      <echo message="good compiler flag: ${GCCFlag}" level="verbose"/>
+      <condition property="CompilerVersion.ok">
+        <or>
+            <equals arg1="${GCCFlag}" arg2="1"/>
+        </or>
+      </condition>
+    </target>
+    
+    <!-- sets up the top directory for further usage -->
+    <target name="getTopDir">
+      <!-- calls external Unix command -->
+      <exec executable="pwd" outputproperty="currentPath"/>
+      <property name="topDir" value="${currentPath}/.."/>
+      <property name="buildPath" value="${topDir}/build"/>
+      <property name="scriptPath" value="${topDir}/build_utils"/>
+    </target>
+
+    <target name="getBuildPaths">
+      <property name="autorouterBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/autorouter"/>
+      <property name="cdomBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/cdom"/>
+      <property name="csimBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/csim"/>
+      <property name="cslcBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/cslc"/>
+      <property name="csl_cpp_libBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/csl_cpp_lib"/>
+      <property name="csl_genBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/csl_gen"/>
+      <property name="cslomBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/cslom"/>
+      <property name="cslom2cdom_adapterBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/cslom2cdom_adapter"/>
+      <property name="cslom_design_checkerBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/cslom_design_checker"/>
+      <property name="cslomelabBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/cslomelab"/>
+      <property name="csl_parserBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/csl_parser"/>
+      <property name="csl_xml_warn_errorBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/csl_xml_warn_error"/>
+      <property name="supportBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/support"/>
+      <property name="vparserBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/vparser"/>
+      <property name="vpreprocessorBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/vpreprocessor"/>
+      <property name="cslom_generatorsBuildPath" value="${buildPath}/linux/x86_${platformTypeOut}/cslom_generators"/>
+    </target>
+
+    <!-- target for retrieveing platform type: x86_64 or i686 -->
+    <target name="getPlatformType" depends="getTopDir">
+      <!-- calls external perl scriptwith specific parametter-->
+      <exec executable="${currentPath}/getPlatformType.pl" os="Linux" outputproperty="platformTypeOut"/>
+    </target>
+    
+    <!-- target for retrieving the /usr/libXX dir -->
+    <target name="getLibDir" depends="getTopDir">
+	<exec executable="/usr/bin/perl" outputproperty="libDir">
+	    <arg line="getLibdir.pl"/>
+	</exec>
+	<echo message="libDir: ${libDir}" level="verbose"/>
+    </target>
+ 
+    <!-- get binary lib dir -->
+    <target name="getBinDir" depends="getPlatformType,getTopDir">
+	<property name="binDir" value="${buildPath}/linux/x86_${platformTypeOut}"/>
+    </target>
+ 
+    <!-- Check if we are compiling on a supported OS -->
+    <target name="checkOSname" depends="getOSname" unless="OSname.ok">
+      <fail message="Operating Sytem not suported - ${os.name}"/>
+    </target>
+ 
+    <target name="checkCompilerVersion" depends="testCompilerVersion" unless="CompilerVersion.ok">
+      <fail message="Wrong GCC(compiler) version: lower than 3.4.x"/>
+    </target>
+    
+    <!-- use this target when calling for general dependencies from the root directory -->
+    <target name="generalDependencies" depends="getTopDir,checkOSname,checkCompilerVersion,getPlatformType,getBinDir,getLibDir,createBinaryDirs,getBuildPaths">
+      <echo message="OS name OK - ${os.name}" level="verbose"/>
+      <echo message="GCC Version OK - 3.4.x or later" level="verbose"/>
+      <echo message="platform type check: ${platformTypeOut}" level="verbose"/>
+    </target>
+</project>

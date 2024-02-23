@@ -1,0 +1,7 @@
+//bug 961
+csl_fifo fifo_param1;
+csl_memory_map_page memory_map_page1 {
+  memory_map_page1() {
+    add(fifo_param1, "default_string");
+  }
+};

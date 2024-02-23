@@ -1,0 +1,166 @@
+// circuit that add numbers from a one read port register file
+// numbers are read at consecutive clock cycles and stored in
+// registers 
+
+csl_bitrange br_d(0,16);
+
+csl_interface ifc_d_in {
+  csl_port op1(input,br_d);
+  csl_port op2(input,br_d);
+  ifc_d_in(){
+  }
+};
+
+
+csl_interface ifc_d_out {
+  csl_port res(output,br_d);
+  ifc_d_out(){
+  }
+};
+
+// register file that stores values to be added
+csl_register_file rf_op {
+  rf_op(){
+    set_width(br_d.get_width());
+    set_depth(br_d.get_width()*2);
+  }
+};
+
+//define register for address counter
+csl_register r_c {
+  r_c(){
+    set_width(br_d.get_width());
+    set_type(register);
+  }
+};
+
+// define register to store operands
+csl_register r_op {
+  r_op(){
+    set_width(rf_op.data_out.get_width());
+    set_type(register);
+  }
+};
+
+// define alu
+csl_unit u_alu {
+  ifc_d_in ifc_op;
+  ifc_d_out ifc_res;
+  u_alu(){
+  }
+};
+
+csl_unit u_mux21 {
+  ifc_d_in ifc_in;
+  ifc_d_out ifc_out;
+  csl_port p_sel(input);
+  u_mux21(){
+  }
+};
+
+// top unit containing 2 alus, 1 rf, 1 r_c register, 2 r_op registers, 1 2-1 mux
+csl_unit u_top_dut {
+
+  // define ports
+  csl_port p_br(input,br_d);
+  csl_port p_br_sel(input);
+  csl_port stim_p(input);
+  csl_port exp_p(output);
+  ifc_d_out ifc_res;
+  csl_signal s_am(br_d), s_mrf(br_d),  s_r1a(br_d), s_r2a(br_d), s_rfr1(br_d);
+  u_mux21 u_mux21;
+  // instantiate units
+  u_alu alu_ac(.ifc_op.op1(s_am),.ifc_op.op2(p_br),.ifc_res.res(s_mrf));
+  u_alu alu_add(.ifc_op.op1(s_r1a),.ifc_op.op2(s_r2a),.ifc_res(ifc_res));
+  r_c r_ac;
+  r_op r_op1, r_op2;
+  rf_op rf_op(.data_in(s_rrf),.data_out(s_rfr1));
+  u_top_dut(){
+  }
+};
+
+
+csl_state_data sd_r_ac {
+  sd_r_ac() {
+    // set_mem_instance_name(atb_tb.u_top_dut.r_ac);
+    set_vc_header_comment("State data for address counter register");
+    set_version(1);
+    set_radix(hex);
+    set_vc_max_number_of_valid_transactions(10);
+    set_vc_max_number_of_mismatches(2);
+  }
+};
+
+csl_state_data sd_r_op1 {
+  sd_r_op1() {
+    // set_mem_instance_name(atb_tb.u_top_dut.r_op1);
+    set_vc_header_comment("State data for op1 register");
+    set_version(1);
+    set_radix(hex);
+    set_vc_max_number_of_valid_transactions(10);
+    set_vc_max_number_of_mismatches(2);
+  }
+};
+
+csl_state_data sd_r_op2 {
+  sd_r_op2() {
+    // set_mem_instance_name(atb_tb.u_top_dut.r_op2);
+    set_vc_header_comment("State data for op2 register");
+    set_version(1);
+    set_radix(hex);
+    set_vc_max_number_of_valid_transactions(10);
+    set_vc_max_number_of_mismatches(2);
+  }
+};
+
+csl_state_data sd_rf {
+  sd_rf() {
+    // set_mem_instance_name(atb_tb.u_top_dut.rf_op);
+    set_vc_header_comment("State data for register file");
+    set_version(1);
+    set_radix(hex);
+    set_vc_max_number_of_valid_transactions(10);
+    set_vc_max_number_of_mismatches(2);
+  }
+};
+
+// Stimulus vector for the top unit
+csl_vector v_stim_top {
+
+  v_stim_top(){
+    set_unit_name(u_top_dut);
+    set_direction(input);
+    set_vc_header_comment("Stimulus vector for top unit");
+    set_version(1);
+    set_radix(bin);
+    set_vc_max_number_of_valid_transactions(10);
+    set_vc_max_number_of_mismatches(2);
+  }
+};
+
+// Expected vector for the top unit
+
+ csl_vector v_expect_top{
+    v_expect_top(){
+      set_unit_name(u_top_dut);
+      set_direction(output);    
+      set_vc_header_comment("Expected vector from top unit");
+      set_version(1);
+      set_radix(bin);
+      set_vc_max_number_of_valid_transactions(10);
+      set_vc_max_number_of_mismatches(2);
+    }
+  };
+
+// define testbench
+csl_testbench atb_tb {
+    u_top_dut u_top_dut;
+    csl_signal clk_tb;
+    atb_tb(){
+      clk_tb.set_attr(clock);
+      add_logic(clock,clk_tb,10,ms);
+      add_logic(generate_waves,"alu_tb_waves",fsdb);
+      set_testbench_verilog_filename("alu_tb1");
+      add_logic(simulation_timeout_counter, 500);
+    }
+};

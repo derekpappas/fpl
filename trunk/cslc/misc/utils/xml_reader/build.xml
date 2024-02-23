@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<project name="xml_reader" default="build">
+
+<!-- needed for cpptask aditional module -->
+<taskdef resource="cpptasks.tasks"/>
+<taskdef resource="cpptasks.types"/>
+<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+<!-- compiles and links the VPreprocessor -->
+<property name="sourcesDir" value="."/>
+<property name="sourcesList" value="source.cpp"/>
+
+<target name="build">
+  <cc outfile="source.bin">
+    <compiler name="gcc">
+      <fileset dir="${sourcesDir}" casesensitive="yes" includes="${sourcesList}"/>
+    </compiler> 
+    <linker name="gcc">
+      <libset libs="stdc++"/>
+    </linker> 
+  </cc>
+</target>
+</project>

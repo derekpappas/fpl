@@ -1,0 +1,14 @@
+//author: Ines
+//test02: int signal_object_name.get_width()
+
+csl_unit test {
+
+  csl_signal sgn39(1,100),sgn40,sgn41;
+
+  test(){
+
+    sgn40.set_width(sgn39.get_width());
+    sgn41.set_width(sgn40.get_width());
+
+  }
+};

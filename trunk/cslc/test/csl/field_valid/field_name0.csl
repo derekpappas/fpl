@@ -1,0 +1,16 @@
+//Petronela
+
+csl_field f {
+  f() {
+    set_width(3);
+  }
+};
+
+
+csl_unit u1{
+  
+  f f0;
+
+	u1(){
+	}
+};

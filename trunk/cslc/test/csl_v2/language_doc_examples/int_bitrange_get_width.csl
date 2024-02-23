@@ -1,0 +1,6 @@
+csl_bitrange br1(4);
+csl_bitrange br2(br1.get_width());
+csl_unit u{
+  csl_port p1(input, br1), p2(output, br2);
+  u(){}
+};

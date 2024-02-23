@@ -1,0 +1,28 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="uk300">
+<port name="pin0" offset="0" upper="3-1" lower="0" direction = "input" type = "wire" />
+<port name="pin1" offset="0" upper="12-1" lower="0" direction = "input" type = "wire" />
+<port name="pin2" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="pin3" offset="0" upper="3-1" lower="0" direction = "input" type = "wire" />
+<port name="clk" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="reset" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<instantiation type = "u1">
+<instance name="ui0">
+</instance>
+</instantiation>
+<instantiation type = "u1">
+<instance name="ui1">
+</instance>
+</instantiation>
+<instantiation type = "u4">
+<instance name="ui2">
+</instance>
+</instantiation>
+<instantiation type = "u0">
+<instance name="ui3">
+</instance>
+</instantiation>
+</unit>
+</design>

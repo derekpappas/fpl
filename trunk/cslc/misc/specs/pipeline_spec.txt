@@ -1,0 +1,9 @@
+#########################################
+# Pipeline Specs                        #
+#########################################
+
+1.release  2.0 pipeline feature:
+ 
+ - power efficient pipeline designs
+ - Clock control on a per pipe stage basis can be controlled using the previous
+ - valid bits from the previous 2-3 pipe stages.

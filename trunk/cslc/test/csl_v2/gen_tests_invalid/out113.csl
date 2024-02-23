@@ -1,0 +1,140 @@
+csl_enum so {
+	by,
+	mc,
+	mn,
+	be,
+	vj,
+	ih,
+	xx,
+	ug,
+	sh,
+	mh,
+	qr,
+	ob,
+	ay,
+	tp,
+	im
+};
+csl_enum el {
+	ls = 14,
+	pa = 25,
+	gt = 18,
+	fc = 13,
+	dp = 9,
+	ld = 9,
+	pi = 81,
+	li = 86
+};
+csl_enum sy {
+	qj = 14,
+	qh = 13,
+	ks = 59,
+	ge = 19,
+	iq = 37,
+	so = 33
+};
+csl_isa_instruction_format rt{
+    rt( ){
+     set_width( 4);
+     generate_decoder( qe);
+  }
+}
+;
+csl_isa_instruction fi : rt{
+    fi( ){
+    set_asm_mnemonic( csl_list "ra", "ao");
+  }
+}
+;
+csl_isa sk{
+  fi ky;
+  fi rp;
+  fi dh;
+  fi gh;
+  fi kg;
+  fi gp;
+  fi ma;
+  fi hs;
+  fi aj;
+  fi qo;
+  fi py;
+  fi jh;
+    sk( ){
+     set_decoder_out_name_prefix( "ru");
+     set_decoder_out_name_suffix( "oa");
+     generate_decoder( oqlyxa);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo oo{
+   oo( ){
+     add_logic( programable_depth, 8);
+     add_logic( parallel_output, all);
+     add_logic( wr_release);
+     add_logic( almost_empty, 3);
+     add_logic( rd_credit);
+  }
+}
+;
+csl_memory_map_page wu{
+    wu( ){
+     add_reserved_address_range( 4, 3);
+     add( oo, "lp", 6);
+     get_upper_bound( );
+     get_data_word_wodth( );
+  }
+}
+;
+csl_memory_map_page kw{
+  wu hd;
+  wu si;
+    kw( ){
+     get_address_increment( );
+     set_access_rights( access_write, access_write);
+     get_upper_bound( );
+     set_endianess( little_endian);
+  }
+}
+;
+csl_memory_map_page gy{
+  wu it;
+  kw my;
+  kw es;
+    gy( ){
+     add_address_range( 9, 5);
+     add_reserved_address_range( 0, 1);
+     get_upper_bound( );
+     set_endianess( big_endianbig_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_register ta{
+    ta( ){
+     set_type( LFSR);
+     add_logic( serial_output);
+     add_logic( rd_en);
+     init_value( 6);
+     set_lock_enable_bit( 5);
+     get_lock_enable_bit( );
+     add_logic( gray_output);
+     set_count_direction( 7);
+     set_end_value( 1);
+     add_logic( inc_signal);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register ai{
+    ai( ){
+     set_width( 8);
+     get_width( );
+     set_depth( 9);
+     create_rtl_module( );
+     set_const_value( 5);
+     add_logic( bypass);
+  }
+}
+;

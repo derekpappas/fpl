@@ -1,0 +1,18 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="a">
+<port name="in" offset="0" upper="3-1" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="2-1" lower="0" direction = "output" type = "wire" />
+<port name="out2" offset="0" upper="4-1" lower="0" direction = "output" type = "wire" />
+<port name="clk" offset="0" upper="0" lower="0" direction = "input" type = "wire" attr = "clk" />
+<signal name="s_in" offset="0" upper="3-1" lower="0" type = "wire"/>
+<signal name="s_out" offset="0" upper="2-1" lower="0" type = "wire"/>
+<signal name="s_out2" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="s_clk" offset="0" upper="0" lower="0" type = "wire"/>
+<assign-stmt lhs="s_in" rhs="in"/>
+<assign-stmt lhs="out" rhs="s_out"/>
+<assign-stmt lhs="out2" rhs="s_out2"/>
+<assign-stmt lhs="s_clk" rhs="clk"/>
+</unit>
+</design>

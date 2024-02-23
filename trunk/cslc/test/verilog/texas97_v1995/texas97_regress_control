@@ -1,0 +1,47 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF          #pass/fail
+execute_testsuite = 1           #enable/desable testing current testsuite
+
+#exceptions:
+define.v                  skip    "module/typedef present"
+
+arbiter.v                 skip    "missing defines that are in the above file"
+mem.v                     skip    "missing defines that are in the above file"
+cpu.v                     skip    "missing defines that are in the above file"
+
+
+bus.v                     skip    "typedef present/not a header"
+main.v            skip    "typedef present/not a header"
+master2.v            skip    "typedef present/not a header"
+p62_L_L_V01.v            skip    "typedef present/not a header"
+p62_L_L_V02.v            skip    "typedef present/not a header"
+p62_LS_LS_V01.v            skip    "typedef present/not a header"
+p62_LS_LS_V02.v            skip    "typedef present/not a header"
+p62_LS_L_V01.v            skip    "typedef present/not a header"
+p62_LS_L_V02.v            skip    "typedef present/not a header"
+p62_LS_S_V01.v            skip    "typedef present/not a header"
+p62_LS_S_V02.v            skip    "typedef present/not a header"
+p62_L_S_V01.v             skip    "typedef present/not a header"
+p62_L_S_V02.v             skip    "typedef present/not a header"
+p62_ND_LS_V01.v             skip    "typedef present/not a header"
+p62_ND_LS_V02.v             skip    "typedef present/not a header"
+p62_ND_L_V01.v              skip    "typedef present/not a header"
+p62_ND_L_V02.v              skip    "typedef present/not a header"
+p62_ND_ND_V01.v             skip    "typedef present/not a header"
+p62_ND_ND_V02.v             skip    "typedef present/not a header"
+p62_ND_ND_V.v             skip    "typedef present/not a header"
+p62_ND_S_V01.v              skip    "typedef present/not a header"
+p62_ND_S_V02.v              skip    "typedef present/not a header"
+p62_S_S_V01.v             skip    "typedef present/not a header"
+p62_S_S_V02.v             skip    "typedef present/not a header"
+p62_V_LS_V01.v              skip    "typedef present/not a header"
+p62_V_LS_V02.v              skip    "typedef present/not a header"
+p62_V_S_V01.v             skip    "typedef present/not a header"
+p62_V_S_V02.v             skip    "typedef present/not a header"
+p62_V_S_V.v            skip    "typedef present/not a header"
+slave.v                 skip    "typedef present/not a header"
+three_processor.v       skip    "typedef present/not a header"
+two_processor.v       skip    "typedef present/not a header"
+

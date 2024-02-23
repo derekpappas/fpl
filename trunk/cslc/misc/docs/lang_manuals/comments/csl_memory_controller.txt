@@ -1,0 +1,96 @@
+AndreiB
+
+reffered documents:
+.fm file is /docs/manuals/production/csl_files/csl_memory_controller.fm
+
+document notes:
+- 1.6 remove the anchored frame at the beggining ? It contains some filenames.
+- Figure 1.1 has no title. Not all blocks are named, and there are no text explanations regarding it.
+- Figure 1.2 has no title and there are no explanations regarding the text in the figure: eg. what are the internal=0, external=1, request_id etc signals ?
+0 Figure 1.3 has no title and not all blocks in figure are labeled. Also where exaclty isd the clock domain boundary ?
+- this sentence "Merge requests which are smaller than the memory mem_reg_bus and which have" is incomplete. Also, the text between figures 1.3 and 1.4 is not sufficiently expanded and appears to be extracted bits from other contexts
+- Figure 1.4 has no title and start and end signals are the same and there is no explanation as to what signals, or what figure are they connected to.
+- Figure 1.5 has no title
+- Figure 1.6 has no title and is not very clear. The text below this figure appears to be only some notes
+- Figure 1.7 has no title and how is the distinction between the internal and external memory controllers being made; also, what is the last block (right) in the figure, or the first two (left) ?
+- The text below Figure 1.7 is not complete (only notes)
+- Figure 1.8 has no title and text inside it appears to be incomplete. What is log n -1,2 (logn-1 or logn-2)?
+Also, what is the text below the figure ? Some code ?
+- Figure 1.9 has no title, and the text below it does not explain the blocks and their names - only some notes (What is an outstanding request) ?
+- Figure 1.10 has no title and the text below it is incomplete
+- Figure 1.11 has no title, the blocks are not named / or the names are incomplete.
+- Figure 1.12 has no title and there is little explanations regarding it. Also the text surrounding the figure (above and below) is verilog code ?
+- Figure 1.13 has no title and the blocks are not named or have incomplete names
+- Below figure 1.13 I have added System-on-chip (is it right?) in the sentence: "Various SOC units..." Also, more must be added here, especially about the bandwidth, or the context in which this is discussed. Just right after that there is a paragraph about tiled memory and there is no explanation on what is exactly "tile" is (except the graphical representation)
+- Figure 1.14 has no title and I couldn't understand the part with the "number of bits?" that part was left un-edited.
+- The text below figure 1.14 is incomplete and difficult to understand
+- Figure 1.15 has no title and there is no explanation regarding it; eg: the "clock domain crossing" is not explained.
+- Figure 1.16 has an incomplete title. Below this figure I have added a modified definition for "swizzle" (assuming that it was not the rum-based cocktail named swizzle :) :
+"The swizzling process (performed by the swizzle block) is the conversion of references based on name or position (relative) to direct references."
+
+taken from Wikipedia:
+
+"In computer science, pointer swizzling is the conversion of references based on name or position to direct pointer references. It is typically performed during the deserialization (loading) of a relocatable object from disk, such as an executable file or pointer-based data structure. The reverse operation, replacing pointers with position-independent symbols or positions, is sometimes referred to as unswizzling, and is performed during serialization (saving)."
+
+In the same paragraph: What are "Mip Map levels" ? 
+
+- 1.6.1 - sub chapter title is "Tile in a surface" - are there any other tile types and if so, where is the distinction being made ?
+- Figure 1.17 has no title and is not complete. The text below this figure should be turned turned into a table ?
+- 1.6.2 The sentence is not complete: "Accesses within the same page are fast. Accesses to another page.." are slower by one order of magnitude ?
+In the same paragraph, in the sentence: "Pixels are clustered horizontally and vertically." what are pixels in this context: a pixel is a "picture element" in graphics/video, do they represent by analogy in this case the smallest memory unit ?
+- Below figure 1.18 this sentence is incomplete: "Tiling pitch has to be a multiple of screen divided into" - also, I noticed the word "screen" - is it still part of the analogy, or those were actual pixels ?
+- In figure 1.19 I named the block below the second MUX: "SRAM Scheduler"
+- Below figure 1.19 what is the meaning ot "q" in this context? - it is not explained.
+- Figure 1.20 the blocks' positions is not explanatory - maybe the figure is not yet complete ? The text below this figure also appears incomplete.
+- Figure 1.21 title reads "Unit", but what kind of unit ? Also, what does SC stand for ? and how is the unit block integrated in the figure ?
+- Figure 1.22 has no title and not explained: what is the FIFO TID, Rx engine..
+- "1.6.3.4 Operations" previous sub chapter was 1.6.2 DRAM and no 1.6.3.3 or anything like that. Also what operations are reffered here ? It's just a list of 4 operations. Maybe it is out of context ?
+- In the same sub chapter, in the sentence "Specify a rectangular region in a surface" what is the surface in this context?
+- 1.6.4 the list:
+
+low bandwidth units
+high bandwidth units
+guaranteed bandwidth units
+
+What kind of units are these and what is their relation with the memory controllers ?
+
+- Figure 1.23 has no title
+- Figure 1.24 seems not to be related to the context - the text below it
+- Figure 1.25 has no associated text with it (context).
+- Figure 1.26 has no title and the text below it is not sufficiently expaned: what is the signaling protocol ? etc
+- Figure 1.27 there are no details about the memory client/memory server model. In the text below the figure there is a note (probably added by the transcriber): "?!? blurry page ?!?" indicates that the text may have been transcribed incompletely
+- Figure 1.28 is not complete and may have to be split in multiple figures (eg: one distinct figure with the example and accompanying text)
+- 1.6.7 replaced "vary:" with "SOC memory system performance varies according to:"
+- 1.6.8 The sentence "The memory bandwidth requirement is the amount of memory cycles consumed or average during" is unclear: is it "average" versus "amount" ? 
+Then "100% memory utilization is possible" - why would that be impossible ?
+"Account for memory" - what does this represent ?
+- Table 1.2 what is represented here ? what are the values 0,1,4,5 ? more specifically what do the columns represent ?
+- Figure 1.29 has no title (maybe "Memory controller with arbiter selection" ?) What does "mem ifc" stand for ?
+- 1.6.9 sub-chapter needs to be expanded
+- Figure 1.30 has no title. I connected the output from the MUX to the memory block. What is the tag_gen ? Figure needs to be explained more: the text below it is incomplete (only notes)
+- Figure 1.31 has no title and the blocks are not labeled (maybe these blocks are fifos?). Also under a_wr_en are signals: b,c and d: Shouldn't these be b_wr_en, c_wr_en and d_wr_en ?
+- In Figure 1.32 Who "absorbs upstream pipeline" ? The empty FIFO ?
+- Figure 1.33 has no title and some blocks are not labeled. Also, text below this figure is not complete
+- Figure 1.34 has no title. What does SE stand for in this context ?
+- Figure 1.35 has no title and it seems it should be divided into smaller figures. Below this figure, the text "memory type is derived from addr or a type field is sent also" appears incomplete
+- 1.6.11 Memory: text in the paragraphs below appear incomplete. Also, what is the relation with the title that appears very general ("Memory")?
+- Figure 1.36 has no title and the text below it is incomplete, also the "?!? blurry page" transcribing note appears.
+- 1.6.12 has the same title with 1.6.4 - "Memory Controller". but the contents is very light: only a buleted list and a heading3 sub-chapter with a figure: Move to 1.6.4 ? What is the connection between virtual memory and memory controller ?
+- In figure 1.37 how does X/Y swap relate to virtual memory ?
+- 1.6.13 What are the elements in the numbered list? Priorities ?
+- Figure 1.38: There is no context explanation for what texels (texture elements?) represent here. Also, in the figure there is some text which I couldn't understand: eg "touch 2 banks" "17x17" etc. 
+- Figure 1.39 contains incomplete text. Also, it may have to be divided into smaller figures.
+- Page 23, just above Figure 1.40: "bandwidth requirement over the entire frame time": what is the frame time in this case? and what type of frame is there: a data frame ? Why does the efficiency of the MC drops to 50% in the absence/reduction of bandwidth demand from clients? Is it because the MC is functioning without being needed ?
+- Figure 1.40 are those graphs traffic/time related ? Should there be used some measure units (eg. miliseconds) ?
+Are there any names for the profiles in each representation, or are those shapes characteristic to a certain data traffic?
+- two figures, ex-1.41 and ex-1.42 (and associated text) were found to be identical with figures 1.18 and 1.19 from the csl_buses.fm document and were removed (from the csl_memory_controller.fm document)
+- Figure 1.41 has no title. What does MSC stand for ? and what are the input/output signals ?
+- Below figure 1.41 I couldn't understand the following sentence: "Filter addresses on bus and only recond our in address range Burst Address generation logic"
+- Figure 1.42 has no title and it may have to be divided into smaller figures according to the context in which it will be integrated
+- Figure 1.43: CSLMC is CSL Memory Controller ? What does or BRE stand for ? 
+- Figure 1.44 is not sufficiently explained: what is the surface in this case and how does it relates to the tiles ? also what does the rest of the figure represent ?
+- Figure 1.45 has no title. The vertical line is a separator or is the sram block ? Also, the first Data fifo block should be renamed to "Datain fifo" as there is the Dataout fifo below ? I could not understand the text below this figure
+- Figure 1.46 has no title and some blocks are not labeled
+- Figure 1.47 has no title
+
+Global note: All the contents of this document appears under the section 1.6 Memory Controller Checker, the other sections being empty, which means that it may need to be re-arranged

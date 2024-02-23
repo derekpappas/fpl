@@ -1,0 +1,7 @@
+//test type : operator_^ number
+//vparser rule name : 
+//author : Bogdan Mereghea
+module unary_operator20;
+    wire a;
+    assign a = ^1'b1;
+endmodule

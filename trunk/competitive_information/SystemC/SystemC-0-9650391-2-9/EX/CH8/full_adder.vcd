@@ -1,0 +1,99 @@
+$date
+     Apr 03, 2003       15:41:28
+$end
+
+$version
+              SystemC 2.0.1 --- Feb 28 2003 14:02:29
+$end
+
+$timescale
+     1 ps
+$end
+
+$scope module SystemC $end
+$var wire    1  aaa  A       $end
+$var wire    1  aab  B       $end
+$var wire    1  aac  CarryIn       $end
+$var wire    1  aad  Sum       $end
+$var wire    1  aae  CarryOut       $end
+$upscope $end
+$enddefinitions  $end
+
+$comment
+All initial values are dumped below at time 0 sec = 0 timescale units.
+$end
+
+$dumpvars
+0aaa
+0aab
+0aac
+0aad
+0aae
+$end
+
+#5000
+1aac
+1aad
+
+#10000
+1aab
+0aac
+
+#15000
+1aac
+0aad
+1aae
+
+#20000
+1aaa
+0aab
+0aac
+1aad
+0aae
+
+#25000
+1aac
+0aad
+1aae
+
+#30000
+1aab
+0aac
+
+#35000
+1aac
+1aad
+
+#40000
+0aac
+0aad
+
+#45000
+0aab
+1aac
+
+#50000
+0aac
+1aad
+0aae
+
+#55000
+0aaa
+1aab
+1aac
+0aad
+1aae
+
+#60000
+0aac
+1aad
+0aae
+
+#65000
+0aab
+1aac
+
+#70000
+0aac
+0aad
+

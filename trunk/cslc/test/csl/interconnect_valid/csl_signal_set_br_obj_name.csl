@@ -1,0 +1,27 @@
+//author: Ines
+//test09: signal_object_name.set_bitrange(bitrange_object_name);
+
+csl_unit test {
+
+  csl_bitrange br4(3);
+  csl_bitrange br5(4);
+  csl_bitrange br6(3,0);       //legal
+  //csl_bitrange br7(0);                  //illegal
+  csl_signal sgn56,sgn57,sgn58,sgn59;
+
+
+  test() {
+
+    //sgn56.set_bitrange(br4);              //illegal
+    sgn57.set_bitrange(br5);                //legal
+    //sgn57.set_bitrange(br5);              //OK, bitrange already defined in scope
+    sgn58.set_bitrange(br6);                //legal
+    //sgn59.set_bitrange(b);                //illegal
+    //sgn60.set_bitrange(sgn58);            //illegal
+    //sgn60.set_bitrange(3);                //illegal
+    //sgn60.set_bitrange();                 //illegal
+    //sgn60.set_bitrange;                   //illegal
+    sgn58 =sgn57;
+    sgn56 =sgn59;
+  }
+};

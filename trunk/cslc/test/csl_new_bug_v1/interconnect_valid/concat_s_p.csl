@@ -1,0 +1,25 @@
+
+//signal - port concatenation
+
+
+csl_unit b {
+  csl_port b_in(input);
+  csl_port b_out(output,8);
+  b() {}
+};
+
+csl_unit c {
+  csl_port c_in(input,16);
+  csl_port c_out(output);
+  c() {}
+};
+
+csl_unit top {
+  csl_signal s1(8),s2;
+  csl_port p0(output,8);
+  b b0(.b_out(s1),.b_in(s2));
+  c c0(.c_in({s1,p0}),.c_out(s2));
+  top() {}
+};
+
+   		 		

@@ -1,0 +1,41 @@
+# "/opt/he_fpl_svn/fpl_repo/cslc/test/csl_new_bug1/memory_map_invalid/./2_regs_mmap.csl" 1
+
+
+
+
+csl_register_file rf1{
+rf1(){
+  set_width(16);
+  set_depth(32);
+ }
+};
+
+csl_register_file rf2{
+rf2(){
+  set_width(16);
+  set_depth(10);
+ }
+};
+
+csl_unit u{
+rf1 rf1;
+rf2 rf2;
+  u(){}
+};
+
+csl_memory_map_page mpag{
+  mpag(){
+     add_address_range(100,321);
+     set_unit_name(u);
+     add_reserved_address_range(135,146);
+     add(u.rf1,"rf1",100);
+     add(u.rf2,"rf2",133);
+  }
+};
+
+csl_memory_map mmap{
+   mmap(){
+      set_data_word_width(32);
+      set_type(hierarchical);
+}
+};

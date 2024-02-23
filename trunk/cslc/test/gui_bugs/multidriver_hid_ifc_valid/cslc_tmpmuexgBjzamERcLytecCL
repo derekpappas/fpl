@@ -1,0 +1,113 @@
+# "/home/Monica/work/svn_repo/repos/trunk/cslc/test/gui/multidriver_hid_ifc_valid/multidriver_hid_ifc.csl" 1
+# "/home/Monica/work/svn_repo/repos/trunk/cslc/test/gui/multidriver_hid_ifc_valid/multidriver_hid_ifc.csl" 25
+csl_interface ifc1 {
+    csl_port p11 ( inout , wire , 1);
+    csl_port p12 ( output , reg , 1);
+
+    ifc1() {}
+};
+
+csl_interface ifc2 {
+    csl_port p21 ( input , wire , 1546764);
+   ifc1 ifc10;
+
+
+    ifc2() {}
+};
+
+csl_interface ifc3 {
+    csl_bitrange br_p31 ( 89,56);
+    csl_port p31 ( output , wire , br_p31);
+   ifc2 ifc20;
+
+
+    ifc3() {}
+};
+
+csl_interface ifc4 {
+    csl_port p41 ( input , wire , 1);
+   ifc3 ifc30;
+
+
+    ifc4() { }
+};
+
+
+
+
+csl_unit u_c1;
+csl_unit u_c2;
+csl_unit u_c3;
+csl_unit u_c4;
+csl_unit u_top;
+
+
+
+
+
+
+
+csl_unit u_c3 {
+
+	u_c4 u_c40;
+
+	ifc2 ifc22;
+	ifc1 ifc11;
+	u_c3() {
+	}
+};
+
+
+
+csl_unit u_c2 {
+
+	u_c3 u_c30;
+
+	ifc3 ifc32;
+	ifc2 ifc21;
+	u_c2() {
+	}
+};
+
+
+
+csl_unit u_c1 {
+
+	u_c2 u_c20;
+
+	ifc4 ifc42;
+	ifc3 ifc31;
+	u_c1() {
+	}
+};
+
+
+
+csl_unit u_c4 {
+
+
+	ifc1 ifc12;
+	u_c4() {
+	}
+};
+
+
+
+csl_unit u_top {
+
+	u_c1 u_c10;
+
+	ifc4 ifc41;
+	ifc3 ifc31;
+	ifc2 ifc21;
+	ifc1 ifc11;
+	u_top() {
+		u_top.ifc41.connect_by_name(u_top.u_c10.ifc42,pc1);
+		u_top.u_c10.ifc31.connect_by_name(u_top.u_c10.u_c20.ifc32,pc2);
+		u_top.u_c10.u_c20.ifc21.connect_by_name(u_top.u_c10.u_c20.u_c30.ifc22,pc3);
+		u_top.u_c10.u_c20.u_c30.ifc11.connect_by_name(u_top.u_c10.u_c20.u_c30.u_c40.ifc12,pc4);
+		u_top.u_c10.ifc31.connect_by_name(u_top.ifc31,cp1);
+		u_top.u_c10.u_c20.ifc21.connect_by_name(u_top.ifc21,cp2);
+		u_top.u_c10.u_c20.u_c30.ifc11.connect_by_name(u_top.ifc11,cp3);
+	}
+};

@@ -1,0 +1,375 @@
+LIST OF SYMBOLS:
+
+(A)     A is a group
+{A}     list of A items (may be void)
+[A]     A is optional
+"A"     A appears unaltered in the csl code file
+A|B     A or B
+
+1. EXPRESSIONS
+
+expression ::=
+              primary
+            | unary_operator primary
+            | expression binary_operator expression
+            | conditional_expression
+            | identifier
+primary ::=
+              number
+            | hierarchical_identifier [ { "[" expression "]" } "[" range_expression "]" ]
+            | concatenation
+            | multiple_concatenation
+            | function_call
+            | hybrid
+            | ( mintypmax_expression )
+unary_operator ::=
+              + | - | ! | ~ | & | ~& | | | ~| | ^ | ~^ | ^~
+binary_operator ::=
+              + | - | * | / | % | == | != | === | !== | && | || | **
+            | < | <= | > | >= | & | | | ^ | ^~ | ~^ | >> | << | >>> | <<<                        
+conditional_expression ::= expression1 "?" expression2 ":" expression3
+range_expression ::=
+              expression
+            | msb_constant_expression ":" lsb_constant_expression
+            | base_expression "+:" width_constant_expression
+            | base_expression "-:" width_constant_expression
+width_constant_expression ::= constant_expression
+msb_constant_expression ::= constant_expression
+lsb_constant_expression ::= constant_expression
+base_expression ::= expression
+concatenation ::= "{" expression { , expression } "}"
+multiple_concatenation ::= "{" constant_expression concatenation "}"
+
+hierarchical_identifier ::= { identifier "." } identifier
+function_call ::=  function_call_ret_expr
+                 | function_call_ret_id
+function_call_ret_expr ::= [ hierarchical_identifier "." ] { ret_id_function "."
+                                                           | hierarchical_identifier "." 
+                                                           } ret_expr_function
+function_call_ret_id   ::= [ hierarchical_identifier "." ] { ret_id_function "."
+                                                           | hierarchical_identifier "." 
+                                                           } ret_id_function
+function_call_ret_keyword ::= [ hierarchical_identifier "." ] { ret_id_function "."
+                                                              | hierarchical_identifier "."
+                                                              } ret_keyword_function
+hybrid ::= [ hierarchical_identifier "." ] { ret_id_function "."
+                                           | hierarchical_identifier "."
+                                           } hierarchical_identifier        
+ret_expr_function ::=       "get_width" "(" ")"
+                          | "get_dim_width" "(" expression ")"
+                          | "get_range" "(" ")"
+                          | "get_dim_range" "(" expression ")"
+                          | "get_lower_index" "(" ")"
+                          | "get_dim_lower_index" "(" expression ")"
+                          | "get_upper_index" "(" ")"
+                          | "get_dim_upper_index" "(" expression ")"
+                          | "get_offset" "(" ")"
+                          | "get_dim_offset" "(" expression ")"
+                          | "get_number_of_dimmensions" "(" ")"
+ret_id_function ::=         "get_interface" "(" [input|output|inout] ")"
+                          | "get_reversed_interface" "(" ")"
+                          | "get_unit_prefix" "(" ")"
+                          | "get_signal_prefix" "(" ")"
+                          | "get_signal_prefix_local" "(" ")"
+                          | "get_bitrange" "(" ")"
+                          | "get_dim_bitrange" "(" ")"
+ret_keyword_function ::=    "get_type" "(" ")"
+                          | "get_attr" "(" ")"
+mintypmax_expression ::=
+              expression
+            | expression : expression : expression
+
+
+2. CONSTANT_EXPRESSIONS
+
+constant_expression ::=
+              constant_primary
+            | unary_operator constant_primary
+            | constant_expression binary_operator constant_expression
+            | constant_expression "?" constant_expression ":" constant_expression
+            | identifier
+constant_primary ::=
+              constant_concatenation
+            | constant_function_call
+            | ( constant_mintypmax_expression )
+            | constant_multiple_concatenation
+            | identifier
+            | number
+constant_concatenation ::= "{" constant_expression { , constant_expression } "}"
+constant_function_call ::= identifier "(" constant_expression { , constant_expression } ")"
+constant_mintypmax_expression ::=
+              constant_expression
+            | constant_expression : constant_expression : constant_expression
+constant_multiple_concatenation ::= "{" constant_expression constant_concatenation "}"
+
+
+
+3. NUMBERS
+
+number ::=
+              decimal_number
+            | octal_number
+            | binary_number
+            | hex_number
+            | real_number
+real_number ::= 
+              unsigned_number "." unsigned_number
+            | unsigned_number [ "." unsigned_number ] exp [ sign ] unsigned_number
+exp ::= "e" | "E"
+sign ::= "+" | "-"
+decimal_number ::=
+              unsigned_number
+            | [ size ] decimal_base unsigned_number
+            | [ size ] decimal_base x_digit { _ }
+            | [ size ] decimal_base z_digit { _ }
+binary_number ::= [ size ] binary_base binary_value
+octal_number ::= [ size ] octal_base octal_value
+hex_number ::= [ size ] hex_base hex_value
+size ::= non_zero_decimal_digit { _ | decimal_digit}
+unsigned_number ::= decimal_digit { _ | decimal_digit }
+non_zero_decimal_digit ::= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+decimal_digit ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+decimal_base ::= "'"["s"|"S"]"d" | "'"["s"|"S"]"D"
+binary_base ::= "'"["s"|"S"]"b" | "'"["s"|"S"]"B"
+octal_base ::= "'"["s"|"S"]"o" | "'"["s"|"S"]"O"
+hex_base ::= "'"["s"|"S"]"h" | "'"["s"|"S"]"H"
+binary_value2 ::= binary_digit { _ | binary_digit }
+octal_value2 ::= octal_digit { _ | octal_digit }
+hex_value2 ::= hex_digit { _ | hex_digit }
+binary_digit ::= x_digit | z_digit | "0" | "1"
+octal_digit ::= x_digit | z_digit | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7"
+hex_digit ::=   x_digit | z_digit | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+              | "a" | "b" | "c" | "d" | "e" | "f" | "A" | "B" | "C" | "D" | "E" | "F"
+x_digit ::= "x" | "X"
+z_digit ::= "z" | "Z" | "?"
+identifier ::= ALPHA (ALPHA | DIGIT | '$')*
+ALPHA ::= 'a'..'z' | 'A'..'Z' | '_' ;
+DIGIT ::= '0'..'9' ;
+
+4. DECLARATIONS, COMMANDS, LISTS
+
+csl_decl ::=
+       csl_unit_decl
+      |csl_scope_decl
+      |csl_list_decl
+      |csl_interface_decl
+      |csl_signal_decl
+      |csl_signal_group_decl
+      |csl_bitrange_decl
+csl_command ::= 
+       csl_unit_command
+      |csl_interface_command
+      |csl_signal_command
+      |csl_signal_group_command
+      |csl_bitrange_command
+anonymous_list ::= "csl_list" "(" ( identifier | hierarchical_identifier | function_call_ret_id )
+                                  {"," ( identifier | hierarchical_identifier | function_call_ret_id ) } 
+                              ")" 
+csl_list_decl ::=  "csl_list"  identifier "(" ( identifier | hierarchical_identifier | function_call_ret_id )
+                                                     {"," ( identifier | hierarchical_identifier | function_call_ret_id ) } 
+                                                 ")" ";" 
+*_name ::= identifier
+
+5. UNITS
+
+csl_unit_decl::=   "csl_unit"  unit_object_name { "," unit_object_name } ";"
+csl_scope_decl::=  "scope"     unit_object_name "{"  csl_decl
+                                                    |csl_command
+                                                "}"
+
+csl_unit_command ::=
+       unit_object_name "." "add_instance"                "(" [ hierarchical_identifier "." ] unit_object_name "," 
+                                                              instance_object_name 
+                                                              [formal_to_actual_mapping]    
+                                                          ")" ";"
+      |unit_object_name "." "add_instance_list"           "(" [ hierarchical_identifier "." ] unit_object_name "," 
+                                                              ( anonymous_instance_list 
+                                                              | [ hierarchical_identifier "." ] instance_list_object_name
+                                                              )
+                                                          ")" ";"
+      |unit_object_name "." "add_port"                    "(" ("input"|"output"|"inout") 
+                                                              ["," ( bitrange | function_call_ret_id ) ] "," 
+                                                              ( port_object_name 
+                                                              | [ hierarchical_identifier "." ] signal_object_name
+                                                              | hybrid
+                                                              ) 
+                                                          ")" ";"
+      |unit_object_name "." "add_port_list"               "(" ("input"|"output"|"inout") 
+                                                              ["," ( bitrange | function_call_ret_id ) ] "," 
+                                                              ( anonymous_port_list 
+                                                              | [ hierarchical_identifier "." ] port_list_object_name
+                                                              | hybrid
+                                                              )
+                                                          ")" ";"
+      |unit_object_name "." "add_interface"               "(" [ ("input" | "output" | "inout") "," ]
+                                                              ( [ hierarchical_identifier "." ] interface_object_name
+                                                              | function_call_ret_id 
+                                                              )
+                                                          ")" ";"
+      |unit_object_name "." "add_signal"                  "(" [("wire"|"reg") "," ]
+                                                              [(bitrange | function_call_ret_id) ","] 
+                                                              ( [ hierarchical_identifier "." ] signal_object_name 
+                                                              )
+                                                          ")" ";"
+      |unit_object_name "." "add_signal_list"             "(" [("wire"|"reg") "," ]
+                                                              [(bitrange | function_call_ret_id) ","] 
+                                                              ( anonymous_signal_list 
+                                                              | [ hierarchical_identifier "." ] signal_list_object_name
+                                                              )
+                                                          ")" ";"
+      |unit_object_name "." "add_module_parameter"        "(" parameter_name "," default_value ")" ";"
+      |instance_object_name "." override_module_parameter "(" parameter_name "," parameter_value ")" ";"
+      |unit_object_name "." "set_unit_prefix"             "(" ( prefix_string 
+                                                              | function_call_ret_id 
+                                                              )
+                                                              ["," ("ifc_only"| "local_only") ] 
+                                                          ")" ";"
+      |unit_object_name "." "set_signal_prefix"           "(" ( prefix_string
+                                                              | function_call_ret_id
+                                                              )
+                                                          ")" ";"
+      |unit_object_name "." "set_signal_prefix_local"     "(" ( prefix_string 
+                                                              | function_call_ret_id
+                                                              )
+                                                          ")" ";"
+formal_to_actual_mapping ::= "." port_object_name "(" expression ")" { "," "."port_object_name "(" expression ")"}      
+
+csl_interface_decl::= "csl_interface" interface_object_name { "," interface_object_name } ";"
+csl_interface_command::= 
+       interface_object_name "." "add_port"               "(" ("input"|"output"|"inout") 
+                                                              ["," ( bitrange|function_call_ret_id )] "," 
+                                                              ( port_object_name 
+                                                              | [ hierarchical_identifier "." ] signal_object_name
+                                                              | hybrid
+                                                              )
+                                                          ")" ";"
+      |interface_object_name "." "add_port_list"          "(" ("input"|"output"|"inout")
+                                                              ["," ( bitrange|function_call_ret_id )] "," 
+                                                              ( anonymous_port_list 
+                                                              | [ hierarchical_identifier "." ] port_list_object_name
+                                                              | hybrid
+                                                              )
+                                                          ")" ";"
+anonymous_instance_list     ::= "csl_list" "(" identifier {"," identifier } ")"
+anonymous_port_list         ::= "csl_list" "(" ( identifier | hierarchical_identifier | hybrid ) { "," ( identifier | hierarchical_identifier | hybrid ) } ")"
+anonymous_signal_list       ::= "csl_list" "(" ( identifier | hierarchical_identifier | hybrid ) { "," ( identifier | hierarchical_identifier | hybrid ) } ")"
+default_value               ::= expression
+parameter_value             ::= expression
+prefix_string               ::= identifier
+bitrange                    ::= expression | bitrange_pure
+bitrange_pure               ::= "[" expression ":" expression "]"
+
+
+6. SIGNALS
+
+csl_signal_decl::= "csl_signal" signal_object_name [ "(" [ (wire | reg) ","]
+                                                         ( expression ["," expression ]
+                                                         | ( bitrange | function_call_ret_id )
+                                                         )
+                                                     ")"
+                                                   ] 
+                                { "," signal_object_name [ "(" [ (wire | reg) ","]
+                                                               ( expression ["," expression ]
+                                                               | ( bitrange | function_call_ret_id )
+                                                               )
+                                                           ")"
+                                                         ] 
+                                } ";"
+csl_signal_command ::= 
+       signal_object_name "." "set_width"                 "(" expression ")" ";"
+      |signal_object_name "." "set_dim_width"             "(" expression "," expression ")" ";"
+      |signal_object_name "." "set_bitrange"              "(" ( [ hierarchical_identifier "." ] bitrange_object_name 
+                                                              | function_call_ret_id 
+                                                              )
+                                                          ")" ";"
+      |signal_object_name "." "set_dim_bitrange"          "(" expression "," 
+                                                              ( [ hierarchical_identifier "." ] bitrange_object_name
+                                                              | function_call_ret_id
+                                                              )
+                                                          ")" ";"
+      |signal_object_name "." "set_range"                 "(" expression "," expression ")" ";"
+      |signal_object_name "." "set_dim_range"             "(" expression "," expression "," expression ")" ";"
+      |signal_object_name "." "set_lower_index"           "(" expression ")" ";"
+      |signal_object_name "." "set_dim_lower_index"       "(" expression "," expression ")" ";"
+      |signal_object_name "." "set_upper_index"           "(" expression ")" ";"
+      |signal_object_name "." "set_dim_upper_index"       "(" expression "," expression ")" ";"
+      |signal_object_name "." "set_offset"                "(" expression ")" ";"
+      |signal_object_name "." "set_dim_offset"            "(" expression "," expression ")" ";"
+      |signal_object_name "." "set_number_of_dimensions"  "(" expression ")" ";"
+      |signal_object_name "." "set_type"                  "(" ( ( "wire" | "reg" )
+                                                              | function_call_ret_keyword
+                                                              )
+                                                          ")" ";"
+      |signal_object_name "." "set_attr"                  "(" ( ("SA_EN"|"SA_STALL"|"SA_PE"|"SA_PS"|"SA_MS"|"SA_DEC"|"SA_CLK"|"SA_RST")
+                                                              | function_call_ret_keyword
+                                                              )
+                                                          ")" ";"
+      |[signal_object_name "."] "connect"                 "(" expression [ "," ( expression | formal_to_actual_mapping )]
+                                                           |  formal_to_actual_mapping
+                                                          ")" ";"
+       
+
+7. SIGNAL GROUPS
+
+csl_signal_group_decl::= "csl_signal_group" signal_group_object_name [ "(" (  ( [hierarchical_identifier "." ] signal_object_name 
+                                                                                {"," [ hierarchical_identifier "." ] signal_object_name }
+                                                                              )
+                                                                           |  [ hierarchical_identifier "." ] signal_list_object_name
+                                                                           )
+                                                                       ")" 
+                                                                     ] 
+                                            { "," signal_group_object_name [ "(" (  ( [hierarchical_identifier "." ] signal_object_name 
+                                                                                      {"," [ hierarchical_identifier "." ] signal_object_name }
+                                                                                    )
+                                                                                 |  [ hierarchical_identifier "." ] signal_list_object_name
+                                                                                 )
+                                                                             ")" 
+                                                                           ] 
+                                            } ";"
+csl_signal_group_command::= signal_group_object_name "." "add_signal" "(" [ hierarchical_identifier "." ] signal_object_name ")" ";"
+
+
+8. BITRANGE
+
+csl_bitrange_decl::=  "csl_bitrange" bitrange_object_name [ "(" ( expression [ "," expression ]
+                                                                | bitrange
+                                                                )
+                                                            ")"
+                                                          ]
+                                     { "," bitrange_object_name [ "(" ( expression [ "," expression ]
+                                                                      | bitrange
+                                                                      )
+                                                                  ")"
+                                                                ]
+                                     } ";"
+csl_bitrange_command ::=
+       bitrange_object_name "." "set_width"                   "(" expression ")" ";"
+      |bitrange_object_name "." "set_dim_width"               "(" expression "," expression ")" ";"
+      |bitrange_object_name "." "set_bitrange"                "(" ( [ hierarchical_identifier "." ] bitrange_object_name 
+                                                                  | function_call_ret_id
+                                                                  )                                                      
+                                                              ")" ";"
+      |bitrange_object_name "." "set_dim_bitrange"            "(" expression "," 
+                                                                  ( [ hierarchical_identifier "." ] bitrange_object_name 
+                                                                  | function_call_ret_id
+                                                                  )
+                                                              ")" ";"
+      |bitrange_object_name "." "set_range"                   "(" expression "," expression ")" ";"
+      |bitrange_object_name "." "set_dim_range"               "(" expression "," expression "," expression ")" ";"
+      |bitrange_object_name "." "set_lower_index"             "(" expression ")" ";"
+      |bitrange_object_name "." "set_dim_lower_index"         "(" expression "," expression ")" ";"
+      |bitrange_object_name "." "set_upper_index"             "(" expression ")" ";"
+      |bitrange_object_name "." "set_dim_upper_index"         "(" expression "," expression ")" ";"
+      |bitrange_object_name "." "set_offset"                  "(" expression ")" ";"
+      |bitrange_object_name "." "set_dim_offset"              "(" expression "," expression ")" ";"
+      |bitrange_object_name "." "set_number_of_dimensions"    "(" expression ")" ";"
+      |bitrange_object_name "." "concat"                      "(" ( [ hierarchical_identifier "." ] bitrange_object_name 
+                                                                  | function_call_ret_id 
+                                                                  | bitrange
+                                                                  )
+                                                                  { "," ( [ hierarchical_identifier "." ] bitrange_object_name 
+                                                                        | function_call_ret_id
+                                                                        | bitrange
+                                                                        )
+                                                                  }
+                                                              ")" ";"

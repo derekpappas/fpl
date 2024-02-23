@@ -1,0 +1,26 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="b">
+<port name="p_b" offset="0" upper="b_x-1" lower="0" direction = "input" type = "wire" />
+<port name="pb" offset="0" upper="b_z-1" lower="0" direction = "output" type = "wire" />
+<interface name="ifca0" >
+name="ifa_x"20name="ifa_y"27<port name="p_ifca" offset="0" upper="ifa_x-1" lower="0" direction = "input" type = "wire" />
+<port name="p_ifa" offset="0" upper="ifa_y-1" lower="0" direction = "input" type = "wire" />
+<port name="p_ifa1" offset="0" upper="51-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="arifc_sga0" >
+<port name="ars_p_ifca" offset="0" upper="20-1" lower="0" direction = "input" type = "wire" />
+<port name="ars_p_ifa" offset="0" upper="27-1" lower="0" direction = "input" type = "wire" />
+<port name="ars_p_ifa1" offset="0" upper="51-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<signalgroup name="sga0">
+name="sga_x"27name="sga_y"51name="sga_z"20<signal name="p_ifca" offset="0" upper="sga_z-1" lower="0" type = "wire"/>
+<signal name="p_ifa" offset="0" upper="sga_x-1" lower="0" type = "wire"/>
+<signal name="p_ifa1" offset="0" upper="sga_y-1" lower="0" type = "wire"/>
+</signalgroup>
+name="b_x"27name="b_z"20<assign-stmt lhs="arifc_sga0.ars_p_ifca" rhs="sga0.p_ifca"/>
+<assign-stmt lhs="arifc_sga0.ars_p_ifa" rhs="sga0.p_ifa"/>
+<assign-stmt lhs="arifc_sga0.ars_p_ifa1" rhs="sga0.p_ifa1"/>
+</unit>
+</design>

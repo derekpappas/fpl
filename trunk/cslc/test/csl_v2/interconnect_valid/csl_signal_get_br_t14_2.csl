@@ -1,0 +1,21 @@
+//author: Ines
+//testing: csl_unit, csl_signal,range_object_name signal_object_name.get_bitrange();
+
+
+csl_unit u3_t14 {
+
+  csl_bitrange br3_1_t14(1,10);
+  csl_bitrange br3_2_t14(1);
+  csl_bitrange br3_3_t14(22/3+3-9);
+  csl_signal sgn3_1_t14,sgn3_2_t14,sgn3_3_t14;
+
+  u3_t14(){
+
+    sgn3_1_t14.set_bitrange(br3_1_t14);
+    sgn3_2_t14.set_bitrange(br3_2_t14);
+    sgn3_3_t14.set_bitrange(br3_3_t14);
+  }
+};
+
+csl_signal sgn3_4_t14;
+sgn3_4_t14.set_bitrange(u3_t14.sgn3_3_t14.get_bitrange());

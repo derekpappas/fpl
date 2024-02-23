@@ -1,0 +1,21 @@
+//danielt
+//november 07,2007
+//bug - DEBUG:<AST>: unexpected AST node: K_EXTERNAL_UNIT_ENABLE
+
+csl_unit u{
+   csl_port port_en(input);
+  u(){
+    add_logic(external_unit_enable);
+  }
+};
+//AnamariaH
+//06.03.2008
+
+
+csl_unit u{
+  csl_port p(input);
+  u(){
+    add_logic(external_unit_enable);
+  }
+};
+

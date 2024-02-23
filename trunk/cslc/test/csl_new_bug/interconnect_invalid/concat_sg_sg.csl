@@ -1,0 +1,62 @@
+//costelc
+//signal group - signal group concatenation
+
+csl_interface ifc {
+  csl_port x(input,16);
+  csl_port y(input,16);
+  ifc () {}
+};
+
+csl_unit a{
+  csl_port a_in(input);
+  csl_port a_out(output,8);
+  a() {}
+};
+
+csl_unit b{
+  csl_port b_in(input);
+  csl_port b_out(output,8);
+  b() {}
+};
+
+csl_unit c{
+  csl_port c_in(input);
+  csl_port c_out(output,8);
+  c() {}
+};
+
+csl_unit d{
+  csl_port d_in(input);
+  csl_port d_out(output,8);
+  d() {}
+};
+
+csl_signal_group sg_ab{
+  csl_signal s_ab1(8);
+  csl_signal s_ab2(8);
+  sg_ab() {}
+};
+
+csl_signal_group sg_cd{
+  csl_signal s_cd1(8);
+  csl_signal s_cd2(8);
+  sg_cd() {}
+};
+
+csl_unit e{
+  csl_port e_in(input,32);
+  csl_port e_out(output);
+  ifc ifc0;
+  e() {}
+};
+
+csl_unit top{
+  sg_ab sg_ab0;
+  sg_cd sg_cd0;
+  a a0(.a_out(sg_ab0.s_ab1));
+  b b0(.b_out(sg_ab0.s_ab2));
+  c c0(.c_out(sg_cd0.s_cd1));
+  d d0(.d_out(sg_cd0.s_cd2));
+  e e0(.ifc0({sg_ab0,sg_cd0}));
+  top() {}
+};

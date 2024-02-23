@@ -1,0 +1,50 @@
+//signal group - interface concatenation
+
+
+csl_unit a{
+  csl_port a_in(input);
+  csl_port a_out(output,8);
+  a() {}
+};
+
+csl_unit b{
+  csl_port b_in(input);
+  csl_port b_out(output,8);
+  b() {}
+};
+
+csl_signal_group sg{
+  csl_signal s1(8);
+  csl_signal s2(8);
+  sg() {}
+};
+
+csl_interface ifc{
+  csl_port p1_out(output,8);
+  csl_port p2_out(output,4);
+  ifc() {}
+};
+
+csl_unit d{
+  csl_port d_in(input);
+  ifc ifc0;
+  d() {}
+};
+
+csl_unit c{
+  ifc ifc1;
+  csl_port c_in(input,8);
+  csl_port c_out(output);
+  c() {}
+};
+
+csl_unit top{
+  sg sg0;
+  ifc ifc0;
+  csl_signal s;
+  a a0(.a_out(sg0.s1),.a_in(s));
+  b b0(.b_out(sg0.s2),.b_in(s));
+  c c0(.ifc1(ifc0),.c_in(sg0.s1),.c_out(s));
+  d d0(.ifc0(ifc0),.d_in(s));
+  top() {}
+};			

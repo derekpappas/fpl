@@ -1,0 +1,11 @@
+g++ main.cpp \
+-I$SYSTEMC_HOME/include/ \
+-L$SYSTEMC_HOME \
+-lsystemc \
+-I$WORK/trunk/src/cdom/ \
+-I$BOOST_HOME \
+-L$SCV_HOME \
+-I$SCV_HOME
+
+
+

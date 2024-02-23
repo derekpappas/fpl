@@ -1,0 +1,108 @@
+// --------------------Microengine units
+// local memory
+ csl_register_file localmem{
+   //csl_unit localmem{
+    localmem(){
+      set_width(32);
+      set_depth(64);
+    }
+ };
+
+// local memory address register  
+//csl_register lm_addr{};
+//csl_register t_index{};
+//csl_register nn_get{};
+
+//control unit  
+csl_unit ctrlstore{
+  ctrlstore() {
+      }
+  };
+
+//execution unit - Shift, Add, Substract, Mutiply .....  
+csl_unit execu{
+  execu(){
+    }
+  };
+
+
+// general purpos register file
+csl_register_file rf128{
+  rf128(){
+    set_width(32);
+    set_depth(32);
+    }
+  };
+
+  
+// CRC unit
+csl_unit crc {
+  crc(){
+    }
+  };
+  
+// CRC reminder unit
+csl_unit crcr {
+  crcr(){
+    }
+  };
+
+csl_unit opmux{
+  opmux(){
+    }
+  };
+  
+csl_unit rfmux{
+  rfmux(){
+    }
+    };
+
+
+//microengine unit
+csl_unit me{
+  localmem lm;
+  rf128 gpra;
+  rf128 gprb;
+  rf128 nn;
+  rf128 xferind;
+  rf128 xferins;
+  rf128 xferoutd;
+  rf128 xferouts;
+  execu eu0;
+  ctrlstore cs0;
+  opmux opmuxa, opmuxb;
+  crc crc0;
+  crcr crcr0;
+  rfmux rfmux0;
+  me(){
+ 
+    }
+  };
+
+
+// Microengine Memory map
+
+// Creating memory map for microengine
+
+csl_memory_map_page me_page{
+	me_page(){
+      add_address_range(0,800);
+      add(me.lm,"LM");
+      add(me.gpra,"GPRA");
+      add(me.gprb,"GPRB");
+      add(me.nn,"NEXT_N");
+      add(me.xferind,"XFERIND");
+      add(me.xferins,"XFERINDS");
+      add(me.xferoutd,"XFEROUTD");
+      add(me.xferouts,"XFEROUTS");
+}
+};
+
+
+csl_memory_map mm {
+    me_page chipp;
+  mm() {
+    set_type(hierarchical);
+    set_top_unit(me);
+    }
+  };

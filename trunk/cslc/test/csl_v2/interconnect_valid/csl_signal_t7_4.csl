@@ -1,0 +1,125 @@
+//author: Ines
+//testing: csl_signal signal_object_name;
+
+
+csl_unit u11_t7 {
+
+  csl_bitrange br11_1_t7(2,5);
+  csl_signal sgn11_2_t7;
+  csl_bitrange br11_2_t7(7,3);
+  csl_signal sgn11_1_t7;
+
+  u11_t7() {
+
+
+  }
+};
+
+/* csl_unit u12_t7 { */
+
+/*   csl_signal sgn11_1_t7(4); */
+/*   csl_signal sgn11_2_t7(4); */
+
+/*   u11_t7 u0; */
+
+/*   u12_t7() { */
+/*     u12_t7.sgn11_1_t7.set_width(3); */
+/*     sgn11_2_t7.set_bitrange(u11_t7.br11_2_t7); */
+/*   } */
+/* }; */
+
+/* csl_unit u13_t7 { */
+
+/*   csl_signal sgn13_1_t7(7); */
+/*   //add_signal(u11_t7.sgn11_1_t7); */
+
+/*   u13_t7() { */
+/*     //    sgn11_1_t7.set_bitrange(sgn13_1_t7.get_bitrange()); */
+/*   } */
+/* }; */
+
+/* csl_unit u14_t7 { */
+
+/*   u13_t7 u11; */
+/*   u12_t7 u10; */
+
+/*   u14_t7() { */
+/*   } */
+/* }; */
+
+/* csl_unit u15_t7 { */
+
+/*   csl_signal sgn15_1_t7,sgn15_2_t7,sgn15_3_t7,sgn15_4_t7; */
+/*   //add_signal_list(9,csl_list(sgn15_5_t7,sgn15_6_t7,sgn15_7_t7,sgn15_8_t7)); */
+/*   csl_list sgn_list_15_1_t7(sgn15_1_t7,sgn15_2_t7,sgn15_3_t7,sgn15_4_t7); */
+   
+/*   u15_t7() { */
+/*     //add_signal_list (7,sgn_list_15_1_t7);//? */
+
+/*   } */
+/* }; */
+
+/* csl_unit u16_t7 { */
+
+/*   csl_signal sgn16_3_t7(7),sgn16_4_t7,sgn16_5_t7(6,3); */
+/*   csl_list sgn_list_16_1_t7(sgn16_5_t7,sgn16_4_t7,sgn16_3_t7); */
+/*   //u16_t7.add_signal_list(7,csl_list(sgn16_1_t7,sgn16_2_t7)); */
+  
+/*   u16_t7() { */
+
+
+/*   } */
+/* }; */
+
+/* csl_unit u17_t7 { */
+
+/*   //add_signal_list(u16_t7.sgn_list_16_1_t7); */
+
+/*   u17_t7() { */
+
+/*   } */
+/* }; */
+
+/* csl_unit u18_t7 { */
+
+/*   //u18_t7.add_instance(u17_t7,u0); */
+/*   csl_signal sgn18_2_t7; */
+/*   //u18_t7.add_signal(sgn18_1_t7); */
+
+/*   u18_t7() { */
+/*     u18_t7.sgn18_2_t7.set_width(10); */
+/*     //u18_t7.add_signal(sgn18_2_t7); */
+/*     sgn18_2_t7.set_width(3); */
+/*     //u18_t7.add_signal(sgn18_2_t7); */
+/*   } */
+/* }; */
+
+/*   csl_signal_group sgn_group_18_1_t7; */
+
+/* csl_unit u19_t7 { */
+
+/*   csl_signal sgn19_1_t7(3,4), sgn19_2_t7(1,8), sgn19_3_t7(10,13); */
+/*   csl_list sgn_list_18_1_t7(u18_t7.sgn18_1_t7); */
+/*   //sgn_list_18_1_t7.add_signal(sgn19_3_t7); */
+/*   //sgn_list_18_1_t7.add_signal_list(sgn19_1_t7,sgn19_2_t7,sgn19_3_t7); */
+/*   //sgn_group_18_1_t7.add_signal(sgn19_3_t7); */
+/*   //sgn_group_18_1_t7.add_signal_list(sgn19_1_t7,sgn19_2_t7,sgn19_3_t7); */
+
+/*   u19_t7() { */
+/*   } */
+/* }; */
+
+/* csl_unit u20_t7 { */
+
+/*   //u20_t7.add_signal(sgn20_2_t7);   */
+/*   //add_signal(sgn20_1_t7); */
+/*   //add_instance(u16_t7,u10); */
+/*   //add_instance(u18_t7,u11); */
+/*   //add_instance(u19_t7,u12); */
+/*   //csl_signal_list sgn_list_20_1_t7(sgn20_1_t7,sgn20_2_t7); */
+
+/*   u20_t7() { */
+  
+/*   } */
+/* }; */
+  

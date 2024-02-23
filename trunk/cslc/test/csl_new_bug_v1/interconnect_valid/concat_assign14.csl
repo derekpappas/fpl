@@ -1,0 +1,17 @@
+//oanab
+//24 mar 2008
+//constant - constant concatenation
+
+csl_unit u1 {
+  csl_port x(input,2);
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_signal s(2);
+  csl_port y(input,4);
+  u1 u10(.x(s));
+  u2 () {
+    y={3'b110,1'b1};
+  }
+};

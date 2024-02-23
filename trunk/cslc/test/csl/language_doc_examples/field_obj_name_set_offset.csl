@@ -1,0 +1,9 @@
+//AnamariaH
+//07.03.2008
+
+csl_unit u{
+  csl_field fd1(4);
+  u(){
+         fd1.set_offset(8);}
+};
+

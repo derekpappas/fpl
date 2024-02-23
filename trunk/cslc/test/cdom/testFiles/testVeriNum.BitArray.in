@@ -1,0 +1,34 @@
+# This is the input test file for CTestVerinum::CBitArray class
+# <> means obligatory
+# [] means optional
+# {} means group
+# *x means this should repeat x times
+# Syntax: ( <1..3> [len] [VERINUM_TEST] [METHOD_TESTS]* END )
+# 1 is constrtuctor with no parameters
+# 2 is constructor with len
+# 3 is constructor copy
+# you may put as many method tests as you wish, here are the methods and their syntaxes
+# Syntax: blockSize <expected block size>
+# Syntax: bitPos <Bit index> <Expected block number> <Expected offset>
+# Syntax: setLen <int value>
+# Syntax: len <int test value>
+# Syntax: validateIndex <int test value>
+# Syntax: bit <index> <verinum test value [0,1,x,z,X,Z] >
+# Syntax: [] <index> <verinum test value [0,1,x,z,X,Z] >
+# Syntax: setBit <index> <verinum value [0,1,x,z,X,Z] >
+# Syntax: = <VERINUM_TEST>
+# examples:
+
+ 1 ( 1 END )
+ 2 ( 2 10 END )
+ 3 ( 3 ( 1 END ) END )
+ 4 ( 1 blockSize 32 END )
+ 5 ( 1 bitPos 33 2 1 END )
+ 6 ( 1 bitPos 33 2 1 blockSize 32 END )
+ 7 ( 1 setLen 10 len 10 END )
+ 8 ( 1 setLen 10 len 10 END )
+ 9 ( 2 10 setBit 0 0 bit 0 0 END )
+10 ( 2 10 setBit 0 x bit 0 x END )
+11 ( 2 10 setBit 1 z [] 1 z END )
+12 ( 1 = ( 2 10 setBit 1 z [] 1 z END ) END )
+13 ( 1 = ( 2 10 setBit 1 z [] 1 z END ) len 10 [] 1 Z END )

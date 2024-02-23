@@ -1,0 +1,130 @@
+csl_enum he {
+	ds = 73,
+	wp = 66,
+	bb = 79,
+	hx = 45,
+	et = 87,
+	cj = 14,
+	hr = 78,
+	gi = 64,
+	lu = 89,
+	td = 22,
+	jf = 64,
+	wu = 19
+};
+csl_enum tb {
+	kh,
+	rr,
+	lu,
+	ml,
+	kq,
+	mt,
+	os,
+	oq,
+	cx
+};
+csl_enum ll {
+	gy,
+	ga,
+	cs,
+	gy,
+	nc,
+	aa,
+	jr,
+	tx,
+	og,
+	jc,
+	yx
+};
+csl_isa_instruction_format qw{
+    qw( ){
+     set_width( 1);
+     generate_decoder( pj);
+  }
+}
+;
+csl_isa_instruction sd : qw{
+    sd( ){
+    set_asm_mnemonic( csl_list "xq", "qk", "ij", "cq", "ty", "wo", "cv", "kp");
+  }
+}
+;
+csl_isa nl{
+    nl( ){
+     set_decoder_name( "id");
+     set_decoder_out_name_prefix( "hr");
+     set_decoder_out_name_suffix( "ns");
+     print( isa.txt);
+  }
+}
+;
+csl_fifo fn{
+   fn( ){
+  }
+}
+;
+csl_memory_map_page tb{
+    tb( ){
+     set_address_increment( 1);
+     get_address_increment( );
+     set_next_address( 5);
+     get_lower_bound( );
+     get_data_word_wodth( );
+     set_aligment( 7);
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page tf{
+    tf( ){
+  }
+}
+;
+csl_memory_map_page od{
+  tb mv;
+  tf ad;
+  tb fy;
+    od( ){
+     set_next_address( 4);
+     set_access_rights( access_read_write, access_read_write);
+     add_reserved_address_range( 8, 0);
+     add( tbtf);
+     get_lower_bound( );
+     set_data_word_width( 4);
+     get_data_word_wodth( );
+     set_endianess( big_endian);
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map aj{
+  tb oe;
+  od tc;
+  tf rx;
+  od wc;
+    aj( ){
+  }
+}
+;
+csl_register rw{
+    rw( ){
+     set_width( 7);
+     add_logic( serial_input);
+     add_logic( wr_en);
+  }
+}
+;
+csl_register tc{
+    tc( ){
+     set_width( 8);
+     get_width( );
+     set_depth( 1);
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 5);
+  }
+}
+;

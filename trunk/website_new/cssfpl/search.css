@@ -1,0 +1,141 @@
+
+
+/********************/
+/* White box        */
+/********************/
+
+/*  pics for white box*/
+.whiteBox.results .boxHeader { 
+	background: url(../imagesfpl/gridBox_tl.gif) no-repeat 0px 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: red;
+	padding: 1px 1px 1px 1px;
+}
+.whiteBox.results .boxHeader .boxCorner {
+	background: url(../imagesfpl/gridBox_tr.gif) no-repeat right 0px;
+}
+.whiteBox.results .boxContent {
+	background: white url(../imagesfpl/gridBox_ml.gif) repeat-y 0px 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: black;
+}
+.whiteBox.results .boxContent .boxContentInner {
+	background: transparent url(../imagesfpl/gridBox_mr.gif) repeat-y right 0px;
+}
+.whiteBox.results .boxFooter {
+	background: url(../imagesfpl/gridBox_bl.gif) no-repeat left bottom;
+}
+.whiteBox.results .boxFooter .boxCorner {
+	background: url(../imagesfpl/gridBox_br.gif) no-repeat right bottom;
+}
+/*.whiteBox.hoverHighlight:hover .boxHeader, .whiteBox.hoverHighlight.sfHover .boxHeader  { 
+	background: url(../imagesfpl/gridBox_tl_on.gif) no-repeat 0px 0px; 
+}
+.whiteBox.hoverHighlight:hover .boxHeader .boxCorner, .whiteBox.hoverHighlight.sfHover .boxHeader .boxCorner { 
+	background: transparent url(../imagesfpl/gridBox_tr_on.gif) no-repeat right 0px; 
+}
+.whiteBox.hoverHighlight:hover .boxContent, .whiteBox.hoverHighlight.sfHover .boxContent { 
+	background: white url(../imagesfpl/gridBox_ml_on.gif) repeat-y 0px 0px; 
+}
+.whiteBox.hoverHighlight:hover .boxContent .boxContentInner, .whiteBox.hoverHighlight.sfHover .boxContent .boxContentInner { 
+	background: transparent url(../imagesfpl/gridBox_mr_on.gif) repeat-y right 0px; 
+}
+.whiteBox.hoverHighlight:hover .boxFooter, .whiteBox.hoverHighlight.sfHover .boxFooter { 
+	background: url(../imagesfpl/gridBox_bl_on.gif) no-repeat left bottom; 
+}
+.whiteBox.hoverHighlight:hover .boxFooter .boxCorner, .whiteBox.hoverHighlight.sfHover .boxFooter .boxCorner { 
+	background: transparent url(../imagesfpl/gridBox_br_on.gif) no-repeat right bottom; 
+}*/
+
+
+/***********************/
+/* Product Information */
+/***********************/
+
+ul.itemList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+ul.itemList.list .itemBox {
+/*  width: 100%; */
+}
+.itemBox { 
+}
+
+
+
+/* [grid view] */
+ul.itemList {
+  margin-left: 6px;
+  margin-top: 3px;
+}
+ul.itemList.grid .itemBox {
+/* modify white box width */
+  width: 18em;
+  min-width: 168px;
+  float: left; 
+}
+.grid .itemBox .boxHeader .boxCorner, .grid .itemBox .boxFooter .boxCorner {
+  width: 100%;
+  float: right;
+}
+
+
+
+/* [generic product boxes] */
+.tf_search_item {
+  position: relative;
+  height: 1%;
+}
+.tf_search_item:after {
+  display: block;
+  content: '.';
+  visibility: hidden;
+  clear: both;
+  height: 0px;
+}
+.tf_search_item .tf_search_item_productinfo {
+  margin-left: 5px;
+  padding-left: 1.4em;
+  padding-right: 16em;
+  height: 9em;
+  overflow: hidden;
+}
+
+.tf_search_item .tf_search_item_productinfo {
+  height: 1%;
+}
+
+.tf_search_item .tf_search_item_productinfo:after {
+  display: block;
+  content: '.';
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.tf_search_item ul {
+  height: 1%;
+}
+
+
+/* grid view */
+
+.grid .tf_search_item .tf_search_item_productinfo {
+  margin: 0;
+  padding: 0;
+/*  modify box height*/
+  height: auto;
+  overflow: normal;
+}
+.grid .tf_search_item .tf_search_item_productinfo {
+  margin: 0;
+  padding: 0;
+}
+
+

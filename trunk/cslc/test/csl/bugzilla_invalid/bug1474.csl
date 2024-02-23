@@ -1,0 +1,6 @@
+csl_memory_map_page mmp{
+  mmp(){
+    add_address_range(-0, -312);
+    add_address_range(-312, -0);
+  }
+};

@@ -1,0 +1,33 @@
+
+
+//Interface from CSW to Agents
+
+csl_interface from_csw_ifc {
+  csl_port cluster_data0_to_agents(input,br5);
+  csl_port cluster_ptag0_to_agents(input,br10);
+  csl_port cluster_data1_to_agents(input,br5);
+  csl_port cluster_ptag1_to_agents(input,br10);
+  csl_port cluster_data2_to_agents(input,br5);
+  csl_port cluster_ptag2_to_agents(input,br10);
+  csl_port cluster_data3_to_agents(input,br5);
+  csl_port cluster_ptag3_to_agents(input,br10);
+  csl_port cluster_dev_id_to_agents(input,br6);
+  csl_port cluster_wr_to_agents(input);
+  from_csw_ifc () {}
+};
+
+// Interface from Agents to CSW
+csl_interface to_csw_ifc {
+  csl_port cluster_data0_from_agents(output,br5);
+  csl_port cluster_ptag0_from_agents(output,br10);
+  csl_port cluster_data1_from_agents(output,br5);
+  csl_port cluster_ptag1_from_agents(output,br10);
+  csl_port cluster_data2_from_agents(output,br5);
+  csl_port cluster_ptag2_from_agents(output,br10);
+  csl_port cluster_data3_from_agents(output,br5);
+  csl_port cluster_ptag3_from_agents(output,br10);
+  csl_port cluster_dest_from_agents(output,br7);
+  csl_port  cluster_wr_from_agents(output);
+  csl_port cluster_ready_to_agents(input);
+  to_csw_ifc () {}
+};

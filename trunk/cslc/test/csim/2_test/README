@@ -1,0 +1,12 @@
+
+1. Compile csl code and enable generation of csim code:
+
+   cslc 2.csl --csim_gen
+
+2. Go to generated csim code directory:
+
+   cd a_cslc_generated/code/csim
+
+3. Run compile.pl script to compile the code:
+
+   ./compile.pl generated/

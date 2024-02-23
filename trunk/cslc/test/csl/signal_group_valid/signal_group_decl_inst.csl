@@ -1,0 +1,33 @@
+//author: Ines
+//testing: csl_signal_group
+
+csl_signal_group sg {
+  csl_signal s1;
+  csl_signal s2;
+  csl_signal s3;
+  sg(){
+    //set_generate_individual_RTL_signals(OFF);
+  }
+};
+
+csl_signal_group sgg {
+  sg sg1inst;
+  csl_signal s4;
+  sgg(){
+  }
+};
+
+csl_unit a {
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(input);
+  csl_port p4(input);
+ a (){}
+};
+
+csl_unit u {
+  sgg sg2inst;
+  a a0(.p1(sg2inst.sg1inst.s1),.p2(sg2inst.sg1inst.s2),.p3(sg2inst.sg1inst.s3),.p4(sg2inst.s4));
+  u(){
+  }
+};

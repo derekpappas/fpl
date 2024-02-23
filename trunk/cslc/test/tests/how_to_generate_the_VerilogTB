@@ -1,0 +1,13 @@
+// these are the steps for generating the verilog Testbench file
+
+1. The .csl file should contains the csl_testbench declaration
+2. Compile the .csl file : cslc <test_name>.csl
+3. Go to /<top_module>_cslc_generator/code/systemC/
+4. Here generate the stim and exp vectors(see how to do this)
+5. Go to /<top_module>_cslc_generator/code/verilog/
+6. Compile the verilog testbench generated code: iverilog <dut_inst_name>_tb.v
+7. Run the exe file: ./a.out
+8. Stop the simulation: 
+     Ctrl+C 
+     > finish                    
+9. Open the output file to see the results: emacs vectors.txt

@@ -1,0 +1,48 @@
+
+//**************
+// Unit MAC_rx
+//**************
+
+csl_unit MAC_rx{
+  csl_port  Reset(input);
+  csl_port  Clk_user(input);
+  csl_port  Clk(input);    
+  //RMII interface
+  csl_port  MCrs_dv(input);
+  csl_port  MRxD(input,8);
+  csl_port  MRxErr(input);  
+  //flow_control signals  
+  csl_port  pause_quanta(output,16);
+  csl_port  pause_quanta_val(output); 
+  //user interface 
+  csl_port  Rx_mac_ra(output); 
+  csl_port  Rx_mac_rd(input);  
+  csl_port  Rx_mac_data(output,32);
+  csl_port  Rx_mac_BE(output,2); 
+  csl_port  Rx_mac_pa(output);  
+  csl_port  Rx_mac_sop(output); 
+  csl_port  Rx_mac_eop(output); 
+  //CPU
+  csl_port  MAC_rx_add_chk_en(input);
+  csl_port  MAC_add_prom_data(input,8); 
+  csl_port  MAC_add_prom_add(input,3);
+  csl_port  MAC_add_prom_wr(input);  
+  csl_port  broadcast_filter_en(input); 
+  csl_port  broadcast_bucket_depth(input,16); 
+  csl_port  broadcast_bucket_interval(input,16); 
+  csl_port  RX_APPEND_CRC(input);
+  csl_port  Rx_Hwmark(input,5);
+  csl_port  Rx_Lwmark(input,5);
+  csl_port  CRC_chk_en(input); 
+  csl_port  RX_IFG_SET(input,6);
+  csl_port  RX_MAX_LENGTH(input,16);
+  csl_port  RX_MIN_LENGTH(input,7);
+  //RMON interface
+  csl_port  Rx_pkt_length_rmon(output,16);
+  csl_port  Rx_apply_rmon(output);          
+  csl_port  Rx_pkt_err_type_rmon(output,3);
+  csl_port  Rx_pkt_type_rmon(output,3);
+  
+  MAC_rx(){
+  }
+};

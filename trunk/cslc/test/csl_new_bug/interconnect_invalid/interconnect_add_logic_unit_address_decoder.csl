@@ -1,0 +1,17 @@
+//AnamariaH
+//06.03.2008
+
+
+csl_unit u{
+  csl_signal s(4);
+  u(){
+   
+    add_logic(unit_address_decoder,s); }
+};
+
+csl_unit top{
+  
+ 
+  u u0;
+  top(){ }
+};

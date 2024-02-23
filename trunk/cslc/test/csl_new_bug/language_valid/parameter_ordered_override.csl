@@ -1,0 +1,29 @@
+     //costelc
+   // Example: parameter ordered everride 
+
+// parameters defined in unit
+csl_unit a{
+  csl_parameter pr_a1(6);         //pr_a1 is 32 bit
+   csl_parameter pr_a2(3,5);       //pr_a2 is set to 5 bit
+    csl_parameter pr_a3(2'b11);      //pr_a3 is 2 bit       
+  a(){}
+};
+
+csl_unit b{
+  csl_parameter pr_b1(20);         //pr_b1 is 32 bit
+  csl_parameter pr_b2(3,8);        //pr_b2 is set to 5 bit
+   csl_parameter pr_b3(3'b011);      //pr_b3 is 2 bit       
+  b(){}
+};
+
+
+csl_unit top{
+  
+   a #(4, ,2) a0;           // overrides the first parameter in instance a0 with value 4 
+   b #(3,1,2) b0;          // overrides all three parameters in instance b0 with values 3, 1, 2
+ 
+  top(){}
+};
+
+
+

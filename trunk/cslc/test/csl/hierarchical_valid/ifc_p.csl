@@ -1,0 +1,32 @@
+// Author : CristiL
+//
+// Creating a interface whith ports
+
+csl_interface interfaceA {
+
+  csl_port port0(input,32);
+
+  csl_port port1(input,32);
+
+  csl_port port2(input,32);
+
+  csl_port port3(input,32);
+
+};
+
+csl_unit u{
+  csl_port p1(output,32);
+  csl_port p2(output,32);
+  csl_port p3(output,32);
+  csl_port p4(output,32);
+  u(){}
+};
+csl_unit unitTop {
+
+  interfaceA interfaceA0;
+  u u0(.p1(interfaceA0.port1),.p2(interfaceA0.port2),.p3(interfaceA0.port3),.p4(interfaceA0.port0));
+  unitTop() {
+    interfaceA0.reverse();
+  }
+
+};

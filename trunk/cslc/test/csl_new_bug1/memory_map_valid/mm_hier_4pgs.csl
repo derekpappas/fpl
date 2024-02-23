@@ -1,0 +1,65 @@
+
+csl_fifo f1{
+  f1(){
+    set_width(8);
+    set_depth(32);
+  }
+};
+
+csl_unit u1{
+  f1 f1;
+  u1(){}
+};
+
+csl_unit u2{
+  u1 u1;
+  u2(){}
+};
+
+csl_unit u3{
+  u2 u2;
+  u3(){
+  }
+};
+
+csl_unit top{
+  u3 u3;
+  top(){
+  }
+};
+
+csl_memory_map_page mpage_0 {
+  mpage_0 () {
+		add_address_range(256, 511);
+		set_unit_name(u1);
+	        set_address_increment(4);
+  }
+};
+csl_memory_map_page mpage_1 {
+  mpage_1 () {
+		add_address_range(256, 511);
+                set_unit_name(u2);
+	        set_address_increment(4);
+  }
+};
+csl_memory_map_page mpage_2 {
+  mpage_2 () {
+		add_address_range(256, 511);
+	        set_unit_name(u3);
+                set_address_increment(4);
+  }
+};
+csl_memory_map_page mpage_3 {
+  mpage_3 () {
+		add_address_range(256, 511);
+	        set_unit_name(top);  
+                set_address_increment(4);
+  }
+};
+
+csl_memory_map mmap{
+	mmap(){
+		set_data_word_width(32);
+		set_type(hierarchical);
+	}
+};

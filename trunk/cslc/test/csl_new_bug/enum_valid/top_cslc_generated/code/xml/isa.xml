@@ -1,0 +1,13 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="isa.xsl"?>
+<design>
+<isaField name="op" type = "subopcode" offset="0" upper="2-1" lower="0" enum = "op_enum">
+</isaField>
+<isaField name="op2" type = "subopcode" offset="0" upper="3-1" lower="0" enum = "op2_enum">
+</isaField>
+<isaField name="fmt2Base" type = "opcode" offset="0" upper="32-1" lower="0"<isaField name="op_inst" type = "subopcode" offset="0" upper="1" lower="0" enum = "op_enum">
+</isaField>
+<isaField name="op2_inst" type = "subopcode" offset="0" upper="2" lower="0" enum = "op2_enum">
+</isaField>
+</isaField>
+</design>

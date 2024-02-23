@@ -1,0 +1,33 @@
+//connect units
+// conn_units_bug_picture.odg shows the connections
+
+//csl_interface ifc1{
+//  csl_port p1(input);
+//  csl_port p2(output);
+//ifc1(){}
+//};
+
+csl_unit a{
+csl_port p1(input);
+a(){}
+};
+
+csl_unit b{
+csl_port p1(input);
+a a0;
+b(){}
+};
+
+csl_unit c{
+csl_port p11(input);
+csl_port p12(input);
+b b0(.p1(p11));
+b b1(.p1(p12));
+c(){
+b0.connect_units(b0.a0);
+b1.connect_units(b1.a0);
+}
+};
+
+
+

@@ -1,0 +1,8 @@
+To create the doxygen files run the following command:
+
+doxygen cslc.doxy
+The doxygen docs will be generated in the following directory:
+
+OUTPUT_DIRECTORY       = doc/doxygen
+
+file://$WORK/trunk/doc/doxygen/html/namespaces.html

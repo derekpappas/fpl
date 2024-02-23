@@ -1,0 +1,16 @@
+//Monica
+// doc example for: csl_signal signal_name
+
+csl_unit ref{
+   csl_port x (output, 8);
+   ref(){}};
+csl_unit comp{
+  csl_port x (input, 8);
+   comp(){}
+};
+ csl_unit check{
+ csl_signal ref_data(wire, 8);
+ ref ref(.x(ref_data));
+ comp comp( .x(ref_data));
+  check(){} 
+};

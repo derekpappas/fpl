@@ -1,0 +1,16 @@
+//is not legal to have null strings like parameters
+csl_register_file rf1{
+  rf1(){
+    set_reset_name("");
+    set_clock_name("");
+    set_wr_data_name("");
+    set_rd_data_name("");
+
+   set_wr_addr_name("");
+   set_rd_addr_name("");
+   set_wr_en_name("");
+   set_rd_en_name("");
+
+   set_valid_name("");
+  }
+};

@@ -1,0 +1,9 @@
+
+JAVA=""
+export JAVA="sun"
+export JPATH="/usr/java/jdk1.6.0_03"
+export JAVA_HOME="$JPATH"
+export CLASSPATH="$JPATH/bin"
+pathmunge $JPATH/bin before
+
+unset i

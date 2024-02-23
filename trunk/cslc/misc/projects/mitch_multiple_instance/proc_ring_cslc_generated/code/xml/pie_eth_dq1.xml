@@ -1,0 +1,217 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="pie_eth_dq1">
+<interface name="fab_add" >
+<port name="addr" offset="0" upper="17" lower="0" direction = "output" type = "wire" />
+<port name="data" offset="0" upper="31" lower="0" direction = "output" type = "wire" />
+<port name="nid" offset="0" upper="3" lower="0" direction = "output" type = "wire" />
+<port name="ready" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="reject" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="type" offset="0" upper="3" lower="0" direction = "output" type = "wire" />
+<port name="valid" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="fab_drop" >
+<port name="addr" offset="0" upper="17" lower="0" direction = "input" type = "wire" />
+<port name="data" offset="0" upper="31" lower="0" direction = "input" type = "wire" />
+<port name="nid" offset="0" upper="3" lower="0" direction = "input" type = "wire" />
+<port name="ready" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="reject" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="type" offset="0" upper="3" lower="0" direction = "input" type = "wire" />
+<port name="valid" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<signalgroup name="cil_pdma0">
+<signal name="start" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="busy" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="cil_pdma1">
+<signal name="start" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="busy" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="maclu_cil">
+<signal name="busy" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="hit" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="port" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="start" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="db_cil">
+<signal name="valid" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="rd" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="result" offset="0" upper="31" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="pdma0_cil">
+<signal name="cmd" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="valid" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="pdma1_cil">
+<signal name="cmd" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="valid" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="cil_fdma0">
+<signal name="start" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="busy" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="cil_fdma1">
+<signal name="start" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="busy" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="fd_db">
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="wr" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="fd_reg">
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="wr" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="fd_maclu">
+<signal name="addr" offset="0" upper="17" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="wr" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="fd_qm">
+<signal name="addr" offset="0" upper="17" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="wr" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="fd_arb">
+<signal name="addr" offset="0" upper="17" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="wr" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="rd" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "fabric_dma">
+<instance name="fabric_dma0">
+<f2a formal = "sbfd.busy" actual = "cil_fdma0.busy" />
+<f2a formal = "sbfd.start" actual = "cil_fdma0.start" />
+</instance>
+</instantiation>
+<instantiation type = "put_dma">
+<instance name="put_dma0">
+<f2a formal = "cdrv.cmd" actual = "pdma0_cil.cmd" />
+<f2a formal = "cdrv.data" actual = "pdma0_cil.data" />
+<f2a formal = "cdrv.ready" actual = "pdma0_cil.ready" />
+<f2a formal = "cdrv.valid" actual = "pdma0_cil.valid" />
+<f2a formal = "sb.busy" actual = "cil_pdma0.busy" />
+<f2a formal = "sb.start" actual = "cil_pdma0.start" />
+</instance>
+</instantiation>
+<instantiation type = "fabric_dma">
+<instance name="fabric_dma1">
+<f2a formal = "sbfd.busy" actual = "cil_fdma1.busy" />
+<f2a formal = "sbfd.start" actual = "cil_fdma1.start" />
+</instance>
+</instantiation>
+<instantiation type = "fabric_interface">
+<instance name="fabric_interface">
+</instance>
+</instantiation>
+<instantiation type = "fabric_drop">
+<instance name="fabric_drop">
+<f2a formal = "adwr.addr" actual = "fd_arb.addr" />
+<f2a formal = "adwr.data" actual = "fd_arb.data" />
+<f2a formal = "adwr.rd" actual = "fd_arb.rd" />
+<f2a formal = "adwr.wr" actual = "fd_arb.wr" />
+<f2a formal = "db_dw.data" actual = "fd_db.data" />
+<f2a formal = "db_dw.wr" actual = "fd_db.wr" />
+<f2a formal = "dreg_dw.data" actual = "fd_reg.data" />
+<f2a formal = "dreg_dw.wr" actual = "fd_reg.wr" />
+<f2a formal = "maclu_adw.addr" actual = "fd_maclu.addr" />
+<f2a formal = "maclu_adw.data" actual = "fd_maclu.data" />
+<f2a formal = "maclu_adw.wr" actual = "fd_maclu.wr" />
+<f2a formal = "qm_adw.addr" actual = "fd_qm.addr" />
+<f2a formal = "qm_adw.data" actual = "fd_qm.data" />
+<f2a formal = "qm_adw.wr" actual = "fd_qm.wr" />
+</instance>
+</instantiation>
+<instantiation type = "qm">
+<instance name="qm">
+<f2a formal = "dw.addr" actual = "fd_qm.addr" />
+<f2a formal = "dw.data" actual = "fd_qm.data" />
+<f2a formal = "dw.wr" actual = "fd_qm.wr" />
+</instance>
+</instantiation>
+<instantiation type = "nios">
+<instance name="nios">
+</instance>
+</instantiation>
+<instantiation type = "arb">
+<instance name="arb">
+<f2a formal = "adwr.addr" actual = "fd_arb.addr" />
+<f2a formal = "adwr.data" actual = "fd_arb.data" />
+<f2a formal = "adwr.rd" actual = "fd_arb.rd" />
+<f2a formal = "adwr.wr" actual = "fd_arb.wr" />
+</instance>
+</instantiation>
+<instantiation type = "maclu">
+<instance name="maclu">
+<f2a formal = "adw.addr" actual = "fd_maclu.addr" />
+<f2a formal = "adw.data" actual = "fd_maclu.data" />
+<f2a formal = "adw.wr" actual = "fd_maclu.wr" />
+<f2a formal = "malt.busy" actual = "maclu_cil.busy" />
+<f2a formal = "malt.hit" actual = "maclu_cil.hit" />
+<f2a formal = "malt.port" actual = "maclu_cil.port" />
+<f2a formal = "malt.start" actual = "maclu_cil.start" />
+</instance>
+</instantiation>
+<instantiation type = "inst_tcm">
+<instance name="inst_tcm">
+</instance>
+</instantiation>
+<instantiation type = "cil">
+<instance name="cil">
+<f2a formal = "cdrv.cmd" actual = "pdma0_cil.cmd" />
+<f2a formal = "cdrv.data" actual = "pdma0_cil.data" />
+<f2a formal = "cdrv.ready" actual = "pdma0_cil.ready" />
+<f2a formal = "cdrv.valid" actual = "pdma0_cil.valid" />
+<f2a formal = "malt.busy" actual = "maclu_cil.busy" />
+<f2a formal = "malt.hit" actual = "maclu_cil.hit" />
+<f2a formal = "malt.port" actual = "maclu_cil.port" />
+<f2a formal = "malt.start" actual = "maclu_cil.start" />
+<f2a formal = "sb.busy" actual = "cil_pdma0.busy" />
+<f2a formal = "sb.start" actual = "cil_pdma0.start" />
+<f2a formal = "sbfd.busy" actual = "cil_fdma0.busy" />
+<f2a formal = "sbfd.start" actual = "cil_fdma0.start" />
+<f2a formal = "vrr.rd" actual = "db_cil.rd" />
+<f2a formal = "vrr.result" actual = "db_cil.result" />
+<f2a formal = "vrr.valid" actual = "db_cil.valid" />
+</instance>
+</instantiation>
+<instantiation type = "doorbell">
+<instance name="doorbell">
+<f2a formal = "dw.data" actual = "fd_db.data" />
+<f2a formal = "dw.wr" actual = "fd_db.wr" />
+<f2a formal = "vrr.rd" actual = "db_cil.rd" />
+<f2a formal = "vrr.result" actual = "db_cil.result" />
+<f2a formal = "vrr.valid" actual = "db_cil.valid" />
+</instance>
+</instantiation>
+<instantiation type = "reg">
+<instance name="reg">
+<f2a formal = "dw.data" actual = "fd_reg.data" />
+<f2a formal = "dw.wr" actual = "fd_reg.wr" />
+</instance>
+</instantiation>
+<instantiation type = "data_tcm">
+<instance name="data_tcm">
+</instance>
+</instantiation>
+<instantiation type = "put_dma">
+<instance name="put_dma1">
+<f2a formal = "cdrv.cmd" actual = "pdma1_cil.cmd" />
+<f2a formal = "cdrv.data" actual = "pdma1_cil.data" />
+<f2a formal = "cdrv.ready" actual = "pdma1_cil.ready" />
+<f2a formal = "cdrv.valid" actual = "pdma1_cil.valid" />
+<f2a formal = "sb.busy" actual = "cil_pdma1.busy" />
+<f2a formal = "sb.start" actual = "cil_pdma1.start" />
+</instance>
+</instantiation>
+<instantiation type = "fabric_add">
+<instance name="fabric_add">
+</instance>
+</instantiation>
+</unit>
+</design>

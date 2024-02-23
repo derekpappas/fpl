@@ -1,0 +1,10 @@
+csl_unit a{
+  csl_signal sgn28_1_t8(wire);     
+  csl_signal sgn30_1_t8(reg);     
+  csl_signal sgn32_1_t8(tri);
+  csl_signal s1;
+  a(){
+    sgn32_1_t8 =s1;
+    sgn28_1_t8 = sgn30_1_t8;
+ }
+};

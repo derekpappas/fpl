@@ -1,0 +1,147 @@
+csl_enum ve {
+	vw,
+	gp,
+	tn,
+	ce,
+	ao,
+	uc,
+	dw,
+	vs,
+	ig,
+	vu,
+	tq
+};
+csl_enum yr {
+	dv,
+	mr,
+	ck,
+	vb,
+	he,
+	sb,
+	su
+};
+csl_enum iu {
+	mf,
+	wp,
+	eu,
+	jn,
+	bh,
+	iw,
+	ak,
+	pd,
+	gc,
+	wl,
+	mv,
+	ov,
+	ah,
+	ys
+};
+csl_isa_instruction_format wg{
+    wg( ){
+     set_width( 4);
+     generate_decoder( acyspu);
+  }
+}
+;
+csl_isa_instruction kj : wg{
+    kj( ){
+    set_asm_mnemonic( csl_list "ya", "na", "oe", "yn", "pj");
+  }
+}
+;
+csl_isa_instruction cq : wg{
+    cq( ){
+    set_asm_mnemonic( csl_list "gh", "at", "hr");
+  }
+}
+;
+csl_isa ba{
+    ba( ){
+     set_decoder_name( "im");
+     set_decoder_out_name_prefix( "gk");
+     set_decoder_out_name_suffix( "ii");
+     generate_decoder( acys);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo dx{
+   dx( ){
+     set_dimension( 1, 2);
+  }
+}
+;
+csl_memory_map_page ji{
+    ji( ){
+     add_address_range( 8, 8);
+     set_address_increment( 1);
+     get_address_increment( );
+     get_next_address( );
+     add_reserved_address_range( 5, 9);
+     add( dx, "in", 0);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 6);
+     get_data_word_wodth( );
+     set_aligment( 2);
+     set_endianess( little_endian);
+  }
+}
+;
+csl_memory_map_page lj{
+    lj( ){
+     add_address_range( 5, 9);
+     set_address_increment( 8);
+     get_address_increment( );
+     get_next_address( );
+     set_aligment( 7);
+  }
+}
+;
+csl_memory_map_page vs{
+  ji le;
+  ji yf;
+  ji sh;
+    vs( ){
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map nl{
+  vs nf;
+  ji ft;
+  lj kn;
+  vs dj;
+  ji wl;
+    nl( ){
+     auto_gen_memory_map( );
+     set_top_unit( ys);
+     set_type( flat);
+     set_data_word_width( 3);
+     get_data_word_width( );
+     set_prefix( ek);
+     get_prefix( );
+     set_suffix( kx);
+  }
+}
+;
+csl_register er{
+    er( ){
+     constant( 4);
+     add_logic( serial_input);
+     clear_value( 4);
+     add_logic( gray_output);
+  }
+}
+;
+csl_register sr{
+    sr( ){
+     set_width( 2);
+     get_width( );
+     set_depth( 2);
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 4);
+  }
+}
+;

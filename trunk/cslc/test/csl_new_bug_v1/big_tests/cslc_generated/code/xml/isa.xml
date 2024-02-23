@@ -1,0 +1,490 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="isa.xsl"?>
+<design>
+<isaField name="b1" type = "selector" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="c1" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="c10" type = "constant" offset="0" upper="20" lower="21">
+</isaField>
+<isaField name="c11" type = "constant" offset="0" upper="0" lower="19">
+</isaField>
+<isaField name="c12" type = "constant" offset="0" upper="20" lower="21">
+</isaField>
+<isaField name="c13" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="c14" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="c15" type = "constant" offset="0" upper="5" lower="24">
+</isaField>
+<isaField name="c16" type = "constant" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c17" type = "constant" offset="0" upper="27" lower="27">
+</isaField>
+<isaField name="c18" type = "constant" offset="0" upper="0" lower="26">
+</isaField>
+<isaField name="c19" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="c2" type = "constant" offset="0" upper="21" lower="24">
+</isaField>
+<isaField name="c20" type = "constant" offset="0" upper="0" lower="24">
+</isaField>
+<isaField name="c21" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="c22" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="c23" type = "constant" offset="0" upper="24" lower="27">
+</isaField>
+<isaField name="c24" type = "constant" offset="0" upper="24" lower="27">
+</isaField>
+<isaField name="c25" type = "constant" offset="0" upper="0" lower="23">
+</isaField>
+<isaField name="c26" type = "constant" offset="0" upper="5" lower="6">
+</isaField>
+<isaField name="c3" type = "constant" offset="0" upper="5" lower="19">
+</isaField>
+<isaField name="c4" type = "constant" offset="0" upper="0" lower="3">
+</isaField>
+<isaField name="c5" type = "constant" offset="0" upper="8" lower="19">
+</isaField>
+<isaField name="c6" type = "constant" offset="0" upper="8" lower="24">
+</isaField>
+<isaField name="c7" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="c8" type = "constant" offset="0" upper="23" lower="24">
+</isaField>
+<isaField name="c9" type = "constant" offset="0" upper="22" lower="22">
+</isaField>
+<isaField name="cond" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="cpnum" type = "unused" offset="0" upper="8" lower="11">
+</isaField>
+<isaField name="crd" type = "rf_address" offset="0" upper="12" lower="15">
+</isaField>
+<isaField name="crm" type = "rf_address" offset="0" upper="0" lower="3">
+</isaField>
+<isaField name="crn" type = "rf_address" offset="0" upper="16" lower="19">
+</isaField>
+<isaField name="h" type = "selector" offset="0" upper="24" lower="24">
+</isaField>
+<isaField name="immediate" type = "constant" offset="0" upper="0" lower="7">
+</isaField>
+<isaField name="immediate2" type = "constant" offset="0" upper="0" lower="11">
+</isaField>
+<isaField name="l" type = "selector" offset="0" upper="24" lower="24">
+</isaField>
+<isaField name="lu" type = "selector" offset="0" upper="20" lower="20">
+</isaField>
+<isaField name="mask" type = "constant" offset="0" upper="16" lower="19">
+</isaField>
+<isaField name="n" type = "selector" offset="0" upper="22" lower="22">
+</isaField>
+<isaField name="o" type = "constant" offset="0" upper="4" lower="4">
+</isaField>
+<isaField name="offs24" type = "rf_address" offset="0" upper="0" lower="23">
+</isaField>
+<isaField name="offs8" type = "rf_address" offset="0" upper="0" lower="7">
+</isaField>
+<isaField name="opcode" type = "opcode" offset="0" upper="21" lower="24">
+</isaField>
+<isaField name="opcode1" type = "opcode" offset="0" upper="20" lower="23">
+</isaField>
+<isaField name="opcode2" type = "opcode" offset="0" upper="5" lower="7">
+</isaField>
+<isaField name="opcode12" type = "opcode" offset="0" upper="21" lower="23">
+</isaField>
+<isaField name="oup" type = "constant" offset="0" upper="7" lower="7">
+</isaField>
+<isaField name="p" type = "selector" offset="0" upper="24" lower="24">
+</isaField>
+<isaField name="r" type = "constant" offset="0" upper="22" lower="22">
+</isaField>
+<isaField name="rd1" type = "rf_address" offset="0" upper="12" lower="15">
+</isaField>
+<isaField name="rlist" type = "rf_address" offset="0" upper="0" lower="15">
+</isaField>
+<isaField name="rm" type = "rf_address" offset="0" upper="0" lower="3">
+</isaField>
+<isaField name="rn" type = "rf_address" offset="0" upper="16" lower="19">
+</isaField>
+<isaField name="rotate" type = "constant" offset="0" upper="8" lower="11">
+</isaField>
+<isaField name="rs" type = "rf_address" offset="0" upper="8" lower="11">
+</isaField>
+<isaField name="s1" type = "selector" offset="0" upper="20" lower="20">
+</isaField>
+<isaField name="sbo" type = "constant" offset="0" upper="12" lower="15">
+</isaField>
+<isaField name="sh" type = "selector" offset="0" upper="5" lower="6">
+</isaField>
+<isaField name="sham" type = "constant" offset="0" upper="7" lower="11">
+</isaField>
+<isaField name="sup" type = "selector" offset="0" upper="22" lower="22">
+</isaField>
+<isaField name="swin" type = "constant" offset="0" upper="0" lower="23">
+</isaField>
+<isaField name="u" type = "selector" offset="0" upper="23" lower="23">
+</isaField>
+<isaField name="w" type = "selector" offset="0" upper="21" lower="21">
+</isaField>
+<isaField name="z" type = "constant" offset="0" upper="4" lower="4">
+</isaField>
+<isaField name="zm" type = "constant" offset="0" upper="7" lower="7">
+</isaField>
+<isaField name="zup" type = "constant" offset="0" upper="20" lower="20">
+</isaField>
+<isaElement name="root" type="root_format" offset="0" upper="32-1" lower="0">
+</isaElement>
+<isaElement name="baseformat" type="instr_format" offset="0" upper="32-1" lower="0">
+</isaElement>
+<isaElement name="Format1" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c10" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="opcode0" type = "opcode" offset="0" upper="21" lower="24">
+</isaField>
+<isaField name="s10" type = "selector" offset="0" upper="20" lower="20">
+</isaField>
+<isaField name="rn0" type = "rf_address" offset="0" upper="16" lower="19">
+</isaField>
+<isaField name="rd10" type = "rf_address" offset="0" upper="12" lower="15">
+</isaField>
+<isaField name="sham0" type = "constant" offset="0" upper="7" lower="11">
+</isaField>
+<isaField name="sh0" type = "selector" offset="0" upper="5" lower="6">
+</isaField>
+<isaField name="z0" type = "constant" offset="0" upper="4" lower="4">
+</isaField>
+>
+<isaField name="rm0" type = "rf_address" offset="0" upper="0" lower="3">
+</isaField>
+</isaElement>
+<isaElement name="Format10" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c140" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="p0" type = "selector" offset="0" upper="24" lower="24">
+</isaField>
+<isaField name="u0" type = "selector" offset="0" upper="23" lower="23">
+</isaField>
+<isaField name="b10" type = "selector" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="w0" type = "selector" offset="0" upper="21" lower="21">
+</isaField>
+<isaField name="lu0" type = "selector" offset="0" upper="20" lower="20">
+</isaField>
+<isaField name="rn0" type = "rf_address" offset="0" upper="16" lower="19">
+</isaField>
+<isaField name="rd10" type = "rf_address" offset="0" upper="12" lower="15">
+</isaField>
+<isaField name="sham0" type = "constant" offset="0" upper="7" lower="11">
+</isaField>
+<isaField name="sh0" type = "selector" offset="0" upper="5" lower="6">
+</isaField>
+<isaField name="z0" type = "constant" offset="0" upper="4" lower="4">
+</isaField>
+>
+<isaField name="rm0" type = "rf_address" offset="0" upper="0" lower="3">
+</isaField>
+</isaElement>
+<isaElement name="Format11" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c140" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="c150" type = "constant" offset="0" upper="5" lower="24">
+</isaField>
+<isaField name="o0" type = "constant" offset="0" upper="4" lower="4">
+</isaField>
+>
+<isaField name="c40" type = "constant" offset="0" upper="0" lower="3">
+</isaField>
+</isaElement>
+<isaElement name="Format12" type="instr" offset="0" upper="32-1" lower="0"<isaField name="c160" type = "constant" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c170" type = "constant" offset="0" upper="27" lower="27">
+</isaField>
+>
+<isaField name="c180" type = "constant" offset="0" upper="0" lower="26">
+</isaField>
+</isaElement>
+<isaElement name="Format13" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c190" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="p0" type = "selector" offset="0" upper="24" lower="24">
+</isaField>
+<isaField name="u0" type = "selector" offset="0" upper="23" lower="23">
+</isaField>
+<isaField name="sup0" type = "selector" offset="0" upper="22" lower="22">
+</isaField>
+<isaField name="w0" type = "selector" offset="0" upper="21" lower="21">
+</isaField>
+<isaField name="lu0" type = "selector" offset="0" upper="20" lower="20">
+</isaField>
+<isaField name="rn0" type = "rf_address" offset="0" upper="16" lower="19">
+</isaField>
+>
+<isaField name="rlist0" type = "rf_address" offset="0" upper="0" lower="15">
+</isaField>
+</isaElement>
+<isaElement name="Format14" type="instr" offset="0" upper="32-1" lower="0"<isaField name="c160" type = "constant" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c190" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+>
+<isaField name="c200" type = "constant" offset="0" upper="0" lower="24">
+</isaField>
+</isaElement>
+<isaElement name="Format15" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c210" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="l0" type = "selector" offset="0" upper="24" lower="24">
+</isaField>
+>
+<isaField name="offs240" type = "rf_address" offset="0" upper="0" lower="23">
+</isaField>
+</isaElement>
+<isaElement name="Format16" type="instr" offset="0" upper="32-1" lower="0"<isaField name="c160" type = "constant" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c210" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="h0" type = "selector" offset="0" upper="24" lower="24">
+</isaField>
+>
+<isaField name="offs240" type = "rf_address" offset="0" upper="0" lower="23">
+</isaField>
+</isaElement>
+<isaElement name="Format17" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c220" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="p0" type = "selector" offset="0" upper="24" lower="24">
+</isaField>
+<isaField name="u0" type = "selector" offset="0" upper="23" lower="23">
+</isaField>
+<isaField name="n0" type = "selector" offset="0" upper="22" lower="22">
+</isaField>
+<isaField name="w0" type = "selector" offset="0" upper="21" lower="21">
+</isaField>
+<isaField name="lu0" type = "selector" offset="0" upper="20" lower="20">
+</isaField>
+<isaField name="rn0" type = "rf_address" offset="0" upper="16" lower="19">
+</isaField>
+<isaField name="crd0" type = "rf_address" offset="0" upper="12" lower="15">
+</isaField>
+<isaField name="cpnum0" type = "unused" offset="0" upper="8" lower="11">
+</isaField>
+>
+<isaField name="offs80" type = "rf_address" offset="0" upper="0" lower="7">
+</isaField>
+</isaElement>
+<isaElement name="Format18" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c230" type = "constant" offset="0" upper="24" lower="27">
+</isaField>
+<isaField name="opcode10" type = "opcode" offset="0" upper="20" lower="23">
+</isaField>
+<isaField name="crn0" type = "rf_address" offset="0" upper="16" lower="19">
+</isaField>
+<isaField name="crd0" type = "rf_address" offset="0" upper="12" lower="15">
+</isaField>
+<isaField name="cpnum0" type = "unused" offset="0" upper="8" lower="11">
+</isaField>
+<isaField name="opcode20" type = "opcode" offset="0" upper="5" lower="7">
+</isaField>
+<isaField name="z0" type = "constant" offset="0" upper="4" lower="4">
+</isaField>
+>
+<isaField name="crm0" type = "rf_address" offset="0" upper="0" lower="3">
+</isaField>
+</isaElement>
+<isaElement name="Format19" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c230" type = "constant" offset="0" upper="24" lower="27">
+</isaField>
+<isaField name="opcode120" type = "opcode" offset="0" upper="21" lower="23">
+</isaField>
+<isaField name="lu0" type = "selector" offset="0" upper="20" lower="20">
+</isaField>
+<isaField name="crn0" type = "rf_address" offset="0" upper="16" lower="19">
+</isaField>
+<isaField name="rd10" type = "rf_address" offset="0" upper="12" lower="15">
+</isaField>
+<isaField name="cpnum0" type = "unused" offset="0" upper="8" lower="11">
+</isaField>
+<isaField name="opcode20" type = "opcode" offset="0" upper="5" lower="7">
+</isaField>
+<isaField name="o0" type = "constant" offset="0" upper="4" lower="4">
+</isaField>
+>
+<isaField name="crm0" type = "rf_address" offset="0" upper="0" lower="3">
+</isaField>
+</isaElement>
+<isaElement name="Format2" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c10" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="c20" type = "constant" offset="0" upper="21" lower="24">
+</isaField>
+<isaField name="zup0" type = "constant" offset="0" upper="20" lower="20">
+</isaField>
+<isaField name="c30" type = "constant" offset="0" upper="5" lower="19">
+</isaField>
+<isaField name="z0" type = "constant" offset="0" upper="4" lower="4">
+</isaField>
+>
+<isaField name="c40" type = "constant" offset="0" upper="0" lower="3">
+</isaField>
+</isaElement>
+<isaElement name="Format20" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c240" type = "constant" offset="0" upper="24" lower="27">
+</isaField>
+>
+<isaField name="swin0" type = "constant" offset="0" upper="0" lower="23">
+</isaField>
+</isaElement>
+<isaElement name="Format21" type="instr" offset="0" upper="32-1" lower="0"<isaField name="c160" type = "constant" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c240" type = "constant" offset="0" upper="24" lower="27">
+</isaField>
+>
+<isaField name="c250" type = "constant" offset="0" upper="0" lower="23">
+</isaField>
+</isaElement>
+<isaElement name="Format3" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c10" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="opcode0" type = "opcode" offset="0" upper="21" lower="24">
+</isaField>
+<isaField name="s10" type = "selector" offset="0" upper="20" lower="20">
+</isaField>
+<isaField name="rn0" type = "rf_address" offset="0" upper="16" lower="19">
+</isaField>
+<isaField name="rd10" type = "rf_address" offset="0" upper="12" lower="15">
+</isaField>
+<isaField name="rs0" type = "rf_address" offset="0" upper="8" lower="11">
+</isaField>
+<isaField name="zm0" type = "constant" offset="0" upper="7" lower="7">
+</isaField>
+<isaField name="sh0" type = "selector" offset="0" upper="5" lower="6">
+</isaField>
+<isaField name="o0" type = "constant" offset="0" upper="4" lower="4">
+</isaField>
+>
+<isaField name="rm0" type = "rf_address" offset="0" upper="0" lower="3">
+</isaField>
+</isaElement>
+<isaElement name="Format4" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c10" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="c20" type = "constant" offset="0" upper="21" lower="24">
+</isaField>
+<isaField name="zup0" type = "constant" offset="0" upper="20" lower="20">
+</isaField>
+<isaField name="c50" type = "constant" offset="0" upper="8" lower="19">
+</isaField>
+<isaField name="zm0" type = "constant" offset="0" upper="7" lower="7">
+</isaField>
+<isaField name="c260" type = "constant" offset="0" upper="5" lower="6">
+</isaField>
+<isaField name="o0" type = "constant" offset="0" upper="4" lower="4">
+</isaField>
+>
+<isaField name="c40" type = "constant" offset="0" upper="0" lower="3">
+</isaField>
+</isaElement>
+<isaElement name="Format5" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c10" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="c60" type = "constant" offset="0" upper="8" lower="24">
+</isaField>
+<isaField name="oup0" type = "constant" offset="0" upper="7" lower="7">
+</isaField>
+<isaField name="c260" type = "constant" offset="0" upper="5" lower="6">
+</isaField>
+<isaField name="o0" type = "constant" offset="0" upper="4" lower="4">
+</isaField>
+>
+<isaField name="c40" type = "constant" offset="0" upper="0" lower="3">
+</isaField>
+</isaElement>
+<isaElement name="Format6" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c70" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="opcode0" type = "opcode" offset="0" upper="21" lower="24">
+</isaField>
+<isaField name="s10" type = "selector" offset="0" upper="20" lower="20">
+</isaField>
+<isaField name="rn0" type = "rf_address" offset="0" upper="16" lower="19">
+</isaField>
+<isaField name="rd10" type = "rf_address" offset="0" upper="12" lower="15">
+</isaField>
+<isaField name="rotate0" type = "constant" offset="0" upper="8" lower="11">
+</isaField>
+>
+<isaField name="immediate0" type = "constant" offset="0" upper="0" lower="7">
+</isaField>
+</isaElement>
+<isaElement name="Format7" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c70" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="c80" type = "constant" offset="0" upper="23" lower="24">
+</isaField>
+<isaField name="c90" type = "constant" offset="0" upper="22" lower="22">
+</isaField>
+<isaField name="c100" type = "constant" offset="0" upper="20" lower="21">
+</isaField>
+>
+<isaField name="c110" type = "constant" offset="0" upper="0" lower="19">
+</isaField>
+</isaElement>
+<isaElement name="Format8" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c70" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="c80" type = "constant" offset="0" upper="23" lower="24">
+</isaField>
+<isaField name="r0" type = "constant" offset="0" upper="22" lower="22">
+</isaField>
+<isaField name="c120" type = "constant" offset="0" upper="20" lower="21">
+</isaField>
+<isaField name="mask0" type = "constant" offset="0" upper="16" lower="19">
+</isaField>
+<isaField name="sbo0" type = "constant" offset="0" upper="12" lower="15">
+</isaField>
+<isaField name="rotate0" type = "constant" offset="0" upper="8" lower="11">
+</isaField>
+>
+<isaField name="immediate0" type = "constant" offset="0" upper="0" lower="7">
+</isaField>
+</isaElement>
+<isaElement name="Format9" type="instr" offset="0" upper="32-1" lower="0"<isaField name="cond0" type = "selector" offset="0" upper="28" lower="31">
+</isaField>
+<isaField name="c130" type = "constant" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="p0" type = "selector" offset="0" upper="24" lower="24">
+</isaField>
+<isaField name="u0" type = "selector" offset="0" upper="23" lower="23">
+</isaField>
+<isaField name="b0" type = "selector" offset="0" upper="25" lower="27">
+</isaField>
+<isaField name="w0" type = "selector" offset="0" upper="21" lower="21">
+</isaField>
+<isaField name="lu0" type = "selector" offset="0" upper="20" lower="20">
+</isaField>
+<isaField name="rn0" type = "rf_address" offset="0" upper="16" lower="19">
+</isaField>
+<isaField name="rd10" type = "rf_address" offset="0" upper="12" lower="15">
+</isaField>
+>
+<isaField name="immediate20" type = "constant" offset="0" upper="0" lower="11">
+</isaField>
+</isaElement>
+</design>

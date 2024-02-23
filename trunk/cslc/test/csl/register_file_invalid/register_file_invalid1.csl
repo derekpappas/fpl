@@ -1,0 +1,19 @@
+//Petronela
+csl_register_file regf{
+  regf(){
+    set_width(16);
+    set_depth(a);//should be a numeric expresion
+    create_rtl_module();
+    set_const_value(3);
+    set_field(f,5);//should give an error because i haven't declarated a field
+    add_logic(bypass);
+    set_prefix("abc");
+  }
+};
+
+csl_unit u1{
+  regf regf;
+  u1(){
+    
+  }
+};

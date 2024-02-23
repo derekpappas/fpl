@@ -1,0 +1,99 @@
+// Author: cghaba
+// Date: April 2, 2008
+// invalid test
+// connect called for non existent connectible object
+
+/*
+    +--------------------------------------------------------+
+    | +---------+---------------+---------------------+      +
+    | |   +-----+----+    +-----+----+          +-----+----+ |
+    | |   |  +--+-+  |    |  +--+-+  |          |  +--+-+  | |
+    | |   |  |    |  |    |  |    |  |          |  |    |  | |
+  --+-+---+--+    \  |    |  /    +- |          | /+    +--+-+----
+    | |   |  |    |\-|    |/-|    | \+          /- |    |  | |
+    | |   |  +----+  \    /  +----+  |\--    /--|  +----+  | |
+    | |   |          |\ /-|          |   \-/-   |          | |
+    | |   |          |/\- |          |   /-\-   |          | |
+    | |   |  +----+  /   \|  +----+  |/--    \--|  +----+  | |
+    | |   |  |    |/-|    \  |    | /+          \- |    |  | |
+  --+-+---+--+    /  |    |\-|    +- |          | \+    +--+-+----
+    | |   |  |    |  |    |  \    |  |          |  |    |  | |
+    | |   |  +--+-+  |    |  +-+--+  |          |  +--+-+  | |
+    | |   +-----+----+    +----+-----+          +-----+----+ |
+ ---+-+---------+--------------+----------------------+      |
+    +--------------------------------------------------------+
+*/
+
+// data and selection widths
+csl_enum e_widths{
+  D_WIDTH=8,
+  S_WIDTH=2
+    };
+
+// bitranges
+csl_bitrange br_d(D_WIDTH);
+csl_bitrange br_s(S_WIDTH);
+
+// interfaces
+csl_interface ifca{
+  csl_port pinx(input,br_d);
+  csl_port piny(input,br_d);
+  ifca(){
+  }
+};
+
+csl_interface ifcresclk{
+  csl_port reset(input);
+  csl_port clock(input);
+  ifcresclk(){
+  }
+};
+
+// units
+csl_unit uu{
+
+  csl_port sel(input,br_s);
+  ifcresclk irc;  
+  ifca iin;   
+  ifca iout;
+  uu(){
+    iout.reverse();
+  }
+};
+
+
+csl_unit uxy{
+  uu ux;
+  uu uy;
+  uxy(){
+  }
+};
+
+// top unit
+csl_unit top{
+  // top ports
+  csl_port tsel(input,2);
+  //top interfaces
+  ifca ifcxin;
+  ifca ifcyin;
+  ifca ifcxout;
+  ifca ifcyout;
+  // unit instances
+  uxy uxy0;
+  uxy uxy1;
+  uxy uxy2;
+  top(){
+    ifcxout.reverse();
+    ifcyout.reverse();
+    ifcaxin.connect(uxy0.ux.iin);  //<-------Error is here ifcaxin does not exist
+    ifcyin.connect(uxy0.uy.iin);
+    uxy0.ux.iout.connect(uxy1.uy.iin);
+    uxy0.uy.iout.connect(uxy1.ux.iin);
+    uxy1.ux.iout.connect(uxy2.uy.iin);
+    uxy1.uy.iout.connect(uxy2.ux.iin);
+    uxy2.ux.iout.connect(ifcxout);
+    uxy2.uy.iout.connect(ifcyout);
+    tsel.connect(sel);
+  }
+};
+  

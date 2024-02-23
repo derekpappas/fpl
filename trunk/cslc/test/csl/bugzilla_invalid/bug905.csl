@@ -1,0 +1,5 @@
+csl_unit taug1{
+  csl_signal leiy1(tri1, sgvw1.knpn1); //should give an error ...the second parameter should be the width
+  taug1() {
+  }
+};

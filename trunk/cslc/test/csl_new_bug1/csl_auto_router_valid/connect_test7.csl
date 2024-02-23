@@ -1,0 +1,13 @@
+//Monica
+//15 January 2008
+
+csl_unit test3{
+  csl_port p1(input),p2(input),p3(output);
+  test3(){}
+};
+csl_unit top{
+  csl_port p_1(input),p_2(input);
+  test3 test3;
+  top(){
+    p_2.connect_by_name(test3.p2);
+  }};

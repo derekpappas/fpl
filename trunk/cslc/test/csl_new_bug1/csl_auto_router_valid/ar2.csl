@@ -1,0 +1,47 @@
+// Author: cghaba
+// Date: January 17, 2008
+
+/*
+  ........................................
+  .      . in             out1.   out0 . .
+  .      .................    .        . .
+  .      .   ........    .    .        . .
+  .    ......|...   .   ............   . .
+  .    . in out .   .   .in   out  .   . .
+  .    .        .   .   .          .   . .
+  .    .  u_a   .   .   .  u_b     .   . .
+  .    ..........   .   ......... ..   . .
+  .                 .................... .
+  .             u_top                    .
+  ........................................
+                                       
+*/
+
+csl_unit u_a{
+  csl_port p_a_in(input,2);
+  csl_port p_a_out(output);
+  u_a(){
+  }
+};
+
+csl_unit u_b{
+  csl_port p_b_in(input,2);
+  csl_port p_b_out(output);
+  u_b(){
+  }
+};                       
+
+csl_unit u_top{
+  csl_port p_t_in(input,2);
+  csl_port p_t_out0(output);
+  csl_port p_t_out1(output);
+
+  u_a a;
+  u_b b;
+  u_top(){
+    p_t_in.connect_by_name(a.p_a_in);
+    p_t_in.connect_by_name(b.p_b_in);
+    a.p_a_out.connect_by_name(p_t_out0);
+    b.p_b_out.connect_by_name(p_t_out1);
+  }
+};

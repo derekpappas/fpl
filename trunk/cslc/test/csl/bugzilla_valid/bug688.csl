@@ -1,0 +1,19 @@
+csl_interface ifc1 {
+  csl_port p1(input, wire, 4, 0);
+  csl_port p2(output, reg, 2, 0);
+};
+
+csl_unit u {
+  csl_port p3(output,5);
+  csl_port p4(input,3);
+  u(){}
+};
+csl_unit top {
+  u u0;
+  ifc1 ifc1_inst;
+  top() {
+    u0.p3.connect_by_name(ifc1_inst.p1);
+    u0.p4.connect_by_name(ifc1_inst.p2);
+    ifc1_inst.reverse();
+  }
+};

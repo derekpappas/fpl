@@ -1,0 +1,55 @@
+//monica
+//03 August 2007
+
+csl_enum e_field{
+      a = 1,
+      b = 2,
+      c = 3
+};
+
+csl_isa_field f1{
+     f1(){
+         set_type(opcode);
+         set_width(2);
+         set_enum(e_field);
+     }
+};
+
+csl_isa_element root_fmt{
+   root_fmt(){
+      set_type(root_format);
+      set_width(32);
+   }
+};
+
+csl_isa_element fmt1 : root_fmt{
+    f1 f1_i;
+    fmt1(){
+         set_type(instr_format);
+         set_position(f1_i,0);
+    }
+};
+
+csl_isa_element isa_instr_ex1 : fmt1{
+   isa_instr_ex1(){
+       set_type(instr);
+       f1_i.set_enum_item( a );
+       f1_i.set_mnemonic("ADD");
+   }
+};
+csl_isa_element isa_instr_ex2 : fmt1{
+   isa_instr_ex2(){
+       set_type(instr);
+       f1_i.set_enum_item( b );
+       f1_i.set_mnemonic("SUB");
+   }
+};
+csl_isa_element isa_instr_ex3 : fmt1{
+   isa_instr_ex3(){
+       set_type(instr);
+       f1_i.set_enum_item( c );
+       f1_i.set_mnemonic("OR");
+   }
+};
+csl_unit top {
+};

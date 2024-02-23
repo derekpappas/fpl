@@ -1,0 +1,10 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="usu">
+<interface name="ifcsu0" >
+<port name="iin" offset="0" upper="16-1" lower="0" direction = "input" type = "wire" />
+<port name="iout" offset="0" upper="16-1" lower="0" direction = "output" type = "wire" />
+</interface>
+</unit>
+</design>

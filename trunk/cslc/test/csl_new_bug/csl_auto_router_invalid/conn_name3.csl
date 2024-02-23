@@ -1,0 +1,31 @@
+//oanab
+//23 iun 2008
+
+csl_fifo f {
+  f () {
+    set_width(8);
+    set_depth(18);
+  }
+};
+
+csl_memory mem {
+  mem () {
+    set_width(10);
+    set_depth(18);
+  }
+};
+
+csl_unit a {
+  csl_port p(inout);
+  mem mem0;
+  a () {
+  }
+};
+
+csl_unit b {
+  a a0;
+  f f0;
+  b () {
+    f0.connect_by_name(a0.mem0);
+  }
+};

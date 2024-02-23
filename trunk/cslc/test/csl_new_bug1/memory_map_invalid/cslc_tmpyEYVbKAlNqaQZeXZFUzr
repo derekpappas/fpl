@@ -1,0 +1,23 @@
+# "/opt/he_fpl_svn/fpl_repo/cslc/test/csl_new_bug1/memory_map_invalid/./mem_map_illegal_1_4.csl" 1
+
+
+csl_fifo f1{
+  f1(){
+    set_width(32);
+    set_depth(32);
+  }
+};
+
+csl_unit u{
+  f1 f1_1;
+u(){}
+};
+
+csl_memory_map_page mmp1{
+  mmp1(){
+    add_address_range(0, 1024);
+    set_unit_name(u);
+    add(u.f1_1, "f1", 32);
+    add_reserved_address_range(31, 31);
+  }
+};

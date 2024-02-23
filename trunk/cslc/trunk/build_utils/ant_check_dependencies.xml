@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+  <!-- project's name and the default target value -->
+  <project name="ProjectX ANT Dependencies Check" default="subProjectDependencies">
+
+    <!-- the property that stores the path to the source's directory -->
+    <property name="srcDirName" value="."/>
+
+    <!-- the output name -->
+    <property name="outputName" value="CDOM_Driver"/>
+
+    <!-- the relative path to the build directory -->
+    <property name="buildPath" value="../build"/>
+
+    <!-- the relative path to the scripts directory -->
+    <property name="utilsPath" value="."/>
+    
+    <!-- the relative path to the src directory -->
+    <property name="srcPath" value="../src"/>
+
+    <!-- the list of sub-projects -->
+    <property name="subProjectsList" value="cdom,cslom,autorouter,cslom_design_checker,cslom2cdom_adapter,cslomelab,vparser,csl_parser,vpreprocessor,support,support/boost,cslc,csl_xml_warn_error,csim,csl_gen,csl_cpp_lib"/>
+
+    <!-- creates CDOM build Path -->
+    <target name="createCdomBuildPath" depends="getPlatformType,getTopDir">
+      <property name="cdomBuildPath" value="${currentPath}/${buildPath}/linux/x86_${platformTypeOut}/cdom"/>
+      <echo message="cdomBuildPath: ${cdomBuildPath}" level="verbose"/>
+    </target>
+    
+    <!-- creates CSLOM build Path -->
+    <target name="createCslomBuildPath" depends="getPlatformType,getTopDir">
+      <property name="cslomBuildPath" value="${currentPath}/${buildPath}/linux/x86_${platformTypeOut}/cslom"/>
+      <echo message="cslomBuildPath: ${cslomBuildPath}" level="verbose"/>
+    </target>
+    
+    <!-- creates Autorouter build Path -->
+    <target name="createAutorouterBuildPath" depends="getPlatformType,getTopDir">
+      <property name="autorouterBuildPath" value="${currentPath}/${buildPath}/linux/x86_${platformTypeOut}/autorouter"/>
+      <echo message="autorouterBuildPath: ${autorouterBuildPath}" level="verbose"/>
+    </target>
+
+    <!-- creates Adapter build Path -->
+    <target name="createAdapterBuildPath" depends="getPlatformType,getTopDir">
+      <property name="adapterBuildPath" value="${currentPath}/${buildPath}/linux/x86_${platformTypeOut}/cslom2cdom_adapter"/>
+      <echo message="adapterBuildPath: ${adapterBuildPath}" level="verbose"/>
+    </target>
+    
+    <!-- creates CSLOM Design Checker build Path -->
+    <target name="createCSLOmDesignCheckerBuildPath" depends="getPlatformType,getTopDir">
+      <property name="cslomDesignCheckerBuildPath" value="${currentPath}/${buildPath}/linux/x86_${platformTypeOut}/cslom_design_checker"/>
+      <echo message="cslomDesignCheckerBuildPath: ${cslomDesignCheckerBuildPath}" level="verbose"/>
+    </target>
+
+    <!-- creates CSLOMelab build Path -->
+    <target name="createCslomElabBuildPath" depends="getPlatformType,getTopDir">
+      <property name="cslomElabBuildPath" value="${currentPath}/${buildPath}/linux/x86_${platformTypeOut}/cslomelab"/>
+      <echo message="cslomElabBuildPath: ${cslomElabBuildPath}" level="verbose"/>
+    </target>
+    
+    <!-- creates VPreprocessor build Path -->
+    <target name="createVPreprocessorBuildPath" depends="getPlatformType,getTopDir">
+      <property name="vPreprocessorBuildPath" value="${currentPath}/${buildPath}/linux/x86_${platformTypeOut}/vpreprocessor"/>
+      <echo message="vPreprocessorBuildPath: ${vPreprocessorBuildPath}" level="verbose"/>
+    </target>
+    
+    <!-- creates VParser build path -->
+    <target name="createVParserBuildPath" depends="getTopDir">
+      <property name="vParserBuildPath" value="${currentPath}/${buildPath}/linux/x86_${platformTypeOut}/vparser"/>
+      <echo message="vParserBuildPath: ${vParserBuildPath}" level="verbose"/>
+    </target>
+
+    <!-- creates csl_parser build path -->
+    <target name="createCslParserBuildPath" depends="getTopDir">
+      <property name="cslParserBuildPath" value="${currentPath}/${buildPath}/linux/x86_${platformTypeOut}/csl_parser"/>
+      <echo message="cslParserBuildPath: ${cslParserBuildPath}" level="verbose"/>
+    </target>
+    
+    <!-- creates Support build Path -->
+    <target name="createSupportBuildPath" depends="getPlatformType,getTopDir">
+      <property name="supportBuildPath" value="${currentPath}/${buildPath}/linux/x86_${platformTypeOut}/support"/>
+      <echo message="supportBuildPath: ${supportBuildPath}" level="verbose"/>
+    </target>
+
+    <!-- creates Support/Boost build Path -->
+    <target name="createBoostBuildPath" depends="getPlatformType,getTopDir,createSupportBuildPath">
+      <property name="boostBuildPath" value="${supportBuildPath}/boost"/>
+      <echo message="boostBuildPath: ${boostBuildPath}" level="verbose"/>
+    </target>
+
+    <!-- creates CSLC build Path -->
+    <target name="createCslcBuildPath" depends="getPlatformType,getTopDir">
+      <property name="cslcBuildPath" value="${currentPath}/${buildPath}/linux/x86_${platformTypeOut}/cslc"/>
+      <echo message="cslcBuildPath: ${cslcBuildPath}" level="verbose"/>
+    </target>
+
+    <!-- creates WE build Path -->
+    <target name="createWEBuildPath" depends="getPlatformType,getTopDir">
+      <property name="weBuildPath" value="${currentPath}/${buildPath}/linux/x86_${platformTypeOut}/csl_xml_warn_error"/>
+      <echo message="weBuildPath: ${weBuildPath}" level="verbose"/>
+    </target>
+
+    <!-- creates CSIM build Path -->
+    <target name="createCsimBuildPath" depends="getPlatformType,getTopDir">
+      <property name="csimBuildPath" value="${currentPath}/${buildPath}/linux/x86_${platformTypeOut}/csim"/>
+      <echo message="csimBuildPath: ${csimBuildPath}" level="verbose"/>
+    </target>
+
+    <!-- creates CSL GEN build Path -->
+    <target name="createCslGenBuildPath" depends="getPlatformType,getTopDir">
+      <property name="cslGenBuildPath" value="${currentPath}/${buildPath}/linux/x86_${platformTypeOut}/csl_gen"/>
+      <echo message="cslGenBuildPath: ${cslGenBuildPath}" level="verbose"/>
+    </target>
+
+    <!-- creates CSL CPP build Path -->
+    <target name="createCslCppLibBuildPath" depends="getPlatformType,getTopDir">
+      <property name="cslCppLibBuildPath" value="${currentPath}/${buildPath}/linux/x86_${platformTypeOut}/csl_cpp_lib"/>
+      <echo message="cslCppLibBuildPath: ${cslCppLibBuildPath}" level="verbose"/>
+    </target>
+
+    <!-- creates building directories -->
+    <target name="createBuildDirs">
+      <for list="${subProjectsList}" delimiter="," param="subProjectName">
+        <sequential>
+	  <mkdir dir="${buildPath}/linux/x86_32/@{subProjectName}"/>
+	  <mkdir dir="${buildPath}/linux/x86_64/@{subProjectName}"/>
+	  <mkdir dir="${buildPath}/windows/x86_32/@{subProjectName}"/>
+	  <mkdir dir="${buildPath}/windows/x86_64/@{subProjectName}"/>
+	</sequential>
+      </for> 
+    </target>
+
+    <!-- get the compiler's version using getVersion.pl script -->
+    <target name="getGccVersion">
+      <!-- "executable" is the perl script's path and name; "outproperty" is the property where the output is saved -->
+      <exec executable="${currentPath}/getVersion.pl" os="Linux" outputproperty="gccVersionOut">
+        <!-- here we pass "-cmd gcc" argument to the script -->
+        <arg line="-cmd gcc"/>
+      </exec>
+    </target>
+
+    <!-- get Operating System name OK flag (ex: os.name=="Linux" => flag=1 if we are building under Linux) -->
+    <target name="getOSname">
+      <!-- "OR" Condition; property is the property where it will be saved -->
+      <condition property="OSname.ok">
+        <or>
+          <!-- tests to see if the OS is Linux, on equalitty OSname.ok is set to 1 otherwise to 0 -->
+          <!-- ${os.name} is an ANT built-in property that contains the OS name -->
+          <!-- the following statement is equivalent to: ${os.name} == "Linux" ? 1 : 0 -->
+          <equals arg1="${os.name}" arg2="Linux"/>
+        </or>
+      </condition>
+    </target>
+
+    <!-- get JVM version -->
+    <target name="getJVMversion">
+      <!-- "OR" Condition; property is the property where it will be saved -->
+      <condition property="JVMversion.ok">
+        <or>
+            <!-- tests to see if the JVM's version is 1.5, on equalitty JVMversion.ok is set to 1 otherwise to 0 -->
+            <!-- ${ant.java.version} is an ANT built-in property that contains the JVM's version -->
+            <!-- the following statement is equivalent to: ${ant.java.version} == "1.5" ? 1 : 0 -->
+            <equals arg1="${ant.java.version}" arg2="1.5"/>
+        
+	
+            <!-- tests to see if the JVM's version is 1.6, on equalitty JVMversion.ok is set to 1 otherwise to 0 -->
+            <!-- ${ant.java.version} is an ANT built-in property that contains the JVM's version -->
+            <!-- the following statement is equivalent to: ${ant.java.version} == "1.6" ? 1 : 0 -->
+            <equals arg1="${ant.java.version}" arg2="1.6"/>
+        </or>
+      </condition>
+    </target>
+
+    <!-- get ANT version using getVersion.pl script -->
+    <target name="getANTversion">
+      <!-- "executable" is the perl script's path and name; "outproperty" is the property where the output is saved -->
+      <exec executable="${currentPath}/getVersion.pl" os="Linux" outputproperty="antVersionOut">
+        <!-- here we pass "-cmd ant" argument to the script -->
+        <arg line="-cmd ant"/>
+      </exec>
+<!--
+      <condition property="ANTversion.ok">
+        <or>
+            <equals arg1="${ant.version}" arg2="Apache Ant version 1.6.2 compiled on November 12 2004"/>
+        </or>
+      </condition>
+-->
+    </target>
+
+    <!--  -->
+    <target name="testCompilerVersion" depends="getGccVersion">
+      <echo message="good compiler flag: ${gccVersionOut}" level="verbose"/>
+      <condition property="CompilerVersion.ok">
+        <or>
+            <equals arg1="${gccVersionOut}" arg2="1"/>
+        </or>
+      </condition>
+    </target>
+    
+    <!--  -->
+    <target name="testANTversion" depends="getANTversion">
+      <echo message="good ANT version flag: ${antVersionOut}" level="verbose"/>
+      <condition property="ANTversion.ok">
+        <or>
+            <equals arg1="${antVersionOut}" arg2="1"/>
+        </or>
+      </condition>
+    </target>
+
+    <!-- sets up the top directory for further usage -->
+    <target name="getTopDir">
+      <!-- calls external Unix command -->
+      <exec executable="pwd" outputproperty="currentPath"/>
+      <echo message="CurrentPath: ${currentPath}" level="verbose"/>
+      <property name="topDir" value="${currentPath}"/>
+      <echo message="topDir: ${topDir}" level="verbose"/>
+    </target>
+
+    <!-- target for retrieveing platform type: x86_64 or i686 -->
+    <target name="getPlatformType" depends="getTopDir">
+      <!-- calls external perl scriptwith specific parametter-->
+      <exec executable="${currentPath}/getVersion.pl" os="Linux" outputproperty="platformTypeOut">
+        <arg line="-cmd platform_type"/>
+      </exec>
+    </target>
+ 
+    <!--  -->
+    <target name="checkOSname" depends="getOSname" unless="OSname.ok">
+      <fail message="Operating Sytem not suported - ${os.name}"/>
+    </target>
+ 
+    <!--  -->
+    <target name="checkJVMversion" depends="getJVMversion" unless="JVMversion.ok">
+      <fail message="Wrong JVM version - ${ant.java.version}"/>
+    </target>
+    
+    <!--  -->
+    <target name="checkANTversion" depends="testANTversion" unless="ANTversion.ok">
+      <fail message="Wrong ANT version - ${ant.version}"/>
+    </target>
+    
+    <!--  -->
+    <target name="checkCompilerVersion" depends="testCompilerVersion" unless="CompilerVersion.ok">
+      <fail message="Wrong GCC(compiler) version: lower than 3.4.x"/>
+    </target>
+    
+    <!-- use this target when calling for general dependencies from the root directory -->
+    <target name="generalDependencies" depends="getTopDir,checkOSname,checkJVMversion,checkANTversion,checkCompilerVersion,getPlatformType,createBuildDirs">
+      <echo message="OS name OK - ${os.name}" level="verbose"/>
+      <echo message="JVM Version OK - ${ant.java.version}" level="verbose"/>
+      <echo message="ANT Version OK - ${ant.version}" level="verbose"/>
+      <echo message="GCC Version OK - 3.4.x or later" level="verbose"/>
+      <echo message="platform type check: ${platformTypeOut}" level="verbose"/>
+    </target>
+
+    <!-- use this target when calling dependencies retrieval from subproject -->
+    <target name="subProjectDependencies" depends="createBuildDirs,
+createCdomBuildPath, createCslomBuildPath, createAutorouterBuildPath, createCSLOmDesignCheckerBuildPath, createAdapterBuildPath, createCslomElabBuildPath, createVPreprocessorBuildPath, createVParserBuildPath, createCslParserBuildPath, createSupportBuildPath, createBoostBuildPath, createCslcBuildPath, createCsimBuildPath, createCslGenBuildPath, createWEBuildPath, createCslCppLibBuildPath">
+    </target>
+
+    <!-- use this target when calling building from the root directory, where the general dependencies are already defined. -->
+    <target name="dependencies" depends="createBuildDirs,
+createCdomBuildPath, createCslomBuildPath, createAutorouterBuildPath, createCSLOmDesignCheckerBuildPath, createAdapterBuildPath, createCslomElabBuildPath, createVPreprocessorBuildPath, createCslParserBuildPath, createSupportBuildPath, createBoostBuildPath, createCslcBuildPath, createCsimBuildPath, createCslGenBuildPath, createWEBuildPath, createCslCppLibBuildPath">
+    </target>
+    
+</project>

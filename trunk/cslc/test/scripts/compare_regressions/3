@@ -1,0 +1,25 @@
+[INFO] removeHistoryDirs: begin 
+[INFO] Number of reports in history = 3
+[INFO] Directories found: results_16.10.2007_12_43_39 results_19.10.2007_08_32_36 results_19.10.2007_09_03_13
+[INFO] Less than 10... Doing nothing!
+[INFO] removeHistoryDirs: end 
+[INFO] compare_results: begin 
+mismatched
+1 matched 1 = file_name 2 = tb_add_logic_clk&nbsp    
+Testbench_doc_examples 
+mismatched
+1 matched 1 = file_name 2 = csl_example_unit&nbsp    
+big_tests 
+mismatched
+1 matched 1 = file_name 2 = invalid_br_obj_name_get_lower&nbsp    
+bitrange_invalid 
+mismatched
+1 matched 1 = file_name 2 = br_obj_name_get_lower&nbsp    
+bitrange_valid 
+mismatched
+1 matched 1 = file_name 2 = bub973&nbsp    
+mismatched
+1 matched 1 = file_name 2 = bug740&nbsp    
+mismatched
+1 matched 1 = file_name 2 = bug976&nbsp    
+bugzilla_invalid 

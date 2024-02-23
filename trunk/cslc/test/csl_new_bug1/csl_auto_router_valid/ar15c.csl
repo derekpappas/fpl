@@ -1,0 +1,163 @@
+// Author: cghaba
+// Date: April 7, 2008
+
+// Define constants
+csl_enum e_const{
+  W_WIDTH=8,
+    DW_WIDTH=W_WIDTH<<1,
+    HW_WIDTH=W_WIDTH>>1,
+    CMD_WIDTH=3
+    };
+
+// Define bitranges
+csl_bitrange br_w(W_WIDTH);
+csl_bitrange br_dw(DW_WIDTH);
+csl_bitrange br_hw(HW_WIDTH);
+csl_bitrange br_cmd(CMD_WIDTH);
+
+// Define interfaces
+
+csl_interface ifcresclk{
+  csl_port reset(input);
+  csl_port clock(input);
+  ifcresclk(){
+  }
+};
+
+csl_interface ifc_hww{
+  csl_port hw(input,br_hw);
+  csl_port w(input,br_w);
+  ifc_hww(){
+  }
+};
+
+csl_interface ifc_hwc{
+  csl_port hw(input,br_hw);
+  csl_port w(input,br_w);
+  csl_port c(input,br_cmd);
+  ifc_hwc(){
+  }
+};
+
+csl_interface ifc_top{
+  csl_port p0(input,br_w);
+  csl_port p1(input,br_w);
+  csl_port p2(input,br_w);
+  ifc_top(){
+  }
+};
+
+// Define signal groups
+csl_signal_group sgin{
+  csl_signal hw(br_hw);
+  csl_signal w(br_w);
+  sgin(){
+  }
+};
+
+csl_signal_group sgout{
+  csl_signal hw(br_hw);
+  csl_signal w(br_w);
+  csl_signal c(br_cmd);
+  sgout(){
+  }
+};
+
+// Define units
+
+csl_unit ua{
+  // ports
+  csl_port pain(input,br_w);
+  csl_port paout(output,br_w);
+  //interfaces
+  ifcresclk ifcrc;
+  ua(){
+  }
+};
+
+csl_unit ub{
+  //ports  
+  csl_port pbin(input,br_w);
+  //interfaces
+  ifc_hww ifcout;
+  ifcresclk ifcrc;
+  ub(){
+  }
+};
+
+csl_unit uc{
+  // ports
+  csl_port pcin(input,br_w);
+  csl_port pcout(output,br_hw);
+  //interfaces
+  ifcresclk ifcrc;
+  uc(){
+  }
+};
+
+csl_unit ud{
+  csl_port pdin(input,br_w);
+  csl_port pdout1(output,br_hw);
+  csl_port pdout2(output,br_cmd);
+  //interfaces
+  ifc_hww ifcin;
+  ifcresclk ifcrc;
+  ud(){
+  }
+};
+  //ports
+csl_unit ue{
+  csl_port pein(input,br_hw);
+  csl_port peout(output,br_w);
+  //interfaces
+  ifc_hww ifcin;
+  ifcresclk ifcrc;
+  ue(){
+  }
+};
+
+csl_unit ude{
+  //signal groups
+  sgin sg01,sg02;
+  sgout sg1;
+  // unit instances
+  ud ud0(.ifcin(sg01),.pdout1(sg1.shw),.pdout2(sg1.sc));
+  ue ue0(.ifcin(sg02),.peout(sg1.sw));
+         ude(){
+         }
+};
+
+csl_unit uf{
+  //ports
+  csl_port pfout(output,br_w);
+  //interfaces
+  ifc_hwc ifcfin;
+  ifcresclk ifcrc;
+  uf(){
+  }
+};
+
+csl_unit ar15a{
+  //interfaces
+  ifcresclk ifcrc;
+  ifc_top ifcin;
+  ifc_top ifcout;
+  //units
+  ua ua0(.pain(ifcin.p0));
+  ub ub0(.pbin(ifcin.p1));
+  uc uc0(.pcin(ifcin.p2));
+  ude ude0;
+  uf uf0(.pfout(ifcout.p0));
+  uf uf1(.pfout(ifcout.p1));
+  uf uf2(.pfout(ifcout.p2));
+
+  ar15a(){
+    ifcout.reverse();
+    //connections
+    ifcrc.connect_by_pattern(ifcrc);
+    // connections from left to right
+    ub0.ifcout.connect_by_pattern(sg01);
+    ub0.ifcout.connect_by_pattern(sg02);
+    ude0.sg1.connect_by_pattern(ifcfin);
+  }
+};

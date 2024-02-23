@@ -1,0 +1,17 @@
+//Petronela
+csl_signal_group sg1{
+  csl_signal s1;
+  csl_signal s2;
+  csl_signal s3;
+  csl_signal s4;
+  sg1(){
+    generate_individual_rtl_signals(on);
+  }
+};
+
+csl_signal_group sg2{
+  sg3 sg3; //error  we don't have a signal_group sg3
+  sg2(){
+    
+  }
+};

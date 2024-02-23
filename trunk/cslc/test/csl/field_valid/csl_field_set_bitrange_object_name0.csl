@@ -1,0 +1,13 @@
+//author: Ines
+//testing the command set_bitrange() in field
+
+csl_bitrange br(3);
+
+csl_field field {
+  field(){
+    set_bitrange(br);
+  }
+};
+
+csl_unit top {
+};

@@ -1,0 +1,20 @@
+Test for writing vectors using the SystemCVectorWriter.
+
+In b_cslc_generated/code/systemC/ there is the generated code using cslc 2.csl with additional code (stim.h file to write values for the ports and the instantiations and connections in main.cpp).
+
+To generate vectors:
+
+ 1. cd b_cslc_generated/code/systemC/
+
+ 2. source COMPILE
+
+ 3. a.out
+
+ 4. Since module b is connected to the stim, only the vectors for b are written:
+
+    emacs stim_vec_b &
+    emacs exp_vec_b &
+
+  5. It is possible to modify the values of the input port (from stim.h) or change the time when the values are captured (from b.h) but please don't check in the changes.
+
+

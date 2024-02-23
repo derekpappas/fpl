@@ -1,0 +1,45 @@
+//Daniel
+csl_enum ers{
+  RDY
+};
+csl_unit u{
+  u(){
+  }
+};
+csl_isa_field op{
+  op(){
+    set_type(opcode);
+    set_width(2);
+  }
+};
+
+csl_isa_field op3{
+  op3(){
+    set_type(subopcode);
+    set_width(3);
+  }
+};
+
+csl_isa_field rs{
+  rs(){
+  set_type(selector);
+  set_width(op3.get_width());
+  set_enum(ers);
+  }
+};
+csl_isa_element isa_root{
+  isa_root(){
+set_type(root_format);
+ set_width(32);
+  }
+};
+
+csl_isa_element fb:isa_root{
+  op op;
+   fb(){
+    set_type(instr_format);
+    set_position(op,30);
+    gen_decoder(u);
+  }
+};
+

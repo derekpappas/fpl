@@ -1,0 +1,15 @@
+//field3 must have set_width and set_next cmd is not necessary
+csl_field field1(0,15),field2(16,25);
+csl_field field3 {
+  field1 f1;
+  field2 f2;
+  field3() {
+    set_field_position(f1,0);
+    set_field_position(f2,16);
+    set_next(f1,f2);
+  }
+};
+
+csl_unit top {
+};
+

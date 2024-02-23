@@ -1,0 +1,42 @@
+//Monica
+//set_position(isa_field, numeric expression);
+
+csl_isa_field op{
+  op(){
+set_type(selector);
+ set_width(2);
+  }};
+csl_isa_field rega{
+  rega(){
+set_type(rf_address);
+ set_width(6);
+  }};
+csl_isa_field imm{
+  imm(){
+set_type(constant);
+ set_width(24);
+  }};
+csl_isa_element isa { 
+  isa() { 
+    set_type(root_format); 
+    set_width(32); 
+  }
+};
+csl_isa_element format : isa{ 
+  op op; 
+  rega rega; 
+  imm imm; 
+  format() { 
+    set_type(instr_format); 
+    set_position(op, 30); 
+    set_next(op,rega); 
+    set_position(imm,0); 
+  }
+}; 
+csl_isa_element f1 : format{ 
+ 
+  f1() { 
+    set_type(instr); 
+    
+  }
+}; 

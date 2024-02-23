@@ -1,0 +1,283 @@
+Multidimension bitranges can be used to define multi-dimensional
+objects (ports or signals). Each dimension is represented by specifying
+a bitrange.
+
+In using part select, the leftmost part select is for the highest
+dimmension and the rightmost one is for the smallest dimension.
+
+Less number of part selects, select a bigger set of objects. Bigger
+number of part selects refines the selection and reduces the number of
+selected objects.
+
+
+csl_multibitrange mbr(3);
+
+mbr.set_dim_range(0,0,2);  // bit range
+mbr.set_dim_range(1,0,3);  // signal range
+mbr.set_dim_range(2,0,2);  // plane range
+
+
+csl_signal s(mbr);
+
+
+
+
+s[2][1][2]
+  |     |
+  |     ---> smallest dimension
+  |
+  ---------> biggest dimension  
+
+Bit and part select
+
+o not selected signal
+* selected signal
+
+
+a) s[2][3][1]  selects one bit signal
+
+   3    2    1    0
+   210
+
+2  o*o  ooo  ooo  ooo 
+1  ooo  ooo  ooo  ooo
+0  ooo  ooo  ooo  ooo
+
+
+b)  s[2][2][1:0]  2-bit part select of a signal 
+   
+   3    2    1    0
+   210
+
+2  ooo  o**  ooo  ooo 
+1  ooo  ooo  ooo  ooo
+0  ooo  ooo  ooo  ooo
+
+c) s[2][2:1][0]  group of 2 one-bit signals
+
+   3    2    1    0
+   210
+
+2  ooo  oo*  oo*  ooo 
+1  ooo  ooo  ooo  ooo
+0  ooo  ooo  ooo  ooo
+
+
+d) s[2][2:1][2:1]  group of 2 two-bit part selects
+
+   3    2    1    0
+   210
+
+2  ooo  **o  **o  ooo 
+1  ooo  ooo  ooo  ooo
+0  ooo  ooo  ooo  ooo
+
+
+e) s[1:0][1][1]  group of 2 one-bit signals
+
+   3    2    1    0
+   210
+
+2  ooo  ooo  ooo  ooo 
+1  ooo  ooo  o*o  ooo
+0  ooo  ooo  o*o  ooo
+
+
+f) s[1:0][1][2:1]  group of 2 two-bit part selects
+
+
+   3    2    1    0
+   210
+
+2  ooo  ooo  ooo  ooo 
+1  ooo  ooo  **o  ooo
+0  ooo  ooo  **o  ooo
+
+
+g) s[1:0][2:0][1] 
+
+
+   3    2    1    0
+   210
+
+2  ooo  ooo  ooo  ooo 
+1  ooo  o*o  o*o  o*o
+0  ooo  o*o  o*o  o*o
+
+
+h) s[1:0][1:0][2:1] 
+
+
+   3    2    1    0
+   210
+
+2  ooo  ooo  ooo  ooo 
+1  ooo  ooo  **o  **o
+0  ooo  ooo  **o  **o
+
+
+i) s[1][2]  3-bit signal (one signal selection)
+
+
+   3    2    1    0
+   210
+
+2  ooo  ooo  ooo  ooo 
+1  ooo  ***  ooo  ooo
+0  ooo  ooo  ooo  ooo
+
+
+
+j) s[1][2:1] group of 2 three-bit signals
+
+
+   3    2    1    0
+   210
+
+2  ooo  ooo  ooo  ooo 
+1  ooo  ***  ***  ooo
+0  ooo  ooo  ooo  ooo
+
+
+
+k) s[2:1][2] group of 2 three-bit signals
+
+
+   3    2    1    0
+   210
+
+2  ooo  ***  ooo  ooo 
+1  ooo  ***  ooo  ooo
+0  ooo  ooo  ooo  ooo
+
+
+l) s[2:1][2:1] 
+
+
+   3    2    1    0
+   210
+
+2  ooo  ***  ***  ooo 
+1  ooo  ***  ***  ooo
+0  ooo  ooo  ooo  ooo
+
+
+
+m) s[1] one signal plane selection
+
+
+   3    2    1    0
+   210
+
+2  ooo  ooo  ooo  ooo 
+1  ***  ***  ***  ***
+0  ooo  ooo  ooo  ooo
+
+
+n) s[2:1] two signal planes selection
+
+   3    2    1    0
+   210
+
+2  ***  ***  ***  *** 
+1  ***  ***  ***  ***
+0  ooo  ooo  ooo  ooo
+
+
+o) s the multi dimensional signal
+
+   3    2    1    0
+   210
+
+2  ***  ***  ***  *** 
+1  ***  ***  ***  ***
+0  ***  ***  ***  ***
+
+New constructor for multidimensional bitranges
+
+
+csl_multi_dim_bitrange bitrange_name(nmb_dimensions,bitrange_0,
+bitrange_1, ...,bitrange_nmb_dimensions-1)
+
+Example
+
+csl_bitrange br1(0,3);
+csl_bitrange br2(0,2);
+csl_bitrange br2(3,4);
+
+csl_multi_dim_bitrange mdbr1(3,br1,br2,br3);
+
+
+Use of mdbr and mdbr with part select in assignment statements
+
+The mdbr part select that results in a signal or a part select of a signal
+can be used in assingment as normal signals or part select signals
+
+The mdbr part select that results in a group of signals can be used in
+assignment statement if the two groups match part select width for
+each dimension
+
+Example
+
+csl_multibitrange mbr1(3);
+
+mbr1.set_dim_range(0,0,2);  // bit range
+mbr1.set_dim_range(1,0,3);  // signal range
+mbr1.set_dim_range(2,0,2);  // plane range
+
+csl_multibitrange mbr2(3);
+
+mbr2.set_dim_range(0,0,3);  // bit range
+mbr2.set_dim_range(1,0,3);  // signal range
+mbr2.set_dim_range(2,0,3);  // plane range
+
+csl_signal s1(mbr1);
+csl_signal s2(mbr2);
+
+// Legal case, all part selects have same width
+//dim width  2    2   3        2    2    3
+   
+          s1[2:1][1:0][2:0]=s2[3:2][2:1][3:1]; 
+
+
+// Illegal case, dimension 3 width differ in LHS from RHS
+//dim width  3    2   3        2    2    3
+   
+          s1[2:0][1:0][2:0]=s2[3:2][2:1][3:1]; 
+
+
+The multidimensional objects can be flatten in order to be
+connected. This can be specified using the following command:
+
+multi_dim_bitrange_object.allow_flatten_mode
+
+In this mode, if the width for each dimmension can not be matched, the
+connection is tried by flattening the multidimensional objects to
+vecotors that consists of the concatenation of the objects in the
+multidimensional object of multidimensional part select.
+
+Example:
+
+csl_multibitrange mbr1(3);
+
+mbr1.set_dim_range(0,0,2);  // bit range
+mbr1.set_dim_range(1,0,3);  // signal range
+mbr1.set_dim_range(2,0,2);  // plane range
+mbr1.allow_flatten_mode;
+
+csl_signal sa(mbr1);
+csl_signal sb(4);
+
+sb=sa[2:1][1][[1:0];
+
+
+would be translated in Verilog as:
+
+
+wire [2:0] sa_0_0, sa_0_1, sa_0_2, sa_0_3;
+wire [2:0] sa_1_0, sa_1_1, sa_1_2, sa_1_3;
+wire [2:0] sa_2_0, sa_2_1, sa_2_2, sa_2_3;
+
+wire [3:0] sb;
+
+sb={sa_2_1[1:0],sa_1_1[1:0]};

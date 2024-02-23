@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="CSLC CSIM" default="help">
+
+  <property name="project.parent.dir"  value=".."/>
+  <property name="project.parent.file" value="build.xml"/>
+
+  <!-- Check all dependencies -->
+  <target name="check.dependencies" unless="no.dependencies">
+    <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+    <typedef resource="cpptasks.types"/>
+    <taskdef resource="cpptasks.tasks"/>
+
+    <antfetch dir="${project.parent.dir}" antfile="${project.parent.file}" target="set.project.list" inheritAll="false"
+              return="build.dir,
+                      csim.dir,
+                      csim.lib,
+                      csim.shell"/>
+  </target>
+
+  <!-- Set all properties -->
+  <target name="set.all.properties" depends="check.dependencies" unless="properties.set">
+    <property name="no.dependencies"     value="on"/>
+    <property name="properties.set"      value="on"/>
+    <property name="project.root.dir"    value="${build.dir}/${csim.dir}"/>
+    <property name="project.build.lib"   value="lib${csim.lib}.a"/>
+    <property name="project.build.shell" value="lib${csim.shell}.a"/>
+    <property name="project.lib.list"    value="CsimClock.cpp,
+                                                CsimFlipFlopBase.cpp,
+                                                CsimFlipFlop.cpp,
+                                                CsimMemoryBase.cpp,
+                                                CsimMemory.cpp,
+                                                CsimSignalBase.cpp,
+                                                CsimSignal.cpp,
+                                                CsimPort.cpp,
+                                                CsimVectorWriter.cpp,
+                                                CsimUnit.cpp,
+                                                CsimVectorWriter.cpp"/>
+
+    <property name="project.shell.list" value="CsimShell.cpp,
+                                               CsimSimulator.cpp,
+                                               CsimCmdLine.cpp,
+                                               CsimCmdLineExpr.cpp,
+                                               CsimCmdLineExprIdClock.cpp,
+                                               CsimCmdLineExprId.cpp,
+                                               CsimCmdLineExprIdMemory.cpp,
+                                               CsimCmdLineExprIdSignal.cpp,
+                                               CsimCmdLineExprIdUnit.cpp,
+                                               CsimCmdLineExprNum.cpp,
+                                               CsimCmdLineExprOper.cpp,
+                                               CsimCmdLineExprTree.cpp"/>
+    
+    <property name="project.driver.list" value=""/>
+
+    <mkdir dir="${project.root.dir}"/>
+  </target>
+
+  <!-- Wall flag -->
+  <target name="wall">
+    <echo message="---------------------- wall flag on"/>
+    <property name="wall.flag" value="on"/>
+  </target>
+
+  <!-- Debug target -->
+  <target name="debug" depends="set.all.properties">
+    <echo message="---------------------- debug flag on"/>
+    <runtarget target="csim_lib"/>
+    <runtarget target="csim_shell"/>
+  </target>
+
+  <target name="csim_lib" depends="set.all.properties">
+    <echo message="==================== Compiling ${project.build.lib} ===================="/>
+<!--
+    <if>
+      <not>
+        <isset property="release.flag"/>
+      </not>
+      <then>
+        <property name="debug.flag"        value="on"/>
+        <property name="project.build.dir" value="${project.root.dir}/debug"/>
+      </then>
+      <else>
+        <property name="release.flag"      value="on"/>
+        <property name="project.build.dir" value="${project.root.dir}/release"/>
+      </else>
+    </if>
+-->
+
+    <cc outfile="${project.root.dir}/${csim.lib}" outtype="static">
+      <compiler name="g++">
+        <fileset dir="${basedir}" includes="${project.lib.list}"/>
+        <compilerarg value="-g"                  if="debug.flag"/>
+        <compilerarg value="-ftest-coverage"     if="debug.flag"/>
+        <compilerarg value="-fprofile-arcs"      if="coverageFlag"/>
+        <compilerarg value="-D__RELEASE_VERSION" if="release.flag"/>
+        <compilerarg value="-DNDEBUG"            if="release.flag"/>
+        <compilerarg value="-Wall"               if="wall.flag"/>
+      </compiler>
+    </cc>
+
+<!--
+    <symlink action="single" link="${project.root.dir}/${project.build.lib}" resource="${project.build.dir}/${project.build.lib}" overwrite="true"/>
+-->
+  </target>
+
+  <target name="csim_shell" depends="set.all.properties">
+    <echo message="==================== Compiling ${project.build.shell} ===================="/>
+<!--
+    <if>
+      <not>
+        <isset property="release.flag"/>
+      </not>
+      <then>
+        <property name="debug.flag"        value="on"/>
+        <property name="project.build.dir" value="${project.root.dir}/debug"/>
+      </then>
+      <else>
+        <property name="release.flag"      value="on"/>
+        <property name="project.build.dir" value="${project.root.dir}/release"/>
+      </else>
+    </if>
+-->
+    <cc outfile="${project.root.dir}/${csim.shell}" outtype="static">
+      <compiler name="gcc">
+        <fileset dir="${basedir}" includes="${project.shell.list}"/>
+        <compilerarg value="-g"                  if="debug.flag"/>
+        <compilerarg value="-ftest-coverage"     if="debug.flag"/>
+        <compilerarg value="-fprofile-arcs"      if="coverageFlag"/>
+        <compilerarg value="-D__RELEASE_VERSION" if="release.flag"/>
+        <compilerarg value="-DNDEBUG"            if="release.flag"/>
+        <compilerarg value="-Wall"               if="wall.flag"/>
+      </compiler>
+    </cc>
+
+<!--
+    <symlink action="single" link="${project.root.dir}/${project.build.shell}" resource="${project.build.dir}/${project.build.shell}" overwrite="true"/>
+-->
+  </target>
+
+  <!-- Clean target -->
+  <target name="clean" depends="set.all.properties">
+    <echo message="==================== Cleaning ${csim.dir} ===================="/>
+    <delete>
+      <fileset dir="${project.root.dir}" includes="**/*"/>
+    </delete>
+  </target>
+
+  <!-- Compile release -->
+  <target name="release" depends="set.all.properties">
+    <property name="release.flag" value="on"/>
+    <runtarget target="csim_lib"/>
+    <runtarget target="csim_shell"/>
+  </target>
+
+  <!-- Compile drivers -->
+  <target name="drivers" depends="set.all.properties">
+    <echo message="==================== Compiling drivers in ${csim.dir} ===================="/>
+    <for list="${project.driver.list}" param="driver" trim="true">
+      <sequential>
+        <echo message="File '${basedir}/@{driver}'"/>
+        <cc outfile="${project.root.dir}/@{driver}">
+          <compiler name="gcc">
+            <fileset dir="${basedir}" includes="@{driver}.cpp"/>
+            <compilerarg value="-g"                  if="debug.flag"/>
+            <compilerarg value="-D__RELEASE_VERSION" if="release.flag"/>
+            <compilerarg value="-DNDEBUG"            if="release.flag"/>
+            <compilerarg value="-Wall"               if="wall.flag"/>
+          </compiler>
+
+          <linker name="gcc">
+            <libset libs="stdc++"/>
+            <libset dir="${project.root.dir}" libs="${csim.lib}"/>
+          </linker>
+        </cc>
+      </sequential>
+    </for>
+  </target>
+
+  <!-- Display the help/usage -->
+  <target name="help">
+    <ant dir="${project.parent.dir}" antfile="${project.parent.file}" target="help" inheritAll="false"/>
+  </target>
+
+</project>

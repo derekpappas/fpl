@@ -1,0 +1,312 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="v_top">
+<interface name="uart1" >
+<port name="rx" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="tx" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<interface name="gp0" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp1" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp2" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp3" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp4" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp5" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+</interface>
+<interface name="uart2" >
+<port name="rx" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="tx" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<interface name="gp0" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp1" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp2" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp3" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp4" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp5" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+</interface>
+<interface name="uart3" >
+<port name="rx" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="tx" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<interface name="gp0" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp1" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp2" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp3" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp4" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="gp5" >
+<port name="in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="en" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+</interface>
+<interface name="usb" >
+<port name="rpu1_en" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="rpu2_en" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="data_in" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="force_se0" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="drv_enable" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="suspend" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="se_dp" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="enable_se" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="se_dn" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="data_out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="strobe" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="enable_diff" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<port name="gpio_a0" offset="0" upper="0" lower="0" direction = "inout" type = "wire" />
+<port name="gpio_a1" offset="0" upper="0" lower="0" direction = "inout" type = "wire" />
+<port name="gpio_a2" offset="0" upper="0" lower="0" direction = "inout" type = "wire" />
+<port name="gpio_a3" offset="0" upper="0" lower="0" direction = "inout" type = "wire" />
+<port name="gpio_a4" offset="0" upper="0" lower="0" direction = "inout" type = "wire" />
+<port name="gpio_a5" offset="0" upper="0" lower="0" direction = "inout" type = "wire" />
+<signalgroup name="gpio_connect_a0">
+<signal name="in" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="out" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="en" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="gpio_connect_a1">
+<signal name="in" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="out" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="en" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="gpio_connect_a2">
+<signal name="in" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="out" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="en" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="gpio_connect_a3">
+<signal name="in" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="out" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="en" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="gpio_connect_a4">
+<signal name="in" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="out" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="en" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="gpio_connect_a5">
+<signal name="in" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="out" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="en" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "output_cell">
+<instance name="tx_mod_0">
+</instance>
+</instantiation>
+<instantiation type = "io_cell">
+<instance name="gpio_mod_a4">
+<f2a formal = "pad.en" actual = "gpio_connect_a4.en" />
+<f2a formal = "pad.in" actual = "gpio_connect_a4.in" />
+<f2a formal = "pad.out" actual = "gpio_connect_a4.out" />
+<f2a formal = "pad_pin" actual = "gpio_a4" />
+</instance>
+</instantiation>
+<instantiation type = "io_cell">
+<instance name="gpio_mod_a2">
+<f2a formal = "pad.en" actual = "gpio_connect_a2.en" />
+<f2a formal = "pad.in" actual = "gpio_connect_a2.in" />
+<f2a formal = "pad.out" actual = "gpio_connect_a2.out" />
+<f2a formal = "pad_pin" actual = "gpio_a2" />
+</instance>
+</instantiation>
+<instantiation type = "io_cell">
+<instance name="gpio_mod_a5">
+<f2a formal = "pad.en" actual = "gpio_connect_a5.en" />
+<f2a formal = "pad.in" actual = "gpio_connect_a5.in" />
+<f2a formal = "pad.out" actual = "gpio_connect_a5.out" />
+<f2a formal = "pad_pin" actual = "gpio_a5" />
+</instance>
+</instantiation>
+<instantiation type = "usb_analog_phy">
+<instance name="usb_analog_phy_">
+</instance>
+</instantiation>
+<instantiation type = "io_cell">
+<instance name="gpio_mod_a0">
+<f2a formal = "pad.en" actual = "gpio_connect_a0.en" />
+<f2a formal = "pad.in" actual = "gpio_connect_a0.in" />
+<f2a formal = "pad.out" actual = "gpio_connect_a0.out" />
+<f2a formal = "pad_pin" actual = "gpio_a0" />
+</instance>
+</instantiation>
+<instantiation type = "v_core">
+<instance name="v_core">
+<f2a formal = "gpio_connect_a0.en" actual = "gpio_connect_a0.en" />
+<f2a formal = "gpio_connect_a0.in" actual = "gpio_connect_a0.in" />
+<f2a formal = "gpio_connect_a0.out" actual = "gpio_connect_a0.out" />
+<f2a formal = "gpio_connect_a1.en" actual = "gpio_connect_a1.en" />
+<f2a formal = "gpio_connect_a1.in" actual = "gpio_connect_a1.in" />
+<f2a formal = "gpio_connect_a1.out" actual = "gpio_connect_a1.out" />
+<f2a formal = "gpio_connect_a2.en" actual = "gpio_connect_a2.en" />
+<f2a formal = "gpio_connect_a2.in" actual = "gpio_connect_a2.in" />
+<f2a formal = "gpio_connect_a2.out" actual = "gpio_connect_a2.out" />
+<f2a formal = "gpio_connect_a3.en" actual = "gpio_connect_a3.en" />
+<f2a formal = "gpio_connect_a3.in" actual = "gpio_connect_a3.in" />
+<f2a formal = "gpio_connect_a3.out" actual = "gpio_connect_a3.out" />
+<f2a formal = "gpio_connect_a4.en" actual = "gpio_connect_a4.en" />
+<f2a formal = "gpio_connect_a4.in" actual = "gpio_connect_a4.in" />
+<f2a formal = "gpio_connect_a4.out" actual = "gpio_connect_a4.out" />
+<f2a formal = "gpio_connect_a5.en" actual = "gpio_connect_a5.en" />
+<f2a formal = "gpio_connect_a5.in" actual = "gpio_connect_a5.in" />
+<f2a formal = "gpio_connect_a5.out" actual = "gpio_connect_a5.out" />
+<f2a formal = "u1_modem.gp0.en" actual = "uart1.gp0.en" />
+<f2a formal = "u1_modem.gp0.in" actual = "uart1.gp0.in" />
+<f2a formal = "u1_modem.gp0.out" actual = "uart1.gp0.out" />
+<f2a formal = "u1_modem.gp1.en" actual = "uart1.gp1.en" />
+<f2a formal = "u1_modem.gp1.in" actual = "uart1.gp1.in" />
+<f2a formal = "u1_modem.gp1.out" actual = "uart1.gp1.out" />
+<f2a formal = "u1_modem.gp2.en" actual = "uart1.gp2.en" />
+<f2a formal = "u1_modem.gp2.in" actual = "uart1.gp2.in" />
+<f2a formal = "u1_modem.gp2.out" actual = "uart1.gp2.out" />
+<f2a formal = "u1_modem.gp3.en" actual = "uart1.gp3.en" />
+<f2a formal = "u1_modem.gp3.in" actual = "uart1.gp3.in" />
+<f2a formal = "u1_modem.gp3.out" actual = "uart1.gp3.out" />
+<f2a formal = "u1_modem.gp4.en" actual = "uart1.gp4.en" />
+<f2a formal = "u1_modem.gp4.in" actual = "uart1.gp4.in" />
+<f2a formal = "u1_modem.gp4.out" actual = "uart1.gp4.out" />
+<f2a formal = "u1_modem.gp5.en" actual = "uart1.gp5.en" />
+<f2a formal = "u1_modem.gp5.in" actual = "uart1.gp5.in" />
+<f2a formal = "u1_modem.gp5.out" actual = "uart1.gp5.out" />
+<f2a formal = "u1_modem.rx" actual = "uart1.rx" />
+<f2a formal = "u1_modem.tx" actual = "uart1.tx" />
+<f2a formal = "u2_modem.gp0.en" actual = "uart2.gp0.en" />
+<f2a formal = "u2_modem.gp0.in" actual = "uart2.gp0.in" />
+<f2a formal = "u2_modem.gp0.out" actual = "uart2.gp0.out" />
+<f2a formal = "u2_modem.gp1.en" actual = "uart2.gp1.en" />
+<f2a formal = "u2_modem.gp1.in" actual = "uart2.gp1.in" />
+<f2a formal = "u2_modem.gp1.out" actual = "uart2.gp1.out" />
+<f2a formal = "u2_modem.gp2.en" actual = "uart2.gp2.en" />
+<f2a formal = "u2_modem.gp2.in" actual = "uart2.gp2.in" />
+<f2a formal = "u2_modem.gp2.out" actual = "uart2.gp2.out" />
+<f2a formal = "u2_modem.gp3.en" actual = "uart2.gp3.en" />
+<f2a formal = "u2_modem.gp3.in" actual = "uart2.gp3.in" />
+<f2a formal = "u2_modem.gp3.out" actual = "uart2.gp3.out" />
+<f2a formal = "u2_modem.gp4.en" actual = "uart2.gp4.en" />
+<f2a formal = "u2_modem.gp4.in" actual = "uart2.gp4.in" />
+<f2a formal = "u2_modem.gp4.out" actual = "uart2.gp4.out" />
+<f2a formal = "u2_modem.gp5.en" actual = "uart2.gp5.en" />
+<f2a formal = "u2_modem.gp5.in" actual = "uart2.gp5.in" />
+<f2a formal = "u2_modem.gp5.out" actual = "uart2.gp5.out" />
+<f2a formal = "u2_modem.rx" actual = "uart2.rx" />
+<f2a formal = "u2_modem.tx" actual = "uart2.tx" />
+<f2a formal = "u3_modem.gp0.en" actual = "uart3.gp0.en" />
+<f2a formal = "u3_modem.gp0.in" actual = "uart3.gp0.in" />
+<f2a formal = "u3_modem.gp0.out" actual = "uart3.gp0.out" />
+<f2a formal = "u3_modem.gp1.en" actual = "uart3.gp1.en" />
+<f2a formal = "u3_modem.gp1.in" actual = "uart3.gp1.in" />
+<f2a formal = "u3_modem.gp1.out" actual = "uart3.gp1.out" />
+<f2a formal = "u3_modem.gp2.en" actual = "uart3.gp2.en" />
+<f2a formal = "u3_modem.gp2.in" actual = "uart3.gp2.in" />
+<f2a formal = "u3_modem.gp2.out" actual = "uart3.gp2.out" />
+<f2a formal = "u3_modem.gp3.en" actual = "uart3.gp3.en" />
+<f2a formal = "u3_modem.gp3.in" actual = "uart3.gp3.in" />
+<f2a formal = "u3_modem.gp3.out" actual = "uart3.gp3.out" />
+<f2a formal = "u3_modem.gp4.en" actual = "uart3.gp4.en" />
+<f2a formal = "u3_modem.gp4.in" actual = "uart3.gp4.in" />
+<f2a formal = "u3_modem.gp4.out" actual = "uart3.gp4.out" />
+<f2a formal = "u3_modem.gp5.en" actual = "uart3.gp5.en" />
+<f2a formal = "u3_modem.gp5.in" actual = "uart3.gp5.in" />
+<f2a formal = "u3_modem.gp5.out" actual = "uart3.gp5.out" />
+<f2a formal = "u3_modem.rx" actual = "uart3.rx" />
+<f2a formal = "u3_modem.tx" actual = "uart3.tx" />
+<f2a formal = "usb.data_in" actual = "usb.data_in" />
+<f2a formal = "usb.data_out" actual = "usb.data_out" />
+<f2a formal = "usb.drv_enable" actual = "usb.drv_enable" />
+<f2a formal = "usb.enable_diff" actual = "usb.enable_diff" />
+<f2a formal = "usb.enable_se" actual = "usb.enable_se" />
+<f2a formal = "usb.force_se0" actual = "usb.force_se0" />
+<f2a formal = "usb.rpu1_en" actual = "usb.rpu1_en" />
+<f2a formal = "usb.rpu2_en" actual = "usb.rpu2_en" />
+<f2a formal = "usb.se_dn" actual = "usb.se_dn" />
+<f2a formal = "usb.se_dp" actual = "usb.se_dp" />
+<f2a formal = "usb.strobe" actual = "usb.strobe" />
+<f2a formal = "usb.suspend" actual = "usb.suspend" />
+</instance>
+</instantiation>
+<instantiation type = "io_cell">
+<instance name="gpio_mod_a3">
+<f2a formal = "pad.en" actual = "gpio_connect_a3.en" />
+<f2a formal = "pad.in" actual = "gpio_connect_a3.in" />
+<f2a formal = "pad.out" actual = "gpio_connect_a3.out" />
+<f2a formal = "pad_pin" actual = "gpio_a3" />
+</instance>
+</instantiation>
+<instantiation type = "input_cell">
+<instance name="rx_mod_0">
+</instance>
+</instantiation>
+<instantiation type = "io_cell">
+<instance name="gpio_mod_a1">
+<f2a formal = "pad.en" actual = "gpio_connect_a1.en" />
+<f2a formal = "pad.in" actual = "gpio_connect_a1.in" />
+<f2a formal = "pad.out" actual = "gpio_connect_a1.out" />
+<f2a formal = "pad_pin" actual = "gpio_a1" />
+</instance>
+</instantiation>
+</unit>
+</design>

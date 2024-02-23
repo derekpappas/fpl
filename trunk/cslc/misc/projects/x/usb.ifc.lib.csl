@@ -1,0 +1,77 @@
+//oanab
+
+csl_interface fabric_bus {
+  csl_port valid(output);
+  csl_port age(output);
+  csl_port type(output,2);
+  csl_port src_nid(output,4);
+  csl_port dst_nid(output,4);
+  csl_port addr(output,12);
+  csl_port data(output,12);
+  fabric_bus () {}
+};
+
+csl_interface fabric_ad {
+  csl_port drop_valid(output);
+  csl_port drop_type(output,2);
+  csl_port drop_src_nid(output,4);
+  csl_port drop_addr(output,12);
+  csl_port drop_data(output,12);
+  csl_port add_valid(input);
+  csl_port add_type(input,2);
+  csl_port add_dst_nid(input,4);
+  csl_port add_addr(input,12);
+  csl_port add_data(input,12);
+  csl_port add_ready(output);
+  fabric_ad () {}
+};
+
+csl_interface tbuf_if {
+  csl_port valid(output);
+  csl_port length(output,6);
+  csl_port endpoint(output,4);
+  csl_port ready(input);
+  tbuf_if () {}
+};
+
+csl_interface tp_bus {
+  tbuf_if t2p; // normal
+  tbuf_if p2t;  // reverse
+  tp_bus () {
+    p2t.reverse();
+  }
+};
+
+csl_interface fifo_reg_bus {
+  csl_port write_en(output);
+  csl_port addr(output,5);
+  csl_port write_data(output,12);
+  csl_port read_data(input,12);
+  fifo_reg_bus () {}
+};
+
+csl_interface ram_bus {
+  csl_port valid(output);
+  csl_port write_en(output);
+  csl_port addr(output,5);
+  csl_port write_data(output,12);
+  csl_port read_data(input,12);
+  csl_port ready(input);
+  ram_bus () {}
+};
+
+csl_interface ix_bus {
+  csl_port valid(output);
+  csl_port cmd(output);
+  csl_port data(output,8);
+  csl_port ready(input);
+  ix_bus () {}
+};
+
+csl_interface phy_bus {
+  ix_bus phy2tm; // normal
+  ix_bus tm2phy; // reverse
+  phy_bus () {
+    tm2phy.reverse();
+  }
+};

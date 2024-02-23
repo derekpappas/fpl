@@ -1,0 +1,47 @@
+//Monica
+//30 August 2007
+
+csl_signal_group sg1{
+  csl_signal s1;
+  csl_signal s2;
+  csl_signal s3;
+  csl_signal s4;
+  csl_signal s5;
+  csl_signal s6;
+  csl_signal s7;
+  csl_signal s8;
+  csl_signal s9;
+  csl_signal s10;
+  sg1(){
+  }
+};
+
+csl_signal_group sg2{
+  csl_signal s11;
+  csl_signal s12;
+  csl_signal s13;
+  sg1 sg1inst;
+  sg2(){
+  }
+};
+csl_unit a {
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(input);
+  csl_port p4(input);
+  csl_port p5(input);
+  csl_port p6(input);
+  csl_port p7(input);
+  csl_port p8(input);
+  csl_port p9(input);
+  csl_port p10(input);
+  a (){}
+};
+
+csl_unit u{
+  sg2 sg2inst;
+  a a0(.p1(sg2inst.sg1inst.s1),.p2(sg2inst.sg1inst.s2),.p3(sg2inst.sg1inst.s3),.p4(sg2inst.sg1inst.s4),.p5(sg2inst.sg1inst.s5),.p6(sg2inst.sg1inst.s6),.p7(sg2inst.sg1inst.s7),.p8(sg2inst.sg1inst.s8),.p9(sg2inst.sg1inst.s9),.p10(sg2inst.sg1inst.s10));
+  a a1(.p1(sg2inst.s11),.p2(sg2inst.s12),.p3(sg2inst.s13),.p4(sg2inst.sg1inst.s4),.p5(sg2inst.sg1inst.s5),.p6(sg2inst.sg1inst.s6),.p7(sg2inst.sg1inst.s7),.p8(sg2inst.sg1inst.s8),.p9(sg2inst.sg1inst.s9),.p10(sg2inst.sg1inst.s10));
+  u(){ 
+  }
+};

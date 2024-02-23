@@ -1,0 +1,35 @@
+//Monica
+//30 August 2007
+
+
+csl_fifo f1{
+  f1(){
+    set_width(8);
+    set_depth(32);
+    add_to_memory_map();
+  }
+};
+
+csl_unit top1{
+  csl_signal s1(2);
+  csl_port p1(output,reg, 3);
+  csl_port clk(input);
+  f1 f1;
+
+  top1(){    
+    clk.set_attr(clock);
+  }
+};
+
+csl_memory_map_page pg{
+	pg(){
+ 	  add_address_range(0,255);
+	  //       set_unit(top1);  //waiting for the command to work
+	}
+};
+
+csl_memory_map mem_map1{
+	mem_map1(){
+   	set_type(hierarchical);
+	}
+};

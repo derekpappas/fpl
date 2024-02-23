@@ -1,0 +1,62 @@
+//bug 765
+//Petronela
+
+//csl_field f(2);
+//csl_field ff(3);
+
+csl_register_file rf;
+csl_register_file regf{
+  regf(){
+    set_width(16);
+    set_depth(2+4);
+    create_rtl_module();
+    set_const_value(3);
+    //    set_field(f,5); //no such command
+  //  set_external(5,rf);
+  //  add_logic(bypass);
+    add_logic(read_valid);
+    //set_prefix("abc");
+  }
+};
+
+csl_register_file r1{
+  
+  r1(){
+     set_width(23);
+  }
+};
+csl_register_file r2{
+  r2(){
+    set_depth(4);
+  }
+};
+csl_register_file r3{
+  r3(){
+    set_const_value(5);
+  }
+};
+csl_register_file r4{
+  r4(){
+    add_logic(read_valid);
+  }
+};
+csl_register_file r5{
+  r5(){
+    //    set_field(ff,8); // no such command
+  }
+};
+csl_register_file r16{
+  r16(){
+    //  add_logic(bypass);
+  }
+};
+csl_register_file r7{
+  r7(){
+   
+  }
+};
+csl_register_file r8{
+  r8(){    
+  }
+};
+

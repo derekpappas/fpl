@@ -1,0 +1,18 @@
+//daniel
+csl_enum ers{
+  RDY
+};
+
+csl_isa_field op(2);
+csl_isa_field op3(3);
+csl_isa_field rs(3);
+
+csl_isa_element fb{
+  rs rs;
+  fb(){
+    set_width(32);
+    set_position(op,30);
+    rs.gen_decoder(u);//error unit u has not been declarated
+  }
+};
+

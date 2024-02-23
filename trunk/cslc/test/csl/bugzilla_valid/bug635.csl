@@ -1,0 +1,19 @@
+csl_unit Z {
+  //csl_port w(input, 4);
+  //csl_port x(input, 4);
+  //csl_port y(output, 4);
+  Z(){
+  }
+};
+
+csl_unit B {
+  Z z0;
+  B(){
+  }
+};
+
+csl_unit A {
+  Z z1;
+  B b0;
+  A(){  }
+};

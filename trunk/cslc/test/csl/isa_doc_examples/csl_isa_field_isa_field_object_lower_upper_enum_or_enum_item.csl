@@ -1,0 +1,9 @@
+csl_isa_field f_op(0,1);
+f_op.set_type(opcode);
+csl_isa_field f_rega(24,29);
+f_rega.set_type(rf_address);
+csl_isa_field f_imm(0,15);
+f_imm.set_type(constant);
+
+csl_unit top {
+};

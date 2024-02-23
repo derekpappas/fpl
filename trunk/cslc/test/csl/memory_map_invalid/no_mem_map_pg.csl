@@ -1,0 +1,13 @@
+//oanab
+//27 oct 2007
+//there is no memory map page
+
+csl_unit u{
+  u(){}
+};
+
+csl_memory_map mmp{
+  mmp(){
+    set_type(hierarchical);
+  }
+};

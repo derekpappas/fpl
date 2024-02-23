@@ -1,0 +1,24 @@
+//author: andreim
+//date: 10 October 2007
+//State data mandatoty commands
+
+csl_register_file rf{
+   rf(){
+      set_width(4);
+      set_depth(8);
+   }
+};
+
+csl_unit u{
+  rf rf1;
+  u(){}
+};
+
+csl_state_data tb_sd{
+   tb_sd(){
+    set_unit_name(u);
+    set_mem_instance_name(rf1);
+   }
+};
+
+// missing testbench

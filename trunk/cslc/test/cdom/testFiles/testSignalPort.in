@@ -1,0 +1,51 @@
+# This is the input test file for COmSignalPort class
+# <> means obligatory
+# [] means optional
+# Syntax: ( <1..5> <SIGNAL_TYPE> <SIGNAL_NAME> <IOLIST_TYPE> <IOLIST_TEST> [BITRANGE_TEST] [direction] [signed] [cslPort] <0..1> [direction] )
+# There are 5 types of tests,
+# 1 - constructor with signal type, name and iolist; example:
+# 2 - constructor with the signal type, name, iolist, bitrange, examples:
+# 3 - constructor with the signal type, name, iolist, bitrange, direction, examples:
+# 4 - contructor with the signal type, name, iolist, bitrange, direction, signed, example:
+# 5 - contructor with the signal type, name, iolist, bitrange, direction, signed, csl Port type, example:
+
+# The options are:
+# 0 - no futher sets
+# 1 - setDir will be executed
+# examples:
+( 1 0 test COmModule ( n bibi n 0 0 ) 0 )
+( 2 4 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 0 )
+( 2 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 0 )
+( 3 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 2 0 )
+( 3 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 3 0 )
+( 4 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 2 1 0 )
+( 4 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 3 0 0 )
+( 5 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 2 1 2 0 )
+( 5 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 3 0 0 0 )
+( 1 0 test COmModule ( n bibi n 0 0 ) 0 )
+( 2 4 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 1 1 )
+( 2 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 1 2 )
+( 3 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 2 1 3 )
+( 3 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 3 1 2 )
+( 4 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 2 1 1 3 )
+( 4 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 3 0 1 1 )
+( 5 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 2 1 2 1 2 )
+( 5 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 3 0 0 1 0 )
+( 1 0 test COmModule ( n bibi n 0 0 ) 2 0 )
+( 2 4 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 2 1 )
+( 2 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 2 0 )
+( 3 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 2 2 0 )
+( 3 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 3 2 1 )
+( 4 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 2 1 2 1 )
+( 4 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 3 0 2 1 )
+( 5 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 2 1 2 2 0 )
+( 5 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 3 0 0 2 0 )
+( 1 0 test COmModule ( n bibi n 0 0 ) 3 0 1 )
+( 2 4 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 3 1 1 )
+( 2 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 3 2 1 )
+( 3 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 2 3 3 0 )
+( 3 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 3 3 2 1 )
+( 4 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 2 1 3 3 1 )
+( 4 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 3 0 3 1 1 )
+( 5 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 2 1 2 3 2 0 )
+( 5 10 test COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) 3 0 0 3 0 0 )

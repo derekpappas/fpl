@@ -1,0 +1,5 @@
+#! /usr/bin/vvp
+:vpi_time_precision + 0;
+:vpi_module "system";
+S_0x82244a0 .scope module, "a1" "a1";
+ .timescale 0;

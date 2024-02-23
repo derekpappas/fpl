@@ -1,0 +1,15 @@
+//costelc
+//constant - constant concatenation
+
+
+csl_unit c{
+  csl_port c_in(input,16);
+  csl_port c_out(output);
+  c() {}
+};
+
+csl_unit top{
+  csl_signal s;
+  c c0(.c_in({8'b11011011,8'b10111011}),.c_out(s));
+  top(){}
+};

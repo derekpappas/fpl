@@ -1,0 +1,18 @@
+//oanab
+//15 aug 2008
+
+
+csl_unit a {
+  csl_port p1(input,36);
+  csl_port p4(output,72);
+  a() {}
+};
+
+csl_unit b {
+  a a1;
+  csl_port p(output,134);
+  b() {
+    p[77:6] = {2{a1.p1,a1.p4}};
+  }
+};
+

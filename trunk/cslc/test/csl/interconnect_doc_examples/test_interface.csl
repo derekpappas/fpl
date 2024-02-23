@@ -1,0 +1,17 @@
+csl_unit u{
+  csl_port p1(input);
+  csl_port p2(output,32);
+  u(){}
+};
+csl_interface myFirstInterface{
+  csl_port x(input);
+  csl_port y(output, 32);
+     myFirstInterface(){}
+};
+csl_unit b{
+  myFirstInterface interface0;
+  myFirstInterface interface1;
+  u u0(.p1(interface0.x),.p2(interface0.y));
+  u u1(.p1(interface1.x),.p2(interface1.y));
+  b(){}
+};  

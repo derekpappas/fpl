@@ -1,0 +1,22 @@
+connecting CSL testbenches to existing Verilog designs
+
+csl_testbench testbench_name;
+testbench_name.use_existing_rtl_design(rtl_module_name);
+
+This command specifies that the cslc will connect the testbench to an
+existing RTL design (and not to a CSL specified unit).
+
+A csl_vector or thecsl_arch_state specification is created which
+specfies the signals and order of the signals to be included in the
+vector or architectural state.
+
+The existing RTL design is read into the cslc and the signals in the 
+csl_vector or the csl_arch_state specification are compared to the
+signal names in the RTL module interface.
+
+Alternatively, the existing RTL design is read into the cslc and the 
+user selects the signals or memories in the RTL module interface and 
+creates a new csl_vector or the csl_arch_state specification
+
+A csl_vector only contains module/unit ports. A vector only contains 
+ports with one direction.

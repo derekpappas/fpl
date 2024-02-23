@@ -1,0 +1,37 @@
+//csl_signal signal_object_name([signal_data_type,]upper_limit,lower_limit) example 
+//(from csl_interconnect.fm docs) modified after the new sintax
+//Monica
+//30 August 2007
+
+
+csl_unit u_reg{       //reg is a reserved word
+	csl_port data_in(input);
+	csl_port reg_out(output);
+	csl_port p_clk(input);
+	u_reg(){
+	}
+};
+
+csl_unit del{
+	csl_port data_in(input);
+	csl_port del_out(output);
+	csl_port ctrl_sgn(input);
+	del(){
+	}
+};
+
+csl_unit comp{
+	csl_port reg_out(input);
+	csl_port del_out(output);
+	csl_port feeds_sgn(input);
+	comp(){
+	}
+};
+csl_unit top{
+  //  csl_signal sgn_clk, feed_sgn, ctrl_sgn;
+  csl_signal data_in(wire,1),reg_out(wire,1),del_out(wire,1);
+  u_reg reg1(.data_in(data_in),.reg_out(reg_out),.p_clk(del_out));
+  del del(.data_in(data_in),.del_out(reg_out),.ctrl_sgn(del_out));
+  comp comp(.reg_out(data_in),.del_out(reg_out),.feeds_sgn(del_out));
+  top(){}
+};

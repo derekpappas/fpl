@@ -1,0 +1,22 @@
+//oanab
+//10 july 2008
+
+csl_unit a {
+  a () {}
+};
+
+csl_memory_map_page mpg {
+  mpg () {
+    set_unit_name(a);
+    add_address_range(0,64);
+  }
+};
+
+csl_memory_map mmap {
+  mmap () {
+    set_type(hierarchical);
+    gen_unique_rtl_modules();
+    do_not_gen_rtl();
+    do_not_gen_cpp();
+  }
+};

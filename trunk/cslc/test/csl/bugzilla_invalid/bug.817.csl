@@ -1,0 +1,15 @@
+csl_fifo f1{
+  f1(){
+   add_logic(stall_rd_side);
+  }
+};
+
+csl_fifo f2{
+  f2(){
+  }
+};
+csl_fifo f3{
+  f2(){ //error should be f3
+    set_prefix("abc");   
+  }
+};

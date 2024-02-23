@@ -1,0 +1,10 @@
+//oanab
+//22 july 2008
+
+csl_interface ifc {
+  csl_port x(input);
+  csl_port y(output);
+  ifc () {
+    x = y;
+  }
+};

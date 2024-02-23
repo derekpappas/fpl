@@ -1,0 +1,30 @@
+//Monica
+//21 may 2008
+
+csl_bitrange br1(32);
+csl_bitrange br2(4);
+
+csl_unit u1{
+  csl_port p_data1(input,br1);
+  csl_port p_data2(output,br1);
+  csl_port p_addr(input,br2);
+  u1(){}
+};
+csl_unit u2{
+  csl_port p_data1(input,br1);
+  csl_port p_data2(output,br1);
+  u1 u1_i;
+  u2(){}
+};
+csl_unit top{
+  csl_signal s1(br1);
+  csl_signal s2(br1);
+  csl_signal s3(br2);
+  u2 u2_i;
+  top(){
+    s1.connect_by_name(u2_i.p_data1);                 //by name
+    s1.connect_by_name(u2_i.u1_i.p_data1);            //by name 
+    u2_i.p_data2.connect_by_name(u2_i.u1_i.p_data2);  //by name
+    u2_i.u1_i.p_addr.connect_by_name(s3);             //by name
+  }
+};

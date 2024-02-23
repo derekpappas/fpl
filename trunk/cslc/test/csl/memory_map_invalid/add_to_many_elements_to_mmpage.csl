@@ -1,0 +1,32 @@
+//adding to many elements to a memory map page
+//andreim
+ 
+csl_register_file rf1{
+        rf1(){
+            set_width(64); 
+            set_depth(4);
+        }
+};
+
+csl_register_file rf2{
+        rf2(){
+            set_width(64);
+            set_depth(16);
+        }
+};
+
+csl_memory_map_page page0{
+	page0(){
+		add_address_range(0,15);
+		set_endianess(big_endian);
+	}
+};
+
+csl_memory_map mm{
+	page0 page0_i(rf1);
+	page0 page0_i2(rf2);        //pageo can't have more than 16 locations
+	mm(){
+		set_type(hierarchical);
+    set_data_word_width(128);
+  }
+};

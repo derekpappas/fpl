@@ -1,0 +1,85 @@
+> John,
+> 
+> Thanks for interviewing me. On the drive back I
+> figured out a 
+> solution to the b/w rotating disk problem. I told
+> Russ the 
+> solution when I got back and he told me to send you
+> an email.
+> 
+> The detector emits a 1 or 0 to specify the direction
+> of the spin. There are
+> two sensors which sample two points on the disk.
+> 
+> There are 4 combinations of sensor/disk orientation
+> to be detected.
+> 
+> bb,bw,ww,ww
+>  
+> Using two inputs a and b to detect the 4 regions
+> there are four signals to
+> generate bb,bw,ww,ww and they all are asserted for
+> slightly less than 1/4 of
+> the time it takes the disk to revolve.
+> 
+> The bw or the wb transition can be used to generate
+> a clock signal to
+> capture 
+> another signal. If the signal that needs to be
+> detected (bb) happens before
+> the 
+> clock is generated the bb can be delayed and then it
+> should meet the 
+> setup and hold times for the FF that the generated
+> clock (from bw) 
+> is controlling.
+> 
+> Only one direction needs to be detected. The b/w
+> transition can be used to
+> generate a clock edge to a flip flop which has a
+> buffer delayed 
+> "and" of the two sensors. The and gate output is
+> true/1 when the two sensors
+> are both in the bb stage. The circuit detects the
+> rotation of the disk in
+> the bb -> bw direction.
+> 
+> VERILOG PSEUDO CODE
+> 
+> `define DELAY 5 // this is a function of the spin
+> speed
+> 
+> module detect_spin_direction ( a, b, direction);
+> 
+>   input a,b;
+>   output direction;
+> 
+>   wire bb = a && b;
+>   wire bw = a && ~b;
+>   wire bb_delay = #DELAY bb;
+> 
+>   always (@posedge bw) begin
+>     direction = bb_delay
+>   end
+> 
+> endmodule
+> 
+>  ____
+> /    \____________ bb
+>   
+   _________
+  /         \_________ bb lasts for 1/2 cycle
+
+>    ____
+>   /    \______________ bb_delay
+>      ____
+>     /    \_________________bw
+
+bw is shorter than one cycle
+
+>        ___________________________________
+> ______/                                    
+> direction
+>       
+> 
+> =Derek=

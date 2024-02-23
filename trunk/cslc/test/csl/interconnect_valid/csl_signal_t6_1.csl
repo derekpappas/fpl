@@ -1,0 +1,73 @@
+//author: Ines
+//testing: 
+
+csl_unit t6_u11 {
+
+  csl_bitrange t6_br11(4,2);
+  csl_signal sgn1_1_t6,s1;
+
+  t6_u11() {
+    sgn1_1_t6 = s1;
+  }
+};
+
+csl_unit t6_u1 {
+
+  csl_signal t6_sgn1,s2(3);
+  t6_u11 u_11;
+
+  t6_u1() {
+    t6_sgn1.set_bitrange(t6_u11.t6_br11);
+    //add_signal(t6_u11.sgn1_1_t6);
+    s2 = t6_sgn1;
+  }
+};
+
+csl_unit t6_u2 {
+
+  csl_signal t6_sgn2_1,t6_sgn2_2;
+  t6_u11 u_11;
+
+  t6_u2() {
+    t6_sgn2_1.set_bitrange(t6_u11.t6_br11);
+    t6_sgn2_2.set_bitrange(t6_u11.t6_br11);
+    t6_sgn2_2 = t6_sgn2_1;
+  }
+};
+
+csl_unit t6_ua {
+
+  csl_signal t6_sgna_1(3,1);
+  csl_signal t6_sgna_2;
+  t6_u1 u_1;
+  t6_u2 u_2;
+
+  t6_ua() {
+    //add_signal(t6_sgna_1);
+    t6_sgna_2.set_bitrange(t6_u11.t6_br11);
+    t6_sgna_2=t6_sgna_1;
+  }
+};
+
+csl_unit t6_ub {
+
+  csl_signal t6_sgnb_1,t6_sgnb_2;
+  csl_bitrange t6_br11(10,8);
+
+  t6_ub() {
+    t6_sgnb_1.set_bitrange(t6_br11);
+    t6_sgnb_2.set_bitrange(t6_u11.t6_br11);
+    t6_sgnb_2 = t6_sgnb_1;
+  }
+};
+
+csl_unit t6_top {
+
+  // csl_signal t6_sgn_top;
+  t6_ua u_a;
+  t6_ub u_b;
+
+  t6_top() {
+    //t6_sgn_top.set_bitrange(t6_u11.t6_br11);
+  }
+};

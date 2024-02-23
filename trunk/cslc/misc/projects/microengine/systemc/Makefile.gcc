@@ -1,0 +1,12 @@
+
+CC = g++ 
+OPT    = -O3  
+DEBUG  =    
+CFLAGS = $(DEBUG) $(OPT) -fexceptions 
+
+MODULE = main 
+SRCS = MeInstructionDecoder.cpp main.cpp 
+
+OBJS = $(SRCS:.cpp =  main.o) 
+
+include ./Makefile.defs

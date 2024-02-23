@@ -1,0 +1,9 @@
+//author: Ines
+//testing the command construct field
+
+csl_field field0(1);
+
+csl_field field1(field0);
+
+csl_unit top {
+};

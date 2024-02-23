@@ -1,0 +1,6 @@
+csl_unit a{
+        csl_signal s;
+        a(){
+                s.set_number_of_dimensions(2*45);
+}
+};

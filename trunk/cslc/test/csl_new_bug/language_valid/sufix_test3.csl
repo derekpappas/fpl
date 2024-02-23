@@ -1,0 +1,49 @@
+//Monica
+
+csl_interface ifc_1{
+  csl_port p_in1(input);
+  csl_port p_out1(output);
+  ifc_1(){
+    set_suffix("_ifc1");
+    set_prefix("1_");
+  }
+};
+
+csl_interface ifc_2{
+  csl_port p_in2(input);
+  csl_port p_out2(output);
+  ifc_1 ifc1;
+  ifc_2(){
+    set_suffix("_ifc2");
+    set_prefix("");
+  }
+};
+
+csl_signal_group sg1{
+  csl_signal s1,s2;
+  sg1(){
+    set_suffix("_sg1");
+    no_prefix();
+  }
+};
+csl_signal_group sg2{
+  csl_signal s3,s4;
+  sg1 sg_1;
+  sg2(){
+    sg_1.set_suffix("_sg1_2");
+    set_prefix("sg2");
+  }
+};
+
+csl_unit u1{
+  ifc_2 ifc2_i;
+  u1(){}
+};
+
+csl_unit u2{
+  sg2 sg2;
+  u1
+  u1(.ifc2_i.ifc1.p_in1(sg2.sg_1.s1),.ifc2_i.ifc1.p_out1(sg2.sg_1.s2),
+     .ifc2_i.p_in2(sg2.s3),.ifc2_i.p_out2(sg2.s4));
+  u2(){}
+};

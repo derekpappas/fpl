@@ -1,0 +1,15 @@
+//author: Ines
+//testing: signal_object_name.set_width(numeric_expr);
+
+
+
+csl_unit u8_t11 {
+
+  csl_signal sgn8_1_t11,sgn8_2_t11;
+
+  u8_t11() {
+    sgn8_1_t11.set_width(5<<1);
+    sgn8_2_t11.set_width(11+2/2-2+10>>1);
+    sgn8_2_t11 = sgn8_1_t11;
+  }
+};

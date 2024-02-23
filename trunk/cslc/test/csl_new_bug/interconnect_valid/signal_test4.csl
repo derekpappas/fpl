@@ -1,0 +1,19 @@
+//Monica
+
+csl_unit u1{
+  csl_port p11(input,0,3);
+  csl_port p12(input,0,6);
+  u1(){}
+};
+csl_unit u2{
+  csl_port p21(input,3,9);
+  csl_port p22(input,3,9);
+  u2(){}
+};
+csl_unit top4{
+  csl_signal s1(reg,0,3);
+  csl_signal s2(wire,3,9);
+  u1 u1(.p11(s1),.p12(s2));
+  u2 u2(.p21(s2),.p22(s2));  
+top4(){}
+};

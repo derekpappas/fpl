@@ -1,0 +1,79 @@
+//oanab
+//31 ian 2008
+//errors
+
+csl_interface ifc0 {
+  csl_port x(input),y(output);
+  ifc0 () {}
+};
+
+csl_interface ifc1 {
+  csl_port x(input),y(output);
+  ifc1 () {}
+};
+
+csl_interface ifc2 {
+  ifc0 ifc00;
+  csl_port x(input);
+  ifc2 () {}
+};
+
+csl_interface ifc3 {
+  ifc1 ifc10;
+  csl_port y(output);
+  ifc3 () {}
+};
+
+csl_interface ifc {
+  ifc2 ifc20;
+  ifc3 ifc30;
+  csl_port x(input),y(output);
+  ifc () {}
+};
+
+csl_unit u1 {
+  ifc0 ifc01;
+  ifc2 ifc21;
+  u1 () {}
+};
+
+csl_unit u2 {
+  ifc1 ifc12;
+  ifc3 ifc32;
+  csl_signal s;
+  u2 () {}
+};
+
+csl_unit u3 {
+  ifc ifc3;
+  u1 u1;
+  u3 () {}
+};
+
+csl_unit u4 {
+  ifc ifc4;
+  u2 u2;
+  u4 () {}
+};
+
+csl_unit u {
+  u3 u3;
+  u4 u40;
+  ifc0 ifc0;
+  ifc3 ifc3;
+  u () {
+    ifc0.connect(u40.u2.ifc32);
+    u3.ifc3.ifc20.x.connect(u40.u2.ifc12.y);
+    ifc3.y.connect(u3.u1.ifc01.x);
+  }
+};
+
+csl_unit uu {
+  u u;
+  u4 u41;
+  csl_signal s1(wire),s2(reg);
+  uu () {
+    u.ifc0.y.connect(s1);
+    u41.u2.ifc12.y.connect(u.ifc3.x);
+  }
+};

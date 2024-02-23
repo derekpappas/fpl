@@ -1,0 +1,44 @@
+//oanab
+//08 july 2008
+
+csl_unit a {
+  csl_port p(input);
+  a () {
+  }
+};
+
+csl_unit b {
+  a a0;
+  csl_port p_in(input);
+  csl_port p_a(input);
+  csl_port p_out(output);
+  csl_port clk(input);
+  b () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_vector stim_vect {
+  stim_vect () {
+    set_unit_name(b);
+    set_direction(input);
+    exclusion_list(p_a,p1,p2);
+  }
+};
+
+csl_vector exp_vect {
+  exp_vect () {
+    set_unit_name(b);
+    set_direction(output);
+  }
+};
+
+csl_testbench tb {
+  csl_signal clk(reg);
+  b b0(.clk(clk));
+  tb () {
+    clk.set_attr(clock);
+    add_logic(clock,clk,10,ps);
+  }
+};
+

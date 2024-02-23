@@ -1,0 +1,54 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u4">
+<port name="p11" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p12" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p13" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p14" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p15" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p16" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p21" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p22" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p23" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p24" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p25" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p26" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p31" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p32" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p33" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p34" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p35" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p36" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<instantiation type = "u3">
+<instance name="u31">
+<f2a formal = "p1" actual = "p11" />
+<f2a formal = "p2" actual = "p12" />
+<f2a formal = "p3" actual = "p13" />
+<f2a formal = "p4" actual = "p14" />
+<f2a formal = "p5" actual = "p15" />
+<f2a formal = "p6" actual = "p16" />
+</instance>
+</instantiation>
+<instantiation type = "u3">
+<instance name="u32">
+<f2a formal = "p1" actual = "p21" />
+<f2a formal = "p2" actual = "p22" />
+<f2a formal = "p3" actual = "p23" />
+<f2a formal = "p4" actual = "p24" />
+<f2a formal = "p5" actual = "p25" />
+<f2a formal = "p6" actual = "p26" />
+</instance>
+</instantiation>
+<instantiation type = "u3">
+<instance name="u33">
+<f2a formal = "p1" actual = "p31" />
+<f2a formal = "p2" actual = "p32" />
+<f2a formal = "p3" actual = "p33" />
+<f2a formal = "p4" actual = "p34" />
+<f2a formal = "p5" actual = "p35" />
+<f2a formal = "p6" actual = "p36" />
+</instance>
+</instantiation>
+</unit>
+</design>

@@ -1,0 +1,11 @@
+# This is the input test file for COmSignalSingleton class
+# <> means obligatory
+# [] means optional
+# Syntax: ( <1..2> <SIGNAL_TYPE> <SIGNAL_NAME> <IOLIST_TYPE> <IOLIST_TEST> [BITRANGE_TEST] )
+# There are 2 types of tests,
+# 1 - constructor with the signal type, iolist, name example:
+# 2 - constructor with the signal type, iolist, name, bitrange  example:
+# examples:
+( 1 7 hehehohohuhu COmModule ( n bibi n 0 0 ) )
+( 2 8 hahireaewr COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) )
+( 2 14 jsafoiw COmModule ( n bibi n 0 0 ) ( COmExprValInt ( 0 3 32 0 1 ) COmExprValInt ( 0 1 32 0 1 ) 0 ) )

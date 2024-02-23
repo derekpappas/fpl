@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for i in $( ls */build.xml ); do
+    echo test : $i
+    perl -e "s/\.[^.]*$//"
+done
+

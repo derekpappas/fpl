@@ -1,0 +1,18 @@
+//Petronela
+csl_enum e {
+  RD,
+  WR,
+  EN
+};
+csl_field f{  
+  f(){
+  set_enum(e);
+  set_width(3);
+  }
+};
+csl_field ff{
+  ff(){
+   set_dim_offset(6,7);//error this is not a method for field ,is for bitrange
+  }
+};
+

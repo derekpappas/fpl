@@ -1,0 +1,48 @@
+// signal_object_name.set_range(upper_limit, lower_limit);
+// (from old csl_interconnect.fm docs) modified after the new sintax
+// monicah
+// 26 July 2007
+
+csl_unit delay_line { 
+  csl_port clk_p(input),del_out(output,12), out_dll(output);
+	delay_line(){
+	}
+};
+
+csl_unit mux { 
+  csl_port mux_in(input,3),mux_sel(input, 2), mux_out(output);
+	mux(){
+	}
+};
+csl_unit delay_gen { 
+	csl_port in_gen(input), ctrl_gen(input), out_gen(output);
+	delay_gen(){
+	}
+};
+
+csl_unit ff {
+	csl_port d(input);
+	csl_port clk_p(input);
+	csl_port q(output);
+	ff(){
+	}
+};
+csl_unit converter {
+  csl_signal  mux_sel(3),  clk_sgn(2), ext_gen;
+
+	csl_port clk_p(input),  out_sgn(output);
+
+	csl_signal out_dll, out_mux, out_gen, sgn,  ctrl_gen, del_out;
+
+    mux mux0(.mux_in(mux_sel),.mux_sel(clk_sgn),.mux_out(ext_gen));
+
+	delay_line dll(.clk_p(clk_p), .del_out(del_out), .out_dll(out_dll));
+	delay_gen del_gen(.in_gen(out_dll), .ctrl_gen(ctrl_gen), .out_gen(out_gen));
+	ff ff0(.d(sgn), .clk_p(out_mux), .q(sgn));
+	ff ff1(.d(sgn), .clk_p(out_gen), .q(out_sgn));
+	converter(){
+      del_out.set_range(0,11);
+	  
+	}
+};
+

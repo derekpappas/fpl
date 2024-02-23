@@ -1,0 +1,32 @@
+`ifndef INC_GUARD_ENUM
+`define INC_GUARD_ENUM
+
+`define E_E_OPCODE_HALT 4
+`define E_E_OPCODE_RETI 5
+`define E_E_OPCODE_TRAP 6
+`define E_E_OPCODE_BCC 8
+`define E_E_OPCODE_CALLM 12
+`define E_E_OPCODE_CALLRY 13
+`define E_E_OPCODE_JMPM 14
+`define E_E_OPCODE_JMPRY 15
+`define E_E_OPCODE_AND_OP 17
+`define E_E_OPCODE_OR_OP 18
+`define E_E_OPCODE_XOR_OP 19
+`define E_E_OPCODE_SLL 20
+`define E_E_OPCODE_SRA 21
+`define E_E_OPCODE_SRL 22
+`define E_E_OPCODE_ROTL 23
+`define E_E_OPCODE_ADD_OP 24
+`define E_E_OPCODE_ADC 25
+`define E_E_OPCODE_SUB 28
+`define E_E_OPCODE_SUBC 29
+`define E_E_OPCODE_SUBR 30
+`define E_E_OPCODE_SUBRC 31
+`define E_E_OPCODE_CONST_ADD 33
+`define E_E_OPCODE_CONST_SUB 34
+`define E_E_OPCODE_CONSTH 35
+`define E_E_OPCODE_LP 59
+`define E_E_OPCODE_SQ 60
+`define E_E_OPCODE_NOP 61
+
+`endif

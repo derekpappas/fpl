@@ -1,0 +1,13 @@
+//bug 793
+csl_enum e {
+  RD,
+  WR,
+  EN
+};
+csl_field f{  
+  f(){
+  set_enum(e);
+  set_width(3); 
+  set_dim_width(3,7);//error this is a method for bitrange not for field
+  }
+};

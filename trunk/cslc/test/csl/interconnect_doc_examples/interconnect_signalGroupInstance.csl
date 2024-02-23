@@ -1,0 +1,31 @@
+//Monica
+//30 August 2007
+
+csl_interface ifc1 {
+csl_port x(input), y(input), z(input);
+ifc1(){}
+};
+csl_interface ifc2 {
+csl_port x(output), y(output), z(output);
+ifc2(){}
+};
+csl_unit u1{
+ifc1 ifc11;
+u1(){}
+};
+csl_unit u2{
+ifc2 ifc21;
+u2(){}
+};
+csl_signal_group sg{
+csl_signal x, y, z;
+sg(){
+  //generate_individual_rtl_signals(on);
+}
+};
+csl_unit top{
+sg sg1;
+ u1 u1(.ifc11(sg1));
+ u2 u2(.ifc21(sg1));
+ top(){}
+};

@@ -1,0 +1,32 @@
+//oanab
+//8 nov 2007
+//the alignment is set before setting the data word width
+
+csl_fifo f{
+  f() {
+    set_width(32);
+    set_depth(8);
+  }
+}; 
+
+csl_unit u{
+f f1;
+u(){}
+};
+
+csl_memory_map_page mpag{
+  mpag(){
+    add_address_range(0,63);
+    set_unit_name(u);
+    set_alignment(16);      // the data word width should be set first
+    set_data_word_width(32);
+  }
+};
+
+csl_memory_map mmap{
+  mpag mpag;
+  mmap(){
+    set_data_word_width(16);
+    set_type(hierarchical);
+  }
+};

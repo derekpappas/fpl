@@ -1,0 +1,23 @@
+# "ifc_in_ifc.csl" 1
+
+
+csl_interface ifc1{
+  csl_port p1(input),p2(input),p3(output);
+  ifc1(){}
+};
+csl_interface ifc2{
+  ifc1 ifc1;
+  ifc2(){}
+};
+csl_unit u{
+  ifc2 ifc2;
+  u(){}
+};
+
+csl_unit z {
+ u u0;
+};
+
+csl_unit t {
+ z z0;
+};

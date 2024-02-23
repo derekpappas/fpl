@@ -1,0 +1,146 @@
+csl_enum sm {
+	us = 65,
+	dn = 71,
+	nj = 28,
+	tk = 65,
+	mu = 3
+};
+csl_enum lw {
+	ee = 65,
+	li = 57,
+	ig = 88,
+	aj = 3,
+	es = 23,
+	uq = 18,
+	do = 97,
+	hj = 99,
+	xd = 60,
+	xu = 7,
+	xb = 37,
+	kn = 58,
+	kf = 66,
+	ba = 22
+};
+csl_enum cm {
+	wg,
+	si,
+	qb,
+	qt,
+	nw,
+	mi
+};
+csl_isa_instruction_format tl{
+    tl( ){
+     set_width( 6);
+     generate_decoder( jpkvkx);
+  }
+}
+;
+csl_isa_instruction ua : tl{
+    ua( ){
+    set_asm_mnemonic( ex);
+  }
+}
+;
+csl_isa nk{
+  ua he;
+  ua lc;
+  ua an;
+  ua vv;
+  ua hl;
+  ua wa;
+  ua sp;
+  ua iq;
+  ua xc;
+  ua qm;
+  ua oa;
+  ua da;
+  ua sg;
+  ua fd;
+  ua eb;
+    nk( ){
+  }
+}
+;
+csl_fifo fy{
+   fy( ){
+     add_logic( depth_extend, 3);
+     add_logic( rd_credit);
+  }
+}
+;
+csl_memory_map_page ps{
+    ps( ){
+     set_data_word_width( 7);
+     get_data_word_wodth( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page ja{
+    ja( ){
+     get_address_increment( );
+     set_next_address( 8);
+     set_access_rights( access_read, access_read_write);
+     add_reserved_address_range( 4, 3);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 2);
+     get_aligment( );
+     set_endianess( big_endianbig_endian);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page fr{
+  ja ux;
+  ps ny;
+  ja lb;
+    fr( ){
+     set_address_increment( 4);
+     get_address_increment( );
+     add_reserved_address_range( 3, 2);
+     get_data_word_wodth( );
+     set_aligment( 3);
+     set_endianess( little_endianbig_endian);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map of{
+  fr qy;
+  ps wl;
+  ja ue;
+  ja ly;
+  fr tb;
+    of( ){
+     auto_gen_memory_map( );
+     set_top_unit( jpkx);
+.     set_data_word_width( 4);
+     get_data_word_width( );
+     set_prefix( sv);
+     set_suffix( am);
+  }
+}
+;
+csl_register if{
+    if( ){
+     clear_value( 7);
+     set_count_direction( 0);
+     set_end_value( 0);
+  }
+}
+;
+csl_register lw{
+    lw( ){
+     set_width( 1);
+     set_depth( 5);
+     add_logic( read_valid);
+     create_rtl_module( );
+     add_logic( bypass);
+  }
+}
+;

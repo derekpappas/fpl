@@ -1,0 +1,46 @@
+//Monica
+//13 november 2007
+//invalid test ---interface with  inout port on DUT
+
+csl_interface ifc_in{
+  csl_port stim(input), stim_v(input);
+  ifc_in(){}
+};
+csl_interface ifc_out{
+  csl_port exp(output), exp_v(output);
+  ifc_out(){}
+};
+csl_interface ifc_in_out{
+  csl_port s_e(inout), s(input), e(output);   //error
+  ifc_in_out(){}
+};
+csl_unit dut{
+  ifc_in ifc_in;
+  ifc_out ifc_out;
+  ifc_in_out ifc_in_out;                //error
+    csl_port clk(input);
+  dut(){
+    clk.set_attr(clock);
+  }
+};
+csl_vector stim{
+  stim(){
+    set_unit_name(dut);
+    set_direction(input);
+  }
+};
+csl_vector exp{
+  exp(){
+    set_unit_name(dut);
+    set_direction(output);
+  }
+};
+csl_testbench tb{
+  csl_signal clk(reg);
+  dut dut;              //error
+  tb(){
+    clk.set_attr(clock);
+    add_logic(clock, clk, 10, ns);
+  }
+};
+

@@ -1,0 +1,16 @@
+csl_unit proc { 
+csl_port out(output, 32);
+csl_port in (input, 32);
+};
+
+
+csl_unit cluster { 
+csl_signal s(32);
+
+proc p0 (
+.out(s), 
+.in (s) 
+ ) ;
+
+
+};

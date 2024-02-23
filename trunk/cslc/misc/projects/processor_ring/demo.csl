@@ -1,0 +1,3527 @@
+//----------------------------------------------------------------------
+//
+// File:        pr.csl
+// Author:      Derek Pappas
+// Description: Processor Ring FPGA 
+//
+// Rev History:
+//
+//  Date        Ver    Who  Description
+//  --------   -----   ---  --------------------------------------------
+//  xx/xx/xx    1.0         Original.
+//
+//----------------------------------------------------------------------
+
+// `include "memory_map.vh"
+// `include "fabric_defines.vh"
+// `include "build_defines.vh"
+// `include "fpga_rev.vh"
+
+//------------------------------------------------------------------------------
+// BEGIN INTERFACE DECLARATIONS
+//------------------------------------------------------------------------------
+
+csl_interface m2s_ifc { 
+csl_port         m2s_ex_clk(output);             // mitch to stella ex bus clock
+csl_port         m2s_ex_cmd(output);             // mitch to stella ex bus command
+csl_port           m2s_ex_ready(input);           // mitch to stella ex bus ready
+csl_port         m2s_ex_valid(output);           // mitch to stella ex bus valid
+csl_port   m2s_ex_d(output,16);               // mitch to stella ex bus data
+csl_port     m2s_ex_rsrvd(input,3);           // mitch to stella ex bus reserved
+
+m2s_ifc () { }
+};
+
+csl_interface s2m_ifc { 
+csl_port  s2m_ex_clk(input);             // stella to mitch ex bus clock
+csl_port  s2m_ex_cmd(input);             // stella to mitch ex bus command
+csl_port  s2m_ex_ready(output);           // stella to mitch ex bus ready
+csl_port  s2m_ex_valid(input);           // stella to mitch ex bus valid
+csl_port  s2m_ex_d(input, 16);               // stella to mitch ex bus data
+csl_port  s2m_ex_rsrvd(input,3);           // stella to mitch ex bus reserved
+s2m_ifc () { }
+};
+
+
+csl_interface stella_ifc { 
+
+csl_port         stella_ce_n(output);            // stella fpga programming
+csl_port           stella_confdone(input);        // stella fpga programming
+csl_port         stella_config_n(output);        // stella fpga programming
+csl_port         stella_dclk(output);            // stella fpga programming
+csl_port         stella_devclr_n(output);        // stella fpga programming
+csl_port           stella_happy(input);           // stella fpga programming
+csl_port           stella_initdone(input);        // stella fpga programming
+csl_port    stella_msel(output,4);            // stella fpga programming
+csl_port           stella_status_n(input);        // stella fpga programming
+stella_ifc () { }
+};
+
+csl_interface dsp_tx_ifc { 
+csl_port         dsp_clkrs0(output);             // blackfin rx sport
+csl_port         dsp_dpr0(output);               // blackfin rx sport
+csl_port         dsp_dsr0(output);               // blackfin rx sport
+csl_port         dsp_fsr0(output);               // blackfin rx sport
+dsp_tx_ifc () { }
+};
+
+// for IO pads
+csl_interface dsp_tx_out_ifc { 
+dsp_tx_ifc dsp_tx_ifc;
+};
+
+csl_interface dsp_rx_ifc { 
+csl_port           dsp_clkts0(input);             // blackfin tx sport
+csl_port           dsp_dpt0(input);               // blackfin tx sport
+csl_port           dsp_dst0(input);               // blackfin tx sport
+csl_port           dsp_fst0(input);               // blackfin tx sport
+dsp_rx_ifc () { }
+};
+
+// for IO pads
+csl_interface dsp_rx_out_ifc { 
+dsp_rx_ifc dsp_rx_ifc;
+dsp_rx_out_ifc () {
+dsp_rx_ifc.reverse();
+}
+};
+
+csl_interface dsp_spi_ifc { 
+csl_port           dsp_spibootcs(input);          // blackfin boot spi cs
+csl_port           dsp_spisck(input);             // blackfin boot spi clk
+csl_port         dsp_spimiso(output);            // blackfin boot spi data
+csl_port           dsp_spimosi(input);            // blackfin boot spi data
+dsp_spi_ifc () { }
+};
+
+// for IO pads
+csl_interface dsp_spi_out_ifc { 
+dsp_spi_ifc dsp_spi_ifc;
+};
+
+
+csl_interface enet_lcl_ifc { 
+csl_port enet_clk25e6ltx(input);        // local enet mac tx clock
+csl_port enet_ltxd(output,4);              // local enet mac tx data
+csl_port enet_ltxen(output);             // local enet mac tx enable
+csl_port enet_ltxer(output);             // local enet mac tx error
+csl_port enet_clk25e6lrx(input);        // local enet mac rx clock
+csl_port enet_lrxd(input, 4);              // local enet mac rx data
+csl_port enet_lrxdv(input);             // local enet mac rx data valid
+csl_port enet_lrxer(input);             // local enet mac rx error
+csl_port enet_lcrs(input);              // local enet mac carrier sense
+csl_port enet_lcol(input);              // local enet mac 
+enet_lcl_ifc () { }
+};
+
+csl_interface enet_ulink_ifc { 
+csl_port           enet_clk25e6utx(input    );  // uplink enet mac tx clock
+csl_port           enet_utxd      (output, 4);              // uplink enet mac tx data
+csl_port           enet_utxen(output);             // uplink enet mac tx enable
+csl_port           enet_utxer(output);             // uplink enet mac tx error
+csl_port           enet_clk25e6urx(input);        // uplink enet mac rx clock
+csl_port           enet_urxd(input, 4);              // uplink enet mac rx data
+csl_port           enet_urxdv(input);             // uplink enet mac rx data valid
+csl_port           enet_urxer(input);             // uplink enet mac rx error
+csl_port           enet_ucrs(input);              // uplink enet mac carrier sense
+csl_port           enet_ucol(input);              // uplink enet mac 
+enet_ulink_ifc () { }
+};
+
+csl_interface tflsh_ifc { 
+csl_port         clk25e6(output);          // Transflash Clock
+csl_port         cmd(inout);              // transflash command
+csl_port         d(inout);                // transflash data
+tflsh_ifc () { }
+};
+
+csl_interface sram_ifc { 
+csl_port         clk133e6(inout);          // sram cLock
+csl_port         ce_n(output);              // sram chip sel
+csl_port         oe_n(output);              // sram csl_output en
+csl_port         we_n(output);              // sram write enable
+csl_port         bwa_n(output);             // sram byte write enable
+csl_port         bwb_n(output);             // sram byte write enable
+csl_port         bwc_n(output);             // sram byte write enable
+csl_port         bwd_n(output);             // sram byte write enable
+csl_port         a(output, 18);                 // sram address
+csl_port         dqa(inout, 9);               // sram data
+csl_port         dqb(inout, 9);               // sram data
+csl_port         dqc(inout, 9);               // sram data
+csl_port         dqd(inout, 9);               // sram data
+sram_ifc () { }
+};
+
+csl_interface sram_out_ifc { 
+sram_ifc sram;
+sram_out_ifc () { }
+};
+
+csl_interface cpu_ifc { 
+csl_port      poreset_n(output);          // cpu power on reset
+csl_port      hreset_n(input);           // cpu hard reset
+csl_port      sreset_n(input);           // cpu soft reset
+csl_port      csboot_n(input);           // cpu boot chip sel 
+csl_port      cs_n(input);               // cpu fpga chip sel 
+csl_port      clk66e6(input);            // cpu bus clock
+csl_port      a(input, 31,11);                  // cpu address
+csl_port      d(inout, 32);                  // cpu data
+csl_port      ts_n(input);               // cpu transfer start
+csl_port      tsiz(input,3);               // cpu transfer size
+csl_port      rd_wr_n(input);            // cpu read/write
+csl_port      burst_n(input);            // cpu burst select
+csl_port      bdip_n(input);             // cpu burst data in progress
+csl_port      bi_n(output);               // cpu burst inhibit
+csl_port      ta_n(output);               // cpu transfer ack
+csl_port      tea_n(input);              // cpu transfer error ack
+csl_port      irq_n(output, 8);              // cpu interrupts
+cpu_ifc () { }
+};
+
+csl_interface i2c_ifc { 
+csl_port         dat_400(inout);            // i2c 400khz data
+csl_port         clk_400(output);            // i2c 400khz clk
+csl_port         dat_100(inout);            // i2c 100khz data
+csl_port         clk_100(output);            // i2c 100khz clk
+i2c_ifc () { }
+};
+
+csl_interface clk_ifc { 
+csl_port         sclk(output);               // clock pll serial clock
+csl_port         data(output);               // clock pll serial data
+csl_port         strobe_m(output);           // clock pll master strobe
+csl_port         strobe_s(output);           // clock pll slave strobe
+clk_ifc () { }
+};
+
+////////////////////////////////////////////////////////////////////////////////
+
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Configurables
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Internal signals
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP wire            plls_locked;
+// DEP 
+// DEP wire            sram_clk131p072e6_int;
+// DEP wire            cpu_clk65p536e6_int;
+// DEP wire            core_clk;
+// DEP wire            core_clk_in;
+// DEP wire            core_clk_sel;
+// DEP wire            core_clk_en;
+// DEP wire            core_clk_mux;
+// DEP reg             core_clk_en_1;
+// DEP reg             core_clk_en_2;
+// DEP 
+// DEP wire            cpu_clk;
+// DEP wire            flash_clk;
+// DEP wire            boot_clk;
+// DEP 
+// DEP wire   [8:0]    data_in_sig;            // Signals to allow reconfiguration of PLL
+// DEP wire   [3:0]    counter_type_sig;
+// DEP wire   [2:0]    counter_param_sig;
+// DEP wire            write_param_sig;
+// DEP wire            busy_sig;
+// DEP wire            reconfig_sig;
+// DEP wire            pllena_sig;
+// DEP wire            areset_sig;
+// DEP 
+// DEP wire            cpu_clk_in;
+// DEP wire    [20:0]  cpu_a_in;
+// DEP wire    [31:0]  cpu_d_out;
+// DEP wire    [31:0]  cpu_d_in;
+// DEP wire    [31:0]  cpu_d_en;
+// DEP wire            cpu_bi_out_n;
+// DEP wire            cpu_bi_en;
+// DEP wire            cpu_ta_out_n;
+// DEP wire            cpu_ta_en;
+// DEP wire            cpu_tea_out_n;
+// DEP wire            cpu_tea_en;
+// DEP wire            cpu_csboot_in_n;
+// DEP wire            cpu_cs_in_n;
+// DEP wire            cpu_ts_in_n;
+// DEP wire            cpu_tsiz0_in;
+// DEP wire            cpu_tsiz1_in;
+// DEP wire            cpu_rd_wr_in_n;
+// DEP wire            cpu_burst_in_n;
+// DEP wire            cpu_bdip_in_n;
+// DEP wire     [7:0]  cpu_irq_out_n;
+// DEP wire     [7:0]  cpu_irq_en;
+// DEP wire            cpu_poreset_out_n;
+// DEP wire            cpu_hreset_in_n;
+// DEP wire            cpu_sreset_in_n;
+// DEP 
+// DEP wire            sram_clk_in;
+// DEP wire            sram_ce_out_n;
+// DEP wire            sram_oe_out_n;
+// DEP wire            sram_we_out_n;
+// DEP wire            sram_bwa_out;
+// DEP wire            sram_bwb_out;
+// DEP wire            sram_bwc_out;
+// DEP wire            sram_bwd_out;
+// DEP wire    [17:0]  sram_a_out;
+
+// DEP wire     [8:0]  sram_dqa_in;
+// DEP wire     [8:0]  sram_dqb_in;
+// DEP wire     [8:0]  sram_dqc_in;
+// DEP wire     [8:0]  sram_dqd_in;
+// DEP wire     [8:0]  sram_dqa_out;
+// DEP wire     [8:0]  sram_dqb_out;
+// DEP wire     [8:0]  sram_dqc_out;
+// DEP wire     [8:0]  sram_dqd_out;
+// DEP wire            sram_dqa_en;
+// DEP wire            sram_dqb_en;
+// DEP wire            sram_dqc_en;
+// DEP wire            sram_dqd_en;
+
+csl_interface sram_dq {
+csl_port a_in (input, 9);
+csl_port b_in (input, 9);
+csl_port c_in (input, 9);
+csl_port d_in (input, 9);
+
+// csl_port [a-d]_in (input, 9);
+
+csl_port a_out(output, 9);
+csl_port b_out(output, 9);
+csl_port c_out(output, 9);
+csl_port d_out(output, 9);
+
+// csl_port [a-d]_out (input, 9);
+
+csl_port a_en (input); // correct direction?
+csl_port b_en (input); // correct direction?
+csl_port c_en (input); // correct direction?
+csl_port d_en (input); // correct direction?
+
+// csl_port [a-d]_en (input, 9);
+
+sram_dq () {};
+};
+
+
+
+// DEP 
+// DEP wire            tflsh_cmd_in;
+// DEP wire            tflsh_cmd_out;
+// DEP wire            tflsh_cmd_en;
+// DEP wire     [3:0]  tflsh_d_in;
+// DEP wire     [3:0]  tflsh_d_out;
+// DEP wire            tflsh_d_en;
+// DEP wire            tflsh_clk_out;
+// DEP wire            tflsh_clk_rise;
+// DEP wire            tflsh_clk_fall;
+// DEP 
+
+//csl_interface tflsh {
+//
+//
+//}
+
+
+// DEP wire    [31:0]  master_ctrl_reg;
+// DEP 
+// DEP wire            emac0_rx_cmd;    // emac rx ix bus
+// DEP wire            emac0_rx_valid;
+// DEP wire    [31:0]  emac0_rx_data;
+// DEP wire            emac0_rx_ready;
+
+csl_interface emac_rx_ifc {
+   csl_port  cmd  (input    );    // emac rx ix bus
+   csl_port  valid(input    );
+   csl_port  data (input, 32);
+   csl_port  ready(input    );
+};
+
+// DEP 
+// DEP wire            emac0_tx_cmd;    // emac tx ix bus
+// DEP wire            emac0_tx_valid;
+// DEP wire    [31:0]  emac0_tx_data;
+// DEP wire            emac0_tx_ready;
+
+csl_interface emac_tx_ifc {
+   csl_port  cmd  (output);    // emac tx ix bus
+   csl_port  valid(output);
+   csl_port  data (output, 32);
+   csl_port  ready(output);
+};
+
+// DEP 
+// DEP wire            emac1_rx_cmd;    // emac rx ix bus
+// DEP wire            emac1_rx_valid;
+// DEP wire    [31:0]  emac1_rx_data;
+// DEP wire            emac1_rx_ready;
+
+// Duplicate csl_interface emac1_rx_ifc {
+// Duplicate    csl_port             emac1_rx_cmd  (input);    // emac rx ix bus
+// Duplicate    csl_port             emac1_rx_valid(input);
+// Duplicate    csl_port             emac1_rx_data (input);
+// Duplicate    csl_port             emac1_rx_ready(input);
+// Duplicate };
+
+// DEP 
+// DEP wire            emac1_tx_cmd;    // emac tx ix bus
+// DEP wire            emac1_tx_valid;
+// DEP wire    [31:0]  emac1_tx_data;
+// DEP wire            emac1_tx_ready;
+
+// Duplicate csl_interface emac1_tx_ifc {
+// Duplicate    csl_port             emac1_tx_cmd  (output);    // emac tx ix bus
+// Duplicate    csl_port             emac1_tx_valid(output);
+// Duplicate    csl_port             emac1_tx_data (output, 32);
+// Duplicate    csl_port             emac1_tx_ready(output);
+// Duplicate };
+
+
+// DEP wire            emac0_wb_stb;
+// DEP wire    [31:0]  emac0_wb_rdata;
+// DEP wire            emac1_wb_stb;
+// DEP wire    [31:0]  emac1_wb_rdata;
+// DEP wire    [31:0]  emac_wb_wdata;
+// DEP wire    [11:2]  emac_wb_waddr;
+// DEP wire    [11:2]  emac_wb_raddr;
+// DEP wire     [3:0]  emac_wb_sel;
+// DEP wire            emac_wb_we;
+// DEP wire            emac_wb_cyc;
+
+csl_interface emac_wb_ifc{
+   csl_port  0_stb  (input        );
+   csl_port  0_rdata(input, 32    );
+   csl_port  1_stb  (input        );
+   csl_port  1_rdata(input, 32    );
+   csl_port  wdata  (input, 32    );
+   csl_port  waddr  (input, 2, 11 );
+   csl_port  raddr  (input, 2, 11 );
+   csl_port  sel    (input, 4     );
+   csl_port  we     (input        );
+   csl_port  cyc    (input        );
+};
+
+// DEP wire            enet_clk25e6ltx_in;
+// DEP wire     [3:0]  enet_ltxd_out;
+// DEP wire            enet_ltxen_out;
+// DEP wire            enet_ltxer_out;
+// DEP wire            enet_clk25e6lrx_in;
+// DEP wire     [3:0]  enet_lrxd_in;
+// DEP wire            enet_lrxdv_in;
+// DEP wire            enet_lrxer_in;
+// DEP wire            enet_lcrs_in;
+// DEP wire            enet_lcol_in;        
+
+csl_interface enet_l_ifc {
+csl_port        clk25e6ltx_in(input   );  
+csl_port        ltxd_out     (output,4);       
+csl_port        ltxen_out    (output  );      
+csl_port        ltxer_out    (output  );      
+csl_port        clk25e6lrx_in(input   );  
+csl_port        lrxd_in      (input, 4);        
+csl_port        lrxdv_in     (input   );       
+csl_port        lrxer_in     (input   );       
+csl_port        lcrs_in      (input   );        
+csl_port        lcol_in      (input   );        
+enet_l_ifc () {};
+};
+
+// DEP 
+// DEP wire            enet_clk25e6utx_in;
+// DEP wire     [3:0]  enet_utxd_out;
+// DEP wire            enet_utxen_out;
+// DEP wire            enet_utxer_out;
+// DEP wire            enet_clk25e6urx_in;
+// DEP wire     [3:0]  enet_urxd_in;
+// DEP wire            enet_urxdv_in;
+// DEP wire            enet_urxer_in;
+// DEP wire            enet_ucrs_in;
+// DEP wire            enet_ucol_in;
+// DEP 
+// DEP wire            aud_mic_cmd;
+// DEP wire            aud_mic_valid;
+// DEP wire    [31:0]  aud_mic_data;
+// DEP wire            aud_mic_ready;
+// DEP 
+// DEP wire            aud_spk_cmd;
+// DEP wire            aud_spk_valid;
+// DEP wire    [31:0]  aud_spk_data;
+// DEP wire            aud_spk_ready;
+// DEP 
+// DEP wire    [63:0]  fabric_0;
+// DEP wire    [63:0]  fabric_1;
+// DEP wire    [63:0]  fabric_2;
+// DEP wire    [63:0]  fabric_3;
+// DEP wire    [63:0]  fabric_4;
+// DEP wire    [63:0]  fabric_5;
+// DEP wire    [63:0]  fabric_6;
+// DEP wire    [63:0]  fabric_7;
+// DEP wire    [63:0]  fabric_8;
+// DEP wire    [63:0]  fabric_9;
+
+csl_interface fabric_ifc {
+csl_port data (input, 32);
+csl_port addr (input, 8);
+csl_port cmd  (input, 4);
+csl_port v    (input);
+fabric_ifc () {}
+};
+
+// DEP 
+// DEP wire            force_cold_reset;
+// DEP wire            force_enet_reset;
+// DEP wire            force_dsp_reset;
+// DEP wire            force_user_reset;
+// DEP wire            dsp_enable;
+// DEP wire            enet_reset_out_n;
+// DEP wire            dsp_reset_out_n;
+// DEP wire            user_reset_out_n;
+// DEP 
+// DEP wire            core_reset;
+// DEP wire            cpu_reset;
+// DEP wire            boot_reset;
+// DEP wire            flashctl_reset;
+// DEP wire            drive_hreset_cfg_word;
+// DEP wire            sport_reset;
+// DEP 
+// DEP wire     [7:0]  irq_b;
+// DEP wire            emac0_irq;
+// DEP wire            emac1_irq;
+// DEP 
+// DEP wire            i2c_clk_400_out;
+// DEP wire            i2c_dat_400_out;
+// DEP wire            i2c_dat_400_en ;
+// DEP wire            i2c_dat_400_in ;
+// DEP 
+// DEP wire            i2c_clk_100_out;
+// DEP wire            i2c_dat_100_out;
+// DEP wire            i2c_dat_100_en ;
+// DEP wire            i2c_dat_100_in ;
+// DEP 
+// DEP wire    [31:0]  debug_reg;
+// DEP wire     [3:0]  debug_sel;
+// DEP wire     [8:0]  debug_reset;
+// DEP wire     [8:0]  debug_pie_aud_dq;
+// DEP wire     [8:0]  debug_pie_ex_dq;
+// DEP wire     [9:0]  debug_ex2ix;  // Debug, TAW
+// DEP wire    [31:0]  debug_emac0;
+// DEP wire    [31:0]  debug_emac1;
+// DEP 
+// DEP wire     [8:0]  mitch_debug_out;
+// DEP 
+// DEP wire    [19:0]  internal_addr;
+// DEP wire            internal_read;
+// DEP wire            internal_write;
+// DEP wire    [31:0]  internal_wdata;
+// DEP 
+// DEP wire    [31:0]  tx_sop_count;
+// DEP wire            tx_sop_detect;
+// DEP 
+// DEP wire            clk_sclk_out;
+// DEP wire            clk_data_out;
+// DEP wire            clk_strobe_m_out;
+// DEP wire            clk_strobe_s_out;
+// DEP 
+// DEP wire            mitch_devclr_in_n;
+// DEP wire            user_recovery_in_n;
+// DEP wire            user_recovery_pressed;
+// DEP wire            user_recovery_clear;
+// DEP wire            tflsh_boot_read_done;
+// DEP 
+// DEP wire            watchdog_fired;
+// DEP wire            watchdog_clear;
+// DEP wire            watchdog_enable;
+// DEP 
+// DEP wire            mitch_clock_pll_load;
+// DEP wire            stella_clock_pll_load;
+// DEP wire            clock_pll_busy;
+// DEP 
+
+csl_interface enet_md {
+   csl_port            enet_mdc_out (output);
+   csl_port            enet_mdio_in (input);
+   csl_port            enet_mdio_out(output);
+   csl_port            enet_mdio_en (input);
+};
+
+// DEP 
+
+// DEP wire            dsp_clkrs0_out;
+// DEP wire            dsp_dpr0_out;
+// DEP wire            dsp_dsr0_out;
+// DEP wire            dsp_fsr0_out;
+
+csl_interface dsp_cl {
+   csl_port clkrs0_out(output);
+   csl_port dpr0_out  (output);
+   csl_port dsr0_out  (output);
+   csl_port fsr0_out  (output);
+};
+
+// DEP wire            dsp_clkts0_in;
+// DEP wire            dsp_dpt0_in;
+// DEP wire            dsp_dst0_in;
+// DEP wire            dsp_fst0_in;
+
+csl_interface dsp_cl0 {
+   csl_port            clkts0_in(input);
+   csl_port            dpt0_in  (input);
+   csl_port            dst0_in  (input);
+   csl_port            fst0_in  (input);
+};
+
+// DEP 
+// DEP wire     [7:0]  fanspeed;
+// DEP 
+// DEP wire     [8:0]  ipc_led;
+// DEP 
+// DEP wire            dsp_spibootcs_in;
+// DEP wire            dsp_spisck_in;
+// DEP wire            dsp_spimiso_out;
+// DEP wire            dsp_spimosi_in;
+// DEP 
+// DEP wire            stella_devclr_out_n;
+// DEP wire     [3:0]  stella_msel_out;
+// DEP wire            stella_ce_out_n;
+// DEP wire            stella_config_out_n;
+// DEP wire            stella_status_in_n;
+// DEP wire            stella_confdone_in;
+// DEP wire            stella_initdone_in;
+// DEP wire            stella_happy_in;
+// DEP wire            stella_dclk_out;
+// DEP wire    [15:0]  m2s_ex_d_out;
+// DEP 
+// DEP wire            m2s_ex_clk_out;
+// DEP wire            m2s_ex_ready_in;
+// DEP wire            m2s_ex_cmd_out;
+// DEP wire            m2s_ex_valid_out;
+// DEP 
+// DEP wire            s2m_ex_clk_in;
+// DEP wire    [15:0]  s2m_ex_d_in;
+// DEP wire            s2m_ex_cmd_in;
+// DEP wire            s2m_ex_valid_in;
+// DEP wire            s2m_ex_ready_out;
+// DEP 
+// DEP wire            fan_pwm_out;
+// DEP 
+// DEP wire            sport_dq_clk_refsel;
+// DEP wire     [7:0]  sport_dq_clk_divider;
+// DEP wire            sport_dq_clk_enable;
+// DEP wire            sport_dq_clk;
+// DEP 
+// DEP wire            m2s_ex_clk_refsel;
+// DEP wire     [7:0]  m2s_ex_clk_divider;
+// DEP wire            m2s_ex_clk_enable;
+
+//------------------------------------------------------------------------------
+// END INTERFACE DECLARATIONS
+//------------------------------------------------------------------------------
+
+
+
+// DEP   sramif sramif1 (
+// DEP     .core_reset             ( core_reset ),
+// DEP     .core_clk               ( core_clk ),
+// DEP     .sram_ce_out_n          ( sram_ce_out_n ),
+// DEP     .sram_oe_out_n          ( sram_oe_out_n ),
+// DEP     .sram_we_out_n          ( sram_we_out_n ),
+// DEP     .sram_bwa_out           ( sram_bwa_out ),
+// DEP     .sram_bwb_out           ( sram_bwb_out ),
+// DEP     .sram_bwc_out           ( sram_bwc_out ),
+// DEP     .sram_bwd_out           ( sram_bwd_out ),
+// DEP     .sram_a_out             ( sram_a_out ),
+
+// DEP     .sram_dqa_in            ( sram_dqa_in ),
+// DEP     .sram_dqb_in            ( sram_dqb_in ),
+// DEP     .sram_dqc_in            ( sram_dqc_in ),
+// DEP     .sram_dqd_in            ( sram_dqd_in ),
+// DEP     .sram_dqa_out           ( sram_dqa_out ),
+// DEP     .sram_dqb_out           ( sram_dqb_out ),
+// DEP     .sram_dqc_out           ( sram_dqc_out ),
+// DEP     .sram_dqd_out           ( sram_dqd_out ),
+// DEP     .sram_dqa_en            ( sram_dqa_en ),
+// DEP     .sram_dqb_en            ( sram_dqb_en ),
+// DEP     .sram_dqc_en            ( sram_dqc_en ),
+// DEP     .sram_dqd_en            ( sram_dqd_en ),
+// DEP     .fabric_in              ( fabric_9 ),
+// DEP     .fabric_out             ( fabric_0 )
+// DEP   );
+
+csl_unit sram0 {
+   csl_port core_reset(input);
+   csl_port core_clk  (input);
+   sram_ifc sram;
+   sram_dq sram_dq;
+   fabric_ifc fabric_in;
+   fabric_ifc fabric_out;
+
+   sram0 (){
+      fabric_out.reverse();
+   }
+};
+
+// DEP //-----------------------------------------------------------------------------
+// DEP // Debug mux
+// DEP // The first led is wired to the fan_pwm output.
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   debug debug1 (
+// DEP     .debug_sel              ( debug_sel ),
+// DEP     .debug_reset            ( debug_reset ),
+// DEP     .ipc_led                ( ipc_led ),
+// DEP     .debug_1                ( debug_pie_aud_dq ),
+// DEP     .debug_2                ( { s2m_ex_clk_in, s2m_ex_valid_in, s2m_ex_d_in[7:0] } ),
+// DEP     .debug_3                ( debug_ex2ix ),
+// DEP     .debug_4                ( debug_pie_ex_dq ),
+// DEP     .debug_5                ( debug_emac0[8:0] ),
+// DEP     .debug_6                ( debug_emac0[8:0] ),
+// DEP     .debug_7                ( 9'b000000000 ),
+// DEP     .debug_8                ( 9'b000000000 ),
+// DEP     .debug_9                ( 9'b000000000 ),
+// DEP     .debug_10               ( 9'b000000000 ),
+// DEP     .debug_11               ( 9'b000000000 ),
+// DEP     .debug_12               ( 9'b000000000 ),
+// DEP     .debug_13               ( 9'b000000000 ),
+// DEP     .debug_14               ( 9'b000000000 ),
+// DEP     .mitch_debug_out        ( mitch_debug_out )
+// DEP   );
+
+
+csl_unit debug {
+   csl_port debug_sel      (input   );
+   csl_port debug_reset    (input   );
+   csl_port ipc_led        (output  );
+   csl_port debug_1        (input, 9);
+   csl_port debug_2        (input, 9);
+   csl_port debug_3        (input, 9);
+   csl_port debug_4        (input, 9);
+   csl_port debug_5        (input, 9);
+   csl_port debug_6        (input, 9);
+   csl_port debug_7        (input, 9);
+   csl_port debug_8        (input, 9);
+   csl_port debug_9        (input, 9);
+   csl_port debug_10       (input, 9);
+   csl_port debug_11       (input, 9);
+   csl_port debug_12       (input, 9);
+   csl_port debug_13       (input, 9);
+   csl_port debug_14       (input, 9);
+
+// this will be a regex generator
+//    csl_port debug_[1-14]       (input, 9);
+
+   csl_port mitch_debug_out(input, 9);
+   debug (){
+   }
+};
+
+
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Core clock control
+// DEP // Mux core clock or boot clock input
+// DEP // Implement clean enable by anding with negedge clocked enable
+// DEP // This functionally equivalent to the Altera clock control block, but must
+// DEP // be implemented in logic to avoid connection restrictions.
+// DEP // We don't care about the delay thru this circuit.
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP `ifdef USE_ALTERA_CLKCTRL_ATOM
+// DEP 
+// DEP   gclk_mux_2 gclk_mux_2_core_clk (
+// DEP     .clkselect    ( core_clk_sel ),
+// DEP     .ena          ( core_clk_en ),
+// DEP     .inclk0x      ( boot_clk ),
+// DEP     .inclk1x      ( core_clk_in ),
+// DEP     .outclk       ( core_clk )
+// DEP   );
+// DEP 
+// DEP `else
+// DEP 
+// DEP   assign core_clk_mux = core_clk_sel ? core_clk_in : boot_clk;
+// DEP 
+// DEP   assign core_clk     = core_clk_en_2 & core_clk_mux;
+// DEP 
+// DEP   always @ (negedge core_clk_mux)
+// DEP   begin
+// DEP     core_clk_en_1 <= core_clk_en;
+// DEP     core_clk_en_2 <= core_clk_en_1;
+// DEP   end
+// DEP 
+// DEP `endif
+// DEP 
+// DEP assign sport_reset = core_reset;
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Clock input macros
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   io_ic io_mitch_clk133e6 (
+// DEP     .pin                    ( mitch_clk133e6 ),
+// DEP     .data_in                ( core_clk_in )
+// DEP   );
+// DEP 
+// DEP   io_ic io_cpu_clk66e6 (
+// DEP     .pin                    ( cpu_clk66e6 ),
+// DEP     .data_in                ( cpu_clk )
+// DEP   );
+// DEP 
+// DEP   io_ic io_mitch_clk12p288e6 (
+// DEP     .pin                    ( mitch_clk12p288e6 ),
+// DEP     .data_in                ( boot_clk )
+// DEP   );
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Instantiate submodules
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP assign plls_locked = 1'b1;
+// DEP 
+// DEP assign force_dsp_reset = ~dsp_enable;
+// DEP 
+// DEP   reset reset1 (
+// DEP     .boot_clk               ( boot_clk ),
+// DEP     .core_clk               ( core_clk ),
+// DEP     .cpu_clk                ( cpu_clk ),
+// DEP     .core_clk_en            ( core_clk_en ),
+// DEP     .core_clk_sel           ( core_clk_sel ),
+// DEP     .mitch_devclr_in_n      ( mitch_devclr_in_n ),
+// DEP     .plls_locked            ( plls_locked ),
+// DEP     .tflsh_boot_read_done   ( tflsh_boot_read_done ),
+// DEP     .drive_hreset_cfg_word  ( drive_hreset_cfg_word ),
+// DEP     .mitch_clock_pll_load   ( mitch_clock_pll_load ),
+// DEP     .stella_clock_pll_load  ( stella_clock_pll_load ),
+// DEP     .clock_pll_busy         ( clock_pll_busy ),
+// DEP     .core_reset             ( core_reset ),
+// DEP     .cpu_reset              ( cpu_reset ),
+// DEP     .boot_reset             ( boot_reset ),
+// DEP     .flashctl_reset         ( flashctl_reset ),
+// DEP     .cpu_poreset_out_n      ( cpu_poreset_out_n ),
+// DEP     .cpu_hreset_in_n        ( cpu_hreset_in_n ),
+// DEP     .cpu_sreset_in_n        ( cpu_sreset_in_n ),
+// DEP     .enet_reset_out_n       ( enet_reset_out_n ),
+// DEP     .dsp_reset_out_n        ( dsp_reset_out_n ),
+// DEP     .user_reset_out_n       ( user_reset_out_n ),
+// DEP     .force_cold_reset       ( force_cold_reset ),
+// DEP     .force_enet_reset       ( force_enet_reset ),
+// DEP     .force_dsp_reset        ( force_dsp_reset ),
+// DEP     .force_user_reset       ( force_user_reset ),
+// DEP     .user_recovery_in_n     ( user_recovery_in_n ),
+// DEP     .user_recovery_pressed  ( user_recovery_pressed ),
+// DEP     .user_recovery_clear    ( user_recovery_clear ),
+// DEP     .watchdog_fired         ( watchdog_fired ),
+// DEP     .watchdog_clear         ( watchdog_clear ),
+// DEP     .watchdog_enable        ( watchdog_enable ),
+// DEP     .fan_pwm                ( fan_pwm_out ),
+// DEP     .fanspeed               ( fanspeed ),
+// DEP     .debug                  ( debug_reset )
+// DEP   );
+// DEP 
+// DEP 
+// DEP   bufmgr bufmgr1 (
+// DEP     .core_clk               ( core_clk ),
+// DEP     .core_reset             ( core_reset ),
+// DEP     .fabric_in              ( fabric_0 ),
+// DEP     .fabric_out             ( fabric_1 ),
+// DEP     .fabric_node_id         ( `JEFF_NID_BUFMGR ),
+// DEP     .fabric_fairness        ( `JEFF_FAIR_BUFMGR )
+// DEP   );
+// DEP 
+// DEP   ipc ipc1 (
+// DEP     .core_reset             ( core_reset ),
+// DEP     .cpu_reset              ( cpu_reset ),
+// DEP     .flashctl_reset         ( flashctl_reset ),
+// DEP     .plls_locked            ( plls_locked ),
+// DEP     .cpu_clk                ( cpu_clk ),
+// DEP     .core_clk               ( core_clk ),
+// DEP     .cpu_bootcs_in_n        ( cpu_csboot_in_n ),
+// DEP     .cpu_stratixcs_in_n     ( cpu_cs_in_n ),
+// DEP     .cpu_a_in               ( cpu_a_in ),
+// DEP     .cpu_d_in               ( cpu_d_in ),
+// DEP     .cpu_d_out              ( cpu_d_out ),
+// DEP     .cpu_d_en               ( cpu_d_en ),
+// DEP     .cpu_bsa0_in_n          ( 1'b0 ),
+// DEP     .cpu_bsa1_in_n          ( 1'b0 ),
+// DEP     .cpu_bsa2_in_n          ( 1'b0 ),
+// DEP     .cpu_bsa3_in_n          ( 1'b0 ),
+// DEP     .cpu_ts_in_n            ( cpu_ts_in_n ),
+// DEP     .cpu_tsiz0_in           ( cpu_tsiz0_in ),
+// DEP     .cpu_tsiz1_in           ( cpu_tsiz1_in ),
+// DEP     .cpu_rd_wr_in_n         ( cpu_rd_wr_in_n ),
+// DEP     .cpu_burst_in_n         ( cpu_burst_in_n ),
+// DEP     .cpu_bdip_in_n          ( cpu_bdip_in_n ),
+// DEP     .cpu_bi_out_n           ( cpu_bi_out_n ),
+// DEP     .cpu_bi_en              ( cpu_bi_en ),
+// DEP     .cpu_ta_out_n           ( cpu_ta_out_n ),
+// DEP     .cpu_ta_en              ( cpu_ta_en ),
+// DEP     .cpu_tea_out_n          ( cpu_tea_out_n ),
+// DEP     .cpu_tea_en             ( cpu_tea_en ),
+// DEP 
+// DEP     .cpu_irq_out_n          ( cpu_irq_out_n ),
+// DEP     .cpu_irq_en             ( cpu_irq_en ),
+// DEP     .i2c_clk_400_out        ( i2c_clk_400_out ),
+// DEP     .i2c_dat_400_out        ( i2c_dat_400_out ),
+// DEP     .i2c_dat_400_en         ( i2c_dat_400_en ),
+// DEP     .i2c_dat_400_in         ( i2c_dat_400_in ),
+// DEP     .i2c_clk_100_out        ( i2c_clk_100_out ),
+// DEP     .i2c_dat_100_out        ( i2c_dat_100_out ),
+// DEP     .i2c_dat_100_en         ( i2c_dat_100_en ),
+// DEP     .i2c_dat_100_in         ( i2c_dat_100_in ),
+// DEP     .clk_sclk_out           ( clk_sclk_out ),
+// DEP     .clk_data_out           ( clk_data_out ),
+// DEP     .clk_strobe_m_out       ( clk_strobe_m_out ),
+// DEP     .clk_strobe_s_out       ( clk_strobe_s_out ),
+// DEP     .emac0_irq              ( emac0_irq ),
+// DEP     .emac1_irq              ( emac1_irq ),
+// DEP     .fabric_in              ( fabric_1 ),
+// DEP     .fabric_out             ( fabric_2 ),
+// DEP     .master_ctrl_reg        ( master_ctrl_reg ),
+// DEP     .user_recovery_pressed  ( user_recovery_pressed ),
+// DEP     .user_recovery_clear    ( user_recovery_clear ),
+// DEP     .fanspeed               ( fanspeed ),
+// DEP     .watchdog_fired         ( watchdog_fired ),
+// DEP     .watchdog_clear         ( watchdog_clear ),
+// DEP     .watchdog_enable        ( watchdog_enable ),
+// DEP     .force_cold_reset       ( force_cold_reset ),
+// DEP     .force_enet_reset       ( force_enet_reset ),
+// DEP     .force_user_reset       ( force_user_reset ),
+// DEP     .debug_sel              ( debug_sel ),
+// DEP     .debug_reg              ( debug_reg ),
+// DEP     .tflsh_boot_read_done   ( tflsh_boot_read_done ),
+// DEP     .mitch_clock_pll_load   ( mitch_clock_pll_load ),
+// DEP     .stella_clock_pll_load  ( stella_clock_pll_load ),
+// DEP     .clock_pll_busy         ( clock_pll_busy ),
+// DEP     .tflsh_clk_out          ( tflsh_clk_out ),
+// DEP     .tflsh_clk_rise         ( tflsh_clk_rise ),
+// DEP     .tflsh_clk_fall         ( tflsh_clk_fall ),
+// DEP     .tflsh_cmd_in           ( tflsh_cmd_in ),
+// DEP     .tflsh_cmd_out          ( tflsh_cmd_out ),
+// DEP     .tflsh_cmd_en           ( tflsh_cmd_en ),
+// DEP     .tflsh_d_in             ( tflsh_d_in ),
+// DEP     .tflsh_d_out            ( tflsh_d_out ),
+// DEP     .tflsh_d_en             ( tflsh_d_en ),
+// DEP     .drive_hreset_cfg_word  ( drive_hreset_cfg_word ),
+// DEP     .internal_wdata         ( internal_wdata ),
+// DEP     .internal_read          ( internal_read ),
+// DEP     .internal_write         ( internal_write ),
+// DEP     .internal_addr          ( internal_addr ),
+// DEP     .led                    ( ipc_led ),
+// DEP     .id_string_const        ( `REGS_FPGA_ID_STRING ),
+// DEP     .rev_string_const       ( `REGS_REVISION_STRING ),
+// DEP     .rev_num_const          ( `REGS_REVISION_NUM ),
+// DEP     .debug                  ( )
+// DEP   );
+// DEP 
+// DEP `ifdef DONT_INCLUDE_ETHERNET_PIES
+// DEP   assign fabric_5 = fabric_2;
+// DEP `else
+// DEP 
+// DEP   pie_eth_dq pie_eth_dq1 (
+// DEP     .core_clk               ( core_clk ),
+// DEP     .core_reset             ( core_reset ),
+// DEP     .fabric_in              ( fabric_2 ),
+// DEP     .fabric_out             ( fabric_3 ),
+// DEP     .fabric_node_id         ( `JEFF_NID_ETH_DQ ),
+// DEP     .fabric_fairness        ( `JEFF_FAIR_ETH_DQ ),
+// DEP     .emac0_tx_cmd           ( emac0_tx_cmd ),
+// DEP     .emac0_tx_data          ( emac0_tx_data ),
+// DEP     .emac0_tx_valid         ( emac0_tx_valid ),
+// DEP     .emac0_tx_ready         ( emac0_tx_ready ),
+// DEP     .emac1_tx_cmd           ( emac1_tx_cmd ),
+// DEP     .emac1_tx_data          ( emac1_tx_data ),
+// DEP     .emac1_tx_valid         ( emac1_tx_valid ),
+// DEP     .emac1_tx_ready         ( emac1_tx_ready ),
+// DEP     .emac0_wb_stb           ( emac0_wb_stb ),
+// DEP     .emac1_wb_stb           ( emac1_wb_stb ),
+// DEP     .emac0_wb_rdata         ( emac0_wb_rdata ),
+// DEP     .emac1_wb_rdata         ( emac1_wb_rdata ),
+// DEP     .emac_wb_wdata          ( emac_wb_wdata ),
+// DEP     .emac_wb_waddr          ( emac_wb_waddr ),
+// DEP     .emac_wb_raddr          ( emac_wb_raddr ),
+// DEP     .emac_wb_sel            ( emac_wb_sel ),
+// DEP     .emac_wb_we             ( emac_wb_we ),
+// DEP     .emac_wb_cyc            ( emac_wb_cyc )
+// DEP   );
+// DEP 
+
+
+
+
+
+
+// DEP   pie_eth_nq0 pie_eth_nq01 (
+// DEP     .core_clk               ( core_clk ),
+// DEP     .core_reset             ( core_reset ),
+// DEP     .fabric_in              ( fabric_3 ),
+// DEP     .fabric_out             ( fabric_4 ),
+// DEP     .fabric_node_id         ( `JEFF_NID_ETH_NQ_0 ),
+// DEP     .fabric_fairness        ( `JEFF_FAIR_ETH_NQ_0 ),
+// DEP     .input_cmd              ( emac0_rx_cmd ),
+// DEP     .input_data             ( emac0_rx_data ),
+// DEP     .input_valid            ( emac0_rx_valid ),
+// DEP     .input_ready            ( emac0_rx_ready )
+// DEP   );
+// DEP 
+
+
+// DEP   pie_eth_nq1 pie_eth_nq11 (
+// DEP     .core_clk               ( core_clk ),
+// DEP     .core_reset             ( core_reset ),
+// DEP     .fabric_in              ( fabric_4 ),
+// DEP     .fabric_out             ( fabric_5 ),
+// DEP     .fabric_node_id         ( `JEFF_NID_ETH_NQ_1 ),
+// DEP     .fabric_fairness        ( `JEFF_FAIR_ETH_NQ_1 ),
+// DEP     .input_cmd              ( emac1_rx_cmd ),
+// DEP     .input_data             ( emac1_rx_data ),
+// DEP     .input_valid            ( emac1_rx_valid ),
+// DEP     .input_ready            ( emac1_rx_ready )
+// DEP   );
+// DEP 
+
+csl_unit pie_eth_nq1 {
+
+
+pie_eth_nq1 () {}
+};
+
+// DEP `endif
+// DEP 
+// DEP `ifdef DONT_INCLUDE_AUDIO_NQ_PIE
+// DEP   assign fabric_6 = fabric_5;
+// DEP `else
+// DEP 
+// DEP   pie_aud_nq pie_aud_nq1 (
+// DEP     .core_clk               ( core_clk ),
+// DEP     .core_reset             ( core_reset ),
+// DEP     .fabric_in              ( fabric_5 ),
+// DEP     .fabric_out             ( fabric_6 ),
+// DEP     .fabric_node_id         ( `JEFF_NID_AUD_NQ ),
+// DEP     .fabric_fairness        ( `JEFF_FAIR_AUD_NQ ),
+// DEP 
+// DEP     .dsp_clkts0_in          ( dsp_clkts0_in ),
+// DEP     .dsp_dpt0_in            ( dsp_dpt0_in ),
+// DEP     .dsp_dst0_in            ( dsp_dst0_in ),
+// DEP     .dsp_fst0_in            ( dsp_fst0_in )
+// DEP   );
+
+
+
+
+
+// DEP 
+// DEP `endif
+// DEP 
+// DEP `ifdef DONT_INCLUDE_AUDIO_DQ_PIE
+// DEP   assign fabric_7 = fabric_6;
+// DEP `else
+// DEP 
+// DEP   pie_aud_dq pie_aud_dq1 (
+// DEP     .core_clk               ( core_clk ),
+// DEP     .core_reset             ( core_reset ),
+// DEP     .fabric_in              ( fabric_6 ),
+// DEP     .fabric_out             ( fabric_7 ),
+// DEP     .fabric_node_id         ( `JEFF_NID_AUD_DQ ),
+// DEP     .fabric_fairness        ( `JEFF_FAIR_AUD_DQ ),
+// DEP     .dsp_clkrs0_out         ( dsp_clkrs0_out ),
+// DEP     .dsp_dpr0_out           ( dsp_dpr0_out ),
+// DEP     .dsp_dsr0_out           ( dsp_dsr0_out ),
+// DEP     .dsp_fsr0_out           ( dsp_fsr0_out ),
+// DEP     .dsp_clkts0_in          ( dsp_clkts0_in ),
+// DEP     .dsp_spibootcs_in       ( dsp_spibootcs_in ),
+// DEP     .dsp_spisck_in          ( dsp_spisck_in ),
+// DEP     .dsp_spimiso_out        ( dsp_spimiso_out ),
+// DEP     .dsp_spimosi_in         ( dsp_spimosi_in ),
+// DEP     .dsp_enable             ( dsp_enable ),
+// DEP     .sport_dq_clk_divider   ( sport_dq_clk_divider ),
+// DEP     .sport_dq_clk_refsel    ( sport_dq_clk_refsel ),
+// DEP     .sport_dq_clk_enable    ( sport_dq_clk_enable ),
+// DEP     .sport_dq_clk           ( sport_dq_clk ),
+// DEP     .debug                  ( debug_pie_aud_dq )
+// DEP   );
+// DEP 
+// DEP   clockdiv clockdiv_aud_dq (
+// DEP     .ref_clk_0              ( dsp_clkts0_in ),
+// DEP     .ref_clk_1              ( core_clk ),
+// DEP     .ref_select             ( sport_dq_clk_refsel ),
+// DEP     .divider                ( sport_dq_clk_divider ),
+// DEP     .enable                 ( sport_dq_clk_enable ),
+// DEP     .output_clk             ( sport_dq_clk )
+// DEP   );
+// DEP 
+// DEP `endif
+// DEP 
+// DEP `ifdef DONT_INCLUDE_EX_PIES
+// DEP   assign fabric_9 = fabric_7;
+// DEP `else
+// DEP 
+// DEP   pie_ex_nq pie_ex_nq1 (
+// DEP     .core_clk               ( core_clk ),
+// DEP     .core_reset             ( core_reset ),
+// DEP     .fabric_in              ( fabric_7 ),
+// DEP     .fabric_out             ( fabric_8 ),
+// DEP     .fabric_node_id         ( `JEFF_NID_EX_NQ ),
+// DEP     .fabric_fairness        ( `JEFF_FAIR_EX_NQ ),
+// DEP     .ex2ix_debug            ( debug_ex2ix ),  // Debug, TAW
+// DEP     .s2m_ex_clk_in          ( s2m_ex_clk_in ),
+// DEP     .s2m_ex_cmd_in          ( s2m_ex_cmd_in ),
+// DEP     .s2m_ex_data_in         ( s2m_ex_d_in[7:0] ),
+// DEP     .s2m_ex_valid_in        ( s2m_ex_valid_in ),
+// DEP     .s2m_ex_ready_out       ( s2m_ex_ready_out )
+// DEP   );
+// DEP 
+// DEP 
+// DEP   pie_ex_dq pie_ex_dq1 (
+// DEP     .core_clk               ( core_clk ),
+// DEP     .core_reset             ( core_reset ),
+// DEP     .fabric_in              ( fabric_8 ),
+// DEP     .fabric_out             ( fabric_9 ),
+// DEP     .fabric_node_id         ( `JEFF_NID_EX_DQ ),
+// DEP     .fabric_fairness        ( `JEFF_FAIR_EX_DQ ),
+// DEP 
+// DEP     .stella_devclr_out_n    ( stella_devclr_out_n ),
+// DEP     .stella_msel_out        ( stella_msel_out ),
+// DEP     .stella_ce_out_n        ( stella_ce_out_n ),
+// DEP     .stella_config_out_n    ( stella_config_out_n ),
+// DEP     .stella_status_in_n     ( stella_status_in_n ),
+// DEP     .stella_confdone_in     ( stella_confdone_in ),
+// DEP     .stella_initdone_in     ( stella_initdone_in ),
+// DEP     .stella_happy_in        ( stella_happy_in ),
+// DEP     .stella_dclk_out        ( stella_dclk_out ),
+// DEP     .stella_d_out           ( m2s_ex_d_out[7:0] ),
+// DEP 
+// DEP     .m2s_ex_clk_out         ( m2s_ex_clk_out ),
+// DEP     .m2s_ex_ready_in        ( m2s_ex_ready_in ),
+// DEP     .m2s_ex_cmd_out         ( m2s_ex_cmd_out ),
+// DEP     .m2s_ex_valid_out       ( m2s_ex_valid_out ),
+// DEP     .m2s_ex_data_out        ( m2s_ex_d_out[15:8] ),
+// DEP 
+// DEP     .m2s_ex_clk_refsel      ( m2s_ex_clk_refsel ),
+// DEP     .m2s_ex_clk_divider     ( m2s_ex_clk_divider ),
+// DEP     .m2s_ex_clk_enable      ( m2s_ex_clk_enable ),
+// DEP 
+// DEP     .debug                  ( debug_pie_ex_dq )
+// DEP   );
+// DEP 
+// DEP   clockdiv clockdiv_ex_dq (
+// DEP     .ref_clk_0              ( s2m_ex_clk_in ),
+// DEP     .ref_clk_1              ( core_clk ),
+// DEP     .ref_select             ( m2s_ex_clk_refsel ),
+// DEP     .divider                ( m2s_ex_clk_divider ),
+// DEP     .enable                 ( m2s_ex_clk_enable ),
+// DEP     .output_clk             ( m2s_ex_clk_out )
+// DEP   );
+// DEP 
+// DEP `endif
+// DEP 
+// DEP   emac0 emac01 (
+// DEP     .core_clk               ( core_clk ),
+// DEP     .core_reset             ( core_reset ),
+// DEP     .enet_msmtxc25e6_in     ( enet_clk25e6ltx_in ),
+// DEP     .enet_msmtxd_out        ( enet_ltxd_out ),
+// DEP     .enet_msmtxen_out       ( enet_ltxen_out ),
+// DEP     .enet_msmtxer_out       ( enet_ltxer_out ),
+// DEP     .enet_msmrxc25e6_in     ( enet_clk25e6lrx_in ),
+// DEP     .enet_msmrxd_in         ( enet_lrxd_in ),
+// DEP     .enet_msmrxdv_in        ( enet_lrxdv_in ),
+// DEP     .enet_msmrxer_in        ( enet_lrxer_in ),
+// DEP     .enet_mscrs_in          ( enet_lcrs_in ),
+// DEP     .enet_mscol_in          ( enet_lcol_in ),
+// DEP     .enet_mdc_out           ( enet_mdc_out ),
+// DEP     .enet_mdio_in           ( enet_mdio_in ),
+// DEP     .enet_mdio_out          ( enet_mdio_out ),
+// DEP     .enet_mdio_en           ( enet_mdio_en ),
+// DEP     .rx_cmd                 ( emac0_rx_cmd ),
+// DEP     .rx_valid               ( emac0_rx_valid ),
+// DEP     .rx_data                ( emac0_rx_data ),
+// DEP     .rx_ready               ( emac0_rx_ready ),
+// DEP     .tx_cmd                 ( emac0_tx_cmd ),
+// DEP     .tx_valid               ( emac0_tx_valid ),
+// DEP     .tx_data                ( emac0_tx_data ),
+// DEP     .tx_ready               ( emac0_tx_ready ),
+// DEP     .tx_error               ( ),
+// DEP     .tx_sop_count           ( ),
+// DEP     .tx_sop_detect          ( ),
+// DEP     .emac_wb_stb            ( emac0_wb_stb ),
+// DEP     .emac_wb_rdata          ( emac0_wb_rdata ),
+// DEP     .emac_wb_wdata          ( emac_wb_wdata ),
+// DEP     .emac_wb_waddr          ( emac_wb_waddr ),
+// DEP     .emac_wb_raddr          ( emac_wb_raddr ),
+// DEP     .emac_wb_sel            ( emac_wb_sel ),
+// DEP     .emac_wb_we             ( emac_wb_we ),
+// DEP     .emac_wb_cyc            ( emac_wb_cyc ),
+// DEP     .irq                    ( emac0_irq ),
+// DEP     .debug                  ( debug_emac0 )
+// DEP   );
+// DEP 
+// DEP   emac1 emac11 (
+// DEP     .core_clk               ( core_clk ),
+// DEP     .core_reset             ( core_reset ),
+// DEP     .enet_msmtxc25e6_in     ( enet_clk25e6utx_in ),
+// DEP     .enet_msmtxd_out        ( enet_utxd_out ),
+// DEP     .enet_msmtxen_out       ( enet_utxen_out ),
+// DEP     .enet_msmtxer_out       ( enet_utxer_out ),
+// DEP     .enet_msmrxc25e6_in     ( enet_clk25e6urx_in ),
+// DEP     .enet_msmrxd_in         ( enet_urxd_in ),
+// DEP     .enet_msmrxdv_in        ( enet_urxdv_in ),
+// DEP     .enet_msmrxer_in        ( enet_urxer_in ),
+// DEP     .enet_mscrs_in          ( enet_ucrs_in ),
+// DEP     .enet_mscol_in          ( enet_ucol_in ),
+// DEP     .enet_mdc_out           ( ),
+// DEP     .enet_mdio_in           ( 1'b1 ),
+// DEP     .enet_mdio_out          ( ),
+// DEP     .enet_mdio_en           ( ),
+// DEP     .rx_cmd                 ( emac1_rx_cmd ),
+// DEP     .rx_valid               ( emac1_rx_valid ),
+// DEP     .rx_data                ( emac1_rx_data ),
+// DEP     .rx_ready               ( emac1_rx_ready ),
+// DEP     .tx_cmd                 ( emac1_tx_cmd ),
+// DEP     .tx_valid               ( emac1_tx_valid ),
+// DEP     .tx_data                ( emac1_tx_data ),
+// DEP     .tx_ready               ( emac1_tx_ready ),
+// DEP     .tx_error               ( ),
+// DEP     .tx_sop_count           ( ),
+// DEP     .tx_sop_detect          ( ),
+// DEP     .emac_wb_stb            ( emac1_wb_stb ),
+// DEP     .emac_wb_rdata          ( emac1_wb_rdata ),
+// DEP     .emac_wb_wdata          ( emac_wb_wdata ),
+// DEP     .emac_wb_waddr          ( emac_wb_waddr ),
+// DEP     .emac_wb_raddr          ( emac_wb_raddr ),
+// DEP     .emac_wb_sel            ( emac_wb_sel ),
+// DEP     .emac_wb_we             ( emac_wb_we ),
+// DEP     .emac_wb_cyc            ( emac_wb_cyc ),
+// DEP     .irq                    ( emac1_irq ),
+// DEP     .debug                  ( debug_emac1 )
+// DEP   );
+// DEP 
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------
+// Top level processor ring demo
+//-----------------------------------------------------------------------------
+
+csl_unit demo {
+//inout           cpu_clk65p536e6;        // System Processor Clock
+
+csl_port           mitch_clk133e6(input);         // core clock
+csl_port           mitch_clk12p288e6(input);      // boot clock
+
+csl_port           mitch_devclr_n(input);         // global reset
+
+// interfaces
+m2s_ifc m2s_ifc;
+s2m_ifc s2m_ifc;
+stella_ifc stella_ifc;
+dsp_tx_ifc dsp_tx_ifc;
+dsp_rx_ifc dsp_rx_ifc;
+dsp_spi_ifc dsp_spi_ifc;
+enet_lcl_ifc enet_lcl_ifc;
+enet_ulink_ifc enet_ulink_ifc;
+sram_ifc sram;
+cpu_ifc cpu_ifc;
+i2c_ifc i2c_ifc;
+clk_ifc clk_ifc;
+
+
+csl_port         enet_reset_n(output);           // enet mac reset
+csl_port         enet_mdc(output);               // enet mdio clk
+csl_port         enet_mdio(inout);               // enet mdio data
+
+csl_port         dsp_reset_n(output);            // blackfin reset
+
+csl_port         user_reset_n(output);           // user i/f reset
+
+csl_port         user_recovery_n(input);        // recovery button
+
+csl_port         fan_pwm(output);                // fan pwm csl_output
+
+csl_port         mitch_debug(output, 9);            // debug pins
+
+// Unit instances
+
+sram0 sram0;
+debug debug;
+pie_eth_nq1 pie_eth_nq1;
+// emac0 emac00;
+// emac1 emac11;
+// DEP pie_eth_dq  pie_eth_dq1 ;
+// DEP pie_eth_nq0 pie_eth_nq01;
+// DEP pie_eth_nq1 pie_eth_nq11;
+// DEP pie_eth_dq  pie_eth_dq1 ;
+// DEP pie_eth_nq0 pie_eth_nq01;
+// DEP pie_eth_nq1 pie_eth_nq11;
+// DEP pie_aud_nq  pie_aud_nq1 ;
+// DEP pie_aud_dq  pie_aud_dq1 ;
+// DEP pie_ex_nq   pie_ex_nq1  ;
+// DEP pie_ex_dq   pie_ex_dq1  ;
+// DEP pie_eth_dq  pie_eth_dq1 ;
+// DEP pie_eth_nq0 pie_eth_nq01;
+// DEP pie_eth_nq1 pie_eth_nq11;
+
+demo () {} 
+};
+
+
+// DEP // DEP //-----------------------------------------------------------------------------
+// DEP // Ethernet I/O
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   io_oc io_enet_mdc (
+// DEP     .pin                    ( enet_mdc ),
+// DEP     .data_out               ( enet_mdc_out )
+// DEP   );
+// DEP 
+// DEP   io_bct io_enet_mdio (
+// DEP     .pin                    ( enet_mdio ),
+// DEP     .data_in                ( enet_mdio_in ),
+// DEP     .data_out               ( enet_mdio_out ),
+// DEP     .output_en              ( enet_mdio_en )
+// DEP   );
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // 852 host I/O (cpu) (translate to 0=lsb internally)
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   // Bidir buffer on cpu clock
+// DEP   // Input clock is used to sample incoming cpu signals
+// DEP 
+// DEP //  io_bc io_cpu_clk65p536e6 (
+// DEP //    .pin                    ( cpu_clk65p536e6 ),
+// DEP //    .data_in                ( cpu_clk_in ),
+// DEP //    .data_out               ( ~cpu_clk )
+// DEP //  );
+// DEP 
+// DEP   io_osr io_cpu_poreset_n (
+// DEP     .pin                    ( cpu_poreset_n ),
+// DEP     .reset                  ( boot_reset ),
+// DEP     .clk_out                ( boot_clk ),
+// DEP     .data_out               ( cpu_poreset_out_n )
+// DEP   );
+// DEP 
+// DEP   io_isr io_cpu_hreset_n (
+// DEP     .pin                    ( cpu_hreset_n ),
+// DEP     .reset                  ( boot_reset ),
+// DEP     .clk_in                 ( boot_clk ),
+// DEP     .data_in                ( cpu_hreset_in_n )
+// DEP   );
+// DEP 
+// DEP   io_isr io_cpu_sreset_n (
+// DEP     .pin                    ( cpu_sreset_n ),
+// DEP     .reset                  ( boot_reset ),
+// DEP     .clk_in                 ( boot_clk ),
+// DEP     .data_in                ( cpu_sreset_in_n )
+// DEP   );
+// DEP 
+// DEP assign cpu_clk_in = cpu_clk;
+// DEP 
+// DEP   io_ospt io_cpu_irq_n_0 (
+// DEP     .pin                    ( cpu_irq_n[0] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_irq_out_n[0] ),
+// DEP     .output_en              ( cpu_irq_en[0] )
+// DEP   );
+// DEP 
+// DEP   io_ospt io_cpu_irq_n_1 (
+// DEP     .pin                    ( cpu_irq_n[1] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_irq_out_n[1] ),
+// DEP     .output_en              ( cpu_irq_en[1] )
+// DEP   );
+// DEP 
+// DEP   io_ospt io_cpu_irq_n_2 (
+// DEP     .pin                    ( cpu_irq_n[2] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_irq_out_n[2] ),
+// DEP     .output_en              ( cpu_irq_en[2] )
+// DEP   );
+// DEP 
+// DEP   io_ospt io_cpu_irq_n_3 (
+// DEP     .pin                    ( cpu_irq_n[3] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_irq_out_n[3] ),
+// DEP     .output_en              ( cpu_irq_en[3] )
+// DEP   );
+// DEP 
+// DEP   io_ospt io_cpu_irq_n_4 (
+// DEP     .pin                    ( cpu_irq_n[4] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_irq_out_n[4] ),
+// DEP     .output_en              ( cpu_irq_en[4] )
+// DEP   );
+// DEP 
+// DEP   io_ospt io_cpu_irq_n_5 (
+// DEP     .pin                    ( cpu_irq_n[5] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_irq_out_n[5] ),
+// DEP     .output_en              ( cpu_irq_en[5] )
+// DEP   );
+// DEP 
+// DEP   io_ospt io_cpu_irq_n_6 (
+// DEP     .pin                    ( cpu_irq_n[6] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_irq_out_n[6] ),
+// DEP     .output_en              ( cpu_irq_en[6] )
+// DEP   );
+// DEP 
+// DEP   io_ospt io_cpu_irq_n_7 (
+// DEP     .pin                    ( cpu_irq_n[7] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_irq_out_n[7] ),
+// DEP     .output_en              ( cpu_irq_en[7] )
+// DEP   );
+// DEP 
+// DEP   io_ospt io_cpu_bi_n (
+// DEP     .pin                    ( cpu_bi_n ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_bi_out_n ),
+// DEP     .output_en              ( cpu_bi_en )
+// DEP   );
+// DEP 
+// DEP   io_ospt io_cpu_ta_n (
+// DEP     .pin                    ( cpu_ta_n ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_ta_out_n ),
+// DEP     .output_en              ( cpu_ta_en )
+// DEP   );
+// DEP 
+// DEP   io_ospt io_cpu_tea_n (
+// DEP     .pin                    ( cpu_tea_n ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_tea_out_n ),
+// DEP     .output_en              ( cpu_tea_en )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_csboot_n (
+// DEP     .pin                    ( cpu_csboot_n ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_csboot_in_n )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_cs_n (
+// DEP     .pin                    ( cpu_cs_n ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_cs_in_n )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_ts_n (
+// DEP     .pin                    ( cpu_ts_n ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_ts_in_n )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_tsiz_n_0 (
+// DEP     .pin                    ( cpu_tsiz[0] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_tsiz0_in )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_tsiz_n_1 (
+// DEP     .pin                    ( cpu_tsiz[1] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_tsiz1_in )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_rd_wr_n (
+// DEP     .pin                    ( cpu_rd_wr_n ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_rd_wr_in_n )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_burst_n (
+// DEP     .pin                    ( cpu_burst_n ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_burst_in_n )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_bdip_n (
+// DEP     .pin                    ( cpu_bdip_n ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_bdip_in_n )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_31 (
+// DEP     .pin                    ( cpu_a[31] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[0] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_30 (
+// DEP     .pin                    ( cpu_a[30] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[1] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_29 (
+// DEP     .pin                    ( cpu_a[29] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[2] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_28 (
+// DEP     .pin                    ( cpu_a[28] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[3] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_27 (
+// DEP     .pin                    ( cpu_a[27] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[4] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_26 (
+// DEP     .pin                    ( cpu_a[26] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[5] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_25 (
+// DEP     .pin                    ( cpu_a[25] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[6] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_24 (
+// DEP     .pin                    ( cpu_a[24] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[7] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_23 (
+// DEP     .pin                    ( cpu_a[23] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[8] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_22 (
+// DEP     .pin                    ( cpu_a[22] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[9] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_21 (
+// DEP     .pin                    ( cpu_a[21] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[10] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_20 (
+// DEP     .pin                    ( cpu_a[20] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[11] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_19 (
+// DEP     .pin                    ( cpu_a[19] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[12] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_18 (
+// DEP     .pin                    ( cpu_a[18] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[13] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_17 (
+// DEP     .pin                    ( cpu_a[17] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[14] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_16 (
+// DEP     .pin                    ( cpu_a[16] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[15] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_15 (
+// DEP     .pin                    ( cpu_a[15] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[16] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_14 (
+// DEP     .pin                    ( cpu_a[14] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[17] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_13 (
+// DEP     .pin                    ( cpu_a[13] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[18] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_12 (
+// DEP     .pin                    ( cpu_a[12] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[19] )
+// DEP   );
+// DEP 
+// DEP   io_ispx io_cpu_a_11 (
+// DEP     .pin                    ( cpu_a[11] ),
+// DEP     .preset                 ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_a_in[20] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_31 (
+// DEP     .pin                    ( cpu_d[31] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[0] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[0] ),
+// DEP     .output_en              ( cpu_d_en[0] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_30 (
+// DEP     .pin                    ( cpu_d[30] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[1] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[1] ),
+// DEP     .output_en              ( cpu_d_en[1] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_29 (
+// DEP     .pin                    ( cpu_d[29] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[2] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[2] ),
+// DEP     .output_en              ( cpu_d_en[2] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_28 (
+// DEP     .pin                    ( cpu_d[28] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[3] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[3] ),
+// DEP     .output_en              ( cpu_d_en[3] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_27 (
+// DEP     .pin                    ( cpu_d[27] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[4] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[4] ),
+// DEP     .output_en              ( cpu_d_en[4] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_26 (
+// DEP     .pin                    ( cpu_d[26] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[5] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[5] ),
+// DEP     .output_en              ( cpu_d_en[5] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_25 (
+// DEP     .pin                    ( cpu_d[25] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[6] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[6] ),
+// DEP     .output_en              ( cpu_d_en[6] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_24 (
+// DEP     .pin                    ( cpu_d[24] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[7] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[7] ),
+// DEP     .output_en              ( cpu_d_en[7] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_23 (
+// DEP     .pin                    ( cpu_d[23] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[8] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[8] ),
+// DEP     .output_en              ( cpu_d_en[8] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_22 (
+// DEP     .pin                    ( cpu_d[22] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[9] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[9] ),
+// DEP     .output_en              ( cpu_d_en[9] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_21 (
+// DEP     .pin                    ( cpu_d[21] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[10] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[10] ),
+// DEP     .output_en              ( cpu_d_en[10] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_20 (
+// DEP     .pin                    ( cpu_d[20] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[11] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[11] ),
+// DEP     .output_en              ( cpu_d_en[11] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_19 (
+// DEP     .pin                    ( cpu_d[19] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[12] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[12] ),
+// DEP     .output_en              ( cpu_d_en[12] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_18 (
+// DEP     .pin                    ( cpu_d[18] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[13] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[13] ),
+// DEP     .output_en              ( cpu_d_en[13] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_17 (
+// DEP     .pin                    ( cpu_d[17] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[14] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[14] ),
+// DEP     .output_en              ( cpu_d_en[14] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_16 (
+// DEP     .pin                    ( cpu_d[16] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[15] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[15] ),
+// DEP     .output_en              ( cpu_d_en[15] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_15 (
+// DEP     .pin                    ( cpu_d[15] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[16] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[16] ),
+// DEP     .output_en              ( cpu_d_en[16] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_14 (
+// DEP     .pin                    ( cpu_d[14] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[17] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[17] ),
+// DEP     .output_en              ( cpu_d_en[17] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_13 (
+// DEP     .pin                    ( cpu_d[13] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[18] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[18] ),
+// DEP     .output_en              ( cpu_d_en[18] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_12 (
+// DEP     .pin                    ( cpu_d[12] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[19] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[19] ),
+// DEP     .output_en              ( cpu_d_en[19] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_11 (
+// DEP     .pin                    ( cpu_d[11] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[20] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[20] ),
+// DEP     .output_en              ( cpu_d_en[20] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_10 (
+// DEP     .pin                    ( cpu_d[10] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[21] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[21] ),
+// DEP     .output_en              ( cpu_d_en[21] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_9 (
+// DEP     .pin                    ( cpu_d[9] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[22] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[22] ),
+// DEP     .output_en              ( cpu_d_en[22] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_8 (
+// DEP     .pin                    ( cpu_d[8] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[23] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[23] ),
+// DEP     .output_en              ( cpu_d_en[23] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_7 (
+// DEP     .pin                    ( cpu_d[7] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[24] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[24] ),
+// DEP     .output_en              ( cpu_d_en[24] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_6 (
+// DEP     .pin                    ( cpu_d[6] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[25] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[25] ),
+// DEP     .output_en              ( cpu_d_en[25] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_5 (
+// DEP     .pin                    ( cpu_d[5] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[26] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[26] ),
+// DEP     .output_en              ( cpu_d_en[26] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_4 (
+// DEP     .pin                    ( cpu_d[4] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[27] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[27] ),
+// DEP     .output_en              ( cpu_d_en[27] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_3 (
+// DEP     .pin                    ( cpu_d[3] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[28] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[28] ),
+// DEP     .output_en              ( cpu_d_en[28] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_2 (
+// DEP     .pin                    ( cpu_d[2] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[29] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[29] ),
+// DEP     .output_en              ( cpu_d_en[29] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_1 (
+// DEP     .pin                    ( cpu_d[1] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[30] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[30] ),
+// DEP     .output_en              ( cpu_d_en[30] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_cpu_d_0 (
+// DEP     .pin                    ( cpu_d[0] ),
+// DEP     .reset                  ( cpu_reset ),
+// DEP     .clk_capture            ( cpu_clk_in ),
+// DEP     .clk_resync             ( ~cpu_clk_in ),
+// DEP     .clk_in                 ( cpu_clk ),
+// DEP     .data_in                ( cpu_d_in[31] ),
+// DEP     .clk_out                ( cpu_clk ),
+// DEP     .data_out               ( cpu_d_out[31] ),
+// DEP     .output_en              ( cpu_d_en[31] )
+// DEP   );
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // SRAM I/O
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   // Bidir buffer on ethernet clock
+// DEP   // Input clock is used to sample incoming sram read data
+// DEP 
+// DEP   io_bk io_sram_clk133e6 (
+// DEP     .pin                    ( sram_clk133e6 ),
+// DEP     .clk_in                 ( sram_clk_in ),
+// DEP     .clk_out                ( ~core_clk )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_ce_n (
+// DEP     .pin                    ( sram_ce_n ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_ce_out_n )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_oe_n (
+// DEP     .pin                    ( sram_oe_n ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_oe_out_n )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_we_n (
+// DEP     .pin                    ( sram_we_n ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_we_out_n )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_bwa (
+// DEP     .pin                    ( sram_bwa_n ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_bwa_out )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_bwb (
+// DEP     .pin                    ( sram_bwb_n ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_bwb_out )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_bwc (
+// DEP     .pin                    ( sram_bwc_n ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_bwc_out )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_bwd (
+// DEP     .pin                    ( sram_bwd_n ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_bwd_out )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_0 (
+// DEP     .pin                    ( sram_a[0] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[0] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_1 (
+// DEP     .pin                    ( sram_a[1] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[1] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_2 (
+// DEP     .pin                    ( sram_a[2] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[2] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_3 (
+// DEP     .pin                    ( sram_a[3] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[3] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_4 (
+// DEP     .pin                    ( sram_a[4] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[4] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_5 (
+// DEP     .pin                    ( sram_a[5] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[5] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_6 (
+// DEP     .pin                    ( sram_a[6] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[6] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_7 (
+// DEP     .pin                    ( sram_a[7] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[7] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_8 (
+// DEP     .pin                    ( sram_a[8] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[8] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_9 (
+// DEP     .pin                    ( sram_a[9] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[9] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_10 (
+// DEP     .pin                    ( sram_a[10] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[10] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_11 (
+// DEP     .pin                    ( sram_a[11] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[11] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_12 (
+// DEP     .pin                    ( sram_a[12] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[12] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_13 (
+// DEP     .pin                    ( sram_a[13] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[13] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_14 (
+// DEP     .pin                    ( sram_a[14] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[14] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_15 (
+// DEP     .pin                    ( sram_a[15] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[15] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_16 (
+// DEP     .pin                    ( sram_a[16] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[16] )
+// DEP   );
+// DEP 
+// DEP   io_osp io_sram_a_17 (
+// DEP     .pin                    ( sram_a[17] ),
+// DEP     .preset                 ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_a_out[17] )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqa_0 (
+// DEP     .pin                    ( sram_dqa[0] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqa_in[0] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqa_out[0] ),
+// DEP     .output_en              ( sram_dqa_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqa_1 (
+// DEP     .pin                    ( sram_dqa[1] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqa_in[1] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqa_out[1] ),
+// DEP     .output_en              ( sram_dqa_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqa_2 (
+// DEP     .pin                    ( sram_dqa[2] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqa_in[2] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqa_out[2] ),
+// DEP     .output_en              ( sram_dqa_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqa_3 (
+// DEP     .pin                    ( sram_dqa[3] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqa_in[3] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqa_out[3] ),
+// DEP     .output_en              ( sram_dqa_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqa_4 (
+// DEP     .pin                    ( sram_dqa[4] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqa_in[4] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqa_out[4] ),
+// DEP     .output_en              ( sram_dqa_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqa_5 (
+// DEP     .pin                    ( sram_dqa[5] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqa_in[5] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqa_out[5] ),
+// DEP     .output_en              ( sram_dqa_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqa_6 (
+// DEP     .pin                    ( sram_dqa[6] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqa_in[6] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqa_out[6] ),
+// DEP     .output_en              ( sram_dqa_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqa_7 (
+// DEP     .pin                    ( sram_dqa[7] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqa_in[7] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqa_out[7] ),
+// DEP     .output_en              ( sram_dqa_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqa_8 (
+// DEP     .pin                    ( sram_dqa[8] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqa_in[8] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqa_out[8] ),
+// DEP     .output_en              ( sram_dqa_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqb_0 (
+// DEP     .pin                    ( sram_dqb[0] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqb_in[0] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqb_out[0] ),
+// DEP     .output_en              ( sram_dqb_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqb_1 (
+// DEP     .pin                    ( sram_dqb[1] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqb_in[1] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqb_out[1] ),
+// DEP     .output_en              ( sram_dqb_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqb_2 (
+// DEP     .pin                    ( sram_dqb[2] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqb_in[2] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqb_out[2] ),
+// DEP     .output_en              ( sram_dqb_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqb_3 (
+// DEP     .pin                    ( sram_dqb[3] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqb_in[3] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqb_out[3] ),
+// DEP     .output_en              ( sram_dqb_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqb_4 (
+// DEP     .pin                    ( sram_dqb[4] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqb_in[4] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqb_out[4] ),
+// DEP     .output_en              ( sram_dqb_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqb_5 (
+// DEP     .pin                    ( sram_dqb[5] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqb_in[5] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqb_out[5] ),
+// DEP     .output_en              ( sram_dqb_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqb_6 (
+// DEP     .pin                    ( sram_dqb[6] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqb_in[6] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqb_out[6] ),
+// DEP     .output_en              ( sram_dqb_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqb_7 (
+// DEP     .pin                    ( sram_dqb[7] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqb_in[7] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqb_out[7] ),
+// DEP     .output_en              ( sram_dqb_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqb_8 (
+// DEP     .pin                    ( sram_dqb[8] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqb_in[8] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqb_out[8] ),
+// DEP     .output_en              ( sram_dqb_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqc_0 (
+// DEP     .pin                    ( sram_dqc[0] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqc_in[0] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqc_out[0] ),
+// DEP     .output_en              ( sram_dqc_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqc_1 (
+// DEP     .pin                    ( sram_dqc[1] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqc_in[1] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqc_out[1] ),
+// DEP     .output_en              ( sram_dqc_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqc_2 (
+// DEP     .pin                    ( sram_dqc[2] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqc_in[2] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqc_out[2] ),
+// DEP     .output_en              ( sram_dqc_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqc_3 (
+// DEP     .pin                    ( sram_dqc[3] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqc_in[3] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqc_out[3] ),
+// DEP     .output_en              ( sram_dqc_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqc_4 (
+// DEP     .pin                    ( sram_dqc[4] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqc_in[4] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqc_out[4] ),
+// DEP     .output_en              ( sram_dqc_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqc_5 (
+// DEP     .pin                    ( sram_dqc[5] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqc_in[5] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqc_out[5] ),
+// DEP     .output_en              ( sram_dqc_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqc_6 (
+// DEP     .pin                    ( sram_dqc[6] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqc_in[6] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqc_out[6] ),
+// DEP     .output_en              ( sram_dqc_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqc_7 (
+// DEP     .pin                    ( sram_dqc[7] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqc_in[7] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqc_out[7] ),
+// DEP     .output_en              ( sram_dqc_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqc_8 (
+// DEP     .pin                    ( sram_dqc[8] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqc_in[8] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqc_out[8] ),
+// DEP     .output_en              ( sram_dqc_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqd_0 (
+// DEP     .pin                    ( sram_dqd[0] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqd_in[0] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqd_out[0] ),
+// DEP     .output_en              ( sram_dqd_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqd_1 (
+// DEP     .pin                    ( sram_dqd[1] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqd_in[1] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqd_out[1] ),
+// DEP     .output_en              ( sram_dqd_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqd_2 (
+// DEP     .pin                    ( sram_dqd[2] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqd_in[2] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqd_out[2] ),
+// DEP     .output_en              ( sram_dqd_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqd_3 (
+// DEP     .pin                    ( sram_dqd[3] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqd_in[3] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqd_out[3] ),
+// DEP     .output_en              ( sram_dqd_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqd_4 (
+// DEP     .pin                    ( sram_dqd[4] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqd_in[4] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqd_out[4] ),
+// DEP     .output_en              ( sram_dqd_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqd_5 (
+// DEP     .pin                    ( sram_dqd[5] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqd_in[5] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqd_out[5] ),
+// DEP     .output_en              ( sram_dqd_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqd_6 (
+// DEP     .pin                    ( sram_dqd[6] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqd_in[6] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqd_out[6] ),
+// DEP     .output_en              ( sram_dqd_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqd_7 (
+// DEP     .pin                    ( sram_dqd[7] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqd_in[7] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqd_out[7] ),
+// DEP     .output_en              ( sram_dqd_en )
+// DEP   );
+// DEP 
+// DEP   io_bsrxt io_sram_dqd_8 (
+// DEP     .pin                    ( sram_dqd[8] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_capture            ( sram_clk_in ),
+// DEP     .clk_resync             ( ~sram_clk_in ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( sram_dqd_in[8] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( sram_dqd_out[8] ),
+// DEP     .output_en              ( sram_dqd_en )
+// DEP   );
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Clock pll spi I/O
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   io_osr io_clk_sclk (
+// DEP     .pin                    ( clk_sclk ),
+// DEP     .reset                  ( flashctl_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( clk_sclk_out )
+// DEP   );
+// DEP 
+// DEP   io_osr io_clk_data (
+// DEP     .pin                    ( clk_data ),
+// DEP     .reset                  ( flashctl_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( clk_data_out )
+// DEP   );
+// DEP 
+// DEP   io_osr io_clk_strobe_m (
+// DEP     .pin                    ( clk_strobe_m ),
+// DEP     .reset                  ( flashctl_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( clk_strobe_m_out )
+// DEP   );
+// DEP 
+// DEP   io_osr io_clk_strobe_s (
+// DEP     .pin                    ( clk_strobe_s ),
+// DEP     .reset                  ( flashctl_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( clk_strobe_s_out )
+// DEP   );
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Sport I/O
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   io_ok io_dsp_clkrs03e6 (
+// DEP     .pin                    ( dsp_clkrs0 ),
+// DEP     .clk_out                ( dsp_clkrs0_out )
+// DEP   );
+// DEP 
+// DEP   io_osr io_dsp_dpr0 (
+// DEP     .pin                    ( dsp_dpr0 ),
+// DEP     .reset                  ( sport_reset ),
+// DEP     .clk_out                ( dsp_clkrs0_out ),
+// DEP     .data_out               ( dsp_dpr0_out )
+// DEP   );
+// DEP 
+// DEP   io_osr io_dsp_dsr0 (
+// DEP     .pin                    ( dsp_dsr0 ),
+// DEP     .reset                  ( sport_reset ),
+// DEP     .clk_out                ( dsp_clkrs0_out ),
+// DEP     .data_out               ( dsp_dsr0_out )
+// DEP   );
+// DEP 
+// DEP   io_osr io_dsp_fsr0 (
+// DEP     .pin                    ( dsp_fsr0 ),
+// DEP     .reset                  ( sport_reset ),
+// DEP     .clk_out                ( dsp_clkrs0_out ),
+// DEP     .data_out               ( dsp_fsr0_out )
+// DEP   );
+// DEP 
+// DEP   io_ic io_dsp_clkts0 (
+// DEP     .pin                    ( dsp_clkts0 ),
+// DEP     .data_in                ( dsp_clkts0_in )
+// DEP   );
+// DEP 
+// DEP   io_isr io_dsp_dpt0 (
+// DEP     .pin                    ( dsp_dpt0 ),
+// DEP     .reset                  ( sport_reset ),
+// DEP     .clk_in                 ( ~dsp_clkts0_in ),
+// DEP     .data_in                ( dsp_dpt0_in )
+// DEP   );
+// DEP 
+// DEP   io_isr io_dsp_dst0 (
+// DEP     .pin                    ( dsp_dst0 ),
+// DEP     .reset                  ( sport_reset ),
+// DEP     .clk_in                 ( ~dsp_clkts0_in ),
+// DEP     .data_in                ( dsp_dst0_in )
+// DEP   );
+// DEP 
+// DEP   io_isr io_dsp_fst0 (
+// DEP     .pin                    ( dsp_fst0 ),
+// DEP     .reset                  ( sport_reset ),
+// DEP     .clk_in                 ( ~dsp_clkts0_in ),
+// DEP     .data_in                ( dsp_fst0_in )
+// DEP   );
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Boot spi I/O
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   io_ic io_dsp_spisck (
+// DEP     .pin                    ( dsp_spisck ),
+// DEP     .data_in                ( dsp_spisck_in )
+// DEP   );
+// DEP 
+// DEP   io_ic io_dsp_spibootcs (
+// DEP     .pin                    ( dsp_spibootcs ),
+// DEP     .data_in                ( dsp_spibootcs_in )
+// DEP   );
+// DEP 
+// DEP   io_isr io_dsp_spimosi (
+// DEP     .pin                    ( dsp_spimosi ),
+// DEP     .reset                  ( dsp_spibootcs_in ),
+// DEP     .clk_in                 ( dsp_spisck_in ),
+// DEP     .data_in                ( dsp_spimosi_in )
+// DEP   );
+// DEP 
+// DEP   io_osrt io_dsp_spimiso (
+// DEP     .pin                    ( dsp_spimiso ),
+// DEP     .reset                  ( dsp_spibootcs_in ),
+// DEP     .clk_out                ( ~dsp_spisck_in ),
+// DEP     .data_out               ( dsp_spimiso_out ),
+// DEP     .output_en              ( ~dsp_spibootcs_in )
+// DEP   );
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Stella I/O
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   io_isr io_stella_status_n (
+// DEP     .pin                    ( stella_status_n ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( stella_status_in_n )
+// DEP   );
+// DEP 
+// DEP   io_isr io_stella_confdone (
+// DEP     .pin                    ( stella_confdone ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( stella_confdone_in )
+// DEP   );
+// DEP 
+// DEP   io_isr io_stella_initdone (
+// DEP     .pin                    ( stella_initdone ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( stella_initdone_in )
+// DEP   );
+// DEP 
+// DEP   io_isr io_stella_happy (
+// DEP     .pin                    ( stella_happy ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .data_in                ( stella_happy_in )
+// DEP   );
+// DEP 
+// DEP   io_osr io_stella_devclr_n (
+// DEP     .pin                    ( stella_devclr_n ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( stella_devclr_out_n )
+// DEP   );
+// DEP 
+// DEP   io_osr io_stella_msel_0 (
+// DEP     .pin                    ( stella_msel[0] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( stella_msel_out[0] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_stella_msel_1 (
+// DEP     .pin                    ( stella_msel[1] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( stella_msel_out[1] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_stella_msel_2 (
+// DEP     .pin                    ( stella_msel[2] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( stella_msel_out[2] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_stella_msel_3 (
+// DEP     .pin                    ( stella_msel[3] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( stella_msel_out[3] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_stella_ce_n (
+// DEP     .pin                    ( stella_ce_n ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( stella_ce_out_n )
+// DEP   );
+// DEP 
+// DEP   io_osrt io_stella_config_n (
+// DEP     .pin                    ( stella_config_n ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( 1'b0 ),
+// DEP     .output_en              ( ~stella_config_out_n )
+// DEP   );
+// DEP 
+// DEP   io_osr io_stella_dclk (
+// DEP     .pin                    ( stella_dclk ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( stella_dclk_out )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_0 (
+// DEP     .pin                    ( m2s_ex_d[0] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( m2s_ex_d_out[0] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_1 (
+// DEP     .pin                    ( m2s_ex_d[1] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( m2s_ex_d_out[1] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_2 (
+// DEP     .pin                    ( m2s_ex_d[2] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( m2s_ex_d_out[2] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_3 (
+// DEP     .pin                    ( m2s_ex_d[3] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( m2s_ex_d_out[3] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_4 (
+// DEP     .pin                    ( m2s_ex_d[4] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( m2s_ex_d_out[4] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_5 (
+// DEP     .pin                    ( m2s_ex_d[5] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( m2s_ex_d_out[5] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_6 (
+// DEP     .pin                    ( m2s_ex_d[6] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( m2s_ex_d_out[6] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_7 (
+// DEP     .pin                    ( m2s_ex_d[7] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .data_out               ( m2s_ex_d_out[7] )
+// DEP   );
+// DEP 
+// DEP //---------------------------------------------------------
+// DEP 
+// DEP   io_ok io_m2s_ex_clk (
+// DEP     .pin                    ( m2s_ex_clk ),
+// DEP     .clk_out                ( ~m2s_ex_clk_out )
+// DEP   );
+// DEP 
+// DEP   io_isr io_m2s_ex_ready (
+// DEP     .pin                    ( m2s_ex_ready ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_in                 ( ~m2s_ex_clk_out ),
+// DEP     .data_in                ( m2s_ex_ready_in )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_cmd (
+// DEP     .pin                    ( m2s_ex_cmd ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( m2s_ex_clk_out ),
+// DEP     .data_out               ( m2s_ex_cmd_out )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_valid (
+// DEP     .pin                    ( m2s_ex_valid ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( m2s_ex_clk_out ),
+// DEP     .data_out               ( m2s_ex_valid_out )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_8 (
+// DEP     .pin                    ( m2s_ex_d[8] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( m2s_ex_clk_out ),
+// DEP     .data_out               ( m2s_ex_d_out[8] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_9 (
+// DEP     .pin                    ( m2s_ex_d[9] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( m2s_ex_clk_out ),
+// DEP     .data_out               ( m2s_ex_d_out[9] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_10 (
+// DEP     .pin                    ( m2s_ex_d[10] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( m2s_ex_clk_out ),
+// DEP     .data_out               ( m2s_ex_d_out[10] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_11 (
+// DEP     .pin                    ( m2s_ex_d[11] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( m2s_ex_clk_out ),
+// DEP     .data_out               ( m2s_ex_d_out[11] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_12 (
+// DEP     .pin                    ( m2s_ex_d[12] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( m2s_ex_clk_out ),
+// DEP     .data_out               ( m2s_ex_d_out[12] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_13 (
+// DEP     .pin                    ( m2s_ex_d[13] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( m2s_ex_clk_out ),
+// DEP     .data_out               ( m2s_ex_d_out[13] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_14 (
+// DEP     .pin                    ( m2s_ex_d[14] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( m2s_ex_clk_out ),
+// DEP     .data_out               ( m2s_ex_d_out[14] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_m2s_ex_d_15 (
+// DEP     .pin                    ( m2s_ex_d[15] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( m2s_ex_clk_out ),
+// DEP     .data_out               ( m2s_ex_d_out[15] )
+// DEP   );
+// DEP 
+// DEP //---------------------------------------------------------
+// DEP 
+// DEP   io_ic io_s2m_ex_clk (
+// DEP     .pin                    ( s2m_ex_clk ),
+// DEP     .data_in                ( s2m_ex_clk_in )
+// DEP   );
+// DEP 
+// DEP   io_osr io_s2m_ex_ready (
+// DEP     .pin                    ( s2m_ex_ready ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_out                ( ~s2m_ex_clk_in ),
+// DEP     .data_out               ( s2m_ex_ready_out )
+// DEP   );
+// DEP 
+// DEP   io_isr io_s2m_ex_cmd (
+// DEP     .pin                    ( s2m_ex_cmd ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_in                 ( s2m_ex_clk_in ),
+// DEP     .data_in                ( s2m_ex_cmd_in )
+// DEP   );
+// DEP 
+// DEP   io_isr io_s2m_ex_valid (
+// DEP     .pin                    ( s2m_ex_valid ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_in                 ( s2m_ex_clk_in ),
+// DEP     .data_in                ( s2m_ex_valid_in )
+// DEP   );
+// DEP 
+// DEP   io_isr io_s2m_ex_d_0 (
+// DEP     .pin                    ( s2m_ex_d[0] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_in                 ( s2m_ex_clk_in ),
+// DEP     .data_in                ( s2m_ex_d_in[0] )
+// DEP   );
+// DEP 
+// DEP   io_isr io_s2m_ex_d_1 (
+// DEP     .pin                    ( s2m_ex_d[1] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_in                 ( s2m_ex_clk_in ),
+// DEP     .data_in                ( s2m_ex_d_in[1] )
+// DEP   );
+// DEP 
+// DEP   io_isr io_s2m_ex_d_2 (
+// DEP     .pin                    ( s2m_ex_d[2] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_in                 ( s2m_ex_clk_in ),
+// DEP     .data_in                ( s2m_ex_d_in[2] )
+// DEP   );
+// DEP 
+// DEP   io_isr io_s2m_ex_d_3 (
+// DEP     .pin                    ( s2m_ex_d[3] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_in                 ( s2m_ex_clk_in ),
+// DEP     .data_in                ( s2m_ex_d_in[3] )
+// DEP   );
+// DEP 
+// DEP   io_isr io_s2m_ex_d_4 (
+// DEP     .pin                    ( s2m_ex_d[4] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_in                 ( s2m_ex_clk_in ),
+// DEP     .data_in                ( s2m_ex_d_in[4] )
+// DEP   );
+// DEP 
+// DEP   io_isr io_s2m_ex_d_5 (
+// DEP     .pin                    ( s2m_ex_d[5] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_in                 ( s2m_ex_clk_in ),
+// DEP     .data_in                ( s2m_ex_d_in[5] )
+// DEP   );
+// DEP 
+// DEP   io_isr io_s2m_ex_d_6 (
+// DEP     .pin                    ( s2m_ex_d[6] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_in                 ( s2m_ex_clk_in ),
+// DEP     .data_in                ( s2m_ex_d_in[6] )
+// DEP   );
+// DEP 
+// DEP   io_isr io_s2m_ex_d_7 (
+// DEP     .pin                    ( s2m_ex_d[7] ),
+// DEP     .reset                  ( core_reset ),
+// DEP     .clk_in                 ( s2m_ex_clk_in ),
+// DEP     .data_in                ( s2m_ex_d_in[7] )
+// DEP   );
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Local Ethernet I/O
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   io_ic io_enet_clk25e6ltx (
+// DEP     .pin                    ( enet_clk25e6ltx ),
+// DEP     .data_in                ( enet_clk25e6ltx_in )
+// DEP   );
+// DEP 
+// DEP   io_osr io_enet_ltxd_0 (
+// DEP     .pin                    ( enet_ltxd[0] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_out                ( enet_clk25e6ltx_in ),
+// DEP     .data_out               ( enet_ltxd_out[0] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_enet_ltxd_1 (
+// DEP     .pin                    ( enet_ltxd[1] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_out                ( enet_clk25e6ltx_in ),
+// DEP     .data_out               ( enet_ltxd_out[1] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_enet_ltxd_2 (
+// DEP     .pin                    ( enet_ltxd[2] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_out                ( enet_clk25e6ltx_in ),
+// DEP     .data_out               ( enet_ltxd_out[2] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_enet_ltxd_3 (
+// DEP     .pin                    ( enet_ltxd[3] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_out                ( enet_clk25e6ltx_in ),
+// DEP     .data_out               ( enet_ltxd_out[3] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_enet_ltxen (
+// DEP     .pin                    ( enet_ltxen ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_out                ( enet_clk25e6ltx_in ),
+// DEP     .data_out               ( enet_ltxen_out )
+// DEP   );
+// DEP 
+// DEP   io_osr io_enet_ltxer (
+// DEP     .pin                    ( enet_ltxer ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_out                ( enet_clk25e6ltx_in ),
+// DEP     .data_out               ( enet_ltxer_out )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_lcrs (
+// DEP     .pin                    ( enet_lcrs ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6ltx_in ),
+// DEP     .data_in                ( enet_lcrs_in )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_lcol (
+// DEP     .pin                    ( enet_lcol ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6ltx_in ),
+// DEP     .data_in                ( enet_lcol_in )
+// DEP   );
+// DEP 
+// DEP //---------------------------------------------------------
+// DEP 
+// DEP   io_ic io_enet_clk25e6lrx (
+// DEP     .pin                    ( enet_clk25e6lrx ),
+// DEP     .data_in                ( enet_clk25e6lrx_in )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_lrxd_0 (
+// DEP     .pin                    ( enet_lrxd[0] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6lrx_in ),
+// DEP     .data_in                ( enet_lrxd_in[0] )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_lrxd_1 (
+// DEP     .pin                    ( enet_lrxd[1] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6lrx_in ),
+// DEP     .data_in                ( enet_lrxd_in[1] )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_lrxd_2 (
+// DEP     .pin                    ( enet_lrxd[2] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6lrx_in ),
+// DEP     .data_in                ( enet_lrxd_in[2] )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_lrxd_3 (
+// DEP     .pin                    ( enet_lrxd[3] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6lrx_in ),
+// DEP     .data_in                ( enet_lrxd_in[3] )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_lrxdv (
+// DEP     .pin                    ( enet_lrxdv ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6lrx_in ),
+// DEP     .data_in                ( enet_lrxdv_in )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_lrxer (
+// DEP     .pin                    ( enet_lrxer ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6lrx_in ),
+// DEP     .data_in                ( enet_lrxer_in )
+// DEP   );
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Uplink Ethernet I/O
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   io_ic io_enet_clk25e6utx (
+// DEP     .pin                    ( enet_clk25e6utx ),
+// DEP     .data_in                ( enet_clk25e6utx_in )
+// DEP   );
+// DEP 
+// DEP   io_osr io_enet_utxd_0 (
+// DEP     .pin                    ( enet_utxd[0] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_out                ( enet_clk25e6utx_in ),
+// DEP     .data_out               ( enet_utxd_out[0] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_enet_utxd_1 (
+// DEP     .pin                    ( enet_utxd[1] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_out                ( enet_clk25e6utx_in ),
+// DEP     .data_out               ( enet_utxd_out[1] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_enet_utxd_2 (
+// DEP     .pin                    ( enet_utxd[2] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_out                ( enet_clk25e6utx_in ),
+// DEP     .data_out               ( enet_utxd_out[2] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_enet_utxd_3 (
+// DEP     .pin                    ( enet_utxd[3] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_out                ( enet_clk25e6utx_in ),
+// DEP     .data_out               ( enet_utxd_out[3] )
+// DEP   );
+// DEP 
+// DEP   io_osr io_enet_utxen (
+// DEP     .pin                    ( enet_utxen ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_out                ( enet_clk25e6utx_in ),
+// DEP     .data_out               ( enet_utxen_out )
+// DEP   );
+// DEP 
+// DEP   io_osr io_enet_utxer (
+// DEP     .pin                    ( enet_utxer ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_out                ( enet_clk25e6utx_in ),
+// DEP     .data_out               ( enet_utxer_out )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_ucrs (
+// DEP     .pin                    ( enet_ucrs ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6utx_in ),
+// DEP     .data_in                ( enet_ucrs_in )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_ucol (
+// DEP     .pin                    ( enet_ucol ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6utx_in ),
+// DEP     .data_in                ( enet_ucol_in )
+// DEP   );
+// DEP 
+// DEP //---------------------------------------------------------
+// DEP 
+// DEP   io_ic io_enet_clk25e6urx (
+// DEP     .pin                    ( enet_clk25e6urx ),
+// DEP     .data_in                ( enet_clk25e6urx_in )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_urxd_0 (
+// DEP     .pin                    ( enet_urxd[0] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6urx_in ),
+// DEP     .data_in                ( enet_urxd_in[0] )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_urxd_1 (
+// DEP     .pin                    ( enet_urxd[1] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6urx_in ),
+// DEP     .data_in                ( enet_urxd_in[1] )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_urxd_2 (
+// DEP     .pin                    ( enet_urxd[2] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6urx_in ),
+// DEP     .data_in                ( enet_urxd_in[2] )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_urxd_3 (
+// DEP     .pin                    ( enet_urxd[3] ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6urx_in ),
+// DEP     .data_in                ( enet_urxd_in[3] )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_urxdv (
+// DEP     .pin                    ( enet_urxdv ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6urx_in ),
+// DEP     .data_in                ( enet_urxdv_in )
+// DEP   );
+// DEP 
+// DEP   io_isr io_enet_urxer (
+// DEP     .pin                    ( enet_urxer ),
+// DEP     .reset                  ( ~enet_reset_out_n ),
+// DEP     .clk_in                 ( enet_clk25e6urx_in ),
+// DEP     .data_in                ( enet_urxer_in )
+// DEP   );
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Connect the 400KHz I2C pins
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   io_oc io_i2c_clk_400 (
+// DEP     .pin                    ( i2c_clk_400 ),
+// DEP     .data_out               ( i2c_clk_400_out )
+// DEP   );
+// DEP 
+// DEP   io_bct io_i2c_dat_400 (
+// DEP     .pin                    ( i2c_dat_400 ),
+// DEP     .data_in                ( i2c_dat_400_in ),
+// DEP     .data_out               ( i2c_dat_400_out ),
+// DEP     .output_en              ( i2c_dat_400_en )
+// DEP   );
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Connect the 100KHz I2C pins
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   io_oc io_i2c_clk_100 (
+// DEP     .pin                    ( i2c_clk_100 ),
+// DEP     .data_out               ( i2c_clk_100_out )
+// DEP   );
+// DEP 
+// DEP   io_bct io_i2c_dat_100 (
+// DEP     .pin                    ( i2c_dat_100 ),
+// DEP     .data_in                ( i2c_dat_100_in ),
+// DEP     .data_out               ( i2c_dat_100_out ),
+// DEP     .output_en              ( i2c_dat_100_en )
+// DEP   );
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Connect the Transflsh I/O
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   io_ok io_ok1 (
+// DEP     .pin                    ( tflsh_clk25e6 ),
+// DEP     .clk_out                ( tflsh_clk_out )
+// DEP   );
+// DEP 
+// DEP   io_bsert io_tflsh_cmd (
+// DEP     .pin                    ( tflsh_cmd ),
+// DEP     .reset                  ( boot_reset ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .clk_en_in              ( tflsh_clk_rise ),
+// DEP     .data_in                ( tflsh_cmd_in ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .clk_en_out             ( tflsh_clk_fall ),
+// DEP     .data_out               ( tflsh_cmd_out ),
+// DEP     .output_en              ( tflsh_cmd_en )
+// DEP   );
+// DEP 
+// DEP   io_bsert io_tflsh_d_0 (
+// DEP     .reset                  ( boot_reset ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .clk_en_in              ( tflsh_clk_rise ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .clk_en_out             ( tflsh_clk_fall ),
+
+// DEP     .pin                    ( tflsh_d[0] ),
+// DEP     .data_in                ( tflsh_d_in[0] ),
+// DEP     .data_out               ( tflsh_d_out[0] ),
+// DEP     .output_en              ( tflsh_d_en )
+// DEP   );
+// DEP 
+// DEP   io_bsert io_tflsh_d_1 (
+// DEP     .pin                    ( tflsh_d[1] ),
+// DEP     .reset                  ( boot_reset ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .clk_en_in              ( tflsh_clk_rise ),
+// DEP     .data_in                ( tflsh_d_in[1] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .clk_en_out             ( tflsh_clk_fall ),
+// DEP     .data_out               ( tflsh_d_out[1] ),
+// DEP     .output_en              ( tflsh_d_en )
+// DEP   );
+// DEP 
+// DEP   io_bsert io_tflsh_d_2 (
+// DEP     .pin                    ( tflsh_d[2] ),
+// DEP     .reset                  ( boot_reset ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .clk_en_in              ( tflsh_clk_rise ),
+// DEP     .data_in                ( tflsh_d_in[2] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .clk_en_out             ( tflsh_clk_fall ),
+// DEP     .data_out               ( tflsh_d_out[2] ),
+// DEP     .output_en              ( tflsh_d_en )
+// DEP   );
+// DEP 
+// DEP   io_bsert io_tflsh_d_3 (
+// DEP     .pin                    ( tflsh_d[3] ),
+// DEP     .reset                  ( boot_reset ),
+// DEP     .clk_in                 ( core_clk ),
+// DEP     .clk_en_in              ( tflsh_clk_rise ),
+// DEP     .data_in                ( tflsh_d_in[3] ),
+// DEP     .clk_out                ( core_clk ),
+// DEP     .clk_en_out             ( tflsh_clk_fall ),
+// DEP     .data_out               ( tflsh_d_out[3] ),
+// DEP     .output_en              ( tflsh_d_en )
+// DEP   );
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Debug outputs
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   io_oc io_mitch_debug_0 (
+// DEP     .pin                    ( mitch_debug[0] ),
+// DEP     .data_out               ( mitch_debug_out[0] )
+// DEP   );
+// DEP 
+// DEP   io_oc io_mitch_debug_1 (
+// DEP     .pin                    ( mitch_debug[1] ),
+// DEP     .data_out               ( mitch_debug_out[1] )
+// DEP   );
+// DEP 
+// DEP   io_oc io_mitch_debug_2 (
+// DEP     .pin                    ( mitch_debug[2] ),
+// DEP     .data_out               ( mitch_debug_out[2] )
+// DEP   );
+// DEP 
+// DEP   io_oc io_mitch_debug_3 (
+// DEP     .pin                    ( mitch_debug[3] ),
+// DEP     .data_out               ( mitch_debug_out[3] )
+// DEP   );
+// DEP 
+// DEP   io_oc io_mitch_debug_4 (
+// DEP     .pin                    ( mitch_debug[4] ),
+// DEP     .data_out               ( mitch_debug_out[4] )
+// DEP   );
+// DEP 
+// DEP   io_oc io_mitch_debug_5 (
+// DEP     .pin                    ( mitch_debug[5] ),
+// DEP     .data_out               ( mitch_debug_out[5] )
+// DEP   );
+// DEP 
+// DEP   io_oc io_mitch_debug_6 (
+// DEP     .pin                    ( mitch_debug[6] ),
+// DEP     .data_out               ( mitch_debug_out[6] )
+// DEP   );
+// DEP 
+// DEP   io_oc io_mitch_debug_7 (
+// DEP     .pin                    ( mitch_debug[7] ),
+// DEP     .data_out               ( mitch_debug_out[7] )
+// DEP   );
+// DEP 
+// DEP   io_oc io_mitch_debug_8 (
+// DEP     .pin                    ( mitch_debug[8] ),
+// DEP     .data_out               ( mitch_debug_out[8] )
+// DEP   );
+// DEP 
+// DEP //-----------------------------------------------------------------------------
+// DEP // Misc I/O
+// DEP //-----------------------------------------------------------------------------
+// DEP 
+// DEP   io_oc io_fan_pwm (
+// DEP     .pin                    ( fan_pwm ),
+// DEP     .data_out               ( fan_pwm_out )
+// DEP   );
+// DEP 
+// DEP   io_ic io_mitch_devclr_n (
+// DEP     .pin                    ( mitch_devclr_n ),
+// DEP     .data_in                ( mitch_devclr_in_n )
+// DEP   );
+// DEP 
+// DEP   io_ic io_user_recovery_n (
+// DEP     .pin                    ( user_recovery_n ),
+// DEP     .data_in                ( user_recovery_in_n )
+// DEP   );
+// DEP 
+// DEP   io_osr io_enet_reset_n (
+// DEP     .pin                    ( enet_reset_n ),
+// DEP     .reset                  ( boot_reset ),
+// DEP     .clk_out                ( boot_clk ),
+// DEP     .data_out               ( enet_reset_out_n )
+// DEP   );
+// DEP 
+// DEP   io_osr io_dsp_reset_n (
+// DEP     .pin                    ( dsp_reset_n ),
+// DEP     .reset                  ( boot_reset ),
+// DEP     .clk_out                ( boot_clk ),
+// DEP     .data_out               ( dsp_reset_out_n )
+// DEP   );
+// DEP 
+// DEP   io_osr io_user_reset_n (
+// DEP     .pin                    ( user_reset_n ),
+// DEP     .reset                  ( boot_reset ),
+// DEP     .clk_out                ( boot_clk ),
+// DEP     .data_out               ( user_reset_out_n )
+// DEP   );
+// DEP 
+// DEP endmodule
+
+

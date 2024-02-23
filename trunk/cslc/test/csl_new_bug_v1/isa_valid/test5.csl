@@ -1,0 +1,122 @@
+//oanab
+//18 mar 2008
+
+csl_enum e_op {
+  a1=0,
+    a2=1,
+    a3=2,
+    a4=3,
+    a5=4
+    };
+
+csl_enum e_c {
+  x=0,
+    y=1
+    };
+
+csl_isa_field f_op {
+  f_op () {
+    set_type(opcode);
+    set_width(4);
+    set_enum(e_op);
+  }
+};
+
+csl_isa_field f_reg {
+  f_reg () {
+    set_type(rf_address);
+    set_width(6);
+  }
+};
+
+csl_isa_field f_c {
+  f_c () {
+    set_type(selector);
+    set_width(1);
+    set_enum(e_c);
+  }
+};
+
+csl_isa_field f_imm {
+  f_imm () {
+    set_type(constant);
+    set_width(5);
+  }
+};
+
+csl_isa_element root {
+  root () {
+    set_type(root_format);
+    set_width(16);
+  }
+};
+
+csl_isa_element base : root {
+  f_op f_op;
+  base () {
+    set_type(instr_format);
+    set_position(f_op,12);
+  }
+};
+
+csl_isa_element f1 : base {
+  f_reg f_reg;
+  f1 () {
+    set_type(instr_format);
+    set_position(f_reg,0);
+  }
+};
+
+csl_isa_element f2 : f1 {
+  f_imm f_imm;
+  f2 () {
+    set_type(instr_format);
+    set_position(f_imm,6);
+  }
+};
+
+csl_isa_element f3 : f1 {
+  f_c f_c;
+  f3 () {
+    set_type(instr_format);
+    set_previous(f_reg,f_c);
+  }
+};
+
+csl_isa_element a1_instr : f1 {
+  a1_instr () {
+    set_type(instr);
+    f_op.set_enum_item(a1);
+  }
+};
+
+csl_isa_element a2_instr : f1 {
+  a2_instr () {
+    set_type(instr);
+    f_op.set_enum_item(a2);
+  }
+};
+
+csl_isa_element a3_instr : f2 {
+  a3_instr () {
+    set_type(instr);
+    f_op.set_enum_item(a3);
+  }
+};
+
+csl_isa_element a4_instr : f3 {
+  a4_instr () {
+    set_type(instr);
+    f_op.set_enum_item(a4);
+    f_c.set_enum_item(x);
+  }
+};
+
+csl_isa_element a5_instr : f3 {
+  a5_instr () {
+    set_type(instr);
+    f_op.set_enum_item(a5);
+    f_c.set_enum_item(y);
+  }
+};
+

@@ -1,0 +1,113 @@
+// Author: cghaba
+// Date: April 4, 2008
+
+csl_enum e_const{
+  W_WIDTH=8,
+  SEL_WIDTH=3
+    };
+
+// define bitranges
+
+csl_bitrange br_w(8);
+csl_bitrange br_dw(36);  // double word
+csl_bitrange br_s(3);
+
+// define interfaces
+
+csl_interface ifcresclk{
+  csl_port reset(input);
+  csl_port clock(input);
+  ifcresclk(){
+  }
+};
+
+csl_interface ifc12{
+  csl_port pin(input,br_w);
+  csl_port pout1(output,br_w);
+  csl_port pout2(output,br_w);
+    ifc12(){
+  }
+};
+
+csl_interface ifc11{
+  csl_port pin(input,br_w);
+  csl_port pout(output,br_w);
+  ifc11(){
+  }
+};
+
+// defining units
+
+csl_unit u12{
+  ifcresclk ifcrc0;
+  ifc12 ifc12_i0;
+  u12(){
+  }
+};
+
+csl_unit u11{
+  ifcresclk ifcrc1;
+  ifc11 ifc11_i0;
+  u11(){
+  }
+};
+
+
+csl_unit u21{
+  ifcresclk ifcrc2;
+  csl_port pin1(input,br_w);
+  csl_port pin2(input,br_w);
+  csl_port pout(output,br_dw);
+  u21(){
+  }
+};
+
+csl_unit ubc{
+  u11 ub;
+  u12 uc;
+ ifc11 ifc11_i1;
+ ifc12 ifc12_i1;
+  ubc(){
+ifc11_i1.connect_by_name(ub.ifc11_i0);
+ifc12_i1.connect_by_name(uc.ifc12_i0);
+  }
+};
+
+csl_unit uabc{
+
+  ubc ubc0;
+ ifc11 ifc11_i2;
+ ifc12 ifc12_i2;
+  uabc(){
+ifc11_i2.connect_by_name(ubc0.ifc11_i1);
+ifc12_i2.connect_by_name(ubc0.ifc12_i1);
+  }
+};
+
+
+csl_unit utop{
+  //ports
+  csl_port rst(input);
+  csl_port clk(input);
+  csl_port tin1(input,br_w);
+  csl_port tin2(input,br_w);
+  csl_port tout1(output,br_dw);
+ // csl_port tout2(output,br_dw);
+ // csl_port tout3(output,br_w);
+
+ ifc11 ifc11_i3;
+ ifc12 ifc12_i3;
+
+  // unit instances
+
+  uabc u0;
+  u21 u21_i(.pin1(tin1),.pin2(tin2),.pout(tout1));
+  utop(){
+    //connecting top unit ports
+    rst.connect_by_pattern(reset);
+    clk.connect_by_pattern(clock);
+ifc11_i3.connect_by_name(u0.ifc11_i2);
+ifc12_i3.connect_by_name(u0.ifc12_i2);
+  
+  }
+};

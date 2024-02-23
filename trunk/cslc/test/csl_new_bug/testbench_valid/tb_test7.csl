@@ -1,0 +1,67 @@
+//Monica
+// 7 apr 2008
+
+csl_register reg{
+  reg(){
+    set_type(register);
+    set_width(1);
+  }
+};
+
+csl_unit p_reg{
+  csl_port p_in0(input),p_in1(p_in0),p_in2(p_in1),p_in3(p_in2),p_in4(p_in3);
+  csl_port p_in5(p_in4),p_in6(p_in5),p_in7(p_in6);
+ 
+  csl_port p_out0(output),p_out1(p_out0),p_out2(p_out1),p_out3(p_out2);
+  csl_port p_out4(p_out3),p_out5(p_out4),p_out6(p_out5),p_out7(p_out6);
+
+  csl_port clk(input);
+  csl_signal rst,en;
+
+  reg reg0(.reg_in(p_in0),
+           .reg_out(p_out0),
+           .clock(clk),.reset_(rst),.enable(en));
+  reg reg1(.reg_in(p_in1),
+           .reg_out(p_out1),
+           .clock(clk),.reset_(rst),.enable(en));
+  reg reg2(.reg_in(p_in2),
+           .reg_out(p_out2),
+           .clock(clk),.reset_(rst),.enable(en));
+  reg reg3(.reg_in(p_in3),
+           .reg_out(p_out3),
+           .clock(clk),.reset_(rst),.enable(en));
+  reg reg4(.reg_in(p_in4),
+           .reg_out(p_out4),
+           .clock(clk),.reset_(rst),.enable(en));
+  reg reg5(.reg_in(p_in5),
+           .reg_out(p_out5),
+           .clock(clk),.reset_(rst),.enable(en));
+  reg reg6(.reg_in(p_in6),
+           .reg_out(p_out6),
+           .clock(clk),.reset_(rst),.enable(en));
+  reg reg7(.reg_in(p_in7),
+           .reg_out(p_out7),
+           .clock(clk),.reset_(rst),.enable(en));
+  p_reg(){
+    clk.set_attr(clock);
+  }
+};
+ 
+csl_vector stim_vec{
+  stim_vec(){
+    set_unit_name(p_reg);
+    set_direction(input);
+  }};
+csl_vector exp_vec{
+  exp_vec(){
+    set_unit_name(p_reg);
+    set_direction(output);
+  }};
+csl_testbench tb_reg{
+  csl_signal clk(reg);
+  p_reg p_reg(.clk(clk));
+  tb_reg(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,10,ps);
+  }
+};

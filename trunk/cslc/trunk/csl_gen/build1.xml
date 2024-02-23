@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+  <project name="CSL_GEN" default="debug">
+
+<!-- !!!Modify: projectDir, srcList, driverList, libraryName, dependencies and linker settings !!! Search for MODIFYME !!! -->
+
+    <target name="setDebugFlag">
+      <property name="debugFlag" value="yes"/>
+    </target>
+    
+    <target name="setCoverageFlag">
+      <property name="coverageFlag" value="yes"/>
+    </target>
+
+    <target name="setWallFlag">
+      <property name="wallFlag" value="yes"/>
+    </target>
+
+    <property name="projectDir" value="csl_gen"/>
+
+
+    <!-- the setDebug flag is set when this target is called -->
+    <target name="debug" depends="setDebugFlag,doDependencies,doBuild"/>
+
+    <!-- location of the sources directory -->
+    <property name="srcDirPath" value="."/>
+    
+    <!-- the list of objects(sources) -->
+    <property name="srcList" value="support.cpp,cslInterconnectGen_TB.cpp,cGenFifo_ao.cpp,cslIsa.cpp,cslMemoryMap.cpp,cslRegister.cpp,cslField.cpp,cslGenEnum.cpp,cslMemory.cpp,cGenBase_tb.cpp"/>
+
+    <!-- the list of drivers(sources) for WarnErr -->
+    <property name="driverList" value="cGen_ao,cGenDecl_tb,cGenInstDecl_tb,cGenCmds_tb,cGenInstCmds_tb"/>
+
+    <!-- relative path to build_utils -->
+    <property name="scriptsPath" value="../../build_utils"/>
+
+    <!-- the output name of the Library -->
+    <property name="libraryName" value="CSL_GEN_Library"/>
+    
+    <!-- compiles the executables using the WarnErr library and each driver file -->
+    <target name="buildDrivers" depends="">
+      <foreach list="${driverList}" delimiter="," param="driverFileName" target="compileDriverBinary" inheritall="true">
+      </foreach>
+    </target>
+
+    <!-- needed for cpptask aditional module -->
+    <taskdef resource="cpptasks.tasks"/>
+    <typedef resource="cpptasks.types"/> 
+    <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+
+    <!-- calls external ANT script for retrieving the build path for testing general dependencies -->
+    <target name="doDependencies" unless="NoDeps">
+      <echo message="Geting General Dependencies" level="verbose"/>
+      <antfetch dir="${scriptsPath}" antfile="dependencies1.xml" inheritAll="true" inheritRefs="true" return="platformTypeOut,binDir,libDir,csl_genBuildPath" target="generalDependencies">
+      </antfetch>
+    </target>
+
+    <target name="removeBinaries" depends="">
+      <delete>
+        <fileset dir="${binDir}/${projectDir}" casesensitive="yes">
+	  <include name="**/*"/>
+	</fileset>
+      </delete>
+    </target>
+ 
+    <target name="compile">
+      <cc outfile="${binDir}/${projectDir}/${libraryName}" outtype="static">
+        <compiler name="g++">
+          <fileset dir="${srcDirPath}" casesensitive="YES" includes="${srcList}"/>
+          <compilerarg value="-g" if="debugFlag"/>
+          <compilerarg value="-fprofile-arcs -ftest-coverage" if="coverageFlag"/>
+          <compilerarg value="-Wall" location="end" if="wallFlag"/>
+	  <compilerarg value="-D__RELEASE_VERSION" location="end" if="releaseFlag"/>
+          <compilerarg value="-I/opt/local/include"/>
+        </compiler>
+        <linker name="g++">
+	  <libset libs="stdc++"/>
+	</linker>
+      </cc>
+    </target>
+    
+    <!-- compiles executables using the WE_ibrary and a driver file -->
+    <target name="compileDriverBinary">
+      <cc outfile="${binDir}/${projectDir}/${driverFileName}">
+        <compiler name="g++">
+          <fileset dir="${srcDirPath}" casesensitive="yes" includes="${driverFileName}.cpp"/>
+	  <compilerarg value="-g" if="debugFlag"/>
+	  <compilerarg value="-fprofile-arcs -ftest-coverage" location="end" if="coverageFlag"/>
+	  <compilerarg value="-D__RELEASE_VERSION" location="end" if="release"/>
+          <compilerarg value="-I/opt/local/include"/>
+	</compiler>
+        <linker name="g++">
+	    <libset libs="gcov" if="coverageFlag"/>
+	    <libset libs="stdc++"/>
+	    <libset dir="${csl_genBuildPath}" libs="${libraryName}"/>
+	    <!-- MODIFYME IN CASE -->
+	 </linker>
+      </cc>
+    </target>
+
+    <!-- builds without testing dependencies(to be called from the project root) -->
+    <target name="doBuild" depends="doDependencies,compile"/>
+    
+    <!-- builds the drivers -->
+    <target name="drivers" depends="doDependencies,buildDrivers"/>
+
+    <!-- to be called from the src and not from the root -->
+    <target name="clean" depends="doDependencies,removeBinaries"/>
+
+</project>

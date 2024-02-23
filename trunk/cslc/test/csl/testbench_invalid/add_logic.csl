@@ -1,0 +1,33 @@
+//oanab
+//27 oct 2007
+//testbench is missing mandatory command add_logic(..)
+
+csl_unit dut{
+  csl_port clk(input);
+  csl_port stim(input),exp(output);
+  dut(){
+    clk.set_attr(clock);
+}
+};
+
+csl_vector stim{
+  stim(){
+    set_unit_name(dut);
+    set_direction(input);
+  }
+};
+
+csl_vector exp{
+  exp(){
+    set_unit_name(dut);
+    set_direction(output);
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+  dut dut;
+  tb(){
+    clk.set_attr(clock); // the add_logic(..) command should be here 
+}
+};

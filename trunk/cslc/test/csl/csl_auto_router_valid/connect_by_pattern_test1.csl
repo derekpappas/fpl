@@ -1,0 +1,33 @@
+//Monica
+//21 mai 2008
+
+csl_unit u1{
+  csl_port p11(input);
+  csl_port p12(output);
+  u1(){}
+};
+csl_unit u2{
+  csl_port p21(input);
+  csl_port p22(output);
+  u1 u10(.p12(p22));
+  u2(){}
+};
+csl_unit u3{
+  csl_port p31(input);
+  csl_port p32(output);
+  u2 u20(.p21(p31));
+  u1 u11(.p11(p31),.p12(p32));
+  u3(){}
+};
+
+csl_unit u4{
+  csl_port p41(input);
+  csl_port p42(output);
+  u3 u30(.p31(p41),.p32(p42));
+  u2 u21(.p21(p41),.p22(p42));
+  u1 u12(.p11(p41),.p12(p42));  
+u4(){
+  p41.connect_by_pattern(u10.p11); //by pattern
+  p42.connect_by_pattern(u20.p22); //by pattern
+}
+};

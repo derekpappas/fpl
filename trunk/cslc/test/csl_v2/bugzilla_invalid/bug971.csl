@@ -1,0 +1,14 @@
+//bug 971
+csl_memory_map_page pg1{
+  pg1(){
+      set_endianess(big_endian);
+  }};
+csl_memory_map_page pg2{
+  pg1 pg1;
+  pg2(){
+     set_endianess(pg1.get_endianess());
+ }};
+csl_memory_map mmn1{
+   pg2 pg2;
+  mmn1(){
+  }};

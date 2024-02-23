@@ -1,0 +1,12 @@
+csl_multi_dim_bitrange mbr1(3);
+mbr1.set_dim_range(0,0,1);
+mbr1.set_dim_range(1,0,3);
+mbr1.set_dim_range(2,0,7);
+csl_multi_dim_bitrange mbr2(3);
+mbr2.set_dim_range(0, mbr1.get_dim_lower(0), mbr1.get_dim_upper(0));
+mbr2.set_dim_range(1, mbr1.get_dim_lower(1), mbr1.get_dim_upper(1));
+mbr2.set_dim_range(2, mbr1.get_dim_lower(2), mbr1.get_dim_upper(2));
+csl_unit u{
+  csl_signal s1(mbr1), s2(mbr2);
+  u(){}
+};

@@ -1,0 +1,108 @@
+ISA VLIW
+
+VLIW instructions encode multiple operations that can be executed by
+the execution units of the device. The execution units of the device
+can be the same (equivalent running multiple identical RISC-like execution units
+in parallel) or can be different.
+
+If the execution units are the same, the VLIW instruction can be
+specified only by concatenating multiple copies of the
+same instruction format matching the number of execution units.
+
+In order to define a VLIW format of this type in CSL, we can define 
+another type of csl_isa_element, named vliw_format.
+
+
+Example: Define a VLIW format for 4 identical execution units
+
+// Specify the standard instruction format
+
+csl_isa_element isa{
+  isa(){        
+    set_type(root_format);
+    set_width(32);
+    }
+};
+
+....
+//specification of the isa tree
+...
+
+// Specify the VLIW instruction format as the concatenation of
+// four copies of the standard instruction format
+
+csl_isa_element vliw_isa{
+  isa isa0, isa1, isa2, isa3; // four instances of the same 
+                              // standard format
+  vliw_isa()
+    set_type(vliw_format);
+    set_width(128); //if not inferred from the format instances
+    set_position(isa0,0);  // not necessarly needed as position 
+                           // can be inferred from instantiation
+    set_position(isa1,32);
+    set_position(isa2,64);
+    set_position(isa3,96);
+    }
+};
+
+In some VLIW implementations the set of instructions available in a normal
+superscalar processor are partitioned, so different slots of the VLIW
+instructions are reserved only for a specific set of instructions
+(ex. fix point arithmetic, floating point arithmetic).
+For this case, in CSL we can define multiple root formats (that
+implement only specific set of instructions) and instantiate them in
+the vliw_format type isa_element
+
+Example
+
+csl_isa_element isa_base{ // standard instruction set, less arithmetic ops
+   isa_base(){
+     set_width(32);
+     set_type(root_format);
+     }
+};
+
+...
+//specify the isa_base tree
+...
+
+
+csl_isa_element isa_fix_arith{ // restricted to fix point arithmetic
+   isa_fix_arith(){
+     set_width(32);
+     set_type(root_format);
+     }
+};
+
+
+...
+//specify the isa_fix_arith tree
+...
+
+
+csl_isa_element isa_float_arith{ // restricted to floating point arithmetic
+   isa_float_arith(){
+     set_width(32);
+     set_type(root_format);
+     }
+};
+
+...
+//specify the isa_float_arith tree
+...
+
+csl_isa_element vliw_isa{
+  isa_base isa0, isa1;
+  isa_fix_arith isa2;
+  isa_float_arith isa3;
+  vliw_isa()
+     set_type(vliw_format);
+     set_width(128); //if not inferred from the format instances
+     set_position(isa0,0); // needed if different from the
+                           // instantiation order
+     set_position(isa1,32);
+     set_position(isa2,64);
+     set_position(isa3,96);
+     }
+};
+ 

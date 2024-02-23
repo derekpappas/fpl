@@ -1,0 +1,19 @@
+ csl_unit a{
+   csl_port x(output);
+ a(){}
+};
+csl_unit b{
+  csl_port  y(input);
+b(){}
+};
+
+ csl_unit top{
+    csl_signal  data(wire);
+   
+   a a( .x(data));
+   b b( .y(data));
+  top(){
+     data.set_width(1);
+}
+}; 
+

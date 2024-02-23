@@ -1,0 +1,116 @@
+1. download gcc-4.0.4.tar.gz
+    tar -zxvf gcc-4.0.4.tar.gz
+    cd gcc-4.0.4
+    ./configure
+    make
+    make install # as root
+
+2. yum install xerces-c-devel.x86_64
+
+3. download boost_1_34_1.tgz
+    tar-zxvf boost_1_34_1.tgz
+    cd boost_1_34_1
+    ./configure
+    make
+    make install
+    cd /usr/local/include/ # there should not be any boost folder here
+    ln -s boost_installation/boost .
+    add in bash.rc export BOOST_HOME=/opt/tools/boost_1_34_1 # in my case
+    it is needed by compilation with SystemC sources.
+
+4. download libharu_2_0_8.tar
+    tar -xvf libharu_2_0_8.tar
+    cd libharu-2.0.8
+    ./configure
+    make
+    make install # as root
+
+5. download and install java-1.6.0
+    for instance I used: jdk-6u6-linux-x64.bin
+    chmod +x jdk-6u6-linux-x64.bin
+    ./jdk-6u6-linux-x64.bin # it builds and creates ./jdk1.6.0_06/ folder
+    cp -r jdk1.6.0_06/ /usr/lib/jvm/
+    add 'export JAVA_HOME=/usr/lib/jvm/jdk1.6.0_06' to ~/.bashrc
+
+6. dowload apache-ant-1.8.0-src.tar.bz2
+    tar -jxvf apache-ant-1.8.0-src.tar.bz2
+    export ANT_HOME=/opt/tools/apache-ant-1.8.0
+    cd $ANT_HOME
+    copy junit.jar to $ANT_HOME/lib/optional
+    ./build.sh # after successfully build, "dist" folder gets created
+    add export ANT_HOME=/opt/tools/apache-ant-1.8.0/dist
+
+7. copy and untar ant-contrib-1.0b2-bin.tar and cpptasks-1.0b4.tar in /opt/tools/
+    cd $ANT_HOME/lib
+    cp /opt/tools/ant-contrib/lib/ant-contrib.jar  .
+    cp /opt/tools/cpptasks-1.0b4/cpptasks.jar .
+
+8. download systemc-2.2.0.tgz
+    tar -zxvf systemc-2.2.0.tgz
+    cd systemc-2.2.0
+    export SYSTEMC=<path_to_systemc-2.2.0>
+    mkdir objdir; cd objdir
+    ../configure prefix=/opt/tools/systemc2.2.0 # in my case 
+    make
+    make install
+
+
+9. VPN connection
+
+    download lzo-2.03.tar.gz
+    tar -zxvf lzo-2.03.tar.gz
+    cd lzo-2.03
+    ./configure
+    make
+    make install
+
+    download openvpn-2.1.1.tar.gz
+    tar -zxvf openvpn-2.1.1.tar.gz
+    ./configure
+    make
+    make install
+
+10. libpng-devel.x86_64 : Development tools for programs to manipulate PNG image format files. # pre-installed
+
+11. lbzip2.x86_64 : Parallel implementation of the bzip2 file compressor # pre-installed
+
+ 
+12. Setup the vpn connection and svn account then
+svn co
+cd cslc/trunk/src/
+ant -f build.xml -DrlmOff=yes debug # if needed "ant clean" will do the cleanup
+
+
+.bashrc definitions:
+
+# User specific aliases and functions
+export JAVA_HOME=/usr/lib/jvm/jdk1.6.0_06
+
+export ANT_HOME="/opt/tools/apache-ant-1.8.0/dist"
+export CLASSPATH=$ANT_HOME/lib
+
+export PATH=$ANT_HOME/bin:$JAVA_HOME/bin:/usr/local/bin:/usr/bin:$PATH
+
+export WORK=/home/marius/svn/cslc
+
+#export CSLC_EXEC_DIR=${WORK}/trunk/build/linux/x86_64/cslc
+#export FPL_TRUNK_SCRIPTS="${WORK}/trunk/scripts"
+#export FPL_TEST_SCRIPTS="${WORK}/test/scripts"
+#export FPL_MISC_SCRIPTS="${WORK}/misc/scripts"
+#export PATH=${CSLC_EXEC_DIR}:${FPL_MISC_SCRIPTS}:${FPL_TRUNK_SCRIPTS}:${FPL_TEST_SCRIPTS}:.:${PATH}
+
+alias antbuild='ant -f build.xml -DrlmOff=yes debug'
+#alias rrcsl='run_regress.pl -hdl csl -no_post_compile'
+#alias rrcsl='mRun_regress.pl -hdl csl -no_post_compile && ant csim_lib && ant csim_shell'
+
+export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
+export BOOST_INCLUDE=/usr/local/include/boost-1_34_1
+export PATH=$BOOST_INCLUDE:$PATH
+
+export SYSTEMC_HOME=/opt/tools/systemc-2.2.0/objdir
+export SYSTEMC=$SYSTEMC_HOME
+export TARGET_ARCH=`arch`
+
+
+
+Good luck!

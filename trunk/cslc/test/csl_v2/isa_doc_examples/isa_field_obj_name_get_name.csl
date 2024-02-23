@@ -1,0 +1,17 @@
+//isa_field_obj_name.get_name();
+
+csl_isa_field f_rega{ 
+f_rega(){ 
+set_width(6); 
+set_type(address); 
+set_name("reg_adr"); 
+}
+};
+
+csl_isa_field f_regb{ 
+f_regb(){ 
+set_width(6); 
+set_type(address); 
+set_name(f_rega.get_name()); 
+}
+};

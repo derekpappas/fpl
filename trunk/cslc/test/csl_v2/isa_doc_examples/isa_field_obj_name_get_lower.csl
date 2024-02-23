@@ -1,0 +1,7 @@
+//isa_field_obj_name.get_lower();
+
+csl_isa_field f_op(16,12);
+f_op.set_type(opcode);
+
+csl_isa_field f_op2 (14,f_op.get_lower());
+f_op2.set_type(subopcode);

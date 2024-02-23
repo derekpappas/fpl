@@ -1,0 +1,216 @@
+//Monica
+
+csl_unit u{
+  u(){
+  }
+};
+csl_enum  e_op1{
+      BR = 0,
+      CALL = 1
+  };
+
+  csl_enum  e_op2{
+      A0 = 0,
+      A1 = 1
+  };
+
+ csl_enum e_cond {
+    BPA = 8,                   
+    BPN = 0,
+    BPNE = 9,
+    BPE = 1,
+    BPG = 10
+};
+csl_isa_field op1{
+  op1(){
+    set_type(opcode);
+    set_width(2);     //[31:30]
+    set_enum(e_op1);
+  }};
+csl_isa_field op2{
+  op2(){
+    set_type(opcode);
+    set_width(3);     //[24:22]
+	set_enum(e_op2);
+  }};
+csl_isa_field rd{
+  rd(){
+    set_type(rf_address);
+    set_width(5);  //[29:25]
+  }};
+csl_isa_field imm22{
+  imm22(){
+    set_type(constant);
+    set_width(22);  //[21:0]
+  }};
+csl_isa_field a{
+  a(){
+    set_type(selector);
+    set_width(1);  //[29:29]
+  }};
+csl_isa_field cond{
+  cond(){
+    set_type(selector);
+    set_width(4);  //[28:25]
+    set_enum(e_cond);
+  }};
+csl_isa_field p{
+  p(){
+    set_type(selector);
+    set_width(1);  //[21:21]
+  }};
+csl_isa_field c0{
+  c0(){
+    set_type(selector);
+    set_width(1);  //[20:20]
+  }};
+csl_isa_field c1{
+  c1(){
+    set_type(selector);
+    set_width(1);  //[19:19]
+  }};
+csl_isa_field disp19{
+  disp19(){
+    set_type(constant);
+    set_width(19);  //[18:0]
+  }};
+
+csl_isa_element ISA_Sparc{
+	ISA_Sparc(){
+		set_type(root_format);
+		set_width(32);
+	}
+};
+
+csl_isa_element Base_Format : ISA_Sparc {
+  op1 op1;
+  op2 op2;   
+      Base_Format() {
+		set_type (instr_format);
+        set_position(op1,30);
+        set_position(op2,22);       
+      }
+  };
+
+csl_isa_element format1 : Base_Format{
+  rd rd;
+  imm22 imm22;
+   format1() {
+   set_type (instr_format);
+   set_position(rd,25);
+   set_position(imm22,0);         
+   }
+};
+
+
+csl_isa_element format2 : Base_Format{
+  a a;
+  cond cond;
+  p p;
+  c0 c0;
+  c1 c1;
+  disp19 disp19;
+   format2(){
+	    set_type(instr_format);
+        set_position(a,29);
+        set_position(cond,25);
+        set_position(p,21);
+        set_position(c0,20);
+        set_position(c1,19);
+        set_position(disp19,0);
+   }
+};
+// BPcc instructions:
+
+csl_isa_element  isa_BPA :  format2 {
+      isa_BPA() {
+	      set_type(instr);
+          cond.set_enum_item(BPA);
+          op1.set_enum_item(BR);
+          op2.set_enum_item(A0);
+    	  op1.set_mnemonic("bpa");
+        }
+};
+
+csl_isa_element  isa_BPN :  format2 {
+      isa_BPN() {
+          set_type(instr);
+          cond.set_enum_item(BPN);
+          op1.set_enum_item(BR);
+          op2.set_enum_item(A1);
+	      op1.set_mnemonic("bpn");
+       }
+};
+
+csl_isa_element  isa_BPNE :  format2 {
+	isa_BPNE() {
+   	      set_type(instr);
+          cond.set_enum_item(BPNE);
+          op1.set_enum_item(BR);
+          op2.set_enum_item(A0);
+          op1.set_mnemonic("bpne");
+       }
+};
+
+csl_isa_element  isa_BPE  :  format2 {
+       isa_BPE() {
+          set_type(instr);
+          cond.set_enum_item(BPE);
+          op1.set_enum_item(BR);
+          op2.set_enum_item(A0);
+          op1.set_mnemonic("bpe");
+       }
+};
+
+csl_isa_element  isa_BPG : format2 {
+       isa_BPG() {
+          set_type(instr);
+          cond.set_enum_item(BPG);
+          op1.set_enum_item(CALL);
+          op2.set_enum_item(A0);
+	      op1.set_mnemonic("bpg");
+        }
+};
+
+csl_isa_element isa_rd1: format1{
+  isa_rd1(){
+          set_type(instr);
+          op1.set_enum_item(BR);
+          op2.set_enum_item(A0);
+  }};
+csl_isa_element isa_rd2: format1{
+  isa_rd2(){
+          set_type(instr);
+          op1.set_enum_item(CALL);
+          op2.set_enum_item(A1);
+  }};
+csl_isa_element isa_imm1: format1{
+  isa_imm1(){
+         set_type(instr);
+          op1.set_enum_item(BR);
+          op2.set_enum_item(A1);
+  }};
+csl_isa_element isa_imm2: format1{
+  isa_imm2(){
+          set_type(instr);
+          op1.set_enum_item(CALL);
+          op2.set_enum_item(A0);
+  }};
+//csl_isa  open_sparc_isa  {
+//       isa_BPA    BPA; 
+//       isa_BPN    BPN; 
+//       isa_BPNE  BPNE;
+//       isa_BPE    BPE; 
+//       isa_BPG    BPG; 
+//       open_sparc_isa () {
+//              set_decoder_name("instr_decoder"); 
+//              BPA.set_asm_mnemonic("bpa"); 
+//              BPN.set_asm_mnemonic("bpn"); 
+//              BPNE.set_asm_mnemonic("bpne"); 
+//              BPE..set_asm_mnemonic("bpe"); 
+//              BPG.set_asm_mnemonic("bpg");
+//              generate_decoder(decoder_unit); 
+//              print("open_sparc_isa.txt"); 
+//       }
+//
+//};

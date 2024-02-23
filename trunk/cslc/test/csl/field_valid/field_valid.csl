@@ -1,0 +1,22 @@
+//
+
+csl_enum e {
+  RD  = 0 ,
+  WR  = 2,
+  PING = 3,
+  EN = 5
+};
+
+csl_field f(4);
+f.set_enum(e);
+
+csl_unit a {
+  csl_signal s;
+  csl_signal s1(4);
+  a() {
+    s.set_bitrange(f);
+    s.generate_decoder();
+    s1 =s;
+  }
+};
+

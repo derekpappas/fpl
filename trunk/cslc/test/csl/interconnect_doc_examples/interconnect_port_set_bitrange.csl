@@ -1,0 +1,19 @@
+//danielt
+//november 07,2007
+
+csl_bitrange br1(16);
+csl_unit a{
+  csl_port x(output);
+  a(){
+    x.set_bitrange(br1);}
+};
+csl_unit b{
+  csl_port y(input);
+  b(){
+    y.set_bitrange(br1);}
+};
+csl_unit top{
+  csl_signal data(br1);
+  a a( .x(data));
+  b b ( .y(data));
+  top(){}};

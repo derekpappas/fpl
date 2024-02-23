@@ -1,0 +1,8 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u_d">
+<port name="p_d_in1" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p_d_out" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</unit>
+</design>

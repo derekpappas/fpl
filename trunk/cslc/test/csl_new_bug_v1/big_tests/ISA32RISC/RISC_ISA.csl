@@ -1,0 +1,527 @@
+//RISC ISA
+//author: andreim
+//date: 20 July 2007
+
+
+// declaring opcode enum:
+
+csl_unit u{
+  u(){
+  }
+};
+csl_enum e_opcode{
+	halt = 4,         //000100b,
+	reti = 5,          //000101b,
+	trap = 6,         //000110b,
+	B = 8,         //001000b,
+	calln = 12,     //001100b,
+	callr = 13,     //001101b,
+	jmpn = 14,     //001110b,
+	jmpr = 15,     //001111b,
+	and_op =  17,       //010001b,
+	or_op =  18,          //010010b,
+	xor_op = 19,         //010011b,
+	sll = 20,          //010100b,
+	sra = 21,         //010101b,
+	srl = 22,          //010110b,
+	rotl = 23,         //010111b,
+	add_op = 24,        //011000b,	
+	addc =  25,       //011001b,
+	S = 26,        //011010b,
+	sub =  28,       //011100b,
+	subc = 29,      //011101b,
+	subr = 30,       //011110b,
+	subrc = 31,     //011111b,
+	const_plus =33, //100001b,
+	const_minus = 34, //100010b,
+	consth = 35,     //100011b,
+	lw = 38, 	//100110b,
+	lhu = 40,	//101000b,
+	lhs = 42,	//101010b,
+	lbu = 44,	//101100b,
+	lbs = 46,	//101110b,
+	sw = 54,	//110110b,
+	sh = 58,	//111011b,
+	sb = 62		//111110b	
+};
+
+//declaring csl_isa_fields that will be instanciated in more than one instr_format:
+csl_isa_field f_opcode {
+  f_opcode(){
+    set_type (opcode);
+    set_width( 6 );
+    set_enum( e_opcode );
+  } 
+};
+
+csl_isa_field f_field{
+  f_field() {
+    set_type( address );
+    set_width( 6 );
+  }
+};
+
+csl_isa_field f_imm {
+  f_imm() {
+    set_type ( selector );
+    set_width( 1 );
+  }
+};
+
+csl_isa_field f_n {
+  f_n() {
+    set_type(constant);
+    set_width(19);
+  }
+};
+csl_isa_field f_unused {
+  f_unused () {
+    set_type(unused);
+    set_width(7);
+  }
+};
+
+//declaring root_format
+csl_isa_element isa_root {
+	isa_root(){
+		set_type(root_format);
+		set_width(32);
+	}
+};  
+
+//declaring base_format derived from isa_root
+csl_isa_element  base_format : isa_root {
+	f_opcode f_opcode;
+	f_field f_rz;
+	base_format() {
+		set_type( instr_format );
+		set_position( f_opcode, 26 );
+		set_position( f_rz,20 );
+	}
+};
+
+csl_isa_field operand(13);
+operand.set_type( constant );
+
+//declaring formats(format1, format2, format3) derived from base_format
+csl_isa_element format1 : base_format{
+  f_imm f_one;
+  f_n f_m;
+	format1(){
+		set_type( instr_format);
+		set_next(f_rz,f_one);
+		set_next(f_one,f_m);
+	}
+};
+
+csl_isa_element format2 : base_format{
+  f_field f_ry;
+  f_imm f1_imm;  //imm = 1
+  operand operand;
+	format2(){
+		set_type( instr_format);
+		set_next(f_rz, f_ry);
+		set_next(f_ry, f1_imm);
+		set_next(f1_imm,operand);		
+	}
+};
+
+csl_isa_element format3 : base_format{
+	f_field f_rx;
+	f_field f_ry;
+	f_imm f0_imm; //imm = 0
+        f_unused f_unused;
+	format3(){
+		set_type( instr_format);
+		set_next(f_rz, f_ry);
+		set_next(f_ry, f0_imm);
+		set_next(f0_imm, f_unused);
+		set_next(f_unused, f_rx); 
+	}
+};
+
+
+// adding instructions
+// for instructions that don't have set a mnemonic the default
+// value is the enum item name
+//#########################################################
+//Operators - these uI clear and set N C Z V status bits
+//#########################################################
+
+csl_isa_element i_addr : format3 {
+  i_addr() {
+    set_type( instr );
+    f_opcode.set_enum_item( add_op );
+    f_opcode.set_mnemonic("add");
+  }
+};
+
+csl_isa_element i_addn : format2 {
+  i_addn() {
+    set_type( instr );
+    f_opcode.set_enum_item( add_op );
+    f_opcode.set_mnemonic("add");
+  }
+};
+
+csl_isa_element i_addcr : format3 {
+  i_addcr() {
+    set_type ( instr );
+    f_opcode.set_enum_item( addc );
+    f_opcode.set_mnemonic("addc");
+  }
+};
+
+csl_isa_element i_addcn : format2 {
+  i_addcn() {
+    set_type ( instr );
+    f_opcode.set_enum_item( addc );
+    f_opcode.set_mnemonic("addc");
+  }
+};
+
+csl_isa_element i_andr : format3 {
+  i_andr() {
+    set_type ( instr );
+    f_opcode.set_enum_item( and_op );
+    f_opcode.set_mnemonic("and");
+	}
+};
+
+csl_isa_element i_andn : format2 {
+  i_andn() {
+    set_type ( instr );
+    f_opcode.set_enum_item( and_op );
+    f_opcode.set_mnemonic("and");
+	}
+};
+
+csl_isa_element i_const_plus : format1 {
+  i_const_plus() {
+    set_type ( instr );
+    f_opcode.set_enum_item( const_plus );
+    f_opcode.set_mnemonic("const+");
+  }
+};
+
+csl_isa_element i_const_minus : format1 {
+  i_const_minus() {
+    set_type ( instr );
+    f_opcode.set_enum_item( const_minus );
+    f_opcode.set_mnemonic("const-");
+  }
+};
+
+csl_isa_element i_consth  : format1 {
+  i_consth() {
+    set_type ( instr );
+    f_opcode.set_enum_item( consth );
+    f_opcode.set_mnemonic("consth");
+  }
+};
+
+csl_isa_element i_orr : format3 {
+  i_orr() {
+    set_type ( instr );
+    f_opcode.set_enum_item( or_op );
+    f_opcode.set_mnemonic("or");
+  }
+};
+
+csl_isa_element i_orn : format2 {
+  i_orn() {
+    set_type ( instr );
+    f_opcode.set_enum_item( or_op );
+    f_opcode.set_mnemonic("or");
+  }
+};
+
+csl_isa_element i_rotlr : format3 {
+  i_rotlr() {
+    set_type ( instr );
+    f_opcode.set_enum_item( rotl );
+    f_opcode.set_mnemonic("rotl");
+  }
+};
+
+csl_isa_element i_rotln : format2 {
+  i_rotln() {
+    set_type ( instr );
+    f_opcode.set_enum_item( rotl );
+    f_opcode.set_mnemonic("rotl");
+  }
+};
+
+csl_isa_element i_sllr : format3 {
+  i_sllr() {
+    set_type ( instr );
+    f_opcode.set_enum_item( sll );
+    f_opcode.set_mnemonic("sll");
+  }
+};
+
+csl_isa_element i_slln : format2 {
+  i_slln() {
+    set_type ( instr );
+    f_opcode.set_enum_item( sll );
+    f_opcode.set_mnemonic("sll");
+  }
+};
+
+csl_isa_element i_srar : format3 {
+  i_srar() {
+    set_type ( instr );
+    f_opcode.set_enum_item( sra );
+    f_opcode.set_mnemonic("sra");
+  }
+};
+
+csl_isa_element i_sran : format2 {
+  i_sran() {
+    set_type ( instr );
+    f_opcode.set_enum_item( sra );
+    f_opcode.set_mnemonic("sra");
+  }
+};
+
+csl_isa_element i_srlr : format3 {
+  i_srlr() {
+    set_type ( instr );
+    f_opcode.set_enum_item( srl );
+    f_opcode.set_mnemonic("srl");
+  }
+};
+
+csl_isa_element i_srln : format2 {
+  i_srln() {
+    set_type ( instr );
+    f_opcode.set_enum_item( srl );
+    f_opcode.set_mnemonic("srl");
+  }
+};
+
+csl_isa_element i_subr : format3 {
+  i_subr() {
+    set_type ( instr );
+    f_opcode.set_enum_item( sub );
+    f_opcode.set_mnemonic("sub");
+  }
+};
+
+csl_isa_element i_subn : format2 {
+  i_subn() {
+    set_type ( instr );
+    f_opcode.set_enum_item( sub );
+    f_opcode.set_mnemonic("sub");
+  }
+};
+
+csl_isa_element i_subcr : format3 {
+  i_subcr() {
+    set_type ( instr );
+    f_opcode.set_enum_item( subc );
+    f_opcode.set_mnemonic("subc");
+  }
+};
+
+csl_isa_element i_subcn : format2 {
+  i_subcn() {
+    set_type ( instr );
+    f_opcode.set_enum_item( subc );
+    f_opcode.set_mnemonic("subc");
+  }
+};
+
+csl_isa_element i_subrr : format3 {
+  i_subrr() {
+    set_type ( instr );
+    f_opcode.set_enum_item( subr );
+    f_opcode.set_mnemonic("subr");
+  }
+};
+
+csl_isa_element i_subrn : format2 {
+  i_subrn() {
+    set_type ( instr );
+    f_opcode.set_enum_item( subr );
+    f_opcode.set_mnemonic("subr");
+  }
+};
+
+csl_isa_element i_subrcr : format3 {
+  i_subrcr() {
+    set_type ( instr );
+    f_opcode.set_enum_item( subrc );
+    f_opcode.set_mnemonic("subrc");
+  }
+};
+
+csl_isa_element i_subrcn : format2 {
+  i_subrcn() {
+    set_type ( instr );
+    f_opcode.set_enum_item( subrc );
+    f_opcode.set_mnemonic("subrc");
+  }
+};
+
+csl_isa_element i_xorr : format3 {
+  i_xorr() {
+    set_type ( instr );
+    f_opcode.set_enum_item( xor_op );
+    f_opcode.set_mnemonic("xor");
+  }
+};
+
+csl_isa_element i_xorn : format3 {
+  i_xorn() {
+    set_type ( instr );
+    f_opcode.set_enum_item( xor_op );
+    f_opcode.set_mnemonic("xor");
+  }
+};
+
+
+//#######################################################
+// Load & Store Instructions - do not affect status bit
+//#######################################################
+
+csl_isa_element i_lw : format2 {
+  i_lw() {
+    set_type ( instr );
+    f_opcode.set_enum_item( lw );
+    f_opcode.set_mnemonic("lw");
+  }
+};
+
+csl_isa_element i_lhu : format2 {
+  i_lhu() {
+    set_type ( instr );
+    f_opcode.set_enum_item( lhu );
+    f_opcode.set_mnemonic("lhu");
+  }
+};
+
+csl_isa_element i_lhs : format2 {
+  i_lhs() {
+    set_type ( instr );
+    f_opcode.set_enum_item( lhs );
+    f_opcode.set_mnemonic("lhs");
+  }
+};
+
+csl_isa_element i_lbu : format2 {
+  i_lbu() {
+    set_type ( instr );
+    f_opcode.set_enum_item( lbu );
+    f_opcode.set_mnemonic("lbu");
+  }
+};
+
+csl_isa_element i_lbs : format2 {
+  i_lbs() {
+    set_type ( instr );
+    f_opcode.set_enum_item( lbs );
+    f_opcode.set_mnemonic("lbs");
+  }
+};
+
+
+csl_isa_element i_sw : format2 {
+  i_sw() {
+    set_type ( instr );
+    f_opcode.set_enum_item( sw );
+    f_opcode.set_mnemonic("sw");
+  }
+};
+
+csl_isa_element i_sh : format2 {
+  i_sh() {
+    set_type ( instr );
+    f_opcode.set_enum_item( sh );
+    f_opcode.set_mnemonic("sh");
+  }
+};
+
+csl_isa_element i_sb : format2 {
+  i_sb() {
+    set_type ( instr );
+    f_opcode.set_enum_item( sb );
+    f_opcode.set_mnemonic("sb");
+  }
+};
+
+
+//#######################################################
+// Program Control - These uI do not affect status bit
+//#######################################################
+csl_isa_element i_B : format1 {
+	 i_B() {
+		set_type ( instr );
+		f_opcode.set_enum_item( B );
+                f_opcode.set_mnemonic("B");
+	}
+};
+
+csl_isa_element i_S : format1 {
+	 i_S() {
+		set_type ( instr );
+		f_opcode.set_enum_item( S );
+                f_opcode.set_mnemonic("S");
+	}
+};
+
+csl_isa_element i_calln : format1 {
+	 i_calln() {
+		set_type ( instr );
+		f_opcode.set_enum_item( calln );
+                f_opcode.set_mnemonic("call");
+	}
+};
+
+csl_isa_element i_callr : format1 {
+	 i_callr() {
+		set_type ( instr );
+		f_opcode.set_enum_item( callr );
+                f_opcode.set_mnemonic("call");
+	}
+};
+
+csl_isa_element i_jmpn : format1 {
+	 i_jmpn() {
+		set_type ( instr );
+		f_opcode.set_enum_item( jmpn );
+                f_opcode.set_mnemonic("jmp");
+       }
+};
+
+csl_isa_element i_jmpr : format1 {
+	 i_jmpr() {
+		set_type ( instr );
+		f_opcode.set_enum_item( jmpr);
+                f_opcode.set_mnemonic("jmp");
+	}
+};
+
+csl_isa_element i_halt : format1 {
+	 i_halt() {
+		set_type ( instr );
+		f_opcode.set_enum_item( halt );
+                f_opcode.set_mnemonic("halt");
+	}
+};
+
+csl_isa_element i_reti : format1 {
+	 i_reti () {
+		set_type ( instr );
+		f_opcode.set_enum_item( reti );
+                f_opcode.set_mnemonic("reti");
+	}
+};
+
+csl_isa_element i_trap : format1 {
+	 i_trap () {
+		set_type ( instr );
+		f_opcode.set_enum_item( trap );
+                f_opcode.set_mnemonic("trap");
+	}
+};

@@ -1,0 +1,10 @@
+// illegal-do not allow pre declaration of memory map pages
+
+csl_memory_map_page mpage;
+csl_memory_map mmap{
+	mpage mpage0;
+  mmap(){
+    
+  }
+};
+

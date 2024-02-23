@@ -1,0 +1,16 @@
+//Monica
+
+csl_unit a{
+csl_port x(output,16);
+ a(){} };
+csl_unit b{
+csl_port  y(input,16);
+b(){}
+};
+ csl_unit top{
+ csl_signal  data(wire);
+ a a( .x(data));
+ b b( .y(data));
+ top(){
+ data.set_width(16); }
+}; 

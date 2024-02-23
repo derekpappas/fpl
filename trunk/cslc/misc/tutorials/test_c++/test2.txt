@@ -1,0 +1,21 @@
+Implement a C++ class design to support the picture
+that is presented to you on the whiteboard, and then
+instantiate the classes in the needed hierarchy for it.
+The design of the C++ classes will look like this:
+1) A base class to implement the functionality of a 
+   tree. (CBase)
+2) The base class constructor is protected and takes
+   a EType(enum) that tells what kind of object is 
+   instantiated. Also a getType function in the base 
+   class.
+3) The needed derived classes are:
+   CUnit
+   CPort
+   CWire
+   CGate
+4) Add a virtual traverse function to simulate the circuit
+  (For a given input calculate the output)
+4) Restrictions:
+  use stl vector for children in the tree
+  all function members are private and have get methods,
+  You may add setMethods where needed.

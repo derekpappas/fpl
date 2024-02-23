@@ -1,0 +1,11 @@
+`ifndef sb100
+  `define sb100
+`endif
+
+`include "CY7C1217_FT.v"
+`include "CY7C1218H_PL_SCD.v"
+`include "CY7C1219H_PL_DCD.v"
+`include "CY7C1231H.v"
+`include "CY7C1297H_FT.v"
+`include "CY7C1298H_PL_DCD.v"
+

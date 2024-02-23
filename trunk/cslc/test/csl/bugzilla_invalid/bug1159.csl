@@ -1,0 +1,6 @@
+csl_register_file rf{
+  rf(){
+    set_width(8);
+  }
+};
+csl_unit top{};

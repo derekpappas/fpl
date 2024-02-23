@@ -1,0 +1,17 @@
+//bug 1046
+ csl_isa_field op(15,13,e_opcodes);
+ op.set_type(opcode);
+
+csl_isa_field f_rega(12,10);
+f_rega.set_type(address);
+
+csl_isa_element baseformat {
+   op op;
+   f_rega f_rega;
+  baseformat(){
+        set_type(root_format);
+              set_width(16);
+            set_position(op, 13);
+            set_next(op, rega);
+   }
+};

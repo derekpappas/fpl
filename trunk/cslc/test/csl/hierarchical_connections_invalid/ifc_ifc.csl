@@ -1,0 +1,76 @@
+// CristiL
+//
+// Connection between 2 interfaces
+
+csl_signal_group signalGroupA {
+  csl_signal signalA0;  
+  csl_signal signalA1;
+};
+
+csl_interface interfaceA {
+  csl_port inputA(input, 32);
+  csl_port outputA(output, 32);
+};
+
+//  CASE #1
+csl_unit unitChipA {
+
+  interfaceA interfaceA0;
+
+  unitChipA() {
+  }
+};
+
+csl_unit unitChipB {
+
+  interfaceA interfaceA0;
+
+  unitChipB() {
+    interfaceA0.reverse();
+  }
+};
+
+//  CASE #2
+
+csl_unit unitChipC {
+
+  interfaceA interfaceA0;  
+
+  interfaceA interfaceA1;
+
+  unitChipC() {
+    interfaceA1.reverse();
+  }
+};
+
+
+
+// interface -> interface
+csl_unit unitDeviceA {
+
+  signalGroupA signalGroupA0;
+  signalGroupA signalGroupA1;
+
+  //           CASE #1
+  //
+  //  In this case i connect 2 units each with 
+  //  a different type having an interface of
+  //  the same type but one (unitChipB0) is reversed
+
+  unitChipA unitChipA0(.interfaceA0(signalGroupA0));
+  unitChipB unitChipB0(.interfaceA0(signalGroupA0));
+
+  //           CASE #2
+  //
+  // In this case i connect 2 units of the same type
+  // through interfaces of the same type  where one 
+  // is already reversed
+
+  unitChipC unitChipC0(.interfaceA0(signalGroupA1));
+  unitChipC unitChipC1(.interfaceA1(signalGroupA1));
+
+  unitDeviceA() {
+  };
+};
+
+

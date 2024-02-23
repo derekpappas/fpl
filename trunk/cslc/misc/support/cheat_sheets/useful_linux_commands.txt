@@ -1,0 +1,3 @@
+ls .??* -> display all the files/directories starting with "." followed by any 2 characters
+
+!$ -> returns the argument of the last command

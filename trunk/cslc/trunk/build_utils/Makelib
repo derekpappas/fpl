@@ -1,0 +1,15 @@
+CC=/usr/bin/g++
+PK=/usr/bin/ar
+CFLAGS=-c -g -Wall
+ADDITIONALINCLUDE=$$WORK/trunk/src/csim/
+PATHOBJ=./
+NAME=user
+
+lib: srcomp
+	$(PK) -cq $(PATHOBJ)lib$(NAME).a $(PATHOBJ)*.o
+
+srcomp:
+	cd $(PATHOBJ);$(CC) $(CFLAGS) -I$(ADDITIONALINCLUDE) *.cpp; cd $$OLDPATH
+
+clean:
+	rm -rf $(PATHOBJ)*o $(PATHOBJ)*a

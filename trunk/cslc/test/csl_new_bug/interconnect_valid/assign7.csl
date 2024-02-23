@@ -1,0 +1,12 @@
+//oanab
+//12 aug 2008
+
+csl_unit a {
+  csl_signal s_a(139);
+  csl_signal s_b(236);
+  csl_signal s_c(112);
+  a () {
+    {s_b[235:42],s_c[111:15]} = {3{s_a[138:42]}};  
+  }
+};
+

@@ -1,0 +1,14 @@
+//author: Ines
+//testing the command set_offset() in field
+
+
+csl_field field {
+  field(){
+    set_width(5);
+    set_offset(2);
+  }
+};
+
+
+csl_unit top {
+};

@@ -1,0 +1,13 @@
+//oanab
+//20 mar 2008
+//instruction memory
+
+csl_unit IM {
+  //  ifc_rn_msg mux_im_msg_st1; // input message to be written //really?!!??
+  ifc_rn_msg im_nios_msg_st1;   // instructions read from IM by nios
+  mem_im mem_im;
+  IM () {
+    im_nios_msg_st1.reverse();
+  }
+};
+

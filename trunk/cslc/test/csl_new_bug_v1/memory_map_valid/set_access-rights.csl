@@ -1,0 +1,15 @@
+//oanab
+//23 oct 2007  
+
+csl_memory_map_page mpg{
+    mpg(){
+        add_address_range(128,356);
+        set_access_rights(100,HWR,access_write);
+}
+};
+csl_memory_map mmp{
+   mmp(){
+      set_data_word_width(32);
+      set_type(hierarchical);
+}
+};

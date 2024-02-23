@@ -1,0 +1,4 @@
+csl_fifo f1{
+  f1(){
+    add_to_memory_map(32, SOMETHING, access_write);}
+};

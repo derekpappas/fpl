@@ -1,0 +1,35 @@
+//oanab
+//21 mar 2008
+//unit instances connection
+
+csl_interface ifc1 {
+  csl_port a1(input),a2(output);
+  ifc1 () {}
+};
+
+csl_signal_group sg1 {
+  csl_signal a1,a2;
+  sg1 () {}
+};
+
+csl_unit u1 {
+  ifc1 ifc11;
+  ifc1 ifc12;
+  u1 () {}
+};
+
+csl_unit u2 {
+  ifc1 ifc11;
+  sg1 sg11;
+  u1 u11;
+  u2 () {}
+};
+
+csl_unit u3 {
+  u2 u21(.ifc11(ifc13));
+  ifc1 ifc13;
+  u3 () {
+    u21.connect_units(u21.u11);
+    u21.u11.ifc12.connect_by_name(u21.sg11);
+  }
+};

@@ -1,0 +1,32 @@
+//author: Monica
+//testing: csl_signal signal_object_name([signal_data_type][,width]);
+//         reg,wire,tri,trireg,triand,trior,wand,wor,supply0,supply1
+
+csl_unit u5_t10 {
+
+  csl_bitrange br5_1_t10(14,9);
+  csl_signal sgn5_1_t10(tri);
+  csl_bitrange br5_2_t10(8,3);
+  csl_signal sgn5_2_t10(tri,br5_1_t10);
+  
+  u5_t10(){
+    sgn5_1_t10.set_bitrange(br5_1_t10);
+    sgn5_1_t10 = sgn5_2_t10;
+  }
+};
+
+csl_unit u6_t10 {
+
+  csl_signal sgn6_1_t10(tri),sgn6_2_t10(tri);
+
+  u6_t10(){
+    sgn6_1_t10.set_bitrange(u5_t10.br5_1_t10);
+    sgn6_2_t10.set_bitrange(u5_t10.br5_2_t10);
+    sgn6_2_t10 = sgn6_1_t10;
+  }
+};
+csl_unit top{
+  u5_t10 u1;
+  u6_t10 u2;
+  top(){}
+};

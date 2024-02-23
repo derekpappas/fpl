@@ -1,0 +1,28 @@
+//author: Monica
+//testing:  int signal_object_name.get_width(); 
+
+csl_unit u10_t12 {
+
+  csl_signal sgn10_1_t12(6);
+
+  u10_t12() {
+
+  }
+};
+
+csl_unit u11_t12 {
+
+  u10_t12 u10_t12;
+  csl_signal sgn10_1_t12;
+
+
+  u11_t12() {
+    sgn10_1_t12.set_width(4);
+  }
+};
+
+csl_unit top{
+  u10_t12 u1;
+  u11_t12 u2;
+  top(){}
+};

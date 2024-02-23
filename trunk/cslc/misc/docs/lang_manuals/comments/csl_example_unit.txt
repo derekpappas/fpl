@@ -1,0 +1,17 @@
+AndreiB
+
+reffered documents:
+.fm file is /docs/manuals/production/csl_files/csl_example_unit.fm
+
+document notes:
+- Figures 1.1 and 1.2 have no title
+- Table 1.2 has no title. 
+- What is PSQN (or PSCQN) ?
+- Figures 1.3 and 1.4 have no title
+- on Figure 1.4 what does the term "engine" refer to ?
+- Figures 1.7 and 1.8 have no name
+- "Processor architecture" (under Figure 1.7) should be turned into a heading or bolded ?
+- After the paragraph under Figure 1.8 there seems to be a schematic of a packet for processor unit. Should it be turned into a Figure or table ? The text is not ordered at the moment
+- "Processor grid" should be turned into a heading or bolded ?
+- In the sentence "Dead lock and livelock conditions are avoided by using a <blan?> routing architecture" - what is the "<blan?>" word ?
+- In the next sentence a "round robin arbitration mechanism" is mentioned. I have added a footnote explaining this mechanism. The definition is a personal adaptation of this definition: "Round-robin tournament or all-play-all tournament is a type of group tournament in which each participant plays every other participant an equal number of times."

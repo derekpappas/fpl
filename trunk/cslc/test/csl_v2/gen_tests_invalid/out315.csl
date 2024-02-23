@@ -1,0 +1,116 @@
+csl_enum ye {
+	sk,
+	pe
+};
+csl_enum nf {
+	ef,
+	pr,
+	ge,
+	gc,
+	nu,
+	fw
+};
+csl_enum vv {
+	tc,
+	ev
+};
+csl_isa_instruction_format jl{
+    jl( ){
+     set_width( 5);
+     generate_decoder( hc);
+  }
+}
+;
+csl_isa_instruction ck : jl{
+    ck( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa_instruction tt : jl{
+    tt( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa pd{
+    pd( ){
+     set_decoder_name( "ds");
+     set_decoder_out_name_prefix( "ea");
+     set_decoder_out_name_suffix( "tm");
+     generate_decoder( grhcbo);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo ua{
+   ua( ){
+     set_dimension( 8, 3);
+     add_logic( programable_depth, 2);
+     add_logic( stall);
+     add_logic( rd_credit);
+  }
+}
+;
+csl_memory_map_page gh{
+    gh( ){
+     add_address_range( 8, 0);
+     set_access_rights( access_read, access_read);
+     add_reserved_address_range( 8, 3);
+     get_data_word_wodth( );
+     set_endianess( big_endianbig_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page cf{
+    cf( ){
+     add_address_range( 9, 9);
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( none, none);
+     add_reserved_address_range( 1, 9);
+     add( gh);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 8);
+     get_aligment( );
+     set_endianess( big_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page js{
+    js( ){
+     get_next_address( );
+     add_reserved_address_range( 9, 9);
+     add( ua, "gs");
+     get_upper_bound( );
+     set_data_word_width( 2);
+     get_data_word_wodth( );
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map sp{
+    sp( ){
+     auto_gen_memory_map( );
+     set_type( page);
+     set_prefix( bo);
+     get_prefix( );
+     set_suffix( do);
+  }
+}
+;
+csl_register mv{
+    mv( ){
+     add_logic( read_valid);
+     add_logic( bypass);
+  }
+}
+;

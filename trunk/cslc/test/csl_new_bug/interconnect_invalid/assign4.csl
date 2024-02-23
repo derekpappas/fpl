@@ -1,0 +1,24 @@
+//oanab
+//22 july 2008
+
+csl_interface ifc {
+  csl_port x(input);
+  csl_port y(output);
+  ifc () {}
+};
+
+csl_signal_group sg {
+  csl_signal s1,s2;
+  sg () {}
+};
+
+csl_unit a {
+  ifc ifc0;
+  ifc ifc1;
+  sg sg0;
+  csl_signal sx(4),sy(5);
+  a () {
+    ifc0 = ifc1[1:0];
+    //  ifc1 = sg0[1:0];
+  }
+};

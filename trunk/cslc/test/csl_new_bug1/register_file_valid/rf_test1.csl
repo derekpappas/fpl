@@ -1,0 +1,19 @@
+//oanab
+//31 mar 2008
+
+csl_register_file rf {
+  rf () {
+    set_width(32);
+    set_depth(16);
+    }
+};
+
+csl_unit u {
+  csl_signal clk,addr(4),data(32),en,valid,rst,clr;
+  rf rf0(.clock(clk),.wr_addr(addr),.rd_addr0(addr),.rd_addr1(addr),
+         .data_in(data),.data_out0(data),.data_out1(data),.wr_en(en),
+         .rd_en0(en),.rd_en1(en),.valid(valid),.reset(rst),.clear(clr));
+  u () {}
+};
+
+

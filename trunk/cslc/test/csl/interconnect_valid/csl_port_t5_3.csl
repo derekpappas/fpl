@@ -1,0 +1,11 @@
+//author: Ines
+//testing: csl_unit, csl_signal 
+
+csl_unit u3_t5 {
+  csl_signal sgn3_1_t5;
+  csl_port sgn3_2_t5(output);
+
+  u3_t5(){
+    sgn3_1_t5 = sgn3_2_t5;
+  }
+};

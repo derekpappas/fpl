@@ -1,0 +1,7 @@
+//bug 899
+csl_memory_map_page ysre1{
+    ysre1(){
+     add(hdek, "bdou1");
+  }
+}
+;

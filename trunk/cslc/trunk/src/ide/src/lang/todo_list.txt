@@ -1,0 +1,37 @@
+1. we can have an option for set the working directory
+   - after the working directory is set, all the files/projects will be saved in that directory.
+   - the working directory should be set once, when you exit from the CSLC IDE and start again, the working directory should be the same.
+
+2. we can have a left window inside the CSLC IDE that will be the worksplace
+   - in this window is showed the project that is working on and all the libraries.
+
+3. we can have a status bar somewhere in the bottom of CSLC IDE window
+   - we can see the status of the project
+   - we can see the compilation time
+
+4. we can have another window to see the generated output (verilog code)
+
+5. we can have an option to set an output file where will be saved the output verilog generated code
+
+6. we can have a search option / search and replace option
+
+7. we need a solution to compile more than one file from a project (i.e.: like a compile option)
+
+8. we need an option to break or end the simulation
+
+9. we can add to the help tag a kind of documentation about the csl sintax
+
+10.we can have some pop-up help when you have the mouse cursor over a meniu tag/button more than n seconds  :)
+
+11.we can have a debug option
+
+12.we can have autoindent option
+
+13.maybe tab should be equal with 2 spaces/ blanks
+
+14.IDE has a bug: when you want to exit (press [x]) a window apears to confirm the exit and if you press NO (to revoke the exit action) the IDE will be closed
+
+15.when you press "open" to open a file, the folders that appear in the "open window" are cramped and the names of folders are cutted
+16.refresh the log window after running CSLC
+
+

@@ -1,0 +1,7 @@
+//signal_object_name.set_bitrange(bitrange_object_name);; example 
+//(from csl_interconnect.fm docs) modified after the new sintax
+//andreim
+//03 July 2007
+
+csl_unit top {
+};

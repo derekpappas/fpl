@@ -1,0 +1,19 @@
+//set_offset to a signal that does not exist (or to anything else that is not declared)
+//andreim
+//20 June 2007
+
+csl_bitrange br_bitrange(0, 7);
+
+csl_unit u_unit1{
+	csl_signal 	sgn_sgn1,
+							sgn_sgn2(wire, 4),     
+							sgn_sgn3(reg, 0,3),  //lower & upper
+							sgn_sgn4,
+							sgn_sgn5,
+							sgn_sgn6;
+	csl_port p_p1;
+	u_unit1(){
+		br_bitrangse.set_offset(a);  //can't set the offset to a bitrange
+		bla.set_offset(ab);   //bla does not exist
+	}
+};

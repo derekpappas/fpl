@@ -1,0 +1,29 @@
+//oanab
+//25 mar 2008
+//formal to actual - interface and interface
+
+csl_interface ifc1 {
+  csl_port x1(input,2),x2(input,3);
+  ifc1 () {}
+};
+csl_interface ifc2 {
+  csl_port y1(output,4),y2(output,3);
+  ifc2 () {}
+};
+
+
+csl_unit u1 {
+  ifc1 ifc1;
+  u1 () {}
+};
+
+csl_unit u2 {
+  ifc2 ifc2;
+  u2 () {}
+};
+
+csl_unit u3 {
+  u2 u20;
+  u1 u10(.ifc1(u20.ifc2));
+  u3 () {}
+};

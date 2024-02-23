@@ -1,0 +1,21 @@
+//oanab
+//12 nov 2007
+//overlapping fields
+
+csl_field f1(4);
+
+csl_field f2{
+  f2(){
+    set_width(3);
+  }
+};
+
+csl_field f3{
+  f1 f1;
+  f2 f2;
+  f3(){
+    set_width(15);
+    set_field_position(f1,0);
+    set_field_position(f2,1); // 2nd param should be greater than 3
+  }
+};

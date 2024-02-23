@@ -1,0 +1,4 @@
+ETAGS=etags	# Exuberant ctags
+    rm TAGS
+    find . -name '*.cpp' -o -name '*.h' -o -name '*.g' -print0 \
+    | xargs $(ETAGS) --extra=+q --fields=+fksaiS --c++-kinds=+px --append

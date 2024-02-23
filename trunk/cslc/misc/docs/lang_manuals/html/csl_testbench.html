@@ -1,0 +1,492 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="GENERATOR" content="Quadralay WebWorks Publisher Standard Edition 7.0.6.1257">
+<meta name="TEMPLATEBASE" content="Dynamic HTML Standard Edition">
+<meta name="LASTUPDATED" content="09/10/07 12:19:03">
+<link rel="StyleSheet" href="standard.css" type="text/css" media="screen">
+<title>1.1 CSL Testbench Commands Summary  </title>
+</head>
+
+<body background="images/backgrnd.gif">
+
+<table width="331" border="0" align="right" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><a href="csl_language.html"><img src="images/navtoc.gif" width="84" height="23"
+    border="0" alt="TOC"> </a></td>
+    <td><a href="csl_language.html"><img src="images/navprev.gif" width="81" height="23"
+    border="0" alt="PREV"> </a></td>
+    <td><a href="csl_register_file.html"><img src="images/navnext.gif" width="81" height="23"
+    border="0" alt="NEXT"> </a></td>
+    <td><a href="CmdBookLOF.html"><img src="images/navidx.gif" width="85" height="23"
+    border="0" alt="INDEX"> </a></td>
+  </tr>
+</table>
+
+<p><img src="images/wwplogo.gif" width="122" height="63" alt="Put your logo here!"></p>
+<hr align="left">
+
+<blockquote>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 2pt; margin-left: 0pt; margin-right: 0pt; margin-top: 6pt; text-align: justify; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787502"> </a>CHAPTER 1   CSL Testbench<br>
+</div>
+<p class="Body">
+  <a name="787503"> </a>
+</p>
+<p class="Body">
+  <a name="787506"> </a>All rights reservedCopyright  ©2006 Fastpath Logic, Inc. Copying in any form without the expressed written permission of Fastpath Logic, Inc is prohibited
+</p>
+<p class="Body">
+  <a name="787508"> </a>
+</p>
+<p class="Body">
+  <a name="787522"> </a>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <caption><a name="787511"> </a><div class="TableTitle">TABLE 1.1  Chapter Outline</div></caption>
+  <tr>
+    <td><a name="787516"> </a><div class="CellBody"><a href="csl_testbench.html#787524">&#160;1.1  CSL Testbench Commands Summary</a></div></td>
+  </tr>
+  <tr>
+    <td><a name="787521"> </a><div class="CellBody"><a href="csl_testbench.html#787558">&#160;1.2  CSL Testbench Commands</a></div></td>
+  </tr>
+</table>
+
+
+
+
+</p>
+<h2 class="Heading1">
+  <a name="787524"> </a>1.1   CSL Testbench Commands Summary
+</h2>
+<p class="Body">
+  <a name="787525"> </a>CSL testbench
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787529"> </a><a href="csl_testbench.html#787562">csl_testbench testbench_object_name;</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787535"> </a><a href="csl_testbench.html#787579">set_testbench_verilog_filename(name);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787725"> </a><a href="csl_testbench.html#787590">add_logic(simulation_timeout_counter, numeric_expresion);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787731"> </a><a href="csl_testbench.html#787691">add_logic(stall_generation, dut_inst_name);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787552"> </a><a href="csl_testbench.html#787600">add_logic(generate_waves, filename, wave_type, [list_of_scopes]);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787553"> </a><a href="csl_testbench.html#787624">add_logic(clock,clock_name,period,time_base);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787554"> </a><a href="csl_testbench.html#787630">add_logic(generate_report [,columns|rows] );</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787808"> </a><a href="csl_testbench.html#787815">add_logic(generate_waves, start_time, stop_time);</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787555"> </a><a href="csl_testbench.html#787637">int get_simulation_timeout_count();</a><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787556"> </a><br>
+</div>
+<h2 class="Heading1">
+  <a name="787558"> </a>1.2  CSL Testbench Commands
+</h2>
+<h3 class="Heading2">
+  <a name="787559"> </a>1.2.1  CSL testbench
+</h3>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787562"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_testbench</span> <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">testbench_object_name;</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787563"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="787564"> </a>Testbench_declaration. Creates a testbench object named <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">testbench_object_name.</span> 
+</p>
+<p class="Body">
+  <a name="787836"> </a>                                                                                                    [ <a href="csl_testbench.html#787524"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Testbench Commands Summary</span></a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>]
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787565"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="787566"> </a>In this example, a csl testbench named <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">tb</span> is created. A testbench is a container.
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 5pt; margin-left: 72pt; margin-right: 0pt; margin-top: 5pt; text-align: justify; text-decoration: none; text-indent: -72pt; text-transform: none; vertical-align: baseline">
+<a name="787571"> </a>FIGURE 1.1  A testbench tb<br clear="all" /><table align="left"><tr><td><img src="images/csl_testbencha.gif" height="85" width="117" align="left" border="0" hspace="0" vspace="0">
+</td></tr></table><br clear="all"><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787572"> </a>CSL code<br>
+</div>
+<div style="color: #000000;  font-style: italic; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787573"> </a>//declare a testbench named "tb"<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787574"> </a><span style="color: #0000ff;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_testbench</span><span style="color: #0000ff;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline"> tb</span><span style="color: #0000ff;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span> <br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787575"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787576"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">module</span> tb<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">;</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787577"> </a>endmodule<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787579"> </a><span style="color: #000000;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline"> </span><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">set_testbench_verilog_filename</span>(name);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787580"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="787581"> </a>The default name of the Verilog module and the filename for the testbench is the name of the csl_testbench instance. Set_testbench_verilog_filename(name) will override the default testbench name with <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">name</span>. 
+</p>
+<p class="Body">
+  <a name="787582"> </a>Use csl_include to add an include file containing Verilog code to the Verilog testbench.
+</p>
+<p class="Body">
+  <a name="787850"> </a>                                                                                                    [ <a href="csl_testbench.html#787524"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Testbench Commands Summary</span></a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>]
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787583"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="787584"> </a>//
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787585"> </a>CSL code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787586"> </a>// <br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787587"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787588"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787590"> </a><span style="color: #000000;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline"> </span><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">add_logic</span>(simulation_timeout_counter, numeric_expresion);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787591"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="787592"> </a>The testbench will stop the simulation if it reaches time numeric_expression. This will add a counter which if it is still running at <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">numeric_expression</span> will stop the simulation and print an error message stating that the simulation did not finish by time <span style="color: #000000;  font-style: italic; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">numeric_expression</span>.
+</p>
+<p class="Body">
+  <a name="787860"> </a>                                                                                                    [ <a href="csl_testbench.html#787524"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Testbench Commands Summary</span></a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>]
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787593"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="787594"> </a>//
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787595"> </a>CSL code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787596"> </a>// <br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787597"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787598"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787691"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">add_logic</span>(stall_generation, dut_inst_name);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787734"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="787735"> </a>//
+</p>
+<p class="Body">
+  <a name="787870"> </a>                                                                                                    [ <a href="csl_testbench.html#787524"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Testbench Commands Summary</span></a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>]
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787736"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="787737"> </a>//
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787738"> </a>Csl code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787739"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787740"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787741"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787600"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">add_logic(generate_waves</span>, filename, wave_type, [list_of_scopes]<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787601"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="787602"> </a>Default is to dump waves for every signal and port from the top design below. Optionally, a list of scopes can be passed in to limit the amount of waves to be dumped.
+</p>
+<p class="Body">
+  <a name="787879"> </a>                                                                                                    [ <a href="csl_testbench.html#787524"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Testbench Commands Summary</span></a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>]
+</p>
+<p class="Body">
+  <a name="787615"> </a>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <caption><a name="787606"> </a><div class="TableTitle">TABLE 1.2  </div></caption>
+  <tr bgcolor="#CCCCCC">
+    <th><a name="787608"> </a><div class="CellHeading">&nbsp;</div></th>
+  </tr>
+  <tr>
+    <td><a name="787610"> </a><div class="CellBody"><span style="color: #000000;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">type = ( fsdb | vsd )</span></div></td>
+  </tr>
+  <tr>
+    <td><a name="787612"> </a><div class="CellBody"><span style="color: #000000;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">fsdb-generate fsdb file format</span></div></td>
+  </tr>
+  <tr>
+    <td><a name="787614"> </a><div class="CellBody"><span style="color: #000000;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">vsd -generate vsd file format</span></div></td>
+  </tr>
+</table>
+
+
+
+
+</p>
+<p class="Body">
+  <a name="787616"> </a>
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787617"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="787618"> </a>//
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787619"> </a>CSL code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787620"> </a>// <br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787621"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787622"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787624"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">add_logic</span>(clock,clock_name,period,time_base);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787625"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="787626"> </a>//
+</p>
+<p class="Body">
+  <a name="787889"> </a>                                                                                                    [ <a href="csl_testbench.html#787524"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Testbench Commands Summary</span></a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>]
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787627"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="787628"> </a>//
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787823"> </a>Csl code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787824"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787825"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787826"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787630"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">add_logic</span>(generate_report [,columns|rows] );<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787631"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="787632"> </a>//
+</p>
+<p class="Body">
+  <a name="787899"> </a>                                                                                                    [ <a href="csl_testbench.html#787524"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Testbench Commands Summary</span></a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>]
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787633"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="787634"> </a>//
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787798"> </a>Csl code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787813"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787814"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787822"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787815"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">add_logic</span>(generate_waves, start_time, stop_time);<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787800"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="787801"> </a>//
+</p>
+<p class="Body">
+  <a name="787909"> </a>                                                                                                    [ <a href="csl_testbench.html#787524"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Testbench Commands Summary</span></a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>]
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787802"> </a>Example : <br>
+</div>
+<p class="Body">
+  <a name="787803"> </a>//
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787804"> </a>Csl code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787805"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787806"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787807"> </a>//<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787637"> </a>int get_simulation_timeout_count();<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787638"> </a>Description : <br>
+</div>
+<p class="Body">
+  <a name="787639"> </a>Get the number of cycles the simulation will run for befor issuing an error message.
+</p>
+<p class="Body">
+  <a name="787919"> </a>                                                                                                    [ <a href="csl_testbench.html#787524"><span style="color: #000000;  font-style: italic; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">CSL Testbench Commands Summary</span></a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline"> </span>]
+</p>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787640"> </a>Example : <br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 5pt; margin-left: 72pt; margin-right: 0pt; margin-top: 5pt; text-align: justify; text-decoration: none; text-indent: -72pt; text-transform: none; vertical-align: baseline">
+<a name="787665"> </a>FIGURE 1.2  <br clear="all" /><table align="left"><tr><td><img src="images/csl_testbench2.gif" height="150" width="284" align="left" border="0" hspace="0" vspace="0">
+</td></tr></table><br clear="all"><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787666"> </a>CSL code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787667"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">csl_testbench</span> tb_a{<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787668"> </a>tb_a(){<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787669"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">set_simulation_timeout_count(</span>1000<span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787670"> </a>}};<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787671"> </a>csl_testbench tb_b{<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787672"> </a>tb_a tb_a;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787673"> </a>tb_b(){<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787674"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">set_simulation_timeout_count(</span><span style="color: #0000ff;  font-style: normal; font-weight: normal; text-decoration: none; text-transform: none; vertical-align: baseline">tb_a.</span><span style="color: #0000ff;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">get_simulation_timeout_count()</span><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">);</span><br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787675"> </a>}};<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 0pt; margin-left: 0pt; margin-right: 0pt; margin-top: 3pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787676"> </a>Verilog code<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787677"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">module</span> tb_a();<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787678"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">    parameter</span> MAX_SIM_TIMEOUT=1000;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787679"> </a>endmodule<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787680"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">module</span> tb_b();<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: normal; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787681"> </a><span style="color: #000000;  font-style: normal; font-weight: bold; text-decoration: none; text-transform: none; vertical-align: baseline">    parameter</span> MAX_SIM_TIMEOUT=1000;<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787682"> </a>endmodule<br>
+</div>
+<div style="color: #000000;  font-style: normal; font-weight: bold; margin-bottom: 2pt; margin-left: 18pt; margin-right: 0pt; margin-top: 0pt; text-align: left; text-decoration: none; text-indent: 0pt; text-transform: none; vertical-align: baseline">
+<a name="787683"> </a><br>
+</div>
+<p class="Body">
+  <a name="787684"> </a>
+</p>
+<p class="Body">
+  <a name="785747"> </a>
+</p>
+</blockquote>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1">
+    <a href="http://www.webworks.com"><img src="images/webworks.gif" width="150" height="20" border="0"></a><br>
+    Quadralay Corporation<br>
+    http://www.webworks.com<br>
+    Voice: (512) 719-3399<br>
+    Fax: (512) 719-3606<br>
+    <a href="mailto:sales@webworks.com">sales@webworks.com</a><br>
+    </font></td>
+  </tr>
+</table>
+
+<table width="331" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><a href="csl_language.html"><img src="images/navtoc.gif" width="84" height="23" border="0"
+    alt="TOC"> </a></td>
+    <td><a href="csl_language.html"><img src="images/navprev.gif" width="81" height="23" border="0"
+    alt="PREV"> </a></td>
+    <td><a href="csl_register_file.html"><img src="images/navnext.gif" width="81" height="23" border="0"
+    alt="NEXT"> </a></td>
+    <td><a href="CmdBookLOF.html"><img src="images/navidx.gif" width="85" height="23" border="0"
+    alt="INDEX"> </a></td>
+  </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+`include "defines.v"
+
+module a(clk,
+         reset_,
+         in,
+         valid_in,
+         out,
+         valid_out
+         );
+
+// Location of source csl unit: file name = 2.csl line number = 1
+  input clk;
+  input reset_;
+  input  [3 - 1:0] in;
+  input            valid_in;
+  output [3 - 1:0] out;
+  output           valid_out;
+  reg    [3 - 1:0] out;
+  reg              valid_out;
+  `include "a.logic.vh"
+endmodule
+

@@ -1,0 +1,21 @@
+//Monica
+//13 may 2008
+// concat_expr in connect()
+
+csl_unit u1{
+  csl_signal s1(32),s2(16);
+  u1(){}
+};
+
+csl_unit u2{
+  csl_port p1(input,16);
+  csl_port p2(input,8);
+  csl_port p3(input,8);
+  csl_port p4(output,8);
+  csl_port p5(output,8);
+  u1 u1i;
+  u2(){
+    u1i.s1.connect_by_name({p1,p2,p3});
+    u1i.s2.connect_by_name({p4,p5});
+  }
+};

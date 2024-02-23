@@ -1,0 +1,77 @@
+//connections between a single port from an interface and a single port from an unit
+//hid ifc.port->port
+// ifc.port->hid unit.port
+
+//--------ifc declarations------------------
+csl_interface ifc1{
+  csl_port p11(input,4);
+  ifc1(){}
+};
+
+csl_interface ifc2{
+  csl_port p12(input,8);
+  ifc1 ifc10;
+
+ifc2(){}
+};
+
+csl_interface ifc3{
+  csl_port p13(output);
+  ifc2 ifc20;
+
+ifc3(){}
+};
+
+csl_interface ifc4{
+  csl_port p14(output,2);
+  ifc3 ifc30;
+
+ifc4(){}
+};
+
+//----------units declarations----------------------
+
+csl_unit u1{
+ ifc4 ifc40;
+
+u1(){}
+};
+
+csl_unit u2{
+ csl_port p11(input,4);
+ csl_port p14(output,2);	
+ 
+ u1 u10;
+
+u2(){
+u10.ifc40.ifc30.ifc20.ifc10.p11.connect_by_name(p11);    //hid ifc.port->port
+}
+};
+
+csl_unit u3{
+  csl_port p12(input,8);
+  
+  u2 u20;
+
+u3(){
+
+u20.u10.ifc40.ifc30.ifc20.p12.connect_by_name(p12);    //hid unit.hid ifc.port->port
+}
+};
+
+csl_unit u4{
+  csl_port p13(output);
+  csl_port p12(input,8);
+  csl_port p11(input,4);
+  csl_port p14(output,2);
+  u3 u30;
+
+u4(){
+
+u30.u20.u10.ifc40.ifc30.p13.connect_by_name(p13);     //hid unit.hid ifc.port->port
+u30.u20.u10.ifc40.p14.connect_by_name(u30.u20.p14);   //hid unit.ifc.port->hid unit.port
+u30.p12.connect_by_name(p12);                         //unit.port->port
+u30.u20.p11.connect_by_name(p11);                     //hid unit.port -> port
+u30.u20.p14.connect_by_name(p14);                     //hid unit.port ->port
+ }
+};

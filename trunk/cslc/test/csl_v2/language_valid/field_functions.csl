@@ -1,0 +1,32 @@
+// CristiL
+//
+// Field functions
+
+csl_enum STATE {
+  RDY,
+  ERR
+};
+
+csl_field f (32);
+csl_field f0 (32);
+csl_field f1 (32);
+csl_field f2 (32);
+
+csl_bitrange b(32);
+
+f.set_offset(3);
+
+f.set_value(3);
+
+f0.set_offset(f.get_offset());
+
+f0.set_value(f.get_value());
+
+f1.set_enum(STATE);
+
+csl_signal signal0;
+csl_signal signal1;
+
+signal0.set_width(f.get_width());
+signal1.set_width(f.get_upper());
+

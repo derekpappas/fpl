@@ -1,0 +1,18 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u2">
+<port name="p1" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="p2" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<instantiation type = "u1">
+<instance name="u11">
+<f2a formal = "p1" actual = "p1" />
+</instance>
+</instantiation>
+<instantiation type = "u1">
+<instance name="u12">
+<f2a formal = "p1" actual = "p2" />
+</instance>
+</instantiation>
+</unit>
+</design>

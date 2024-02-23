@@ -1,0 +1,20 @@
+//Petronela
+//testing set_attribute;
+
+csl_register r1{
+  r1(){
+      set_width(67);
+      set_type(register);
+      add_to_memory_map();
+      set_attributes(rd_wr);
+  }
+};
+
+csl_unit u1{
+  csl_signal rst,en,data(67);
+  r1 r1(.reset_(rst),.enable(en),.clock(clk),.reg_out(data),.reg_in(data));
+  csl_signal clk;
+  u1(){
+    clk.set_attr(clock);
+  }
+};

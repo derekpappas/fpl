@@ -1,0 +1,16 @@
+# This is the input test file for CTestStmtCase class
+# <> means obligatory
+# [] means optional
+# Syntax: ( <1..2> <EXPRESSION_SWITCH_TYPE> <EXPRESSION_SWITCH_TEST> [CASE_TYPE] <NUMBER_OF_CASE_ITEMS> <CASE_ITEM>*NUMBER_OF_CASE_ITEMS )
+# 1 constructor without CASE_TYPE
+# 2 constructor with CASE_TYPE
+# examples:
+
+( 1 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 0 )
+( 2 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 0 0 )
+( 2 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 1 0 )
+( 2 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 2 0 )
+( 2 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 3 0 )
+( 1 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 1 ( 1 0 0 ) )
+( 1 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 2 ( 1 0 0 ) ( 2 2 0 0 ) )
+( 2 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) 3 2 ( 1 0 0 ) ( 2 2 0 0 ) )

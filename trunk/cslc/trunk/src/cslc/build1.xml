@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+  <project name="CSLC Main" default="debug">
+
+<!-- !!!Modify: projectDir, srcList, driverList, libraryName, dependencies and linker settings !!! Search for MODIFYME !!! -->
+
+    <target name="setDebugFlag">
+      <property name="debugFlag" value="yes"/>
+    </target>
+    
+    <target name="setCoverageFlag">
+      <property name="coverageFlag" value="yes"/>
+    </target>
+
+    <target name="setWallFlag">
+      <property name="wallFlag" value="yes"/>
+    </target>
+
+    <!-- the directory name of the output files (located in build/linux/x86_ARCH/ -->
+    <property name="projectDir" value="cslc"/>
+
+    <!-- the setDebug flag is set when this target is called -->
+    <target name="debug" depends="setDebugFlag,doDependencies,doBuild"/>
+
+    <!-- location of the sources directory -->
+    <property name="srcDirPath" value="."/>
+    
+    <!-- the list of objects(sources) -->
+    <property name="srcList" value="cslc_Typedef.cpp,new_cslc.cpp,new_main.cpp"/>
+
+    <property name="libraryName" value="cslc"/>
+    
+    <!-- relative path to build_utils -->
+    <property name="scriptsPath" value="../../build_utils"/>
+
+    <target name="getAntlrDirs">
+        <property name="antlrHome" value="${topDir}/antlr"/>
+        <property name="antlrLibDir" value="${antlrHome}/lib/cpp/src"/>
+        <property name="antlrJarLocation" value="${antlrHome}/antlr.jar"/>
+    </target>
+                                                    
+    <target name="getSupportDirs">
+        <property name="supportHome" value="${topDir}/src/support"/>
+        <property name="cliHome" value="${supportHome}/cli"/>
+        <echo message="cliHome = ${cliHome} srcDirPath = ${srcDirPath}" level="verbose"/>
+ 
+    </target>
+                                                    
+    <!-- ANTLR library name -->
+    <property name="antlrLibraryName" value="antlr"/>
+
+    <!-- needed for cpptask aditional module -->
+    <taskdef resource="cpptasks.tasks"/>
+    <typedef resource="cpptasks.types"/> 
+    <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+
+    <!-- calls external ANT script for retrieving the build path for testing general dependencies -->
+    <target name="doDependencies" unless="NoDeps">
+      <echo message="Geting General Dependencies" level="verbose"/>
+      <antfetch dir="${scriptsPath}" antfile="dependencies1.xml" inheritAll="true" inheritRefs="true" 
+      return="platformTypeOut,binDir,libDir,cslcBuildPath,csl_xml_warn_errorBuildPath,vparserBuildPath,vpreprocessorBuildPath,supportBuildPath,topDir,
+      cdomBuildPath,cslomBuildPath,cslom2cdom_adapterBuildPath,csl_parserBuildPath,autorouterBuildPath,cslom_design_checkerBuildPath,cslom_generatorsBuildPath" 
+      target="generalDependencies">
+      </antfetch>
+        <echo message="cslcBuildPath = ${cslcBuildPath} " level="verbose"/>
+    </target>
+
+    <target name="removeBinaries" depends="">
+      <delete>
+        <fileset dir="${binDir}/${projectDir}" casesensitive="yes">
+	  <include name="**/*"/>
+	</fileset>
+      </delete>
+      <echo message="Deleting ${binDir}/${projectDir}" level="verbose"/>
+    </target>
+ 
+    <target name="compile">
+      <cc outfile="${binDir}/${projectDir}/${libraryName}">
+        <compiler name="g++">
+          <fileset dir="${srcDirPath}" casesensitive="YES" includes="${srcList}"/>
+          <compilerarg value="-g" if="debugFlag"/>
+          <compilerarg value="-fprofile-arcs -ftest-coverage" if="coverageFlag"/>
+          <compilerarg value="-Wall" location="end" if="wallFlag"/>
+          <compilerarg value="-D__RELEASE_VERSION" location="end" if="releaseFlag"/>
+     	  <compilerarg value="-I${antlrLibDir}/.." location="end"/>
+      	  <compilerarg value="-Dv2v" if="v2vFlag"/>
+          <compilerarg value="-I/opt/local/include"/>
+          <compilerarg value="-I${cliHome}"/>
+          <compilerarg value="-L/opt/local/lib"/>
+
+          <!--Set the RLM off for usage when not connected to FPL server-->
+          <!--compilerarg value="-D__RLM_OFF" location="end" if="rlmOff"/-->
+          <compilerarg value="-D__RLM_OFF"/>
+        </compiler>
+        <linker name="g++">
+	  <libset libs="stdc++"/>
+              <linkerarg value="-static" if="static"/>
+              <libset dir="${csl_xml_warn_errorBuildPath}" libs="WE_Library,CSLC_Errors"/>
+              <libset dir="${vpreprocessorBuildPath}" libs="VPreprocessor_Library"/>
+              <libset dir="${vparserBuildPath}" libs="VParser_Library"/>
+              <libset dir="${cdomBuildPath}" libs="CDOM_Library"/>
+              <libset dir="${csl_parserBuildPath}" libs="cslParser_Library" unless="v2vFlag"/>
+              <libset dir="${cslomBuildPath}" libs="CSLOM_Library" unless="v2vFlag"/>
+              <libset dir="${cslom2cdom_adapterBuildPath}" libs="Adapter_Library" unless="v2vFlag"/>
+              <libset dir="${cslom_design_checkerBuildPath}" libs="CSLOM_Design_Checker_Library" unless="v2vFlag"/>
+              <libset dir="${cslom_generatorsBuildPath}" libs="CSLOmGenerators" unless="v2vFlag"/>
+              <libset dir="${autorouterBuildPath}" libs="Autorouter_Library" unless="v2vFlag"/>
+              <libset dir="${supportBuildPath}" libs="Support_Library"/>
+              <libset dir="${libDir}" libs="m, pthread, "/>
+              <libset dir="/opt/local/lib" libs="hpdf, xerces-c, png, z, boost_filesystem"/>
+              <libset dir="${antlrLibDir}" libs="${antlrLibraryName}"/>
+
+              <!-- This may be done as well in a different maner -->
+              <!--libset dir="./" libs="rlm" unless="rlmOff"/-->
+	</linker>
+      </cc>
+
+
+      <!-- copy the license file were the binary resides -->
+      <!--if>
+        <not>
+          <isset property="rlmOff"/>
+        </not>
+        <then>
+          <copy file="./generic_license.lic" tofile="${cslcBuildPath}/generic_license.lic"/>
+        </then>
+      </if-->
+
+    </target>
+    
+    <!-- builds without testing dependencies(to be called from the project root) -->
+    <target name="doBuild" depends="doDependencies,getAntlrDirs,getSupportDirs,compile"/>
+
+    <!-- to be called from the src and not from the root -->
+    <target name="clean" depends="doDependencies,removeBinaries">
+      <delete file="${cslcBuildPath}/generic_license.lic"/>
+    </target>
+
+</project>

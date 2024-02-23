@@ -1,0 +1,142 @@
+//oanab
+//03 mar 2008
+//ring node
+
+
+
+csl_unit rn {
+  ifc_pr_msg pr_msg_in; // interface for message entering rn
+  ifc_pr_msg pr_msg_out; // interface for message leaving rn
+  sg_pr_msg pr_rn_msg_in;   // input message
+  sg_rn_msg rn_msg_st0;     // message after ud block
+  sg_rn_msg rn_msg_tst_st0; // output signals after test unit
+  sg_rn_msg rn_msg_st1;     // message after st0 
+  sg_rn_msg rn_msg_st2;     // message after st1
+  sg_rn_msg rb_msg_st1;     // message after receive buffer
+  sg_au sg_au_st0,sg_au_st1; // enable signals after au - stage 0 and stage 1
+  sg_ctrl cp_st0,cp_st1,cp_st2; // control signals in all 3 stages
+  csl_signal mq_qm_full,mq_qm_empty,pr_busy;
+  csl_signal qm_cntl_st1;    // controls qm
+  sg_rn_msg mq_msg_st1;  // message after mq
+  sg_rn_msg mux_dm_msg_st1; // message after m0
+  csl_signal mem_busy;  // memory busy signal
+  csl_signal msg_count;  // counter for send permission
+  sg_rn_msg dm_mux_msg_st2; // message after data mem
+  sg_rn_msg dma_sb_msg_st1; // message after external dma
+  sg_rn_msg sb_mux_msg_st2; // message after send buffer
+  sg_rn_msg mux_bo_msg_st2; // message after m3
+
+  sg_pr_msg bo_msg_st2; // message after bo
+  sg_pr_msg pr_rn_msg_out; // message after st2
+
+  // tests if the message is for the local node
+  UD UD(.pr_rn_msg_in(pr_rn_msg_in),
+	.rn_msg_st0(rn_msg_st0),
+	.uid(rn_msg_st0.uid));
+
+  // provides enable signals for read or write
+  AU AU(.cp_st0.rd(cp_st0.rd),
+	.cp_st0.wr(cp_st0.wr),
+	.rn_msg_st0.valid(rn_msg_st0.valid),
+	.rn_msg_st0.addr(rn_msg_st0.addr),
+	.rn_msg_st0.dst_id(rn_msg_st0.dst_id),
+	.au_rd_out_st0(sg_au_st0),
+	.au_wr_out_st0(sg_au_st0));
+
+  // pipelined au
+  au0 au0; //(.reg_in(sg_au_st0),.reg_out(sg_au_st1));
+
+  // provides control signals
+  CD CD(.rn_msg_st0.cmd(rn_msg_st0.cmd),
+	.ifc_ctrl.slot_empty(cp_st0.slot_empty),
+	.ifc_ctrl.rd(cp_st0.rd),
+	.ifc_ctrl.wr(cp_st0.wr),
+	.ifc_ctrl.rd_burst(cp_st0.rd_burst),
+	.ifc_ctrl.burst(cp_st0.burst),
+	.ifc_ctrl.dma_en(cp_st0.dma_en),
+	.ifc_ctrl.pass_through(cp_st0.pass_through));
+
+  // pipelined cd
+  cp0 cp0; //(.reg_in(cp_st0),.reg_out(cp_st1));
+
+  // pipelined cp0
+  cp1 cp1; //(.reg_in(cp_st1),.reg_out(cp_st2));
+
+  // tests if proc busy and mq full => cmd=nack
+  NACK NACK(.rn_msg_st0(rn_msg_st0),
+	    .rn_msg_tst_st0(rn_msg_tst_st0),
+	    .mq_qm_full(mq_qm_full),
+	    .pr_busy(pr_busy),
+	    .rn_msg_cmd(rn_msg_tst_st0.cmd));
+
+  // pipelined message
+  st0 st0; //(.reg_in(rn_msg_tst_st0),.reg_out(rn_msg_st1));
+
+  // pipelined message
+  st1 st1; //(.reg_in(rn_msg_st1),.reg_out(rn_msg_st2));
+
+  // buffer used by nios to receive messages
+  rb0 rb0(.rn_msg_st0(rn_msg_st0),
+	  .au_rb_wr_en_st0(sg_au_st0),
+	  .rb_msg_st1(rb_msg_st1));
+
+  // used if messages arrive and proc is busy 
+  QM QM; //(.rn_msg_st0.cmd(rn_msg_st0.cmd),
+  //.qm_cntl_st1(qm_cntl_st1),
+  //.qm_mq_push(cl_cntl_st1.mq_push),
+  //.qm_mq_pop(cl_cntl_st1.mq_pop),
+  //.mq_qm_empty(mq_qm_empty));
+
+  // stores messages when proc busy
+  MQ MQ; //(.wr_data(rn_msg_st0),.rd_data(mq_msg_st1),.push(cl_cntl_st1.mq_push),.pop(cl_cntl_st1.mq_pop),.full(mq_qm_full),.empty(mq_qm_empty));
+
+  //counter - how many cycles the node should wait before sending a message
+  counter counter;
+
+  // mux used to select message from mq or rb0
+  m0 m0; //(.mq_msg_st1(mq_msg_st1),
+  //.rb_msg_st1(rb_msg_st1),
+  //.mux_dm_msg_st1(mux_dm_msg_st1),
+  //.qm_mq_pop(cl_cntl_st1.mq_pop));
+
+  // data memory - not finished
+  DM DM(.mux_dm_msg_st1(mux_dm_msg_st1),
+	.dm_mux_msg_st2(dm_mux_msg_st2));
+
+  // instruction memory -  not finished
+  IM IM;
+
+  // micro engine
+  // me me;
+
+  // internal custom logic control
+  int_cl int_cl; 
+
+  // external custom logic control - not finished
+  ext_cl ext_cl;
+  
+  // buffer used by nios to send messages
+  sb1 sb1(.dma_sb_msg_st1(dma_sb_msg_st1),
+	  .au_sb_rd_en_st1(sg_au_st1),
+	  .au_sb_wr_en_st1(sg_au_st1),
+	  .sb_mux_msg_st2(sb_mux_msg_st2));
+
+  // mux used to select message leaving the node
+  m3 m3(.dm_mux_msg_st2(dm_mux_msg_st2),
+	.sb_mux_msg_st2(sb_mux_msg_st2),
+	.rn_msg_st2(rn_msg_st2),
+	.mux_bo_msg_st2(mux_bo_msg_st2),
+	.pass_through(cp_st2.pass_through),
+	.rd_mux_sel(cp_st2.rd_mux_sel));
+
+  // bus interface unit out - not finished
+  BO BO(.mux_bo_msg_st2(mux_bo_msg_st2),
+	.bo_msg_st2(bo_msg_st2));
+
+  // pipelined output message
+  st2 st2; //(.reg_in(bo_msg_st2),.reg_out(pr_rn_msg_out));
+  rn () {
+    pr_msg_out.reverse();
+  }
+};
+ 

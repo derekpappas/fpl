@@ -1,0 +1,51 @@
+// Author: cghaba
+// Date: January 31, 2008
+
+csl_unit u_a{
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+  csl_port p_in1(input, 2);
+  csl_port p_out1(output,2);
+  u_a(){
+  }
+};
+
+csl_unit u_b{
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+  csl_port p_ent1(input, 2);
+  csl_port p_sor1(output,2);
+  u_b(){
+  }
+};
+
+csl_unit u_c{
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+  csl_port p_ein1(input, 2);
+  csl_port p_aus1(output,2);
+  u_c(){
+  }
+};
+  
+
+csl_unit u_top{
+  csl_port p_clk(input);
+  csl_port p_reset(input);
+  csl_port p_int1(input, 2);
+  csl_port p_ies1(output,2);
+  u_a unita;
+  u_b unitb;
+  u_c unitc;
+  u_top(){
+  p_clk.connect_by_pattern(p_clk);
+  p_reset.connect_by_pattern(p_reset);
+  p_int1.connect_by_name(unita.p_in1);
+  unita.p_out1.connect_by_name(unitb.p_ent1);
+  unitb.p_sor1.connect_by_name(unitc.p_ein1);
+  unitc.p_aus1.connect_by_name(p_ies1);
+  }
+};
+
+
+

@@ -1,0 +1,25 @@
+//Petronela
+
+csl_fifo f1{
+  f1(){
+   set_width(12);
+   set_depth(7); 
+   add_logic(stall_rd);//error should be stall_rd_side
+  }
+};
+
+csl_fifo f2{
+  f2(){
+   set_width(5);
+   set_depth(8);
+  }
+};
+
+csl_unit u1{
+  f1 f1;
+  f2 f2;
+  u1(){  
+  }
+};
+
+

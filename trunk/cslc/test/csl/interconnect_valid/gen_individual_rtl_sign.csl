@@ -1,0 +1,25 @@
+//oanab
+//19 oct 2007
+csl_signal_group sg{
+  csl_signal s1(2),s2(4);
+  sg(){
+  }
+};
+
+csl_unit a{
+  csl_signal sg2(2);
+  csl_signal clk(2);
+  csl_port p1(input,2);
+  csl_port p2(input,4);
+  a(){
+    sg2 =clk;
+  }
+};
+
+csl_unit u{
+  sg sg1;
+  
+  a a0(.p1(sg1.s1),.p2(sg1.s2));
+  u(){ 
+ }
+};

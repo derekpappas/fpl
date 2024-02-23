@@ -1,0 +1,16 @@
+//Petronela
+csl_register rg{
+  rg(){
+    //set_range(0,3);
+    set_width(16g);//should be a numeric expression
+    set_type(sft);
+  }
+};
+
+csl_unit u1{
+  rg rg;
+  u1(){
+    
+  }
+};
+

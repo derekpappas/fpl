@@ -1,0 +1,124 @@
+csl_enum xt {
+	dq = 61,
+	er = 46,
+	wp = 18,
+	jo = 1,
+	gx = 88,
+	fv = 95,
+	yy = 66,
+	ro = 70
+};
+csl_enum co {
+	yb,
+	lm,
+	ma,
+	ce,
+	fx,
+	kd,
+	rn,
+	tw
+};
+csl_enum ir {
+	or,
+	iu,
+	po
+};
+csl_isa_instruction_format jm{
+    jm( ){
+     set_width( 2);
+     generate_decoder( mnjfhk);
+  }
+}
+;
+csl_isa gu{
+    gu( ){
+     set_decoder_name( "on");
+     set_decoder_out_name_prefix( "aq");
+     set_decoder_out_name_suffix( "wt");
+     generate_decoder( jf);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo mv{
+   mv( ){
+     add_logic( almost_empty, 9);
+  }
+}
+;
+csl_memory_map_page jt{
+    jt( ){
+     set_address_increment( 2);
+     get_next_address( );
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 1);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page ho{
+  jt df;
+  jt ig;
+    ho( ){
+     set_access_rights( access_read_write, access_read_write);
+     get_lower_bound( );
+     set_endianess( little_endian);
+  }
+}
+;
+csl_memory_map_page ew{
+  jt rk;
+    ew( ){
+     add_address_range( 3, 4);
+     set_address_increment( 3);
+     set_next_address( 5);
+     set_access_rights( access_write, access_write);
+     add( mv, "jl");
+     add( ho);
+     set_data_word_width( 4);
+     get_aligment( );
+  }
+}
+;
+csl_memory_map rs{
+  jt dk;
+  ho jp;
+  ew ya;
+  jt jd;
+  ho vs;
+  jt uf;
+    rs( ){
+     auto_gen_memory_map( );
+     set_top_unit( mnjf);
+     set_type( flat);
+     set_data_word_width( 3);
+     get_data_word_width( );
+     set_prefix( tj);
+  }
+}
+;
+csl_register bb{
+    bb( ){
+     set_range( {[8:5], [1:9], [4:2], [9:6], [4:1], [8:1]});
+     set_type( CTL);
+     get_atributes( );
+     add_logic( serial_output);
+     init_value( 9);
+     set_value( 3);
+     clear_value( 6);
+     set_lock_enable_bit( 6);
+     stop_at_end_value( );
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register gk{
+    gk( ){
+     set_depth( 6);
+     add_logic( read_valid);
+     set_const_value( 9);
+  }
+}
+;

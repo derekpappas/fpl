@@ -1,0 +1,26 @@
+//oanab
+//19 oct 2007
+csl_unit comp1{
+   csl_port p1(output,4);
+   csl_port clk(input);
+   comp1(){}
+};
+csl_unit comp2{
+   csl_port p2(output,4);
+   csl_port clk(input);
+   comp2(){}
+};
+csl_unit comp{
+   csl_port x(input,4),y(input,4);
+   csl_port clk(input);
+   comp(){}
+};
+csl_unit top{
+   csl_signal x(wire,4,1),y(x);
+   csl_signal clk;
+   comp comp(.x(x),.y(y),.clk(clk));
+   comp1 comp1(.p1(x),.clk(clk));
+   comp2 comp2(.p2(y),.clk(clk));
+   top(){
+     clk.set_attr(clock);}
+};

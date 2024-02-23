@@ -1,0 +1,33 @@
+//Petronela
+
+csl_fifo f1{
+  f1(){
+   set_width(5);
+   set_depth(7);
+   add_logic(stall_rd_side);
+  }
+};
+
+csl_fifo f2{
+  f2(){
+   set_width(5);
+   set_depth(7);
+  }
+};
+csl_fifo f3{
+  f3(){
+   set_width(5);
+   set_depth(7); 
+   add_logic(flow_through);  //error should be add_logic(flow_throgh,numeric_expression);
+  }
+};
+
+csl_unit u1{
+  f1 f1;
+  f2 f2;
+  f3 f3;
+  u1(){  
+  }
+};
+
+

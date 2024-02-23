@@ -1,0 +1,55 @@
+//Monica
+// 7 apr 2008
+
+csl_bitrange br_data(32);
+
+csl_interface ifc_in{
+  csl_port p_data1(input,br_data);
+  csl_port p_data2(output,br_data);
+  ifc_in(){
+}
+};
+csl_interface ifc_out{
+  csl_port p_data1(input,br_data);
+  csl_port p_data2(output,br_data);
+  ifc_out(){}
+};
+
+csl_unit u_dut{
+  
+  csl_signal data1(br_data);
+  csl_signal data2(data1);
+  csl_port p_clk(input);
+  csl_signal clk1;
+  ifc_in ifc_in;
+  ifc_out ifc_out;
+  u_dut(){
+      p_clk.set_attr(clock);
+      ifc_in = ifc_out;
+      data1 = data2;
+      p_clk = clk1;
+  }
+};
+
+csl_vector stim_vec{
+  stim_vec(){
+    set_unit_name(u_dut);
+    set_direction(input);
+  }
+};
+csl_vector exp_vec{
+  exp_vec(){
+    set_unit_name(u_dut);
+    set_direction(output);
+  }
+};
+csl_testbench u_tb{
+  csl_signal p_clk(reg);
+
+  u_dut dut(.p_clk(p_clk));
+
+  u_tb(){
+    p_clk.set_attr(clock);
+    add_logic(clock,p_clk,2,ns);
+  }
+};

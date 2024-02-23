@@ -1,0 +1,470 @@
+//oanab
+//28 mar 2008
+//ring node registers/mems
+
+// instruction memory - instantiated in IM unit
+csl_memory mem_im {
+  mem_im () {
+    set_width(32);
+    set_depth(16384);
+  }
+};
+
+// data memory - instantiated in DM unit
+csl_memory mem_dm {
+  mem_dm () {
+    set_width(32);
+    set_depth(16384);
+  }
+};
+
+//reset register
+csl_register rst_reg {
+  rst_reg () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//read response register
+csl_register rd_resp_reg {
+  rd_resp_reg () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//doorbell buffer
+csl_memory d_bell {
+  d_bell () {
+    set_width(32);
+    set_depth(128);
+  }
+};
+
+csl_unit PIE_REGS {
+  rst_reg rst_reg;
+  rd_resp_reg rd_resp_reg;
+  d_bell d_bell;
+  PIE_REGS () {}
+};
+
+
+//message queue - queue manager - instantiated in MQ unit
+csl_fifo qm_mq {
+  qm_mq () {
+    set_width(32);
+    set_depth(32);
+  }
+};
+
+//buff mgr rd
+csl_register buf_mgr_rd {
+  buf_mgr_rd () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//buff mgr wr
+csl_register buf_mgr_wr {
+  buf_mgr_wr () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+csl_unit BUF_RD_WR {
+  buf_mgr_rd buf_mgr_rd;
+  buf_mgr_wr buf_mgr_wr;
+  BUF_RD_WR () {}
+};
+
+//mac lut
+csl_memory mac_lut {
+  mac_lut () {
+    set_width(32);
+    set_depth(2047);
+  }
+};
+
+csl_unit MAC_LUT {
+  mac_lut mac_lut;
+  MAC_LUT () {}
+};
+
+//emac regs 0 and 1 - instantiated in EMAC0 and EMAC1
+
+//emac moder register
+csl_register em_mod {
+  em_mod () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac interrupt source register
+csl_register em_int {
+  em_int () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac interrupt mask register
+csl_register em_int_mask {
+  em_int_mask () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac ipgt
+csl_register em_ipgt {
+  em_ipgt () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac ipgr1
+csl_register em_ipgr1 {
+  em_ipgr1 () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac ipgr2
+csl_register em_ipgr2 {
+  em_ipgr2 () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac packet length
+csl_register em_pac_len {
+  em_pac_len () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac coll conf
+csl_register em_coll_conf {
+  em_coll_conf () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac tx bd num
+csl_register em_tx_num {
+  em_tx_num () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac cotrol module mode register
+csl_register em_ctrl_mod {
+  em_ctrl_mod () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac mii mode register
+csl_register em_mii_mod {
+  em_mii_mod () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac mii command register
+csl_register em_mii_cmd {
+  em_mii_cmd () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac mii address register
+csl_register em_mii_addr {
+  em_mii_addr () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac mii tx data
+csl_register em_mii_txd {
+  em_mii_txd () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac mii rx data
+csl_register em_mii_rxd {
+  em_mii_rxd () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac mii status register
+csl_register em_mii_st {
+  em_mii_st () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac mac addr0
+csl_register em_mac_addr0 {
+  em_mac_addr0 () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac mac addr1
+csl_register em_mac_addr1 {
+  em_mac_addr1 () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac hash addr0
+csl_register em_hash_addr0 {
+  em_hash_addr0 () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac hash addr1
+csl_register em_hash_addr1 {
+  em_hash_addr1 () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac tx sop cnt
+csl_register em_tx_cnt {
+  em_tx_cnt () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac rx sop cnt
+csl_register em_rx_cnt {
+  em_rx_cnt () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac rx frm cnt
+csl_register em_rxf_cnt {
+  em_rxf_cnt () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//emac ix status
+csl_register em_ix_st {
+  em_ix_st () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+csl_unit EMAC_REGS {
+  em_mod em_mod;
+  em_int em_int;
+  em_int_mask em_int_mask;
+  em_ipgt em_ipgt;
+  em_ipgr1 em_ipgr1;
+  em_ipgr2 em_ipgr2;
+  em_pac_len em_pac_len;
+  em_coll_conf em_coll_conf;
+  em_tx_num em_tx_num;
+  em_ctrl_mod em_ctrl_mod;
+  em_mii_mod em_mii_mod;
+  em_mii_cmd em_mii_cmd;
+  em_mii_addr em_mii_addr;
+  em_mii_txd em_mii_txd;
+  em_mii_rxd em_mii_rxd;
+  em_mii_st em_mii_st;
+  em_mac_addr0 em_mac_addr0;
+  em_mac_addr1 em_mac_addr1;
+  em_hash_addr0 em_hash_adrr0;
+  em_hash_addr1 em_hash_addr1;
+  em_tx_cnt em_tx_cnt;
+  em_rx_cnt em_rx_cnt;
+  em_rxf_cnt em_rxf_cnt;
+  em_ix_st em_ix_st;
+  EMAC_REGS () {}
+};
+
+//ipc window
+csl_memory ipc_win {
+  ipc_win () {
+    set_width(32);
+    set_depth(512);
+  }
+};
+
+//ipc irq c
+csl_memory ipc_irqc {
+  ipc_irqc () {
+    set_width(32);
+    set_depth(64);
+  }
+};
+
+//ipc irq d
+csl_memory ipc_irqd {
+  ipc_irqd () {
+    set_width(32);
+    set_depth(64);
+  }
+};
+
+//ipc led on
+csl_register ipc_led_on {
+  ipc_led_on () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//ipc led off
+csl_register ipc_led_off {
+  ipc_led_off () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//ipc fpga rev
+csl_register ipc_fpga {
+  ipc_fpga () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+csl_unit IPC_REGS {
+  ipc_win ipc_win;
+  ipc_irqc ipc_irqc;
+  ipc_irqd ipc_irqd;
+  ipc_led_on ipc_led_on;
+  ipc_led_off ipc_led_off;
+  ipc_fpga ipc_fpga;
+  IPC_REGS () {}
+};
+
+//flash dma regs
+
+//flash dma size
+csl_register fdma_size {
+  fdma_size () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//flash dma target nid
+csl_register fdma_tar_nid {
+  fdma_tar_nid () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//flash dma target addr
+csl_register fdma_tar_addr {
+  fdma_tar_addr () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//flash dma flash addr
+csl_register fdma_flash_addr {
+  fdma_flash_addr () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//flash dma notify nid
+csl_register fdma_not_nid {
+  fdma_not_nid () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//flash dma notify addr
+csl_register fdma_not_addr {
+  fdma_not_addr () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//flash dma notify data
+csl_register fdma_not_data {
+  fdma_not_data () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//flash dma fail nid
+csl_register fdma_fail_nid {
+  fdma_fail_nid () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//flash dma fail addr
+csl_register fdma_fail_addr {
+  fdma_fail_addr () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+//flash dma fail data
+csl_register fdma_fail_data {
+  fdma_fail_data () {
+    set_type(register);
+    set_width(32);
+  }
+};
+
+csl_unit FLASH_DMA_REGS {
+  fdma_size fdma_size;
+  fdma_tar_nid fdma_tar_nid;
+  fdma_tar_addr fdma_tar_addr;
+  fdma_flash_addr fdma flash_addr;
+  fdma_not_nid fdma_not_nid;
+  fdma_not_addr fdma_not_addr;
+  fdma_not_data fdma_not_data;
+  fdma_fail_nid fdma_fail_nid;
+  fdma_fail_addr fdma_fail_addr;
+  fdma_fail_data fdma_fail_data;
+  FLASH_DMA_REGS () {}
+};

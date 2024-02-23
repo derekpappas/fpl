@@ -1,0 +1,11 @@
+//bug 887
+csl_memory_map mmap_0{
+  mmap_0(){
+        set_suffix("mem");
+  }
+};
+csl_memory_map mmap_1{
+  mmap_1(){
+       set_suffix(mmap_0.get_suffix());
+  }
+};

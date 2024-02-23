@@ -1,0 +1,19 @@
+// set_position_invalid
+
+csl_isa_field f_op(2);
+csl_isa_field f_op2(3);
+csl_isa_field f_field(0); // ??
+csl_isa_field f_f(3);
+
+csl_isa_element format{
+    f_op f_op_i;
+    f_op2 f_op2_i;
+    f_f f_f_i;
+    format(){
+	set_type(instr_format);
+        set_width(7);  // set_width(8);
+        set_position(f_op_i,  3);
+        set_position(f_op2_i, 3);  // can't add this field
+        set_next(f_op2_i, f_f_i);  // out of range with 1
+    }
+};

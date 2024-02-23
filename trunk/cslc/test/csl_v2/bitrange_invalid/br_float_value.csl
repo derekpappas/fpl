@@ -1,0 +1,2 @@
+//for a bitrange the value must be positive integer - bug1718
+csl_bitrange br1(0.12);

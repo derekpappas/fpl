@@ -1,0 +1,32 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="output.xsl"?>
+<design>
+<unit  name="usb_tm_packetizer" > 
+ </unit>
+<unit  name="usb_tm_dispatcher" > 
+ </unit>
+<unit  name="fab" > 
+ </unit>
+<unit  name="usb_transaction_mgr" > 
+ </unit>
+<unit  name="usb_protocol_mgr" > 
+ </unit>
+<unit  name="uart" > 
+ </unit>
+<unit  name="uart_mgr" > 
+ </unit>
+<unit  name="usb_phy" > 
+ </unit>
+<unit  name="fifo_regs" > 
+ </unit>
+<unit  name="fab_filter" > 
+ </unit>
+<unit  name="RAM" > 
+ </unit>
+<unit  name="i2c" > 
+ </unit>
+<unit  name="avalon_bridge" > 
+ </unit>
+<unit  name="f_core" > 
+ </unit>
+</design>

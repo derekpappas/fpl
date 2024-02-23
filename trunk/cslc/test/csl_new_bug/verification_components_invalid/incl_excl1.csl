@@ -1,0 +1,52 @@
+//oanab
+//10 july 2008  
+
+csl_interface ifc {
+  csl_port p_x(input);
+  csl_port p_y(input);
+  csl_port p_z(output);
+  ifc () {}
+};
+
+csl_signal_group sg21 {
+  csl_signal s_x105(4);
+  csl_signal s_y105(6);
+  csl_signal s_z105(17);
+  sg21 () {}
+};
+
+csl_unit a {
+  csl_port p(input,6);
+  csl_port clk(input);
+  ifc ifc0;
+  sg21 sg21_0;
+  a () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_vector stim_vect {
+  stim_vect () {
+    set_unit_name(a);
+    set_direction(input);
+ //   include_only(ifc0);
+    //   exclusion_list(sg21_0);
+  }
+};
+
+csl_vector exp_vect {
+  exp_vect () {
+    set_unit_name(a);
+    set_direction(output);
+    //   include_only(sg21_0);
+  }
+};
+
+csl_testbench tb {
+  csl_signal clk(reg);
+  a a0(.clk(clk));
+  tb () {
+    clk.set_attr(clock);
+    add_logic(clock,clk[1],10,ps);
+  }
+};

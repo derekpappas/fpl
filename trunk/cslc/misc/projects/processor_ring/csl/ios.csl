@@ -1,0 +1,120 @@
+// Altera FPGA IO buffers
+
+csl_unit io_bc {
+  csl_port pin        (put);
+  csl_port data_in    (input);
+  csl_port data_out   (output);
+  io_bc() {}
+};
+
+csl_unit io_bct {
+  csl_port pin        (put);
+  csl_port data_in    (input);
+  csl_port data_out   (output);
+  csl_port output_en  (input);
+  io_bct() {}
+};
+
+csl_unit io_bk {
+  csl_port pin    (put);
+  csl_port clk_in (input);
+  csl_port clk_out(output);
+  io_bk() {}
+};
+
+csl_unit io_bsert {
+  csl_port pin        (put);
+  csl_port reset      (input);
+  csl_port clk_in     (input);
+  csl_port clk_en_in  (input);
+  csl_port data_in    (input);
+  csl_port clk_out    (output);
+  csl_port clk_en_out (output);
+  csl_port data_out   (output);
+  csl_port output_en  (input);
+  io_bsert() {}
+};
+
+csl_unit io_bsrxt {
+  csl_port pin          (put);
+  csl_port reset        (put);
+  csl_port clk_capture  (put);
+  csl_port clk_resync   (put);
+  csl_port clk_in       (put);
+  csl_port data_in      (put);
+  csl_port clk_out      (put);
+  csl_port data_out     (put);
+  csl_port output_en    (put);
+ io_bsrxt() {}
+};
+
+csl_unit io_ic {
+  csl_port pin    (output);
+  csl_port data_in(input);
+ io_ic() {}
+};
+
+csl_unit io_ispx {
+  csl_port pin        (put);
+  csl_port preset     (put);
+  csl_port clk_capture(put);
+  csl_port clk_resync (put);
+  csl_port clk_in     (put);
+  csl_port data_in    (put);
+  io_ispx() {}
+};
+
+csl_unit io_isr {
+  csl_port pin    (put);
+  csl_port reset  (put);
+  csl_port clk_in (put);
+  csl_port data_in(put);
+ io_isr() {}
+};
+
+csl_unit io_oc {
+  csl_port pin     (put);
+  csl_port data_out(put);
+ io_oc() {}
+};
+
+csl_unit io_ok {
+  csl_port pin    (put);
+  csl_port clk_out(put);
+ io_ok() {}
+};
+
+csl_unit io_osp {
+  csl_port pin     (put);
+  csl_port preset  (put);
+  csl_port clk_out (output);
+  csl_port data_out(output);
+ io_osp() {}
+};
+
+csl_unit io_ospt {
+  csl_port pin      (put);
+  csl_port preset   (put);
+  csl_port clk_out  (output);
+  csl_port data_out (output);
+  csl_port output_en(input);
+ io_ospt() {}
+};
+
+csl_unit io_osr {
+  csl_port pin     (put);
+  csl_port reset   (put);
+  csl_port clk_out (put);
+  csl_port data_out(put);
+ io_osr() {}
+};
+
+csl_unit io_osrt {
+  csl_port pin      (put);
+  csl_port reset    (put);
+  csl_port clk_out  (put);
+  csl_port data_out (put);
+  csl_port output_en(put);
+ io_osrt() {}
+};
+

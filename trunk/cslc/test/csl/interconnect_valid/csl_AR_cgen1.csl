@@ -1,0 +1,39 @@
+//author: Ines
+//testing the command csl_unit & csl_port & connect
+
+csl_unit C {
+  csl_port K(input, 4);
+  csl_port M(input, 4);
+  C() {
+  }
+};
+
+csl_unit F {
+  csl_port A(input, 4);
+  csl_port J(input, 4);
+  C C_P(.K(A),.M(J));
+  F() {
+  }
+};
+
+csl_unit W {
+  W() {
+  }
+};
+
+csl_unit D {
+  D() {
+  }
+};
+
+csl_unit T {
+  W W0;
+  D D0;
+  csl_port P(input, 4);
+  csl_port R(input, 4);
+  F F0(.A(P),.J(R));
+  T() {
+  }
+};
+
+

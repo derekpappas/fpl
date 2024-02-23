@@ -1,0 +1,7 @@
+csl_unit B {
+};
+
+csl_unit A {
+  csl_signal B();
+  B b0;
+};

@@ -1,0 +1,119 @@
+csl_enum af {
+	hh = 69,
+	xj = 78,
+	kf = 39,
+	eb = 42
+};
+csl_enum fy {
+	ch = 26,
+	mi = 96
+};
+csl_enum uk {
+	km,
+	nt,
+	lu,
+	ya,
+	xm,
+	wf,
+	pw,
+	my,
+	gn,
+	kr,
+	sr,
+	sa
+};
+csl_isa_instruction_format cc{
+    cc( ){
+     set_width( 1);
+     generate_decoder( djvh);
+  }
+}
+;
+csl_isa cg{
+    cg( ){
+     set_decoder_out_name_prefix( "vs");
+     set_decoder_out_name_suffix( "qt");
+     generate_decoder( djvh);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo ea{
+   ea( ){
+     set_physical_implementation( SRAM);
+     add_logic( wr_words, 8);
+     add_logic( pushback);
+     add_logic( string_through, 8);
+  }
+}
+;
+csl_memory_map_page bk{
+    bk( ){
+     add_address_range( 6, 0);
+     set_address_increment( 9);
+     get_address_increment( );
+     set_next_address( 8);
+     get_next_address( );
+     set_access_rights( access_write, access_read_write);
+     add_reserved_address_range( 8, 2);
+     get_lower_bound( );
+     set_aligment( 0);
+     get_aligment( );
+     set_endianess( little_endianbig_endian);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page nb{
+    nb( ){
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_read_write, none);
+     get_upper_bound( );
+     set_data_word_width( 7);
+     get_data_word_wodth( );
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page mb{
+  bk hm;
+    mb( ){
+     set_address_increment( 4);
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_write, access_read_write);
+     set_endianess( big_endianbig_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map ip{
+  mb vo;
+  bk gf;
+    ip( ){
+     auto_gen_memory_map( );
+     set_top_unit( vh);
+     set_type( page);
+nbmb.set_access_rights_enum( bknbmb); 
+     set_prefix( sl);
+  }
+}
+;
+csl_register ew{
+    ew( ){
+     add_logic( neg_output);
+     add_logic( rd_en);
+  }
+}
+;
+csl_register up{
+    up( ){
+     set_depth( 4);
+     set_const_value( 6);
+     add_logic( bypass);
+  }
+}
+;

@@ -1,0 +1,11 @@
+csl_register ir1{
+  csl_field fd1;
+  ir(){}
+};
+csl_unit u1{
+  csl_signal sig1(4);
+  ir1 ir1;
+  u1(){
+  ir1.instr1.field.create_signal(sig1);//how is instr1 and field?
+  }
+};

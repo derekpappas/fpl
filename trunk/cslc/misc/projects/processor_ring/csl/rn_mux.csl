@@ -1,0 +1,34 @@
+//oanab
+//10 mar 2008
+//muxes
+
+// mux used to select message from mq or rb0
+
+csl_unit m0 {
+  ifc_rn_msg mq_msg_st1; // input message 1 - from MQ
+  ifc_rn_msg rb_msg_st1; // input message 2 - from rb0
+  ifc_rn_msg mux_dm_msg_st1; // output message
+  csl_signal qm_mq_pop;  // selects message
+  m0 () {
+    mux_dm_msg_st1.reverse();
+    mux_dm_msg_st1 = qm_mq_pop ? rb_msg_st1 : mq_msg_st1;
+  }
+};
+
+// mux used to select message leaving the node
+
+csl_unit m3 {
+  ifc_rn_msg dm_mux_msg_st2; // message from dm
+  ifc_rn_msg sb_mux_msg_st2; // message from sb1
+  ifc_rn_msg rn_msg_st2;     // message from st1
+  ifc_rn_msg mux_bo_msg1_st2; // first output message
+  ifc_rn_msg mux_bo_msg_st2;  // final output message
+  csl_signal pass_through;     // selects message from pr_msg_st2 and mux_bo_msg1_st2
+  csl_signal rd_mux_sel;  // selects message from dm_mux_msg_st2 and sb_mux_msg_st2
+  m3 () {
+    mux_bo_msg1_st2 = rd_mux_sel ? dm_mux_msg_st2 : sb_mux_msg_st2;
+    mux_bo_msg_st2 = pass_through ? rn_msg_st2 : mux_bo_msg1_st2;
+  }
+};
+
+

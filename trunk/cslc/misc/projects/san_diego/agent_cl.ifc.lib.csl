@@ -1,0 +1,329 @@
+//oanab
+
+//Bitranges used by the ports
+csl_bitrange br1(24); // max_ports_per_agt_bits_c=6 * number_of_agents_c=4
+csl_bitrange br2(48); // max_fifo_port_id_bits_c=12 * number_of_agents_c=4
+csl_bitrange br3(4); // number_of_fifo_in_ports_c=4
+csl_bitrange br4(4); // number_of_fifo_out_ports_c=4
+csl_bitrange br5(32); // csw_data_bits_c=32
+csl_bitrange br6(5); // csw_dev_id_bits_c=5
+csl_bitrange br7(9); // csw_dest_bits_c=2+2+5
+csl_bitrange br8(4); // number_of_agents_c=4
+csl_bitrange br9(10); // reg_if_dw_addr_bits_c=10
+csl_bitrange br10(16); // csw_pkt_tag_type
+
+//Interfaces that are used in connections and are generated in the code
+
+//Interface IFIFO-Agent
+csl_interface ififo_ag_ifc {
+  csl_port fp_infifo_pkt_tag(output,br10);
+  csl_port fp_infifo_data(output,32);
+  csl_port fp_infifo_empty(output);
+  csl_port fp_infifo_empty_count(output,5);
+  csl_port fp_infifo_rd(input);
+  ififo_ag_ifc () {}
+};
+
+//Interface Agent-OFIFO
+csl_interface ag_ofifo_ifc {
+  csl_port fp_outfifo_full(output);
+  csl_port fp_outfifo_full_count(output,5);
+  csl_port fp_outfifo_data(input,32);
+  csl_port fp_outfifo_pkt_tag(input,br10);
+  csl_port fp_outfifo_write(input);
+  ag_ofifo_ifc () {}
+};
+
+//Interface Agent-ACC
+csl_interface ag_accreg_ifc {
+  csl_port agent_rd_req(output,br8);
+  csl_port agent_address(output,32);
+  csl_port agent_wr_req(output,br8);
+  csl_port agent_wr_data(output,32);
+  csl_port agent_ack(input,br8);
+  csl_port agent_rd_data(input,128); //32*br8
+  ag_accreg_ifc () {}
+};
+
+//Interface OFIFO-ACC
+csl_interface ofifo_acc_ifc {
+  csl_port fpo_data_from_agents(output,br5);
+  csl_port fpo_ptag_from_agents(output,br10);
+  //  csl_port fpo_data0_from_agents(output,br5);
+  //  csl_port fpo_ptag0_from_agents(output,br10);
+  //  csl_port fpo_data1_from_agents(output,br5);
+  //  csl_port fpo_ptag1_from_agents(output,br10);
+  //  csl_port fpo_data2_from_agents(output,br5);
+  //  csl_port fpo_ptag2_from_agents(output,br10);
+  //  csl_port fpo_data3_from_agents(output,br5);
+  //  csl_port fpo_ptag3_from_agents(output,br10);
+  csl_port fpo_empty_from_agents(output);
+  csl_port acc_rd_from_agents(input);
+  ofifo_acc_ifc () {}
+};
+
+//Interface ACC-IFIFO
+
+csl_interface acc_ififo_ifc {
+  csl_port acc_data_to_agents(input,br5);
+  csl_port acc_ptag_to_agents(input,br10);
+  //  csl_port acc_data0_to_agents(input,br5);
+  //  csl_port acc_ptag0_to_agents(input,br10);
+  //  csl_port acc_data1_to_agents(input,br5);
+  //  csl_port acc_ptag1_to_agents(input,br10);
+  //  csl_port acc_data2_to_agents(input,br5);
+  //  csl_port acc_ptag2_to_agents(input,br10);
+  //  csl_port acc_data3_to_agents(input,br5);
+  //  csl_port acc_ptag3_to_agents(input,br10);
+  csl_port acc_wr_to_agents(input);
+  csl_port fp_full_to_agents(output);
+  csl_port fpi_credit_req(input,br4);
+  csl_port fpi_credit_data(input,128); //br3*br5
+  csl_port acc_credit_ack(output,br3);
+  csl_port acc_credit_enable(input);
+  acc_ififo_ifc () {}
+};
+
+
+//Interface from CSW to Agents
+
+csl_interface from_csw_ifc {
+  csl_port cluster_data_to_agents(input,br5);
+  csl_port cluster_ptag_to_agents(input,br10);
+  //  csl_port cluster_data0_to_agents(input,br5);
+  //  csl_port cluster_ptag0_to_agents(input,br10);
+  //  csl_port cluster_data1_to_agents(input,br5);
+  //  csl_port cluster_ptag1_to_agents(input,br10);
+  //  csl_port cluster_data2_to_agents(input,br5);
+  //  csl_port cluster_ptag2_to_agents(input,br10);
+  //  csl_port cluster_data3_to_agents(input,br5);
+  //  csl_port cluster_ptag3_to_agents(input,br10);
+  csl_port cluster_dev_id_to_agents(input,br6);
+  csl_port cluster_wr_to_agents(input);
+  from_csw_ifc () {}
+};
+
+// Interface from Agents to CSW
+csl_interface to_csw_ifc {
+  csl_port cluster_data_from_agents(output,br5);
+  csl_port cluster_ptag_from_agents(output,br10);
+  //  csl_port cluster_data0_from_agents(output,br5);
+  //  csl_port cluster_ptag0_from_agents(output,br10);
+  //  csl_port cluster_data1_from_agents(output,br5);
+  //  csl_port cluster_ptag1_from_agents(output,br10);
+  //  csl_port cluster_data2_from_agents(output,br5);
+  //  csl_port cluster_ptag2_from_agents(output,br10);
+  //  csl_port cluster_data3_from_agents(output,br5);
+  //  csl_port cluster_ptag3_from_agents(output,br10);
+  csl_port cluster_dest_from_agents(output,br7);
+  csl_port cluster_wr_from_agents(output);
+  csl_port cluster_ready_to_agents(input);
+  to_csw_ifc () {}
+};
+
+//Interfaces that are not used in connections, so are not generated in the code
+
+//
+csl_interface acc_ifc {
+  //Cluster Clock & Reset
+  csl_port cluster_clk(input);
+  csl_port cluster_rst_n(input);
+  // CPC configuration information
+  csl_port  mem_agt_present_reg(input);
+  csl_port cpc_num_of_ac_reg(input,4);
+  // Agent Configuration Ports
+  csl_port agt_qty_of_fifo_in_ports(input,br1);
+  csl_port agt_qty_of_fifo_out_ports(input,br1);
+  csl_port agt_fifo_in_ports_base(input,br2);
+  csl_port agt_fifo_out_ports_base(input,br2);
+  csl_port agt_fifo_in_type(input,br3);
+  csl_port agt_fifo_out_type(input,br4);
+  csl_port agt_fifo_in_width(input,8); // 2 * number_of_fifo_in_ports_c
+  csl_port agt_fifo_out_width(input,8); // 2 * number_of_fifo_out_ports_c 
+  csl_port agt_fifo_in_depth(input,16); // 4 * number_of_fifo_in_ports_c
+  csl_port agt_fifo_out_depth(input,16); // 4 * number_of_fifo_out_ports_c
+  // FIFO Port Status Signals
+  csl_port fpo_persistent_error(input,br4);
+  // Common Register Write Data Busses
+  csl_port reg_write_data(input,32);
+  csl_port reg_write_dw_addr(input,br9);
+  // Initiator Register I/F
+  csl_port core_clk(input);
+  csl_port core_rst_n(input);
+  csl_port ireg_rd(input);
+  csl_port ireg_wr(input);
+  csl_port ireg_ack(output);
+  csl_port ireg_read_data(output,32);
+  acc_ifc () {}
+};
+
+//
+csl_interface fifo_in_ifc {
+  csl_port cluster_clk(input);
+  csl_port cluster_rst_n(input);
+  // Agent Clock & Reset
+  csl_port agent_clk(input);
+  csl_port agent_rst_n(input);
+  // Bypass Interface Signals (optional)
+  csl_port bypass_buf_full(input);
+  csl_port bypass_buf_wr(output);
+  csl_port bypass_buf_data(output); // type : csw_data
+  csl_port bypass_buf_ptag(output); // type : csw_pkt_tag_type
+  // Credit Signals Between the Output FIFO Port and acc_out
+  csl_port fpi_credit_frame_data(output); // type : csw_data
+  csl_port fpi_credit_frame_req(output);
+  csl_port fpi_credit_frame_ack(input);
+  csl_port acc_credit_enable(input);
+  fifo_in_ifc () {}
+};
+
+//
+csl_interface fifo_out_ifc {
+  csl_port cluster_clk(input);
+  csl_port cluster_rst_n(input);
+  // Agent Clock & Reset
+  csl_port agent_clk(input);
+  csl_port agent_rst_n(input);
+  // Bypass Interface Signals (optional)
+  csl_port bypass_buf_full(output);
+  csl_port bypass_buf_wr(input);
+  csl_port bypass_buf_data(input); // type : csw_data
+  csl_port bypass_buf_ptag(input); // type : csw_pkt_tag_type
+  //  Error Monitoring Signals
+  csl_port persistent_error(output);
+  fifo_out_ifc () {}
+};
+
+
+//
+csl_interface gasket_ifc {
+  //
+  csl_port clk(input);
+  csl_port rst_n(input);
+  // Direct Port Memory Request Interface
+  csl_port mem_request(input);
+  csl_port mem_request_64(input);
+  csl_port mem_read_notwrite(input);
+  csl_port mem_fid(input,32);
+  csl_port mem_dword_offset(input,32);
+  csl_port mem_read_dword_length(input,12);
+  csl_port mem_write_data(input,64);
+  csl_port mem_write_byte_en(input,8);
+  csl_port mem_read_request_sent(output);
+  csl_port mem_write_accept(output);
+  csl_port mem_disconnect_req(output);
+  // Direct Port Memory Return Data Interface
+  csl_port mem_return_avail(output);
+  csl_port mem_return_avail_64(output);
+  csl_port mem_return_data(output,64);
+  csl_port mem_return_byte_en(output,8);
+  csl_port mem_return_data_complete(output);
+  // Direct Port OOB Interface
+  csl_port oob_to_agent_write(output);
+  csl_port oob_to_agent_data(output,32);
+  csl_port oob_to_agent_source(output,8);
+  csl_port oob_to_agent_transaction_type(output,4);
+  csl_port oob_from_agent_write(input);
+  csl_port oob_from_agent_data(input,32);
+  csl_port oob_from_agent_destination(input,8);
+  csl_port oob_from_agent_transaction_type(input,4);
+  csl_port oob_from_agent_sent(output);
+  csl_port oob_disconnect_req(output);
+  // Direct Port Flow Control
+  csl_port agent_almost_full(input);
+  // OUTPUT FIFO PORT
+  csl_port fpo_full(input);
+  csl_port fpo_data(output,32);
+  csl_port fpo_pkt_tag(output); // type : csw_pkt_tag_type
+  csl_port fpo_write(output);
+  // INPUT FIFO PORT
+  csl_port fpi_pkt_tag(input); // type : csw_pkt_tag_type
+  csl_port fpi_data(input,32);
+  csl_port fpi_empty(input);
+  csl_port fpi_rd(output);
+  gasket_ifc () {}
+};
+
+
+//
+csl_interface ag_lr_ifc {
+  // Clocks and Resets
+  csl_port cluster_clk(input);
+  csl_port cluster_rst_n(input);
+  csl_port agent_clk(input);
+  csl_port agent_rst_n(input);
+  // Input FIFO Port 0 to Agent
+  csl_port fp0_infifo_pkt_tag(input); // type : csw_pkt_tag_type
+  csl_port fp0_infifo_data(input,32);
+  csl_port fp0_infifo_empty(input);
+  csl_port fp0_infifo_empty_count(input,5);
+  csl_port fp0_infifo_rd(output);
+  // Output FIFO Port 0 from Agent
+  csl_port fp0_outfifo_full(input);
+  csl_port fp0_outfifo_full_count(input,5);
+  csl_port fp0_outfifo_pkt_tag(output); // type : csw_pkt_tag_type
+  csl_port fp0_outfifo_data(output,32);
+  csl_port fp0_outfifo_write(output);
+  // Input FIFO Port 1 to Agent
+  csl_port fp1_infifo_pkt_tag(input); // type : csw_pkt_tag_type
+  csl_port fp1_infifo_data(input,32);
+  csl_port fp1_infifo_empty(input);
+  csl_port  fp1_infifo_empty_count(input,5);
+  csl_port fp1_infifo_rd(output);
+  // Output FIFO Port 1 from Agent
+  csl_port fp1_outfifo_full(input);
+  csl_port fp1_outfifo_full_count(input,5);
+  csl_port fp1_outfifo_pkt_tag(output); // type : csw_pkt_tag_type
+  csl_port fp1_outfifo_data(output,32);
+  csl_port fp1_outfifo_write(output);
+  // Input FIFO Port 2 to Agent
+  csl_port fp2_infifo_pkt_tag(input); // type : csw_pkt_tag_type
+  csl_port fp2_infifo_data(input,32);
+  csl_port fp2_infifo_empty(input);
+  csl_port fp2_infifo_empty_count(input,5);
+  csl_port fp2_infifo_rd(output);
+  // Output FIFO Port 2 from Agent
+  csl_port fp2_outfifo_full(input);
+  csl_port fp2_outfifo_full_count(input,5);
+  csl_port fp2_outfifo_pkt_tag(output); // type : csw_pkt_tag_type
+  csl_port fp2_outfifo_data(output,32);
+  csl_port fp2_outfifo_write(output);
+  // Direct Port Memory Request Interface
+  csl_port mem_request(output);
+  csl_port mem_request_64(output);
+  csl_port mem_read_notwrite(output);
+  csl_port mem_fid(output,32);
+  csl_port mem_dword_offset(output,31,2);
+  csl_port mem_read_dword_length(output,12);
+  csl_port mem_write_data(output,64);
+  csl_port mem_write_byte_en(output,8);
+  csl_port mem_read_request_sent(input);
+  csl_port mem_write_accept(input);
+  csl_port mem_disconnect_req(input);
+  // Direct Port Memory Return Data Interface
+  csl_port mem_return_avail(input);
+  csl_port mem_return_avail_64(input);
+  csl_port mem_return_data(input,64);
+  csl_port mem_return_byte_en(input,8);
+  csl_port mem_return_data_complete(input);
+  // Agent Read/Write Register Port
+  csl_port agent_rd_req(input);
+  csl_port agent_address(input,32);
+  csl_port agent_rd_data(output,32);
+  csl_port agent_wr_req(input);
+  csl_port agent_wr_data(input,32);
+  csl_port agent_ack(output);
+  // Debug LEDs
+  csl_port debug_led(output,8);
+  ag_lr_ifc () {}
+};
+
+//
+csl_interface agent_ifc {
+  // Clocks and Resets
+  csl_port agent_clk(input);
+  csl_port agent_rst_n(input);
+  // Debug LEDs
+  csl_port debug_led(output,8);
+  agent_ifc () {}
+};

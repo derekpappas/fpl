@@ -1,0 +1,14 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="unit_b">
+<interface name="ifcai" >
+name="w5"19<port name="p_ifc5" offset="0" upper="w5-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<instantiation type = "unit_a">
+<instance name="a0">
+<f2a formal = "ifcai" actual = "ifcai" />
+</instance>
+</instantiation>
+</unit>
+</design>

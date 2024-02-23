@@ -1,0 +1,44 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="ude">
+<interface name="ifcrc0" >
+<port name="reset" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="clock" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<signal name="s_in" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="se_in" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signalgroup name="sg01">
+<signal name="hw" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signal name="w" offset="0" upper="8-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="sg02">
+<signal name="hw" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signal name="w" offset="0" upper="8-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="sg1">
+<signal name="hw" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signal name="w" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="c" offset="0" upper="3-1" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "ud">
+<instance name="ud0">
+<f2a formal = "ifcin" actual = "sg01" />
+<f2a formal = "ifcrc.clock" actual = "ifcrc0.clock" />
+<f2a formal = "ifcrc.reset" actual = "ifcrc0.reset" />
+<f2a formal = "pdin" actual = "s_in" />
+<f2a formal = "pdout1" actual = "sg1.hw" />
+<f2a formal = "pdout2" actual = "sg1.c" />
+</instance>
+</instantiation>
+<instantiation type = "ue">
+<instance name="ue0">
+<f2a formal = "ifcin" actual = "sg02" />
+<f2a formal = "ifcrc.clock" actual = "ifcrc0.clock" />
+<f2a formal = "ifcrc.reset" actual = "ifcrc0.reset" />
+<f2a formal = "pein" actual = "se_in" />
+<f2a formal = "peout" actual = "sg1.w" />
+</instance>
+</instantiation>
+</unit>
+</design>

@@ -1,0 +1,4 @@
+file /opt/he_fpl_svn/fpl_repo/cslc/trunk/build/linux/x86_32/cslc/cslc
+exec-file /opt/he_fpl_svn/fpl_repo/cslc/trunk/build/linux/x86_32/cslc/cslc
+run test.csl
+break NSCLi::CLiCommon::getRoot

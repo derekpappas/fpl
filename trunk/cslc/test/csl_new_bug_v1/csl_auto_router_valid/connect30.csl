@@ -1,0 +1,51 @@
+//oanab
+//21 apr 2008
+
+
+csl_interface ifc1 {
+  csl_port p_x(output);
+  csl_port p_y(input);
+  ifc1 () {}
+};
+
+csl_interface ifc2 {
+  csl_port p_c(output);
+  ifc1 ifc1_1;
+  ifc2 () {
+    ifc1_1.reverse();
+  }
+};
+
+csl_unit a {
+  ifc1 ifc1_0;
+  ifc2 ifc2_1;
+  a () {}
+};
+
+csl_unit b {
+  ifc2 ifc2_2;
+  a a_0(.ifc2_1(ifc2_2));
+  b () {
+  }
+};
+
+csl_unit c {
+  b b_0(.ifc2_2(ifc2_2));
+  ifc2 ifc2_2;
+  c (){
+  }
+};
+
+csl_unit d {
+  ifc2 ifc2_3;
+  ifc1 ifc1_2;
+  c c_0(.ifc2_2(ifc2_3));
+  a a_1(.ifc1_0(ifc1_2),.ifc2_1.p_c(ifc2_3.p_c));
+  d () {
+//connect an interface with an interface (ifc.ifc)
+   a_1.ifc2_1.ifc1_1.connect_by_name(c_0.b_0.a_0.ifc1_0);
+  }
+};
+
+
+ 

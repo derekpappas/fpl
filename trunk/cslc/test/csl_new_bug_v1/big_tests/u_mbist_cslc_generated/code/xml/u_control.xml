@@ -1,0 +1,19 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u_control">
+<port name="s_status" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="op_instr" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="r_instr" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="wr_haddr" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="wr_crtaddr" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="wr_ram" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="rd_ram" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="rd_im" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="rd_rom" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="incr" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="decr" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="wr_dm" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="rd_dm" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</unit>
+</design>

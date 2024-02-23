@@ -1,0 +1,15 @@
+//bug 948
+csl_isa_field kyhp1{
+    kyhp1(){
+     set_width(2);
+  }
+}
+;
+
+csl_isa_element sbtd1{
+    kyhp1 f_i;  //the error appers here
+    sbtd1(){
+      //  set_type(instr);
+     set_width(4);
+     }
+};

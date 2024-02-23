@@ -1,0 +1,15 @@
+//Petronela
+csl_register_file regf{
+  regf(){
+    set_width(16);
+    set_depth(2+4*7);
+    create_rtl_module(2);//it shouldn't have a parameter
+  }
+};
+
+csl_unit u1{
+  regf regf;
+  u1(){  
+  }
+};
+

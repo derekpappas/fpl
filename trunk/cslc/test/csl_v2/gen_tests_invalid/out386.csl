@@ -1,0 +1,118 @@
+csl_enum ul {
+	ta,
+	jx,
+	hv,
+	qg,
+	dq
+};
+csl_enum ly {
+	po = 53,
+	yp = 39,
+	fs = 25,
+	og = 16,
+	uh = 10,
+	sr = 81,
+	it = 23,
+	po = 99,
+	vl = 3,
+	cp = 47
+};
+csl_isa_instruction_format hy{
+    hy( ){
+     set_width( 3);
+  }
+}
+;
+csl_isa_instruction ix : hy{
+    ix( ){
+    set_asm_mnemonic( csl_list "ki", "nx", "nh", "wl", "jp", "qb", "is", "te");
+  }
+}
+;
+csl_isa ft{
+    ft( ){
+     set_decoder_name( "lw");
+     set_decoder_out_name_suffix( "wv");
+     generate_decoder( sjkh);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo fw{
+   fw( ){
+     set_physical_implementation( SRAM);
+     add_logic( wr_credit);
+  }
+}
+;
+csl_memory_map_page co{
+    co( ){
+     add_address_range( 4, 2);
+     get_address_increment( );
+     set_next_address( 9);
+     get_next_address( );
+     set_access_rights( access_write, access_write);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_aligment( 0);
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page pc{
+  co tf;
+    pc( ){
+     add_address_range( 4, 6);
+     set_next_address( 8);
+     get_next_address( );
+     set_access_rights( none, access_write);
+     get_upper_bound( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page bq{
+    bq( ){
+     get_next_address( );
+     add( pc);
+     get_lower_bound( );
+     get_data_word_wodth( );
+  }
+}
+;
+csl_memory_map yy{
+    yy( ){
+     set_top_unit( ub);
+bq.set_access_rights_enum( cobq); 
+     set_suffix( li);
+     get_suffix( );
+  }
+}
+;
+csl_register qa{
+    qa( ){
+     set_range( {[3:0], [6:1], [4:5], [2:2], [3:5]});
+     set_atribute( write);
+     get_atributes( );
+     add_logic( rd_en);
+     reset_value( 2);
+     clear_value( 3);
+     set_lock_enable_bit( 2);
+     get_lock_enable_bit( );
+     set_count_amount( 7);
+     set_end_value( 9);
+     set_start_value( 5);
+     add_logic( inc_signal);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register yb{
+    yb( ){
+     create_rtl_module( );
+  }
+}
+;

@@ -1,0 +1,39 @@
+//fixed by oanab 30 oct
+
+csl_register_file rf_m{
+  rf_m(){
+    set_width(16);
+    set_depth(16);
+  }
+};
+csl_unit dut{
+  rf_m rf1;
+  csl_port stim_p(input), exp_p(output);
+  csl_port clk(input);
+  dut(){
+    clk.set_attr(clock);
+  }
+};
+csl_vector stim_v{
+  stim_v(){
+    set_unit_name(dut);
+    set_direction(input);
+  }
+};
+csl_vector exp_v{
+  exp_v(){
+    set_unit_name(dut);
+    set_direction(output);
+  }
+};
+csl_testbench rf_tb {
+  dut dut;
+  csl_signal clk(reg);
+  rf_tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,10,ns);
+    add_logic(generate_waves,"alu_tb_waves",fsdb);
+    set_testbench_verilog_filename("alu_tb1");
+    add_logic(simulation_timeout_counter, 500);
+  }
+};

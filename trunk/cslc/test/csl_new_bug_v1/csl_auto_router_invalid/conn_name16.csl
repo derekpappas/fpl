@@ -1,0 +1,39 @@
+//oanab
+//10 july 2008
+
+csl_interface ifca {
+  csl_port x(input);
+  csl_port y(output);
+  ifca () {}
+};
+
+csl_interface ifcb {
+  csl_port x1(output);
+  csl_port y1(output);
+  ifcb () {}
+};
+
+csl_unit a {
+  ifca ifca0;
+  ifcb ifcb1;
+  a () {}
+};
+
+csl_unit b {
+  a a0;
+  b () {}
+};
+
+csl_unit c {
+  b b0;
+  a a1;
+  c () {}
+};
+
+csl_unit d {
+  c c0;
+  c c1;
+  d () {
+    c0.b0.a0.ifca0.y.connect_by_name(c1.a1.ifcb1.y1);
+  }
+};

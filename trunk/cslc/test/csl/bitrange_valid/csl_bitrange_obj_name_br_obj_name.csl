@@ -1,0 +1,18 @@
+//author: Ines
+//testing: csl_bitrange obj_name(bitrange_obj_name);
+//         - param bitrange object - this is the copy constructor;
+
+
+csl_bitrange obj_name(10,20);
+
+csl_bitrange obj_name1(obj_name);
+
+csl_unit u1{
+  csl_signal s1;
+  csl_signal s2;
+  u1(){
+    s1.set_bitrange(obj_name);  
+    s2.set_bitrange(obj_name1);
+    s1=s2;
+  }
+};

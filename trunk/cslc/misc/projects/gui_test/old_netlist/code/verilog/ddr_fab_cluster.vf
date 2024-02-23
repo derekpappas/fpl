@@ -1,0 +1,12 @@
+//THIS CODE WAS GENERATED USING THE FASTPATHLOGIC HDL COMPILER
+//COPYRIGHT (c) 2006, 2007 FastpathLogic Inc
+//OUTPUT FILE NAME  : ddr_fab_cluster.vf
+//FILE GENERATED ON : Tue Jun 17 01:23:46 2008
+
+enum_define.v
+
+ddr_ctrl.v
+ddr_bridge_ctrl.v
+ddr_buf_ctrl.v
+msi_fabric_if.v
+ddr_fab_cluster.v

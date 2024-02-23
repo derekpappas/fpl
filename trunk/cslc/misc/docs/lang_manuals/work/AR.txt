@@ -1,0 +1,41 @@
+- shearching for signals in the scope (AR)
+ Search for signal in local scope in the current scope portlist, locallist and in actuals in each instance.
+
+if(!connectablelist.empty()) {
+  
+}
+else {
+  search in the portlist of the unit that is instantiated
+}
+
+if NCA == LHS or NCA == RHS 
+  then do
+
+ If signal is found in local scope 
+
+
+
+ Else if the signal does not exist
+
+
+
+
+
+-----------------------------------------------------
+
+Needed functions:
+
+
+Traverse(T)
+traverse(unit_LHS, unit_NCA, LHS_signal_name, RHS_signal_name, )
+
+for each unit in the unit RHS() {// list connect the unit o unit NCA
+traverse(unit, unit_NCA)
+}
+connect(NCA)
+Walk traversal print(unit names, signal names, width, direction,type)
+
+
+//update them when moving to the next scope 
+csl_signal currentSignal;
+csl_signal nextSignal;

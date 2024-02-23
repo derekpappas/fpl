@@ -1,0 +1,107 @@
+csl_unit a1 {
+  csl_port in11(input,3);
+  csl_port in21(input,8);
+  csl_port out11(output,wire,3);
+  csl_port out21(output, 8);
+  csl_port clk(input);
+ csl_signal s_out11(3),s_out21(8),s_in11(3),s_in21(8);
+a1(){
+clk.set_attr(clock);
+  s_out11 = 3'b111;	
+  s_out21 = 8'b11110000;
+  s_in11 = in11;
+  s_in21 = in21;
+  out11 = s_out11 & s_in11;
+  out21 = s_out21 | s_in21;
+
+  }
+};
+
+
+csl_unit a2 {
+  csl_port clk(input);
+  csl_port in12(input,3);
+  csl_port in22(input,8);
+  csl_port out12(output,wire,3);
+  csl_port out22(output, 8);
+a1 a10(.in11(in12),.in21(in22),.out11(out12),.out21(out22),.clk(clk));
+
+a2(){
+clk.set_attr(clock);
+  }
+};
+
+
+csl_vector stim1 {
+
+    stim1 () {
+
+        set_unit_name(a1);
+        set_direction(input);
+        set_vc_capture_edge_type(rise);
+
+    }
+
+};
+
+csl_vector exp1 {
+
+    exp1 () {
+
+        set_unit_name(a1);
+        set_direction(output);
+        set_vc_capture_edge_type(rise);
+
+    }
+
+};
+
+csl_testbench tb1 {
+
+    a1 a10(.clk(clk));
+    csl_signal clk(reg);
+    tb1 () {
+
+        clk.set_attr(clock);
+        add_logic(clock,clk,20,ns);
+
+    }
+
+};
+
+csl_vector stim2 {
+
+    stim2 () {
+
+        set_unit_name(a2);
+        set_direction(input);
+        set_vc_capture_edge_type(rise);
+
+    }
+
+};
+
+csl_vector exp2 {
+
+    exp2 () {
+
+        set_unit_name(a2);
+        set_direction(output);
+        set_vc_capture_edge_type(rise);
+
+    }
+
+};
+
+csl_testbench tb2 {
+
+    a2 a20(.clk(clk));
+    csl_signal clk(reg);
+    tb2 () {
+
+        clk.set_attr(clock);
+        add_logic(clock,clk,20,ns);
+
+    }
+
+};

@@ -1,0 +1,14 @@
+//Petronela
+csl_fifo f1{
+  f1(){
+  set_width(32);//error.....we don't have set_depth
+  }
+};
+
+csl_unit u1{
+    f1 f1;    
+    u1(){  
+    }
+};
+
+

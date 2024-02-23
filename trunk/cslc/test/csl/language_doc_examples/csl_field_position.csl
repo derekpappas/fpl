@@ -1,0 +1,14 @@
+//danielt
+//november 07,2007
+
+csl_bitrange br(4,1);
+csl_field field1(br),field2(br);
+csl_field field3 {
+  field1 f1;
+  field2 f2;
+  field3() {
+    set_width(32);
+    set_field_position(f1,0);
+    set_field_position(f2,16); 
+ }
+};

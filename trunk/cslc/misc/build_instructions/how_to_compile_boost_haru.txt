@@ -1,0 +1,12 @@
+1. Boost build
+cd /opt/tools/boost
+
+./configure --prefix=/usr --includedir=/usr/include
+make
+make install
+
+2. put libharu in /usr/local/include
+ cp /opt/tools/haru/libharu-2.0.8/include/hpdf*h /usr/local/include
+
+ cp /opt/tools/haru/libharu-2.0.8/libhpdf.a /usr/local/lib
+ 

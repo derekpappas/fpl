@@ -1,0 +1,18 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="sfd_trans_cluster">
+<instantiation type = "sfd_trans">
+<instance name="sfd_trans">
+</instance>
+</instantiation>
+<instantiation type = "msi_fabric_if">
+<instance name="sfd_trans_fab">
+</instance>
+</instantiation>
+<instantiation type = "sfd_trans_lba">
+<instance name="sfd_trans_lba">
+</instance>
+</instantiation>
+</unit>
+</design>

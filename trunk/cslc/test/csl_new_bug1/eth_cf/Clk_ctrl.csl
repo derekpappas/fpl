@@ -1,0 +1,24 @@
+
+//******************
+// Unit Clk_ctrl
+//******************
+
+csl_unit Clk_ctrl{
+
+  csl_port Reset(input);
+  csl_port Clk_125M(input);
+  //host interface,
+  csl_port Speed(input,3);
+  //Phy interface ,
+  csl_port Gtx_clk(output);
+  csl_port Rx_clk(input);
+  csl_port Tx_clk(input);
+  //interface clk ,
+  csl_port MAC_tx_clk(output);    
+  csl_port MAC_rx_clk(output);    
+  csl_port MAC_tx_clk_div(output);
+  csl_port MAC_rx_clk_div(output);  
+
+  Clk_ctrl(){
+  }
+};

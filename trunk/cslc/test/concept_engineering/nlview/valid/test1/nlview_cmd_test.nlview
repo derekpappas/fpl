@@ -1,0 +1,17 @@
+ module new TOP v
+  load symbol and v HIERBOX \
+      port A in port B in port C in port D out
+  load symbol box v HIERBOX \
+      port A in port B in port C in port D out
+  load inst I1 box v
+  load inst I1.I2 box v
+  load inst I1.I2.I3 and v
+  load inst I4 box v
+  load inst I4.I5 and v
+
+  load net a -hierPin I4 A -pin I4.I5 A
+  load net b -hierPin I4 B -pin I4.I5 B
+  load net c -hierPin I4 C -pin I4.I5 C
+  load net d -hierPin I4 D -pin I4.I5 D
+  loadhier .
+  show

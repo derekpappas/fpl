@@ -1,0 +1,24 @@
+//Monica
+
+csl_register_file rf{
+  csl_parameter w1(3,3); // should be w1(1,4) => assert
+  csl_parameter w2(2,8),w3(5,16);
+  rf(){
+    set_width(w3);
+  //  set_depth(1<<w1);
+    set_depth(w1); 
+  }
+};
+
+csl_unit u1{
+  csl_signal s_data1(32),s_data2(32),s_data_in(32);
+  csl_signal s_addr1(8),s_addr2(8),s_wr_addr(8);
+
+  rf #(8, ,32) rf1(.data_in(s_data_in),
+                   .data_out0(s_data1),
+                   .data_out1(s_data2),
+                   .wr_addr(s_wr_addr),
+                   .rd_addr0(s_addr1),
+                   .rd_addr1(s_addr2));
+  u1(){}
+};

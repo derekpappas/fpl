@@ -1,0 +1,17 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="maclu">
+<interface name="malt" >
+<port name="busy" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="hit" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="port" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="start" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="adw" >
+<port name="addr" offset="0" upper="17" lower="0" direction = "input" type = "wire" />
+<port name="data" offset="0" upper="31" lower="0" direction = "input" type = "wire" />
+<port name="wr" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+</unit>
+</design>

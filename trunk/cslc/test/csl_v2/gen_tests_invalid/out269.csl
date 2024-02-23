@@ -1,0 +1,130 @@
+csl_enum qg {
+	sv = 18,
+	lt = 9,
+	to = 68,
+	ym = 45,
+	xf = 56,
+	hp = 15,
+	ta = 60,
+	fy = 48
+};
+csl_enum nt {
+	cl,
+	tq,
+	cd,
+	uq,
+	rd,
+	sl,
+	ln,
+	jy
+};
+csl_enum jd {
+	ni,
+	ql,
+	pa,
+	dl,
+	ai,
+	ko,
+	en,
+	cb
+};
+csl_isa_instruction_format vs{
+    vs( ){
+     set_width( 1);
+     generate_decoder( flif);
+  }
+}
+;
+csl_isa yr{
+    yr( ){
+     set_decoder_name( "mu");
+     set_decoder_out_name_prefix( "qj");
+     generate_decoder( flif);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo qu{
+   qu( ){
+     set_dimension( 5, 5);
+     add_logic( programable_depth, 4);
+     add_logic( string_through, 9);
+     add_logic( stall_wr_side);
+  }
+}
+;
+csl_memory_map_page yk{
+    yk( ){
+     set_address_increment( 3);
+     get_next_address( );
+     add_reserved_address_range( 1, 2);
+     set_data_word_width( 9);
+     set_aligment( 1);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page ia{
+    ia( ){
+     set_address_increment( 7);
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_read, access_read);
+     add_reserved_address_range( 6, 6);
+     get_lower_bound( );
+     get_data_word_wodth( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page jf{
+  yk mg;
+  ia nt;
+  yk yj;
+  ia rt;
+  ia je;
+    jf( ){
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_read, access_read_write);
+     set_aligment( 3);
+     set_endianess( big_endian);
+  }
+}
+;
+csl_memory_map mg{
+    mg( ){
+     auto_gen_memory_map( );
+     set_type( flat);
+     set_prefix( bo);
+     set_suffix( qa);
+  }
+}
+;
+csl_register gw{
+    gw( ){
+     set_type( EVNT);
+     set_width( 5);
+     set_atribute( read);
+     add_logic( neg_output);
+     add_logic( rd_en);
+     init_value( 8);
+     set_value( 4);
+     reset_value( 1);
+     add_logic( gray_output);
+     set_count_amount( 3);
+     set_start_value( 30);
+     stop_at_end_value( );
+     add_logic( cnt_dir_signal);
+  }
+}
+;
+csl_register sp{
+    sp( ){
+     set_depth( 3);
+     get_depth( );
+     add_logic( read_valid);
+  }
+}
+;

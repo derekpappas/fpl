@@ -1,0 +1,7 @@
+csl_fifo fifo_name {
+fifo_name(){
+set_depth(8);
+set_width(10);
+ add_logic(almoust_empty,4);//command name is illegal
+}
+};

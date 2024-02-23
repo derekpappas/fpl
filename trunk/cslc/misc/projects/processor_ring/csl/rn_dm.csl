@@ -1,0 +1,13 @@
+//oanab
+//10 mar 2008
+//data memory
+
+csl_unit DM {
+  mem_dm mem_dm;
+  ifc_rn_msg mux_dm_msg_st1; // input message to be written ch0
+  ifc_rn_msg dm_mux_msg_st2; // output message to be read ch0
+  // load dma descriptors from DM to dma controller
+  DM () {
+    dm_mux_msg_st2.reverse();
+  }
+};

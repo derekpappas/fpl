@@ -1,0 +1,29 @@
+//set_enum_item invalid
+//danielt
+//02 aug 2007
+
+csl_enum op_enum{
+	CALL = 1,
+	SETHI_Branches = 0,
+	Arithmetic = 2,
+	Logical = 3
+};
+
+csl_enum op2_enum{
+	ILLTRAP = 0,
+	BPcc = 1,
+	Bicc = 2,
+	BPr = 3,
+	SETHINOP = 4,
+	FBPfcc = 5,
+	FBfcc = 6 
+};
+csl_isa_field op(2,op_enum);
+csl_isa_field op2(3, op2_enum);
+csl_isa_field f{
+  op2 op12;
+  f(){
+    op12.set_enum_item(SETHI_Branches); 
+//SETHI_Branches is from op_enum and op has associated op2_enum
+}
+};

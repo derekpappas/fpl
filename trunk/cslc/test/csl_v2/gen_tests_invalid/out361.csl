@@ -1,0 +1,126 @@
+csl_enum ti {
+	gd = 85,
+	se = 90,
+	ns = 33,
+	md = 11
+};
+csl_enum yr {
+	yb = 65,
+	fg = 95,
+	ip = 9,
+	cd = 83,
+	se = 54,
+	cp = 24,
+	pr = 11,
+	fu = 20
+};
+csl_enum vq {
+	wq,
+	yf,
+	vt,
+	lm,
+	na,
+	pm,
+	sr,
+	qa,
+	xy,
+	pa
+};
+csl_isa_instruction_format wu{
+    wu( ){
+     set_width( 8);
+     generate_decoder( eguaqj);
+  }
+}
+;
+csl_isa gv{
+    gv( ){
+     set_decoder_name( "mc");
+     set_decoder_out_name_prefix( "gp");
+     set_decoder_out_name_suffix( "gp");
+     generate_decoder( ua);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo gs{
+   gs( ){
+     set_dimension( 8, 9);
+     add_logic( output_wr_addr);
+  }
+}
+;
+csl_memory_map_page cf{
+    cf( ){
+     add_address_range( 6, 8);
+     set_next_address( 8);
+     get_lower_bound( );
+     set_data_word_width( 9);
+     get_data_word_wodth( );
+     set_aligment( 3);
+  }
+}
+;
+csl_memory_map_page ri{
+    ri( ){
+     get_address_increment( );
+     get_next_address( );
+     set_access_rights( access_read, access_read);
+     add_reserved_address_range( 2, 0);
+     add( gs, "ud", 6);
+     add( cf);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 3);
+     set_aligment( 2);
+     get_aligment( );
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page bw{
+    bw( ){
+     add_address_range( 0, 8);
+     set_address_increment( 1);
+     get_next_address( );
+     set_access_rights( none, none);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 5);
+     set_endianess( little_endianlittle_endian);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map fy{
+    fy( ){
+     auto_gen_memory_map( );
+.add_to_memory_map( access_write); 
+     set_data_word_width( 3);
+     get_data_word_width( );
+     set_prefix( qo);
+  }
+}
+;
+csl_register nq{
+    nq( ){
+     set_atribute( read_write);
+     add_logic( serial_output);
+     set_lock_enable_bit( 6);
+     add_logic( gray_output);
+     set_count_direction( 9);
+  }
+}
+;
+csl_register ka{
+    ka( ){
+     set_width( 9);
+     get_width( );
+     set_depth( 3);
+     create_rtl_module( );
+     set_const_value( 1);
+     add_logic( bypass);
+  }
+}
+;

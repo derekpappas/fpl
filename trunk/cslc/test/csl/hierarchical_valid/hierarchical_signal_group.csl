@@ -1,0 +1,47 @@
+//danielt 
+//28.11.2007
+
+csl_interface p{
+  csl_port wr_data(input,32),wr_addr(input,8),clk(input,1);
+  p(){ 
+  }
+};
+
+csl_interface pp{
+  //p p0;
+  csl_port wr_en(input,1);
+  pp(){
+  }
+};
+
+csl_signal_group sg{
+  csl_signal data(32),addr(8),clk;
+  sg(){}
+};
+
+csl_signal_group mag{
+  sg sg0;
+  csl_signal en;
+  mag(){
+  }
+};
+
+csl_unit u1{
+  pp pp0;
+  u1(){
+  }
+};
+
+csl_unit u2{
+  p p1;
+  u2(){
+    p1.reverse();
+  }
+};
+csl_unit top{
+  mag mag0;
+  u1 u1(.pp0(mag0));
+  u2 u2(.p1(mag0.sg0));
+  top(){
+  }
+};

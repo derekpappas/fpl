@@ -1,0 +1,119 @@
+class tn {
+ private:
+ vector<tn*> cl;
+ //STL
+ class tn{
+ tn * l;
+ tn *r;
+}
+
+tn * ll = new tn();
+
+class tn{
+ private:
+  tn * l,r;
+ public:
+ tn () {}
+ ~tn () {}
+}
+
+void setl(tn*ll) { l = ll;}
+tn * getl(void) { return l;}
+tn * lll = new tn();
+tn * llr = new tn();
+tn * rrl = new tn();
+tn * rrr = new tn();
+ll.setl(lll);
+ll.setr(llr);
+void setl(tn*ll) { if (ll) l = ll;}
+void setl(tn*ll) { assert(l); l = ll;}
+
+new = malloc(sizeof(ll))
+void tn::t(tn* n){ 
+
+void tn::t(void){ 
+ if (l) l.t();
+ if (r) r.t();
+}
+tn() {}
+tn() .l(NULL), .r(NULL) {}
+stack frames are allocated on the heap
+parent and children
+
+class tn{
+ private:
+ tn * l,r;
+ //string module_name; string instance_name;
+tn(string m, string i) .l(NULL), .r(NULL) .mn(m), .in(i) { }
+t("a", "");
+t("b","b0");
+t("c","c0");
+t("b","c00");
+tn * a =  t("a", "");
+tn * b = t("b","b0");
+tn * b0 = t("b","b0");
+tn * c0 = t("c","c0");
+tn * d0 = t("c","d0");
+m a;
+b b0();
+c c0();
+em
+m b;
+d d0();
+em
+class tn {
+ private:
+ vector<tn*> cl;
+ void t(t *n){
+ while (n){
+ void t(t *n){
+ vector<tn*> l;
+ while (!l.empty()) {
+ if (n.getl()) { l->push_back(n.getl())}
+   if (n.getr()) { l->push_back(n.getr())}
+   n = l.pop();
+ }
+}
+
+void t(tn*n){
+ if(!n) return;
+ t( n.getl());
+ t(n.getr());
+}
+
+void t(t *n){
+ vector<tn*> l;
+ while (!l.empty()) {
+  if (n.getl()) { l->push_back(n.getl())}
+  if (n.getr()) { l->push_back(n.getr())}
+  n = l.pop();
+  }
+}
+
+void t(t *n){
+ vector<tn*> l;
+ l.push_back(n);
+ tn * a =  t("a", "");
+ tn * b = t("b","b0");
+ tn * b0 = t("b","b0");
+ tn * c0 = t("c","c0");
+ tn * d0 = t("c","d0");
+ while (!l.empty()) {
+  if (n.getl()) { l->push_back(n.getl())}
+  if (n.getr()) { l->push_back(n.getr())}
+  n = l.pop();
+ }
+}
+
+class tn;
+class tree;
+tn * root;
+class tn {
+ private: string name; vector<tn*> cl;
+}
+
+void set(tn* n) { cl.push_back(n);}
+tn* get(){ return cl.pop;}
+
+http://en.wikipedia.org/wiki/Tree_data_structure
+http://www.msoe.edu/eecs/ce/courseinfo/stl/vector.htm

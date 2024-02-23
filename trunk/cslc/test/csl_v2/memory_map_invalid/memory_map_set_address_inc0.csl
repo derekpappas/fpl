@@ -1,0 +1,19 @@
+//Petronela
+csl_memory_map_page mpage1{
+	mpage1(){
+		add_address_range(0,255);
+  }
+};
+csl_memory_map_page mpage2{
+	mpage2(){
+		set_address_increment(4);
+  }
+}; 
+csl_memory_map mm{
+	mpage1 mp1;
+	mpage2 mp2;
+	mm(){
+		set_type(flat); 
+        mp1.set_address_increment(mp2.get_address_increment());
+  }
+};

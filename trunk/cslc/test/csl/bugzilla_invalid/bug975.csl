@@ -1,0 +1,2 @@
+//bug 975
+csl_isa_field op(2,op_enum2);// if op_enum2 does not exist!

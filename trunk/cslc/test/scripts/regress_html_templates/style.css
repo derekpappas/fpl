@@ -1,0 +1,106 @@
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: white;
+    font-weight: normal;
+    background-color: rgb(69,69,69);
+    
+  }
+
+  .title1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: bold;
+    color: white;
+  }
+
+  a {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    color: black;
+  }
+
+  a:hover {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    color: #FF0000;
+  }
+
+  .passed {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: black;
+    background-color: rgb(155,205,155);
+   }
+
+  .passed_w {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: black;
+    background-color: yellow;
+  }
+
+  .failed {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: white;
+    background-color:rgb(205,0,0);
+  }
+
+  .compiler_phase_dnr { # compiler phase did not run
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: white;
+    background-color: orange;
+  }
+
+  .total_tests { # no tests in directory
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: white;
+    background-color: black;
+  }
+  .no_tests { # no tests in directory
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: white;
+    background-color: black;
+  }
+
+  .valgrind_ne { # valgrind not enabled
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: blue;
+    background-color: black;
+  }
+
+  .table {
+    background-color: black;
+  }
+
+  .file_name {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: black;
+     background-color: rgb(150,150,150);
+  }
+
+  .table_header {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    background-color: gray34;
+  }
+
+  .page_link {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: white;
+    background-color: lightblue;
+    font-weight: bold;
+  }

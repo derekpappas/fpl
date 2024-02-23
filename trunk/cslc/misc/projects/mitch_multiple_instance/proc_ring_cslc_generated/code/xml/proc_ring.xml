@@ -1,0 +1,249 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="proc_ring">
+<signalgroup name="rn1_rn2">
+<signal name="addr" offset="0" upper="17" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="nid" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="reject" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="valid" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="rn2_rn3">
+<signal name="addr" offset="0" upper="17" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="nid" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="reject" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="valid" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="rn3_rn4">
+<signal name="addr" offset="0" upper="17" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="nid" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="reject" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="valid" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="rn4_rn5">
+<signal name="addr" offset="0" upper="17" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="nid" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="reject" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="valid" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="rn5_rn6">
+<signal name="addr" offset="0" upper="17" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="nid" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="reject" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="valid" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="rn6_rn7">
+<signal name="addr" offset="0" upper="17" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="nid" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="reject" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="valid" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="rn7_rn8">
+<signal name="addr" offset="0" upper="17" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="nid" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="reject" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="valid" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="rn8_rn9">
+<signal name="addr" offset="0" upper="17" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="nid" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="reject" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="valid" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="rn9_rn1">
+<signal name="addr" offset="0" upper="17" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="31" lower="0" type = "wire"/>
+<signal name="nid" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="ready" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="reject" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="type" offset="0" upper="3" lower="0" type = "wire"/>
+<signal name="valid" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "pie_eth_nq11">
+<instance name="pie_eth_nq11">
+<f2a formal = "fab_add.addr" actual = "rn3_rn4.addr" />
+<f2a formal = "fab_add.data" actual = "rn3_rn4.data" />
+<f2a formal = "fab_add.nid" actual = "rn3_rn4.nid" />
+<f2a formal = "fab_add.ready" actual = "rn3_rn4.ready" />
+<f2a formal = "fab_add.reject" actual = "rn3_rn4.reject" />
+<f2a formal = "fab_add.type" actual = "rn3_rn4.type" />
+<f2a formal = "fab_add.valid" actual = "rn3_rn4.valid" />
+<f2a formal = "fab_drop.addr" actual = "rn2_rn3.addr" />
+<f2a formal = "fab_drop.data" actual = "rn2_rn3.data" />
+<f2a formal = "fab_drop.nid" actual = "rn2_rn3.nid" />
+<f2a formal = "fab_drop.ready" actual = "rn2_rn3.ready" />
+<f2a formal = "fab_drop.reject" actual = "rn2_rn3.reject" />
+<f2a formal = "fab_drop.type" actual = "rn2_rn3.type" />
+<f2a formal = "fab_drop.valid" actual = "rn2_rn3.valid" />
+</instance>
+</instantiation>
+<instantiation type = "pie_eth_nq01">
+<instance name="pie_eth_nq01">
+<f2a formal = "fab_add.addr" actual = "rn2_rn3.addr" />
+<f2a formal = "fab_add.data" actual = "rn2_rn3.data" />
+<f2a formal = "fab_add.nid" actual = "rn2_rn3.nid" />
+<f2a formal = "fab_add.ready" actual = "rn2_rn3.ready" />
+<f2a formal = "fab_add.reject" actual = "rn2_rn3.reject" />
+<f2a formal = "fab_add.type" actual = "rn2_rn3.type" />
+<f2a formal = "fab_add.valid" actual = "rn2_rn3.valid" />
+<f2a formal = "fab_drop.addr" actual = "rn1_rn2.addr" />
+<f2a formal = "fab_drop.data" actual = "rn1_rn2.data" />
+<f2a formal = "fab_drop.nid" actual = "rn1_rn2.nid" />
+<f2a formal = "fab_drop.ready" actual = "rn1_rn2.ready" />
+<f2a formal = "fab_drop.reject" actual = "rn1_rn2.reject" />
+<f2a formal = "fab_drop.type" actual = "rn1_rn2.type" />
+<f2a formal = "fab_drop.valid" actual = "rn1_rn2.valid" />
+</instance>
+</instantiation>
+<instantiation type = "pie_ex_nq1">
+<instance name="pie_ex_nq1">
+<f2a formal = "fab_add.addr" actual = "rn7_rn8.addr" />
+<f2a formal = "fab_add.data" actual = "rn7_rn8.data" />
+<f2a formal = "fab_add.nid" actual = "rn7_rn8.nid" />
+<f2a formal = "fab_add.ready" actual = "rn7_rn8.ready" />
+<f2a formal = "fab_add.reject" actual = "rn7_rn8.reject" />
+<f2a formal = "fab_add.type" actual = "rn7_rn8.type" />
+<f2a formal = "fab_add.valid" actual = "rn7_rn8.valid" />
+<f2a formal = "fab_drop.addr" actual = "rn6_rn7.addr" />
+<f2a formal = "fab_drop.data" actual = "rn6_rn7.data" />
+<f2a formal = "fab_drop.nid" actual = "rn6_rn7.nid" />
+<f2a formal = "fab_drop.ready" actual = "rn6_rn7.ready" />
+<f2a formal = "fab_drop.reject" actual = "rn6_rn7.reject" />
+<f2a formal = "fab_drop.type" actual = "rn6_rn7.type" />
+<f2a formal = "fab_drop.valid" actual = "rn6_rn7.valid" />
+</instance>
+</instantiation>
+<instantiation type = "pie_aud_dq1">
+<instance name="pie_aud_dq1">
+<f2a formal = "fab_add.addr" actual = "rn5_rn6.addr" />
+<f2a formal = "fab_add.data" actual = "rn5_rn6.data" />
+<f2a formal = "fab_add.nid" actual = "rn5_rn6.nid" />
+<f2a formal = "fab_add.ready" actual = "rn5_rn6.ready" />
+<f2a formal = "fab_add.reject" actual = "rn5_rn6.reject" />
+<f2a formal = "fab_add.type" actual = "rn5_rn6.type" />
+<f2a formal = "fab_add.valid" actual = "rn5_rn6.valid" />
+<f2a formal = "fab_drop.addr" actual = "rn4_rn5.addr" />
+<f2a formal = "fab_drop.data" actual = "rn4_rn5.data" />
+<f2a formal = "fab_drop.nid" actual = "rn4_rn5.nid" />
+<f2a formal = "fab_drop.ready" actual = "rn4_rn5.ready" />
+<f2a formal = "fab_drop.reject" actual = "rn4_rn5.reject" />
+<f2a formal = "fab_drop.type" actual = "rn4_rn5.type" />
+<f2a formal = "fab_drop.valid" actual = "rn4_rn5.valid" />
+</instance>
+</instantiation>
+<instantiation type = "ipc">
+<instance name="ipc">
+<f2a formal = "fab_add.addr" actual = "rn6_rn7.addr" />
+<f2a formal = "fab_add.data" actual = "rn6_rn7.data" />
+<f2a formal = "fab_add.nid" actual = "rn6_rn7.nid" />
+<f2a formal = "fab_add.ready" actual = "rn6_rn7.ready" />
+<f2a formal = "fab_add.reject" actual = "rn6_rn7.reject" />
+<f2a formal = "fab_add.type" actual = "rn6_rn7.type" />
+<f2a formal = "fab_add.valid" actual = "rn6_rn7.valid" />
+<f2a formal = "fab_drop.addr" actual = "rn5_rn6.addr" />
+<f2a formal = "fab_drop.data" actual = "rn5_rn6.data" />
+<f2a formal = "fab_drop.nid" actual = "rn5_rn6.nid" />
+<f2a formal = "fab_drop.ready" actual = "rn5_rn6.ready" />
+<f2a formal = "fab_drop.reject" actual = "rn5_rn6.reject" />
+<f2a formal = "fab_drop.type" actual = "rn5_rn6.type" />
+<f2a formal = "fab_drop.valid" actual = "rn5_rn6.valid" />
+</instance>
+</instantiation>
+<instantiation type = "pie_ex_dq1">
+<instance name="pie_ex_dq1">
+<f2a formal = "fab_add.addr" actual = "rn8_rn9.addr" />
+<f2a formal = "fab_add.data" actual = "rn8_rn9.data" />
+<f2a formal = "fab_add.nid" actual = "rn8_rn9.nid" />
+<f2a formal = "fab_add.ready" actual = "rn8_rn9.ready" />
+<f2a formal = "fab_add.reject" actual = "rn8_rn9.reject" />
+<f2a formal = "fab_add.type" actual = "rn8_rn9.type" />
+<f2a formal = "fab_add.valid" actual = "rn8_rn9.valid" />
+<f2a formal = "fab_drop.addr" actual = "rn7_rn8.addr" />
+<f2a formal = "fab_drop.data" actual = "rn7_rn8.data" />
+<f2a formal = "fab_drop.nid" actual = "rn7_rn8.nid" />
+<f2a formal = "fab_drop.ready" actual = "rn7_rn8.ready" />
+<f2a formal = "fab_drop.reject" actual = "rn7_rn8.reject" />
+<f2a formal = "fab_drop.type" actual = "rn7_rn8.type" />
+<f2a formal = "fab_drop.valid" actual = "rn7_rn8.valid" />
+</instance>
+</instantiation>
+<instantiation type = "sram0">
+<instance name="sram0">
+<f2a formal = "fab_add.addr" actual = "rn9_rn1.addr" />
+<f2a formal = "fab_add.data" actual = "rn9_rn1.data" />
+<f2a formal = "fab_add.nid" actual = "rn9_rn1.nid" />
+<f2a formal = "fab_add.ready" actual = "rn9_rn1.ready" />
+<f2a formal = "fab_add.reject" actual = "rn9_rn1.reject" />
+<f2a formal = "fab_add.type" actual = "rn9_rn1.type" />
+<f2a formal = "fab_add.valid" actual = "rn9_rn1.valid" />
+<f2a formal = "fab_drop.addr" actual = "rn8_rn9.addr" />
+<f2a formal = "fab_drop.data" actual = "rn8_rn9.data" />
+<f2a formal = "fab_drop.nid" actual = "rn8_rn9.nid" />
+<f2a formal = "fab_drop.ready" actual = "rn8_rn9.ready" />
+<f2a formal = "fab_drop.reject" actual = "rn8_rn9.reject" />
+<f2a formal = "fab_drop.type" actual = "rn8_rn9.type" />
+<f2a formal = "fab_drop.valid" actual = "rn8_rn9.valid" />
+</instance>
+</instantiation>
+<instantiation type = "pie_aud_nq1">
+<instance name="pie_aud_nq1">
+<f2a formal = "fab_add.addr" actual = "rn4_rn5.addr" />
+<f2a formal = "fab_add.data" actual = "rn4_rn5.data" />
+<f2a formal = "fab_add.nid" actual = "rn4_rn5.nid" />
+<f2a formal = "fab_add.ready" actual = "rn4_rn5.ready" />
+<f2a formal = "fab_add.reject" actual = "rn4_rn5.reject" />
+<f2a formal = "fab_add.type" actual = "rn4_rn5.type" />
+<f2a formal = "fab_add.valid" actual = "rn4_rn5.valid" />
+<f2a formal = "fab_drop.addr" actual = "rn3_rn4.addr" />
+<f2a formal = "fab_drop.data" actual = "rn3_rn4.data" />
+<f2a formal = "fab_drop.nid" actual = "rn3_rn4.nid" />
+<f2a formal = "fab_drop.ready" actual = "rn3_rn4.ready" />
+<f2a formal = "fab_drop.reject" actual = "rn3_rn4.reject" />
+<f2a formal = "fab_drop.type" actual = "rn3_rn4.type" />
+<f2a formal = "fab_drop.valid" actual = "rn3_rn4.valid" />
+</instance>
+</instantiation>
+<instantiation type = "pie_eth_dq1">
+<instance name="pie_eth_dq1">
+<f2a formal = "fab_add.addr" actual = "rn1_rn2.addr" />
+<f2a formal = "fab_add.data" actual = "rn1_rn2.data" />
+<f2a formal = "fab_add.nid" actual = "rn1_rn2.nid" />
+<f2a formal = "fab_add.ready" actual = "rn1_rn2.ready" />
+<f2a formal = "fab_add.reject" actual = "rn1_rn2.reject" />
+<f2a formal = "fab_add.type" actual = "rn1_rn2.type" />
+<f2a formal = "fab_add.valid" actual = "rn1_rn2.valid" />
+<f2a formal = "fab_drop.addr" actual = "rn9_rn1.addr" />
+<f2a formal = "fab_drop.data" actual = "rn9_rn1.data" />
+<f2a formal = "fab_drop.nid" actual = "rn9_rn1.nid" />
+<f2a formal = "fab_drop.ready" actual = "rn9_rn1.ready" />
+<f2a formal = "fab_drop.reject" actual = "rn9_rn1.reject" />
+<f2a formal = "fab_drop.type" actual = "rn9_rn1.type" />
+<f2a formal = "fab_drop.valid" actual = "rn9_rn1.valid" />
+</instance>
+</instantiation>
+</unit>
+</design>

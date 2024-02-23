@@ -1,0 +1,56 @@
+//Petronela
+
+csl_enum e3{
+  RD=0,
+  WR,
+  NOP=1,
+  EN
+};
+
+csl_enum e1{
+  A,
+  B,
+  C,
+  d,
+  E,
+  f,
+  G,
+  H,
+  i,
+  j,
+  K
+};
+csl_enum e2{
+  a,
+  b,
+  c,
+  D,
+  e,
+  F,
+  g,
+  h,
+  I,
+  J,
+  k
+};
+csl_enum e4{
+  ab=0,
+  bc=5,
+  fg=6,
+  cd=3,
+  de=7,
+  ef=2
+};
+csl_enum e5{
+  min=0,
+  max=1,
+  inm=2,
+  inp=3,
+  ori=4,
+  sau=5,
+  si=6
+};
+
+
+csl_unit top {
+};

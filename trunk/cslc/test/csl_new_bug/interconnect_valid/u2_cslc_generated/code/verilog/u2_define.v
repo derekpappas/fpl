@@ -1,0 +1,13 @@
+`ifndef INC_GUARD_u2
+`define INC_GUARD_u2
+
+`define P_P11_UPPER_INDEX  (3-1)
+`define P_P11_LOWER_INDEX  (0)
+`define P_P11_WIDTH  (3)
+`define P_P11_RANGE `P_P11_UPPER_INDEX:`P_P11_LOWER_INDEX
+`define P_P12_UPPER_INDEX  (6-1)
+`define P_P12_LOWER_INDEX  (0)
+`define P_P12_WIDTH  (6)
+`define P_P12_RANGE `P_P12_UPPER_INDEX:`P_P12_LOWER_INDEX
+
+`endif

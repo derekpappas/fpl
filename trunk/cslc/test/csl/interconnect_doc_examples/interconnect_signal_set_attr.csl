@@ -1,0 +1,19 @@
+//danielt
+//november 7, 2007
+
+csl_unit ff{
+csl_port q(output), data(input), st(input);
+ff(){
+st.set_attr(clock);
+ }
+};
+
+csl_unit top{
+csl_signal d_data1,d_data2,data_in,data_out,st;
+ ff ff_1(.data(data_in),.q(d_data1),.st(st));
+ ff ff_2(.data(d_data1),.q(d_data2),.st(st));
+ ff ff_3(.data(d_data2),.q(data_out),.st(st));
+top(){
+st.set_attr(clock);
+ }
+};

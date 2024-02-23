@@ -1,0 +1,13 @@
+TARGET_ARCH = gccsparcOS5
+
+CC = g++
+OPT    = -O3 
+DEBUG  =    
+CFLAGS = $(DEBUG) $(OPT) -fexceptions
+
+
+MODULE = cnt
+SRCS = cnt.cpp cnt_display.cpp cnt_tb.cpp
+OBJS = $(SRCS:.cpp=.o)
+
+include ./Makefile.defs

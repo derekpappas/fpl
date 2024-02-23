@@ -1,0 +1,7 @@
+csl_field fd1(4);
+csl_field fd2(4);
+fd1.set_offset(8);
+fd2.set_offset(fd1.get_offset());
+
+csl_unit top {
+};

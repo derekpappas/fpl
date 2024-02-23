@@ -1,0 +1,26 @@
+//Connect_uinits with parameters
+
+csl_unit unit_a {
+  csl_parameter p1(6);
+  csl_parameter p3(29);
+
+  csl_port p_data(output,p1);
+  csl_port p_addr(output,p3);
+  unit_a(){}
+};
+csl_unit unit_b {
+  csl_parameter p2(4'd5);
+  csl_parameter p4(23);
+
+  csl_port p_data(output,p4);
+  csl_port p_addr(output,p2);
+  unit_a  a_16;
+  unit_b(){}
+};
+ csl_unit unit_top{
+ unit_a  a_16;
+ unit_b #(.p2(29),.p4(6)) b_16;
+ unit_top(){
+ b_16.connect_units(b_16.a_16); //parent-child connection
+}
+};

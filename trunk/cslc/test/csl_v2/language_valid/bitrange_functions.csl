@@ -1,0 +1,13 @@
+// CristiL
+//
+// Bitrange functions
+
+csl_bitrange bitrange(1,3);
+
+bitrange.set_msb(bitrange.get_msb());
+bitrange.set_lsb(bitrange.get_lsb());
+bitrange.set_offset(bitrange.get_offset());
+
+csl_bitrange bitrangeA(bitrange.get_lower());
+csl_bitrange bitrangeB(bitrange.get_upper());
+csl_bitrange bitrangeC(bitrange.get_width());

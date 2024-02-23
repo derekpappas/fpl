@@ -1,0 +1,304 @@
+
+
+csl_interface  fabric_add_drop {
+  csl_port drop_type(output, 2);
+  csl_port drop_src_nid(output, 4);
+  csl_port drop_addr(output, 32);
+  csl_port drop_byteen(output, 4);
+  csl_port drop_data(output, 32);
+  csl_port drop_data_del(output, 32);
+  csl_port drop_valid(output, 1);
+  csl_port add_type(input, 2);
+  csl_port add_dest_nid(input, 4);
+  csl_port add_addr(input, 32);
+  csl_port add_byteen(input, 4);
+  csl_port add_data(input, 32);
+  csl_port add_valid(input, 1);
+  csl_port add_ready(output, 1);
+};
+
+csl_interface local_bus {
+  csl_port localbus_cs(output, 1);
+  csl_port localbus_write(output, 1);
+  csl_port localbus_read(output, 1);
+  csl_port localbus_addr(output, 32);
+  csl_port localbus_wdata(output, 32);
+  csl_port localbus_rdata(input, 32);
+  csl_port localbus_rdata_valid(input, 1);
+};
+
+
+csl_interface ifc_1 { // fab
+  csl_port bus80(output, 80);
+};
+
+csl_interface ifc_2 { // fab_lba
+  csl_port dummy2(output);
+};
+
+csl_interface ifc_3 { // lba_unit
+  csl_port dummy3(output);
+};
+
+csl_interface ifc_4 { // lba_eth
+  csl_port dummy4(output);
+};
+
+csl_interface ifc_5 { // ddr_ddraux
+  csl_port dummy5(output);
+};
+
+csl_interface ifc_6 { // avbus_avbrdg
+  csl_port dummy6(output);
+};
+
+csl_interface ifc_7 { // avrbrdg_avbus
+  csl_port dummy7(output);
+};
+
+// rm csl_interface sb_ifc {
+// rm    csl_port start(output), busy(input); 
+// rm    sb_ifc () {};
+// rm };;
+// rm 
+// rm csl_interface rqsbe_ifc {
+// rm    csl_port result(output, 32), queue_num(output,3), start(input), busy(output), empty(output); 
+// rm   rqsbe_ifc () {};
+// rm };;
+// rm 
+// rm csl_interface sbhp_ifc {
+// rm    csl_port start(input), busy(output), hit(output), port(output) ; 
+// rm    sbhp_ifc () {};
+// rm };;
+// rm 
+// rm csl_interface vrr_ifc {
+// rm    csl_port valid(output), rd(input), result(output, 32); 
+// rm    vrr_ifc () {};
+// rm };;
+// rm 
+// rm csl_interface vsr_ifc {
+// rm    csl_port read_response_valid(output), fabric_start(input), read_resonse(output, 32); 
+// rm    vsr_ifc () {};
+// rm };;
+// rm 
+// rm csl_interface adrv_ifc {
+// rm    csl_port addr(output,18), data(output,32), ready(input), valid(output); 
+// rm    adrv_ifc () {};
+// rm };;
+// rm 
+// rm csl_interface adwr_ifc {
+// rm    csl_port addr(output,18), data(output,32), wr(output), rd(output); 
+// rm    adwr_ifc () {};
+// rm };;
+// rm 
+// rm csl_interface tadv_ifc {
+// rm    csl_port type(output), addr(output,18), data(output,32), valid(output); 
+// rm    tadv_ifc () {};
+// rm };;
+// rm 
+// rm 
+// rm csl_interface tadvnr_ifc {
+// rm    csl_port type(output), addr(output,18), data(output,32), valid(output), nid(output), ready(input); 
+// rm    tadvnr_ifc () {};
+// rm };;
+// rm 
+// rm 
+// rm csl_interface cdrv_ifc {
+// rm    csl_port cmd(output), data(output,32), ready(input), valid(output); 
+// rm    cdrv_ifc () {};
+// rm };;
+// rm 
+// rm csl_interface dw_ifc {
+// rm    csl_port data(output,32), wr(input); 
+// rm    dw_ifc () {};
+// rm };;
+// rm 
+// rm csl_interface adw_ifc {
+// rm    csl_port addr(output,18), data(output,32), wr(input); 
+// rm    adw_ifc () {};
+// rm };;
+// rm 
+// rm 
+// rm csl_interface ram_ifc {
+// rm   csl_port 	address	(input	, 11);
+// rm   csl_port 	byteena	(input	, 4);
+// rm   csl_port 	clock	(input	, 1);
+// rm   csl_port 	data	(input	, 32);
+// rm   csl_port 	enable	(input	, 1);
+// rm   csl_port 	q	(output	, 16);
+// rm   csl_port 	wren	(input	, 1);
+// rm   ram_ifc () {};
+// rm };;
+// rm 
+// rm csl_interface nios_tcm_ifc {
+// rm //   csl_port clk        (input); //	( core_clk 	),
+// rm //   csl_port reset_n    (input); //	( nios_run 	),
+// rm 
+// rm    csl_port address(output, 18);  // address_to_the_data_tcm     
+// rm    csl_port byteena(output,  4);  // byteenable_to_the_data_tcm  
+// rm    csl_port chipsel(output,  1);  // chipselect_to_the_data_tcm  
+// rm    csl_port enable (output,  1);  // clken_to_the_data_tcm       
+// rm    csl_port dout   (input , 32);  // readdata_from_the_data_tcm
+// rm    csl_port wren   (output,  1);  // write_to_the_data_tcm     
+// rm    csl_port din    (output, 32);  // writedata_to_the_data_tcm 
+// rm    
+// rm    nios_tcm_ifc () {};
+// rm };;
+// rm    
+// rm csl_interface nios_cii_ifc {
+// rm    csl_port a 	    (output,  1);   //	( e_a_from_the_custominstruction_nq_cpu           e_a 	),
+// rm    csl_port b 	    (output,  1);   //	( e_b_from_the_custominstruction_nq_cpu           e_b 	),
+// rm    csl_port c 	    (output,  1);   //	( e_c_from_the_custominstruction_nq_cpu           e_c 	),
+// rm    csl_port clk_en  (output,  1);   //	( e_clk_en_from_the_custominstruction_nq_cpu      e_clk_en 	),
+// rm    csl_port clk     (output,  1);   //	( e_clk_from_the_custominstruction_nq_cpu         e_clk 	),
+// rm    csl_port dataa   (output, 32);   //	( e_dataa_from_the_custominstruction_nq_cpu       e_dataa 	),
+// rm    csl_port datab   (output, 32);   //	( e_datab_from_the_custominstruction_nq_cpu       e_datab 	),
+// rm    csl_port done    ( input,  1);   //	( e_done_to_the_custominstruction_nq_cpu          e_done 	),
+// rm    csl_port n 	    (output,  8);   //	( e_n_from_the_custominstruction_nq_cpu           e_n 	),
+// rm    csl_port readra  ( input, 32);   //	( e_readra_from_the_custominstruction_nq_cpu      e_readra 	),
+// rm    csl_port readrb  ( input, 32);   //	( e_readrb_from_the_custominstruction_nq_cpu      e_readrb 	),
+// rm    csl_port reset   (output,  1);   //	( e_reset_from_the_custominstruction_nq_cpu       	),
+// rm    csl_port result  ( input, 32);   //	( e_result_to_the_custominstruction_nq_cpu        e_result 	),
+// rm    csl_port start   (output,  1);   //	( e_start_from_the_custominstruction_nq_cpu       e_start 	),
+// rm    csl_port writerc ( input, 32);   //	( e_writerc_from_the_custominstruction_nq_cpu     e_writerc 	),
+// rm 
+// rm    nios_cii_ifc () {};
+// rm };;
+// rm                                    
+// rm csl_interface nios_int_ifc {
+// rm    csl_port irq_i_to_the_interrupt_0(output); //	( exception[0] 	),
+// rm    csl_port irq_i_to_the_interrupt_1(output); //	( exception[1] 	),
+// rm    csl_port irq_i_to_the_interrupt_2(output); //	( exception[2] 	),
+// rm    csl_port irq_i_to_the_interrupt_3(output); //	( exception[3] 	),
+// rm 
+// rm    nios_int_ifc () { };
+// rm };;
+// rm 
+// rm csl_interface fab_ifc {
+// rm    csl_port cmd(output), data(output,32), ready(input), valid(output); 
+// rm    fab_ifc () {};
+// rm };;
+// rm 
+// rm //  csl_port enet_clk125(input);
+// rm 
+// rm csl_interface reset_ifc {
+// rm csl_port reset_n(input);
+// rm };;
+// rm 
+// rm csl_interface gxb_ifc {
+// rm   csl_port gxb_rx_refclk(input);
+// rm };;
+// rm 
+// rm csl_interface mfd_sec_ifc {
+// rm   csl_port mfd_sec_tx(output);
+// rm   csl_port mfd_sec_rx(input);
+// rm };;
+// rm 
+// rm csl_interface mfd_stig_ifc {
+// rm   csl_port mfd_stig_tx(output);
+// rm   csl_port mfd_stig_rx(input);
+// rm };;
+// rm 
+// rm csl_interface mfd_data_ifc {
+// rm   csl_port mfd_data_req(input);
+// rm   csl_port mfd_data(output, 0, 19);
+// rm };;
+// rm 
+// rm csl_interface sfd_data_ifc {
+// rm   csl_port sfd_data_req(input);
+// rm   csl_port sfd_data(output,0 , 12);
+// rm };;
+// rm 
+// rm csl_interface mfd_sec_s_ifc {
+// rm   csl_port mfd_sec_strb(output);
+// rm   csl_port mfd_sec(output, 0, 13);
+// rm };;
+// rm 
+// rm csl_interface std_stig_ifc {
+// rm   csl_port sfd_stig_strb(output);
+// rm csl_port sfd_stig(output, 0, 11);
+// rm };;
+// rm 
+// rm csl_interface xmit_ifc {
+// rm   csl_port xmit_st_clk(output);
+// rm   csl_port xmit_mfd_next(output);
+// rm   csl_port xmit_sfd_next(output);
+// rm };;
+// rm 
+// rm csl_interface ddr2_ifc {
+// rm   csl_port ddr2_clk   (output);
+// rm   csl_port ddr2_clk_n (output);
+// rm   csl_port ddr2_a     (output, 0, 12);
+// rm   csl_port ddr2_ba    (output, 0,  1);
+// rm   csl_port ddr2_cas_n (output);
+// rm   csl_port ddr2_cke   (output);
+// rm   csl_port ddr2_cs_n  (output);
+// rm   csl_port ddr2_dm    (output, 0,  1);
+// rm   csl_port ddr2_dq    (inout , 0, 15);
+// rm   csl_port ddr2_dqs   (inout , 0,  1);
+// rm   csl_port ddr2_odt   (output);
+// rm   csl_port ddr2_ras_n (output);
+// rm   csl_port ddr2_we_n  (output);
+// rm };;
+// rm 
+// rm csl_interface sdflash_ifc {
+// rm   csl_port sdflash_clk(output);
+// rm   csl_port sdflash_cmd(inout);
+// rm   csl_port sdflash_d  (inout, 0, 3);
+// rm };;
+// rm 
+// rm csl_interface i2c_ifc {
+// rm   csl_port i2c_clk(output);
+// rm   csl_port i2c_dat(inout );
+// rm };;
+// rm 
+// rm csl_interface spi_ifc {
+// rm   csl_port spi_clk  (output);
+// rm   csl_port spi_cs   (output);
+// rm   csl_port spi_mosi (output);
+// rm   csl_port spi_miso (input);
+// rm   csl_port spi_int (input);
+// rm };;
+// rm 
+// rm csl_interface debug_ifc {
+// rm   csl_port debug_tx  (output);
+// rm   csl_port debug_rx  (input);
+// rm   csl_port debug_ri  (input);
+// rm   csl_port debug_dtr (output);
+// rm   csl_port debug_cts (input);
+// rm   csl_port debug_rts (output);
+// rm   csl_port debug_dsr (input);
+// rm   csl_port debug_dcd (input);
+// rm };;
+// rm 
+// rm csl_interface enet_ifc {
+// rm   csl_port enet_mdc    (output);
+// rm   csl_port enet_mdio   (inout);
+// rm   csl_port enet_reset_n(output);
+// rm   csl_port enet_irq_n  (input);
+// rm   csl_port enet_col    (input);
+// rm   csl_port enet_crs    (input);
+// rm   csl_port enet_rxclk  (input);
+// rm   csl_port enet_rxd    (input, 0, 3);
+// rm   csl_port enet_rxdv   (input);
+// rm   csl_port enet_rxer   (input);
+// rm   csl_port enet_gtxclk (output);
+// rm   csl_port enet_txclk  (input);
+// rm   csl_port enet_txd    (output, 0, 3);
+// rm   csl_port enet_txen   (output);
+// rm   csl_port enet_txer   (output);
+// rm };;
+// rm 
+// rm csl_interface analog_ifc {
+// rm   csl_port analog1_pgood(input);
+// rm   csl_port analog2_pgood(input);
+// rm };;
+// rm 
+// rm csl_interface lvds_ifc {
+// rm   csl_port lvds_enable(output);
+// rm };;
+// rm 
+// rm csl_interface led_dip_ifc {
+// rm   csl_port led    (output, 0, 3);
+// rm   csl_port dip_sw (input , 0, 3);
+// rm };;

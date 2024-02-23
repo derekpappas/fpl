@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>FastPath GUI User Manual</title>
+<meta name="date" content="09/25/10" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 5196 2007-06-03 20:25:28Z wiemann $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left {
+  clear: left }
+
+img.align-right {
+  clear: right }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font-family: serif ;
+  font-size: 100% }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="fastpath-gui-user-manual">
+<h1 class="title">FastPath GUI User Manual</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Date:</th>
+<td>09/25/10</td></tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="auto-toc simple">
+<li><a class="reference internal" href="#introduction" id="id1">1&nbsp;&nbsp;&nbsp;Introduction</a><ul class="auto-toc">
+<li><a class="reference internal" href="#the-project" id="id2">1.1&nbsp;&nbsp;&nbsp;The Project</a><ul class="auto-toc">
+<li><a class="reference internal" href="#units" id="id3">1.1.1&nbsp;&nbsp;&nbsp;Units</a></li>
+<li><a class="reference internal" href="#interfaces" id="id4">1.1.2&nbsp;&nbsp;&nbsp;Interfaces</a><ul class="auto-toc">
+<li><a class="reference internal" href="#ports" id="id5">1.1.2.1&nbsp;&nbsp;&nbsp;Ports</a></li>
+<li><a class="reference internal" href="#interface-instances" id="id6">1.1.2.2&nbsp;&nbsp;&nbsp;Interface Instances</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#signal-groups" id="id7">1.1.3&nbsp;&nbsp;&nbsp;Signal Groups</a></li>
+<li><a class="reference internal" href="#connections-and-the-connection-table" id="id8">1.1.4&nbsp;&nbsp;&nbsp;Connections and the Connection Table</a></li>
+<li><a class="reference internal" href="#preferences" id="id9">1.1.5&nbsp;&nbsp;&nbsp;Preferences</a><ul class="auto-toc">
+<li><a class="reference internal" href="#netlisting-mode" id="id10">1.1.5.1&nbsp;&nbsp;&nbsp;Netlisting Mode</a></li>
+<li><a class="reference internal" href="#floor-planning" id="id11">1.1.5.2&nbsp;&nbsp;&nbsp;Floor Planning</a></li>
+<li><a class="reference internal" href="#target-device" id="id12">1.1.5.3&nbsp;&nbsp;&nbsp;Target Device</a></li>
+<li><a class="reference internal" href="#generate-include-statements" id="id13">1.1.5.4&nbsp;&nbsp;&nbsp;Generate Include Statements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-the-gui" id="id14">2&nbsp;&nbsp;&nbsp;Using the GUI</a><ul class="auto-toc">
+<li><a class="reference internal" href="#create-a-project" id="id15">2.1&nbsp;&nbsp;&nbsp;Create a project</a><ul class="auto-toc">
+<li><a class="reference internal" href="#add-an-unit" id="id16">2.1.1&nbsp;&nbsp;&nbsp;Add an unit</a></li>
+<li><a class="reference internal" href="#add-an-interface" id="id17">2.1.2&nbsp;&nbsp;&nbsp;Add an interface</a></li>
+<li><a class="reference internal" href="#make-a-connection" id="id18">2.1.3&nbsp;&nbsp;&nbsp;Make a connection</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#save-and-open-a-project" id="id19">2.2&nbsp;&nbsp;&nbsp;Save and Open a Project</a></li>
+<li><a class="reference internal" href="#edit-a-project" id="id20">2.3&nbsp;&nbsp;&nbsp;Edit a project</a><ul class="auto-toc">
+<li><a class="reference internal" href="#edit-units" id="id21">2.3.1&nbsp;&nbsp;&nbsp;Edit Units</a></li>
+<li><a class="reference internal" href="#edit-interfaces" id="id22">2.3.2&nbsp;&nbsp;&nbsp;Edit Interfaces</a></li>
+<li><a class="reference internal" href="#edit-signal-groups" id="id23">2.3.3&nbsp;&nbsp;&nbsp;Edit Signal Groups</a></li>
+<li><a class="reference internal" href="#edit-connections" id="id24">2.3.4&nbsp;&nbsp;&nbsp;Edit Connections</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tools-menu" id="id25">2.4&nbsp;&nbsp;&nbsp;Tools Menu</a><ul class="auto-toc">
+<li><a class="reference internal" href="#compiling-csl" id="id26">2.4.1&nbsp;&nbsp;&nbsp;Compiling CSL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other" id="id27">3&nbsp;&nbsp;&nbsp;Other</a><ul class="auto-toc">
+<li><a class="reference internal" href="#general-tips" id="id28">3.1&nbsp;&nbsp;&nbsp;General tips</a><ul class="auto-toc">
+<li><a class="reference internal" href="#gui" id="id29">3.1.1&nbsp;&nbsp;&nbsp;GUI</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reporting-bugs" id="id30">3.2&nbsp;&nbsp;&nbsp;Reporting Bugs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#final-words" id="id31">4&nbsp;&nbsp;&nbsp;Final Words</a></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="introduction">
+<h1><a class="toc-backref" href="#id1">1&nbsp;&nbsp;&nbsp;Introduction</a></h1>
+<p>The FastPath GUI provides a simple and intuitive way of using the Chip Specification Language features on a design project. It is used to create
+the infrastructure for RTL, test-benches and SystemC. It allows the user to create the design hierarchy, connectivity library and connection table.</p>
+<p>The FastPath GUI has a graphical interface written in QT but also supports command line parameters. It is started using the executable <strong>FastPath</strong>.
+The following sections cover the graphical interface.</p>
+<div class="section" id="the-project">
+<h2><a class="toc-backref" href="#id2">1.1&nbsp;&nbsp;&nbsp;The Project</a></h2>
+<p>The project inside the GUI is the representation of the actual design project. It has three main regions as can be seen in the screenshot:</p>
+<ul class="simple">
+<li>Design Hierarchy (highlighted with the green arrow) - contains the hierarchy of units</li>
+<li>Connectivity Library (highlighted with the blue arrow) - contains the items used for connecting modules</li>
+<li>Connection Table (highlighted with the red arrow) - contains the connections between the modules</li>
+</ul>
+<img alt="gui_img/initial_start.png" src="gui_img/initial_start.png" />
+<div class="section" id="units">
+<h3><a class="toc-backref" href="#id3">1.1.1&nbsp;&nbsp;&nbsp;Units</a></h3>
+<p>The unit is a design element similar to a Verilog <em>module</em> and it can be found in the <strong>Design Hierarchy</strong>.
+In a project there can only be a single unit as root for the entire <strong>Design Hierarchy</strong>.</p>
+</div>
+<div class="section" id="interfaces">
+<h3><a class="toc-backref" href="#id4">1.1.2&nbsp;&nbsp;&nbsp;Interfaces</a></h3>
+<p>The interface is a logical group of <a class="reference internal" href="#ports">ports</a> and other <a class="reference internal" href="#interface-instances">interface instances</a> . It is attached to a unit.
+A unit can have one or more interfaces attached.</p>
+<p>Interfaces are found in the <strong>Connectivity Library</strong>.</p>
+<div class="section" id="ports">
+<h4><a class="toc-backref" href="#id5">1.1.2.1&nbsp;&nbsp;&nbsp;Ports</a></h4>
+<p>The <em>port</em> is the equivalent of a Verilog <em>port</em>. One or more ports can form an interface (see <a class="reference internal" href="#interfaces">Interfaces</a> ).</p>
+<img alt="gui_img/port_property_editor.png" src="gui_img/port_property_editor.png" />
+<p>As in other hardware description languages like verilog, a port has a number of attributes including the following:</p>
+<ul class="simple">
+<li>name - as presented in the screenshot above, it can be a group of letters and/or numbers without white spaces (use &quot;_&quot; instead).</li>
+<li>direction - can be one of:<ul>
+<li>input</li>
+<li>output</li>
+<li>inout</li>
+</ul>
+</li>
+<li>width or bit range - these two attributes are synchronized - changing one will result in the modification of the other.</li>
+<li>type - the <strong>RTL Type</strong> can be one of the following:<ul>
+<li>wire</li>
+<li>wand</li>
+<li>wor</li>
+<li>tri</li>
+<li>triand</li>
+<li>trior</li>
+<li>tri0</li>
+<li>tri1</li>
+<li>supply0</li>
+<li>supply1</li>
+<li>reg</li>
+<li>integer</li>
+<li>time</li>
+<li>NONE</li>
+</ul>
+</li>
+</ul>
+<p>Usually in designs, a port has a special logical meaning, like a clock or reset signal.
+The user can select a <strong>Logic Type</strong> for each port that matches the meaning of the port.
+The GUI behaves differently for each port with special logical meaning.</p>
+<p>The <strong>Logic Type</strong> can be one of the following:</p>
+<ul class="simple">
+<li>enable</li>
+<li>stall</li>
+<li>mux select</li>
+<li>decoded minterm</li>
+<li>decoded maxterm</li>
+<li>clock signal</li>
+<li>reset signal</li>
+<li>NONE</li>
+</ul>
+</div>
+<div class="section" id="interface-instances">
+<h4><a class="toc-backref" href="#id6">1.1.2.2&nbsp;&nbsp;&nbsp;Interface Instances</a></h4>
+<p>Interface instances are used to create instances inside other instances. The restriction is that the interface hierarchy tree can not have a cyclic branch.
+This means that starting from each interface, we can not reach the same interface by descending in any of the interface hierarchy trees it has.</p>
+</div>
+</div>
+<div class="section" id="signal-groups">
+<h3><a class="toc-backref" href="#id7">1.1.3&nbsp;&nbsp;&nbsp;Signal Groups</a></h3>
+<p>A signal group is a collection of one or more signals. The signal has the attributes of a port with the exception of <em>direction</em>.</p>
+</div>
+<div class="section" id="connections-and-the-connection-table">
+<h3><a class="toc-backref" href="#id8">1.1.4&nbsp;&nbsp;&nbsp;Connections and the Connection Table</a></h3>
+<p>A unit can communicate with another unit through interfaces. A connection is required to connect the interfaces and assign them to the corresponding units,
+thus an interface is instantiated inside an unit through the creation of a connection. Currently there is no other way of instantiating an interface in an
+unit.</p>
+<p>All connections are added in the <strong>Connection Table</strong>. This table provides information regarding the interface type being connected, the name of the
+connection, the driver type (single or multi), the driver unit instance (where this driver resides), the interface instance name where the driver is
+connected (named driver connection instance), the type of the receiver (single or multi), the name of the receiving unit instance (receiver unit instance),
+the name of the interface instance receiving the connection (receiver connection instance).</p>
+<p>Below we have an example of a connection named <em>connection1</em> between an unit (my_unit2) and its parent (my_main_unit) through an interface of type
+<em>my_int2</em>. The driver is a single one, just like the receiver, named <em>m1</em> and, respectively, <em>r2</em>.</p>
+<img alt="gui_img/connection_table_one_connection.png" src="gui_img/connection_table_one_connection.png" />
+</div>
+<div class="section" id="preferences">
+<h3><a class="toc-backref" href="#id9">1.1.5&nbsp;&nbsp;&nbsp;Preferences</a></h3>
+<p>All projects have the same customization options which include:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#netlisting-mode">netlisting mode</a></li>
+<li><a class="reference internal" href="#floor-planning">floor planning</a></li>
+<li><a class="reference internal" href="#target-device">target device</a></li>
+<li><a class="reference internal" href="#generate-include-statements">generate include statements</a></li>
+</ul>
+<p>These are accessible through the menu: <em>Project</em> -&gt; <em>Preferences</em></p>
+<div class="section" id="netlisting-mode">
+<h4><a class="toc-backref" href="#id10">1.1.5.1&nbsp;&nbsp;&nbsp;Netlisting Mode</a></h4>
+<p>In the netlisting mode the GUI should generate only instances with their attributes and their children. Everything else like simulation code should be stripped.</p>
+</div>
+<div class="section" id="floor-planning">
+<h4><a class="toc-backref" href="#id11">1.1.5.2&nbsp;&nbsp;&nbsp;Floor Planning</a></h4>
+<p>If this option is selected then only the first and second level from the design hierarchy are used.</p>
+</div>
+<div class="section" id="target-device">
+<h4><a class="toc-backref" href="#id12">1.1.5.3&nbsp;&nbsp;&nbsp;Target Device</a></h4>
+</div>
+<div class="section" id="generate-include-statements">
+<h4><a class="toc-backref" href="#id13">1.1.5.4&nbsp;&nbsp;&nbsp;Generate Include Statements</a></h4>
+<p>If selected, this option instructs the GUI to automatically generate <em>include</em> statements in the <em>.csl</em> file. There is a global <em>csl_include</em> statement and one
+in the root unit. The csl file included is named after the project name and ends with the suffix <em>_global_includes</em>, for example:</p>
+<pre class="literal-block">
+csl_include &quot;/absolute/path/to/project/my_project_name_global_includes.csl&quot;
+</pre>
+<p>This file can be altered in order to use custom code.</p>
+<p><strong>Note:</strong> Use this method for features present in the CSL Compiler, however unsupported by the GUI.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="using-the-gui">
+<h1><a class="toc-backref" href="#id14">2&nbsp;&nbsp;&nbsp;Using the GUI</a></h1>
+<p><strong>Note:</strong> The GUI tries to be as simple as possible, thus many actions can be performed by right-clicking on items.</p>
+<p>The menu layout is comprised of four categories:</p>
+<ul class="simple">
+<li>File - allows the user to create, open, save projects or exit the application.</li>
+<li>Project - contains project related menus, like <em>Preferences</em> or CSL code generation.</li>
+<li>Tools - allows the user to select and run various tools, like the CSL Compiler.</li>
+<li>Help - provides access to the help options and <em>About</em> information.</li>
+</ul>
+<div class="section" id="create-a-project">
+<h2><a class="toc-backref" href="#id15">2.1&nbsp;&nbsp;&nbsp;Create a project</a></h2>
+<p>To create a new project select: <em>File</em> -&gt; <em>New</em></p>
+<img alt="gui_img/new_project.png" src="gui_img/new_project.png" />
+<p>This action prompts if there are unsaved items before creating a new empty project.
+Make sure to save your previous work when prompted since it will be permanently lost.</p>
+<p>When an empty project is created, the unit hierarchy, connectivity library and the connection table are cleared, preferences are reloaded and the name
+of the project is undefined (the name of the project appears in the window title).</p>
+<p>An empty project is not useful, let's add some units and interfaces, also let's create some connections between units using the created interfaces.</p>
+<div class="section" id="add-an-unit">
+<h3><a class="toc-backref" href="#id16">2.1.1&nbsp;&nbsp;&nbsp;Add an unit</a></h3>
+<p>In order to add an unit right-click anywhere inside the <strong>Design Hierarchy</strong> area, even on other units in order to create a child unit,
+then select <em>Add New Unit</em>.</p>
+<img alt="gui_img/add_new_unit_right_click.png" src="gui_img/add_new_unit_right_click.png" />
+<p>This adds a root unit if there is no other unit present before.
+Please remember that there can be only one root unit.</p>
+<p>A new window pops up, the <em>Unit Property Editor</em> where the unit name, abbreviation and description can be entered:</p>
+<img alt="gui_img/unit_property_editor.png" src="gui_img/unit_property_editor.png" />
+<p><strong>Note:</strong> The <em>Hierarchy Level</em> is normally grayed and it displays a number representing the level in the unit hierarchy where the new unit is placed. 1 stands for
+the root unit.</p>
+<p>Enter an unit name (should be unique), the optional abbreviation (in the future it may be used as a short name) and the optional description. When done
+press OK. The new unit will appear in the <strong>Design Hierarchy</strong> area.</p>
+<img alt="gui_img/added_root_unit.png" src="gui_img/added_root_unit.png" />
+<p>The entire information in the design hierarchy is not visible. To increase the visibility of that region let us hide the connectivity library. Click and hold on the
+separator between them as shown in the picture below:</p>
+<img alt="gui_img/hide_conn_lib_p1.png" src="gui_img/hide_conn_lib_p1.png" />
+<p>Drag the mouse to the right while keeping the mouse button pressed (as indicated above).</p>
+<img alt="gui_img/hide_conn_lib_p2.png" src="gui_img/hide_conn_lib_p2.png" />
+<p>To unhide the connectivity library click and hold on the separator (highlighted with red) then drag the mouse to the left while keeping the button pressed
+(as indicated above). Note that next to the separator
+between the design hierarchy and the connectivity library there is the separator between the connectivity library and the connection table (highlighted with blue).</p>
+<img alt="gui_img/hide_conn_lib_p3.png" src="gui_img/hide_conn_lib_p3.png" />
+<p>Draging the later will make the design hierarchy area to shrink and the connectivity library to get bigger:</p>
+<img alt="gui_img/shrink_design_hierarchy.png" src="gui_img/shrink_design_hierarchy.png" />
+<p>Do not panick if you dragged the wrong separator. Just drag the right one (highlighted with blue) to the right as shown below:</p>
+<img alt="gui_img/shrink_design_hierarchy2.png" src="gui_img/shrink_design_hierarchy2.png" />
+<p>Let's add an unit instance to the root unit. Right click in the empty white space or on the root unit and select <em>Add Unit Instance</em>:</p>
+<img alt="gui_img/add_unit_instance_1.png" src="gui_img/add_unit_instance_1.png" />
+<p>This window should open:</p>
+<img alt="gui_img/add_unit_instance_editor_1.png" src="gui_img/add_unit_instance_editor_1.png" />
+<p>The field <em>Unit name</em> contains the type name of the unit. Currently it is <em>my_main_unit</em>. Let us change it to something else like <em>dummy_master</em>. This will create a new
+unit type called <em>dummy_master</em> after we press the OK button. Let's name the <em>instance name</em> as <em>dummy_master_inst</em>, the abbreviation for this instance as <em>dminst</em> and a
+description as <em>master</em>. Then press OK.</p>
+<img alt="gui_img/dummy_master_unit_property.png" src="gui_img/dummy_master_unit_property.png" />
+<p>The gui should now look like this (notice that the new unit instance is created beneath the root unit and as its child):</p>
+<img alt="gui_img/after_dummy_master_unit.png" src="gui_img/after_dummy_master_unit.png" />
+<p>Let's add some interfaces. For this unhide the connectivity library as described previously.</p>
+</div>
+<div class="section" id="add-an-interface">
+<h3><a class="toc-backref" href="#id17">2.1.2&nbsp;&nbsp;&nbsp;Add an interface</a></h3>
+<p>To add an interface (see chapter <a class="reference internal" href="#interfaces">Interfaces</a> for a description of the interface) right-click in the <strong>Connectivity Library</strong> area and select <em>Add</em> -&gt; <em>New Interface</em>.</p>
+<img alt="gui_img/add_new_interface_click_menu.png" src="gui_img/add_new_interface_click_menu.png" />
+<p>In the new window enter the name of the interface, for example <em>my_interface</em>, and then press <strong>OK</strong>:</p>
+<img alt="gui_img/interface_property_editor.png" src="gui_img/interface_property_editor.png" />
+<p>The new interface will be added in the <strong>Connectivity Library</strong>:</p>
+<img alt="gui_img/my_interface_in_conn_lib.png" src="gui_img/my_interface_in_conn_lib.png" />
+<p>Add a new interface by right-clicking in the connectivity library area (in the free space or even on other interfaces, ports, signals etc.). Select <em>Add</em> and then
+<em>New Interface</em>:</p>
+<img alt="gui_img/add_new_interface_click_menu2.png" src="gui_img/add_new_interface_click_menu2.png" />
+<p>In the window that opens, name the new interface as <em>bus_interface</em> and then press the OK button:</p>
+<img alt="gui_img/interface_property_editor2.png" src="gui_img/interface_property_editor2.png" />
+<p>This will add a new interface type named <em>bus_interface</em>:</p>
+<img alt="gui_img/bus_interface_in_conn_lib.png" src="gui_img/bus_interface_in_conn_lib.png" />
+<p>Let's add an interface instance to <em>my_interface</em>.
+In order to add an interface instance to an interface, right click on the interface where you want to put the instance, in this case right-click on <em>my_interface</em>,
+select <em>Add</em> -&gt; <em>Interface Instance</em>:</p>
+<img alt="gui_img/my_interface_add_int_inst.png" src="gui_img/my_interface_add_int_inst.png" />
+<p>In the window that opens, select the interface instance type from the drop-down list next to <strong>Name</strong>. Note that you can not select as type the same
+interface like the one where you want to add the instance, in this case <em>my_interface</em>. You can not create recursive interfaces. Select <em>bus_interface</em>.
+Next, enter the name of the interface instance, for example <em>bus_inst</em>, and then press OK.</p>
+<img alt="gui_img/my_interface_bus_inst_editor.png" src="gui_img/my_interface_bus_inst_editor.png" />
+<p>A new child will be added in the <strong>Connectivity Library</strong> under the interface <em>my_interface</em>. The name of the instance is in parenthesis:</p>
+<img alt="gui_img/my_interface_bus_inst_con_lib.png" src="gui_img/my_interface_bus_inst_con_lib.png" />
+<p>Add a port to <em>my_interface</em>. Right-click on it, select <em>Add</em> -&gt; <em>Port</em> :</p>
+<img alt="gui_img/my_interface_add_port_menu.png" src="gui_img/my_interface_add_port_menu.png" />
+<p>A new window will open which allows you to add a port (see <a class="reference internal" href="#ports">ports</a> for a description). Name the port <em>my_int_clock</em> and all the other fields as below:</p>
+<img alt="gui_img/my_interface_clock_editor.png" src="gui_img/my_interface_clock_editor.png" />
+<p>Pressing OK will add a port to the interface <em>my_interface</em>.</p>
+<img alt="gui_img/my_interface_my_int_clock_con_lib.png" src="gui_img/my_interface_my_int_clock_con_lib.png" />
+<p><strong>Note</strong>: Double-click on any column separator to automatically adjust column width to fit contents.</p>
+<img alt="gui_img/my_interface_my_int_clock_con_lib2.png" src="gui_img/my_interface_my_int_clock_con_lib2.png" />
+<img alt="gui_img/my_interface_my_int_clock_con_lib3.png" src="gui_img/my_interface_my_int_clock_con_lib3.png" />
+<p>Add a new port to the <em>bus_interface</em>:</p>
+<img alt="gui_img/bus_interface_add_port_menu.png" src="gui_img/bus_interface_add_port_menu.png" />
+<p>In the window that opens, named <em>Port Property Editor</em>, let's enter the information as seen:</p>
+<img alt="gui_img/bus_interface_wire_port_editor.png" src="gui_img/bus_interface_wire_port_editor.png" />
+<p>Pressing the OK button will add a new input port with the width 32 to <em>bus_interface</em>. This change will reflect on the <em>bus_inst</em> interface located in <em>my_interface</em>.</p>
+<img alt="gui_img/bus_interface_bus_port_in_inst.png" src="gui_img/bus_interface_bus_port_in_inst.png" />
+<p>Let's add another interface named <em>bus_out_int</em> with one output port named <em>bus_wire_out</em> with the properties seen below:</p>
+<img alt="gui_img/bus_out_int_editor.png" src="gui_img/bus_out_int_editor.png" />
+<img alt="gui_img/bus_out_wire_editor.png" src="gui_img/bus_out_wire_editor.png" />
+<img alt="gui_img/bus_out_interface_con_lib.png" src="gui_img/bus_out_interface_con_lib.png" />
+<p>After adding some units and interfaces, let's create some connections.</p>
+</div>
+<div class="section" id="make-a-connection">
+<h3><a class="toc-backref" href="#id18">2.1.3&nbsp;&nbsp;&nbsp;Make a connection</a></h3>
+<p>To make a connection (see <a class="reference internal" href="#connections-and-the-connection-table">Connections and the Connection Table</a> for more information) right-click in the <strong>Connection Table</strong> area (either on the free space or
+on the name of another connection) and select <em>Add Connection</em>.</p>
+<img alt="gui_img/add_connection_menu.png" src="gui_img/add_connection_menu.png" />
+<p>In the new window named <em>Interface Connection</em>, select the <em>Connection Type</em> as <em>Interface</em> from the drop-down menu, enter the <em>Actual Name</em> as <em>mmu2dminst</em> and
+select the <em>Library Interface</em> as <em>my_interface</em>. Then press OK.</p>
+<img alt="gui_img/interface_connection.png" src="gui_img/interface_connection.png" />
+<p>The above action will create an empty connection in the connection table, with no driver or receiver. For more information on how to edit a connection
+in order to add a driver and receiver, see how to <a class="reference internal" href="#edit-connections">edit connections</a> .</p>
+<img alt="gui_img/my_interface_connection_table.png" src="gui_img/my_interface_connection_table.png" />
+<p>After creating all this, we should save the project.</p>
+</div>
+</div>
+<div class="section" id="save-and-open-a-project">
+<h2><a class="toc-backref" href="#id19">2.2&nbsp;&nbsp;&nbsp;Save and Open a Project</a></h2>
+<p>The project information is stored in a file named after the project and it has the extension .csl.xml . The generated csl code is located in
+a file named after the project with only the .csl extension.</p>
+<p>For example, if the project is named <em>my_project</em> then the following files are located in the project directory:</p>
+<ul class="simple">
+<li>my_project.csl.xml - contains project information in xml format</li>
+<li>my_project.csl - contains generated csl code</li>
+<li>my_project_global_includes.csl - this file is optional, please see <a class="reference internal" href="#generate-include-statements">Generate Include Statements</a> for more information</li>
+</ul>
+<p>To save a project, select <em>File</em> from the menu and then <em>Save</em>, or press CTRL+S. In case that the project is unnamed (is a new one) then a name
+can be chosen in the window that opens or by selecting <em>Save-as</em> in the <em>File</em> menu instead of <em>Save</em>:</p>
+<img alt="gui_img/file_save_menu.png" src="gui_img/file_save_menu.png" />
+<p>Name the project as <em>my_project</em>:</p>
+<img alt="gui_img/project_save.png" src="gui_img/project_save.png" />
+<p>Pressing the <em>Save</em> button will save the .csl.xml file and generate the csl code. This will change the title of the application's main window:</p>
+<img alt="gui_img/project_title_window_after_save.png" src="gui_img/project_title_window_after_save.png" />
+<p>To generate csl code at any time, select <em>Project</em> -&gt; <em>Generate CSL</em> menu.</p>
+<img alt="gui_img/project_generate_csl.png" src="gui_img/project_generate_csl.png" />
+<p>To open a project select <em>File</em> and then <em>Open</em>, or CTRL+O.</p>
+<img alt="gui_img/file_open.png" src="gui_img/file_open.png" />
+<p>Select the project you want to open and then press <em>Open</em>.</p>
+<img alt="gui_img/open_project.png" src="gui_img/open_project.png" />
+<p>Opening the current loaded project will prompt to reload the project.</p>
+</div>
+<div class="section" id="edit-a-project">
+<h2><a class="toc-backref" href="#id20">2.3&nbsp;&nbsp;&nbsp;Edit a project</a></h2>
+<div class="section" id="edit-units">
+<h3><a class="toc-backref" href="#id21">2.3.1&nbsp;&nbsp;&nbsp;Edit Units</a></h3>
+<p>To edit an unit right click on the wanted unit and select <em>Edit Unit</em>. Only the unmodifiable attributes should be grayed out like in the following image:</p>
+<img alt="gui_img/dummy_master_unit_property.png" src="gui_img/dummy_master_unit_property.png" />
+<p>The name of the unit can be an already created unit type selected from the drop-down list or it can be manually entered.</p>
+<p>The instance name must be unique.</p>
+<p>The modifications are saved when the <em>OK</em> button is pressed.</p>
+<p>To delete an unit, right click on it and then select <em>Delete</em>. Confirm the deletion by pressing the OK button.</p>
+<img alt="gui_img/delete_unit_menu.png" src="gui_img/delete_unit_menu.png" />
+</div>
+<div class="section" id="edit-interfaces">
+<h3><a class="toc-backref" href="#id22">2.3.2&nbsp;&nbsp;&nbsp;Edit Interfaces</a></h3>
+<p>Right-clicking on an interface and then selecting <em>Edit</em> will open the Interface Property Editor for that interface. The name of that interface can be
+edited unless it is already in use in a connection.</p>
+<img alt="gui_img/interface_property_editor.png" src="gui_img/interface_property_editor.png" />
+<p>To delete an interface, right click on it and then select <em>Delete</em>. Confirm the deletion by pressing the OK button.</p>
+<img alt="gui_img/interface_delete_menu.png" src="gui_img/interface_delete_menu.png" />
+</div>
+<div class="section" id="edit-signal-groups">
+<h3><a class="toc-backref" href="#id23">2.3.3&nbsp;&nbsp;&nbsp;Edit Signal Groups</a></h3>
+<p>Right-clicking on a signal group and then selecting <em>Edit</em> will open the Signal Group Property Editor for that signal group.</p>
+<p>To delete a signal group, right click on it and then select <em>Delete</em>. Confirm the deletion by pressing the OK button.</p>
+</div>
+<div class="section" id="edit-connections">
+<h3><a class="toc-backref" href="#id24">2.3.4&nbsp;&nbsp;&nbsp;Edit Connections</a></h3>
+<p>To edit a connection properties like name and library interface, right click on the interface type name of the connection (column <em>Interface Type</em> in the
+connection table) and then select <em>Edit Connection</em>.</p>
+<img alt="gui_img/edit_connection_menu.png" src="gui_img/edit_connection_menu.png" />
+<p>To add a driver for a connection right-click either in the column <em>Driver Unit Instance</em> or <em>Driver Connection Instance</em> of the connection table
+and then select <em>Add Driver</em>:</p>
+<img alt="gui_img/add_driver.png" src="gui_img/add_driver.png" />
+<p>Let's edit the connection from the previous chapter when we learned how to <a class="reference internal" href="#make-a-connection">make a connection</a>. Add a driver to the connection named <em>mmu2dminst</em>.
+A new dialog opens in which can be selected the unit interface and the corresponding interface instance name:</p>
+<img alt="gui_img/add_driver_dialog.png" src="gui_img/add_driver_dialog.png" />
+<p>The above will add a driver named <em>main_unit_driver</em> in <em>my_main_unit</em> instance. The driver is of type instance named <em>my_instance</em> as seen in the connection.</p>
+<img alt="gui_img/my_main_unit_driver_con_table.png" src="gui_img/my_main_unit_driver_con_table.png" />
+<p>Let's add a receiver in the unit <em>dummy_master_inst</em> instance. This will complete the connection between the <em>my_main_unit</em> instance and <em>dummy_master_inst</em> instance.
+Right-click on either <em>Receiver Unit Instance</em> or <em>Receiver Connection Instance</em> column belonging to the <em>mmu2dminst</em> connection.</p>
+<img alt="gui_img/add_receiver_menu.png" src="gui_img/add_receiver_menu.png" />
+<p>Select the unit instance that houses the receiver as the <em>dummy_master_inst</em> from <em>my_main_unit</em>. Name the receiver <em>dum_receiver_inst</em> as seen below:</p>
+<img alt="gui_img/dum_receiver_inst_dialog.png" src="gui_img/dum_receiver_inst_dialog.png" />
+<p>The connection table should look like this:</p>
+<img alt="gui_img/dum_receiver_inst_con_table.png" src="gui_img/dum_receiver_inst_con_table.png" />
+<p>A multi driver connection is created by adding a new driver to a connection that already has one or more drivers. A new line below the selected connection will contain
+the same information but with the new driver. It can be modified if necessary.</p>
+<p>A multi receiver connection is created in the same way as a driver. Please make sure to connect the proper driver with the proper receiver in the intended unit.</p>
+<p>To delete a connection, driver or receiver, right click on it and then select <em>Delete</em>. Confirm the deletion by pressing the OK button.</p>
+<img alt="gui_img/delete_connection_menu.png" src="gui_img/delete_connection_menu.png" />
+<img alt="gui_img/delete_driver_menu.png" src="gui_img/delete_driver_menu.png" />
+<img alt="gui_img/delete_receiver_menu.png" src="gui_img/delete_receiver_menu.png" />
+<p>Let's create a bus split using the driver from <em>my_main_unit</em> to connect with another unit, like <em>dum_slave_inst</em>. Create the unit <em>dum_slave_inst</em> in <em>my_main_unit</em>
+like described in chapter <a class="reference internal" href="#add-an-unit">Add an unit</a> :</p>
+<img alt="gui_img/dum_slave_inst_editor.png" src="gui_img/dum_slave_inst_editor.png" />
+<p>Add a driver to connection <em>mmu2dminst</em>. Select the <em>my_main_unit</em> instance as unit instance and then press OK:</p>
+<img alt="gui_img/add_dum_slave_driver.png" src="gui_img/add_dum_slave_driver.png" />
+<p>The connection table contains the new driver on the next line:</p>
+<img alt="gui_img/dum_slave_driver_con_table.png" src="gui_img/dum_slave_driver_con_table.png" />
+<p>Next, add a receiver to the connection by right-clicking on either <em>Receiver Unit Instance</em> or <em>Receiver Connection Instance</em> column belonging to the <em>mmu2dminst</em>
+connection on line 2:</p>
+<img alt="gui_img/dum_slave_add_receiver_menu.png" src="gui_img/dum_slave_add_receiver_menu.png" />
+<p>Select as unit instance the <em>dum_slave_inst</em> instance:</p>
+<img alt="gui_img/dum_slave_receiver_editor.png" src="gui_img/dum_slave_receiver_editor.png" />
+<p>The connection table now has a connection with a single driver and multiple receivers, meaning that it is a bus split connection type.</p>
+<img alt="gui_img/bus_split_con_table.png" src="gui_img/bus_split_con_table.png" />
+</div>
+</div>
+<div class="section" id="tools-menu">
+<h2><a class="toc-backref" href="#id25">2.4&nbsp;&nbsp;&nbsp;Tools Menu</a></h2>
+<div class="section" id="compiling-csl">
+<h3><a class="toc-backref" href="#id26">2.4.1&nbsp;&nbsp;&nbsp;Compiling CSL</a></h3>
+<p>Compiling the csl code for the project can be done from the GUI:</p>
+<ul class="simple">
+<li>make sure that the project uses the cslc compiler by selecting the cslc binary in the <em>Tools</em> -&gt; <em>Options</em> menu:</li>
+</ul>
+<img alt="gui_img/tools_options.png" src="gui_img/tools_options.png" />
+<ul class="simple">
+<li>generate the csl code (it may already be generated when the project is saved): <em>Project</em> -&gt; <em>Generate CSL</em></li>
+</ul>
+<img alt="gui_img/project_generate_csl.png" src="gui_img/project_generate_csl.png" />
+<ul class="simple">
+<li>start the compilation process by selecting <em>Tools</em> -&gt; <em>Compile CSL</em> or by pressing CTRL+E. A console will open containing the results of the compilation.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="other">
+<h1><a class="toc-backref" href="#id27">3&nbsp;&nbsp;&nbsp;Other</a></h1>
+<div class="section" id="general-tips">
+<h2><a class="toc-backref" href="#id28">3.1&nbsp;&nbsp;&nbsp;General tips</a></h2>
+<div class="section" id="gui">
+<h3><a class="toc-backref" href="#id29">3.1.1&nbsp;&nbsp;&nbsp;GUI</a></h3>
+<ul class="simple">
+<li>Usually, double clicking on the separator between two columns will automatically resize the left column to fit it's contents.</li>
+</ul>
+<img alt="gui_img/my_interface_my_int_clock_con_lib2.png" src="gui_img/my_interface_my_int_clock_con_lib2.png" />
+<ul class="simple">
+<li>To make more space, the three areas, <strong>Design Hierarchy</strong>, <strong>Connectivity Library</strong> and <strong>Connection table</strong> can be hidden by dragging the separator
+between them (indicated by the mouse arrow in the pictures below) to left or right:</li>
+</ul>
+<img alt="gui_img/hide_conn_lib_p1.png" src="gui_img/hide_conn_lib_p1.png" />
+<img alt="gui_img/hide_conn_lib_p4.png" src="gui_img/hide_conn_lib_p4.png" />
+<img alt="gui_img/zone_separators.png" src="gui_img/zone_separators.png" />
+<img alt="gui_img/hide_design_hierarchy.png" src="gui_img/hide_design_hierarchy.png" />
+<ul class="simple">
+<li>Using keyboard shortcuts whenever possible speeds up the design process</li>
+<li>Various actions can be implemented with an external editor of choice that can read the .csl.xml project file if the editor is too slow.</li>
+<li>Altering the project file outside the gui will prompt the user to reload the project.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="reporting-bugs">
+<h2><a class="toc-backref" href="#id30">3.2&nbsp;&nbsp;&nbsp;Reporting Bugs</a></h2>
+<p>Please report any bugs to TO BE COMPLETED</p>
+</div>
+</div>
+<div class="section" id="final-words">
+<h1><a class="toc-backref" href="#id31">4&nbsp;&nbsp;&nbsp;Final Words</a></h1>
+</div>
+</div>
+</body>
+</html>

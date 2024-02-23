@@ -1,0 +1,32 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+
+#exceptions:
+ddr_parameters.vh           skip    "module"
+function3.11E.v             skip    "incorrect test"
+lib.v                       skip    "module"
+sio85.v                     skip    "incorrect test"
+#dotinid.v                   skip    "bug/fixed"
+port-test4a.v               skip    "incorrect test"
+port-test4b.v               skip    "incorrect test"
+function4.v                 skip    "incorrect test"
+
+#drive_strength3.v           skip    "bug 31"
+hazard1.v                   skip    "missing module definition/see bug 31"
+#hazard1.vf                  skip    "includes the above file"
+opdec_alu.v                 skip    "bug 31"
+#opdec_include.vf            skip    "includes the above file"
+#setcc.v                     skip    "bug 31"
+#specify1.v                  skip    "bug 31"
+stage2.v                    skip    "bug 31/unknown design error"
+#stage2.vf                   skip    "includes the above file"
+stage3.v                    skip    "bug 31"
+#stage3.vf                   skip    "includes the above file"
+#stage5.v                    skip    "bug 31"
+#testcc.v                    skip    "bug 31"
+#vespa.v                     skip    "bug 31"
+#sext_mod.v                  skip    "bug 31"
+

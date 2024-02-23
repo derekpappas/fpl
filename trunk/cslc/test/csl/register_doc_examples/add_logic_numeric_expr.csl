@@ -1,0 +1,22 @@
+//Monica
+//26 oct 2007
+
+csl_register rr{
+  rr(){
+    set_type(counter);
+    set_width(256);
+    add_logic(count_direction,up);
+    add_logic(end_value, 100);
+  }
+};
+
+csl_unit u1{
+  csl_port clk(input);
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(output,256);
+  //csl_port p4(input,256);
+  rr r2(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p3));
+  u1(){
+  }
+};

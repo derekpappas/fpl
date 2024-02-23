@@ -1,0 +1,13 @@
+//danielt
+//november 07,2007
+
+csl_field field1(0,15),field2(16,26);
+csl_field field3 {
+  field1 f1;
+  field2 f2;
+  field3() {
+    set_width(35);
+    set_field_position(f1,12);
+    set_next(f1,f2) ; 
+  }
+};

@@ -1,0 +1,39 @@
+//Petronela
+
+csl_register r1{
+  r1(){
+    set_width(32);
+    set_type(register);
+    add_logic(neg_output);
+    add_logic(init,3);
+  }
+};
+
+csl_unit a{
+  csl_port clk(input);
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(output,32);
+  csl_port p6(input,32);
+  csl_port p4(output,32);
+  csl_port p5(input,1);
+  r1 r1(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p3),.reg_in(p6),.reg_out_(p4),.init(p5));
+  a(){
+  }
+};
+
+//csl_register r2;
+//csl_register r3;
+//csl_register r4;
+//csl_register r5;
+//csl_register r9;
+//csl_register r7;
+//csl_register r6;
+//csl_register r8;
+//csl_register r10;
+//csl_register r11;
+//csl_register r12;
+//csl_register r13;
+//csl_register r14;
+//csl_register r15;
+//

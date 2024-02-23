@@ -1,0 +1,83 @@
+AndreiB
+
+reffered documents:
+PDF file is /pending/csl_scan_2005_05_11/csl_fifo_2006_05_11.pdf
+.fm file is /docs/manuals/production/csl_files/csl_register.fm
+
+document notes:
+- 1.1.2 numbered list: 	this block of text (item 6):
+
+<<		       	The FIFO data words can have a tag field associated with them when required. An example of a use of the tag field is if a split transaction bus is used and the requested transaction is sent with the tag and the reply is sent with the tag  then the FIFO entry with the tag can be accessed using a CAM lookup scheme and the value associated with the TAG can be popped 				>>
+			
+			rephrased to:
+			
+<<			The FIFO data words can have a tag field associated with them when required. An example of a use of the tag field is when a split transaction bus is used, the requested transaction is sent with the tag and the reply is sent with the tag, then the FIFO entry with the tag can be accessed using a CAM lookup scheme and the value associated with the tag can be popped.				>>
+
+  also, at the end of the paragraph there is a reference to an unknown figure: " See figure ??"
+
+- 1.1.5 numbered list: 	4. the FIFO entries can be addressed and written - added 'randomly' at the end
+			5. the FIFO entries can be addressed and read - added 'randomly' at the end
+
+			rephrased (at number 7 in list):
+ 			When the producer writes to the FIFO the producer subtracts 1 from their credits. When the producer writes to the FIFO the consumer adds 1 to their credits."
+			to:
+			When the producer writes to the FIFO the producer subtracts 1 from its credits and the consumer adds 1 to its credits.
+
+			rephrased (at number 8 in list):
+			When the consumer reads from the FIFO the consumer subtracts 1 from their credits. When the consumer reads from the FIFO the producer adds 1 to their credits.
+			to:
+			When the consumer reads from the FIFO the consumer subtracts 1 from its credits and the producer adds 1 to its credits.
+
+			11. "NOTE: Need an equation here" - no equation was specified
+
+Note on this numbered list: the heading title reads "Programmable low water mark for full calculation" while the number list seems to be an outline of general FIFO features.
+
+- Figure 1.1 and Figure 1.2 have no names. Also Figure 1.2 doesn't seem to relate to Figure 1.1 and number 16 in the aforementioned list.
+
+- Figure 1.3 No details are given on the nature of "V"
+- PDF document page 12 bottom: what do H3 and H4 mean. I noticed in the following page H3 again. Are they connected ? Do I have to copy the H3 marked line there or H3 and H4 are just heading types ?
+- PDF document on page 13 top: table 1.2 should be moved to * page however, no page number is specified or * placeholder
+- Table 1.2 has no title
+- Figure 1.7 has no title, also - what is "log calc ?"
+- beneath Figure 1.7 figure "10.10" should be erased and replaced with a crossreference ? and if so, where should it point to ?
+- paragraph beneath Figure 1.7 the statement: "In this case the upper  flip-flop of the two register synchronizer may be in a metastable state. to sampling this flip-flop, the keep  out signal controls the multiplexer to select the lower flip flop" - couldn't understand the "metastable state. to sampling this flip-flop" part.
+- few paragraphs below there is a reference to Section 10.3 (with "10.3" to be erased) - what should replace it? Also there are many instances that point to unknown figures (eg: Figure10.20) figures that mighht have changed (eg. Figure 1.9) unknown sections (eg: Section 10.3.1.4.)
+- Figures 1.10, 1.11 and 1.12 have no title
+- Figure 1.13 has no title
+- Figures 1.15 and 1.16 have no title
+- Table 1.4 has no title
+
+-CSL commands section:
+ CSL commands that appear to be duplicates:
+
+fifo_arch_normal <vs> fifo_name.fifo_arch_normal 			:: description is identical
+fifo_arch_size <vs> fifo_name.arch_size 				:: description is identical
+fifo_arch_width <vs> fifo_name.arch_width 				:: description is identical
+fifo_arch_programmable_size <vs> fifo_name.arch_programmable_size	:: description is identical
+fifo_arch_imp_type <vs> fifo_name.arch_imp_type				:: description is identical
+fifo_arch_asynch_fifo <vs> fifo_name.arch_asynch_fifo			:: description is identical
+fifo_arch_input_reg <vs> fifo_name.arch_input_reg			:: description is identical
+fifo_arch_output_reg <vs> fifo_name.arch_output_reg			:: description is identical
+fifo_arch_wr_hold <vs> fifo_name.arch_wr_hold				:: description is identical
+fifo_arch_high_prio_bypass <vs> fifo_name.arch_high_prio_bypass		:: description is identical
+fifo_clk <vs> fifo_name.clk						:: description basically the same
+fifo_reset <vs> fifo_name.reset						:: description basically the same
+fifo_name.clk_asynch_fifo_wr_clk <vs> fifo_name.clk_asynch_fifo_wr_clk	:: description is identical
+fifo_reset_asynch_fifo_wr_reset <vs> fifo_name.reset_asynch_fifo_wr_reset :: description is identical
+fifo_reset_asynch_fifo_rd_clk <vs> fifo_name.reset_asynch_fifo_rd_clk	:: description is identical
+fifo_reset_asynch_fifo_rd_reset <vs> fifo_name.reset_asynch_fifo_rd_reset :: description is identical
+fifo_rd_cntl_pushback <vs> fifo_name.rd_cntl_pushback			:: descriptions DO NOT coincide
+fifo_rd_cntl_rd_stall <vs> fifo_name.rd_cntl_rd_stall			:: description is identical
+fifo_wr_cntl_full <vs> fifo_name.wr_cntl_full				:: description is identical
+fifo_wr_cntl_wr_release <vs> fifo_name.wr_cntl_wr_release		:: description is identical
+fifo_status_lwm <vs> fifo_name.status_lwm				:: description is NOT identical
+fifo_status_hwm <vs> fifo_name.status_hwm				:: description is NOT identical
+fifo_arch_credit <vs> fifo_name.arch_credit				:: description is identical
+fifo_arch_rd_credit <vs> fifo_name.arch_rd_credit			:: description is identical
+fifo_arch_wr_credit <vs> fifo_name.arch_wr_credit			:: description is identical
+
+- Figures 1.19, 1.20, 1.21, 1.22 and 1.23 have no title
+- 1.7 CSL FIFO Reports has a subheading called "Fifo status regs" which is identical with 1.2.3 Fifo status registers : delete ? and if so, FIFO reports will be empty.
+- PDF document page 28 up: Figure 1.15 and the block of text under it should be moved somewhere, yet there is no specification where ("Move to") - maybe it reffers to page 14 too as it is specified on page 29 and page 30 ?
+also in that block of text (at the beginning) there is a reference to a rd+en signal which cannot be seen in the figure.
+-PDF document page 31 "Automatically test a FIFO" has an H1 mark before it. Does that mean it should be turned into a heading 1 paragraph ? I assumed it was meant to be heading 2, as heading 1 paragraphs are fixed (in number) and specified at the beginning of the document.

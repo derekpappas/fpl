@@ -1,0 +1,16 @@
+//Monica
+
+csl_memory mem{
+  csl_parameter data_w(4), addr_w(8);
+  mem(){
+    set_width(data_w);
+    set_depth(addr_w);
+  }
+};
+
+csl_unit u{
+  mem #(8,4) mem1;
+  mem #(.data_w(32),.addr_w(16)) mem2;
+
+  u(){}
+};

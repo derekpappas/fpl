@@ -1,0 +1,43 @@
+//costelc
+//port - signal group concatenation
+
+
+csl_unit a{
+  csl_port a_in(input);
+  csl_port a_out(output,8);
+  a() {}
+};
+
+csl_unit b{
+  csl_port b_in(input);
+  csl_port b_out(output,8);
+  b() {}
+};
+
+csl_signal_group sg{
+  csl_signal s1(8);
+  csl_signal s2(8);
+  sg() {}
+};
+
+csl_unit c{
+  csl_port c_in(input,24);
+  csl_port c_out(output);
+  c() {}
+};
+
+csl_unit d{
+  csl_port d_in(input);
+  csl_port d_out(output,8);
+  d() {}
+};
+	
+csl_unit top{
+  sg sg0;
+  csl_signal s;
+  d d0(.d_in(s),.d_out(sg0.s2));
+  a a0(.a_out(sg0.s1),.a_in(s));
+  b b0(.b_out(sg0.s2),.b_in(s));
+  c c0(.c_in({3{sg0.s1}}),.c_out(s));
+  top() {}
+}; 

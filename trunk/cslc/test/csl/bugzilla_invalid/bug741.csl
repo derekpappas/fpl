@@ -1,0 +1,14 @@
+csl_memory_map_page mmp_page{
+        mmp_page(){
+                add_address_range(0,31);
+                set_endianess(big_endian);
+                set_data_word_width(16);
+                set_alignment(4);           // increment = 16 / 4 = 4 
+                add_to_memory_map(1);  //
+
+        }
+};
+
+
+
+

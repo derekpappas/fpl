@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="g++ noversion nomachine-g -I/opt/local/include -c">
+      <target file="VerilogParser.o" lastModified="11d07ddb650">
+         <source file="../../../../src/parser/verilog/VerilogParser.cpp" lastModified="11c6d4fc380"/>
+      </target>
+      <target file="Tools.o" lastModified="11d07dd9af8">
+         <source file="../../../../src/parser/verilog/Tools.cpp" lastModified="11a04f28888"/>
+      </target>
+      <target file="ToolsParser.o" lastModified="11d07ddd1a8">
+         <source file="../../../../src/parser/verilog/ToolsParser.cpp" lastModified="11a04f28888"/>
+      </target>
+      <target file="VerilogTreeWalker.o" lastModified="11d07ddc9d8">
+         <source file="../../../../src/parser/verilog/VerilogTreeWalker.cpp" lastModified="11c6d4fc768"/>
+      </target>
+      <target file="VerilogLexer.o" lastModified="11d07dd9710">
+         <source file="../../../../src/parser/verilog/VerilogLexer.cpp" lastModified="11c6d4fbf98"/>
+      </target>
+      <target file="VerilogToken.o" lastModified="11d07ddcdc0">
+         <source file="../../../../src/parser/verilog/VerilogToken.cpp" lastModified="11a04f28888"/>
+      </target>
+      <target file="VerilogLexerUtils.o" lastModified="11d07ddb650">
+         <source file="../../../../src/parser/verilog/VerilogLexerUtils.cpp" lastModified="11a04f28888"/>
+      </target>
+   </processor>
+   <processor signature="ar">
+      <target file="libVParser_Library.a" lastModified="11d07ddd1a8">
+         <source file="VerilogLexer.o" lastModified="11d07dd9710"/>
+         <source file="Tools.o" lastModified="11d07dd9af8"/>
+         <source file="VerilogParser.o" lastModified="11d07ddb650"/>
+         <source file="VerilogLexerUtils.o" lastModified="11d07ddb650"/>
+         <source file="VerilogTreeWalker.o" lastModified="11d07ddc9d8"/>
+         <source file="VerilogToken.o" lastModified="11d07ddcdc0"/>
+         <source file="ToolsParser.o" lastModified="11d07ddd1a8"/>
+      </target>
+   </processor>
+</history>

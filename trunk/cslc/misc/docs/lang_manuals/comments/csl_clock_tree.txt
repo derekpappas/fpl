@@ -1,0 +1,90 @@
+Valex
+
+reffered documents:
+.fm file is \docs\manuals\production\csl_files\csl_clock_tree.fm
+
+document notes:
+
+Subchapters 1.1, 1.2, 1.3, 1.4, 1.5, 1.6; missing the sentences.
+
+-section 1.6.1:	* "clk_<0..n+>_on all clks which are an input to the clock switch" - this sentence is incomplete.
+		* "Note that when the clock switch is switching between clocks that all clocks are off. When the clock switch is switching between one clock and another no clocks are enabled." - this 2 sentences are different but they explain the same idea.
+
+- figure 1.3: 	* considering the signal with the label clk_sel[], i think the signal with the label clk_sel_<q> is rong. Can't be clk_<p> and clk_<q> simultaneous on.
+		* the signal clk_p is on (clk_on_<p>) after is selected clk_<p> by the clk_sel[] signal.
+		* i think the label clk_<q>_qual was inverted with the label clk_<p>_qual.
+
+Subchapter 1.7 csl_clock tree grammar: there is a enumeration; maybe should be and a  description for this terms.
+
+- figure 1.5:	* the words after this fig. are not in a sentence. There is a enumeration?
+
+- figure 1.6:	* i think is incomplete
+		* don't have a name
+		* after this fig. are some values and i don't know what there represent.
+
+- figure 1.7:	* i think is incomplete
+		* the words after this fig. are not in a sentence
+
+- figure 1.10:	* the block who have the "PSQN" and "JTAG" signals on input, is a MUX or a CD. If it is a MUX, then it must have a selection pin
+
+- figure 1.11:	* what represent xdiva, ydiva, xdivb, ydivb?
+
+- figure 1.12:	* what is a clock macro, and what does this block do?
+
+- figure 1.13:	* i don't understand what this fig. reprezent
+
+- figure 1.14:	* how is made the synchronisation?
+
+- figure 1.15:	* is incomplete
+		* don't have a name
+
+- figure 1.16:	* don't have a name
+
+- figure 1.17:	* don't have a name
+
+- figure 1.18:	* don't have a name
+		* is incomplete
+
+- figure 1.19:	* don't have a name
+		* the words before and after this fig. are not in a sentence.
+
+- figure 1.22:	* don't have a name
+		*  the words after this fig. are not in a sentence.
+
+- figure 1.24:	* don't have a name
+
+- figure 1.25:	* don't have a name
+		* some blocks don't have names.
+
+- figure 1.26:	* don't have a name
+		* some blocks don't have names.
+
+- figure 1.27	* some pins don't have labels.
+		* what is the "1/2/4" block?
+		* there is a connection between an input af the first MUX and an input for the second MUX; and there is no input signal for this connection.
+		* what is the label (name signal) for the output of the AND gate?
+		* the MUX blocks don't have a selection pin?
+
+- in the sentence: "if clk is defined 0/1 and  clk_en is X or Z ..."; "x" represent a don't care value and "z" represent a HI-Z (high impedance)?
+
+- figure 1.28:	* don't have a name
+
+- figure 1.29:	* is incomplete
+		* "n delay = n delay" what that mean?
+
+- figure 1.30:	* don't have a name
+		* the words after this fig. are not in a sentence.
+		after this fig. "Building RTL CLK trees" is a title? and "Gated clock tree" is a subtitle?
+
+- figure 1.31:	* before this figure is a sentence :"RTL is an acronym for register transfer level hardware  description language." - maybe this explanation must be writed at the begining of this document because the RTL acronym is mentioned before it is explicated.
+		* the label for the input pin of FF is "emin"; i think the label must be enin (enable + inpunt)
+
+- figure 1.31:	* the label for the input pin of FF is "emin"; i think the label must be enin (enable + inpunt)
+
+on page 16:	* the figue 1.18 was duplicated: deleted
+
+- figures 1.34, 1.35, 1.36:	* i don't know what does this fig. represente
+		* after the fig. 1.36 there is a instance: "Transmission block yakes an input signal and replicates the signal and routes the replicated signals to thier destinations" - what is "yakes", maybe takes?
+
+
+

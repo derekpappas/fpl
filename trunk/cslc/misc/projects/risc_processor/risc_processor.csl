@@ -1,0 +1,12 @@
+//oanab
+//3 ian 2008
+
+csl_unit u {
+  csl_port rx(input,32),ry(input,32);
+  csl_port rz(output,32);
+  u() {}
+};
+
+csl_register_file reg_file {
+  reg_file() {
+    

@@ -1,0 +1,349 @@
+#ifndef V_CORE_H
+#define V_CORE_H
+
+#include "/opt/fpl_repo2/fpl/cslc/trunk/build_utils/trunk/src/csim/CsimSignal.h"
+#include "/opt/fpl_repo2/fpl/cslc/trunk/build_utils/trunk/src/csim/CsimPort.h"
+#include "usb_tm_packetizer.h"
+#include "usb_tm_dispatcher.h"
+#include "RAM.h"
+#include "fab.h"
+#include "uart_mgr.h"
+#include "fab.h"
+#include "jeff_uart.h"
+#include "fab.h"
+#include "uart.h"
+#include "fab.h"
+#include "uart.h"
+#include "fab.h"
+#include "uart.h"
+#include "fab.h"
+#include "i2c.h"
+#include "fab.h"
+#include "usb_protocol_mgr.h"
+#include "fab_filter.h"
+#include "fab.h"
+#include "usb_transaction_mgr.h"
+#include "fifo_regs.h"
+#include "usb_phy.h"
+
+using namespace NSCsimLib;
+
+namespace NSCsimGen {
+
+class v_core : public CsimUnit {
+public:
+  RefCsimPortTBool gpio_connect_a0_in;
+  RefCsimPortTBool gpio_connect_a0_out;
+  RefCsimPortTBool gpio_connect_a0_en;
+  RefCsimPortTBool gpio_connect_a1_in;
+  RefCsimPortTBool gpio_connect_a1_out;
+  RefCsimPortTBool gpio_connect_a1_en;
+  RefCsimPortTBool gpio_connect_a2_in;
+  RefCsimPortTBool gpio_connect_a2_out;
+  RefCsimPortTBool gpio_connect_a2_en;
+  RefCsimPortTBool gpio_connect_a3_in;
+  RefCsimPortTBool gpio_connect_a3_out;
+  RefCsimPortTBool gpio_connect_a3_en;
+  RefCsimPortTBool gpio_connect_a4_in;
+  RefCsimPortTBool gpio_connect_a4_out;
+  RefCsimPortTBool gpio_connect_a4_en;
+  RefCsimPortTBool gpio_connect_a5_in;
+  RefCsimPortTBool gpio_connect_a5_out;
+  RefCsimPortTBool gpio_connect_a5_en;
+  RefCsimPortTBool u1_modem_rx;
+  RefCsimPortTBool u1_modem_tx;
+  RefCsimPortTBool u1_modem_gp0_in;
+  RefCsimPortTBool u1_modem_gp0_out;
+  RefCsimPortTBool u1_modem_gp0_en;
+  RefCsimPortTBool u1_modem_gp1_in;
+  RefCsimPortTBool u1_modem_gp1_out;
+  RefCsimPortTBool u1_modem_gp1_en;
+  RefCsimPortTBool u1_modem_gp2_in;
+  RefCsimPortTBool u1_modem_gp2_out;
+  RefCsimPortTBool u1_modem_gp2_en;
+  RefCsimPortTBool u1_modem_gp3_in;
+  RefCsimPortTBool u1_modem_gp3_out;
+  RefCsimPortTBool u1_modem_gp3_en;
+  RefCsimPortTBool u1_modem_gp4_in;
+  RefCsimPortTBool u1_modem_gp4_out;
+  RefCsimPortTBool u1_modem_gp4_en;
+  RefCsimPortTBool u1_modem_gp5_in;
+  RefCsimPortTBool u1_modem_gp5_out;
+  RefCsimPortTBool u1_modem_gp5_en;
+  RefCsimPortTBool u2_modem_rx;
+  RefCsimPortTBool u2_modem_tx;
+  RefCsimPortTBool u2_modem_gp0_in;
+  RefCsimPortTBool u2_modem_gp0_out;
+  RefCsimPortTBool u2_modem_gp0_en;
+  RefCsimPortTBool u2_modem_gp1_in;
+  RefCsimPortTBool u2_modem_gp1_out;
+  RefCsimPortTBool u2_modem_gp1_en;
+  RefCsimPortTBool u2_modem_gp2_in;
+  RefCsimPortTBool u2_modem_gp2_out;
+  RefCsimPortTBool u2_modem_gp2_en;
+  RefCsimPortTBool u2_modem_gp3_in;
+  RefCsimPortTBool u2_modem_gp3_out;
+  RefCsimPortTBool u2_modem_gp3_en;
+  RefCsimPortTBool u2_modem_gp4_in;
+  RefCsimPortTBool u2_modem_gp4_out;
+  RefCsimPortTBool u2_modem_gp4_en;
+  RefCsimPortTBool u2_modem_gp5_in;
+  RefCsimPortTBool u2_modem_gp5_out;
+  RefCsimPortTBool u2_modem_gp5_en;
+  RefCsimPortTBool u3_modem_rx;
+  RefCsimPortTBool u3_modem_tx;
+  RefCsimPortTBool u3_modem_gp0_in;
+  RefCsimPortTBool u3_modem_gp0_out;
+  RefCsimPortTBool u3_modem_gp0_en;
+  RefCsimPortTBool u3_modem_gp1_in;
+  RefCsimPortTBool u3_modem_gp1_out;
+  RefCsimPortTBool u3_modem_gp1_en;
+  RefCsimPortTBool u3_modem_gp2_in;
+  RefCsimPortTBool u3_modem_gp2_out;
+  RefCsimPortTBool u3_modem_gp2_en;
+  RefCsimPortTBool u3_modem_gp3_in;
+  RefCsimPortTBool u3_modem_gp3_out;
+  RefCsimPortTBool u3_modem_gp3_en;
+  RefCsimPortTBool u3_modem_gp4_in;
+  RefCsimPortTBool u3_modem_gp4_out;
+  RefCsimPortTBool u3_modem_gp4_en;
+  RefCsimPortTBool u3_modem_gp5_in;
+  RefCsimPortTBool u3_modem_gp5_out;
+  RefCsimPortTBool u3_modem_gp5_en;
+  RefCsimPortTBool usb_rpu1_en;
+  RefCsimPortTBool usb_rpu2_en;
+  RefCsimPortTBool usb_data_in;
+  RefCsimPortTBool usb_force_se0;
+  RefCsimPortTBool usb_drv_enable;
+  RefCsimPortTBool usb_suspend;
+  RefCsimPortTBool usb_se_dp;
+  RefCsimPortTBool usb_enable_se;
+  RefCsimPortTBool usb_se_dn;
+  RefCsimPortTBool usb_data_out;
+  RefCsimPortTBool usb_strobe;
+  RefCsimPortTBool usb_enable_diff;
+  RefCsimSignalTBool ram_ufm_valid;
+  RefCsimSignalTBool ram_ufm_write_en;
+  RefCsimSignalTChar ram_ufm_addr;
+  RefCsimSignalTShort ram_ufm_write_data;
+  RefCsimSignalTShort ram_ufm_read_data;
+  RefCsimSignalTBool ram_ufm_ready;
+  RefCsimSignalTBool ram_upm_valid;
+  RefCsimSignalTBool ram_upm_write_en;
+  RefCsimSignalTChar ram_upm_addr;
+  RefCsimSignalTShort ram_upm_write_data;
+  RefCsimSignalTShort ram_upm_read_data;
+  RefCsimSignalTBool ram_upm_ready;
+  RefCsimSignalTBool ram_utm_valid;
+  RefCsimSignalTBool ram_utm_write_en;
+  RefCsimSignalTChar ram_utm_addr;
+  RefCsimSignalTShort ram_utm_write_data;
+  RefCsimSignalTShort ram_utm_read_data;
+  RefCsimSignalTBool ram_utm_ready;
+  RefCsimSignalTBool umf_ufm_drop_valid;
+  RefCsimSignalTChar umf_ufm_drop_type;
+  RefCsimSignalTChar umf_ufm_drop_src_nid;
+  RefCsimSignalTShort umf_ufm_drop_addr;
+  RefCsimSignalTShort umf_ufm_drop_data;
+  RefCsimSignalTBool umf_ufm_add_valid;
+  RefCsimSignalTChar umf_ufm_add_type;
+  RefCsimSignalTChar umf_ufm_add_dst_nid;
+  RefCsimSignalTShort umf_ufm_add_addr;
+  RefCsimSignalTShort umf_ufm_add_data;
+  RefCsimSignalTBool umf_ufm_add_ready;
+  RefCsimSignalTBool uf0_ut0_drop_valid;
+  RefCsimSignalTChar uf0_ut0_drop_type;
+  RefCsimSignalTChar uf0_ut0_drop_src_nid;
+  RefCsimSignalTShort uf0_ut0_drop_addr;
+  RefCsimSignalTShort uf0_ut0_drop_data;
+  RefCsimSignalTBool uf0_ut0_add_valid;
+  RefCsimSignalTChar uf0_ut0_add_type;
+  RefCsimSignalTChar uf0_ut0_add_dst_nid;
+  RefCsimSignalTShort uf0_ut0_add_addr;
+  RefCsimSignalTShort uf0_ut0_add_data;
+  RefCsimSignalTBool uf0_ut0_add_ready;
+  RefCsimSignalTBool uf1_ut1_drop_valid;
+  RefCsimSignalTChar uf1_ut1_drop_type;
+  RefCsimSignalTChar uf1_ut1_drop_src_nid;
+  RefCsimSignalTShort uf1_ut1_drop_addr;
+  RefCsimSignalTShort uf1_ut1_drop_data;
+  RefCsimSignalTBool uf1_ut1_add_valid;
+  RefCsimSignalTChar uf1_ut1_add_type;
+  RefCsimSignalTChar uf1_ut1_add_dst_nid;
+  RefCsimSignalTShort uf1_ut1_add_addr;
+  RefCsimSignalTShort uf1_ut1_add_data;
+  RefCsimSignalTBool uf1_ut1_add_ready;
+  RefCsimSignalTBool uf2_ut2_drop_valid;
+  RefCsimSignalTChar uf2_ut2_drop_type;
+  RefCsimSignalTChar uf2_ut2_drop_src_nid;
+  RefCsimSignalTShort uf2_ut2_drop_addr;
+  RefCsimSignalTShort uf2_ut2_drop_data;
+  RefCsimSignalTBool uf2_ut2_add_valid;
+  RefCsimSignalTChar uf2_ut2_add_type;
+  RefCsimSignalTChar uf2_ut2_add_dst_nid;
+  RefCsimSignalTShort uf2_ut2_add_addr;
+  RefCsimSignalTShort uf2_ut2_add_data;
+  RefCsimSignalTBool uf2_ut2_add_ready;
+  RefCsimSignalTBool uf3_ut3_drop_valid;
+  RefCsimSignalTChar uf3_ut3_drop_type;
+  RefCsimSignalTChar uf3_ut3_drop_src_nid;
+  RefCsimSignalTShort uf3_ut3_drop_addr;
+  RefCsimSignalTShort uf3_ut3_drop_data;
+  RefCsimSignalTBool uf3_ut3_add_valid;
+  RefCsimSignalTChar uf3_ut3_add_type;
+  RefCsimSignalTChar uf3_ut3_add_dst_nid;
+  RefCsimSignalTShort uf3_ut3_add_addr;
+  RefCsimSignalTShort uf3_ut3_add_data;
+  RefCsimSignalTBool uf3_ut3_add_ready;
+  RefCsimSignalTBool fic_i2c_drop_valid;
+  RefCsimSignalTChar fic_i2c_drop_type;
+  RefCsimSignalTChar fic_i2c_drop_src_nid;
+  RefCsimSignalTShort fic_i2c_drop_addr;
+  RefCsimSignalTShort fic_i2c_drop_data;
+  RefCsimSignalTBool fic_i2c_add_valid;
+  RefCsimSignalTChar fic_i2c_add_type;
+  RefCsimSignalTChar fic_i2c_add_dst_nid;
+  RefCsimSignalTShort fic_i2c_add_addr;
+  RefCsimSignalTShort fic_i2c_add_data;
+  RefCsimSignalTBool fic_i2c_add_ready;
+  RefCsimSignalTBool prf_upm_drop_valid;
+  RefCsimSignalTChar prf_upm_drop_type;
+  RefCsimSignalTChar prf_upm_drop_src_nid;
+  RefCsimSignalTShort prf_upm_drop_addr;
+  RefCsimSignalTShort prf_upm_drop_data;
+  RefCsimSignalTBool prf_upm_add_valid;
+  RefCsimSignalTChar prf_upm_add_type;
+  RefCsimSignalTChar prf_upm_add_dst_nid;
+  RefCsimSignalTShort prf_upm_add_addr;
+  RefCsimSignalTShort prf_upm_add_data;
+  RefCsimSignalTBool prf_upm_add_ready;
+  RefCsimSignalTBool trf_utm_drop_valid;
+  RefCsimSignalTChar trf_utm_drop_type;
+  RefCsimSignalTChar trf_utm_drop_src_nid;
+  RefCsimSignalTShort trf_utm_drop_addr;
+  RefCsimSignalTShort trf_utm_drop_data;
+  RefCsimSignalTBool trf_utm_add_valid;
+  RefCsimSignalTChar trf_utm_add_type;
+  RefCsimSignalTChar trf_utm_add_dst_nid;
+  RefCsimSignalTShort trf_utm_add_addr;
+  RefCsimSignalTShort trf_utm_add_data;
+  RefCsimSignalTBool trf_utm_add_ready;
+  RefCsimSignalTBool trf_prf_valid;
+  RefCsimSignalTBool trf_prf_age;
+  RefCsimSignalTChar trf_prf_type;
+  RefCsimSignalTChar trf_prf_src_nid;
+  RefCsimSignalTChar trf_prf_dst_nid;
+  RefCsimSignalTShort trf_prf_addr;
+  RefCsimSignalTShort trf_prf_data;
+  RefCsimSignalTBool prf_ffl_valid;
+  RefCsimSignalTBool prf_ffl_age;
+  RefCsimSignalTChar prf_ffl_type;
+  RefCsimSignalTChar prf_ffl_src_nid;
+  RefCsimSignalTChar prf_ffl_dst_nid;
+  RefCsimSignalTShort prf_ffl_addr;
+  RefCsimSignalTShort prf_ffl_data;
+  RefCsimSignalTBool ffl_umf_valid;
+  RefCsimSignalTBool ffl_umf_age;
+  RefCsimSignalTChar ffl_umf_type;
+  RefCsimSignalTChar ffl_umf_src_nid;
+  RefCsimSignalTChar ffl_umf_dst_nid;
+  RefCsimSignalTShort ffl_umf_addr;
+  RefCsimSignalTShort ffl_umf_data;
+  RefCsimSignalTBool umf_fic_valid;
+  RefCsimSignalTBool umf_fic_age;
+  RefCsimSignalTChar umf_fic_type;
+  RefCsimSignalTChar umf_fic_src_nid;
+  RefCsimSignalTChar umf_fic_dst_nid;
+  RefCsimSignalTShort umf_fic_addr;
+  RefCsimSignalTShort umf_fic_data;
+  RefCsimSignalTBool fic_uf0_valid;
+  RefCsimSignalTBool fic_uf0_age;
+  RefCsimSignalTChar fic_uf0_type;
+  RefCsimSignalTChar fic_uf0_src_nid;
+  RefCsimSignalTChar fic_uf0_dst_nid;
+  RefCsimSignalTShort fic_uf0_addr;
+  RefCsimSignalTShort fic_uf0_data;
+  RefCsimSignalTBool uf0_uf1_valid;
+  RefCsimSignalTBool uf0_uf1_age;
+  RefCsimSignalTChar uf0_uf1_type;
+  RefCsimSignalTChar uf0_uf1_src_nid;
+  RefCsimSignalTChar uf0_uf1_dst_nid;
+  RefCsimSignalTShort uf0_uf1_addr;
+  RefCsimSignalTShort uf0_uf1_data;
+  RefCsimSignalTBool uf1_uf2_valid;
+  RefCsimSignalTBool uf1_uf2_age;
+  RefCsimSignalTChar uf1_uf2_type;
+  RefCsimSignalTChar uf1_uf2_src_nid;
+  RefCsimSignalTChar uf1_uf2_dst_nid;
+  RefCsimSignalTShort uf1_uf2_addr;
+  RefCsimSignalTShort uf1_uf2_data;
+  RefCsimSignalTBool uf2_uf3_valid;
+  RefCsimSignalTBool uf2_uf3_age;
+  RefCsimSignalTChar uf2_uf3_type;
+  RefCsimSignalTChar uf2_uf3_src_nid;
+  RefCsimSignalTChar uf2_uf3_dst_nid;
+  RefCsimSignalTShort uf2_uf3_addr;
+  RefCsimSignalTShort uf2_uf3_data;
+  RefCsimSignalTBool uf3_trf_valid;
+  RefCsimSignalTBool uf3_trf_age;
+  RefCsimSignalTChar uf3_trf_type;
+  RefCsimSignalTChar uf3_trf_src_nid;
+  RefCsimSignalTChar uf3_trf_dst_nid;
+  RefCsimSignalTShort uf3_trf_addr;
+  RefCsimSignalTShort uf3_trf_data;
+  RefCsimSignalTBool ufm_ffr_write_en;
+  RefCsimSignalTChar ufm_ffr_addr;
+  RefCsimSignalTShort ufm_ffr_write_data;
+  RefCsimSignalTShort ufm_ffr_read_data;
+  RefCsimSignalTBool ffr_upm_write_en;
+  RefCsimSignalTChar ffr_upm_addr;
+  RefCsimSignalTShort ffr_upm_write_data;
+  RefCsimSignalTShort ffr_upm_read_data;
+  RefCsimSignalTBool tp_bus_t2p_valid;
+  RefCsimSignalTChar tp_bus_t2p_length;
+  RefCsimSignalTChar tp_bus_t2p_endpoint;
+  RefCsimSignalTBool tp_bus_t2p_ready;
+  RefCsimSignalTBool tp_bus_p2t_valid;
+  RefCsimSignalTChar tp_bus_p2t_length;
+  RefCsimSignalTChar tp_bus_p2t_endpoint;
+  RefCsimSignalTBool tp_bus_p2t_ready;
+  RefCsimSignalTBool phy_rx_valid;
+  RefCsimSignalTBool phy_rx_cmd;
+  RefCsimSignalTChar phy_rx_data;
+  RefCsimSignalTBool phy_rx_ready;
+  RefCsimSignalTBool phy_tx_valid;
+  RefCsimSignalTBool phy_tx_cmd;
+  RefCsimSignalTChar phy_tx_data;
+  RefCsimSignalTBool phy_tx_ready;
+  RefCsimUnit RAM_;
+  RefCsimUnit fab_uart_mgr;
+  RefCsimUnit uart_mgr_;
+  RefCsimUnit uart_fab_0;
+  RefCsimUnit uart_mod0;
+  RefCsimUnit uart_fab_1;
+  RefCsimUnit uart_mod1;
+  RefCsimUnit uart_fab_2;
+  RefCsimUnit uart_mod2;
+  RefCsimUnit uart_fab_3;
+  RefCsimUnit uart_mod3;
+  RefCsimUnit fab_i2c;
+  RefCsimUnit i2c_;
+  RefCsimUnit proto_fab;
+  RefCsimUnit usb_protocol_mgr_;
+  RefCsimUnit fab_filter_;
+  RefCsimUnit trans_fab;
+  RefCsimUnit usb_transaction_mgr_;
+  RefCsimUnit fifo_regs_;
+  RefCsimUnit usb_phy_;
+  //functions
+  void defaultInitialize();
+  void connect();
+  virtual void allocate() = 0;
+  virtual void initialize() = 0;
+  virtual void execute() = 0;
+  //constructor
+  v_core() : CsimUnit(RefString(new std::string("v_core"))) {}
+};
+}
+
+#endif

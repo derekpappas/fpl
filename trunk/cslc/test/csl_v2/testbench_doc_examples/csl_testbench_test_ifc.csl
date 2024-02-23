@@ -1,0 +1,43 @@
+//6 Oct 2007
+//andreim
+//Testbench test: DUT only with ifc
+
+csl_interface ifc{
+   csl_port stim_in_0 ( input  );
+   csl_port stim_in_1 ( input  );
+   csl_port exp_out_0 ( output );
+   csl_port exp_out_1 ( output );
+   ifc(){
+   }
+};
+
+csl_unit DUT{
+   csl_port clk_p ( input );
+   ifc ifc;
+   DUT(){
+     clk_p.set_attr ( clock );
+   }
+};
+
+csl_vector stim_vec{
+   stim_vec(){
+      set_unit_name ( DUT );
+      set_direction   ( input );
+   }
+};
+
+csl_vector exp_vec{
+   exp_vec(){
+      set_unit_name ( DUT );
+      set_direction   ( output );
+   }
+};
+
+csl_testbench tb{
+   csl_signal clk_sgn;
+   DUT DUT_(.clk_p(clk_sgn));
+   tb(){
+        clk_sgn.set_attr ( clock );
+        add_logic(clock, clk_sgn,2,ns);
+      }
+};

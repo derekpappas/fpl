@@ -1,0 +1,46 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="alutop">
+<port name="cin" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="aluout" offset="0" upper="DATA_WIDTH-1" lower="0" direction = "output" type = "wire" />
+<port name="cout" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="selal" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<interface name="ops" >
+<port name="a" offset="0" upper="DATA_WIDTH-1" lower="0" direction = "input" type = "wire" />
+<port name="b" offset="0" upper="DATA_WIDTH-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="selops" >
+<port name="s" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<signalgroup name="outifc0">
+<signal name="o" offset="0" upper="8-1" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "ostga">
+<instance name="ostga0">
+<f2a formal = "cin" actual = "cin" />
+<f2a formal = "cout" actual = "cout" />
+<f2a formal = "opifc0.a" actual = "ops.a" />
+<f2a formal = "opifc0.b" actual = "ops.b" />
+<f2a formal = "outifc0.o" actual = "outifc0.o" />
+<f2a formal = "selifc0.s" actual = "selops.s" />
+</instance>
+</instantiation>
+<instantiation type = "ostgl">
+<instance name="ostgl0">
+<f2a formal = "opifc0.a" actual = "ops.a" />
+<f2a formal = "opifc0.b" actual = "ops.b" />
+<f2a formal = "outifc0.o" actual = "outifc0.o" />
+<f2a formal = "selifc0.s" actual = "selops.s" />
+</instance>
+</instantiation>
+<instantiation type = "mux21">
+<instance name="mux21a">
+<f2a formal = "inifc0.o" actual = "outifc0.o" />
+<f2a formal = "inifc1.o" actual = "outifc0.o" />
+<f2a formal = "muxout" actual = "aluout" />
+<f2a formal = "s" actual = "selal" />
+</instance>
+</instantiation>
+</unit>
+</design>

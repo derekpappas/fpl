@@ -1,0 +1,29 @@
+//Monica
+
+csl_interface ifc1{
+  csl_port p11(input,10),p12(input,128);
+  ifc1(){}
+};
+csl_interface ifc2{
+  csl_port p21(output,128),p22(output,10);
+  ifc2(){}
+};
+csl_unit u1{
+  ifc1 ifc11;
+  u1(){}
+};
+csl_unit u2{
+  ifc2 ifc22;
+  u2(){}
+};
+csl_unit top1{
+  csl_signal s1(138),s2(138);
+  ifc2 ifc21;
+  ifc1 ifc12;
+  u1 u1(.ifc11(ifc12));
+  u2 u2(.ifc22(ifc21));
+  top1(){
+    s1 = s2;
+  }
+};
+        

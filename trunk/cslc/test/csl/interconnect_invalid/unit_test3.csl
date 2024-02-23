@@ -1,0 +1,15 @@
+//Petronela
+csl_unit top,a,b,c;
+csl_interface ifc1{
+  ifc1(){
+  }
+};
+csl_unit a{
+    csl_signal s1;
+    csl_port p1(input,wire,5,9);
+  a(){
+    s1.set_width(7);
+    set_unit_prefix("aaa");
+    s1.reverse();//signal doesn't have method reverse
+  }
+};

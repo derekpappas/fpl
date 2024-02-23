@@ -1,0 +1,37 @@
+//oanab
+//11 ian 2008
+//stages - test if the qm is full and proc busy, send message
+
+csl_unit NACK {
+  ifc_rn_msg rn_msg_st0;          // input message
+  ifc_rn_msg rn_msg_tst_st0;      // output message
+  csl_signal mq_qm_full,pr_busy;  // signals used to determine if proc is busy or mq full
+  csl_signal rn_msg_cmd(4);  // changes to nack if proc busy and mq full
+  NACK () {
+    rn_msg_cmd=(mq_qm_full & pr_busy) ? nack : rn_msg_cmd;    
+  }
+};
+
+csl_register st0 {
+  st0 () {
+    set_width(88);
+    set_type(register);
+  }
+};
+
+csl_register st1 {
+  st1 () {
+    set_width(88);
+    set_type(register);
+  }
+};
+
+csl_register st2 {
+  st2 () {
+    set_width(87);
+    set_type(register);
+  }
+};
+
+
+

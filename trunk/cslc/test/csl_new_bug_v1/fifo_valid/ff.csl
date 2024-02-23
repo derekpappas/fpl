@@ -1,0 +1,16 @@
+//oanab
+//1 mar 2008
+
+csl_fifo ff {
+  ff () {
+    set_width(8);
+    set_depth(16);
+  }
+};
+
+csl_unit u {
+  csl_signal push,pop,full,empty,data(8),rst,clk,valid;
+  ff ff(.push(push),.pop(pop),.full(full),.empty(empty),.rd_data(data),
+        .wr_data(data),.reset_(rst),.clock(clk),.valid(valid));
+  u () {}
+};

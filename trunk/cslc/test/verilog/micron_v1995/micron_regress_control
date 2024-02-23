@@ -1,0 +1,32 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+
+#exceptions:
+60.v                       skip    "included file"
+70.v                       skip    "included file"
+85.v                       skip    "included file"
+data.16.init               skip    "input file for a test"
+data.8.init                skip    "input file for a test"
+ddr_parameters_128.v       skip    "included file"
+ddr_parameters_256.v       skip    "included file"
+ddr_parameters_512.v       skip    "included file"
+otp.16.init               skip    "input file for a test"
+otp.8.init                skip    "input file for a test"
+parameters_1024ddr2.vh    skip    "included file"
+parameters_1024ddr.vh     skip    "included file"
+parameters_128ddr.vh      skip    "included file"
+parameters_248G_x16x18.v    skip    "included file"
+parameters_256ddr2.vh     skip    "included file"
+parameters_256ddr.vh      skip    "included file"
+parameters_2G_x8x16.v     skip    "included file"
+parameters_512ddr2.vh     skip    "included file"
+parameters_512ddr.vh      skip    "included file"
+read_unq.16.init          skip    "included file"
+read_unq.8.init           skip    "included file"
+subtest_1024ddr2.vh       skip    "included file"
+subtest_256ddr2.vh        skip    "included file"
+subtest_512ddr2.vh        skip    "included file"
+

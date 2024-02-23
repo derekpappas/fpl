@@ -1,0 +1,29 @@
+//Monica
+
+csl_unit u_u1{
+  csl_port p_x(input,32);
+  csl_port p_y(input);
+  csl_port p_z(output,32);
+  u_u1(){}
+};
+
+csl_unit u_u2{
+  csl_port p_x(output,8);
+  csl_port p_y(output);
+  csl_port p_z(input,16);
+  u_u2(){}
+};
+
+csl_unit top3{
+  csl_signal s_x;
+  csl_signal s_y;
+  csl_signal s_z;
+
+  u_u1 u1(.p_x({32{s_x}}),
+          .p_y(s_y),
+          .p_z({32{s_z}}));
+  u_u2 u2(.p_x({8{s_x}}),
+          .p_y(s_y),
+          .p_z({16{s_z}})); 
+  top3(){}
+};

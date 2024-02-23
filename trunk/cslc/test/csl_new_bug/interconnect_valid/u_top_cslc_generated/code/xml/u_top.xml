@@ -1,0 +1,21 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u_top">
+<signal name="s_data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="s_addr" offset="0" upper="16-1" lower="0" type = "wire"/>
+<instantiation type = "u_mem">
+<instance name="u1">
+<f2a formal = "p_addr" actual = "s_addr" />
+<f2a formal = "p_data_in" actual = "s_data" />
+<f2a formal = "p_data_out" actual = "s_data" />
+addr16<f2a formal = "p_addr" actual = "s_addr" />
+<f2a formal = "p_data_in" actual = "s_data" />
+<f2a formal = "p_data_out" actual = "s_data" />
+data32<f2a formal = "p_addr" actual = "s_addr" />
+<f2a formal = "p_data_in" actual = "s_data" />
+<f2a formal = "p_data_out" actual = "s_data" />
+</instance>
+</instantiation>
+</unit>
+</design>

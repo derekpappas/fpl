@@ -1,0 +1,36 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="sd_flash_cluster">
+<interface name="sff_scf_fab" >
+<port name="bus80" offset="0" upper="79" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="if_sff_fab" >
+<port name="bus80" offset="0" upper="79" lower="0" direction = "input" type = "wire" />
+</interface>
+<signalgroup name="sff_sfl_lba">
+<signal name="dummy2" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="sfl_sf_lb">
+<signal name="dummy3" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "sd_flash">
+<instance name="sd_flash">
+<f2a formal = "lb.dummy3" actual = "sfl_sf_lb.dummy3" />
+</instance>
+</instantiation>
+<instantiation type = "msi_fabric_if">
+<instance name="sd_flash_fab">
+<f2a formal = "fab_add.bus80" actual = "sff_scf_fab.bus80" />
+<f2a formal = "fab_drop.bus80" actual = "if_sff_fab.bus80" />
+<f2a formal = "lba.dummy2" actual = "sff_sfl_lba.dummy2" />
+</instance>
+</instantiation>
+<instantiation type = "sd_flash_lba">
+<instance name="sd_flash_lba">
+<f2a formal = "lb.dummy3" actual = "sfl_sf_lb.dummy3" />
+<f2a formal = "lba.dummy2" actual = "sff_sfl_lba.dummy2" />
+</instance>
+</instantiation>
+</unit>
+</design>

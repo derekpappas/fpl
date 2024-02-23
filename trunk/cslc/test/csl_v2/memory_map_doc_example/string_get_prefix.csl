@@ -1,0 +1,14 @@
+csl_memory_map_page mmap_0{
+  mmap_0(){
+set_prefix("mem");
+}
+};
+csl_memory_map_page mmap_1{
+  mmap_0 mmap_0;
+  mmap_1(){
+set_prefix(mmap_0.get_prefix());
+}
+};
+
+csl_unit top {
+};

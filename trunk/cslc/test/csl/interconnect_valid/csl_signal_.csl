@@ -1,0 +1,24 @@
+//author: Ines
+//testing: csl_signal
+
+csl_unit test {
+
+  csl_signal sgn1;                        //legal
+  //csl_signal 1;                         //illegal
+  csl_signal sgn2, sgn3;                  //legal
+  csl_signal _1;                          //legal
+  //csl_signal $sgn1;                     //illegal
+  csl_signal sgn1$;                       //legal
+  //csl_signal sgn1;                      //OK, signal already defined in scope
+  csl_signal sgn4, sgn5;                  //legal
+  csl_signal sgn100;
+  csl_signal _sgn, _;
+  
+  test(){
+    sgn1 = sgn2;
+    sgn3 = _1;
+    sgn1$ = sgn4;
+    sgn5 = sgn100;
+    _sgn = _;
+  }
+};

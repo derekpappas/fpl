@@ -1,0 +1,59 @@
+AndreiB
+
+reffered documents:
+.fm file is /docs/manuals/production/csl_files/csl_csim.fm
+
+document notes:
+- 1.6 at the beggining there is an anchored frame with some filenames within it: remove ?
+- in the sentence "Constants and variables which are used to hold addresses values which are aligned to 8, 16, 32 or 64 bits" what is the verb - what must be said about constants and variables ?
+- In the code section below (the class which contain the address), the variable:
+   ADDR_BASE_ENUM ab; is private, but so is UINT addr; below, since class members default to private. Also UINT stands for unsigned int (probably #define-ed earlier) ? Should that be outlined ?
+- Figures 1.1, 1.2, 1.3 and 1.4 have no title and their contents is not explained
+- Below figure 1.2 there are a few lines about dynamic load shared objects yet the explanation is very unclear and it is not integrated in the context of the document
+- Below figure 1.3 what does the code section reffer to and also what do the statements below mean (what argument is passed?)
+- Beneath figure 1.4 there are some sentences which seem to be incomplete.
+- Below figure 1.6 the text is incomplete
+- the delay model in figure 1.7 is not explained - also what does "vcs" stand for ?
+- below figure 1.7 how do the bulleted lists reffering to verilog lint tool and verilog parser fit in here - there are no explanations ?
+- below figure 1.8: "C simulation" - should that be turned into heading 3? Also, the sentence "The string in the command line control object is" is not finished
+- page 7, below "They need to call the <memory_element_name>.size() function to determine the size of the memory element which is measured in 32-bit words." - I could not understand the code section
+- On page 8 (top): "Address object for C++ simulators" should that be made a heading 3 ?
+- the phrase (or sentences): "constants and variables which are used t o hold address values which are aligned to 8,16,32 or 64 bits address variables which do not have address alignment information are different methods to extract the different aligned values for the addresses values the amount of debugging by the programmer" is unclear
+- just before figure 1.9 (page 8 bottom): after the code section I could not understand the 3 lines of text, including this sentence: "converts the addresses into 8 bit aligned adds and back to the original base"
+- Figure 1.9 has no title
+- Below Figure 1.9 the "CSIM initialization" is not detailed and also I could not understand the statements (eg: "var dom (pid?)" )
+- Figure 1.10 has no title
+- Table 1.2 has no title, also it is not clear as to what is the contents of the table
+- Figure 1.11 has no title, and the explanations beneath it are not very clear
+- Figures 1.12 and 1.13 have no title - the code section below figure 1.13 is not complete. Also what is LUT RAM and what is the memory spec for Lucent ?
+- Table 1.3 has no title and appears to be incomplete. Also what does "vard read per client" beneath this table means?
+- Figure 1.14 and 1.15 have no title (Figure 1.15 is identical with Figure 1.9)
+- Figures 1.17 and 1.18 have no title
+- below figure 1.17 what does "Don’t starve the state in the FF class" mean ? what does "starve" reffer to ?
+- Table 1.4 has no title
+- Figure 1.20 has no title, also on 1.6.2 there should be more explanations regarding the socket connection
+- Figures 1.21. and 1.22 have no title. On fig 1.22 what does "time needs to addname" means ?
+- Below fig 1.22 the methodology of test needs to be exapanded
+- Figure 1.23 is not detailed: how does it fit into context ?
+- Figure 1.24 has an unappropriate name
+- Figures 1.25, 1.26 and 1.27 have no title and their contents is not detailed in text
+- the code section below figure 1.26 is unclear
+- Figure 1.29 has no title and the explanations below (the hierarchy) is not integrated in the document's context. Also no explanation on what the acronym FUB stands for is given (only much later in the text appears the expanded form "Functional Unit Block").
+- on page 18, below the code section what does SM stand for in "Verify in SM’s using case/if-ifelse"
+- on the next paragraph, how does a function pull values through a "logic cone" ?
+- Figure 1.30 has no title and it's contents is not detailed in text.
+- Figure 1.31 has no title and the details below it are not clear (also contain references to non-existent figures or pages).
+- Figure 1.32 - the comparison between statis and dynamic routing is not clear: the white area is the simulation time but what does the black area represent?
+- What is the language of the code section below figure 1.33
+- The code section below Figure 1.34 details a SimEngine but appears incomplete (also some personal notes appear within code).
+- After that code section should "C++ Cycle Based Simulation With Self Registering Objects (FUB’s and state elements) and Multiple Clocks" be turned into a H3 (heading 3)? Maybe move Figure 1.30 here ?
+- the code section below figure 1.35 is incomplete. Also what does LLU stand for ?
+- Figures 1.36 and 1.37 have no title and are not explained
+- verilog testbench generator (after the code section below figure 1.37) contains some lists from which i couldn't make much sense
+- Figures 1.39 and 1.40 has no title. Is figure 1.40 related to the element from the list above: "supports multiple clks" ?
+- Figures 1.42, 1.43, 1.44 and 1.45 have no title
+- could not understand text below figure 1.45: "The order of eval for the clks should /\ (try?).."
+- Figures 1.48, 1.49 and 1.50 have no title
+- code section below figure 1.48 is incomplete
+- Figure 1.50 is not detailed in text. code section below this figure is unclear; also, what does vcd stand for?
+- Figures 1.51, 1.52 and 1.53 have no title. Also code sections and explanations around these figures are incomplete

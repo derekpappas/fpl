@@ -1,0 +1,35 @@
+//oanab
+//12 aug 2008
+
+csl_signal_group sga {
+  csl_signal s_sa(15);
+  csl_signal s_sgaa4(12);
+  csl_signal s_saa(36);
+  sga() {
+  }
+};
+
+csl_signal_group sgb {
+  sga sga0;
+  csl_signal s_sga4(3);
+  sgb() {
+  }
+};
+
+csl_unit a {
+  sga sga0;
+  csl_port p1(input,3),p2(input,12),p3(input,36);
+  a() {
+    sga0.s_saa = {sga0.s_sa,sga0.s_sgaa4[11:1]};
+  }
+};
+
+csl_unit top {
+  a a0(.p1(sgb0.s_sga4),.p2(sgb0.sga0.s_sgaa4),.p3(sgb0.sga0.s_saa));
+  sgb sgb0;
+  csl_signal s_data(2);
+  csl_signal s_addr(3);
+   top(){
+     sgb0.sga0.s_sa = {3{s_data,s_addr}};
+  }
+};

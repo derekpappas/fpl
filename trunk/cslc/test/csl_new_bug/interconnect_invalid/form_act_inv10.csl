@@ -1,0 +1,20 @@
+//oanab
+//25 mar 2008
+//formal to actual - signal and constant
+
+csl_unit u1 {
+  csl_signal s(4);
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_port x(input);
+  u2 () {}
+};
+
+csl_unit u3 {
+  csl_signal ss;
+  u1 u10(.s(4'b1100));
+  u2 u20(.x(ss));
+  u3 () {}
+};

@@ -1,0 +1,75 @@
+//oanab
+//18 mar 2008
+//not all formats are used for instructions
+
+csl_enum ee {
+  a=0,
+    b=1 
+    };
+
+csl_isa_field f_op {
+  f_op () {
+    set_type(opcode);
+    set_width(1);
+    set_enum(ee);
+  }
+};
+
+csl_isa_field f_r {
+  f_r () {
+    set_type(address);
+    set_width(2);
+  }
+};
+
+csl_isa_field f_c {
+  f_c () {
+    set_type(constant);
+    set_width(1);
+  }
+};
+
+csl_isa_element root {
+  root () {
+    set_type(root_format);
+    set_width(4);
+  }
+};
+
+csl_isa_element f1 : root {
+  f_op f_op;
+  f1 () {
+    set_type(instr_format);
+    set_position(f_op,0);
+  }
+};
+
+csl_isa_element f2 : f1 {
+  f_r f_r;
+  f2 () {
+    set_type(instr_format);
+    set_position(f_r,2);
+  }
+};
+
+csl_isa_element f3 : f2 {
+  f_c f_c;
+  f3 () {
+    set_type(instr_format);
+    set_position(f_c,1);
+  }
+};
+
+csl_isa_element a_instr : f3{
+  a_instr () {
+    set_type(instr);
+    f_op.set_enum_item(a);
+  }
+};
+
+csl_isa_element b_instr : f3{
+  b_instr () {
+    set_type(instr);
+    f_op.set_enum_item(b);
+  }
+};

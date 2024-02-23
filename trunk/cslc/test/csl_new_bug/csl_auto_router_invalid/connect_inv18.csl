@@ -1,0 +1,21 @@
+//oanab
+//18 feb 2008
+// connecting an interface to a port
+
+csl_interface ifc {
+  csl_port x1(input),x2(input);
+  ifc () {}
+};
+
+csl_unit u1 {
+  ifc ifc1;
+  u1 () {}
+};
+
+csl_unit u2 {
+  u1 u11;
+  csl_port x(input);
+  u2 () {
+    u11.ifc1.connect(x);  // illegal to connect ifc1 with x 
+  }
+};

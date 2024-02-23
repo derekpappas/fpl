@@ -1,0 +1,45 @@
+// Monica
+// 18 feb 2008
+
+csl_signal_group sg{
+  csl_signal sp1,sp2,sp3,sp4;
+  sg(){}
+};
+
+csl_interface ifc1{
+  csl_port sp1(input),sp2(input),sp3(input),sp4(output);
+  ifc1(){}
+};
+csl_interface ifc2{
+ csl_port sp1(input),sp2(input),sp3(input),sp4(output);
+ ifc2(){}
+};
+
+csl_unit u_u1{
+  ifc1 ifc1;
+  u_u1(){}
+};
+csl_unit u_u2{
+  ifc2 ifc2; 
+  u_u2(){}
+};
+
+
+csl_unit top1{
+  u_u1 u1;
+  top1(){}
+};
+csl_unit top2{
+  u_u2 u2;
+  top2(){}
+};
+
+csl_unit u_top{
+  sg sg1; 
+  top1 top11;
+  top2 top22;
+  ifc2 ifc2;  
+  u_top(){
+       top11.u1.ifc1.connect_by_name(ifc2);
+       sg1.connect_by_name(top22.u2.ifc2);
+  }};

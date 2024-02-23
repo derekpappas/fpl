@@ -1,0 +1,8 @@
+csl_bitrange br(4);
+csl_unit u{
+  csl_signal s1(br);
+  csl_port p1(input, br);
+  u(){
+    s1 = p1;
+  }
+};

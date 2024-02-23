@@ -1,0 +1,18 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u_arith">
+<interface name="ifc_op0" >
+<port name="op1" offset="0" upper="15" lower="0" direction = "input" type = "wire" />
+<port name="op2" offset="0" upper="15" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifc_sel0" >
+<port name="sel" offset="0" upper="3" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="ifc_out0" >
+<port name="o" offset="0" upper="15" lower="0" direction = "output" type = "wire" />
+</interface>
+<port name="cin" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="cout" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</unit>
+</design>

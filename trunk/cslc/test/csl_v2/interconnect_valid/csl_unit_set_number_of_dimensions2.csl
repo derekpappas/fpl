@@ -1,0 +1,17 @@
+//author: Monica
+//testing: csl_unit, csl_signal, set_number_of_dimensioon;
+
+csl_multi_dim_bitrange br0(4);
+csl_multi_dim_bitrange br(br0);
+br0.set_dim_width(0,2);
+br0.set_dim_width(1,4);
+br0.set_dim_width(2,2);
+br0.set_dim_width(3,4);
+csl_unit top{
+  csl_signal sig1(br);
+  csl_port in(input,br);
+  top(){}
+};
+
+
+

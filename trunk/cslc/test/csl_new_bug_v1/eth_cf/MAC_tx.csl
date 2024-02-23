@@ -1,0 +1,48 @@
+
+//**************
+// Unit MAC_tx
+//**************
+
+csl_unit MAC_tx{ 
+  
+  csl_port   Reset(input);           
+  csl_port   Clk(input);             
+  csl_port   Clk_user(input);        
+  //PHY interface
+  csl_port   TxD(output,8);        
+  csl_port   TxEn(output);           
+  csl_port   CRS(input);             
+  //RMON
+  csl_port   Tx_pkt_type_rmon(output,3);
+  csl_port   Tx_pkt_length_rmon(output,16);
+  csl_port   Tx_apply_rmon(output);      
+  csl_port   Tx_pkt_err_type_rmon(output,3);
+  //user interface 
+  csl_port   Tx_mac_wa(output);        
+  csl_port   Tx_mac_wr(input);         
+  csl_port   Tx_mac_data(input,32);  
+  csl_port   Tx_mac_BE(input,2);   
+  csl_port   Tx_mac_sop(input);        
+  csl_port   Tx_mac_eop(input);        
+  //host interface 
+  csl_port   Tx_Hwmark(input,5);     
+  csl_port   Tx_Lwmark(input,5);   
+  csl_port   pause_frame_send_en(input);
+  csl_port   pause_quanta_set(input,16); 
+  csl_port   MAC_tx_add_en(input);     
+  csl_port   FullDuplex(input);        
+  csl_port   MaxRetry(input,4);      
+  csl_port   IFGset(input,6);      
+  csl_port   MAC_add_prom_data(input,8);
+  csl_port   MAC_add_prom_add(input,3);
+  csl_port   MAC_add_prom_wr(input);   
+  csl_port   tx_pause_en(input);       
+  csl_port   xoff_cpu(input);          
+  csl_port   xon_cpu(input);           
+  //MAC_rx_flow     
+  csl_port   pause_quanta(input,16); 
+  csl_port   pause_quanta_val(input);  
+
+  MAC_tx(){
+  }
+};

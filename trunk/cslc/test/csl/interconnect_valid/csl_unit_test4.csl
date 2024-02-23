@@ -1,0 +1,63 @@
+//Monica
+csl_unit top,a,b,c,d,e;
+csl_interface ifc1{
+  csl_port p1(input,wire,4,0);
+  csl_port p2(output,wire,4,0);
+  csl_port p3(input,wire,4,0);
+  ifc1(){
+  }
+};
+csl_interface ifc2{
+  csl_port p1(input,wire,4,0);
+  csl_port p2(output,wire,4,0);
+  csl_port p3(input,wire,4,0);
+  ifc2(){
+  }
+};
+csl_unit a{
+  ifc1 intf;
+  d d0(.p1(intf.p1),.p2(intf.p2),.p3(intf.p3));
+  e e0(.p1(intf.p1),.p2(intf.p2),.p3(intf.p3));
+  a(){}
+};
+csl_unit b{
+  b(){
+  }
+};
+csl_unit c{
+  csl_signal s1(wire);
+  csl_signal s2(reg);
+  csl_signal s3(wire,5);
+  csl_signal s4(reg,5);
+  
+  c(){
+   s1.set_range(23,20);
+   s2.set_width(4); 
+   s1 =s2;
+   s3 =s4;
+  }
+};
+csl_unit top{
+  ifc2 intf1;
+  
+  a a0(.intf(intf1));
+  b b0;
+  c c0;
+  top(){
+  
+  }
+};
+csl_unit d{
+  csl_port p1(input,wire,4,0);
+  csl_port p2(output,wire,4,0);
+  csl_port p3(input,wire,4,0);
+  d(){
+  }
+};
+csl_unit e{
+  csl_port p1(input,wire,4,0);
+  csl_port p2(output,wire,4,0);
+  csl_port p3(input,wire,4,0);
+  e(){
+  }
+};

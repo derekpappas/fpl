@@ -1,0 +1,6 @@
+
+csl_fifo f2{
+  f2(){
+   set_physical_implementation(sram);
+  }
+};

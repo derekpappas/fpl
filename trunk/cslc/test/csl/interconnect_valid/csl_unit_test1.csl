@@ -1,0 +1,27 @@
+//Petronela
+csl_unit top,a,b,c,d,e;
+csl_unit a{
+  d d0;
+  e e0;
+  a(){}
+};
+csl_unit top{
+  a a0;
+  b b0;
+  c co;
+  top(){
+  }
+};
+//units need to be defined also
+csl_unit b{ 
+  b(){}
+};
+csl_unit c{ 
+  c(){}
+};
+csl_unit d{ 
+  d(){}
+};
+csl_unit e{ 
+  e(){}
+};

@@ -1,0 +1,15 @@
+# This is the input test file for CTestProcess class
+# <> means obligatory
+# [] means optional
+# {} means group
+# *x means this should repeat x times
+# Syntax: ( <MODULE_TEST> <PROCESS_TYPE> <y/n> [COmIOList_Test] <NR_EVENTS> {<EVENT_TYPE> <SIGNAL_TYPE> <SIGNAL_TEST>}*NR_EVENTS <NR_STATEMENTS> {<STATEMENT_TYPE> <STATEMENT_TEST>}*NR_STATEMENTS )
+# COmIOList_Test Syntax: ( <NUMBER_OF_CHILDREN> {<CHILD_TYPE> <CHILD_TEST>}*NUMBER_OF_CHILDREN <NUMBER_OF_RAW_PORTS><SIGNAL_PORT_TEST>*NUMBER_OF_RAW_PORTS <NUMBER_OF_SIGNALS> {<SIG_TYPE> <SIG_TEST>}*NUMBER_OF_SIGNALS <NUMBER_OF_PORT_DIRS> <SIGNAL_PORT_TEST>*NUMBER_OF_PORT_DIRS )
+# y with parent COmIOList test
+# n without parent COmIOList test
+# examples:
+
+( ( n gigi n 0 0) 2 n 0 0 )
+( ( n gigi1 n 0 0) 2 n 1 2 COmSignalPort ( 1 0 test COmModule ( n bibi n 0 0 ) 0 ) 0 ) // pica si da segm fault :-/
+( ( n gigi1 n 0 0) 2 n 0 2 COmStmtIfElse ( 1 0 0 ) COmStmtIfElse ( 1 0 0 ) )
+( ( n gigi1 n 0 0) 2 n 0 3 COmStmtIfElse ( 1 0 0 ) COmStmtIfElse ( 1 0 0 ) COmStmtAssn ( 2 3 COmSignalPort ( 1 12 test COmModule ( n bibi n 0 0 ) 0 ) COmExprValReal ( 2 20 2 20 2 2000 1 ) 3 ) )

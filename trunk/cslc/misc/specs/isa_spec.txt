@@ -1,0 +1,409 @@
+//////////////////////////
+// isa specs and examples:
+//////////////////////////
+
+csl_isa isa;
+
+////////////////////////////////////////////////////////////////////////////////
+// fmt 2
+////////////////////////////////////////////////////////////////////////////////
+ 
+csl_instruction_format fmt_1; // ALU
+
+isa.add_format(fmt_1);
+
+csl_enum enum_reg; // aliases for the registers to be used in the
+                   // generated assembler
+
+enum_reg[ "r0"]  =  0;
+enum_reg[ "r1"]  =  1;
+enum_reg[ "r2"]  =  2;
+enum_reg[ "r3"]  =  3;
+enum_reg[ "r4"]  =  4;
+enum_reg[ "r5"]  =  5;
+enum_reg[ "r6"]  =  6;
+enum_reg[ "r7"]  =  7;
+enum_reg[ "r8"]  =  8;
+enum_reg[ "r9"]  =  9;
+enum_reg["r10"]  = 10;
+enum_reg["r11"]  = 11;
+enum_reg["r12"]  = 12;
+enum_reg["r13"]  = 13;
+enum_reg["r14"]  = 14;
+enum_reg["r15"]  = 15;
+enum_reg["r16"]  = 16;
+enum_reg["r17"]  = 17;
+enum_reg["r18"]  = 18;
+enum_reg["r19"]  = 19;
+enum_reg["r20"]  = 20;
+enum_reg["r21"]  = 21;
+enum_reg["r22"]  = 22;
+enum_reg["r23"]  = 23;
+enum_reg["r24"]  = 24;
+enum_reg["r25"]  = 25;
+enum_reg["r26"]  = 26;
+enum_reg["r27"]  = 27;
+enum_reg["r28"]  = 28;
+enum_reg["r29"]  = 29;
+enum_reg["r30"]  = 30;
+enum_reg["r31"]  = 31;
+
+csl_enum opcode_enum;
+
+opcode_enum["ADD"]  = 0;
+opcode_enum["SUB"]  = 1;
+opcode_enum["ADDC"] = 2;
+
+// e.add_pair("ADD",0); //optional
+
+// add opcode field 
+// bitrange or width is required
+fmt_1.add_field(const, opcode_enum, "opcode", 1, 0); // the bitrange is [1:0]
+// optionally do it this way fmt_1.add_field(const, opcode_enum, "opcode", 2); // the width is 2
+
+// the opcode field has a constant enum pair associated with it.
+// The enum pair must be specified in the instruction that uses fmt_1.
+// The user must select the opcode enum pair from the enum associated
+// with the opcode field. If the enum pair is not not specified or the
+// wrong enum symbol is used (no numbers are allowed) then the
+// compiler generates an error.
+// BUG: file a CSLOM bug about the enum symbol checker  
+// or another way we should support is as follows:
+// csl_bitrange opcode_bitrange( 1,0);
+// fmt_1.add_field("opcode", opcode_bitrange, opcode_enum); // the bitrange is [1:0]
+// same checker rules apply
+
+csl_bitrange rf_br( 4,0);
+
+csl_field field_reg(enum_reg, rf_br);
+
+// the value in the following fields must be a variable value
+// since the type of the field is an enum the variable value must come
+// from the enum associated with the field.
+
+fmt_1.add_field(field_reg, rf_br, "dst" ); 
+fmt_1.add_field(field_reg, rf_br, "srca");
+fmt_1.add_field(field_reg, rf_br, "srcb");
+
+csl_instruction instr_add (fmt_1); // return the field with opcode only
+
+////////////////////////////////////////////////////////////////////////////////
+// memory format
+////////////////////////////////////////////////////////////////////////////////
+ 
+csl_instruction_format fmt_mem; // memory format
+
+isa.add_format(fmt_mem);
+
+csl_enum enum_addr_mode;
+
+enum_addr_mode["RD"]  = 0;
+enum_addr_mode["WR"]  = 1;
+
+// e.add_pair("ADD",0); //optional
+
+
+//general usage:
+
+// csl_field <name>([const,] <type>, <bitrange_object>, <optional_args>);
+// csl_field <name>([const,] <type>, int, int, <optional_args>);
+//                            int
+//                            enum
+// examples:
+// csl_field <name>(const, <enum>, <bitrange_object>, "<enum_name>"); //const + enum -> enum_name
+// csl_field <name>(<enum>, <bitrange_object>);     //
+// csl_field <name>(const, int, <bitrange_object>); //
+// csl_field <name>(int, <bitrange_object>);        //
+
+fmt_mem.add_field(constant, enum_addr_mode, "opcode", opcode_bitrange);
+
+csl_field field_addr_a(int, rf_br);                 // variable int field defined using the rf_br bitrange
+
+fmt_mem.add_field(field_addr_a, "addr");            // memory address to read or write
+fmt_mem.add_field(field_reg,    "src" );            // register to read or write
+ 
+////////////////////////////////////////////////////////////////////////////////
+// memory format
+////////////////////////////////////////////////////////////////////////////////
+ 
+csl_instruction_format fmt_mem;                     // memory format
+
+isa.add_format(fmt_mem);
+
+csl_enum enum_addr_mode;
+
+enum_addr_mode["RD"]  = 0;
+enum_addr_mode["WR"]  = 1;
+
+// e.add_pair("ADD",0);                         //optional
+
+fmt_mem.add_field(constant, "opcode", opcode_bitrange, enum_addr_mode);
+
+csl_field field_addr(int, rf_br);               // variable int field defined using the rf_br bitrange
+
+// csl_field <name>(<type>, <bitrange_object>); // variable int field defined using the rf_br bitrange
+
+fmt_mem.add_field(field_addr, "addr");          // memory address to read or write
+fmt_mem.add_field(field_reg,  "src");           // register to read or write
+
+
+
+////////////////////
+// add_field
+////////////////////
+
+<isa_instruction>.add_field(<field_name>[,<position>]); //position is an int
+//field_name is the name of the field
+//position is an int variable used to specify the position in the instruction format
+//cslc keeps track of occupied bits and reports an error is a new
+//instruction is added to previous used positions
+
+<isa_instruction>.add_field(<field_name>[,<BEFORE field_name>]); //add field relative to already added field before and automatically calculates absolute position
+<isa_instruction>.add_field(<field_name>[,<AFTER  field_name>]);//add
+field relative to already added field after  and automatically calculates absolute position
+
+////////////
+// examples:
+////////////
+
+csl_isa_instruction_format if;
+if.set_width(32);
+
+// The instruction format and instruction classes each maintain a current_bit position pointer 
+// The current_bit position pointer points to the left most bit in the
+// bit array. The MSB of new fields is inserted at the current_bit
+// position pointer. The current_bit position pointer is initialized to
+// the width of the bit array. Each time a field is added to the bit
+// array the current_bit position pointer is updated.
+// init:   current_bit_pos = filed.width() -1;
+// update: current_bit_pos = current_bit_pos - field.width();
+//
+// The absolute position of the current bit position can be set using set_current_bit_pos() method.
+// 
+// 
+// 
+// since if's width is equal to 32 current_bit_pos = 32-1
+
+// create a format with the following layout
+// [31:30]_[29:15]_[14:10]_[9:5]_[4:0]
+// OPCODE   VOID    DST     SRCA  SRCB
+//
+// opcode is inserted at [31:30]
+// the position is automatically calculated
+if.add_field(opcode); 
+
+// since opcode's width is equal to 2 current_bit_pos = 31-2 = 29
+
+int offset = rf_br.width() *3;
+if.set_current_bit_pos(offset);
+
+// srca is inserted at offset which is equal to the combined width of the ddst, srca, and srcb fields. 
+//  dest is inserted at [14:10]
+if.add_field(dest);  
+
+//  srca is inserted at [9:5]
+if.add_field(src_a); 
+
+//  is inserted at [4:0]
+if.add_field(src_b); 
+
+// EXAMPLE 2
+
+////////////////////////////////////////////////////////////////////////////////
+// Use a format to creat a new format with variable opcodes
+////////////////////////////////////////////////////////////////////////////////
+
+csl_instruction_format if1;
+
+if1.use_format(if);
+if1.set_current_bit_pos(if1.width() - if1.opcode.get_width()); // bits 29:15 are unused 
+
+// processor which should exec the instruction
+
+csl_enum enum_processor; // aliases for the processoristers to be used in the
+                         // generated assembler
+
+enum_processor[ "p0"]  =  0;
+enum_processor[ "p1"]  =  1;
+enum_processor[ "p2"]  =  2;
+enum_processor[ "p3"]  =  3;
+enum_processor[ "p4"]  =  4;
+enum_processor[ "p5"]  =  5;
+enum_processor[ "p6"]  =  6;
+enum_processor[ "p7"]  =  7;
+
+csl_field processor_number(enum_processor, auto, "proc_num" ); 
+// calc the field width based on log2(enum_processor.width();)  
+
+if1.add_field(processor_number);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// VLIW - use 2 or more formats to create a new format
+////////////////////////////////////////////////////////////////////////////////
+ 
+csl_instruction_format vliw;
+
+// use current bit position to determine the relative location to add
+// the format to the new instruction format
+// each format is inserted in the relative position in the new format
+// we specificy the instance name of the format in the second argument
+// we can use the set_current_bit_position() method to set the MSB
+// position of the new field
+
+vliw.add_field(if1, if1_0); // converts a format to a hierarchical field
+vliw.add_field(if1, if1_1); // converts a format to a hierarchical field
+vliw.add_field(if1, if1_2); // converts a format to a hierarchical field
+vliw.add_field(if1, if1_3); // converts a format to a hierarchical field
+
+
+// [127:96]_[95:64]_[63:32]__[31:0]
+//  if1_0    if1_1   if1_2    if1_3     
+
+vliw.if1_0.opcode;
+vliw.if1_0.proc_num;
+vliw.if1_0.dest;
+vliw.if1_0.srca;
+vliw.if1_0.srcb;
+vliw.if1_1.opcode;
+vliw.if1_2.opcode;
+vliw.if1_3.opcode;
+
+
+// class  csl_instruction_format{
+// private:
+//  vector <csl_instruction_format*> * vif;
+//  vector <csl_field*> *vf;
+// 
+// 
+//  
+// }
+
+
+////////////////////////////////////////////////////////////////////////////////
+// VLIW - use 2 or more formats to create a new format
+// add the fields as a format to the new instruction format
+////////////////////////////////////////////////////////////////////////////////
+
+csl_enum enum_vliw_opcode; // aliases for the vliw_opcodeisters to be used in the
+                         // generated assembler
+
+enum_vliw_opcode[ ""]  =  0;
+enum_vliw_opcode[ ""]  =  1;
+enum_vliw_opcode[ ""]  =  2;
+enum_vliw_opcode[ ""]  =  3;
+enum_vliw_opcode[ ""]  =  4;
+enum_vliw_opcode[ ""]  =  5;
+enum_vliw_opcode[ ""]  =  6;
+enum_vliw_opcode[ ""]  =  7;
+
+csl_field vliw_opcode_number(enum_vliw_opcode, auto, "proc_num" ); 
+// calc the field width based on log2(enum_vliw_opcode.width();)  
+
+// [131:128]______[127:96]_[95:64]_[63:32]__[31:0]
+//  vliw_opcode   if1_0    if1_1   if1_2    if1_3     
+
+// add the fields to the new instruction format as fields
+// the format becomes a field with sub-fields
+// hierarchical fields
+
+vliw.add_field(enum_vliw_opcode, "vliw_opcode");
+vliw.add_field(if1, if1_0);
+vliw.add_field(if1, if1_1);
+vliw.add_field(if1, if1_2);
+vliw.add_field(if1, if1_3);
+
+vliw.if1_0.opcode;
+vliw.if1_0.proc_num;
+vliw.if1_0.dest;
+vliw.if1_0.srca;
+vliw.if1_0.srcb;
+vliw.if1_1.opcode;
+vliw.if1_2.opcode;
+vliw.if1_3.opcode;
+
+
+// class  csl_field : public csl_bitrange{
+// private:
+//  vector <csl_field*> *vf;
+//  csl_enum * e; 
+//  string name;
+//  
+// }
+
+////////////////
+// example 1: //
+////////////////
+
+csl_isa isa;
+
+csl_instruction_format alu_format; // ALU format
+csl_instruction_format mem_format; // memory format
+
+csl_enum opcodes_alu_enum;
+csl_field opcodes_alu_fld;
+
+csl_enum opcodes_addr_enum;
+csl_enum enum_addr_mode;
+
+opcodes_alu_enum["ADD" ] = "100";
+opcodes_alu_enum["ADDC"] = "101";
+opcodes_alu_enum["SUB" ] = "110";
+
+opcodes_addr_enum["MEM"] = "1110";
+
+enum_addr_mode["RD"]  = 0;
+enum_addr_mode["WR"]  = 1;
+
+csl_bitrange opcode_br(3,0);
+csl_bitrange addr1_br(5,0);
+csl_bitrange addr2_br(5,0);
+csl_bitrange dest_br(7,0);
+csl_bitrange opcode_br2(4,0);
+csl_bitrange addr_mode_br(5,0);
+
+
+
+alu_format.add_field(csl_field opcode_alu(opcodes_alu_enum, opcode_br));
+alu_format.add_field(csl_field addr1(addr1_br));
+alu_format.add_field(csl_field addr2(addr2_br));
+alu_format.add_field(csl_field dest(dest_br));
+
+mem_format.add_field(csl_field opcode_mem(opcodes_addr_enum, opcode_br2));
+mem_format.add_field(csl_field addr_mode_fld(constant, enum_addr_mode, addr_mode_br));
+
+
+isa.add_instruction_format(alu_format);
+isa.add_instruction_format(mem_format);
+
+csl_isa_instruction add;
+csl_isa_instruction addc;
+csl_isa_instruction sub;
+csl_isa_instruction read;
+csl_isa_instruction write;
+
+add.  set_instruction_format(alu_format);
+add.  set_field_value(const, alu_format.opcode_alu, alu_format.ADD);
+add.  opcode_alu.set(const, ADD);
+add.  alu_format.opcode_alu.set(const, ADD);
+
+addc. set_instruction_format(alu_format);
+sub.  set_instruction_format(alu_format);
+read. set_instruction_format(mem_format);
+write.set_instruction_format(mem_format);
+
+add.  set_field(opcode, "ADD"); //or add.opcode.set()
+addc. set_field(opcode, "ADDC");//or addc.opcode.set()
+sub.  set_field(opcode, "SUB"); //or sub.opcode.set()
+read. set_field(opcode, "RD");  //or read.opcode.set()
+write.set_field(opcode, "WR");  //or read.opcode.set()
+
+add.set_field(addr1, 56);
+add.set_field(addr1, 78);
+
+isa.add_instruction(add);
+isa.add_instruction(addc);
+isa.add_instruction(sub);
+isa.add_instruction(read);
+isa.add_instruction(write);
+

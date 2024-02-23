@@ -1,0 +1,8 @@
+csl_enum enum1{fd1, fd2, fd3};
+csl_field fd(4);
+csl_field fd0(2);
+fd.set_enum(enum1);
+fd0.set_enum(fd.get_enum());
+
+csl_unit top {
+};

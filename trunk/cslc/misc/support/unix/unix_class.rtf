@@ -1,0 +1,833 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fswiss\fcharset0 Arial;}}
+{\*\generator Msftedit 5.41.15.1507;}\viewkind4\uc1\pard\f0\fs20 (14:52:08) dpappas: what happened to the hsitory?\par
+(14:52:15) dpappas: does anyone have it?\par
+(14:52:35) nikaj: no\par
+(14:52:51) dpappas: anyone else?\par
+(14:53:08) dpappas: ok\par
+(14:53:17) davitr: what history?\par
+(14:53:25) dpappas: fromthis chat\par
+(14:53:32) dpappas: my window is blank\par
+(14:53:59) dpappas: ok it is lost\par
+(14:54:07) nikaj: no, I have\par
+(14:54:12) dpappas: now type\par
+(14:54:13) dpappas: emacs & \par
+(14:54:13) davitr: I have today`s  history\par
+(14:54:18) dpappas: paste it\par
+(14:54:38) davitr: (16:05:34) nikaj entered the room.\par
+(16:05:34) revazk entered the room.\par
+(16:05:34) temzar entered the room.\par
+(16:05:34) iraklik entered the room.\par
+(16:05:34) davitr entered the room.\par
+(2006-06-07 21:35:27) The topic is: Welcome to Yoterra Public Conference Room\par
+(2006-07-03 18:45:09) stefan: if( a == '1' ) \{ do something \} else \{do something else\} \par
+(2006-07-03 18:45:24) stefan: if you submit only 1 as input you have 50% coverage\par
+(2006-07-03 18:46:18) stefan: I'll be back in 30 min\par
+(2006-07-03 18:46:26) stefan: the concept is very simple\par
+(2006-07-03 18:47:15) davitr: Yes I understood the concepts\par
+(2006-07-03 18:47:25) revazk: is it possible more 50% coverage for\par
+if( a == '1' ) \{ do something \} else \{do something else\} ?\par
+(2006-07-03 18:47:45) stefan: program -input 1\par
+(2006-07-03 18:47:50) stefan: program -input 2\par
+(2006-07-03 18:47:55) stefan: now you have 100%\par
+(2006-07-03 18:48:24) stefan: back later\par
+(2006-07-03 18:48:56) revazk: yes it's clear. i mean one test but it's clear. ok bye\par
+(2006-07-03 18:50:21) dpappas: now do also see how this applies to for loops and switch statements\par
+(2006-07-03 18:52:03) revazk: We want to leave now\par
+(2006-07-03 18:52:21) dpappas: sure good night\par
+(2006-07-03 18:52:24) revazk: is it ok?\par
+(2006-07-03 18:52:28) revazk: ok good nigth\par
+(2006-07-03 18:52:28) dpappas: no problem\par
+(2006-07-03 18:52:35) revazk: night\par
+(2006-07-03 18:52:36) dpappas: find me when you get to the office tomorrow\par
+(2006-07-03 18:52:39) dpappas: we can continue\par
+(2006-07-03 18:52:54) revazk: Ok we'll \par
+(2006-07-03 18:52:56) davitr: ok   bye\par
+(2006-07-03 18:53:11) jasonz: Good bye\par
+(2006-07-03 18:53:20) nikaj: Good bye\par
+(2006-07-03 18:53:23) dpappas: bye\par
+(16:10:07) dpappas entered the room.\par
+(16:12:30) dpappas: hi\par
+(16:12:42) dpappas: is everyone logged into linux\par
+(16:12:44) nikaj: hi\par
+(16:12:54) dpappas: lets talk about linux commands\par
+(16:12:59) dpappas: and editors\par
+(16:13:00) davitr: ok\par
+(16:13:10) dpappas: ls -ltr\par
+grep -v -i\par
+egrep\par
+chown -R\par
+chmod -R \par
+cd ~<name>\par
+cd path\par
+cd\par
+mkdir\par
+\par
+(16:13:15) dpappas: these are linux commands\par
+(16:13:23) dpappas: which ones are you not familiar with\par
+(16:13:43) revazk: grep\par
+(16:13:43) dpappas: and which SHELL are you using?\par
+(16:13:55) dpappas: grep is used to fin words or expressions in files\par
+(16:14:01) revazk: ok\par
+(16:14:28) nikaj: bash shell\par
+(16:14:43) jasonz entered the room.\par
+(16:15:17) dpappas: you know you can use the up and down arrows to traverse through the shell history?\par
+(16:15:21) dpappas: type history\par
+(16:15:30) nikaj: yes\par
+(16:15:47) dpappas: you see how each cmd has a number associated with it\par
+(16:15:59) dpappas: The last cmd is !!\par
+(16:16:03) dpappas: Type !!:p\par
+(16:16:11) dpappas: and the last command appears ont he cmd line\par
+(16:16:12) dpappas: try it\par
+(16:16:30) dpappas: nd?\par
+(16:16:32) dpappas: and\par
+(16:17:34) nikaj: yes\par
+(16:17:49) dpappas: no if you want to access and arg inthe last command\par
+(16:17:52) dpappas: type !!:2\par
+(16:17:56) dpappas: what is printed\par
+(16:18:20) dpappas: the second arg onthe last cmd line\par
+(16:18:50) dpappas: makes sense?\par
+(16:18:58) davitr: yes\par
+(16:19:01) nikaj: yes.\par
+(16:19:25) dpappas: Now if you want to access a cmd in the history you can do so with !<#>\par
+(16:19:33) dpappas: where # is the cmd number\par
+(16:19:36) dpappas: try it\par
+(16:19:46) dpappas: !<#>:p\par
+(16:19:51) dpappas: will print the cmd and not exec it\par
+(16:20:03) dpappas: do you guys know this stuff already?\par
+(16:20:24) dpappas: you can alias a cmd\par
+(16:20:30) dpappas: alias h='history'\par
+(16:20:33) dpappas: type this\par
+(16:20:37) dpappas: then type h\par
+(16:20:58) dpappas: you can set the number cmds to save in the history \par
+(16:21:18) dpappas: did everyone create this alias\par
+(16:21:23) revazk left the room.\par
+(16:21:28) davitr: yes\par
+(16:21:28) nikaj: yes\par
+(16:21:44) dpappas: Keep in mind I use several shells and the exact syntax for some of these cmds may not be entirely correct\par
+(16:21:49) jasonz: yes\par
+(16:21:52) dpappas: you should find a reference ont he web\par
+(16:22:07) dpappas: now type cat ~/.bashrc\par
+(16:22:17) dpappas: ~/ isyour home directory\par
+(16:22:31) dpappas: .bashrc is loaded when you log in\par
+(16:22:48) dpappas: what do you see int he file\par
+(16:22:52) dpappas: someone paste it in the window\par
+(16:23:13) nikaj left the room.\par
+(16:23:15) davitr: # .bashrc\par
+\par
+# User specific aliases and functions\par
+\par
+alias rm='rm -i'\par
+alias cp='cp -i'\par
+alias mv='mv -i'\par
+\par
+# Source global definitions\par
+if [ -f /etc/bashrc ]; then\par
+        . /etc/bashrc\par
+fi\par
+\par
+(16:23:33) nikaj entered the room.\par
+(16:23:35) dpappas: you can add the history alias\par
+(16:23:42) dpappas: now cat /etc/bashrc\par
+(16:24:02) dpappas: paste it\par
+(16:24:17) davitr: # /etc/bashrc\par
+\par
+# System wide functions and aliases\par
+# Environment stuff goes in /etc/profile\par
+\par
+# by default, we want this to get set.\par
+# Even for non-interactive, non-login shells.\par
+if [ "`id -gn`" = "`id -un`" -a `id -u` -gt 99 ]; then\par
+        umask 002\par
+else\par
+        umask 022\par
+fi\par
+\par
+# are we an interactive shell?\par
+if [ "$PS1" ]; then\par
+    case $TERM in\par
+        xterm*)\par
+                if [ -e /etc/sysconfig/bash-prompt-xterm ]; then\par
+                        PROMPT_COMMAND=/etc/sysconfig/bash-prompt-xterm\par
+                else\par
+                PROMPT_COMMAND='echo -ne "\\033]0;$\{USER\}@$\{HOSTNAME%%.*\}:$\{PWD/#$HOME/~\}\\007"'\par
+                fi\par
+                ;;\par
+        screen)\par
+                if [ -e /etc/sysconfig/bash-prompt-screen ]; then\par
+                        PROMPT_COMMAND=/etc/sysconfig/bash-prompt-screen\par
+                else\par
+                PROMPT_COMMAND='echo -ne "\\033_$\{USER\}@$\{HOSTNAME%%.*\}:$\{PWD/#$HOME/~\}\\033\\\\"'\par
+                fi\par
+                ;;\par
+        *)\par
+                [ -e /etc/sysconfig/bash-prompt-default ] && PROMPT_COMMAND=/etc/sysconfig/bash-prompt-default\par
+            ;;\par
+    esac\par
+    # Turn on checkwinsize\par
+    shopt -s checkwinsize\par
+    [ "$PS1" = "\\\\s-\\\\v\\\\\\$ " ] && PS1="[\\u@\\h \\W]\\\\$ "\par
+fi\par
+\par
+if ! shopt -q login_shell ; then # We're not a login shell\par
+        for i in /etc/profile.d/*.sh; do\par
+            if [ -r "$i" ]; then\par
+                . $i\par
+            fi\par
+        done\par
+        unset i\par
+fi\par
+# vim:ts=4:sw=4\par
+\par
+(16:24:51) dpappas: this is a BASH shell script\par
+(16:25:06) dpappas: note that the prompt that you see in your sheel is set in this script\par
+(16:25:22) dpappas: so cat display the contents of a file on screen\par
+(16:25:42) dpappas: but if thefile is bigger than the screen what o you do?\par
+(16:25:50) dpappas: does anyone know?\par
+(16:26:01) dpappas: cat /etc/bashrc | more\par
+(16:26:10) dpappas: more displays one screen at a time\par
+(16:26:23) dpappas: press the space bar to go forward one screen\par
+(16:26:40) dpappas: you can also use less which goes back one screen at a time as weel as forward\par
+(16:26:45) dpappas: try these two commands now\par
+(16:26:56) dpappas: cat /etc/bashrc | more \par
+(16:27:00) dpappas: is equivalent to\par
+(16:27:05) dpappas: more /etc/bashrc\par
+(16:27:13) dpappas: less /etc/bashrc\par
+(16:27:19) dpappas: try all three comands\par
+(16:27:40) dpappas: now try this\par
+(16:27:47) dpappas: grep alias ~/.bashrc\par
+(16:28:09) dpappas:  grep alias ~/.bashrc | grep rm\par
+(16:28:41) dpappas: grep finds the lines with the word alias and pipes (redirects) the results to stdout\par
+(16:29:12) dpappas: most Linux/UNIX cmds can read a file as a cmd line argument\par
+(16:29:31) dpappas: or you can pipe to stdin of the cmd\par
+(16:29:43) dpappas: cat /etc/bashrc | more\par
+(16:30:16) dpappas: pipes the contents of the file to the stdin of more which pipes the results to stdout (the screen) \par
+(16:30:22) dpappas: Have I lost you guys?\par
+(16:30:32) davitr: no,  we are here\par
+(16:30:41) dpappas: does this all make sense?\par
+(16:30:44) nikaj: yes\par
+(16:30:48) dpappas: Does anyone have any questions?\par
+(16:30:59) dpappas: stop me at any time if you have questions\par
+(16:31:25) dpappas: now if you want to save the results of a cmd to a file you redirect the output to a file \par
+(16:31:36) dpappas: grep rm ~/.bashrc > foo\par
+(16:31:38) dpappas: cat foo\par
+(16:31:42) dpappas: what does foo contain\par
+(16:31:46) dpappas: someone paste this in\par
+(16:32:14) davitr: alias rm='rm -i'\par
+\par
+(16:32:15) dpappas: There are two outputs from Linux cmds\par
+(16:32:24) dpappas: STDERR and STDOUT\par
+(16:32:44) nikaj: We know this al\par
+(16:33:06) dpappas: someone go on the web while we are doing this and find the STDERR redirection cmd for the BASH SHELL \par
+(16:33:19) dpappas: you know all of this already?\par
+(16:33:23) nikaj: no\par
+(16:33:42) dpappas: (14:32:32) nikaj: We know this al\par
+(16:33:46) dpappas: please explain\par
+(16:33:50) nikaj: no.not all\par
+(16:33:55) nikaj: something we know\par
+(16:33:57) dpappas: some of it?\par
+(16:33:59) dpappas: good\par
+(16:34:22) dpappas: who is finding the STDERR redirection cmd on google now?\par
+(16:34:32) dpappas: Do you know egrep\par
+(16:34:52) dpappas: egrep is similar to grep but you can use regular expressions\par
+(16:35:36) dpappas: egrep 'regex' fileame\par
+(16:35:44) dpappas: note that file name can be a regex\par
+(16:35:48) dpappas: *\par
+(16:35:50) dpappas: *.txt\par
+(16:36:06) dpappas: if you want to find all the files that begin with dot "."\par
+(16:36:10) dpappas: how do you do that?\par
+(16:36:22) dpappas: ls .??*\par
+(16:36:42) dpappas: . is the current directory\par
+(16:36:47) dpappas: and .. is the parent directory\par
+(16:36:53) dpappas: do if you use ls .*\par
+(16:37:01) dpappas: these directoriesare also included\par
+(16:37:07) dpappas: ? is a single character\par
+(16:37:11) dpappas: * is one or more characters\par
+(16:37:18) dpappas: try those ls cmds\par
+(16:37:18) dpappas: now\par
+(16:38:13) dpappas: paste the results\par
+(16:38:26) dpappas: if you want to cd to the parent directory what is the cmd\par
+(16:38:30) dpappas: Revaz?\par
+(16:38:41) dpappas: you can do things like\par
+(16:38:53) dpappas: ok go to your home dir\par
+(16:38:55) davitr: cd ..\par
+(16:38:56) dpappas: cd \par
+(16:38:58) dpappas: yes\par
+(16:39:01) dpappas: now \par
+(16:39:03) dpappas: mkdir t\par
+(16:39:05) dpappas: cd !!\par
+(16:39:10) dpappas: mkdir tt\par
+(16:39:17) dpappas: cd oops\par
+(16:39:20) dpappas: mkdir t\par
+(16:39:25) dpappas: i am in windows\par
+(16:39:28) dpappas: and going form memory\par
+(16:39:34) dpappas: cd\par
+(16:39:36) dpappas: mkdir t\par
+(16:39:39) dpappas: cd !$\par
+(16:39:42) dpappas: mkdir tt\par
+(16:39:44) dpappas: cd !$\par
+(16:39:50) dpappas: mkdir tt\par
+(16:39:55) dpappas: cd !$\par
+(16:39:58) dpappas: mkdir a\par
+(16:40:00) dpappas: mkdir b\par
+(16:40:02) dpappas: mkdir c\par
+(16:40:07) dpappas: ls *\par
+(16:40:09) dpappas: cd c\par
+(16:40:11) dpappas: ls ..\par
+(16:40:15) dpappas: aer the ls the same\par
+(16:40:16) dpappas: ?\par
+(16:40:20) dpappas: ls ../..\par
+(16:40:21) davitr: no\par
+(16:40:23) dpappas: ls ../../..\par
+(16:40:27) dpappas: why not?\par
+(16:40:41) dpappas: paste the results\par
+(16:40:46) dpappas: ls ../../..\par
+(16:40:50) davitr: different formarts\par
+(16:40:53) dpappas: yes\par
+(16:41:00) dpappas: no you are in dir a\par
+(16:41:04) dpappas: now\par
+(16:41:19) dpappas: mkdir ../../sss\par
+(16:41:24) dpappas: ls ../../..\par
+(16:41:27) dpappas: what do you see\par
+(16:41:50) davitr: bin  boot  dev  etc  home  initrd  lib  lost+found  media  misc  mnt  opt  proc  root  sbin  selinux  srv  sss \par
+(16:42:01) dpappas: ls ../..\par
+(16:42:15) dpappas: you were not in ~/t/tt/ttt/a\par
+(16:42:20) dpappas: :)\par
+(16:42:30) dpappas: go to ~\par
+(16:42:31) dpappas: cd\par
+(16:42:32) dpappas: ls t\par
+(16:42:39) dpappas: ls t/ now press teh tab key\par
+(16:42:41) dpappas: the\par
+(16:42:44) dpappas: what happens?\par
+(16:43:00) dpappas: since there is only one directory tt should appear\par
+(16:43:03) dpappas: does this happen?\par
+(16:43:09) davitr: yes\par
+(16:43:28) dpappas: now\par
+(16:43:33) dpappas: ls t/tt/ tab\par
+(16:43:35) dpappas: what happens\par
+(16:43:49) davitr: ttt\par
+(16:44:00) davitr: ls t/tt/ttt/\par
+(16:44:04) dpappas: there should be ttt and sss :)\par
+(16:44:10) dpappas: now ls t/tt/ttt tab\par
+(16:44:13) dpappas: now what happens\par
+(16:44:25) davitr: nothing\par
+(16:44:38) dpappas: you should hae a b c under ttt\par
+(16:44:41) dpappas: ok\par
+(16:44:47) dpappas: mkdir t/tt/ttt/a\par
+(16:44:54) dpappas: mkdir t/tt/ttt/b\par
+(16:44:56) dpappas: mkdir t/tt/ttt/c\par
+(16:45:00) dpappas: now\par
+(16:45:04) davitr: a b c   I have this folders in another directory\par
+(16:45:06) dpappas: now ls t/tt/ttt tab\par
+(16:45:11) dpappas: now what happens\par
+(16:45:17) dpappas: nothing right?\par
+(16:45:52) davitr:  ls t/tt/ttt/\par
+a/ b/ c/\par
+\par
+(16:45:52) dpappas: mkdir t/tt/ttt/ca\par
+(16:46:02) dpappas: now pick one\par
+(16:46:12) dpappas: it is telling you what are the completions\par
+(16:46:16) dpappas: mkdir t/tt/ttt/cb\par
+(16:46:19) dpappas: mkdir t/tt/ttt/cc\par
+(16:46:31) dpappas: now ls t/tt/ttt/c    tab\par
+(16:46:35) dpappas: now what happens\par
+(16:46:55) davitr:  ls t/tt/ttt/\par
+a/ b/ c/\par
+\par
+(16:46:57) davitr: no\par
+(16:47:03) dpappas: who found the STDERR redirection for BASh ont he web?\par
+(16:47:11) dpappas:  ls t/tt/ttt/c  \par
+(16:47:16) davitr: echo msg 1>&2\par
+(16:47:17) dpappas: a/ b/ c/\par
+(16:47:21) dpappas: yes\par
+(16:47:43) davitr: ls t/tt/ttt/c\par
+c/  ca/ cb/ cc/\par
+\par
+(16:47:44) dpappas: now how to redirect STDERR to one file and STDOUT to another file\par
+(16:48:02) dpappas: do you guys understand completion now?\par
+(16:48:06) davitr: yes\par
+(16:48:13) davitr: I do\par
+(16:48:17) dpappas: Davit I know you do :)\par
+(16:48:22) dpappas: how about the rest of the guys\par
+(16:48:23) davitr: :)\par
+(16:48:42) nikaj: I understand \par
+(16:48:49) dpappas: ok now type \par
+(16:48:50) dpappas: top\par
+(16:48:53) dpappas: and hit return\par
+(16:48:56) dpappas: what do you see?\par
+(16:49:20) nikaj: process list\par
+(16:49:24) dpappas: yes\par
+(16:49:36) revazk entered the room.\par
+(16:49:39) dpappas: now lets say your machine has really slowed down\par
+(16:49:41) dpappas: what do you do?\par
+(16:49:53) davitr: kill some proceses\par
+(16:50:06) dpappas: you see one process is taking up 99 precent of the CPU time\par
+(16:50:09) dpappas: how do you do that?\par
+(16:50:24) davitr: kill PID\par
+(16:50:27) dpappas: cntl-C to get out of top\par
+(16:50:32) dpappas: how do you get the PID\par
+(16:50:35) davitr: ps\par
+(16:50:45) dpappas: type ps\par
+(16:50:47) dpappas: what happens\par
+(16:51:04) davitr:   PID TTY          TIME CMD\par
+ 4552 pts/4    00:00:00 bash\par
+ 4610 pts/4    00:00:00 grep\par
+ 4719 pts/4    00:00:00 ps\par
+\par
+(16:51:17) dpappas: now\par
+(16:51:19) dpappas: ps -lef\par
+(16:51:37) revazk: F S UID        PID  PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD\par
+4 S root      3347  3345  0  75   0 -  1413 wait   17:34 pts/1    00:00:00 bash\par
+4 R root      3394  3347  0  76   0 -   589 -      17:51 pts/1    00:00:00 ps -\par
+(16:51:56) dpappas: paste as text\par
+(16:52:03) dpappas: then you willnot lose the formatting\par
+(16:52:19) dpappas: what happened to the hsitory?\par
+(16:52:26) dpappas: does anyone have it?\par
+(16:52:47) nikaj: no\par
+(16:53:02) dpappas: anyone else?\par
+(16:53:19) dpappas: ok\par
+(16:53:28) davitr: what history?\par
+(16:53:36) dpappas: fromthis chat\par
+(16:53:43) dpappas: my window is blank\par
+(16:54:10) dpappas: ok it is lost\par
+(16:54:18) nikaj: no, I have\par
+(16:54:24) dpappas: now type\par
+(16:54:25) dpappas: emacs & \par
+(16:54:25) davitr: I have today`s  history\par
+(16:54:29) dpappas: paste it\par
+(14:54:38) dpappas: emacs & \par
+(14:54:59) dpappas: emacs & \par
+(14:55:02) dpappas: three times\par
+(14:55:11) dpappas: now type jobs\par
+(14:55:15) dpappas: what do you see\par
+(14:55:21) dpappas: Irakli?\par
+(14:55:36) dpappas: Jason what do the numbers mean?\par
+(14:55:40) dpappas: hello?\par
+(14:55:57) davitr: [1]+  Stopped                 grep a*a  (wd: /home)\par
+[2]-  Running                 emacs &\par
+\par
+(14:57:18) dpappas: did you type emacs& \par
+(14:57:21) dpappas: three times\par
+(14:57:38) davitr: [3]   Running                 emacs &\par
+[4]-  Running                 emacs &\par
+[5]+  Running                 emacs &\par
+\par
+(14:58:03) revazk: [4] 3405\par
+[5] 3406\par
+[6] 3407\par
+[1]   Running                 emacs &\par
+[2]   Running                 emacs &\par
+[3]   Running                 emacs &\par
+[4]   Running                 emacs &\par
+[5]-  Running                 emacs &\par
+[6]+  Running                 emacs &\par
+\par
+(14:58:03) dpappas: yes\par
+(14:58:19) dpappas: now alias j='jobs"\par
+(14:58:20) revazk: 6 times\par
+(14:58:21) dpappas: type j\par
+(14:58:23) dpappas: yes\par
+(14:58:30) dpappas: add this alias to your .bashrc\par
+(14:58:49) dpappas: now you have 3 or 6 emacs windows ont he screen windows \par
+(14:58:52) dpappas: correct?\\\par
+(14:59:34) revazk: yes\par
+(14:59:44) dpappas: ok kill 2 job\par
+(14:59:48) dpappas: kill %5\par
+(14:59:51) dpappas: kill %4\par
+(14:59:55) dpappas: where the \par
+(15:00:26) revazk: yes\par
+(15:00:59) revazk: i had 3 windows and typing kill %3 it killed third one\par
+(15:01:08) dpappas: yes\par
+(15:01:10) dpappas: now type j\par
+(15:01:36) dpappas: now what do you see\par
+(15:01:39) davidm entered the room.\par
+(15:01:44) revazk: [1]-  Running                 emacs &\par
+[2]+  Running                 emacs &\par
+\par
+(15:02:10) davitr: I killed everything and I can' t  see anything \par
+(15:02:30) dpappas: you killed all jobs int he window?\par
+(15:02:35) dpappas: start a new emacs&\par
+(15:02:47) dpappas: everyone stype \par
+(15:02:49) dpappas: type\par
+(15:02:51) dpappas: emacS&\par
+(15:02:55) dpappas: emacs&\par
+(15:02:58) dpappas: now type \par
+(15:03:03) dpappas: ps -lef | grep emacs\par
+(15:03:13) dpappas: you see the PID number\par
+(15:03:32) dpappas: not the parent PId number but the PID nubmer for the process\par
+(15:03:41) dpappas: Davit show them if they can see this\par
+(15:03:50) dpappas: kill emacs_PID\par
+(15:03:56) dpappas: this is the other way to kill a process\par
+(15:04:18) dpappas: done?\par
+(15:04:22) dpappas: now \par
+(15:04:29) davitr: yes\par
+(15:04:33) dpappas: everhyone know ping?\par
+(15:04:36) nikaj: yes\par
+(15:04:41) dpappas: everyone knows ssh?\par
+(15:04:49) davitr: I know  ping\par
+(15:05:01) davitr: but not ssh\par
+(15:05:01) dpappas: ping IP_number\par
+(15:05:11) dpappas: do you know rlogin?\par
+(15:05:41) nikaj: I don't know\par
+(15:05:42) davitr: I have never used it\par
+(15:06:08) dpappas: Jason?\par
+(15:06:12) dpappas: anyone?\par
+(15:06:23) revazk: Not i too\par
+(15:06:26) dpappas: type ipconfig\par
+(15:06:32) dpappas: what do you see\par
+(15:06:44) dpappas: paste it\par
+(15:07:06) davitr: bash: ipconfig: command not found\par
+\par
+(15:07:10) davitr: :)\par
+(15:07:12) dpappas: ifconfig\par
+(15:07:27) revazk: eth0      Link encap:Ethernet  HWaddr 00:14:85:3C:05:EE\par
+          inet addr:192.168.16.23  Bcast:192.168.16.255  Mask:255.255.255.0\par
+          inet6 addr: fe80::214:85ff:fe3c:5ee/64 Scope:Link\par
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1\par
+          RX packets:12424 errors:0 dropped:0 overruns:0 frame:0\par
+          TX packets:8538 errors:0 dropped:0 overruns:0 carrier:0\par
+          collisions:0 txqueuelen:1000\par
+          RX bytes:17078698 (16.2 MiB)  TX bytes:715344 (698.5 KiB)\par
+          Interrupt:5 Base address:0x4000\par
+\par
+lo        Link encap:Local Loopback\par
+          inet addr:127.0.0.1  Mask:255.0.0.0\par
+          inet6 addr: ::1/128 Scope:Host\par
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1\par
+          RX packets:1524 errors:0 dropped:0 overruns:0 frame:0\par
+          TX packets:1524 errors:0 dropped:0 overruns:0 carrier:0\par
+          collisions:0 txqueuelen:0\par
+          RX bytes:2039286 (1.9 MiB)  TX bytes:2039286 (1.9 MiB)\par
+\par
+(15:07:48) dpappas: everyone else \par
+(15:07:51) dpappas: ping 192.168.16.23 \par
+(15:08:09) davitr: eth0      Link encap:Ethernet  HWaddr 00:14:85:3B:FB:AA\par
+          inet addr:192.168.16.50  Bcast:192.168.16.255  Mask:255.255.255.0\par
+          inet6 addr: fe80::214:85ff:fe3b:fbaa/64 Scope:Link\par
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1\par
+          RX packets:10794 errors:0 dropped:0 overruns:0 frame:0\par
+          TX packets:9448 errors:0 dropped:0 overruns:0 carrier:0\par
+          collisions:0 txqueuelen:1000\par
+          RX bytes:9409989 (8.9 MiB)  TX bytes:1227285 (1.1 MiB)\par
+          Interrupt:5 Base address:0x4000\par
+\par
+lo        Link encap:Local Loopback\par
+          inet addr:127.0.0.1  Mask:255.0.0.0\par
+          inet6 addr: ::1/128 Scope:Host\par
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1\par
+          RX packets:3507 errors:0 dropped:0 overruns:0 frame:0\par
+          TX packets:3507 errors:0 dropped:0 overruns:0 carrier:0\par
+          collisions:0 txqueuelen:0\par
+          RX bytes:2983702 (2.8 MiB)  TX bytes:2983702 (2.8 MiB)\par
+\par
+\par
+(15:08:44) dpappas: what happens?\par
+(15:08:55) jasonz: It's pinging\par
+(15:08:57) revazk: 64 bytes from 192.168.16.23: icmp_seq=29 ttl=64 time=0.041 ms\par
+\par
+(15:09:06) revazk: and so on\par
+(15:09:11) dpappas: Jason you need to install tripwire on all linux machines\par
+(15:09:18) dpappas: this track changes to the OS\par
+(15:09:47) dpappas: also  run nessus in batch mode using a cron job and make sure that the machines are not being attacked\par
+(15:09:56) dpappas: nessus finds open oprts ont he machine\par
+(15:10:06) dpappas: open ports on the machine\par
+(15:10:18) dpappas: now try\par
+(15:10:28) dpappas: ssh <yourname>@192.168.16.23 \par
+(15:10:31) dpappas: what happens?\par
+(15:10:43) dpappas: the firewall should deny the connection\par
+(15:10:49) dpappas: did it/\par
+No such command.\par
+(15:11:17) dpappas: ?\par
+(15:11:35) revazk: no such file or directory\par
+(15:11:50) dpappas: ssh revaz@192.168.16.23 \par
+(15:11:58) dpappas: ssh nikaj@192.168.16.23 \par
+(15:12:12) dpappas: the machine should say no such user\par
+(15:12:13) davitr: ssh davit@192.168.16.23\par
+ssh: connect to host 192.168.16.23 port 22: No route to host\par
+\par
+(15:12:18) dpappas: yes\par
+(15:12:29) dpappas: port 22 is the default port for ssh\par
+(15:12:37) dpappas: you guys should change that on your machines\par
+(15:12:46) dpappas: you need to configure the /etc/ssh files\par
+(15:12:50) dpappas: have you done this?\par
+(15:12:58) dpappas: only ssh 2 should be enabled\par
+(15:13:23) dpappas: i will have Camarand talk to you guys about securing the machines\par
+(15:13:29) revazk: The authenticity of host '192.168.16.23 (192.168.16.23)' can't be established.\par
+RSA key fingerprint is cf:e9:d4:eb:e6:a3:dd:34:ff:de:2a:18:f7:a5:8e:97.\par
+Are you sure you want to continue connecting (yes/no)? y\par
+Please type 'yes' or 'no': yes\par
+Warning: Permanently added '192.168.16.23' (RSA) to the list of known hosts.\par
+\par
+\par
+(15:13:45) dpappas: Revaz this is your machine \par
+(15:13:48) revazk: yes\par
+(15:14:10) dpappas: so you are effectively the only user besides root on the machine\par
+(15:14:18) dpappas: everyone else you can ssh to your own machines\par
+(15:14:48) dpappas: you could ssh to the others machine if you created and exchanged shh certificates\par
+(15:15:00) dpappas: and then configured the firewalls on your machines to allow ssh connections\par
+(15:15:20) dpappas: cd ~\par
+(15:15:22) dpappas: ls \par
+(15:15:24) dpappas: ls -l\par
+(15:15:25) dpappas: ls -ltr\par
+(15:15:30) dpappas: type these commands\par
+(15:15:36) dpappas: -r reverse the list order\par
+(15:15:40) dpappas: t is time\par
+(15:15:46) dpappas: -l is list\par
+(15:15:56) dpappas: now type\par
+(15:15:57) dpappas: groups\par
+(15:16:06) dpappas: Irakli paste in what you see\par
+(15:16:22) dpappas: ?\par
+(15:16:45) dpappas: ...\par
+(15:17:26) dpappas: ok someone else paste it in\par
+(15:17:41) dpappas: did I lose you guys?\par
+(15:17:51) davitr: which output?\par
+(15:17:57) davitr: group?\par
+(15:18:01) dpappas: ls -ltr\par
+(15:18:02) dpappas: ssh is a way to log into another machine\par
+(15:18:11) dpappas: it is a secure login\par
+(15:18:17) dpappas: you must have an accoutn ont he other machine\par
+(15:18:20) dpappas: on the other\par
+(15:18:26) davitr: ls -ltr\par
+total 132172\par
+drwxr-xr-x  7 root     root          4096 Mar  2  2005 lcov-1.4\par
+-rw-rw-r--  1 rachvela rachvela 135114220 Jun 12 17:30 ocw-6.046-21sep2005-220k.rm\par
+-rw-rw-r--  1 rachvela rachvela      6495 Jun 15 13:55 contestapplet.conf\par
+-rw-rw-r--  1 rachvela rachvela       488 Jun 20 15:00 a.cpp~\par
+-rw-rw-r--  1 rachvela rachvela       472 Jun 20 15:01 a.cpp\par
+-rwxrwxr-x  1 rachvela rachvela      8509 Jun 20 15:01 a.out\par
+drwxr-xr-x  3 rachvela rachvela      4096 Jul  4 13:43 Desktop\par
+drwxrwxr-x  2 rachvela rachvela      4096 Jul  4 13:44 Yoterra\par
+drwxrwxr-x  3 rachvela rachvela      4096 Jul  4 15:13 codes\par
+drwxr-xrwx  4 root     root          4096 Jul  4 15:48 install\par
+\par
+(15:18:42) dpappas: you can either use an IP address or a UTL\par
+(15:18:45) temzar left the room.\par
+(15:19:07) davitr: UTL ?\par
+(15:19:13) dpappas: the first column is the permissions for the file\par
+(15:19:15) dpappas: URL\par
+(15:19:25) dpappas: don't worry about the second\par
+(15:19:48) dpappas: the 2nd and 3rd are the group and owner and I do not remember the order\par
+(15:20:08) dpappas: the next is the date the file is creaetd\par
+(15:20:13) dpappas: first size then dat\par
+(15:20:16) dpappas: date\par
+(15:20:26) dpappas: now type this\par
+(15:20:36) dpappas: cat "this is a test" > foobar\par
+(15:20:39) dpappas: cat !$\par
+(15:20:43) dpappas: what do you see?\par
+(15:20:50) dpappas: ls -l !$\par
+(15:21:16) dpappas: Revaz?\par
+(15:21:29) revazk: paste it?\par
+(15:21:31) dpappas: yes\par
+(15:21:49) revazk: ls -lcatgroup\par
+total 316\par
+-rw-r--r--   1   120 Sep  4  2005 .gtkrc\par
+-rw-r--r--   1 52488 Jun  9 19:06 install.log\par
+drwxr-xr-x   2  4096 Jun  9 19:11 .gstreamer-0.8/\par
+drwx------   3  4096 Jun  9 19:11 .gnome/\par
+drwx------   2  4096 Jun  9 19:11 .gconfd/\par
+drwx------   2  4096 Jun  9 19:12 .gnome2_private/\par
+drwx------   7  4096 Jun  9 19:12 .gnome2/\par
+drwxr-x---   2  4096 Jul  1 15:45 .eggcups/\par
+drwxr-xr-x   3  4096 Jul  1 15:45 .nautilus/\par
+drwxr-xr-x   3  4096 Jul  1 15:45 .config/\par
+drwx------   3  4096 Jul  1 15:45 .metacity/\par
+drwx------   2  4096 Jul  1 15:45 .rhn-applet/\par
+drwxr-xr-x   3  4096 Jul  1 16:00 .mozilla/\par
+drwx------   4  4096 Jul  4 17:23 .gconf/\par
+-rw-r--r--   1   102 Jul  4 17:41 .tcshrc\par
+-rw-------   1   554 Jul  4 17:41 .rhn-applet.conf\par
+-rw-------   1     0 Jul  4 17:41 .recently-used\par
+-rw-r--r--   1  5410 Jul  4 17:41 install.log.syslog\par
+-rw-r--r--   1   130 Jul  4 17:41 .gtkrc-1.2-gnome2\par
+-rw-------   1    16 Jul  4 17:41 .esd_auth\par
+-rw-------   1    26 Jul  4 17:41 .dmrc\par
+-rw-r--r--   1   100 Jul  4 17:41 .cshrc\par
+-rw-r--r--   1   176 Jul  4 17:41 .bashrc\par
+-rw-r--r--   1   191 Jul  4 17:41 .bash_profile\par
+-rw-r--r--   1    24 Jul  4 17:41 .bash_logout\par
+-rw-r--r--   1  1229 Jul  4 17:41 anaconda-ks.cfg\par
+drwxr-xr-x  23  4096 Jul  4 17:47 ../\par
+-rw-------   1   189 Jul  4 17:47 .ICEauthority\par
+drwx------   3  4096 Jul  4 17:47 .gaim/\par
+-rw-------   1    66 Jul  4 18:04 .Xauthority\par
+drwx------   2  4096 Jul  4 18:12 .ssh/\par
+drwxr-xr-x   2  4096 Jul  4 18:15 Desktop/\par
+drwxr-x---  17  4096 Jul  4 18:21 ./\par
+\par
+(15:22:21) dpappas: try it again\par
+(15:22:32) dpappas: cat "this is a test" > foobar\par
+(15:22:34) dpappas: ls -l foobar\par
+(15:22:42) dpappas: cat !$\par
+(15:22:48) davitr: cat "this is atest"> foobar\par
+cat: this is atest: No such file or directory\par
+\par
+(15:23:08) dpappas: vi foobar\par
+(15:23:11) dpappas: press i\par
+(15:23:12) dpappas: type\par
+(15:23:14) dpappas: this is a test\par
+(15:23:18) dpappas: press exc\par
+(15:23:21) dpappas: esc\par
+(15:23:25) dpappas: type :wq\par
+(15:23:38) dpappas: now ls foobar\par
+(15:23:49) dpappas: this should have created a file \par
+(15:24:08) dpappas: did it?\par
+(15:24:10) dpappas: Revaz?\par
+(15:24:14) dpappas: cat foobar now\par
+(15:24:19) dpappas: cat foobar\par
+(15:24:39) davitr: Yes It works\par
+(15:24:56) dpappas: now ls -l foobar\par
+(15:25:00) dpappas: now \par
+(15:25:07) dpappas: ls -l   !$\par
+(15:25:12) dpappas: paste it in\par
+(15:25:28) davitr: [rachvela@work1 ~]$ ls -l foobar\par
+-rw-rw-r--  1 rachvela rachvela 15 Jul  4 17:24 foobar\par
+[rachvela@work1 ~]$ ls -l !$\par
+ls -l foobar\par
+-rw-rw-r--  1 rachvela rachvela 15 Jul  4 17:24 foobar\par
+[rachvela@work1 ~]$      \par
+(15:25:37) dpappas: now\par
+(15:25:43) dpappas: chmod 777 foobar\par
+(15:25:48) dpappas: ls -l !$\par
+(15:26:21) davitr: -rwxrwxrwx  1 rachvela rachvela 15 Jul  4 17:24 foobar\par
+(15:26:23) dpappas: permissions\par
+(15:26:27) davitr: yes\par
+(15:26:30) dpappas: you|group|world\par
+(15:26:45) dpappas: you can assign different permissions to a file or directory\par
+(15:26:51) dpappas: this can also be done recursively\par
+(15:26:55) dpappas: with -R\par
+(15:27:03) dpappas: type chmod -h\par
+(15:27:09) dpappas: now chmod --help\par
+(15:27:12) dpappas: now man chmod\par
+(15:27:17) dpappas: different help screens\par
+(15:27:23) dpappas: tell you how to use each command\par
+(15:28:06) dpappas: clear?\par
+(15:28:15) davitr: yes\par
+(15:28:19) revazk: yes\par
+(15:28:25) jasonz: It's clear\par
+(15:28:27) dpappas: what editor are you guys using in emacs\par
+(15:28:58) dpappas: I suggest you use emacs\par
+(15:29:03) davitr: I am not using emacs ,   I am using MC`c  standard editor\par
+(15:29:05) dpappas: We can go over this on another day\par
+(15:29:19) dpappas: try emacs\par
+(15:29:21) dpappas: emacs\par
+key mappings\par
+.emacs files\par
+-rectangle operations\par
+-macros\par
+-multiple buffers\par
+-mark and point\par
+(15:29:30) dpappas: these are some of the features\par
+(15:29:37) dpappas: i have taughtmany people how to use emacs\par
+(15:29:43) dpappas: and they still thank me 10 years later\par
+(15:30:06) dpappas: I will ahve to send you key mappings whichare function key short cuts\par
+(15:30:08) revazk: we'll thank you too if you'll teach us :)\par
+(15:30:14) dpappas: so lets talk about emacs tomorrow\par
+(15:30:18) davitr: ok\par
+(15:30:19) nikaj: ok\par
+(15:30:19) revazk: ok\par
+(15:30:19) dpappas: Questions?\par
+(15:30:21) jasonz: ok\par
+(15:30:28) nikaj: No\par
+(15:30:30) davitr: I have questions about SVN\par
+(15:30:44) dpappas: any Linux questions\par
+(15:30:49) revazk: no\par
+(15:30:57) dpappas: everyone save this transcript in your home dierctory\par
+(15:31:05) dpappas: SVN questions?\par
+(15:31:11) davitr: I can not install SVN on linux\par
+(15:31:27) dpappas: oh there is one other command \par
+(15:31:28) davitr: when I am doing checkout it said "segmentation fault"\par
+(15:31:31) dpappas: type which svn\par
+(15:31:41) davitr:  rapid-svn\par
+(15:31:52) dpappas: did you install this?\par
+(15:31:55) davitr: yes\par
+(15:32:04) dpappas: I just use the command line version of SVn\par
+(15:32:14) dpappas: type env | grep -i path\par
+(15:32:18) dpappas: -i is case insensitive\par
+(15:32:26) dpappas: paset it\par
+(15:32:30) dpappas: paste\par
+(15:32:47) dpappas: someone else type which svn\par
+(15:32:51) dpappas: and paste it\par
+(15:33:21) davitr: I already uninstalled it\par
+(15:33:39) dpappas: now type which svn\par
+(15:33:40) davitr: Then and installed subversion\par
+(15:33:48) dpappas: svn was already isntalled?\par
+(15:34:07) dpappas: installed\par
+(15:34:12) davitr: yes\par
+(15:34:21) dpappas: Nika what does which svn say on your machine\par
+(15:34:22) dpappas: paste it\par
+(15:34:31) dpappas: which svn\par
+(15:35:05) davitr left the room.\par
+(15:35:05) nikaj: I haven't installed it in linux\par
+(15:35:24) davitr entered the room.\par
+(15:35:55) revazk left the room.\par
+(15:36:47) dpappas: Guys you should forget about windows\par
+(15:36:51) dpappas: and just use Linux\par
+(15:37:00) dpappas: the search engine will be developed on Linu\par
+(15:37:03) dpappas: Linux\par
+(15:37:33) dpappas: so each of you should ask Camarand or someone in the Ge office to help you get SVN working on linux\par
+(15:37:46) davitr: we will ask davidm\par
+(15:37:49) dpappas: then checkout the yoterra SVN repo into your linux partition\par
+(15:37:52) dpappas: ok\par
+(15:38:43) revazk entered the room.\par
+(15:39:19) dpappas: does anyonehave svn installed and working on Linux\par
+(15:39:44) davitr: no\par
+(15:39:47) dpappas: ok\par
+(15:39:51) dpappas: you guys need to install\par
+(15:39:57) davitr: we will\par
+(15:39:58) dpappas: on your linux boxes\par
+(15:40:02) dpappas: yahoo msgr\par
+(15:40:05) dpappas: skype\par
+(15:40:13) dpappas: and figure out how to get skype working\par
+(15:40:15) dpappas: gaim\par
+(15:40:19) dpappas: svn\par
+(15:41:56) dpappas: do you all know who Cristi Amarand (camarand ) is?\par
+(15:42:08) dpappas: He is the sys admin in Ro in charge of the SVn repo\par
+(15:42:14) dpappas: if you local repo locks up\par
+(15:42:22) dpappas: and you do nto know what to do contact him\par
+(15:42:32) davitr: ok\par
+(15:42:36) dpappas: if you need help with SVN contact him\par
+(15:42:40) dpappas: If he can't fix it\par
+(15:42:46) dpappas: contact Codrin in Romania\par
+(15:43:00) dpappas: if he can't fix it send email to yoterra@yoterra.ro and ask for help\par
+(15:43:43) dpappas: what other SVn issues are there?\par
+(15:43:57) dpappas: Davit\par
+(15:44:09) dpappas: did you try to checkout with svn fromt he cmd line?\par
+(15:44:20) davitr: [root@work1 ~]# svn checkout http://svn.yoterra.ro:1234/svn/TOT/yoterra/se /home/rachvela/Yoterra\par
+svn: PROPFIND request failed on '/svn/TOT/yoterra/se'\par
+svn: PROPFIND of '/svn/TOT/yoterra/se': Could not read status line: connection was closed by server. (http://svn.yoterra.ro:1234)\par
+\par
+(15:44:27) davitr: I am trying\par
+(15:48:32) dpappas: I found Codrin\par
+(15:48:34) dpappas: one min\par
+(15:51:01) codrin entered the room.\par
+(15:51:29) dpappas: Codrin can you tell the guys how to connect ot he SVN server on Linux\par
+(15:52:06) codrin: https not http, ok ?\par
+(15:52:28) dpappas: Davit?\par
+(15:52:31) davitr: ok\par
+(15:52:35) codrin: we need some data protection from outside world\par
+(15:53:05) dpappas: everyone try this command and change http to https\par
+(15:53:25) dpappas: Codrin is svn automatically installed in CentOS?\par
+(15:54:02) dpappas: or do they need to log in as root to install it?\par
+(15:54:07) codrin: depends on your install options, usually you can setup a kickstart disk with the same setting for all workstations\par
+(15:54:15) codrin: settings\par
+(15:54:27) codrin: try with rpm -qa subversion\par
+(15:54:34) dpappas: everyone try that cmd\par
+(15:54:41) davitr: It works\par
+(15:54:50) codrin: if it's not found then you need to log in as root indeed, and try to install it with rpm -Uvh subversion.xxx.rpm\par
+(15:54:58) dpappas: what is the name of the package manager on CentOS?\par
+(15:55:31) codrin: you can try with "system-config-packages"\par
+(15:55:38) dpappas: people paste the results of the rpm -qa cmd\par
+(15:57:13) dpappas: ok\par
+(15:57:23) dpappas: pipe it to grep svn :)\par
+(15:57:37) codrin left the room.\par
+(15:57:58) dpappas: Davit you are able to connect ot the server and the files are being checked out?\par
+(15:58:05) davitr: yes\par
+(15:58:27) dpappas: how about the rest of the guys\par
+(15:58:32) dpappas: are they also able to checkout\par
+(15:59:04) revazk: we have it in windows and david will help us\par
+(15:59:06) davitr: I will  help them  to checkout\par
+(15:59:10) revazk: davit\par
+(15:59:19) dpappas: lets do this now in Linux\par
+(15:59:37) dpappas: you guys really do not need windows\par
+(16:03:44) dpappas: ok bye\par
+}
+ 

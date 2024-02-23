@@ -1,0 +1,17 @@
+//set_dimensions can be used more times for the same fifo
+//andrei
+//22 June 2007
+
+csl_fifo fifo_name{
+	fifo_name(){
+		set_dimensions(8, 32); //error width,depth	
+		set_dimensions(2, 22); //error width,depth	
+	//	add_logic(programmable_depth, 12);		
+	}
+};
+
+csl_unit u1{
+  fifo_name f1;
+  u1(){  
+  }
+};

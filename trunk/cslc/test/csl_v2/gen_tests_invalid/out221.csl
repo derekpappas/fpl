@@ -1,0 +1,122 @@
+csl_enum md {
+	no = 50,
+	go = 5,
+	os = 81,
+	sq = 83,
+	yt = 57,
+	yu = 80,
+	cb = 57,
+	yg = 43,
+	dq = 27,
+	ls = 87,
+	io = 67,
+	jg = 12,
+	kv = 44
+};
+csl_enum eo {
+	er,
+	rt
+};
+csl_enum gx {
+	iw = 82,
+	tc = 71,
+	ou = 99,
+	xn = 84,
+	pa = 68,
+	qq = 12
+};
+csl_isa_instruction_format uo{
+    uo( ){
+     generate_decoder( pihq);
+  }
+}
+;
+csl_isa fd{
+    fd( ){
+     set_decoder_name( "ln");
+     set_decoder_out_name_prefix( "cq");
+     set_decoder_out_name_suffix( "yi");
+     generate_decoder( pt);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo ex{
+   ex( ){
+     add_logic( priority_bypass);
+     add_logic( stall_wr_side);
+  }
+}
+;
+csl_memory_map_page dm{
+    dm( ){
+     set_address_increment( 1);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_aligment( );
+     set_endianess( little_endianbig_endian);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page fy{
+    fy( ){
+     add_address_range( 8, 1);
+     get_address_increment( );
+     set_next_address( 4);
+     get_next_address( );
+     set_access_rights( access_read, access_read);
+     add_reserved_address_range( 0, 4);
+     add( dm);
+     get_upper_bound( );
+     set_data_word_width( 4);
+     set_endianess( big_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page ko{
+    ko( ){
+     get_address_increment( );
+     set_data_word_width( 4);
+     get_data_word_wodth( );
+     set_aligment( 1);
+     get_aligment( );
+     set_endianess( little_endian);
+  }
+}
+;
+csl_memory_map ft{
+  dm vh;
+  ko vu;
+  ko ov;
+    ft( ){
+     auto_gen_memory_map( );
+     set_top_unit( pthq);
+.add_to_memory_map( 6); 
+     set_data_word_width( 3);
+     get_data_word_width( );
+     set_prefix( ku);
+     get_prefix( );
+     set_suffix( gl);
+  }
+}
+;
+csl_register fq{
+    fq( ){
+     index_data_pair( ft, 0);
+     set_atribute( shadow);
+     add_logic( serial_output);
+     set_start_value( 7);
+  }
+}
+;
+csl_register by{
+    by( ){
+     set_depth( 8);
+     add_logic( read_valid);
+     add_logic( bypass);
+  }
+}
+;

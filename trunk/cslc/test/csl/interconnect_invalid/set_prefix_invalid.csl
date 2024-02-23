@@ -1,0 +1,28 @@
+//set_prefix invalid ..it works enywhere in program
+//andreim
+//18 June 2007
+
+//csl_interface   ifc_interface{
+// csl_port p_p1(input, wire, 5);
+//  csl_port p_p2(output, 2);
+//};
+
+csl_unit u_unit1{
+	csl_signal 			sgn_sgn1;
+//	csl_port 				p_port1,
+	//					 			p_port2(output, reg, 4),
+		//							p_port3(p_port1);    //p_port 3 copying all proprieties from p_port1
+//	ifc_interface ifc1;
+	u_unit1(){		
+	}
+};
+
+csl_unit top{
+	u_unit1  unit1;
+	top(){
+			//set_unit_prefix(top);
+	}
+};
+
+set_prefix("top");
+

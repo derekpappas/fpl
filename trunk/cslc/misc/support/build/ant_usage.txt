@@ -1,0 +1,30 @@
+ANT build usage:
+
+ant_usage revision 0.1
+
+1) unzip the ant.zip
+2) enter /bin directory and run "ant" binary
+3) check output directory for the compiled binary, the .o and history in xml fomat
+
+Notes:
+1) you need JDK and JRE installed on your OS
+2) run ant binary with -v -debug for full details of the build process
+
+ant_usage revision 0.2
+stefanp@fastpathlogic.ro wrote: After I tweaked the ANT config files, here is how you should use ANT: 
+
+ant clean -> cleans the current project/subproject
+ant -> build build the project/subproject with no flags 
+compile)
+ant coverage -> build the project/subproject using coverage flags
+ant debug -> build the project/subproject using debugging flags (default(normal))
+
+to all this you can add the following 2 flags:
+-q -> the build will be quiet
+-v -> the build will be verbose
+
+Examples:
+ant clean -v
+ant coverage -q
+ant debug
+etc

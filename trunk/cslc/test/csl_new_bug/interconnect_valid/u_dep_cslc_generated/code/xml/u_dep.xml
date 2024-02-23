@@ -1,0 +1,57 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u_dep">
+<signal name="reset" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="enable" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="clk" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="d1" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="d2" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="d3" offset="0" upper="16-1" lower="0" type = "wire"/>
+<signal name="q1" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="q2" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="q3" offset="0" upper="16-1" lower="0" type = "wire"/>
+<instantiation type = "u_ff">
+<instance name="ff1">
+<f2a formal = "clk" actual = "clk" />
+<f2a formal = "d" actual = "d1" />
+<f2a formal = "enable" actual = "enable" />
+<f2a formal = "q" actual = "q1" />
+<f2a formal = "reset" actual = "reset" />
+width4<f2a formal = "clk" actual = "clk" />
+<f2a formal = "d" actual = "d1" />
+<f2a formal = "enable" actual = "enable" />
+<f2a formal = "q" actual = "q1" />
+<f2a formal = "reset" actual = "reset" />
+</instance>
+</instantiation>
+<instantiation type = "u_ff">
+<instance name="ff2">
+<f2a formal = "clk" actual = "clk" />
+<f2a formal = "d" actual = "d2" />
+<f2a formal = "enable" actual = "enable" />
+<f2a formal = "q" actual = "q2" />
+<f2a formal = "reset" actual = "reset" />
+width8<f2a formal = "clk" actual = "clk" />
+<f2a formal = "d" actual = "d2" />
+<f2a formal = "enable" actual = "enable" />
+<f2a formal = "q" actual = "q2" />
+<f2a formal = "reset" actual = "reset" />
+</instance>
+</instantiation>
+<instantiation type = "u_ff">
+<instance name="ff3">
+<f2a formal = "clk" actual = "clk" />
+<f2a formal = "d" actual = "d3" />
+<f2a formal = "enable" actual = "enable" />
+<f2a formal = "q" actual = "q3" />
+<f2a formal = "reset" actual = "reset" />
+width16<f2a formal = "clk" actual = "clk" />
+<f2a formal = "d" actual = "d3" />
+<f2a formal = "enable" actual = "enable" />
+<f2a formal = "q" actual = "q3" />
+<f2a formal = "reset" actual = "reset" />
+</instance>
+</instantiation>
+</unit>
+</design>

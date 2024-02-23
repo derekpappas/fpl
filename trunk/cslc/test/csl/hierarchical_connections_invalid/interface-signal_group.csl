@@ -1,0 +1,19 @@
+//DT
+csl_interface ifc{
+  csl_port x(input,2),y(input,4);
+};
+csl_signal_group sg{
+  csl_signal s_x(2),s_y(4),s_z(4);
+  sg(){}
+};
+csl_unit a{
+  ifc ifc;
+  a(){
+  }
+};
+csl_unit top{
+  sg sg;
+  a a(.ifc.x(sg.s_y)); //s_y has width 4 and x has width 2
+  top(){
+  }
+};

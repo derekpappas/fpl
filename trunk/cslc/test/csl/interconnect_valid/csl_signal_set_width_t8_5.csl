@@ -1,0 +1,54 @@
+//author:Monica 
+//testing: csl_signal signal_object_name([signal_data_type][,width]);
+//         reg,wire,tri,trireg,triand,trior,wand,wor,supply0,supply1
+
+csl_unit u15_t8 {
+
+  csl_signal sgn15_1_t8(supply0);
+  csl_signal sgn15_2_t8(supply0,8);
+
+  u15_t8() {
+
+    sgn15_1_t8.set_width(8);
+    sgn15_1_t8 = sgn15_2_t8;
+  }
+};
+
+csl_unit u16_t8 {
+
+  csl_signal sgn16_2_t8;
+  csl_signal s1(2);
+  u16_t8() {
+    sgn16_2_t8.set_width(2);
+    sgn16_2_t8 =s1;
+  }
+};
+
+csl_unit u17_t8 {
+
+  csl_signal sgn17_1_t8(supply1);
+  csl_signal sgn17_2_t8(supply1,8);
+
+  u17_t8() {
+
+    sgn17_1_t8.set_width(8);
+    sgn17_1_t8 = sgn17_2_t8;
+  }
+};
+
+csl_unit u18_t8 {
+
+  csl_signal sgn18_2_t8;
+  csl_signal s2(2);
+  u18_t8() {
+    sgn18_2_t8.set_width(2);
+    s2= sgn18_2_t8;
+  }
+};
+csl_unit top{
+  u15_t8 u1;
+  u16_t8 u2;
+  u17_t8 u3;
+  u18_t8 u4;
+  top(){}
+};

@@ -1,0 +1,101 @@
+csl_enum hq {
+	ry = 82,
+	co = 19,
+	vb = 11,
+	jp = 53,
+	ti = 25,
+	xc = 29
+};
+csl_enum qd {
+	ff = 42,
+	sq = 39,
+	eg = 74,
+	di = 95,
+	ko = 1,
+	tw = 86,
+	vn = 24,
+	cd = 94,
+	et = 83
+};
+csl_isa_instruction_format uw{
+    uw( ){
+     set_width( 1);
+  }
+}
+;
+csl_isa pj{
+    pj( ){
+     set_decoder_name( "ia");
+     set_decoder_out_name_prefix( "pe");
+     set_decoder_out_name_suffix( "ju");
+     generate_decoder( lneiml);
+  }
+}
+;
+csl_fifo iy{
+   iy( ){
+     set_physical_implementation( SRAM);
+     add_logic( priority_bypass);
+     add_logic( almost_empty, 2);
+  }
+}
+;
+csl_memory_map_page ss{
+    ss( ){
+     set_address_increment( 6);
+     add_reserved_address_range( 9, 6);
+     get_data_word_wodth( );
+     get_aligment( );
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page fv{
+    fv( ){
+  }
+}
+;
+csl_memory_map_page lx{
+    lx( ){
+     set_address_increment( 2);
+     add_reserved_address_range( 2, 2);
+     add( fv);
+     get_upper_bound( );
+     get_data_word_wodth( );
+     get_aligment( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map tg{
+    tg( ){
+     auto_gen_memory_map( );
+ssfvlx.add_to_memory_map( access_read_write); 
+ssfvlx.set_access_rights_enum( ssfvlx); 
+     set_data_word_width( 2);
+     get_data_word_width( );
+     set_prefix( su);
+     set_suffix( qw);
+  }
+}
+;
+csl_register pp{
+    pp( ){
+     index_data_pair( tg, 3);
+     set_atribute( read_write);
+     add_logic( rd_en);
+     reset_value( 1);
+     add_logic( gray_output);
+     set_start_value( 38);
+     stop_at_end_value( );
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register bo{
+    bo( ){
+     set_width( 7);
+     set_const_value( 9);
+  }
+}
+;

@@ -1,0 +1,113 @@
+//oanab
+
+csl_interface fabric_bus {
+  csl_port valid(output);
+  csl_port age(output);
+  csl_port type(output,2);
+  csl_port src_nid(output,4);
+  csl_port dst_nid(output,4);
+  csl_port addr(output,12);
+  csl_port data(output,12);
+  fabric_bus () {}
+};
+
+csl_interface fabric_ad {
+  csl_port drop_valid(output);
+  csl_port drop_type(output,2);
+  csl_port drop_src_nid(output,4);
+  csl_port drop_addr(output,12);
+  csl_port drop_data(output,12);
+  csl_port add_valid(input);
+  csl_port add_type(input,2);
+  csl_port add_dst_nid(input,4);
+  csl_port add_addr(input,12);
+  csl_port add_data(input,12);
+  csl_port add_ready(output);
+  fabric_ad () {}
+};
+
+csl_interface tbuf_if {
+  csl_port valid(output);
+  csl_port length(output,6);
+  csl_port endpoint(output,4);
+  csl_port ready(input);
+  tbuf_if () {}
+};
+
+csl_interface tp_bus {
+  tbuf_if t2p; // normal
+  tbuf_if p2t;  // reverse
+  tp_bus () {
+    p2t.reverse();
+  }
+};
+
+csl_interface fifo_reg_bus {
+  csl_port write_en(output);
+  csl_port addr(output,5);
+  csl_port write_data(output,12);
+  csl_port read_data(input,12);
+  fifo_reg_bus () {}
+};
+
+csl_interface ram_bus {
+  csl_port valid(output);
+  csl_port write_en(output);
+  csl_port addr(output,5);
+  csl_port write_data(output,12);
+  csl_port read_data(input,12);
+  csl_port ready(input);
+  ram_bus () {}
+};
+
+csl_interface ix_bus {
+  csl_port valid(output);
+  csl_port cmd(output);
+  csl_port data(output,8);
+  csl_port ready(input);
+  ix_bus () {}
+};
+
+csl_interface phy_bus {
+  ix_bus phy2tm; // normal
+  ix_bus tm2phy; // reverse
+  phy_bus () {
+    tm2phy.reverse();
+  }
+};
+
+csl_interface gpio_ifc {
+  csl_port in(input);
+  csl_port out(output);
+  csl_port en(output);
+  gpio_ifc() {}
+};
+
+csl_interface uart_ifc {
+  csl_port rx(input);
+  csl_port tx(output);
+  gpio_ifc gp0;
+  gpio_ifc gp1;
+  gpio_ifc gp2;
+  gpio_ifc gp3;
+  gpio_ifc gp4;
+  gpio_ifc gp5;
+  uart_ifc () {}
+};
+
+csl_interface usb_phy_ifc {
+  csl_port rpu1_en(input);
+  csl_port rpu2_en(input);
+  csl_port data_in(input);
+  csl_port force_se0(input);
+  csl_port drv_enable(input);
+  csl_port suspend(input);
+  csl_port se_dp(output);
+  csl_port enable_se(output);
+  csl_port se_dn(output);
+  csl_port data_out(output);
+  csl_port strobe(output);
+  csl_port enable_diff(input);
+  usb_phy_ifc () {}
+};
+

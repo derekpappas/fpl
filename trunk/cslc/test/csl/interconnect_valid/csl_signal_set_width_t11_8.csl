@@ -1,0 +1,13 @@
+//author: Ines
+//testing: signal_object_name.set_width(numeric_expr);
+
+
+
+csl_unit u1_1 {
+
+  csl_signal sgn1;
+  csl_signal s1;
+  u1_1() {
+    s1 = sgn1;
+  }
+};

@@ -1,0 +1,29 @@
+//bug 778
+//csl_field f,ff;
+csl_register_file rf;
+csl_register_file regf{
+  regf(){
+    set_width(16);
+    set_depth(2+4);
+    create_rtl_module();
+    set_const_value(3);
+    set_field(f,5);
+  //  set_external(5,rf);
+    add_logic(bypass);
+    add_logic(read_valid);
+    set_prefix("abc");
+  }
+};
+
+csl_register_file r1{
+  regf rgf;
+  r1(){
+     set_width(rgf.get_width());
+  }
+};
+csl_register_file r2{
+  regf rfg;
+  r2(){
+    set_depth(rfg.get_depth());
+  }
+};

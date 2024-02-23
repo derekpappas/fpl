@@ -1,0 +1,10 @@
+csl_register_file regf1{
+csl_wr_interface ch1;
+csl_wr_interface ch2;
+csl_rd_interface ch3;
+
+regf1() {
+set_width(8);
+set_depth(32);
+}
+};

@@ -1,0 +1,44 @@
+//AnamariaH
+//06.03.2008
+//Verification Components - Set Header Comment
+
+
+
+csl_unit dut{
+  csl_port stim_in(input),stim_v(input),exp_d(output),exp_v(output);
+  csl_port clk(input);
+  dut(){
+  clk.set_attr(clock);}
+  };
+
+csl_unit a {
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(output);
+  csl_port p4(output);
+  csl_port p5(input);
+  dut dut1(.stim_in(p1),.stim_v(p2),.exp_d(p3),.exp_v(p4),.clk(p5));
+  a (){}
+};
+
+csl_vector stim_vec{
+    stim_vec(){
+    set_unit_name(dut);
+    set_direction(input);
+    set_vc_header_comment("stimvec");
+    }
+};
+csl_vector exp_vec{
+   exp_vec(){
+   set_unit_name(dut);
+   set_direction(output);
+}
+};
+csl_testbench tb{
+    csl_signal clk(reg);
+    dut dut_1(.clk(clk));
+    tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,100,ps);
+    }
+};

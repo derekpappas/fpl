@@ -1,0 +1,237 @@
+//oanab
+//26 aug 2008
+
+//---------enums---------
+
+//enumerated type (op)
+
+csl_enum e_opcodes {
+  br=0
+    //    alu=1,
+    //    call=2
+    };
+
+//enumerated type (cond)
+
+csl_enum e_conds {
+  bpe=1,
+    bpg=4,
+    bpa=5
+    };
+
+//enumerated type (rcond)
+
+csl_enum e_rconds {
+  brz=1,
+    brlz=3,
+    brgez=7
+    };
+
+//-------isa fields used in base format------
+
+//opcode field
+
+csl_isa_field f_opcode {
+  f_opcode () {
+    set_type(opcode);
+    set_width(2);
+    set_enum(e_opcodes);
+  }
+};
+
+//op2 field
+
+csl_isa_field f_op2 {
+  f_op2 () {
+    set_type(constant);
+    set_width(2);
+  }
+};
+
+
+//-------isa fields used in format f1------
+
+//conds field
+
+csl_isa_field f_conds {
+  f_conds () {
+    set_type(subopcode);
+    set_width(5);  
+    set_enum(e_conds);
+  }
+};
+
+//rs1 field
+
+csl_isa_field f_rs1 {
+  f_rs1 () {
+    set_type(rf_address);
+    set_width(8);   
+  }
+};
+
+//imm14 field
+
+csl_isa_field f_imm14 {
+  f_imm14 () {
+    set_type(im); 
+    set_width(15);
+  }
+};
+
+//-------isa fields used in format f2------
+
+//rconds field
+
+csl_isa_field f_rconds {
+  f_rconds () {
+    set_type(subopcode);
+    set_width(3);
+    set_enum(e_rconds);
+  }
+};
+
+//rs2 field
+
+csl_isa_field f_rs2 {
+  f_rs2 () {
+    set_type(rf_address);
+    set_width(10);  
+  }
+};
+
+//impl-dep field
+
+csl_isa_field f_impl_dep {
+  f_impl_dep () {
+    set_type(reserved);
+    set_width(11);  
+  }
+};
+
+//a field
+
+csl_isa_field f_a {
+  f_a () {
+    set_type(constant);
+    set_width(4);
+  }
+};
+
+//-----instruction formats-----
+
+//root instruction format
+
+csl_isa_element root {
+  root () {
+    set_type(root_format);
+    set_width(32);
+  }
+};
+
+//base format derived from root format
+
+csl_isa_element base_format: root {
+  f_opcode f_opcode;
+  f_op2 f_op2;
+  base_format () {
+    set_type(instr_format);
+    set_position(f_opcode,30);
+    set_position(f_op2,15);
+  }
+};
+
+//format f1 derived from base format
+
+csl_isa_element f1_format: base_format {
+  f_conds f_conds;
+  f_rs1 f_rs1;
+  f_imm14 f_imm14;
+  f1_format () {
+    set_type(instr_format);
+    set_position(f_conds,25);
+    set_next(f_conds,f_rs1);
+    set_position(f_imm14,0);
+  }
+};
+
+//format f2 derived from base format
+
+csl_isa_element f2_format: base_format {
+  f_rconds f_rconds;
+  f_rs2 f_rs2;
+  f_impl_dep f_impl_dep;
+  f_a f_a;
+  f2_format () {
+    set_type(instr_format);
+    set_position(f_rconds,27);
+    set_next(f_rconds,f_rs2);
+    set_position(f_impl_dep,4);
+    set_next(f_impl_dep,f_a);
+  }
+};
+
+//--------instructions using format f1-------
+
+//bpe instruction
+
+csl_isa_element bpe_instr: f1_format {
+  bpe_instr () {
+    set_type(instr);
+    f_opcode.set_enum_item(br);
+    f_conds.set_enum_item(bpe);
+  }
+};
+
+//bpg instruction
+
+csl_isa_element bpg_instr: f1_format {
+  bpg_instr () {
+    set_type(instr);
+    f_opcode.set_enum_item(br);
+    f_conds.set_enum_item(bpg);
+  }
+};
+
+//bpa instruction
+
+csl_isa_element bpa_instr: f1_format {
+  bpa_instr () {
+    set_type(instr);
+    f_opcode.set_enum_item(br);
+    f_conds.set_enum_item(bpa);
+  }
+};
+
+//--------instructions using format f2-------
+
+//brlz instruction
+
+csl_isa_element brlz_instr: f2_format {
+  brlz_instr () {
+    set_type(instr);
+    f_opcode.set_enum_item(br);
+    f_rconds.set_enum_item(brlz);
+  }
+};
+
+
+//brz instruction
+
+csl_isa_element brz_instr: f2_format {
+  brz_instr () {
+    set_type(instr);
+    f_opcode.set_enum_item(br);
+    f_rconds.set_enum_item(brz);
+  }
+};
+
+//brgez instruction
+
+csl_isa_element brgez_instr: f2_format {
+  brgez_instr () {
+    set_type(instr);
+    f_opcode.set_enum_item(br);
+    f_rconds.set_enum_item(brgez);
+  }
+};

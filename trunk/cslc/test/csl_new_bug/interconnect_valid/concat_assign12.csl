@@ -1,0 +1,16 @@
+//oanab
+//24 mar 2008
+//interface - constant concatenation
+
+csl_interface ifc {
+  csl_port y1(output,20),y2(output,4);
+  ifc () {}
+};
+
+csl_unit u2 {
+  csl_port x(input,30);
+  ifc ifc0;
+  u2 () {
+    x={ifc0.y1[19:1],10'b110111,ifc0.y2[2]};
+}
+};

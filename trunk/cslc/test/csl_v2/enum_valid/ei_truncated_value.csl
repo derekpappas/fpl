@@ -1,0 +1,4 @@
+csl_enum e {
+  test1 = 2'd27, // incorrect assignment (here must be a warning), test1 = 3 (last 2 bits)
+      test2 = 5'd27 // correct assigment, test2 = 27
+};

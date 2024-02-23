@@ -1,0 +1,13 @@
+csl_fifo FO{
+  FO(){
+    set_width(32);
+    set_depth(4);
+    set_push_name("push");
+  }
+};
+csl_unit u{
+  csl_signal sig;
+  FO FO;
+  u(){
+    set_signal_prefix(FO.get_push_name());}
+};

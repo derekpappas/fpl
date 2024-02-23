@@ -1,0 +1,27 @@
+//declaring fields
+csl_isa_field f_op(2);
+csl_isa_field f_op2(2);
+
+
+// declaring formats
+csl_isa_element format{
+    f_op f_op_i;
+    f_op2 f_op2_i;
+    format(){
+	set_type(instr_format);
+        set_width(8);
+        set_position(f_op_i, 6);
+        set_position(f_op2_i, 0);
+    }
+};
+
+csl_isa_element format{
+    f_op f_op_i1;
+    f_op2 f_op3_i;
+    format(){
+	set_type(instr_format);
+        set_width(8);
+        set_position(f_op_i, 6);
+        set_position(f_op3_i, 1); //can't add at this position
+    }
+};

@@ -1,0 +1,26 @@
+//oanab
+//21 apr 2008
+// connecting an interface with a signal group 
+
+csl_interface ifc1 {
+  csl_port x1(input),x2(input),y1(output), y2(output);
+  ifc1 () {}
+};
+
+csl_signal_group sg {
+  csl_signal x1,x2,y1,y2;
+  sg () {}
+};
+
+csl_unit a {
+  sg sg0;
+  a () {}
+};
+
+csl_unit b {
+  ifc1 ifc10;
+  a a0;
+  b () {
+    a0.sg0.connect_by_name(ifc10);
+  }
+};

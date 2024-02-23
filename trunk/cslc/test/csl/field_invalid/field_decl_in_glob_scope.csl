@@ -1,0 +1,16 @@
+//oanab
+//10 nov 2007
+
+csl_enum en{
+  x,y,z
+    };
+
+csl_field f(5,1,y); 
+// should throw error here because a enum_item 
+// can only be associated on a instance
+// of a field that has a enum associated
+csl_unit u{
+  f f;
+  csl_port x(input);
+  u(){}
+};

@@ -1,0 +1,54 @@
+//oanab
+//14 mar 2008
+
+csl_enum e {
+  a=0,
+    b=1
+    //c=2 
+};
+
+csl_isa_field f_op {
+  f_op () {
+    set_type(opcode);
+    set_width(2);
+    set_enum(e);
+  }
+};
+
+csl_isa_field f_reg {
+  f_reg () {
+    set_type(rf_address);
+    set_width(3);
+  }
+};
+
+csl_isa_element root {
+  root () {
+    set_type(root_format);
+    set_width(5);
+  }
+};
+
+csl_isa_element format : root {
+  f_op op;
+  f_reg reg;
+  format () {
+    set_type(instr_format);
+    set_position(op,3);
+    set_next(op,reg);
+  }
+};
+
+csl_isa_element a_instr : format {
+  a_instr () {
+    set_type(instr);
+    op.set_enum_item(a);
+  }
+};
+
+csl_isa_element b_instr : format {
+  b_instr () {
+    set_type(instr);
+    op.set_enum_item(b);
+  }
+};

@@ -1,0 +1,10 @@
+//danielt
+//november 07,2007
+//bug - expecting an identifier, found 'gen_decoder'
+
+csl_unit u{
+  //csl_signal sig;
+  u(){
+    //    add_logic(gen_decoder); //why is everybody using this command? right now this command is not in language
+  }
+};

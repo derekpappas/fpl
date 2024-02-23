@@ -1,0 +1,27 @@
+csl_signal_group sg1 {
+     csl_signal s1;
+     csl_signal s2;
+     sg1() {
+     }
+   };
+csl_signal_group sg2 {
+  sg1 sg1instance;
+ 
+  csl_signal s3;
+  
+  sg2() {  
+  }
+};
+
+csl_signal_group sg3 {
+  sg3() {}
+};
+csl_unit u {
+  sg2 sg2instance;
+  csl_signal s4;
+  u() {
+    sg2instance.sg1instance.s1 = sg2instance.sg1instance.s2;
+    s4 = sg2instance.s3;
+    gen_unique_rtl_modules();
+  }
+};

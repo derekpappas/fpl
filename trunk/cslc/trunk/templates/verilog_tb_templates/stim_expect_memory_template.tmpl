@@ -1,0 +1,105 @@
+
+
+//------------stim_expect_memory_template.v-----------------------//
+
+`include "defines.v"
+
+module <TMPL_VAR module_name>(<TMPL_VAR clock>,
+			            <TMPL_VAR reset_>,
+                                    <TMPL_VAR rd_en>,
+		                    <TMPL_VAR vector_out>,
+                                    <TMPL_VAR valid>,
+                                    <TMPL_VAR version_err>,
+                                    <TMPL_VAR id_err>);
+parameter <TMPL_VAR MEM_WIDTH> = 0;
+parameter <TMPL_VAR ADDR_WIDTH> = 0;
+parameter <TMPL_VAR VECTOR_ID> = 0;
+parameter <TMPL_VAR VECTOR_VERSION> = 0;
+parameter <TMPL_VAR VECTOR_NAME> = "";
+parameter <TMPL_VAR VECTOR_FILE> = "";
+parameter <TMPL_VAR VECTOR_RADIX> = 0;
+parameter <TMPL_VAR MEM_DEPTH> = ((1 << <TMPL_VAR ADDR_WIDTH>) -1'b1);
+
+<TMPL_VAR clock_dir> <TMPL_VAR clock>;
+<TMPL_VAR reset_dir> <TMPL_VAR reset_>;
+<TMPL_VAR rd_en_dir> <TMPL_VAR rd_en>;
+<TMPL_VAR vector_out_dir> [<TMPL_VAR MEM_WIDTH>-1:0] <TMPL_VAR vector_out>;
+<TMPL_VAR valid_dir> <TMPL_VAR valid>;
+<TMPL_VAR version_err_dir> <TMPL_VAR version_err>;
+<TMPL_VAR id_err_dir> <TMPL_VAR id_err>;
+<TMPL_VAR memory_out_type> [<TMPL_VAR MEM_WIDTH>-1:0] <TMPL_VAR memory_out>;
+<TMPL_VAR stim_expect_memory_type> [<TMPL_VAR MEM_WIDTH>-1:0] <TMPL_VAR stim_expect_memory>[0:<TMPL_VAR MEM_DEPTH>];
+<TMPL_VAR rd_addr_type> [<TMPL_VAR ADDR_WIDTH>-1:0] <TMPL_VAR rd_addr>;
+<TMPL_VAR mem_out_is_id_type> <TMPL_VAR mem_out_is_id>;
+<TMPL_VAR mem_out_is_version_type> <TMPL_VAR mem_out_is_version>;
+<TMPL_VAR mem_addr_type> <TMPL_VAR mem_addr>;
+<TMPL_VAR stim_expect_memory_loaded_type> <TMPL_VAR stim_expect_memory_loaded>;
+<TMPL_VAR mem_out_is_id_or_version_type> <TMPL_VAR mem_out_is_id_or_version>;
+<TMPL_VAR mux_select_type> <TMPL_VAR mux_select>;
+<TMPL_VAR vector_id_match_type> <TMPL_VAR vector_id_match>;
+<TMPL_VAR vector_version_match_type> <TMPL_VAR vector_version_match>;
+
+assign <TMPL_VAR mem_out_is_id_or_version> = <TMPL_VAR mem_out_is_id> || <TMPL_VAR mem_out_is_version>;
+assign <TMPL_VAR mux_select> = ~<TMPL_VAR mem_out_is_id_or_version> || <TMPL_VAR rd_en>;
+assign <TMPL_VAR vector_out> = <TMPL_VAR mux_select> ? <TMPL_VAR memory_out> : {<TMPL_VAR MEM_WIDTH> {1'b0}};
+assign <TMPL_VAR vector_id_match> = (<TMPL_VAR memory_out> == <TMPL_VAR VECTOR_ID>) & <TMPL_VAR mem_out_is_id>;
+assign <TMPL_VAR vector_version_match> = (<TMPL_VAR memory_out> == <TMPL_VAR VECTOR_VERSION>) & <TMPL_VAR mem_out_is_version>;
+assign <TMPL_VAR version_err> = <TMPL_VAR mem_out_is_version> & <TMPL_VAR memory_out> != <TMPL_VAR VECTOR_VERSION>;
+assign <TMPL_VAR id_err> = <TMPL_VAR mem_out_is_id> & <TMPL_VAR memory_out> != <TMPL_VAR VECTOR_ID>;
+assign <TMPL_VAR valid> = <TMPL_VAR rd_en> && ~(<TMPL_VAR mem_out_is_id_or_version>);
+
+always @(posedge <TMPL_VAR clock> or negedge <TMPL_VAR reset_>) begin
+  if(~(<TMPL_VAR reset_>)) begin
+     <TMPL_VAR rd_addr> <= {<TMPL_VAR ADDR_WIDTH> {1'b0}};
+  end
+  else if (<TMPL_VAR rd_en>) begin
+     <TMPL_VAR rd_addr> <= <TMPL_VAR rd_addr> + 1'b1;
+     <TMPL_VAR mem_out_is_id> <= <TMPL_VAR rd_addr> == 0;
+     <TMPL_VAR mem_out_is_version> <= <TMPL_VAR rd_addr> == 1;
+  end
+end
+
+always @(posedge <TMPL_VAR clock> or negedge <TMPL_VAR reset_>) begin
+  if(<TMPL_VAR rd_en>) begin
+     <TMPL_VAR memory_out> <= <TMPL_VAR stim_expect_memory>[<TMPL_VAR rd_addr>];
+  end
+end
+
+initial
+begin
+
+  <TMPL_VAR stim_expect_memory_loaded> <= 1'b0;
+  $display("VECOR_FILE=  %s", <TMPL_VAR VECTOR_FILE>);
+
+  if(<TMPL_VAR VECTOR_RADIX> == 0 ) begin
+   $readmemb( <TMPL_VAR VECTOR_FILE>, <TMPL_VAR stim_expect_memory>);
+  end
+  else begin
+    $readmemh( <TMPL_VAR VECTOR_FILE>, <TMPL_VAR stim_expect_memory>);
+  end
+   <TMPL_VAR stim_expect_memory_loaded> <= 1'b1;
+
+end
+
+initial
+begin
+
+  @<TMPL_VAR stim_expect_memory_loaded>;
+  if ( $test$plusargs("show_stim_expect_memory_init_state") )  begin 
+    $display("Initial state of vector file %s ", <TMPL_VAR VECTOR_FILE>);
+
+    for ( <TMPL_VAR mem_addr> = 0; <TMPL_VAR mem_addr> < <TMPL_VAR MEM_DEPTH>; <TMPL_VAR mem_addr> = <TMPL_VAR mem_addr> + 1'b1) begin
+      $display ("mem[%d] = %x", <TMPL_VAR mem_addr>, <TMPL_VAR stim_expect_memory>[<TMPL_VAR mem_addr>]);
+    end
+  end
+end
+
+endmodule
+    
+
+
+
+
+
+
+ 

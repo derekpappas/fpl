@@ -1,0 +1,109 @@
+//oanab
+//18 mar 2008
+//enum item c3 from e_cond is not set for any instruction
+
+csl_enum e_op {
+  sum=0,
+    sub=1,
+    br=2,
+    call=3
+    };
+
+csl_enum e_cond {
+  c1=0,
+    c2=1,
+    c3=2
+    };
+
+csl_isa_field f_op {
+  f_op () {
+    set_type(opcode);
+    set_width(2);
+    set_enum(e_op);
+  }
+};
+
+csl_isa_field f_reg {
+  f_reg () {
+    set_type(address);
+    set_width(3);
+  }
+};
+
+csl_isa_field f_cond {
+  f_cond () {
+    set_type(subopcode);
+    set_width(2);
+    set_enum(e_cond);
+  }
+};
+
+csl_isa_field f_a {
+  f_a () {
+    set_type(constant);
+    set_width(1);
+  }
+};
+
+csl_isa_element root {
+  root () {
+    set_type(root_format);
+    set_width(8);
+  }
+};
+
+csl_isa_element f1 : root {
+  f_op f_op;
+  f1 () {
+    set_type(instr_format);
+    set_position(f_op,0);
+  }
+};
+
+csl_isa_element f2 : f1 {
+  f_reg f_reg;
+  f_a f_a;
+  f2 () {
+    set_type(instr_format);
+    set_position(f_a,5);
+    set_next(f_a,f_reg);
+  }
+};
+
+csl_isa_element f3 : f2 {
+  f_cond f_cond;
+  f3 () {
+    set_type(instr_format);
+    set_position(f_cond,6);
+  }
+};
+
+csl_isa_element sum_instr : f1 {
+  sum_instr () {
+    set_type(instr);
+    f_op.set_enum_item(sum);
+  }
+};
+
+csl_isa_element sub_instr : f2 {
+  sub_instr () {
+    set_type(instr);
+    f_op.set_enum_item(sub);
+  }
+};
+
+csl_isa_element br_instr : f3 {
+  br_instr () {
+    set_type(instr);
+    f_op.set_enum_item(br);
+    f_cond.set_enum_item(c1);
+  }
+};
+
+csl_isa_element call_instr : f3 {
+  call_instr () {
+    set_type(instr);
+    f_op.set_enum_item(call);
+    f_cond.set_enum_item(c3);
+  }
+};

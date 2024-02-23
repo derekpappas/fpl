@@ -1,0 +1,19 @@
+//Monica
+//26 oct 2007
+
+csl_memory mem {
+  mem(){
+    set_width(8);
+    set_depth(64); 
+    //  set_num_wr_ifc(2);  // for version 2
+  }
+};
+
+
+csl_unit u{
+  // csl_signal clk;
+ mem mem;
+ u(){
+   // clk.set_attr(clock);
+ }
+};

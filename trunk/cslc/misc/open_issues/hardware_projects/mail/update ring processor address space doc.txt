@@ -1,0 +1,7 @@
+ubject:   	update ring processor address space doc
+From:   	"Derek Pappas" <dpappas@fastpathlogic.ro>
+Date:   	Wed, March 14, 2007 08:16
+------------------------------------------------------------
+
+update ring processor address space doc to use virtual memory example from
+csl_memmap.fm/pdf

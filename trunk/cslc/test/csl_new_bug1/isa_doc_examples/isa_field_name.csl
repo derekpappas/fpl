@@ -1,0 +1,69 @@
+//Monica
+
+csl_enum op_code{
+   ADD,
+   MOV,
+   SUB
+};
+csl_enum eALU{
+   ALU0,
+   ALU1,
+   ALU2
+};
+
+ csl_isa_field op{
+   op(){
+     set_type(opcode);
+     set_width(2); 
+     set_enum(op_code);
+     set_name("opcode"); 
+   }
+};
+csl_isa_field alu{
+   alu(){
+     set_type(selector);
+     set_width(2); 
+     set_enum(eALU); 
+   }
+};
+csl_isa_element isa_root{
+  isa_root(){
+    set_type(root_format);
+    set_width(32);
+  }
+};
+csl_isa_element isa:isa_root {
+   alu alu;
+   op op; 
+   isa() {
+      set_type(instr_format);
+      set_position(alu, 16);
+      set_position(op, 30);
+    }
+};
+
+csl_isa_element f1: isa {
+  
+   f1() {
+     set_type(instr);
+     
+      op.set_enum_item(ADD);
+      alu.set_enum_item(ALU0);
+
+   }
+};  
+csl_isa_element f2: isa{
+   f2() {
+     set_type(instr);
+     op.set_enum_item(MOV);
+     alu.set_enum_item(ALU1);
+   }
+};  
+csl_isa_element f3: isa{
+ 
+   f3() {
+     set_type(instr);
+     op.set_enum_item(SUB);
+     alu.set_enum_item(ALU2);
+   }
+};  

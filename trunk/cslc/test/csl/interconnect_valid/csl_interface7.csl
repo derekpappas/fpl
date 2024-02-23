@@ -1,0 +1,28 @@
+//author: Ines
+//test: adding interfaces to a unit
+
+csl_interface ifc {
+  csl_port x(input);
+  csl_port y(input);
+  csl_port z(output);
+  ifc(){
+  
+  }
+};
+
+csl_unit u{
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(output);
+  u(){}
+};
+
+csl_unit A {
+  ifc ifc0;
+  ifc ifc1;
+  u u0(.p1(ifc0.x),.p2(ifc0.y),.p3(ifc0.z));
+  u u1(.p1(ifc1.x),.p2(ifc1.y),.p3(ifc1.z));
+  A(){
+
+  }
+};

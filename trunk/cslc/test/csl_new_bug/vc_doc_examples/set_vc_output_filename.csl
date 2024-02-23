@@ -1,0 +1,35 @@
+//Monica
+//12 oct 2007
+
+csl_unit dut{
+  csl_port  exp_out(output),exp_v(output), stim_in(input), stim_v(input);
+  csl_port clk(input);
+  csl_signal s1;
+  dut() {
+   clk.set_attr(clock); 
+   s1 = clk;
+   exp_out = exp_v;
+   stim_v = stim_in;
+ }
+};
+csl_vector stim_vec{
+  stim_vec(){
+  set_unit_name(dut);
+  set_direction(input);
+  }
+};
+csl_vector exp_vec{
+  exp_vec(){
+    set_unit_name(dut);
+    set_direction(output);
+    set_vc_output_filename("expected");
+  }
+};
+csl_testbench tb{
+  csl_signal clk(reg);
+  dut dut;
+  tb(){
+  clk.set_attr(clock);
+  add_logic(clock,clk,10,ns);
+}
+ };

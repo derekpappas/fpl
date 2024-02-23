@@ -1,0 +1,21 @@
+//oanab
+//25 mar 2008
+//formal to actual - signal and port with field
+
+csl_field f {
+  f () {
+    set_width(4);
+  }
+};
+
+csl_unit u1 {
+  // f f;
+  csl_signal s(f);
+  u1 () {}
+};
+
+csl_unit u2 {
+  csl_port x(input,5);
+  u1 u10(.s(x));
+  u2 () {}
+};

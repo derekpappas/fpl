@@ -1,0 +1,31 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="ssm">
+<interface name="a2rslave_out_ifc" >
+<port name="grant" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="request" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="in" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="aphi" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="write" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="read" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="ready" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="error" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="a2rslave_in_ifc" >
+<port name="grant" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="request" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="in" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="aphi" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="write" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="read" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="ready" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="error" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="a2r_global_ifc" >
+<port name="clock" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="reset" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="a2r_pipe_en" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+</interface>
+</unit>
+</design>

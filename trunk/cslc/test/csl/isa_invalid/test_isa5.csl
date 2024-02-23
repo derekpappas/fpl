@@ -1,0 +1,14 @@
+//Daniel
+//illegal because isa_field and isa_element don't have set_type
+csl_enum e{
+  RDY
+};
+csl_isa_field f_e(2,e);
+
+csl_isa_element if_e{
+  if_e(){  
+  }
+};
+
+csl_unit top {
+};

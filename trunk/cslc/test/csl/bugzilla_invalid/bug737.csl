@@ -1,0 +1,7 @@
+//bug 737
+csl_memory_map mm{
+                mm(){
+    //set_type(flat);
+          set_data_word_width(128);
+          }
+};

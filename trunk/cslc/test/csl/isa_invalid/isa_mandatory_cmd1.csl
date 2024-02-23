@@ -1,0 +1,14 @@
+//set_type -mandatory command for isa_field
+//danielt
+csl_enum e_op {
+  OP_0,
+  OP_1,
+  OP_2,
+  OP_3
+};
+csl_isa_field  fld_op{
+  fld_op(){
+    set_enum(e_op);
+    set_width(2);
+  }
+};

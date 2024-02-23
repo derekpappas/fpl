@@ -1,0 +1,194 @@
+yum -y upgrade
+rpm --import http://dag.wieers.com/rpm/packages/RPM-GPG-KEY.dag.txt
+rpm --import http://dag.wieers.com/rpm/packages/RPM-GPG-KEY.dag.txt
+rpm -K rpmforge-release-0.3.6-1.el5.rf.*.rpm
+yum install yum-priorities
+rpm -Uhv http://apt.sw.be/redhat/el5/en/x86_64/rpmforge/RPMS//rpmforge-release-0.3.6-1.el5.rf.x86_64.rpm
+yum -y install xerces
+yum -y install ncftp
+yum -y check-update
+yum -y install perl-MIME-Lite
+yum -y install perl-Readonly
+yum -y install perl-HTML-Template
+yum -y install xerces-c.x86_64 xerces-c-devel.x86_64 
+yum -y install libstdc++.x86_64  
+yum -y install libstdc++-devel.x86_64    
+yum -y install ant.x86_64     
+yum -y install ant
+yum -y install ant-contrib
+yum -y install cpptasks
+yum -y install libpng libpng-devel
+mkdir /opt/tools
+chown -R fpl:fpl /opt/tools
+chmod -R 775 /opt/tools
+mkdir /storage
+chown -R fpl:fpl /storage/
+chmod -R 775 /opt/stor
+chmod -R 775 /storage/
+rpm --import http://www.jpackage.org/jpackage.asc  
+rpm -q jpackage-utils
+emacs /etc/yum.repos.d/jpackage.repo&
+
+
+################################################################################
+# libharu installation
+################################################################################
+wget http://libharu.org/files/libharu-2.1.0.tar.gz
+put it in /opt/tools/
+tar xvfz filename
+cd libharu
+./configure
+make
+su -
+make install
+
+
+
+################################################################################
+# Xerces installation
+# set the env vars for xerces-c
+#http://www-01.ibm.com/software/htp/tpf/pubs/xml4ic/xml4c351/html/install.html
+#
+# http://xerces.apache.org/xerces-c/samples-3.html
+# On UNIX platforms you must ensure that LD_LIBRARY_PATH environment
+# variable is set properly to pick up the shared libraries at runtime. 
+# (UNIX gurus will understand here that LD_LIBRARY_PATH actually
+# translates to LD_LIBRARY_PATH on Solaris and Linux, SHLIB_PATH on
+# HP-UX, DYLD_LIBRARY_PATH on Mac OS X, and LIBPATH on AIX).
+################################################################################
+
+
+
+################################################################################
+# Java 1.6 installation
+################################################################################
+su -
+cd ~
+vi ~/.rpmmacros 
+<add the following two lines>
+%_topdir /root/rpmbuild
+%_tmppath %{_topdir}/tmp
+
+mkdir -p ~/rpmbuild/{SOURCES,SRPMS,SPECS,RPMS,tmp,BUILD}
+
+yum install -y rpm-build gcc gcc-c++ redhat-rpm-config jpackage-utils
+
+################################################################################
+# http://java.com/en/download/help/5000011400.xml
+# https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewFilteredProducts-SingleVariationTypeFilter
+# http://java.sun.com/products/archive/
+################################################################################
+
+cd ~/rpmbuild/
+curl -L -O http://mirrors.dotsrc.org/jpackage/1.7/generic/SRPMS.non-free/java-1.6.0-sun-1.6.0.11-1jpp.nosrc.rpm
+
+cd SOURCES/
+
+curl -L -O http://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/VerifyItem-Start/jdk-6u11-linux-x64-rpm.bin?BundledLineItemUUID=XMdIBe.m0q8AAAEfPsYe3W22&OrderID=UgtIBe.m0CAAAAEfIsYe3W22&ProductID=L0hIBe.oC_AAAAEdfzBGb7Et&FileName=/jdk-6u11-linux-x64-rpm.bin
+
+wget http://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/VerifyItem-Start/jdk-6u11-linux-x64.bin?BundledLineItemUUID=UHRIBe.myMgAAAEfNMYe3W22&OrderID=UgtIBe.m0CAAAAEfIsYe3W22&ProductID=L0hIBe.oC_AAAAEdfzBGb7Et&FileName=/jdk-6u11-linux-x64.bin
+
+mv jdk-6u11-linux-x64.bin\?AuthParam\=1234497208_81fb26664448014b7722df74c86e6e91\&TicketId\=CJ0rh5jGljOBwpTuWo8PBAs\=\&GroupName\=CDS\&FilePath\=%2FESD5%2FJSCDL%2Fjdk%2F6u11-b03%2Fjdk-6u11-linux-x64.bin\&File\=jdk-6u11-linux-x64.bin jdk-6u11-linux-x64.bin
+
+cd ..
+
+rpmbuild --rebuild java-1.6.0-sun-1.6.0.11-1jpp.nosrc.rpm
+
+yum --nogpgcheck localinstall /root/rpmbuild/RPMS/x86_64/java-1.6.0-sun-1.6.0.11-1jpp.x86_64.rpm
+
+alternatives --config java
+
+## [root@yowb4 rpmbuild]# alternatives --config java
+## 
+## There are 2 programs which provide 'java'.
+## 
+##   Selection    Command
+## -----------------------------------------------
+##    1           /usr/lib/jvm/jre-1.4.2-gcj/bin/java
+## *+ 2           /usr/lib/jvm/jre-1.6.0-sun/bin/java
+## 
+## Enter to keep the current selection[+], or type selection number: 2
+## [root@yowb4 rpmbuild]# java -version
+## java version "1.6.0_11"
+## Java(TM) SE Runtime Environment (build 1.6.0_11-b03)
+## Java HotSpot(TM) 64-Bit Server VM (build 11.0-b16, mixed mode)
+## [root@yowb4 rpmbuild]# 
+
+
+
+################################################################################
+# remove CENTOS ant
+################################################################################
+yum remove ant
+
+################################################################################
+# add apache ant
+################################################################################
+
+################################################################################
+# add apache cpptasks
+################################################################################
+
+################################################################################
+# add apache ant-contrib
+################################################################################
+
+<put the ant wget and env vars setting here>
+cd $ANT_HOME/lib
+cp /opt/tools/ant-contrib/lib/ant-contrib.jar  .
+cp /opt/tools/cpptasks-1.0b4/cpptasks.jar .
+
+
+
+################################################################################
+# echo NOW INSTALL BOOST BY DOWNLOADING 1.34.1 
+################################################################################
+
+su -
+cd /usr/include
+ls boost
+# should not exist
+ls /opt/tools/boost_1_34_1/boost 
+# should exist
+ln -s /opt/tools/boost_1_34_1/boost .
+ls -l boost
+
+
+Export USR_LOCAL_LIB=/usr/local/lib
+export LD_LIBRARY_PATH=${USR_LOCAL_LIB}/lib:$LD_LIBRARY_PATH 
+
+
+################################################################################
+# add env vars to ~/.bashrc
+################################################################################
+export WORK=<path to fpl_repo>/fpl_repo/cslc
+
+export LD_LIBRARY_PATH=
+export XERCESCROOT=/opt/blah
+export XERCESC_LIB=${XERCESCROOT}/lib
+export LD_LIBRARY_PATH=${XERCESC_LIB}
+export USR_LOCAL_LIB=/usr/local/lib
+export LD_LIBRARY_PATH=${USR_LOCAL_LIB}:$LD_LIBRARY_PATH 
+export LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH 
+
+################################################################################
+# Build cslc
+################################################################################
+
+rm $WORK/trunk/antlr/lib/cpp/src/libantlr.a
+
+################################################################################
+# the creation of the warning and error is a separate process because
+# it takes a long time to compile and the warning error files do not change very often
+################################################################################
+
+cd $WORK/trunk/src/csl_xml_warn_error
+antbuild compile.error
+
+################################################################################
+# SSH setup
+################################################################################
+
+iptables -A INPUT -p tcp --dport 22 --syn -m limit --limit 1/m --limit-burst 3 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 --syn -j DROP
+

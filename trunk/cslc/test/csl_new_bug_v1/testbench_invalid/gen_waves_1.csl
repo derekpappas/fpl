@@ -1,0 +1,37 @@
+//oanab
+//29 oct 2007
+//the testbench is specified in the list of scopes from the add_logic(..) cmd
+
+
+csl_unit dut{
+  csl_port clk(input);
+  csl_port stim_i(input,16),exp_o(output,8);
+  dut(){
+    clk.set_attr(clock);
+  }
+};
+
+csl_vector stim{
+  stim(){
+    set_unit_name(dut);
+    set_direction(input);
+  }
+};
+
+csl_vector exp{
+  exp(){
+   set_unit_name(dut);
+   set_direction(output);
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+  dut dut(.clk(clk));
+  tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,4,ns);
+    add_logic(generate_waves,"bla",fsdb,tb);  // tb is in the list of scopes, should be an error
+  }
+};
+

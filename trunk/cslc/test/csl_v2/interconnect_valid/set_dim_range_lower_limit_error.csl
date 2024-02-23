@@ -1,0 +1,22 @@
+//set_dim_range_lower_limit_error
+//andreim
+//20 June 2007
+
+csl_bitrange br_bitrange(0, 7);
+
+csl_unit u_unit1{
+	csl_signal 	sgn_sgn1,
+							sgn_sgn2(wire, 4),     
+							sgn_sgn3(reg, 0,3),  //lower & upper
+							sgn_sgn4,
+							sgn_sgn5,
+							sgn_sgn6;
+	u_unit1(){
+		sgn_sgn4.set_number_of_dimensions(3);
+		sgn_sgn4.set_dim_bitrange(0,br_bitrange);
+		sgn_sgn4.set_dim_bitrange(1,br_bitrange);
+		sgn_sgn4.set_dim_range(2,5,0);  //0 get illegal value
+
+
+	}
+};

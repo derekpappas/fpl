@@ -1,0 +1,24 @@
+// CristiL
+//
+// Bitrange functions
+
+csl_multi_dim_bitrange m(1);
+
+csl_bitrange b4(1,2);
+csl_bitrange b5(m.get_dim_width(2));
+
+m.set_dim_offset(1,3);
+m.set_dim_offset(2,m.get_dim_offset(2));
+
+m.set_dim_range(1,5,10);
+
+csl_bitrange b1(32);
+
+m.set_dim_bitrange(1,b1);
+m.set_dim_bitrange(2,m.get_dim_bitrange(1));
+
+csl_bitrange b2(m.get_dim_lower(3));
+csl_bitrange b3(m.get_dim_upper(3));
+
+
+

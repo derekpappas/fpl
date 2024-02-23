@@ -1,0 +1,1 @@
+When running ./mainBinary file there is an assert. Do not overwrite code in order to be able to see the assert.

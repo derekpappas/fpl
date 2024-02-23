@@ -1,0 +1,141 @@
+//oanab
+//13 feb 2008
+
+csl_unit in {
+  csl_port pr_msg_in(input,br_msg);
+  csl_port pr_msg_st0(output,br_msg);
+  csl_port clk(input);
+  in () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit dly {
+  csl_port pr_msg_st0(input,br_msg);
+  csl_port pr_msg_st1(output,br_msg);
+  csl_port clk(input);
+  dly () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit out {
+  csl_port pr_msg_st1(input,br_msg);
+  csl_port pr_msg_st2(output,br_msg);
+  csl_port clk(input);
+  out () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit bi {
+  csl_port bi_msg_in(input,br_msg);
+  csl_port bi_msg_out(output,br_msg);
+  csl_port clk(input);
+  bi () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit qm {
+  csl_port qm_msg_in(input,br_msg);
+  csl_port qm_msg_out(output,br_msg);
+  csl_port clk(input);
+  qm () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_fifo f_mq {
+  f_mq () {
+    set_width(87);
+    set_depth(16);
+  }
+};
+
+csl_unit mq {
+  csl_port mq_msg_in(input,br_msg);
+  csl_port mq_msg_out(output,br_msg);
+  csl_port clk(input);
+  f_mq f_mq(.clock(clk),.wr_data(mq_msg_in),.rd_data(mq_msg_out));
+  mq () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit me {
+  csl_port me_msg_in(input,br_msg);
+  csl_port me_msg_out(output,br_msg);
+  csl_port clk(input);
+  me () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit cl {
+  csl_port cl_msg_in(input,br_msg);
+  csl_port cl_msg_out(output,br_msg);
+  csl_port clk(input);
+  cl () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit bo {
+  csl_port bo_msg_in(input,br_msg);
+  csl_port bo_msg_out(output,br_msg);
+  csl_port clk(input);
+  bo () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit dut {
+  csl_port clk(input);
+  csl_port pr_msg_in(input),pr_msg_out(output);
+  in in(.clk(clk));
+  dly dly(.clk(clk));
+  out out(.clk(clk));
+  bi bi(.clk(clk));
+  qm qm(.clk(clk));
+  mq mq(.clk(clk));
+  me me(.clk(clk));
+  cl cl(.clk(clk));
+  bo bo(.clk(clk));
+  dut () {
+    in.pr_msg_st0.connect(dly.pr_msg_st0);
+    dly.pr_msg_st1.connect(out.pr_msg_st1);
+    in.pr_msg_st0.connect(bi.bi_msg_in);
+    bi.bi_msg_out.connect(qm.qm_msg_in);
+    qm.qm_msg_out.connect(mq.mq_msg_in);
+    mq.mq_msg_out.connect(me.me_msg_in);
+    bi.bi_msg_out.connect(me.me_msg_in);
+    me.me_msg_out.connect(cl.cl_msg_in);
+    me.me_msg_out.connect(bo.bo_msg_in);
+    bo.bo_msg_out.connect(out.pr_msg_st1);
+    clk.set_attr(clock);
+  }
+};
+
+csl_vector stim_vect {
+  stim_vect () {
+    set_unit_name(dut);
+    set_direction(input);
+  }
+};
+
+csl_vector exp_vect {
+  exp_vect () {
+    set_unit_name(dut);
+    set_direction(output);
+  }
+};
+
+csl_testbench tb {
+  csl_signal clk(reg);
+  dut dut1(.clk(clk));
+  tb () {
+    clk.set_attr(clock);
+    add_logic(clock,clk,10,ps);
+  }
+};

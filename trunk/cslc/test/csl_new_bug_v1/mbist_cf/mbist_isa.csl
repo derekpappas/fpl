@@ -1,0 +1,382 @@
+/* MBIST processor instruction set*/
+
+// declaring enum opcode
+
+csl_enum e_opcode {
+e_add=0,
+e_sub=1,
+e_or=2,
+e_not=3,
+e_cmp=4,
+e_br=5,
+e_sh=6,
+e_mov=15,
+e_movmr=8,
+e_movrm=9,
+e_movr=12,
+e_movc=13,
+e_movs=14,
+e_incr=10,
+e_decr=11
+};
+
+//----------------------------
+// defining instruction fields
+//----------------------------
+
+// opcode field
+
+csl_isa_field f_opcode {
+  f_opcode() {
+    set_type(opcode);
+    set_width(4);
+    set_enum(e_opcode);
+  }
+};
+
+// register address field
+csl_isa_field r_field {
+  r_field(){
+    set_type(rf_address);
+    set_width(4);
+  }
+};
+
+// constant filed
+csl_isa_field c_field{
+  c_field(){
+    set_type(constant);
+    set_width(8);
+  }
+};
+
+// branch address field
+
+csl_isa_field b_field {
+  b_field(){
+    set_type(rf_address);
+    set_width(11);
+  }
+};
+
+// memory address field
+
+csl_isa_field m_field {
+  m_field(){
+    set_type(mem_address);
+    set_width(8);
+  }
+};
+
+// operand field
+
+csl_isa_field o_field {
+  o_field(){
+    set_type(constant);
+    set_width(4);
+  }
+};
+
+// rom address field
+csl_isa_field rom_field {
+  rom_field() {
+    set_type(mem_address);
+    set_width(8);
+  }
+};
+
+// special register field
+
+csl_isa_field sr_field {
+  sr_field() {
+    set_type(rf_address);
+    set_width(8);
+  }
+};
+
+// condition fieldr
+
+csl_isa_field cond_field {
+  cond_field() {
+    set_type(selector);
+    set_width(1);
+  }
+};
+
+//-----------------------------
+// defining instruction formats
+//-----------------------------
+
+// defining root format
+
+csl_isa_element isa_root{
+  isa_root(){
+    set_type(root_format);
+    set_width(16);
+  }
+};
+
+// declaring base format derived from isa_root
+
+csl_isa_element base_format: isa_root {
+  f_opcode f_opcode;
+  base_format() {
+    set_type(instr_format);
+    set_position(f_opcode,12);
+  }
+};
+
+// declaring format1 derived from base_format
+
+csl_isa_element f1_format: base_format {
+  r_field dst_r_field;
+  f1_format(){
+    set_type(instr_format);
+    set_position(dst_r_field,8);
+  }
+};
+
+// declaring op format derived f1_format
+
+csl_isa_element op_format: f1_format {
+  r_field op1_field, op2_field;
+  op_format(){
+    set_type(instr_format);
+    set_position(op1_field,4);
+    set_next(op1_field, op2_field);
+  }
+};
+
+// declaring branch instruction format derived from base_format
+
+csl_isa_element br_format: base_format {
+  cond_field cond_field0;
+  b_field br_addr;
+  br_format(){
+    set_type(instr_format);
+    set_position(cond_field0,11);
+    set_next(cond_field0,br_addr);
+  }
+};
+
+// declaring register transfer format derived from f1_format
+
+csl_isa_element r_format: f1_format {
+  r_field r_src;
+  r_format() {
+    set_type(instr_format);
+    set_position(r_src,0);
+  }
+};
+
+// declaring memory transfer format derived from f1_format
+
+csl_isa_element m_format: f1_format {
+  m_field m_addr;
+  m_format(){
+    set_type(instr_format);
+    set_position(m_addr,0);
+  }
+};
+
+// declaring rom transfer format derived from f1_format
+
+csl_isa_element rom_format: f1_format {
+  rom_field rom_addr;
+  rom_format(){
+    set_type(instr_format);
+    set_position(rom_addr,0);
+  }
+};
+
+// declaring constant transfer format derived from f1_format
+
+csl_isa_element const_format: f1_format {
+  c_field const_nmb;
+  const_format(){
+    set_type(instr_format);
+    set_position(const_nmb,0);
+  }
+};
+
+// declaring special register transfer format derived from base_format 
+
+csl_isa_element sr_format: base_format {
+  sr_field sr_addr;
+  r_field r_src;
+  sr_format(){
+    set_type(instr_format);
+    set_position(sr_addr,4);
+    set_next(sr_addr,r_src);
+  }
+};
+
+// declaring shift op format derived from base_format 
+
+csl_isa_element sh_format: base_format {
+  o_field sha;
+  r_field r_src;
+  sh_format(){
+    set_type(instr_format);
+    set_position(sha,4);
+    set_next(sha,r_src);
+  }   
+};
+
+//---------------------------
+// defining instructions
+//---------------------------
+
+
+//1-  add instruction
+
+csl_isa_element i_add: op_format {
+  i_add() {
+    set_type(instr);
+    f_opcode.set_enum_item(e_add);
+    f_opcode.set_mnemonic("ADD");
+  }
+};
+
+//2- substract instruction
+
+csl_isa_element i_sub: op_format {
+  i_sub() {
+    set_type(instr);
+    f_opcode.set_enum_item(e_sub);
+    f_opcode.set_mnemonic("SUB");
+  }
+};
+
+//3- or instruction
+
+csl_isa_element i_or: op_format {
+  i_or() {
+    set_type(instr);
+    f_opcode.set_enum_item(e_or);
+    f_opcode.set_mnemonic("OR");
+  }
+};
+
+
+//4-  not instruction
+
+csl_isa_element i_not: op_format {
+  i_not() {
+    set_type(instr);
+    f_opcode.set_enum_item(e_not);
+    f_opcode.set_mnemonic("NOT");
+  }
+};
+
+
+//5- compare instruction
+csl_isa_element i_cmp: r_format {
+  i_cmp() {
+    set_type(instr);
+    f_opcode.set_enum_item(e_cmp);
+    f_opcode.set_mnemonic("CMP");
+  }
+};
+
+//6- branch instruction
+
+csl_isa_element i_br: br_format {
+  i_br() {
+    set_type(instr);
+    f_opcode.set_enum_item(e_br);
+    f_opcode.set_mnemonic("BR");
+  }
+};
+
+//7- shift instruction
+
+csl_isa_element i_sh: sh_format {
+  i_sh() {
+    set_type(instr);
+    f_opcode.set_enum_item(e_sh);
+    f_opcode.set_mnemonic("SH");
+  }
+};
+
+//8- register transfer instruction
+
+csl_isa_element i_rt: r_format {
+  i_rt() {
+    set_type(instr);
+    f_opcode.set_enum_item(e_mov);
+    f_opcode.set_mnemonic("MOV");
+  }
+};
+
+//9- from memory transfer instruction
+
+csl_isa_element i_fromm: m_format {
+  i_fromm() {
+    set_type(instr);
+    f_opcode.set_enum_item(e_movmr);
+    f_opcode.set_mnemonic("MOVMR");
+}
+};
+
+//10- to memory transfer instruction
+
+csl_isa_element i_tomem: m_format {
+  i_tomem() {
+    set_type(instr);
+    f_opcode.set_enum_item(e_movrm);
+    f_opcode.set_mnemonic("MOVRM");
+  }
+};
+
+//11- from rom transfer instruction
+
+csl_isa_element i_rom: rom_format {
+  i_rom() {
+    set_type(instr);
+    f_opcode.set_enum_item(e_movr);
+    f_opcode.set_mnemonic("MOVR");
+  }
+};
+
+
+//12- load constant to register instruction
+
+csl_isa_element i_ctor: const_format {
+  i_ctor() {
+    set_type(instr);
+    f_opcode.set_enum_item(e_movc);
+    f_opcode.set_mnemonic("MOVC");
+  }
+};
+
+//13- transfer to special register instruction
+
+csl_isa_element i_tosr: sr_format {
+  i_tosr() {
+    set_type(instr);
+    f_opcode.set_enum_item(e_movs);
+    f_opcode.set_mnemonic("MOVS");
+  }
+};
+
+//14- increment ram address counter
+
+csl_isa_element i_incr: base_format {
+  i_incr() {
+    set_type(instr);
+    f_opcode.set_enum_item(e_incr);
+    f_opcode.set_mnemonic("INCR");
+  }
+};
+
+//15- decrement ram address counter
+
+csl_isa_element i_decr: base_format {
+  i_decr() {
+    set_type(instr);
+    f_opcode.set_enum_item(e_decr);
+    f_opcode.set_mnemonic("DECR");
+  }
+};
+

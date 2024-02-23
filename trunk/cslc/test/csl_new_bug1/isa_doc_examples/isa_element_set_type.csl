@@ -1,0 +1,92 @@
+//Monica
+
+csl_enum op_code{
+   ADD,
+   BR
+};
+csl_enum eALU{
+   ALU0,
+   ALU1
+  
+};
+csl_enum eBranch{
+   BR0,
+   BR1
+}; 
+csl_isa_field op{
+   op(){
+     set_type(opcode);
+     set_width(6);
+     set_enum(op_code); 
+   }
+};
+csl_isa_field alu{
+   alu(){
+     set_type(selector);
+     set_width(5); 
+     set_enum(eALU); 
+   }
+};
+csl_isa_field branch1{
+   branch1(){
+     set_type(selector);
+     set_width(16);
+     set_enum(eBranch); 
+   }
+};
+csl_isa_element isa {
+  isa() {
+    set_type(root_format);
+    set_width(32);
+  }
+};
+
+
+csl_isa_element format1: isa{
+  op op; 
+   format1() {
+     set_type(instr_format);
+     set_position(op,0);
+    
+   }
+};
+
+csl_isa_element f1: format1{
+ branch1 branch1;
+   f1() {
+     set_type(instr);
+     op.set_enum_item(BR);
+     branch1.set_enum_item(BR1);
+     
+   }
+};  
+csl_isa_element f2: format1{
+ alu alu;
+   f2(){
+     set_type(instr);
+     set_previous(op,alu);
+     op.set_enum_item(ADD);
+     alu.set_enum_item(ALU0);
+   }
+};  
+csl_isa_element f3: format1{
+ alu alu;
+  
+   f3(){
+     set_type(instr);
+     set_previous(op, alu);
+     op.set_enum_item(ADD);
+     alu.set_enum_item(ALU1);
+   }
+};  
+csl_isa_element f4: format1{
+  branch1 br;
+   f4(){
+   set_type(instr);
+     set_previous(op, br);
+     op.set_enum_item(BR);
+     br.set_enum_item(BR0);
+   }
+};  
+csl_unit top {
+};

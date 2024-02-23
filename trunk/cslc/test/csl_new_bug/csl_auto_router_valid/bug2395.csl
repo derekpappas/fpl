@@ -1,0 +1,20 @@
+//bug 2395 - not fixed
+
+csl_unit a {
+  csl_port p1(input,9);
+  csl_port p2(input);
+  a () {}
+};
+
+csl_unit b {
+  a a0;
+  b () {}
+};
+
+csl_unit c {
+  b b0;
+  csl_signal s(30);
+  c () {
+    s.connect_by_name({3{b0.a0.p1,b0.a0.p2}});
+  }
+};

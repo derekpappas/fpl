@@ -1,0 +1,261 @@
+// CristiL
+//
+//      Tuesday 2.10.2007 17:00       
+//
+// This example describes a device with 4 microntollers all interconnected 
+
+
+// describes the memory of a  microcontroller
+//--------------------------------------------------
+csl_memory memMicrocontroller {
+
+  memMicrocontroller() {
+    set_width(8);
+    set_depth(512);
+  }
+
+//--------------------------------------------------
+}; // csl_memory memMicrocontroller
+
+
+
+// describes a interface used by a microcontroller side
+// having 2 ports
+//--------------------------------------------------
+csl_interface interfaceSide {
+  
+  csl_port inputSide(input,8);
+
+  csl_port outputSide(output,8);
+  
+
+  interfaceSide() {
+    
+  }
+
+//--------------------------------------------------
+}; // csl_interface interfaceSide
+
+
+// describes a interface block used by a microcontroller
+// having 2*4 ports
+//--------------------------------------------------
+csl_interface interfaceBlock {
+  
+  interfaceSide ifc0;
+
+  interfaceSide ifc1;
+
+  interfaceSide ifc2;
+  
+  interfaceSide ifc3;
+
+
+  interfaceBlock() {
+    
+    ifc2.reverse();
+
+    ifc3.reverse();
+      
+  }
+
+//--------------------------------------------------
+}; // csl_interface interfaceBlock
+
+
+// describes a group of signals used by a microcontroller's side
+// having 2 signals
+//--------------------------------------------------
+csl_signal_group signalGroupSide {
+  
+  csl_signal wire0(wire,8);
+
+  csl_signal wire1(wire,8);
+
+
+  signalGroupSide() {
+
+  }
+
+//--------------------------------------------------
+}; // csl_signal_group signalGroupSide
+
+
+// describes a group of signals  having 6 groups for the 
+// connection between microcontrollers and 4 groups for 
+// the connection between each microcontroller  and a the 
+// interface of the device
+//--------------------------------------------------
+csl_signal_group signalGroupDevice {
+  
+
+  // the following 6 groups of signals connected each microcontroller to each other
+  
+  signalGroupSide sg0;
+
+  signalGroupSide sg1;
+
+  signalGroupSide sg2;
+
+  signalGroupSide sg3;
+
+  signalGroupSide sg4;
+
+  signalGroupSide sg5;
+
+
+  // the following 4 groups connect each microcontroller to its periferal port
+
+  signalGroupSide sg6;
+
+  signalGroupSide sg7;
+
+  signalGroupSide sg8;
+
+  signalGroupSide sg9;
+
+
+  signalGroupDevice() {
+
+  }
+
+//--------------------------------------------------
+}; // csl_signal_group signalGroupSide
+
+
+
+// describes a microcontroller
+//--------------------------------------------------
+csl_unit unitMicrocontroller {
+//--------------------------------------------------
+
+  interfaceBlock interface;
+
+  memMicrocontroller memory;
+
+
+  unitMicrocontroller() {
+
+  }
+
+//--------------------------------------------------
+}; // csl_unit unitMicrocontroller
+
+
+// describes the device containing 4 microcontrollers
+//--------------------------------------------------
+csl_unit unitMicrocontrollerDevice {
+//--------------------------------------------------
+  
+  // all 2*10 signals grouped
+  signalGroupDevice signalGroup;
+
+  // interface for the device : 2*4 ports  
+  interfaceBlock  interface; 
+
+  // first microcontroller
+  unitMicrocontroller Microcontroller0 
+    (
+     .interface.ifc0(signalGroup.sg0),                                            
+     .interface.ifc1(signalGroup.sg1),                                           
+     .interface.ifc2(signalGroup.sg2),                                            
+
+     .interface.ifc3(signalGroup.sg3)
+    );
+
+  // second microcontroller
+  unitMicrocontroller Microcontroller1 
+    (
+     .interface.ifc0(signalGroup.sg4),
+     .interface.ifc1(signalGroup.sg5),                                             
+     .interface.ifc2(signalGroup.sg0),                                            
+
+     .interface.ifc3(signalGroup.sg6)
+    );
+
+  // third microcontroller
+  unitMicrocontroller Microcontroller2 
+    (
+     .interface.ifc0(signalGroup.sg7), 
+     .interface.ifc1(signalGroup.sg8),  
+     .interface.ifc2(signalGroup.sg1), 
+
+     .interface.ifc3(signalGroup.sg4)
+    );
+
+  // fourth microcontroller
+  unitMicrocontroller Microcontroller3 
+    (
+     .interface.ifc0(signalGroup.sg3),
+     .interface.ifc1(signalGroup.sg9),
+     .interface.ifc2(signalGroup.sg5),
+
+     .interface.ifc3(signalGroup.sg7)
+    );
+
+unitMicrocontrollerDevice() {
+    interface= {
+      signalGroup.sg3,
+      signalGroup.sg6,
+      signalGroup.sg8,
+      signalGroup.sg9
+    }; // this is a concat and should work
+}  
+
+//--------------------------------------------------
+}; // csl_unit unitMicrocontrollerDevice
+
+
+// describes the memory page for a microncontroller
+//--------------------------------------------------
+csl_memory_map_page pageMicrocontroller {
+//--------------------------------------------------
+
+  pageMicrocontroller() {
+
+    add_address_range(0,512);
+    
+    add(unitMicrocontroller.memory,"MEMORY");
+
+  }
+
+//--------------------------------------------------
+}; // csl_memory_map_page pageMicrocontroller
+
+
+// describes the memory page for the microcontrollers net (4)
+//--------------------------------------------------
+csl_memory_map_page pageMicrocontrollerNet {
+//--------------------------------------------------
+
+  pageMicrocontroller pMC0(unitMicrocontrollerDevice.Microcontroller0);
+  pageMicrocontroller pMC1(unitMicrocontrollerDevice.Microcontroller1);
+  pageMicrocontroller pMC2(unitMicrocontrollerDevice.Microcontroller2);
+  pageMicrocontroller pMC3(unitMicrocontrollerDevice.Microcontroller3);
+
+  pageMicrocontrollerNet() {
+
+    // 4 ranges for each microcontroller and one range for the device memory each of 512
+    add_address_range(0,5*512);
+
+    add(unitMicroncontrollerDevice.memory,"MEMORY");
+
+  }
+  
+//--------------------------------------------------
+};// csl_memory_map_page pageMicrocontrollerNet
+
+
+// describes the whole microcontoller map
+//--------------------------------------------------
+csl_memory_map mapMicrocontroller {
+//--------------------------------------------------
+  
+  mapMicrocontroller() {
+
+    set_type(hierarchical);
+
+  }
+
+//--------------------------------------------------
+};// csl_memory_map mapMicrocontroller

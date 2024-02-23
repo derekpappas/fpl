@@ -1,0 +1,30 @@
+//author: Monica
+//testing: csl_signal signal_object_name([signal_data_type][,width]);
+//         reg,wire,tri,trireg,triand,trior,wand,wor,supply0,supply1
+
+csl_unit u22_t8 {
+
+  csl_signal sgn22_1_t8(tri0);
+  csl_signal sgn22_2_t8(tri0,8);
+  
+  u22_t8() {
+    sgn22_1_t8.set_width(8);
+    sgn22_1_t8 = sgn22_2_t8;
+  }
+};
+
+csl_unit u23_t8 {
+
+  //csl_signal sgn23_2_t8;
+
+  u23_t8() {
+    //sgn23_2_t8.set_width(2);
+
+  }
+};
+csl_unit top{
+  u22_t8 u1;
+  u23_t8 u2;
+
+  top(){}
+};

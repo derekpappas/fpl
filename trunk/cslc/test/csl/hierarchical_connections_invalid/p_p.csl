@@ -1,0 +1,16 @@
+// Author : Cristil
+//
+// port to port
+
+
+
+csl_unit unitTop {
+  
+  csl_port port0(input);
+  csl_port port1(output);
+
+  unitTop() {
+    port0 = port1;
+    port1 = port0;
+  }
+};

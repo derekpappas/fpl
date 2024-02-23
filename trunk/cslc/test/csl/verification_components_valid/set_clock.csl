@@ -1,0 +1,54 @@
+//Monica
+//12 Oct 2007
+
+
+csl_register_file rf{
+rf(){
+    set_width(32);
+    set_depth(4);
+  }
+};
+
+csl_unit u1{
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(input);                  
+  csl_port p4(input,2);
+  csl_port p5(input,2);
+  csl_port p6(input,2);
+  csl_port p7(input,32);
+  csl_port p8(output,32);
+  csl_port p9(output,32);
+  csl_port p10(input);
+  csl_port p11(input);
+  csl_port p12(input);
+  csl_port p13(output);
+  rf r2(.reset(p1),.clear(p2),.clock(p3),.wr_addr(p4),.rd_addr0(p5),.rd_addr1(p6),.data_in(p7),.data_out0(p8),.data_out1(p9),.wr_en(p10),.rd_en0(p11),.rd_en1(p12),.valid(p13));
+  u1(){
+  }
+};
+csl_signal clk(wire);
+
+csl_vector stim{
+  stim(){    
+    set_unit_name(rf);    
+    set_direction(input);
+    set_vc_clock(clk);
+  }
+};
+
+csl_vector exp{
+  exp(){
+    set_unit_name(rf);    
+    set_direction(output);
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+  rf rf;
+  tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,20,ns);
+  }
+};

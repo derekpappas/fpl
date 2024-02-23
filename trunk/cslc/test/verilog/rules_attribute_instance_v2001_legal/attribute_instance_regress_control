@@ -1,0 +1,31 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+
+#exceptions:
+#0030.v              skip    "Bug 34"
+#0040.v              skip    "Bug 34"
+#0050.v              skip    "Bug 34"
+#0060.v              skip    "Bug 34"
+#0070.v              skip    "Bug 34"
+#0080.v              skip    "Bug 34"
+#0090.v              skip    "Bug 34"
+#0120.v              skip    "Bug 34"
+#0220.v              skip    "Bug 34"
+#0250.v              skip    "Bug 34"
+#0260.v              skip    "Bug 34"
+#0340.v              skip    "Bug 34"
+#0370.v              skip    "Bug 34"
+#0380.v              skip    "Bug 34"
+#0480.v              skip    "Bug 34"
+#0560.v              skip    "Bug 34"
+#0570.v              skip    "Bug 34"
+#
+#0590.v              skip    "UDP not implemented yet"
+#0600.v              skip    "UDP not implemented yet"
+#0610.v              skip    "UDP not implemented yet"
+#0620.v              skip    "UDP not implemented yet"
+#0630.v              skip    "UDP not implemented yet"
+#0640.v              skip    "UDP not implemented yet"

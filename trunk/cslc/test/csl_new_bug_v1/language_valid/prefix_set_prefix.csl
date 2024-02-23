@@ -1,0 +1,23 @@
+//
+
+csl_interface ifc{
+  csl_port p1(input,8); 
+  csl_port p2(output,8);
+  ifc() {}
+};
+
+csl_signal_group sg{
+  csl_signal p1(8);
+  csl_signal p2(8);
+  sg() {}
+};
+  
+csl_unit top{
+  ifc ifc0;      //generated ports will be : ifc_p1 , ifc_p2
+  sg sg;        //generated ports will be : sg_p1 , sg_p2
+  
+ top(){
+   ifc0.set_prefix("sg");
+   ifc0 = sg;
+ }
+};

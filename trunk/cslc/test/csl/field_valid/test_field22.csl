@@ -1,0 +1,23 @@
+//Petronela
+csl_enum e {
+  RD,
+  WR,
+  EN
+};
+csl_bitrange br(2);
+csl_field ab(20,34);
+csl_field f(6, e);
+csl_field ff(2,4);
+csl_unit u1 {
+ // csl_signal s1;
+  f f1;
+  f f2;
+  f f3;
+  f f4;
+  ff ff1;
+  ff ff2;
+  ff ff3;
+  u1() {
+    ff3.set_offset(6);
+  }
+};

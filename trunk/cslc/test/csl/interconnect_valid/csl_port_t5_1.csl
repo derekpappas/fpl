@@ -1,0 +1,10 @@
+//author: Monica
+//testing: csl_signal, csl_unit 
+
+csl_unit t5_u1 {
+  csl_signal in_port_t5(wire, 8);  
+  csl_signal s1(8);
+  t5_u1(){
+    in_port_t5 = s1;
+  }
+};

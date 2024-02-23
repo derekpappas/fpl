@@ -1,0 +1,26 @@
+//Monica
+
+csl_interface ifc1{
+  csl_parameter param1(3'b111);
+  csl_parameter param2(4'b0000);
+  csl_port p1(input,param1);
+  csl_port p2(input,param2);
+
+  ifc1(){}
+};
+
+csl_unit u1{
+ 
+  ifc1 #(16,84) ifc10;
+
+  u1(){}
+};
+
+csl_unit top4{
+  csl_signal s1(16);
+  csl_signal s2(84);
+  u1 u1(.ifc10.p1(s1),.ifc10.p2(s2));
+  top4(){}
+};
+
+

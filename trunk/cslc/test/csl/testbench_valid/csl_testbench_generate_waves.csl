@@ -1,0 +1,51 @@
+//Monica
+//22 oct 2007
+// add_logic(generate_waves,file_name,wave_type);
+
+csl_unit dut{
+  csl_port in_v(input,1), in_d(input, 8);
+  csl_port out_v(output, 1), out_d(output, 8);
+  csl_port clk(input);  
+dut(){
+clk.set_attr(clock);}
+};
+
+csl_vector stim{
+  stim(){
+    set_vc_header_comment("stimulus_vector");
+    set_vc_output_filename("stim_data_out");
+    set_unit_name( dut );
+    set_direction( input );
+  }
+};
+
+csl_vector exp{
+  exp(){
+    set_vc_header_comment("expected_vector");
+    set_vc_output_filename("exp_data_out");
+    set_unit_name( dut );
+    set_direction( output );
+  }
+};
+
+csl_unit a {
+  csl_port p1(input);
+  csl_port p2(input,8);
+  csl_port p3(output);
+  csl_port p4(output,8);
+  csl_port p5(input);
+  dut dut1(.in_v(p1),.in_d(p2),.out_v(p3),.out_d(p4),.clk(p5));
+  a (){}
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+  dut dut_i;
+    tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,10,ps);
+    add_logic(generate_waves,"waves", vcd);
+  }
+};
+
+

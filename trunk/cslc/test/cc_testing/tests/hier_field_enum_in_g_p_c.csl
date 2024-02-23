@@ -1,0 +1,33 @@
+// this test is illegal because we set the enum in the parent field
+// and then set the same field to an enum in the child
+
+csl_enum e {
+  a = 1,
+  b,
+  c
+};
+
+csl_field f1(32);
+
+csl_field point{
+  f1 x;
+  f1 y;
+  f1 z;
+  point(){
+    set_width(32);
+  }
+};
+
+csl_field triangle{
+  point pt_0;
+  point pt_1;
+  point pt_2;
+  f3(){
+    set_width(32);
+    f2_0.f1_0.set_enum(e); 
+  }
+};
+
+
+
+

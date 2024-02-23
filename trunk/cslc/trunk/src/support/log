@@ -1,0 +1,1275 @@
+Apache Ant version 1.7.0 compiled on August 29 2007
+Buildfile: build.xml
+Adding reference: ant.PropertyHelper
+Detected Java version: 1.6 in: /usr/lib/jvm/java-6-sun-1.6.0.07/jre
+Detected OS: Linux
+Adding reference: ant.ComponentHelper
+Setting ro project property: rlmOff -> yes
+Setting ro project property: ant.file -> /home/derek/Desktop/fpl_svn_20090103/trunk/src/support/build.xml
+Adding reference: ant.projectHelper
+Adding reference: ant.parsing.context
+Adding reference: ant.targets
+parsing buildfile /home/derek/Desktop/fpl_svn_20090103/trunk/src/support/build.xml with URI = file:/home/derek/Desktop/fpl_svn_20090103/trunk/src/support/build.xml
+Setting ro project property: ant.project.name -> CSLC Support
+Adding reference: CSLC Support
+Setting ro project property: ant.file.CSLC Support -> /home/derek/Desktop/fpl_svn_20090103/trunk/src/support/build.xml
+Project base dir set to: /home/derek/Desktop/fpl_svn_20090103/trunk/src/support
+ +Target: 
+ +Target: check.dependencies
+ +Target: set.all.properties
+ +Target: create.build.dir
+ +Target: wall
+ +Target: debug
+ +Target: clean
+ +Target: compile
+ +Target: drivers
+ +Target: help
+[antlib:org.apache.tools.ant] Could not load definitions from resource org/apache/tools/ant/antlib.xml. It could not be found.
+Setting project property: project.parent.dir -> ..
+Setting project property: project.parent.file -> build.xml
+Attempting to create object of type org.apache.tools.ant.helper.DefaultExecutor
+Adding reference: ant.executor
+Build sequence for target(s) `debug' is [check.dependencies, set.all.properties, debug]
+Complete build sequence is [check.dependencies, set.all.properties, debug, help, drivers, create.build.dir, clean, wall, compile, ]
+
+check.dependencies:
+parsing buildfile jar:file:/usr/share/ant/lib/ant-contrib.jar!/net/sf/antcontrib/antlib.xml with URI = jar:file:/usr/share/ant/lib/ant-contrib.jar!/net/sf/antcontrib/antlib.xml
+Class net.sf.antcontrib.platform.ShellScriptTask loaded from parent loader (parentFirst)
+ +Datatype shellscript net.sf.antcontrib.platform.ShellScriptTask
+Class net.sf.antcontrib.property.PropertyCopy loaded from parent loader (parentFirst)
+ +Datatype propertycopy net.sf.antcontrib.property.PropertyCopy
+Class net.sf.antcontrib.property.PathToFileSet loaded from parent loader (parentFirst)
+ +Datatype pathtofileset net.sf.antcontrib.property.PathToFileSet
+Class net.sf.antcontrib.antserver.client.ClientTask loaded from parent loader (parentFirst)
+ +Datatype remoteant net.sf.antcontrib.antserver.client.ClientTask
+Class net.sf.antcontrib.logic.RunTargetTask loaded from parent loader (parentFirst)
+ +Datatype runtarget net.sf.antcontrib.logic.RunTargetTask
+Class net.sf.antcontrib.logic.Assert loaded from parent loader (parentFirst)
+ +Datatype assert net.sf.antcontrib.logic.Assert
+Class net.sf.antcontrib.property.RegexTask loaded from parent loader (parentFirst)
+ +Datatype propertyregex net.sf.antcontrib.property.RegexTask
+Class net.sf.antcontrib.math.MathTask loaded from parent loader (parentFirst)
+ +Datatype math net.sf.antcontrib.math.MathTask
+Class net.sf.antcontrib.logic.TryCatchTask loaded from parent loader (parentFirst)
+ +Datatype trycatch net.sf.antcontrib.logic.TryCatchTask
+Class net.sf.antcontrib.antserver.server.ServerTask loaded from parent loader (parentFirst)
+ +Datatype antserver net.sf.antcontrib.antserver.server.ServerTask
+Class net.sf.antcontrib.logic.AntCallBack loaded from parent loader (parentFirst)
+ +Datatype antcallback net.sf.antcontrib.logic.AntCallBack
+Class net.sf.antcontrib.walls.CompileWithWalls loaded from parent loader (parentFirst)
+ +Datatype compilewithwalls net.sf.antcontrib.walls.CompileWithWalls
+Class net.sf.antcontrib.logic.OutOfDate loaded from parent loader (parentFirst)
+ +Datatype outofdate net.sf.antcontrib.logic.OutOfDate
+Class net.sf.antcontrib.platform.OsFamily loaded from parent loader (parentFirst)
+ +Datatype osfamily net.sf.antcontrib.platform.OsFamily
+Class net.sf.antcontrib.perf.StopWatchTask loaded from parent loader (parentFirst)
+ +Datatype stopwatch net.sf.antcontrib.perf.StopWatchTask
+Class net.sf.antcontrib.logic.Throw loaded from parent loader (parentFirst)
+ +Datatype throw net.sf.antcontrib.logic.Throw
+Class net.sf.antcontrib.antclipse.ClassPathTask loaded from parent loader (parentFirst)
+ +Datatype antclipse net.sf.antcontrib.antclipse.ClassPathTask
+Class net.sf.antcontrib.property.URLEncodeTask loaded from parent loader (parentFirst)
+ +Datatype urlencode net.sf.antcontrib.property.URLEncodeTask
+Class net.sf.antcontrib.logic.condition.BooleanConditionTask loaded from parent loader (parentFirst)
+ +Datatype bool net.sf.antcontrib.logic.condition.BooleanConditionTask
+Class net.sf.antcontrib.logic.TimestampSelector loaded from parent loader (parentFirst)
+ +Datatype timestampselector net.sf.antcontrib.logic.TimestampSelector
+Class net.sf.antcontrib.logic.ForEach loaded from parent loader (parentFirst)
+ +Datatype foreach net.sf.antcontrib.logic.ForEach
+Class net.sf.antcontrib.logic.IfTask loaded from parent loader (parentFirst)
+ +Datatype if net.sf.antcontrib.logic.IfTask
+Class net.sf.antcontrib.property.PropertySelector loaded from parent loader (parentFirst)
+ +Datatype propertyselector net.sf.antcontrib.property.PropertySelector
+Class net.sf.antcontrib.property.SortList loaded from parent loader (parentFirst)
+ +Datatype sortlist net.sf.antcontrib.property.SortList
+Class net.sf.antcontrib.logic.AntFetch loaded from parent loader (parentFirst)
+ +Datatype antfetch net.sf.antcontrib.logic.AntFetch
+Class net.sf.antcontrib.net.PostTask loaded from parent loader (parentFirst)
+ +Datatype post net.sf.antcontrib.net.PostTask
+Class net.sf.antcontrib.process.ForgetTask loaded from parent loader (parentFirst)
+ +Datatype forget net.sf.antcontrib.process.ForgetTask
+Class net.sf.antcontrib.process.Limit loaded from parent loader (parentFirst)
+ +Datatype limit net.sf.antcontrib.process.Limit
+Class net.sf.antcontrib.logic.Switch loaded from parent loader (parentFirst)
+ +Datatype switch net.sf.antcontrib.logic.Switch
+Class net.sf.antcontrib.property.Variable loaded from parent loader (parentFirst)
+ +Datatype var net.sf.antcontrib.property.Variable
+Class net.sf.antcontrib.inifile.IniFileTask loaded from parent loader (parentFirst)
+ +Datatype inifile net.sf.antcontrib.inifile.IniFileTask
+Class net.sf.antcontrib.design.VerifyDesign loaded from parent loader (parentFirst)
+ +Datatype verifydesign net.sf.antcontrib.design.VerifyDesign
+Class net.sf.antcontrib.logic.condition.IsGreaterThan loaded from parent loader (parentFirst)
+ +Datatype isgreaterthan net.sf.antcontrib.logic.condition.IsGreaterThan
+Class net.sf.antcontrib.logic.condition.IsLessThan loaded from parent loader (parentFirst)
+ +Datatype islessthan net.sf.antcontrib.logic.condition.IsLessThan
+Class net.sf.antcontrib.logic.condition.IsPropertyFalse loaded from parent loader (parentFirst)
+ +Datatype ispropertyfalse net.sf.antcontrib.logic.condition.IsPropertyFalse
+Class net.sf.antcontrib.logic.condition.IsPropertyTrue loaded from parent loader (parentFirst)
+ +Datatype ispropertytrue net.sf.antcontrib.logic.condition.IsPropertyTrue
+Class net.sf.antcontrib.logic.For loaded from parent loader (parentFirst)
+ +Datatype for net.sf.antcontrib.logic.For
+Class net.sf.antcontrib.cpptasks.VersionInfo loaded from parent loader (parentFirst)
+ +Datatype versioninfo net.sf.antcontrib.cpptasks.VersionInfo
+Class net.sf.antcontrib.cpptasks.types.SystemLibrarySet loaded from parent loader (parentFirst)
+ +Datatype syslibset net.sf.antcontrib.cpptasks.types.SystemLibrarySet
+Class net.sf.antcontrib.cpptasks.DistributerDef loaded from parent loader (parentFirst)
+ +Datatype distributer net.sf.antcontrib.cpptasks.DistributerDef
+Class net.sf.antcontrib.cpptasks.CompilerDef loaded from parent loader (parentFirst)
+ +Datatype compiler net.sf.antcontrib.cpptasks.CompilerDef
+Class net.sf.antcontrib.cpptasks.types.DefineSet loaded from parent loader (parentFirst)
+ +Datatype defineset net.sf.antcontrib.cpptasks.types.DefineSet
+Class net.sf.antcontrib.cpptasks.TargetDef loaded from parent loader (parentFirst)
+ +Datatype targetplatform net.sf.antcontrib.cpptasks.TargetDef
+Class net.sf.antcontrib.cpptasks.LinkerDef loaded from parent loader (parentFirst)
+ +Datatype linker net.sf.antcontrib.cpptasks.LinkerDef
+Class net.sf.antcontrib.cpptasks.types.LibrarySet loaded from parent loader (parentFirst)
+ +Datatype libset net.sf.antcontrib.cpptasks.types.LibrarySet
+Class net.sf.antcontrib.cpptasks.CCTask loaded from parent loader (parentFirst)
+ +Datatype cc net.sf.antcontrib.cpptasks.CCTask
+Could not load class (org.apache.tools.ant.taskdefs.repository.MavenRepository) for type mavenrepository
+Could not load a dependent class (jdepend/xmlui/JDepend) for type jdepend
+Could not load class (org.apache.tools.ant.taskdefs.optional.ejb.Ejbc) for type ejbc
+Could not load class (org.apache.tools.ant.taskdefs.optional.StyleBook) for type stylebook
+Could not load class (org.apache.tools.ant.taskdefs.optional.ejb.WLStop) for type wlstop
+Could not load class (org.apache.tools.ant.taskdefs.optional.ejb.WLRun) for type wlrun
+Could not load class (org.apache.tools.ant.taskdefs.optional.image.Image) for type image
+Could not load class (org.apache.tools.ant.taskdefs.optional.ejb.DDCreator) for type ddcreator
+Could not load class (org.apache.tools.ant.taskdefs.optional.starteam.StarTeamCheckin) for type stcheckin
+Could not load class (org.apache.tools.ant.taskdefs.optional.starteam.StarTeamCheckout) for type stcheckout
+Could not load class (org.apache.tools.ant.taskdefs.optional.starteam.StarTeamLabel) for type stlabel
+Could not load class (org.apache.tools.ant.taskdefs.optional.starteam.StarTeamList) for type stlist
+Could not load class (org.apache.tools.ant.taskdefs.optional.NetRexxC) for type netrexxc
+Could not load class (org.apache.tools.ant.taskdefs.optional.scm.AntStarTeamCheckOut) for type starteam
+ +Datatype limit net.sf.antcontrib.process.Limit
+ +Datatype propertyfile org.apache.tools.ant.taskdefs.optional.PropertyFile
+ +Datatype ccmkdir org.apache.tools.ant.taskdefs.optional.clearcase.CCMkdir
+ +Datatype importtypelib org.apache.tools.ant.taskdefs.optional.dotnet.ImportTypelib
+ +Datatype vsscheckin org.apache.tools.ant.taskdefs.optional.vss.MSVSSCHECKIN
+ +Datatype sql org.apache.tools.ant.taskdefs.SQLExec
+ +Datatype p4reopen org.apache.tools.ant.taskdefs.optional.perforce.P4Reopen
+ +Datatype cvspass org.apache.tools.ant.taskdefs.CVSPass
+ +Datatype csc org.apache.tools.ant.taskdefs.optional.dotnet.CSharp
+ +Datatype loadresource org.apache.tools.ant.taskdefs.LoadResource
+ +Datatype sshexec org.apache.tools.ant.taskdefs.optional.ssh.SSHExec
+ +Datatype inifile net.sf.antcontrib.inifile.IniFileTask
+ +Datatype dirname org.apache.tools.ant.taskdefs.Dirname
+ +Datatype p4label org.apache.tools.ant.taskdefs.optional.perforce.P4Label
+ +Datatype p4revert org.apache.tools.ant.taskdefs.optional.perforce.P4Revert
+ +Datatype replaceregexp org.apache.tools.ant.taskdefs.optional.ReplaceRegExp
+ +Datatype get org.apache.tools.ant.taskdefs.Get
+ +Datatype jjtree org.apache.tools.ant.taskdefs.optional.javacc.JJTree
+ +Datatype length org.apache.tools.ant.taskdefs.Length
+ +Datatype sleep org.apache.tools.ant.taskdefs.Sleep
+ +Datatype jarlib-display org.apache.tools.ant.taskdefs.optional.extension.JarLibDisplayTask
+ +Datatype dependset org.apache.tools.ant.taskdefs.DependSet
+ +Datatype zip org.apache.tools.ant.taskdefs.Zip
+ +Datatype patch org.apache.tools.ant.taskdefs.Patch
+ +Datatype jspc org.apache.tools.ant.taskdefs.optional.jsp.JspC
+ +Datatype style org.apache.tools.ant.taskdefs.XSLTProcess
+ +Datatype nice org.apache.tools.ant.taskdefs.Nice
+ +Datatype tstamp org.apache.tools.ant.taskdefs.Tstamp
+ +Datatype unwar org.apache.tools.ant.taskdefs.Expand
+ +Datatype vsshistory org.apache.tools.ant.taskdefs.optional.vss.MSVSSHISTORY
+ +Datatype sortlist net.sf.antcontrib.property.SortList
+ +Datatype cvschangelog org.apache.tools.ant.taskdefs.cvslib.ChangeLogTask
+ +Datatype runtarget net.sf.antcontrib.logic.RunTargetTask
+ +Datatype p4submit org.apache.tools.ant.taskdefs.optional.perforce.P4Submit
+ +Datatype scp org.apache.tools.ant.taskdefs.optional.ssh.Scp
+ +Datatype ccmcheckin org.apache.tools.ant.taskdefs.optional.ccm.CCMCheckin
+ +Datatype post net.sf.antcontrib.net.PostTask
+ +Datatype p4change org.apache.tools.ant.taskdefs.optional.perforce.P4Change
+ +Datatype bzip2 org.apache.tools.ant.taskdefs.BZip2
+ +Datatype sync org.apache.tools.ant.taskdefs.Sync
+ +Datatype p4delete org.apache.tools.ant.taskdefs.optional.perforce.P4Delete
+ +Datatype vssadd org.apache.tools.ant.taskdefs.optional.vss.MSVSSADD
+ +Datatype javadoc org.apache.tools.ant.taskdefs.Javadoc
+ +Datatype makeurl org.apache.tools.ant.taskdefs.MakeUrl
+ +Datatype p4integrate org.apache.tools.ant.taskdefs.optional.perforce.P4Integrate
+ +Datatype translate org.apache.tools.ant.taskdefs.optional.i18n.Translate
+ +Datatype signjar org.apache.tools.ant.taskdefs.SignJar
+ +Datatype cclock org.apache.tools.ant.taskdefs.optional.clearcase.CCLock
+ +Datatype classloader org.apache.tools.ant.taskdefs.Classloader
+ +Datatype chown org.apache.tools.ant.taskdefs.optional.unix.Chown
+ +Datatype jarlib-available org.apache.tools.ant.taskdefs.optional.extension.JarLibAvailableTask
+ +Datatype rexec org.apache.tools.ant.taskdefs.optional.net.RExecTask
+ +Datatype WsdlToDotnet org.apache.tools.ant.taskdefs.optional.dotnet.WsdlToDotnet
+ +Datatype buildnumber org.apache.tools.ant.taskdefs.BuildNumber
+ +Datatype if net.sf.antcontrib.logic.IfTask
+ +Datatype apt org.apache.tools.ant.taskdefs.Apt
+ +Datatype resourcecount org.apache.tools.ant.taskdefs.ResourceCount
+ +Datatype cvsversion org.apache.tools.ant.taskdefs.cvslib.CvsVersion
+ +Datatype ejbjar org.apache.tools.ant.taskdefs.optional.ejb.EjbJar
+ +Datatype pathtofileset net.sf.antcontrib.property.PathToFileSet
+ +Datatype outofdate net.sf.antcontrib.logic.OutOfDate
+ +Datatype remoteant net.sf.antcontrib.antserver.client.ClientTask
+ +Datatype war org.apache.tools.ant.taskdefs.War
+ +Datatype copypath org.apache.tools.ant.taskdefs.CopyPath
+ +Datatype rename org.apache.tools.ant.taskdefs.Rename
+ +Datatype serverdeploy org.apache.tools.ant.taskdefs.optional.j2ee.ServerDeploy
+ +Datatype sequential org.apache.tools.ant.taskdefs.Sequential
+ +Datatype verifydesign net.sf.antcontrib.design.VerifyDesign
+ +Datatype subant org.apache.tools.ant.taskdefs.SubAnt
+ +Datatype move org.apache.tools.ant.taskdefs.Move
+ +Datatype ildasm org.apache.tools.ant.taskdefs.optional.dotnet.Ildasm
+ +Datatype copydir org.apache.tools.ant.taskdefs.Copydir
+ +Datatype schemavalidate org.apache.tools.ant.taskdefs.optional.SchemaValidate
+ +Datatype trycatch net.sf.antcontrib.logic.TryCatchTask
+ +Datatype cccheckin org.apache.tools.ant.taskdefs.optional.clearcase.CCCheckin
+ +Datatype ccunlock org.apache.tools.ant.taskdefs.optional.clearcase.CCUnlock
+ +Datatype wljspc org.apache.tools.ant.taskdefs.optional.jsp.WLJspc
+ +Datatype fixcrlf org.apache.tools.ant.taskdefs.FixCRLF
+ +Datatype antclipse net.sf.antcontrib.antclipse.ClassPathTask
+ +Datatype telnet org.apache.tools.ant.taskdefs.optional.net.TelnetTask
+ +Datatype sosget org.apache.tools.ant.taskdefs.optional.sos.SOSGet
+ +Datatype pathconvert org.apache.tools.ant.taskdefs.PathConvert
+ +Datatype antserver net.sf.antcontrib.antserver.server.ServerTask
+ +Datatype record org.apache.tools.ant.taskdefs.Recorder
+ +Datatype p4sync org.apache.tools.ant.taskdefs.optional.perforce.P4Sync
+ +Datatype exec org.apache.tools.ant.taskdefs.ExecTask
+ +Datatype ccmklabel org.apache.tools.ant.taskdefs.optional.clearcase.CCMklabel
+ +Datatype p4edit org.apache.tools.ant.taskdefs.optional.perforce.P4Edit
+ +Datatype manifest org.apache.tools.ant.taskdefs.ManifestTask
+ +Datatype antlr org.apache.tools.ant.taskdefs.optional.ANTLR
+ +Datatype ftp org.apache.tools.ant.taskdefs.optional.net.FTP
+ +Datatype foreach net.sf.antcontrib.logic.ForEach
+ +Datatype antfetch net.sf.antcontrib.logic.AntFetch
+ +Datatype execon org.apache.tools.ant.taskdefs.ExecuteOn
+ +Datatype ant org.apache.tools.ant.taskdefs.Ant
+ +Datatype ccmcheckout org.apache.tools.ant.taskdefs.optional.ccm.CCMCheckout
+ +Datatype p4resolve org.apache.tools.ant.taskdefs.optional.perforce.P4Resolve
+ +Datatype xmlvalidate org.apache.tools.ant.taskdefs.optional.XMLValidateTask
+ +Datatype xslt org.apache.tools.ant.taskdefs.XSLTProcess
+ +Datatype native2ascii org.apache.tools.ant.taskdefs.optional.Native2Ascii
+ +Datatype iplanet-ejbc org.apache.tools.ant.taskdefs.optional.ejb.IPlanetEjbcTask
+ +Datatype ccmcheckintask org.apache.tools.ant.taskdefs.optional.ccm.CCMCheckinDefault
+ +Datatype gzip org.apache.tools.ant.taskdefs.GZip
+ +Datatype ccrmtype org.apache.tools.ant.taskdefs.optional.clearcase.CCRmtype
+ +Datatype ear org.apache.tools.ant.taskdefs.Ear
+ +Datatype input org.apache.tools.ant.taskdefs.Input
+ +Datatype presetdef org.apache.tools.ant.taskdefs.PreSetDef
+ +Datatype rmic org.apache.tools.ant.taskdefs.Rmic
+ +Datatype checksum org.apache.tools.ant.taskdefs.Checksum
+ +Datatype mail org.apache.tools.ant.taskdefs.email.EmailTask
+ +Datatype bool net.sf.antcontrib.logic.condition.BooleanConditionTask
+ +Datatype loadfile org.apache.tools.ant.taskdefs.LoadFile
+ +Datatype vsscheckout org.apache.tools.ant.taskdefs.optional.vss.MSVSSCHECKOUT
+ +Datatype soscheckin org.apache.tools.ant.taskdefs.optional.sos.SOSCheckin
+ +Datatype mimemail org.apache.tools.ant.taskdefs.optional.net.MimeMail
+ +Datatype gunzip org.apache.tools.ant.taskdefs.GUnzip
+ +Datatype concat org.apache.tools.ant.taskdefs.Concat
+ +Datatype cab org.apache.tools.ant.taskdefs.optional.Cab
+ +Datatype touch org.apache.tools.ant.taskdefs.Touch
+ +Datatype throw net.sf.antcontrib.logic.Throw
+ +Datatype switch net.sf.antcontrib.logic.Switch
+ +Datatype parallel org.apache.tools.ant.taskdefs.Parallel
+ +Datatype splash org.apache.tools.ant.taskdefs.optional.splash.SplashTask
+ +Datatype antcall org.apache.tools.ant.taskdefs.CallTarget
+ +Datatype ccmkbl org.apache.tools.ant.taskdefs.optional.clearcase.CCMkbl
+ +Datatype cccheckout org.apache.tools.ant.taskdefs.optional.clearcase.CCCheckout
+ +Datatype typedef org.apache.tools.ant.taskdefs.Typedef
+ +Datatype assert net.sf.antcontrib.logic.Assert
+ +Datatype urlencode net.sf.antcontrib.property.URLEncodeTask
+ +Datatype p4have org.apache.tools.ant.taskdefs.optional.perforce.P4Have
+ +Datatype filter org.apache.tools.ant.taskdefs.Filter
+ +Datatype import org.apache.tools.ant.taskdefs.ImportTask
+ +Datatype xmlproperty org.apache.tools.ant.taskdefs.XmlProperty
+ +Datatype copy org.apache.tools.ant.taskdefs.Copy
+ +Datatype jsharpc org.apache.tools.ant.taskdefs.optional.dotnet.JSharp
+ +Datatype math net.sf.antcontrib.math.MathTask
+ +Datatype symlink org.apache.tools.ant.taskdefs.optional.unix.Symlink
+ +Datatype propertyregex net.sf.antcontrib.property.RegexTask
+ +Datatype antstructure org.apache.tools.ant.taskdefs.AntStructure
+ +Datatype script org.apache.tools.ant.taskdefs.optional.Script
+ +Datatype ccmcreatetask org.apache.tools.ant.taskdefs.optional.ccm.CCMCreateTask
+ +Datatype rpm org.apache.tools.ant.taskdefs.optional.Rpm
+ +Datatype delete org.apache.tools.ant.taskdefs.Delete
+ +Datatype attrib org.apache.tools.ant.taskdefs.optional.windows.Attrib
+ +Datatype replace org.apache.tools.ant.taskdefs.Replace
+ +Datatype verifyjar org.apache.tools.ant.taskdefs.VerifyJar
+ +Datatype waitfor org.apache.tools.ant.taskdefs.WaitFor
+ +Datatype untar org.apache.tools.ant.taskdefs.Untar
+ +Datatype loadproperties org.apache.tools.ant.taskdefs.LoadProperties
+ +Datatype available org.apache.tools.ant.taskdefs.Available
+ +Datatype echoproperties org.apache.tools.ant.taskdefs.optional.EchoProperties
+ +Datatype junit org.apache.tools.ant.taskdefs.optional.junit.JUnitTask
+ +Datatype chgrp org.apache.tools.ant.taskdefs.optional.unix.Chgrp
+ +Datatype bunzip2 org.apache.tools.ant.taskdefs.BUnzip2
+ +Datatype whichresource org.apache.tools.ant.taskdefs.WhichResource
+ +Datatype copyfile org.apache.tools.ant.taskdefs.Copyfile
+ +Datatype p4labelsync org.apache.tools.ant.taskdefs.optional.perforce.P4Labelsync
+ +Datatype manifestclasspath org.apache.tools.ant.taskdefs.ManifestClassPath
+ +Datatype compilewithwalls net.sf.antcontrib.walls.CompileWithWalls
+ +Datatype vsscreate org.apache.tools.ant.taskdefs.optional.vss.MSVSSCREATE
+ +Datatype antcallback net.sf.antcontrib.logic.AntCallBack
+ +Datatype macrodef org.apache.tools.ant.taskdefs.MacroDef
+ +Datatype propertyselector net.sf.antcontrib.property.PropertySelector
+ +Datatype cc net.sf.antcontrib.cpptasks.CCTask
+ +Datatype unjar org.apache.tools.ant.taskdefs.Expand
+ +Datatype vbc org.apache.tools.ant.taskdefs.optional.dotnet.VisualBasicCompile
+ +Datatype echoxml org.apache.tools.ant.taskdefs.EchoXML
+ +Datatype shellscript net.sf.antcontrib.platform.ShellScriptTask
+ +Datatype wsdltodotnet org.apache.tools.ant.taskdefs.optional.dotnet.WsdlToDotnet
+ +Datatype mkdir org.apache.tools.ant.taskdefs.Mkdir
+ +Datatype condition org.apache.tools.ant.taskdefs.ConditionTask
+ +Datatype cvs org.apache.tools.ant.taskdefs.Cvs
+ +Datatype tempfile org.apache.tools.ant.taskdefs.TempFile
+ +Datatype junitreport org.apache.tools.ant.taskdefs.optional.junit.XMLResultAggregator
+ +Datatype ccmkattr org.apache.tools.ant.taskdefs.optional.clearcase.CCMkattr
+ +Datatype forget net.sf.antcontrib.process.ForgetTask
+ +Datatype gjdoc org.apache.tools.ant.taskdefs.Gjdoc
+ +Datatype taskdef org.apache.tools.ant.taskdefs.Taskdef
+ +Datatype var net.sf.antcontrib.property.Variable
+ +Datatype echo org.apache.tools.ant.taskdefs.Echo
+ +Datatype ccupdate org.apache.tools.ant.taskdefs.optional.clearcase.CCUpdate
+ +Datatype java org.apache.tools.ant.taskdefs.Java
+ +Datatype renameext org.apache.tools.ant.taskdefs.optional.RenameExtensions
+ +Datatype vsslabel org.apache.tools.ant.taskdefs.optional.vss.MSVSSLABEL
+ +Datatype javadoc2 org.apache.tools.ant.taskdefs.Javadoc
+ +Datatype basename org.apache.tools.ant.taskdefs.Basename
+ +Datatype for net.sf.antcontrib.logic.For
+ +Datatype vsscp org.apache.tools.ant.taskdefs.optional.vss.MSVSSCP
+ +Datatype tar org.apache.tools.ant.taskdefs.Tar
+ +Datatype osfamily net.sf.antcontrib.platform.OsFamily
+ +Datatype p4fstat org.apache.tools.ant.taskdefs.optional.perforce.P4Fstat
+ +Datatype setproxy org.apache.tools.ant.taskdefs.optional.net.SetProxy
+ +Datatype p4counter org.apache.tools.ant.taskdefs.optional.perforce.P4Counter
+ +Datatype diagnostics org.apache.tools.ant.taskdefs.DiagnosticsTask
+ +Datatype ilasm org.apache.tools.ant.taskdefs.optional.dotnet.Ilasm
+ +Datatype soscheckout org.apache.tools.ant.taskdefs.optional.sos.SOSCheckout
+ +Datatype apply org.apache.tools.ant.taskdefs.Transform
+ +Datatype ccuncheckout org.apache.tools.ant.taskdefs.optional.clearcase.CCUnCheckout
+ +Datatype jarlib-resolve org.apache.tools.ant.taskdefs.optional.extension.JarLibResolveTask
+ +Datatype stopwatch net.sf.antcontrib.perf.StopWatchTask
+ +Datatype cvstagdiff org.apache.tools.ant.taskdefs.cvslib.CvsTagDiff
+ +Datatype jlink org.apache.tools.ant.taskdefs.optional.jlink.JlinkTask
+ +Datatype javacc org.apache.tools.ant.taskdefs.optional.javacc.JavaCC
+ +Datatype pvcs org.apache.tools.ant.taskdefs.optional.pvcs.Pvcs
+ +Datatype jarlib-manifest org.apache.tools.ant.taskdefs.optional.extension.JarLibManifestTask
+ +Datatype chmod org.apache.tools.ant.taskdefs.Chmod
+ +Datatype ccmklbtype org.apache.tools.ant.taskdefs.optional.clearcase.CCMklbtype
+ +Datatype jar org.apache.tools.ant.taskdefs.Jar
+ +Datatype sound org.apache.tools.ant.taskdefs.optional.sound.SoundTask
+ +Datatype scriptdef org.apache.tools.ant.taskdefs.optional.script.ScriptDef
+ +Datatype defaultexcludes org.apache.tools.ant.taskdefs.DefaultExcludes
+ +Datatype blgenclient org.apache.tools.ant.taskdefs.optional.ejb.BorlandGenerateClient
+ +Datatype uptodate org.apache.tools.ant.taskdefs.UpToDate
+ +Datatype propertycopy net.sf.antcontrib.property.PropertyCopy
+ +Datatype jjdoc org.apache.tools.ant.taskdefs.optional.javacc.JJDoc
+ +Datatype genkey org.apache.tools.ant.taskdefs.GenerateKey
+ +Datatype ccmkelem org.apache.tools.ant.taskdefs.optional.clearcase.CCMkelem
+ +Datatype javah org.apache.tools.ant.taskdefs.optional.Javah
+ +Datatype ccmreconfigure org.apache.tools.ant.taskdefs.optional.ccm.CCMReconfigure
+ +Datatype fail org.apache.tools.ant.taskdefs.Exit
+ +Datatype unzip org.apache.tools.ant.taskdefs.Expand
+ +Datatype javac org.apache.tools.ant.taskdefs.Javac
+ +Datatype p4add org.apache.tools.ant.taskdefs.optional.perforce.P4Add
+ +Datatype soslabel org.apache.tools.ant.taskdefs.optional.sos.SOSLabel
+ +Datatype depend org.apache.tools.ant.taskdefs.optional.depend.Depend
+ +Datatype timestampselector net.sf.antcontrib.logic.TimestampSelector
+ +Datatype vssget org.apache.tools.ant.taskdefs.optional.vss.MSVSSGET
+ +Datatype deltree org.apache.tools.ant.taskdefs.Deltree
+Could not load class (org.apache.tools.ant.taskdefs.repository.MavenRepository) for type mavenrepository
+Could not load a dependent class (jdepend/xmlui/JDepend) for type jdepend
+Could not load class (org.apache.tools.ant.taskdefs.optional.ejb.Ejbc) for type ejbc
+Could not load class (org.apache.tools.ant.taskdefs.optional.StyleBook) for type stylebook
+Could not load class (org.apache.tools.ant.taskdefs.optional.ejb.WLStop) for type wlstop
+Could not load class (org.apache.tools.ant.taskdefs.optional.ejb.WLRun) for type wlrun
+Could not load class (org.apache.tools.ant.taskdefs.optional.image.Image) for type image
+Could not load class (org.apache.tools.ant.taskdefs.optional.ejb.DDCreator) for type ddcreator
+Could not load class (org.apache.tools.ant.taskdefs.optional.starteam.StarTeamCheckin) for type stcheckin
+Could not load class (org.apache.tools.ant.taskdefs.optional.starteam.StarTeamCheckout) for type stcheckout
+Could not load class (org.apache.tools.ant.taskdefs.optional.starteam.StarTeamLabel) for type stlabel
+Could not load class (org.apache.tools.ant.taskdefs.optional.starteam.StarTeamList) for type stlist
+Could not load class (org.apache.tools.ant.taskdefs.optional.NetRexxC) for type netrexxc
+Could not load class (org.apache.tools.ant.taskdefs.optional.scm.AntStarTeamCheckOut) for type starteam
+ +Datatype libset net.sf.antcontrib.cpptasks.types.LibrarySet
+ +User datatype: libset     net.sf.antcontrib.cpptasks.types.LibrarySet
+ +Datatype description org.apache.tools.ant.types.Description
+ +User datatype: description     org.apache.tools.ant.types.Description
+ +Datatype distributer net.sf.antcontrib.cpptasks.DistributerDef
+ +User datatype: distributer     net.sf.antcontrib.cpptasks.DistributerDef
+ +Datatype regexpmapper org.apache.tools.ant.util.RegexpPatternMapper
+ +User datatype: regexpmapper     org.apache.tools.ant.util.RegexpPatternMapper
+ +Datatype mergemapper org.apache.tools.ant.util.MergingMapper
+ +User datatype: mergemapper     org.apache.tools.ant.util.MergingMapper
+ +Datatype classfileset org.apache.tools.ant.types.optional.depend.ClassfileSet
+ +User datatype: classfileset     org.apache.tools.ant.types.optional.depend.ClassfileSet
+ +Datatype versioninfo net.sf.antcontrib.cpptasks.VersionInfo
+ +User datatype: versioninfo     net.sf.antcontrib.cpptasks.VersionInfo
+ +Datatype xmlcatalog org.apache.tools.ant.types.XMLCatalog
+ +User datatype: xmlcatalog     org.apache.tools.ant.types.XMLCatalog
+ +Datatype unpackagemapper org.apache.tools.ant.util.UnPackageNameMapper
+ +User datatype: unpackagemapper     org.apache.tools.ant.util.UnPackageNameMapper
+ +Datatype resource org.apache.tools.ant.types.Resource
+ +User datatype: resource     org.apache.tools.ant.types.Resource
+ +Datatype files org.apache.tools.ant.types.resources.Files
+ +User datatype: files     org.apache.tools.ant.types.resources.Files
+ +Datatype resources org.apache.tools.ant.types.resources.Resources
+ +User datatype: resources     org.apache.tools.ant.types.resources.Resources
+ +Datatype mapper org.apache.tools.ant.types.Mapper
+ +User datatype: mapper     org.apache.tools.ant.types.Mapper
+ +Datatype dirset org.apache.tools.ant.types.DirSet
+ +User datatype: dirset     org.apache.tools.ant.types.DirSet
+ +Datatype regexp org.apache.tools.ant.types.RegularExpression
+ +User datatype: regexp     org.apache.tools.ant.types.RegularExpression
+ +Datatype signedselector org.apache.tools.ant.types.selectors.SignedSelector
+ +User datatype: signedselector     org.apache.tools.ant.types.selectors.SignedSelector
+ +Datatype intersect org.apache.tools.ant.types.resources.Intersect
+ +User datatype: intersect     org.apache.tools.ant.types.resources.Intersect
+ +Datatype filtermapper org.apache.tools.ant.types.mappers.FilterMapper
+ +User datatype: filtermapper     org.apache.tools.ant.types.mappers.FilterMapper
+ +Datatype url org.apache.tools.ant.types.resources.URLResource
+ +User datatype: url     org.apache.tools.ant.types.resources.URLResource
+ +Datatype propertyset org.apache.tools.ant.types.PropertySet
+ +User datatype: propertyset     org.apache.tools.ant.types.PropertySet
+ +Datatype filterreader org.apache.tools.ant.types.AntFilterReader
+ +User datatype: filterreader     org.apache.tools.ant.types.AntFilterReader
+ +Datatype restrict org.apache.tools.ant.types.resources.Restrict
+ +User datatype: restrict     org.apache.tools.ant.types.resources.Restrict
+ +Datatype file org.apache.tools.ant.types.resources.FileResource
+ +User datatype: file     org.apache.tools.ant.types.resources.FileResource
+ +Datatype ispropertyfalse net.sf.antcontrib.logic.condition.IsPropertyFalse
+ +User datatype: ispropertyfalse     net.sf.antcontrib.logic.condition.IsPropertyFalse
+ +Datatype tokens org.apache.tools.ant.types.resources.Tokens
+ +User datatype: tokens     org.apache.tools.ant.types.resources.Tokens
+ +Datatype string org.apache.tools.ant.types.resources.StringResource
+ +User datatype: string     org.apache.tools.ant.types.resources.StringResource
+ +Datatype difference org.apache.tools.ant.types.resources.Difference
+ +User datatype: difference     org.apache.tools.ant.types.resources.Difference
+ +Datatype sort org.apache.tools.ant.types.resources.Sort
+ +User datatype: sort     org.apache.tools.ant.types.resources.Sort
+ +Datatype filetokenizer org.apache.tools.ant.util.FileTokenizer
+ +User datatype: filetokenizer     org.apache.tools.ant.util.FileTokenizer
+ +Datatype stringtokenizer org.apache.tools.ant.util.StringTokenizer
+ +User datatype: stringtokenizer     org.apache.tools.ant.util.StringTokenizer
+ +Datatype defineset net.sf.antcontrib.cpptasks.types.DefineSet
+ +User datatype: defineset     net.sf.antcontrib.cpptasks.types.DefineSet
+ +Datatype path org.apache.tools.ant.types.Path
+ +User datatype: path     org.apache.tools.ant.types.Path
+ +Datatype propertyresource org.apache.tools.ant.types.resources.PropertyResource
+ +User datatype: propertyresource     org.apache.tools.ant.types.resources.PropertyResource
+ +Datatype islessthan net.sf.antcontrib.logic.condition.IsLessThan
+ +User datatype: islessthan     net.sf.antcontrib.logic.condition.IsLessThan
+ +Datatype scriptcondition org.apache.tools.ant.types.optional.ScriptCondition
+ +User datatype: scriptcondition     org.apache.tools.ant.types.optional.ScriptCondition
+ +Datatype isgreaterthan net.sf.antcontrib.logic.condition.IsGreaterThan
+ +User datatype: isgreaterthan     net.sf.antcontrib.logic.condition.IsGreaterThan
+ +Datatype identitymapper org.apache.tools.ant.util.IdentityMapper
+ +User datatype: identitymapper     org.apache.tools.ant.util.IdentityMapper
+ +Datatype globmapper org.apache.tools.ant.util.GlobPatternMapper
+ +User datatype: globmapper     org.apache.tools.ant.util.GlobPatternMapper
+ +Datatype linker net.sf.antcontrib.cpptasks.LinkerDef
+ +User datatype: linker     net.sf.antcontrib.cpptasks.LinkerDef
+ +Datatype chainedmapper org.apache.tools.ant.util.ChainedMapper
+ +User datatype: chainedmapper     org.apache.tools.ant.util.ChainedMapper
+ +Datatype javaresource org.apache.tools.ant.types.resources.JavaResource
+ +User datatype: javaresource     org.apache.tools.ant.types.resources.JavaResource
+ +Datatype assertions org.apache.tools.ant.types.Assertions
+ +User datatype: assertions     org.apache.tools.ant.types.Assertions
+ +Datatype targetplatform net.sf.antcontrib.cpptasks.TargetDef
+ +User datatype: targetplatform     net.sf.antcontrib.cpptasks.TargetDef
+ +Datatype flattenmapper org.apache.tools.ant.util.FlatFileNameMapper
+ +User datatype: flattenmapper     org.apache.tools.ant.util.FlatFileNameMapper
+ +Datatype linetokenizer org.apache.tools.ant.util.LineTokenizer
+ +User datatype: linetokenizer     org.apache.tools.ant.util.LineTokenizer
+ +Datatype scriptselector org.apache.tools.ant.types.optional.ScriptSelector
+ +User datatype: scriptselector     org.apache.tools.ant.types.optional.ScriptSelector
+ +Datatype redirector org.apache.tools.ant.types.RedirectorElement
+ +User datatype: redirector     org.apache.tools.ant.types.RedirectorElement
+ +Datatype first org.apache.tools.ant.types.resources.First
+ +User datatype: first     org.apache.tools.ant.types.resources.First
+ +Datatype patternset org.apache.tools.ant.types.PatternSet
+ +User datatype: patternset     org.apache.tools.ant.types.PatternSet
+ +Datatype compiler net.sf.antcontrib.cpptasks.CompilerDef
+ +User datatype: compiler     net.sf.antcontrib.cpptasks.CompilerDef
+ +Datatype tarentry org.apache.tools.ant.types.resources.TarResource
+ +User datatype: tarentry     org.apache.tools.ant.types.resources.TarResource
+ +Datatype filterchain org.apache.tools.ant.types.FilterChain
+ +User datatype: filterchain     org.apache.tools.ant.types.FilterChain
+ +Datatype extensionSet org.apache.tools.ant.taskdefs.optional.extension.ExtensionSet
+ +User datatype: extensionSet     org.apache.tools.ant.taskdefs.optional.extension.ExtensionSet
+ +Datatype isfileselected org.apache.tools.ant.taskdefs.condition.IsFileSelected
+ +User datatype: isfileselected     org.apache.tools.ant.taskdefs.condition.IsFileSelected
+ +Datatype zipentry org.apache.tools.ant.types.resources.ZipResource
+ +User datatype: zipentry     org.apache.tools.ant.types.resources.ZipResource
+ +Datatype selector org.apache.tools.ant.types.selectors.SelectSelector
+ +User datatype: selector     org.apache.tools.ant.types.selectors.SelectSelector
+ +Datatype packagemapper org.apache.tools.ant.util.PackageNameMapper
+ +User datatype: packagemapper     org.apache.tools.ant.util.PackageNameMapper
+ +Datatype extension org.apache.tools.ant.taskdefs.optional.extension.ExtensionAdapter
+ +User datatype: extension     org.apache.tools.ant.taskdefs.optional.extension.ExtensionAdapter
+ +Datatype scriptmapper org.apache.tools.ant.types.optional.ScriptMapper
+ +User datatype: scriptmapper     org.apache.tools.ant.types.optional.ScriptMapper
+ +Datatype syslibset net.sf.antcontrib.cpptasks.types.SystemLibrarySet
+ +User datatype: syslibset     net.sf.antcontrib.cpptasks.types.SystemLibrarySet
+ +Datatype gzipresource org.apache.tools.ant.types.resources.GZipResource
+ +User datatype: gzipresource     org.apache.tools.ant.types.resources.GZipResource
+ +Datatype fileset org.apache.tools.ant.types.FileSet
+ +User datatype: fileset     org.apache.tools.ant.types.FileSet
+ +Datatype zipfileset org.apache.tools.ant.types.ZipFileSet
+ +User datatype: zipfileset     org.apache.tools.ant.types.ZipFileSet
+ +Datatype tarfileset org.apache.tools.ant.types.TarFileSet
+ +User datatype: tarfileset     org.apache.tools.ant.types.TarFileSet
+ +Datatype bzip2resource org.apache.tools.ant.types.resources.BZip2Resource
+ +User datatype: bzip2resource     org.apache.tools.ant.types.resources.BZip2Resource
+ +Datatype compositemapper org.apache.tools.ant.util.CompositeMapper
+ +User datatype: compositemapper     org.apache.tools.ant.util.CompositeMapper
+ +Datatype union org.apache.tools.ant.types.resources.Union
+ +User datatype: union     org.apache.tools.ant.types.resources.Union
+ +Datatype ispropertytrue net.sf.antcontrib.logic.condition.IsPropertyTrue
+ +User datatype: ispropertytrue     net.sf.antcontrib.logic.condition.IsPropertyTrue
+ +Datatype filelist org.apache.tools.ant.types.FileList
+ +User datatype: filelist     org.apache.tools.ant.types.FileList
+ +Datatype libfileset org.apache.tools.ant.taskdefs.optional.extension.LibFileSet
+ +User datatype: libfileset     org.apache.tools.ant.taskdefs.optional.extension.LibFileSet
+ +Datatype filterset org.apache.tools.ant.types.FilterSet
+ +User datatype: filterset     org.apache.tools.ant.types.FilterSet
+ +Datatype scriptfilter org.apache.tools.ant.types.optional.ScriptFilter
+ +User datatype: scriptfilter     org.apache.tools.ant.types.optional.ScriptFilter
+ +Datatype concatfilter org.apache.tools.ant.filters.ConcatFilter
+ +User datatype: concatfilter     org.apache.tools.ant.filters.ConcatFilter
+ +Datatype substitution org.apache.tools.ant.types.Substitution
+ +User datatype: substitution     org.apache.tools.ant.types.Substitution
+Setting ro project property: ant.file -> /home/derek/Desktop/fpl_svn_20090103/trunk/src/support/build.xml
+Setting ro project property: ant.project.name -> CSLC Support
+Setting ro project property: ant.file.CSLC Support -> /home/derek/Desktop/fpl_svn_20090103/trunk/src/support/build.xml
+Setting ro project property: rlmOff -> yes
+Project base dir set to: /home/derek/Desktop/fpl_svn_20090103/trunk/src
+Setting ro project property: basedir -> /home/derek/Desktop/fpl_svn_20090103/trunk/src
+ [antfetch] calling target set.project.list in build file /home/derek/Desktop/fpl_svn_20090103/trunk/src/build.xml
+Setting ro project property: ant.file -> /home/derek/Desktop/fpl_svn_20090103/trunk/src/build.xml
+Adding reference: ant.projectHelper
+Adding reference: ant.parsing.context
+Adding reference: ant.targets
+parsing buildfile /home/derek/Desktop/fpl_svn_20090103/trunk/src/build.xml with URI = file:/home/derek/Desktop/fpl_svn_20090103/trunk/src/build.xml
+Setting ro project property: ant.project.name -> CSLC root
+Adding reference: CSLC root
+Setting ro project property: ant.file.CSLC root -> /home/derek/Desktop/fpl_svn_20090103/trunk/src/build.xml
+Project base dir set to: /home/derek/Desktop/fpl_svn_20090103/trunk/src
+ +Target: 
+ +Target: check.dependencies
+ +Target: set.csim.properties
+ +Target: set.project.list
+ +Target: csim_lib
+ +Target: csim_shell
+ +Target: wall
+ +Target: rlm_off
+ +Target: debug
+ +Target: release
+ +Target: clean
+ +Target: clean_release
+ +Target: drivers
+ +Target: help
+[antlib:org.apache.tools.ant] Could not load definitions from resource org/apache/tools/ant/antlib.xml. It could not be found.
+parsing buildfile jar:file:/usr/share/ant/lib/ant-contrib.jar!/net/sf/antcontrib/antlib.xml with URI = jar:file:/usr/share/ant/lib/ant-contrib.jar!/net/sf/antcontrib/antlib.xml
+Class net.sf.antcontrib.platform.ShellScriptTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.property.PropertyCopy loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.property.PathToFileSet loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.antserver.client.ClientTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.RunTargetTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.Assert loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.property.RegexTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.math.MathTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.TryCatchTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.antserver.server.ServerTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.AntCallBack loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.walls.CompileWithWalls loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.OutOfDate loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.platform.OsFamily loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.perf.StopWatchTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.Throw loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.antclipse.ClassPathTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.property.URLEncodeTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.condition.BooleanConditionTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.TimestampSelector loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.ForEach loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.IfTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.property.PropertySelector loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.property.SortList loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.AntFetch loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.net.PostTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.process.ForgetTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.process.Limit loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.Switch loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.property.Variable loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.inifile.IniFileTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.design.VerifyDesign loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.condition.IsGreaterThan loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.condition.IsLessThan loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.condition.IsPropertyFalse loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.condition.IsPropertyTrue loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.For loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.cpptasks.VersionInfo loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.cpptasks.types.SystemLibrarySet loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.cpptasks.DistributerDef loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.cpptasks.CompilerDef loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.cpptasks.types.DefineSet loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.cpptasks.TargetDef loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.cpptasks.LinkerDef loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.cpptasks.types.LibrarySet loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.cpptasks.CCTask loaded from parent loader (parentFirst)
+Build sequence for target(s) `set.project.list' is [check.dependencies, set.project.list]
+Complete build sequence is [check.dependencies, set.project.list, debug, clean_release, set.csim.properties, csim_lib, csim_shell, help, drivers, clean, release, wall, rlm_off, ]
+
+check.dependencies:
+Setting project property: no.dependencies -> on
+Setting project property: dependencies.dir -> /home/derek/Desktop/fpl_svn_20090103/trunk/src/../build_utils
+Setting project property: dependencies.file -> new_dependencies.xml
+ +Datatype limit net.sf.antcontrib.process.Limit
+ +Datatype propertyfile org.apache.tools.ant.taskdefs.optional.PropertyFile
+ +Datatype ccmkdir org.apache.tools.ant.taskdefs.optional.clearcase.CCMkdir
+ +Datatype importtypelib org.apache.tools.ant.taskdefs.optional.dotnet.ImportTypelib
+ +Datatype vsscheckin org.apache.tools.ant.taskdefs.optional.vss.MSVSSCHECKIN
+ +Datatype sql org.apache.tools.ant.taskdefs.SQLExec
+ +Datatype p4reopen org.apache.tools.ant.taskdefs.optional.perforce.P4Reopen
+ +Datatype cvspass org.apache.tools.ant.taskdefs.CVSPass
+ +Datatype csc org.apache.tools.ant.taskdefs.optional.dotnet.CSharp
+ +Datatype loadresource org.apache.tools.ant.taskdefs.LoadResource
+ +Datatype sshexec org.apache.tools.ant.taskdefs.optional.ssh.SSHExec
+ +Datatype inifile net.sf.antcontrib.inifile.IniFileTask
+ +Datatype dirname org.apache.tools.ant.taskdefs.Dirname
+ +Datatype p4label org.apache.tools.ant.taskdefs.optional.perforce.P4Label
+ +Datatype p4revert org.apache.tools.ant.taskdefs.optional.perforce.P4Revert
+ +Datatype replaceregexp org.apache.tools.ant.taskdefs.optional.ReplaceRegExp
+ +Datatype get org.apache.tools.ant.taskdefs.Get
+ +Datatype jjtree org.apache.tools.ant.taskdefs.optional.javacc.JJTree
+ +Datatype length org.apache.tools.ant.taskdefs.Length
+ +Datatype sleep org.apache.tools.ant.taskdefs.Sleep
+ +Datatype jarlib-display org.apache.tools.ant.taskdefs.optional.extension.JarLibDisplayTask
+ +Datatype dependset org.apache.tools.ant.taskdefs.DependSet
+ +Datatype zip org.apache.tools.ant.taskdefs.Zip
+ +Datatype patch org.apache.tools.ant.taskdefs.Patch
+ +Datatype jspc org.apache.tools.ant.taskdefs.optional.jsp.JspC
+ +Datatype style org.apache.tools.ant.taskdefs.XSLTProcess
+ +Datatype nice org.apache.tools.ant.taskdefs.Nice
+ +Datatype tstamp org.apache.tools.ant.taskdefs.Tstamp
+ +Datatype unwar org.apache.tools.ant.taskdefs.Expand
+ +Datatype vsshistory org.apache.tools.ant.taskdefs.optional.vss.MSVSSHISTORY
+ +Datatype sortlist net.sf.antcontrib.property.SortList
+ +Datatype cvschangelog org.apache.tools.ant.taskdefs.cvslib.ChangeLogTask
+ +Datatype runtarget net.sf.antcontrib.logic.RunTargetTask
+ +Datatype p4submit org.apache.tools.ant.taskdefs.optional.perforce.P4Submit
+ +Datatype scp org.apache.tools.ant.taskdefs.optional.ssh.Scp
+ +Datatype ccmcheckin org.apache.tools.ant.taskdefs.optional.ccm.CCMCheckin
+ +Datatype post net.sf.antcontrib.net.PostTask
+ +Datatype p4change org.apache.tools.ant.taskdefs.optional.perforce.P4Change
+ +Datatype bzip2 org.apache.tools.ant.taskdefs.BZip2
+ +Datatype sync org.apache.tools.ant.taskdefs.Sync
+ +Datatype p4delete org.apache.tools.ant.taskdefs.optional.perforce.P4Delete
+ +Datatype vssadd org.apache.tools.ant.taskdefs.optional.vss.MSVSSADD
+ +Datatype javadoc org.apache.tools.ant.taskdefs.Javadoc
+ +Datatype makeurl org.apache.tools.ant.taskdefs.MakeUrl
+ +Datatype p4integrate org.apache.tools.ant.taskdefs.optional.perforce.P4Integrate
+ +Datatype translate org.apache.tools.ant.taskdefs.optional.i18n.Translate
+ +Datatype signjar org.apache.tools.ant.taskdefs.SignJar
+ +Datatype cclock org.apache.tools.ant.taskdefs.optional.clearcase.CCLock
+ +Datatype classloader org.apache.tools.ant.taskdefs.Classloader
+ +Datatype chown org.apache.tools.ant.taskdefs.optional.unix.Chown
+ +Datatype jarlib-available org.apache.tools.ant.taskdefs.optional.extension.JarLibAvailableTask
+ +Datatype rexec org.apache.tools.ant.taskdefs.optional.net.RExecTask
+ +Datatype WsdlToDotnet org.apache.tools.ant.taskdefs.optional.dotnet.WsdlToDotnet
+ +Datatype buildnumber org.apache.tools.ant.taskdefs.BuildNumber
+ +Datatype if net.sf.antcontrib.logic.IfTask
+ +Datatype apt org.apache.tools.ant.taskdefs.Apt
+ +Datatype resourcecount org.apache.tools.ant.taskdefs.ResourceCount
+ +Datatype cvsversion org.apache.tools.ant.taskdefs.cvslib.CvsVersion
+ +Datatype ejbjar org.apache.tools.ant.taskdefs.optional.ejb.EjbJar
+ +Datatype pathtofileset net.sf.antcontrib.property.PathToFileSet
+ +Datatype outofdate net.sf.antcontrib.logic.OutOfDate
+ +Datatype remoteant net.sf.antcontrib.antserver.client.ClientTask
+ +Datatype war org.apache.tools.ant.taskdefs.War
+ +Datatype copypath org.apache.tools.ant.taskdefs.CopyPath
+ +Datatype rename org.apache.tools.ant.taskdefs.Rename
+ +Datatype serverdeploy org.apache.tools.ant.taskdefs.optional.j2ee.ServerDeploy
+ +Datatype sequential org.apache.tools.ant.taskdefs.Sequential
+ +Datatype verifydesign net.sf.antcontrib.design.VerifyDesign
+ +Datatype subant org.apache.tools.ant.taskdefs.SubAnt
+ +Datatype move org.apache.tools.ant.taskdefs.Move
+ +Datatype ildasm org.apache.tools.ant.taskdefs.optional.dotnet.Ildasm
+ +Datatype copydir org.apache.tools.ant.taskdefs.Copydir
+ +Datatype schemavalidate org.apache.tools.ant.taskdefs.optional.SchemaValidate
+ +Datatype trycatch net.sf.antcontrib.logic.TryCatchTask
+ +Datatype cccheckin org.apache.tools.ant.taskdefs.optional.clearcase.CCCheckin
+ +Datatype ccunlock org.apache.tools.ant.taskdefs.optional.clearcase.CCUnlock
+ +Datatype wljspc org.apache.tools.ant.taskdefs.optional.jsp.WLJspc
+ +Datatype fixcrlf org.apache.tools.ant.taskdefs.FixCRLF
+ +Datatype antclipse net.sf.antcontrib.antclipse.ClassPathTask
+ +Datatype telnet org.apache.tools.ant.taskdefs.optional.net.TelnetTask
+ +Datatype sosget org.apache.tools.ant.taskdefs.optional.sos.SOSGet
+ +Datatype pathconvert org.apache.tools.ant.taskdefs.PathConvert
+ +Datatype antserver net.sf.antcontrib.antserver.server.ServerTask
+ +Datatype record org.apache.tools.ant.taskdefs.Recorder
+ +Datatype p4sync org.apache.tools.ant.taskdefs.optional.perforce.P4Sync
+ +Datatype exec org.apache.tools.ant.taskdefs.ExecTask
+ +Datatype ccmklabel org.apache.tools.ant.taskdefs.optional.clearcase.CCMklabel
+ +Datatype p4edit org.apache.tools.ant.taskdefs.optional.perforce.P4Edit
+ +Datatype manifest org.apache.tools.ant.taskdefs.ManifestTask
+ +Datatype antlr org.apache.tools.ant.taskdefs.optional.ANTLR
+ +Datatype ftp org.apache.tools.ant.taskdefs.optional.net.FTP
+ +Datatype foreach net.sf.antcontrib.logic.ForEach
+ +Datatype antfetch net.sf.antcontrib.logic.AntFetch
+ +Datatype execon org.apache.tools.ant.taskdefs.ExecuteOn
+ +Datatype ant org.apache.tools.ant.taskdefs.Ant
+ +Datatype ccmcheckout org.apache.tools.ant.taskdefs.optional.ccm.CCMCheckout
+ +Datatype p4resolve org.apache.tools.ant.taskdefs.optional.perforce.P4Resolve
+ +Datatype xmlvalidate org.apache.tools.ant.taskdefs.optional.XMLValidateTask
+ +Datatype xslt org.apache.tools.ant.taskdefs.XSLTProcess
+ +Datatype native2ascii org.apache.tools.ant.taskdefs.optional.Native2Ascii
+ +Datatype iplanet-ejbc org.apache.tools.ant.taskdefs.optional.ejb.IPlanetEjbcTask
+ +Datatype ccmcheckintask org.apache.tools.ant.taskdefs.optional.ccm.CCMCheckinDefault
+ +Datatype gzip org.apache.tools.ant.taskdefs.GZip
+ +Datatype ccrmtype org.apache.tools.ant.taskdefs.optional.clearcase.CCRmtype
+ +Datatype ear org.apache.tools.ant.taskdefs.Ear
+ +Datatype input org.apache.tools.ant.taskdefs.Input
+ +Datatype presetdef org.apache.tools.ant.taskdefs.PreSetDef
+ +Datatype rmic org.apache.tools.ant.taskdefs.Rmic
+ +Datatype checksum org.apache.tools.ant.taskdefs.Checksum
+ +Datatype mail org.apache.tools.ant.taskdefs.email.EmailTask
+ +Datatype bool net.sf.antcontrib.logic.condition.BooleanConditionTask
+ +Datatype loadfile org.apache.tools.ant.taskdefs.LoadFile
+ +Datatype vsscheckout org.apache.tools.ant.taskdefs.optional.vss.MSVSSCHECKOUT
+ +Datatype soscheckin org.apache.tools.ant.taskdefs.optional.sos.SOSCheckin
+ +Datatype mimemail org.apache.tools.ant.taskdefs.optional.net.MimeMail
+ +Datatype gunzip org.apache.tools.ant.taskdefs.GUnzip
+ +Datatype concat org.apache.tools.ant.taskdefs.Concat
+ +Datatype cab org.apache.tools.ant.taskdefs.optional.Cab
+ +Datatype touch org.apache.tools.ant.taskdefs.Touch
+ +Datatype throw net.sf.antcontrib.logic.Throw
+ +Datatype switch net.sf.antcontrib.logic.Switch
+ +Datatype parallel org.apache.tools.ant.taskdefs.Parallel
+ +Datatype splash org.apache.tools.ant.taskdefs.optional.splash.SplashTask
+ +Datatype antcall org.apache.tools.ant.taskdefs.CallTarget
+ +Datatype ccmkbl org.apache.tools.ant.taskdefs.optional.clearcase.CCMkbl
+ +Datatype cccheckout org.apache.tools.ant.taskdefs.optional.clearcase.CCCheckout
+ +Datatype typedef org.apache.tools.ant.taskdefs.Typedef
+ +Datatype assert net.sf.antcontrib.logic.Assert
+ +Datatype urlencode net.sf.antcontrib.property.URLEncodeTask
+ +Datatype p4have org.apache.tools.ant.taskdefs.optional.perforce.P4Have
+ +Datatype filter org.apache.tools.ant.taskdefs.Filter
+ +Datatype import org.apache.tools.ant.taskdefs.ImportTask
+ +Datatype xmlproperty org.apache.tools.ant.taskdefs.XmlProperty
+ +Datatype copy org.apache.tools.ant.taskdefs.Copy
+ +Datatype jsharpc org.apache.tools.ant.taskdefs.optional.dotnet.JSharp
+ +Datatype math net.sf.antcontrib.math.MathTask
+ +Datatype symlink org.apache.tools.ant.taskdefs.optional.unix.Symlink
+ +Datatype propertyregex net.sf.antcontrib.property.RegexTask
+ +Datatype antstructure org.apache.tools.ant.taskdefs.AntStructure
+ +Datatype script org.apache.tools.ant.taskdefs.optional.Script
+ +Datatype ccmcreatetask org.apache.tools.ant.taskdefs.optional.ccm.CCMCreateTask
+ +Datatype rpm org.apache.tools.ant.taskdefs.optional.Rpm
+ +Datatype delete org.apache.tools.ant.taskdefs.Delete
+ +Datatype attrib org.apache.tools.ant.taskdefs.optional.windows.Attrib
+ +Datatype replace org.apache.tools.ant.taskdefs.Replace
+ +Datatype verifyjar org.apache.tools.ant.taskdefs.VerifyJar
+ +Datatype waitfor org.apache.tools.ant.taskdefs.WaitFor
+ +Datatype untar org.apache.tools.ant.taskdefs.Untar
+ +Datatype loadproperties org.apache.tools.ant.taskdefs.LoadProperties
+ +Datatype available org.apache.tools.ant.taskdefs.Available
+ +Datatype echoproperties org.apache.tools.ant.taskdefs.optional.EchoProperties
+ +Datatype junit org.apache.tools.ant.taskdefs.optional.junit.JUnitTask
+ +Datatype chgrp org.apache.tools.ant.taskdefs.optional.unix.Chgrp
+ +Datatype bunzip2 org.apache.tools.ant.taskdefs.BUnzip2
+ +Datatype whichresource org.apache.tools.ant.taskdefs.WhichResource
+ +Datatype copyfile org.apache.tools.ant.taskdefs.Copyfile
+ +Datatype p4labelsync org.apache.tools.ant.taskdefs.optional.perforce.P4Labelsync
+ +Datatype manifestclasspath org.apache.tools.ant.taskdefs.ManifestClassPath
+ +Datatype compilewithwalls net.sf.antcontrib.walls.CompileWithWalls
+ +Datatype vsscreate org.apache.tools.ant.taskdefs.optional.vss.MSVSSCREATE
+ +Datatype antcallback net.sf.antcontrib.logic.AntCallBack
+ +Datatype macrodef org.apache.tools.ant.taskdefs.MacroDef
+ +Datatype propertyselector net.sf.antcontrib.property.PropertySelector
+ +Datatype cc net.sf.antcontrib.cpptasks.CCTask
+ +Datatype unjar org.apache.tools.ant.taskdefs.Expand
+ +Datatype vbc org.apache.tools.ant.taskdefs.optional.dotnet.VisualBasicCompile
+ +Datatype echoxml org.apache.tools.ant.taskdefs.EchoXML
+ +Datatype shellscript net.sf.antcontrib.platform.ShellScriptTask
+ +Datatype wsdltodotnet org.apache.tools.ant.taskdefs.optional.dotnet.WsdlToDotnet
+ +Datatype mkdir org.apache.tools.ant.taskdefs.Mkdir
+ +Datatype condition org.apache.tools.ant.taskdefs.ConditionTask
+ +Datatype cvs org.apache.tools.ant.taskdefs.Cvs
+ +Datatype tempfile org.apache.tools.ant.taskdefs.TempFile
+ +Datatype junitreport org.apache.tools.ant.taskdefs.optional.junit.XMLResultAggregator
+ +Datatype ccmkattr org.apache.tools.ant.taskdefs.optional.clearcase.CCMkattr
+ +Datatype forget net.sf.antcontrib.process.ForgetTask
+ +Datatype gjdoc org.apache.tools.ant.taskdefs.Gjdoc
+ +Datatype taskdef org.apache.tools.ant.taskdefs.Taskdef
+ +Datatype var net.sf.antcontrib.property.Variable
+ +Datatype echo org.apache.tools.ant.taskdefs.Echo
+ +Datatype ccupdate org.apache.tools.ant.taskdefs.optional.clearcase.CCUpdate
+ +Datatype java org.apache.tools.ant.taskdefs.Java
+ +Datatype renameext org.apache.tools.ant.taskdefs.optional.RenameExtensions
+ +Datatype vsslabel org.apache.tools.ant.taskdefs.optional.vss.MSVSSLABEL
+ +Datatype javadoc2 org.apache.tools.ant.taskdefs.Javadoc
+ +Datatype basename org.apache.tools.ant.taskdefs.Basename
+ +Datatype for net.sf.antcontrib.logic.For
+ +Datatype vsscp org.apache.tools.ant.taskdefs.optional.vss.MSVSSCP
+ +Datatype tar org.apache.tools.ant.taskdefs.Tar
+ +Datatype osfamily net.sf.antcontrib.platform.OsFamily
+ +Datatype p4fstat org.apache.tools.ant.taskdefs.optional.perforce.P4Fstat
+ +Datatype setproxy org.apache.tools.ant.taskdefs.optional.net.SetProxy
+ +Datatype p4counter org.apache.tools.ant.taskdefs.optional.perforce.P4Counter
+ +Datatype diagnostics org.apache.tools.ant.taskdefs.DiagnosticsTask
+ +Datatype ilasm org.apache.tools.ant.taskdefs.optional.dotnet.Ilasm
+ +Datatype soscheckout org.apache.tools.ant.taskdefs.optional.sos.SOSCheckout
+ +Datatype apply org.apache.tools.ant.taskdefs.Transform
+ +Datatype ccuncheckout org.apache.tools.ant.taskdefs.optional.clearcase.CCUnCheckout
+ +Datatype jarlib-resolve org.apache.tools.ant.taskdefs.optional.extension.JarLibResolveTask
+ +Datatype stopwatch net.sf.antcontrib.perf.StopWatchTask
+ +Datatype cvstagdiff org.apache.tools.ant.taskdefs.cvslib.CvsTagDiff
+ +Datatype jlink org.apache.tools.ant.taskdefs.optional.jlink.JlinkTask
+ +Datatype javacc org.apache.tools.ant.taskdefs.optional.javacc.JavaCC
+ +Datatype pvcs org.apache.tools.ant.taskdefs.optional.pvcs.Pvcs
+ +Datatype jarlib-manifest org.apache.tools.ant.taskdefs.optional.extension.JarLibManifestTask
+ +Datatype chmod org.apache.tools.ant.taskdefs.Chmod
+ +Datatype ccmklbtype org.apache.tools.ant.taskdefs.optional.clearcase.CCMklbtype
+ +Datatype jar org.apache.tools.ant.taskdefs.Jar
+ +Datatype sound org.apache.tools.ant.taskdefs.optional.sound.SoundTask
+ +Datatype scriptdef org.apache.tools.ant.taskdefs.optional.script.ScriptDef
+ +Datatype defaultexcludes org.apache.tools.ant.taskdefs.DefaultExcludes
+ +Datatype blgenclient org.apache.tools.ant.taskdefs.optional.ejb.BorlandGenerateClient
+ +Datatype uptodate org.apache.tools.ant.taskdefs.UpToDate
+ +Datatype propertycopy net.sf.antcontrib.property.PropertyCopy
+ +Datatype jjdoc org.apache.tools.ant.taskdefs.optional.javacc.JJDoc
+ +Datatype genkey org.apache.tools.ant.taskdefs.GenerateKey
+ +Datatype ccmkelem org.apache.tools.ant.taskdefs.optional.clearcase.CCMkelem
+ +Datatype javah org.apache.tools.ant.taskdefs.optional.Javah
+ +Datatype ccmreconfigure org.apache.tools.ant.taskdefs.optional.ccm.CCMReconfigure
+ +Datatype fail org.apache.tools.ant.taskdefs.Exit
+ +Datatype unzip org.apache.tools.ant.taskdefs.Expand
+ +Datatype javac org.apache.tools.ant.taskdefs.Javac
+ +Datatype p4add org.apache.tools.ant.taskdefs.optional.perforce.P4Add
+ +Datatype soslabel org.apache.tools.ant.taskdefs.optional.sos.SOSLabel
+ +Datatype depend org.apache.tools.ant.taskdefs.optional.depend.Depend
+ +Datatype timestampselector net.sf.antcontrib.logic.TimestampSelector
+ +Datatype vssget org.apache.tools.ant.taskdefs.optional.vss.MSVSSGET
+ +Datatype deltree org.apache.tools.ant.taskdefs.Deltree
+ +Datatype libset net.sf.antcontrib.cpptasks.types.LibrarySet
+ +User datatype: libset     net.sf.antcontrib.cpptasks.types.LibrarySet
+ +Datatype description org.apache.tools.ant.types.Description
+ +User datatype: description     org.apache.tools.ant.types.Description
+ +Datatype distributer net.sf.antcontrib.cpptasks.DistributerDef
+ +User datatype: distributer     net.sf.antcontrib.cpptasks.DistributerDef
+ +Datatype regexpmapper org.apache.tools.ant.util.RegexpPatternMapper
+ +User datatype: regexpmapper     org.apache.tools.ant.util.RegexpPatternMapper
+ +Datatype mergemapper org.apache.tools.ant.util.MergingMapper
+ +User datatype: mergemapper     org.apache.tools.ant.util.MergingMapper
+ +Datatype classfileset org.apache.tools.ant.types.optional.depend.ClassfileSet
+ +User datatype: classfileset     org.apache.tools.ant.types.optional.depend.ClassfileSet
+ +Datatype versioninfo net.sf.antcontrib.cpptasks.VersionInfo
+ +User datatype: versioninfo     net.sf.antcontrib.cpptasks.VersionInfo
+ +Datatype xmlcatalog org.apache.tools.ant.types.XMLCatalog
+ +User datatype: xmlcatalog     org.apache.tools.ant.types.XMLCatalog
+ +Datatype unpackagemapper org.apache.tools.ant.util.UnPackageNameMapper
+ +User datatype: unpackagemapper     org.apache.tools.ant.util.UnPackageNameMapper
+ +Datatype resource org.apache.tools.ant.types.Resource
+ +User datatype: resource     org.apache.tools.ant.types.Resource
+ +Datatype files org.apache.tools.ant.types.resources.Files
+ +User datatype: files     org.apache.tools.ant.types.resources.Files
+ +Datatype resources org.apache.tools.ant.types.resources.Resources
+ +User datatype: resources     org.apache.tools.ant.types.resources.Resources
+ +Datatype mapper org.apache.tools.ant.types.Mapper
+ +User datatype: mapper     org.apache.tools.ant.types.Mapper
+ +Datatype dirset org.apache.tools.ant.types.DirSet
+ +User datatype: dirset     org.apache.tools.ant.types.DirSet
+ +Datatype regexp org.apache.tools.ant.types.RegularExpression
+ +User datatype: regexp     org.apache.tools.ant.types.RegularExpression
+ +Datatype signedselector org.apache.tools.ant.types.selectors.SignedSelector
+ +User datatype: signedselector     org.apache.tools.ant.types.selectors.SignedSelector
+ +Datatype intersect org.apache.tools.ant.types.resources.Intersect
+ +User datatype: intersect     org.apache.tools.ant.types.resources.Intersect
+ +Datatype filtermapper org.apache.tools.ant.types.mappers.FilterMapper
+ +User datatype: filtermapper     org.apache.tools.ant.types.mappers.FilterMapper
+ +Datatype url org.apache.tools.ant.types.resources.URLResource
+ +User datatype: url     org.apache.tools.ant.types.resources.URLResource
+ +Datatype propertyset org.apache.tools.ant.types.PropertySet
+ +User datatype: propertyset     org.apache.tools.ant.types.PropertySet
+ +Datatype filterreader org.apache.tools.ant.types.AntFilterReader
+ +User datatype: filterreader     org.apache.tools.ant.types.AntFilterReader
+ +Datatype restrict org.apache.tools.ant.types.resources.Restrict
+ +User datatype: restrict     org.apache.tools.ant.types.resources.Restrict
+ +Datatype file org.apache.tools.ant.types.resources.FileResource
+ +User datatype: file     org.apache.tools.ant.types.resources.FileResource
+ +Datatype ispropertyfalse net.sf.antcontrib.logic.condition.IsPropertyFalse
+ +User datatype: ispropertyfalse     net.sf.antcontrib.logic.condition.IsPropertyFalse
+ +Datatype tokens org.apache.tools.ant.types.resources.Tokens
+ +User datatype: tokens     org.apache.tools.ant.types.resources.Tokens
+ +Datatype string org.apache.tools.ant.types.resources.StringResource
+ +User datatype: string     org.apache.tools.ant.types.resources.StringResource
+ +Datatype difference org.apache.tools.ant.types.resources.Difference
+ +User datatype: difference     org.apache.tools.ant.types.resources.Difference
+ +Datatype sort org.apache.tools.ant.types.resources.Sort
+ +User datatype: sort     org.apache.tools.ant.types.resources.Sort
+ +Datatype filetokenizer org.apache.tools.ant.util.FileTokenizer
+ +User datatype: filetokenizer     org.apache.tools.ant.util.FileTokenizer
+ +Datatype stringtokenizer org.apache.tools.ant.util.StringTokenizer
+ +User datatype: stringtokenizer     org.apache.tools.ant.util.StringTokenizer
+ +Datatype defineset net.sf.antcontrib.cpptasks.types.DefineSet
+ +User datatype: defineset     net.sf.antcontrib.cpptasks.types.DefineSet
+ +Datatype path org.apache.tools.ant.types.Path
+ +User datatype: path     org.apache.tools.ant.types.Path
+ +Datatype propertyresource org.apache.tools.ant.types.resources.PropertyResource
+ +User datatype: propertyresource     org.apache.tools.ant.types.resources.PropertyResource
+ +Datatype islessthan net.sf.antcontrib.logic.condition.IsLessThan
+ +User datatype: islessthan     net.sf.antcontrib.logic.condition.IsLessThan
+ +Datatype scriptcondition org.apache.tools.ant.types.optional.ScriptCondition
+ +User datatype: scriptcondition     org.apache.tools.ant.types.optional.ScriptCondition
+ +Datatype isgreaterthan net.sf.antcontrib.logic.condition.IsGreaterThan
+ +User datatype: isgreaterthan     net.sf.antcontrib.logic.condition.IsGreaterThan
+ +Datatype identitymapper org.apache.tools.ant.util.IdentityMapper
+ +User datatype: identitymapper     org.apache.tools.ant.util.IdentityMapper
+ +Datatype globmapper org.apache.tools.ant.util.GlobPatternMapper
+ +User datatype: globmapper     org.apache.tools.ant.util.GlobPatternMapper
+ +Datatype linker net.sf.antcontrib.cpptasks.LinkerDef
+ +User datatype: linker     net.sf.antcontrib.cpptasks.LinkerDef
+ +Datatype chainedmapper org.apache.tools.ant.util.ChainedMapper
+ +User datatype: chainedmapper     org.apache.tools.ant.util.ChainedMapper
+ +Datatype javaresource org.apache.tools.ant.types.resources.JavaResource
+ +User datatype: javaresource     org.apache.tools.ant.types.resources.JavaResource
+ +Datatype assertions org.apache.tools.ant.types.Assertions
+ +User datatype: assertions     org.apache.tools.ant.types.Assertions
+ +Datatype targetplatform net.sf.antcontrib.cpptasks.TargetDef
+ +User datatype: targetplatform     net.sf.antcontrib.cpptasks.TargetDef
+ +Datatype flattenmapper org.apache.tools.ant.util.FlatFileNameMapper
+ +User datatype: flattenmapper     org.apache.tools.ant.util.FlatFileNameMapper
+ +Datatype linetokenizer org.apache.tools.ant.util.LineTokenizer
+ +User datatype: linetokenizer     org.apache.tools.ant.util.LineTokenizer
+ +Datatype scriptselector org.apache.tools.ant.types.optional.ScriptSelector
+ +User datatype: scriptselector     org.apache.tools.ant.types.optional.ScriptSelector
+ +Datatype redirector org.apache.tools.ant.types.RedirectorElement
+ +User datatype: redirector     org.apache.tools.ant.types.RedirectorElement
+ +Datatype first org.apache.tools.ant.types.resources.First
+ +User datatype: first     org.apache.tools.ant.types.resources.First
+ +Datatype patternset org.apache.tools.ant.types.PatternSet
+ +User datatype: patternset     org.apache.tools.ant.types.PatternSet
+ +Datatype compiler net.sf.antcontrib.cpptasks.CompilerDef
+ +User datatype: compiler     net.sf.antcontrib.cpptasks.CompilerDef
+ +Datatype tarentry org.apache.tools.ant.types.resources.TarResource
+ +User datatype: tarentry     org.apache.tools.ant.types.resources.TarResource
+ +Datatype filterchain org.apache.tools.ant.types.FilterChain
+ +User datatype: filterchain     org.apache.tools.ant.types.FilterChain
+ +Datatype extensionSet org.apache.tools.ant.taskdefs.optional.extension.ExtensionSet
+ +User datatype: extensionSet     org.apache.tools.ant.taskdefs.optional.extension.ExtensionSet
+ +Datatype isfileselected org.apache.tools.ant.taskdefs.condition.IsFileSelected
+ +User datatype: isfileselected     org.apache.tools.ant.taskdefs.condition.IsFileSelected
+ +Datatype zipentry org.apache.tools.ant.types.resources.ZipResource
+ +User datatype: zipentry     org.apache.tools.ant.types.resources.ZipResource
+ +Datatype selector org.apache.tools.ant.types.selectors.SelectSelector
+ +User datatype: selector     org.apache.tools.ant.types.selectors.SelectSelector
+ +Datatype packagemapper org.apache.tools.ant.util.PackageNameMapper
+ +User datatype: packagemapper     org.apache.tools.ant.util.PackageNameMapper
+ +Datatype extension org.apache.tools.ant.taskdefs.optional.extension.ExtensionAdapter
+ +User datatype: extension     org.apache.tools.ant.taskdefs.optional.extension.ExtensionAdapter
+ +Datatype scriptmapper org.apache.tools.ant.types.optional.ScriptMapper
+ +User datatype: scriptmapper     org.apache.tools.ant.types.optional.ScriptMapper
+ +Datatype syslibset net.sf.antcontrib.cpptasks.types.SystemLibrarySet
+ +User datatype: syslibset     net.sf.antcontrib.cpptasks.types.SystemLibrarySet
+ +Datatype gzipresource org.apache.tools.ant.types.resources.GZipResource
+ +User datatype: gzipresource     org.apache.tools.ant.types.resources.GZipResource
+ +Datatype fileset org.apache.tools.ant.types.FileSet
+ +User datatype: fileset     org.apache.tools.ant.types.FileSet
+ +Datatype zipfileset org.apache.tools.ant.types.ZipFileSet
+ +User datatype: zipfileset     org.apache.tools.ant.types.ZipFileSet
+ +Datatype tarfileset org.apache.tools.ant.types.TarFileSet
+ +User datatype: tarfileset     org.apache.tools.ant.types.TarFileSet
+ +Datatype bzip2resource org.apache.tools.ant.types.resources.BZip2Resource
+ +User datatype: bzip2resource     org.apache.tools.ant.types.resources.BZip2Resource
+ +Datatype compositemapper org.apache.tools.ant.util.CompositeMapper
+ +User datatype: compositemapper     org.apache.tools.ant.util.CompositeMapper
+ +Datatype union org.apache.tools.ant.types.resources.Union
+ +User datatype: union     org.apache.tools.ant.types.resources.Union
+ +Datatype ispropertytrue net.sf.antcontrib.logic.condition.IsPropertyTrue
+ +User datatype: ispropertytrue     net.sf.antcontrib.logic.condition.IsPropertyTrue
+ +Datatype filelist org.apache.tools.ant.types.FileList
+ +User datatype: filelist     org.apache.tools.ant.types.FileList
+ +Datatype libfileset org.apache.tools.ant.taskdefs.optional.extension.LibFileSet
+ +User datatype: libfileset     org.apache.tools.ant.taskdefs.optional.extension.LibFileSet
+ +Datatype filterset org.apache.tools.ant.types.FilterSet
+ +User datatype: filterset     org.apache.tools.ant.types.FilterSet
+ +Datatype scriptfilter org.apache.tools.ant.types.optional.ScriptFilter
+ +User datatype: scriptfilter     org.apache.tools.ant.types.optional.ScriptFilter
+ +Datatype concatfilter org.apache.tools.ant.filters.ConcatFilter
+ +User datatype: concatfilter     org.apache.tools.ant.filters.ConcatFilter
+ +Datatype substitution org.apache.tools.ant.types.Substitution
+ +User datatype: substitution     org.apache.tools.ant.types.Substitution
+Setting ro project property: ant.file -> /home/derek/Desktop/fpl_svn_20090103/trunk/src/build.xml
+Setting ro project property: ant.project.name -> CSLC root
+Setting ro project property: ant.file.CSLC Support -> /home/derek/Desktop/fpl_svn_20090103/trunk/src/support/build.xml
+Setting ro project property: rlmOff -> yes
+Setting ro project property: ant.file.CSLC root -> /home/derek/Desktop/fpl_svn_20090103/trunk/src/build.xml
+Project base dir set to: /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils
+Setting ro project property: basedir -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils
+ [antfetch] calling target check.all.dependencies in build file /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/new_dependencies.xml
+Setting ro project property: ant.file -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/new_dependencies.xml
+Adding reference: ant.projectHelper
+Adding reference: ant.parsing.context
+Adding reference: ant.targets
+parsing buildfile /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/new_dependencies.xml with URI = file:/home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/new_dependencies.xml
+Setting ro project property: ant.project.name -> CSLC Dependencies Check
+Adding reference: CSLC Dependencies Check
+Setting ro project property: ant.file.CSLC Dependencies Check -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/new_dependencies.xml
+Project base dir set to: /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils
+ +Target: 
+ +Target: check.os
+ +Target: check.gcc
+ +Target: check.ant
+ +Target: check.antlr
+ +Target: check.boost
+ +Target: check.lib
+ +Target: check.all.dependencies
+[antlib:org.apache.tools.ant] Could not load definitions from resource org/apache/tools/ant/antlib.xml. It could not be found.
+parsing buildfile jar:file:/usr/share/ant/lib/ant-contrib.jar!/net/sf/antcontrib/antlib.xml with URI = jar:file:/usr/share/ant/lib/ant-contrib.jar!/net/sf/antcontrib/antlib.xml
+Class net.sf.antcontrib.platform.ShellScriptTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.property.PropertyCopy loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.property.PathToFileSet loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.antserver.client.ClientTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.RunTargetTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.Assert loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.property.RegexTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.math.MathTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.TryCatchTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.antserver.server.ServerTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.AntCallBack loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.walls.CompileWithWalls loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.OutOfDate loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.platform.OsFamily loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.perf.StopWatchTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.Throw loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.antclipse.ClassPathTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.property.URLEncodeTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.condition.BooleanConditionTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.TimestampSelector loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.ForEach loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.IfTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.property.PropertySelector loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.property.SortList loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.AntFetch loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.net.PostTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.process.ForgetTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.process.Limit loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.Switch loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.property.Variable loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.inifile.IniFileTask loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.design.VerifyDesign loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.condition.IsGreaterThan loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.condition.IsLessThan loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.condition.IsPropertyFalse loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.condition.IsPropertyTrue loaded from parent loader (parentFirst)
+Class net.sf.antcontrib.logic.For loaded from parent loader (parentFirst)
+Build sequence for target(s) `check.all.dependencies' is [check.all.dependencies]
+Complete build sequence is [check.all.dependencies, check.os, check.lib, check.antlr, check.boost, check.ant, check.gcc, ]
+
+check.all.dependencies:
+     [echo] -------------------- Check dependencies --------------------
+Build sequence for target(s) `check.os' is [check.os]
+Complete build sequence is [check.os, check.lib, check.antlr, check.boost, check.ant, check.all.dependencies, check.gcc, ]
+
+check.os:
+Setting project property: sys.arch -> x86_64
+Setting project property: build.dir -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64
+     [echo] Build directory: /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64
+Build sequence for target(s) `check.gcc' is [check.gcc]
+Complete build sequence is [check.gcc, check.os, check.lib, check.antlr, check.boost, check.ant, check.all.dependencies, ]
+
+check.gcc:
+     [exec] Current OS is Linux
+     [exec] Output redirected to property: gcc.version
+     [exec] Executing 'perl' with arguments:
+     [exec] 'checkGccVersion.pl'
+     [exec] 
+     [exec] The ' characters around the executable and arguments are
+     [exec] not part of the command.
+Execute:Java13CommandLauncher: Executing 'perl' with arguments:
+'checkGccVersion.pl'
+
+The ' characters around the executable and arguments are
+not part of the command.
+Setting project property: gcc.version -> 1
+Build sequence for target(s) `check.ant' is [check.ant]
+Complete build sequence is [check.ant, check.os, check.lib, check.antlr, check.boost, check.all.dependencies, check.gcc, ]
+
+check.ant:
+Build sequence for target(s) `check.antlr' is [check.antlr]
+Complete build sequence is [check.antlr, check.os, check.lib, check.boost, check.ant, check.all.dependencies, check.gcc, ]
+
+check.antlr:
+Setting project property: antlr.dir -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../antlr
+Setting project property: antlr.lib -> antlr
+Setting project property: antlr.src -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../antlr/lib/cpp/src
+Setting project property: antlr.inc -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../antlr/lib/cpp/src/..
+Setting project property: antlr.jar -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../antlr/antlr.jar
+     [exec] Current OS is Linux
+     [exec] Executing '/home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../antlr/lib/cpp/src/compile.sh' with arguments:
+     [exec] '/home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../antlr/lib/cpp/src'
+     [exec] 
+     [exec] The ' characters around the executable and arguments are
+     [exec] not part of the command.
+Execute:Java13CommandLauncher: Executing '/home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../antlr/lib/cpp/src/compile.sh' with arguments:
+'/home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../antlr/lib/cpp/src'
+
+The ' characters around the executable and arguments are
+not part of the command.
+     [exec] ANTLR library up2date.
+Build sequence for target(s) `check.boost' is [check.boost]
+Complete build sequence is [check.boost, check.os, check.lib, check.antlr, check.ant, check.all.dependencies, check.gcc, ]
+
+check.boost:
+Build sequence for target(s) `check.lib' is [check.lib]
+Complete build sequence is [check.lib, check.os, check.antlr, check.boost, check.ant, check.all.dependencies, check.gcc, ]
+
+check.lib:
+     [exec] Current OS is Linux
+     [exec] Output redirected to property: lib.dir
+     [exec] Executing 'perl' with arguments:
+     [exec] 'getLibdir.pl'
+     [exec] 
+     [exec] The ' characters around the executable and arguments are
+     [exec] not part of the command.
+Execute:Java13CommandLauncher: Executing 'perl' with arguments:
+'getLibdir.pl'
+
+The ' characters around the executable and arguments are
+not part of the command.
+Setting project property: lib.dir -> /usr/lib64
+     [echo] lib dir: '/usr/lib64'
+     [echo] -------------------- Done checking dependencies --------------------
+Setting project property: build.dir -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64
+Setting project property: lib.dir -> /usr/lib64
+Setting project property: antlr.dir -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../antlr
+Setting project property: antlr.lib -> antlr
+Setting project property: antlr.src -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../antlr/lib/cpp/src
+Setting project property: antlr.inc -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../antlr/lib/cpp/src/..
+Setting project property: antlr.jar -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../antlr/antlr.jar
+    [mkdir] Skipping /home/derek/Desktop/fpl_svn_20090103/trunk/build/linux/x86_64 because it already exists.
+fileset: Setup scanner in dir /home/derek/Desktop/fpl_svn_20090103/trunk/build/linux/x86_64 with patternSet{ includes: [**/*.gcda] excludes: [] }
+
+set.project.list:
+Build sequence for target(s) `set.csim.properties' is [check.dependencies, set.csim.properties]
+Complete build sequence is [check.dependencies, set.csim.properties, set.project.list, debug, clean_release, csim_lib, csim_shell, help, drivers, clean, release, wall, rlm_off, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.csim.properties:
+Setting project property: csim.dir -> csim
+Setting project property: csim.lib -> Csim
+Setting project property: csim.shell -> CsimShell
+Setting project property: error.lib -> CSLC_Errors
+Setting project property: cslc.binary -> cslc
+Setting project property: we.dir -> csl_xml_warn_error
+Setting project property: support.dir -> support
+Setting project property: ver_p.dir -> parser/verilog
+Setting project property: csl_p.dir -> parser/csl
+Setting project property: preproc.dir -> preproc
+Setting project property: cdom.dir -> cdom
+Setting project property: cslom.dir -> cslom
+Setting project property: adapter.dir -> cslom2cdom_adapter
+Setting project property: cslom_gen.dir -> cslom_generators
+Setting project property: ar.dir -> autorouter
+Setting project property: cslom_ck.dir -> cslom_design_checker
+Setting project property: cslc.dir -> cslc
+Setting project property: csl_gen.dir -> csl_gen
+Setting project property: project.dir.list -> csl_xml_warn_error,                                              support,                                              parser/verilog,                                              parser/csl,                                              preproc,                                              cdom,                                              cslom,                                              cslom2cdom_adapter,                                              cslom_generators,                                              autorouter,                                              cslom_design_checker,                                              cslc
+Setting project property: we.lib -> WE
+Setting project property: support.lib -> Support
+Setting project property: ver_p.lib -> VerilogParser
+Setting project property: csl_p.lib -> CslParser
+Setting project property: preproc.lib -> Preproc
+Setting project property: cdom.lib -> Cdom
+Setting project property: cslom.lib -> Cslom
+Setting project property: adapter.lib -> Adapter
+Setting project property: cslom_gen.lib -> CslomGen
+Setting project property: ar.lib -> AR
+Setting project property: cslom_ck.lib -> CslomChecker
+Setting project property: csl_gen.lib -> CslGen
+Setting project property: build.dir -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64
+Setting project property: support.dir -> support
+Setting project property: support.lib -> Support
+Setting project property: we.dir -> csl_xml_warn_error
+Setting project property: we.lib -> WE
+Setting project property: error.lib -> CSLC_Errors
+
+set.all.properties:
+Setting project property: no.dependencies -> on
+Setting project property: properties.set -> on
+Setting project property: project.root.dir -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64/support
+Setting project property: project.build.lib -> libSupport.a
+Setting project property: project.src.list -> ErrorAPI.cpp,                                                 SupportFunctions.cpp,                                                 cli/cslcCLI.cpp,                                                 cli/cslcCLI_Support.cpp,                                                 cli/cslcCLI_Typedef.cpp,                                                 Base.cpp
+Setting project property: project.driver.list -> 
+    [mkdir] Skipping /home/derek/Desktop/fpl_svn_20090103/trunk/build/linux/x86_64/support because it already exists.
+
+debug:
+     [echo] ---------------------- debug flag on
+Setting project property: debug.flag -> on
+Setting project property: project.subdir -> debug
+Build sequence for target(s) `compile' is [check.dependencies, set.all.properties, create.build.dir, compile]
+Complete build sequence is [check.dependencies, set.all.properties, create.build.dir, compile, debug, help, drivers, clean, wall, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Skipped because property 'properties.set' set.
+
+create.build.dir:
+Setting project property: project.build.dir -> /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64/support/debug
+     [echo] Build dir: '/home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64/support/debug'
+    [mkdir] Skipping /home/derek/Desktop/fpl_svn_20090103/trunk/build/linux/x86_64/support/debug because it already exists.
+
+compile:
+     [echo] ==================== Compiling in support ====================
+ConditionalFileSet: Setup scanner in dir /home/derek/Desktop/fpl_svn_20090103/trunk/src/support with patternSet{ includes: [ErrorAPI.cpp, SupportFunctions.cpp, cli/cslcCLI.cpp, cli/cslcCLI_Support.cpp, cli/cslcCLI_Typedef.cpp, Base.cpp] excludes: [] }
+       [cc] 6 total files to be compiled.
+       [cc] gcc -g -ftest-coverage -fprofile-arcs -c /home/derek/Desktop/fpl_svn_20090103/trunk/src/support/cli/cslcCLI_Typedef.cpp /home/derek/Desktop/fpl_svn_20090103/trunk/src/support/cli/cslcCLI_Support.cpp /home/derek/Desktop/fpl_svn_20090103/trunk/src/support/cli/cslcCLI.cpp /home/derek/Desktop/fpl_svn_20090103/trunk/src/support/ErrorAPI.cpp /home/derek/Desktop/fpl_svn_20090103/trunk/src/support/SupportFunctions.cpp /home/derek/Desktop/fpl_svn_20090103/trunk/src/support/Base.cpp
+Execute:Java13CommandLauncher: Executing 'gcc' with arguments:
+'-g'
+'-ftest-coverage'
+'-fprofile-arcs'
+'-c'
+'/home/derek/Desktop/fpl_svn_20090103/trunk/src/support/cli/cslcCLI_Typedef.cpp'
+'/home/derek/Desktop/fpl_svn_20090103/trunk/src/support/cli/cslcCLI_Support.cpp'
+'/home/derek/Desktop/fpl_svn_20090103/trunk/src/support/cli/cslcCLI.cpp'
+'/home/derek/Desktop/fpl_svn_20090103/trunk/src/support/ErrorAPI.cpp'
+'/home/derek/Desktop/fpl_svn_20090103/trunk/src/support/SupportFunctions.cpp'
+'/home/derek/Desktop/fpl_svn_20090103/trunk/src/support/Base.cpp'
+
+The ' characters around the executable and arguments are
+not part of the command.
+       [cc] Starting link
+       [cc] ar rvs libSupport.a cslcCLI_Typedef.o cslcCLI_Support.o cslcCLI.o ErrorAPI.o SupportFunctions.o Base.o
+Execute:Java13CommandLauncher: Executing 'ar' with arguments:
+'rvs'
+'libSupport.a'
+'cslcCLI_Typedef.o'
+'cslcCLI_Support.o'
+'cslcCLI.o'
+'ErrorAPI.o'
+'SupportFunctions.o'
+'Base.o'
+
+The ' characters around the executable and arguments are
+not part of the command.
+       [cc] ar: creating libSupport.a
+       [cc] a - cslcCLI_Typedef.o
+       [cc] a - cslcCLI_Support.o
+       [cc] a - cslcCLI.o
+       [cc] a - ErrorAPI.o
+       [cc] a - SupportFunctions.o
+       [cc] a - Base.o
+  [symlink] ln -s /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64/support/debug/libSupport.a /home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64/support/libSupport.a
+  [symlink] Executing 'ln' with arguments:
+  [symlink] '-s'
+  [symlink] '/home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64/support/debug/libSupport.a'
+  [symlink] '/home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64/support/libSupport.a'
+  [symlink] 
+  [symlink] The ' characters around the executable and arguments are
+  [symlink] not part of the command.
+Execute:Java13CommandLauncher: Executing 'ln' with arguments:
+'-s'
+'/home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64/support/debug/libSupport.a'
+'/home/derek/Desktop/fpl_svn_20090103/trunk/build_utils/../build/linux/x86_64/support/libSupport.a'
+
+The ' characters around the executable and arguments are
+not part of the command.
+
+BUILD SUCCESSFUL
+Total time: 6 seconds

@@ -1,0 +1,44 @@
+//-----------------------match-mismatch enable---------------------------------
+<TMPL_LOOP match_list>
+wire <TMPL_VAR match_en> = <TMPL_VAR out_signal> == <TMPL_VAR exp_signal>;
+wire <TMPL_VAR mismatch_en> = <TMPL_VAR out_signal> != <TMPL_VAR exp_signal>;
+</TMPL_LOOP>
+<TMPL_INCLUDE clk_gen.tmpl>
+//------------------mismatches-------------------------------------------
+always @(posedge <TMPL_VAR clk> or negedge <TMPL_VAR testbench_reset_>) begin
+   if(~(<TMPL_VAR testbench_reset_>)) begin
+   <TMPL_VAR mismatch_count> = {<TMPL_VAR EXP_ADDR_WIDTH>{1'b0}};
+  end
+  else begin
+<TMPL_LOOP mismatches>
+   if(<TMPL_VAR mismatch_en>) begin
+    <TMPL_VAR transaction_count> = <TMPL_VAR transaction_count>+1'b1;
+    <TMPL_VAR mismatch_count> = <TMPL_VAR mismatch_count>+1'b1;
+$fwrite(<TMPL_VAR file_mcd>,"mismatch detected: DUT output %s = %x     Expected output %s = %x \n", "<TMPL_VAR out_wire>",<TMPL_VAR out_wire>,"<TMPL_VAR exp_wire>",<TMPL_VAR exp_wire>);
+   end 
+</TMPL_LOOP>
+   if(<TMPL_VAR mismatch_count> > <TMPL_VAR EXP_VECTOR_MAX_ERR>) begin
+   $display("Maximum number or errors allowed for vector %s has been reached", "exp_dut_i");
+   end
+  end
+end
+//---------------matches-------------------------------------
+ always @(posedge <TMPL_VAR clk> or negedge <TMPL_VAR testbench_reset_>) begin
+   if(~(<TMPL_VAR testbench_reset_>)) begin
+   <TMPL_VAR match_count> = {<TMPL_VAR EXP_ADDR_WIDTH>{1'b0}};
+  end
+  else begin
+<TMPL_LOOP matches>
+   if(<TMPL_VAR match_en>) begin
+    <TMPL_VAR transaction_count> = <TMPL_VAR transaction_count>+1'b1;
+    <TMPL_VAR match_count> = <TMPL_VAR match_count>+1'b1;
+$fwrite(<TMPL_VAR file_mcd>,"match detected: DUT output %s = %x     Expected output %s = %x \n", "<TMPL_VAR out_wire>",<TMPL_VAR out_wire>,"<TMPL_VAR exp_wire>",<TMPL_VAR exp_wire>);
+   end 
+</TMPL_LOOP>
+ end
+end
+//------------------------------------------------------------------
+
+ endmodule  
+
+

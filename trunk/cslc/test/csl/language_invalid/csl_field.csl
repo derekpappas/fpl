@@ -1,0 +1,26 @@
+//andreim
+//15 October 2007
+//csl_field 
+
+csl_enum enum_f{
+   A,
+   B
+};
+
+//set_width is mandatory
+csl_field fd1{
+   fd1(){
+    set_offset (2);
+   }
+};
+
+csl_unit u{
+  fd1 fd1_i; 
+  csl_signal s1,s2;
+  u(){
+   //  fd1_i.set_enum(enum_f);
+     fd1_i.set_value (2);
+     list l={s1, s2};
+  }
+};
+

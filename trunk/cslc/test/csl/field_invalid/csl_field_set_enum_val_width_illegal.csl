@@ -1,0 +1,25 @@
+csl_enum opcodes {
+  RD  = 0,
+  WR  = 1,
+  BR  = 2,
+  NOP = 3
+};
+
+csl_field op {
+  op() {
+    set_width(1);
+    set_enum_item(BR); // BR is 2'b10
+  }
+};
+
+csl_field instr_fmt {
+  op op;
+
+  instr_fmt() {
+    set_width(32);
+    set_field_position(op,30);
+  }
+};
+
+
+

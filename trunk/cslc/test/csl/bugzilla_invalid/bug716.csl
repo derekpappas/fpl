@@ -1,0 +1,14 @@
+csl_field  format2{
+        op op_inst;
+        rd rd_inst;
+        op2 op2_inst;
+        imm22 imm22_inst;
+        format2(){
+                set_width(32);
+                set_position(op_inst, 30);
+                set_position(rd_inst, 25);
+                set_position(op2_inst, 22);
+                set_position(imm22_inst, 2);    // 
+                //     set_position(cc1_inst, 2);   // cc1_inst does not exist
+        }
+};

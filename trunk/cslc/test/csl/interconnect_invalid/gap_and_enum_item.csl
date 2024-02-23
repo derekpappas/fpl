@@ -1,0 +1,83 @@
+csl_enum op_code{ 
+    ALU =1, 
+    MOV =2, 
+    BR =3
+};
+
+csl_isa_field notEnum0{
+  notEnum0(){
+    set_type(unused);
+    set_width(4);
+  }
+};
+
+csl_isa_field notEnum1{
+  notEnum1(){
+    set_type(unused);
+    set_width(4);
+    set_enum(op_code);
+  }
+};
+
+csl_isa_field notEnum{
+  notEnum0 ne0;
+  notEnum1 ne1;
+  notEnum(){
+    set_type(unused);
+    set_width(8);
+    set_position(ne0,0);
+    set_position(ne1,4);
+  }
+};
+
+csl_isa_field op{ 
+  op(){ 
+    set_type(opcode); 
+    set_width(8); 
+    set_enum(op_code); 
+  }
+};
+
+csl_isa_element root{
+  root(){
+    set_type(root_format);
+    set_width(16);
+  }
+};
+
+csl_isa_element instr:root{
+  op op0;
+  notEnum ne;
+  instr(){
+    set_type(instr_format);
+    set_position(ne,8);
+    set_position(op0,0);
+  }
+};
+
+csl_isa_element leaf:instr{
+  leaf(){
+    set_type(instr);
+    op0.set_enum_item(ALU);
+    ne.ne1.set_enum_item(ALU);
+  }
+};
+
+csl_isa_element leaf2:instr{
+  leaf2(){
+    set_type(instr);
+    op0.set_enum_item(BR);
+    ne.ne1.set_enum_item(BR);
+  }
+};
+
+csl_isa_element leaf3:instr{
+  leaf3(){
+    set_type(instr);
+    op0.set_enum_item(MOV);
+    ne.ne1.set_enum_item(MOV);
+  }
+};
+
+csl_unit top {
+};

@@ -1,0 +1,135 @@
+csl_enum dk {
+	dn = 59,
+	rp = 97,
+	an = 54,
+	io = 79,
+	yk = 55,
+	ro = 29
+};
+csl_enum cw {
+	vx = 12,
+	eu = 98,
+	tc = 96
+};
+csl_enum vh {
+	ek = 27,
+	vi = 54,
+	vh = 9,
+	my = 71,
+	rp = 24,
+	pl = 52,
+	fr = 45,
+	ap = 99,
+	jb = 89,
+	ab = 19,
+	rd = 69,
+	xn = 87,
+	de = 95,
+	iw = 82
+};
+csl_isa_instruction_format be{
+    be( ){
+     generate_decoder( fdpd);
+  }
+}
+;
+csl_isa_instruction gr : be{
+    gr( ){
+    set_asm_mnemonic( csl_list "ys");
+  }
+}
+;
+csl_isa lc{
+  gr jf;
+  gr an;
+  gr mt;
+  gr ih;
+  gr so;
+  gr is;
+  gr gl;
+  gr pr;
+  gr ll;
+    lc( ){
+     set_decoder_name( "sb");
+     set_decoder_out_name_prefix( "nr");
+     set_decoder_out_name_suffix( "mr");
+     print( isa.txt);
+  }
+}
+;
+csl_fifo xf{
+   xf( ){
+     set_dimension( 5, 0);
+     add_logic( stall_rd_side);
+     add_logic( output_rd_addr);
+  }
+}
+;
+csl_memory_map_page ww{
+    ww( ){
+     add_address_range( 7, 5);
+     get_aligment( );
+  }
+}
+;
+csl_memory_map_page oq{
+  ww qf;
+  ww fj;
+    oq( ){
+     set_access_rights( access_read_write, access_read);
+     add( xf, "ys", 8);
+     add( ww);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 6);
+     get_data_word_wodth( );
+     set_endianess( little_endianlittle_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page ik{
+  oq ds;
+  ww ld;
+  oq oe;
+    ik( ){
+     add_reserved_address_range( 7, 6);
+     add( ww);
+     set_data_word_width( 4);
+     get_aligment( );
+     set_endianess( big_endianlittle_endian);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map ft{
+  ww wn;
+  ww kx;
+    ft( ){
+     auto_gen_memory_map( );
+     set_top_unit( fdhbpd);
+.add_to_memory_map( 6); 
+     set_data_word_width( 3);
+     set_prefix( wj);
+     get_prefix( );
+  }
+}
+;
+csl_register yw{
+    yw( ){
+     set_type( SEMA);
+     add_logic( serial_input);
+     set_value( 0);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register hw{
+    hw( ){
+     set_const_value( 6);
+     add_logic( bypass);
+  }
+}
+;

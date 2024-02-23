@@ -1,0 +1,15 @@
+// set_bitrange to a signal(or anything else) that does not exist
+//andreim
+//18 June 2007
+
+csl_bitrange br_br(0,7);
+
+csl_unit u_unit1{
+	csl_signal 	sgn_sgn1,
+							sgn_sgn2(wire, 4),     
+							sgn_sgn3(wire, 0,3);  //lower & upper
+	u_unit1(){
+							sgn_sgn1.set_width(sgn_sgn2.get_width());
+							sgn_sgn4.set_bitrange(br_br);  // sgn_sgn4 does not exist
+	}
+};

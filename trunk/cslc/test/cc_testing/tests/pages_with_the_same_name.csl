@@ -1,0 +1,30 @@
+// there are 2 memory map pages with the same name and no error, also page1_does not exist
+csl_memory_map_page page0{
+	page0(){
+		add_address_range(0, 2);
+	}
+};
+
+csl_memory_map_page page0{
+	page0(){
+		add_address_range(0, 4);
+	}
+};
+
+csl_register_file rf1{
+        rf1(){
+            set_width(4); set_depth(4);
+        }
+};
+
+csl_memory_map element{
+	page0 pag_0(rf1);
+	page0 pag_2(rf1);
+  page1 pag_1(rf1);//
+	element(){
+	set_type(flat);
+          set_data_word_width(8);
+  }
+};
+
+

@@ -1,0 +1,11 @@
+//Petronela
+csl_register rg{
+  rg(){
+//    set_range(0,3);
+    set_width(16);
+    set_feedback_element(xor);
+    set_start_value(3);
+    stop_at_end_value();//i don't have a set_end_value 
+  }
+};
+

@@ -1,0 +1,10 @@
+// Author: cghaba
+// November 7, 2007
+
+csl_interface ifc_a{
+  csl_field f_a(4);
+  csl_port p_a1(input,8);
+  csl_port p_a2(output,f_a);
+  ifc_a(){
+    }
+};

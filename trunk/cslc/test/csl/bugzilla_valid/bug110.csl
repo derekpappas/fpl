@@ -1,0 +1,9 @@
+csl_bitrange br2(8);            
+csl_bitrange br3(7,0);    
+csl_unit u{                      
+     csl_signal sgn30(reg, br3);    
+     csl_signal sgn26(reg,br2); 
+     u(){
+       sgn30=sgn26;
+     }
+};

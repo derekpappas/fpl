@@ -1,0 +1,31 @@
+//Monica
+//14 november 2007
+//ilegal test --- wrong argument for set_vc_output_filename, 
+
+csl_unit dut{
+csl_port exp_out(output),exp_v(output), stim_in(input), stim_v(input);
+csl_port clk(input);
+dut() {
+clk.set_attr(clock); }
+};
+csl_vector stim_vec{
+stim_vec(){
+set_unit_name(dut);
+set_direction(input);
+}
+};
+csl_vector exp_vec{
+exp_vec(){
+set_unit_name(dut);
+set_direction(output);
+set_vc_output_filename(323);  //error, the parameter should be a string
+}
+};
+csl_testbench tb{
+  csl_signal clk(reg);
+dut dut;
+tb(){
+clk.set_attr(clock);
+add_logic(clock,clk,10,ns);
+}
+};

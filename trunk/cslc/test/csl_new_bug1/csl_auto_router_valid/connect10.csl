@@ -1,0 +1,62 @@
+//oanab
+//1 feb 2008
+
+csl_interface ifc1 {
+  csl_port x(input),y(output);
+  ifc1 () {}
+};
+
+csl_interface ifc2 {
+  csl_port x(input),y(output),a1(output),b1(input),a(input),b(output);
+  ifc2 () {}
+};
+
+csl_unit u1 {
+  ifc1 ifc11;
+  ifc2 ifc22;
+  u1 () {}
+};
+
+csl_unit u2 {
+  ifc1 ifc12;
+  ifc2 ifc22;
+  u2 () {}
+};
+
+csl_unit u3 {
+  ifc1 ifc13;
+  ifc2 ifc23;
+  u3 () {}
+};
+
+csl_unit u4 {
+  ifc1 ifc14;
+  ifc2 ifc24;
+  u4 () {
+    ifc24.reverse();
+  }
+};
+
+csl_unit u {
+  csl_signal s1,s2;
+  ifc2 ifc2a,ifc2b;
+  ifc1 ifc1a,ifc1b;
+  u1 u11(.ifc22(ifc2a));
+  u2 u21(.ifc12(ifc1a));
+  u3 u31(.ifc13(ifc1b));
+  u3 u32(.ifc23(ifc2a));
+  u3 u33(.ifc13(ifc1b));
+  u4 u41(.ifc14(ifc1a));
+  u4 u42(.ifc24(ifc2b));
+  u () {
+    u32.ifc13.reverse();
+    ifc1b.reverse();
+    ifc2b.reverse();
+    u11.ifc11.x.connect_by_name(s1);
+    u11.ifc11.y.connect_by_name(s2);
+    u31.ifc23.connect_by_name(u41.ifc24);
+    ifc2a.connect_by_name(u21.ifc22);
+    u33.ifc23.connect_by_name(ifc2a);
+    u42.ifc14.connect_by_name(u32.ifc13);
+  }
+};

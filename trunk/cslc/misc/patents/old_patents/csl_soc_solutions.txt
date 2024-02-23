@@ -1,0 +1,13 @@
+Multi processor solution company
+Automatically generate networks of micro engines
+Productize
+testbenches
+vectors/state data
+
+DMA engine
+fast on chip interconnect transmit and receive
+
+Automatic verification connections between C/C++ simulator and RTL
+automatic generation of memory maps
+
+

@@ -1,0 +1,37 @@
+//danielt 
+//28.11.2007
+
+csl_interface p{
+  csl_port x(input,1),y(input,1),z(input,1);    
+  p(){ }
+};
+csl_interface pp{
+  p p0;
+  csl_port data(input,32);
+  pp(){
+  }
+};
+csl_signal_group sg{
+  csl_signal x,y,z;
+  sg(){
+  }
+};
+
+csl_signal_group sga{
+  sg sg0;
+  csl_signal data(32);
+  sga(){
+  }
+};
+
+csl_unit u{
+  pp pp2;
+  u(){
+  }
+};
+csl_unit top{
+  sga sga1;
+  u u2(.pp2.p0(sga1.sg0),.pp2.data(sga1.data));
+  top(){
+  }
+};

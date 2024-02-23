@@ -1,0 +1,51 @@
+csl_enum e{
+  a,
+    b,
+    c
+};
+
+csl_enum e1{
+  a1,
+    b1,
+    c1
+};
+
+
+csl_field f1{
+  f1(){
+    set_enum(e);
+  }
+};
+
+csl_field f2{
+  f2(){
+    set_enum(e1);
+  }
+};
+
+csl_field field1{
+  f1 f1_1;
+  f2 f2_1;
+  field1(){
+
+  }
+};
+
+csl_field f3{
+  f3(){
+    set_enum_item(a);
+  }
+};
+
+csl_field f4{
+  f4(){
+    set_enum_item(a1);
+  }
+};
+
+csl_field field2{
+  f3 f3_1;
+  f4 f4_2;
+  field2(){
+  }
+};

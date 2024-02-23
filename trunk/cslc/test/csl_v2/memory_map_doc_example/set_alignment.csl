@@ -1,0 +1,20 @@
+csl_memory_map_page mpage_0{
+mpage_0(){
+add_address_range(0,63);
+set_address_increment(2);
+set_alignment(64);
+}
+};
+csl_memory_map_page mpage_1{
+  mpage_0 mpage_0;
+mpage_1(){
+add_address_range(64,512);
+set_address_increment(2);
+set_alignment(mpage_0.get_alignment());
+}
+};
+csl_memory_map mmap{
+mpage_1 mpage_1;
+mmap(){
+}
+};

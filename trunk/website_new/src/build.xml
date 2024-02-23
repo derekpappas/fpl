@@ -1,0 +1,33 @@
+<project name="ProjectX" basedir="." default="build">
+	<description>Builds ProjectX</description>
+
+	<property name="build.files" value="fplsite/build.xml" />
+	<macrodef name="run.subprojects">
+		<attribute name="target.name" />
+		<sequential>
+			<subant target="@{target.name}">
+				<filelist dir="." files="${build.files}" />
+			</subant>
+		</sequential>
+	</macrodef>
+
+	<target name="clean" description="Removes all binaries and jar files">
+		<run.subprojects target.name="clean" />
+	</target>
+
+	<target name="compile" description="Compiles the sub-projects if binaries are outdated">
+		<run.subprojects target.name="compile" />
+	</target>
+
+	<target name="build.jar" description="Builds the sub-projects jar files if they are outdated">
+		<run.subprojects target.name="build.jar" />
+	</target>
+
+	<target name="build" description="Builds the sub-projects in light mode">
+		<run.subprojects target.name="build" />
+	</target>
+
+	<target name="build.clean" description="Builds the sub-projects from scratch">
+		<run.subprojects target.name="build.clean" />
+	</target>
+</project>

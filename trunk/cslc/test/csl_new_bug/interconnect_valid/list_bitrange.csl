@@ -1,0 +1,13 @@
+//oanab
+//14 dec 2007
+
+csl_bitrange br(7,0);
+
+csl_unit u{
+  csl_signal a,b;
+  csl_list lista(a,b);
+  u(){
+//lista.set_bitrange(br);
+  a = b;
+  }
+};

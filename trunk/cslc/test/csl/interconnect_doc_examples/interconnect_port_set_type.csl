@@ -1,0 +1,48 @@
+//danielt
+//november 07, 2007
+
+csl_unit im{
+  csl_port im_p(input);
+  im(){
+    im_p.set_type(wire);
+}
+};
+
+csl_unit id{
+  csl_port id_p(output);
+  id(){
+    id_p.set_type(reg);
+}
+};
+
+csl_unit rf{
+  csl_port rf_p(output);
+  rf(){
+    rf_p.set_type(reg);
+  }
+};
+
+csl_unit alu{
+  csl_port alu_p(input);
+  alu(){
+    alu_p.set_type(wire);
+}
+};
+
+csl_unit wb{
+  csl_port wb_p(output);
+  wb(){
+    wb_p.set_type(reg);
+}
+};
+
+csl_unit chip{
+  csl_signal clk1;
+  im im( .im_p(clk1));
+  id id( .id_p(clk1));
+  rf rf( .rf_p(clk1));
+  alu alu( .alu_p(clk1));
+  wb wb( .wb_p(clk1));
+  chip(){
+    clk1.set_type(wire);}
+};

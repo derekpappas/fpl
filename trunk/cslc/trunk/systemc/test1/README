@@ -1,0 +1,11 @@
+To compile and run the example that generates vector files from systemC code:
+
+ - using VEC_COMPILE:
+		source VEC_COMPILE
+		a.out
+		stim_vec_exor2 & exp_vec_exor2 are generated
+
+ - using Makefiles:
+		make -f Makefile.gcc
+		main.x
+		stim_vec_exor2 & exp_vec_exor2 are generated

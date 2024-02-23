@@ -1,0 +1,39 @@
+//illegal: can't add a field over other field that is inheritanced and has an enum_item set
+//danielt
+//16 june 2007
+
+
+csl_enum e_enum{
+    a,
+    b,	
+	c
+};
+
+csl_isa_field f_field(2,e_enum);
+csl_isa_field f_field2(2);
+
+csl_isa_element format{
+  f_field f_field;
+  f_field2 f_field2;
+  format(){
+    set_type(root_format);
+    set_width(8);
+    set_position(f_field, 6);
+    set_next(f_field, field_i2);
+    }
+};
+
+csl_isa_element format_ext : format{
+  format_ext(){
+    set_type(instr_format);
+    f_field.set_enum_item(b);
+	}		
+};
+
+csl_isa_element format_ext2 : format_ext{
+	f_field field_i3;
+	format_ext2(){
+		set_position(field_i3, 6); 
+//can't do this because the 6-7 bits are sets with another field
+	}		
+};

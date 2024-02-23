@@ -1,0 +1,8 @@
+ieeevarstd_logic_1164ieee.sym/std_logic_1164/prim.var
+ieeesrcstd_logic_1164stdlogic.vhd
+ieeevarstd_logic_arithieee.sym/std_logic_arith/prim.var
+ieeesrcstd_logic_arithstdlogicarith.vhd
+.vartb(tb_comb)work.sym/tb/_tb_comb.var
+.srctb(tb_comb)tb_comb.vhd
+.varcfgwork.sym/cfg/prim.var
+.srccfgtb_comb.vhd

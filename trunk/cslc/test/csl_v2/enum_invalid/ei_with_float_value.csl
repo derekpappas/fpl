@@ -1,0 +1,4 @@
+//ILLEGAL TEST: because a can receive only integer numbers
+csl_enum e1{
+  a = 0.3//here must be an error 
+};

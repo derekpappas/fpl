@@ -1,0 +1,139 @@
+csl_enum qa {
+	vq,
+	sk,
+	fi,
+	tf,
+	ur,
+	te,
+	um,
+	mo,
+	wg,
+	rt,
+	ua,
+	tf
+};
+csl_enum hb {
+	xf = 26,
+	fq = 95,
+	fd = 98,
+	ja = 32,
+	or = 45,
+	ik = 75,
+	wd = 86,
+	eq = 12
+};
+csl_enum iy {
+	fw = 23,
+	pc = 37,
+	gh = 63,
+	yb = 4,
+	ks = 76,
+	jt = 99,
+	uh = 89,
+	yc = 6,
+	ae = 64,
+	gk = 82,
+	eu = 79,
+	cm = 39,
+	hb = 9,
+	rl = 69,
+	sc = 18,
+	mx = 19,
+	cc = 51
+};
+csl_isa_instruction_format ok{
+    ok( ){
+     set_width( 1);
+     generate_decoder( wegc);
+  }
+}
+;
+csl_isa ol{
+    ol( ){
+     set_decoder_name( "mi");
+     set_decoder_out_name_suffix( "ul");
+     generate_decoder( wegc);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo dr{
+   dr( ){
+     add_logic( parallel_output, all);
+     add_logic( rd_words, 9);
+     add_logic( string_through, 5);
+     add_logic( stall);
+     add_logic( rd_credit);
+  }
+}
+;
+csl_memory_map_page kv{
+    kv( ){
+     add_address_range( 6, 6);
+     set_address_increment( 2);
+     get_lower_bound( );
+     set_data_word_width( 8);
+     get_data_word_wodth( );
+     get_aligment( );
+  }
+}
+;
+csl_memory_map_page dq{
+    dq( ){
+     add_address_range( 4, 9);
+     set_next_address( 5);
+     get_next_address( );
+     add_reserved_address_range( 5, 9);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 5);
+     set_aligment( 4);
+     get_aligment( );
+     set_endianess( big_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page iq{
+    iq( ){
+     add( kv);
+     get_lower_bound( );
+     set_data_word_width( 7);
+     get_data_word_wodth( );
+     set_endianess( big_endian);
+  }
+}
+;
+csl_memory_map kc{
+  kv oe;
+  dq ki;
+  iq wj;
+  dq nu;
+    kc( ){
+     auto_gen_memory_map( );
+     set_type( page);
+     set_prefix( jb);
+     get_prefix( );
+  }
+}
+;
+csl_register qi{
+    qi( ){
+     set_type( STATIC);
+     set_address( kc, );
+     set_count_amount( 9);
+  }
+}
+;
+csl_register sp{
+    sp( ){
+     set_depth( 7);
+     get_depth( );
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 9);
+     add_logic( bypass);
+  }
+}
+;

@@ -1,0 +1,148 @@
+csl_enum hn {
+	fi,
+	yl,
+	pt,
+	cv,
+	kw,
+	ks
+};
+csl_enum cd {
+	im = 52,
+	en = 89,
+	me = 92,
+	nx = 19,
+	xv = 67,
+	hq = 53,
+	uq = 9,
+	te = 68,
+	eb = 29,
+	nd = 61
+};
+csl_enum nf {
+	xr,
+	di,
+	op,
+	ds,
+	vl,
+	fa
+};
+csl_isa_instruction_format xw{
+    xw( ){
+     set_width( 2);
+     generate_decoder( ylwpds);
+  }
+}
+;
+csl_isa_instruction no : xw{
+    no( ){
+    set_asm_mnemonic( csl_list "ko", "lr", "at", "sn", "ys", "kv", "pe");
+  }
+}
+;
+csl_isa_instruction ad : xw{
+    ad( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa_instruction hq : xw{
+    hq( ){
+    set_asm_mnemonic( csl_list "hw", "hh", "xv", "nd", "ng", "vm", "vi", "nx", "lc");
+  }
+}
+;
+csl_isa_instruction eq : xw{
+    eq( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa ah{
+    ah( ){
+     set_decoder_name( "xj");
+     set_decoder_out_name_prefix( "vc");
+     set_decoder_out_name_suffix( "ex");
+     generate_decoder( wpds);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo gc{
+   gc( ){
+     add_logic( priority_bypass);
+     add_logic( parallel_output, all);
+     add_logic( stall_rd_side);
+     add_logic( almost_empty, 8);
+     add_logic( credit);
+  }
+}
+;
+csl_memory_map_page lv{
+    lv( ){
+     add_address_range( 2, 7);
+     set_address_increment( 2);
+     add_reserved_address_range( 7, 5);
+     get_data_word_wodth( );
+     get_aligment( );
+  }
+}
+;
+csl_memory_map_page ru{
+  lv bn;
+  lv qi;
+    ru( ){
+     add_address_range( 7, 3);
+     set_address_increment( 4);
+     get_address_increment( );
+     add_reserved_address_range( 7, 9);
+     set_aligment( 7);
+     get_aligment( );
+  }
+}
+;
+csl_memory_map_page ig{
+  lv vn;
+  lv rh;
+  lv jj;
+    ig( ){
+     add( lvru);
+     get_endianess( );
+  }
+}
+;
+csl_memory_map sm{
+    sm( ){
+     auto_gen_memory_map( );
+     set_top_unit( wpdsps);
+     set_type( page);
+lv.set_access_rights_enum( lv); 
+     set_data_word_width( 7);
+     get_data_word_width( );
+     set_prefix( bn);
+     set_suffix( uy);
+  }
+}
+;
+csl_register sa{
+    sa( ){
+     set_type( INT);
+     add_logic( serial_input);
+     add_logic( serial_output);
+     set_end_value( 7);
+     stop_at_end_value( );
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register df{
+    df( ){
+     set_width( 6);
+     get_width( );
+     set_depth( 1);
+     add_logic( read_valid);
+     create_rtl_module( );
+     set_const_value( 0);
+     add_logic( bypass);
+  }
+}
+;

@@ -1,0 +1,7 @@
+//author: Ines
+//testing: csl_multi_dim_bitrange obj_name(num_expr);
+//         - param number of dimensions; 
+
+csl_multi_dim_bitrange obj_name();
+
+csl_multi_dim_bitrange obj_name1(1.7);

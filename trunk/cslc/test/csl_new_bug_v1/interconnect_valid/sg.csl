@@ -1,0 +1,21 @@
+//oanab
+//4 mar 2008
+
+csl_signal_group sg1 {
+  csl_signal s1,s2,s3;
+  sg1 () {}
+};
+
+csl_signal_group sg2 {
+  sg1 sg1;
+  csl_signal s(4);
+  sg2 () {}
+};
+
+csl_unit u {
+  sg2 sg2;
+  u () {
+    sg2.s = {2{sg2.sg1.s1,sg2.sg1.s2}};
+    sg2.sg1.s3 = sg2.sg1.s1;  
+  }
+};

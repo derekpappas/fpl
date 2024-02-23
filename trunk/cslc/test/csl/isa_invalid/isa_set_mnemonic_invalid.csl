@@ -1,0 +1,49 @@
+//illegal: set_asm_mnemonic 
+
+csl_enum e_field{
+    ADD = 0,
+    SUB = 1
+};
+
+csl_isa_field op(2, e_field);
+csl_isa_field field(2);
+
+csl_isa_element format{
+    op op_i;
+    field field_i;
+    format(){
+	set_type(instr_format);
+       set_width(4);            
+       set_position(op_i, 2);
+       set_next(op_i,field_i);
+       op_i.set_mnemonic("math"); // can't set the mnemonic here
+    }
+};
+
+csl_isa_element i_add : format{
+     i_add(){
+	set_type(instr);
+         op.set_enum_item(ADD);  
+     }
+};
+
+csl_isa_element i_sub : format{  
+     i_sub(){
+	set_type(instr);
+         op.set_enum_item(SUB);  
+         op.set_mnemonic("ADD");
+     }
+};
+
+//csl_isa isa_example{
+//    //instanciate instructions
+//
+//    i_add add;
+//    i_sub sub;
+//
+//    isa_example(){
+//    add.set_mnemonic("ADD");  // ok
+//    sub.set_mnemonic("SUB"); 
+//    //sub has already set the mnemonic in constructor
+//    }
+//};

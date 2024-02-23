@@ -1,0 +1,121 @@
+csl_enum yi {
+	gx,
+	wu,
+	ek,
+	gb,
+	ao,
+	hc
+};
+csl_enum fn {
+	op = 73,
+	ur = 39,
+	bs = 88,
+	xt = 38,
+	yu = 96,
+	pv = 65,
+	tt = 38,
+	hu = 72
+};
+csl_enum ep {
+	ud,
+	my,
+	ns,
+	ao,
+	ik,
+	sp,
+	xh,
+	fu,
+	cj,
+	na
+};
+csl_isa yg{
+    yg( ){
+     set_decoder_name( "pg");
+     set_decoder_out_name_prefix( "hx");
+     set_decoder_out_name_suffix( "xp");
+     generate_decoder( qwxo);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo va{
+   va( ){
+     set_dimension( 4, 5);
+     add_logic( priority_bypass);
+     add_logic( wr_words, 3);
+     add_logic( almost_full, 0);
+     add_logic( output_rd_addr);
+  }
+}
+;
+csl_memory_map_page kv{
+    kv( ){
+     add_address_range( 7, 3);
+     add_reserved_address_range( 2, 3);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 5);
+     get_aligment( );
+     set_endianess( little_endian);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page ub{
+    ub( ){
+     set_address_increment( 7);
+     get_address_increment( );
+     set_access_rights( access_write, access_write);
+     add_reserved_address_range( 2, 0);
+     add( va, "ji");
+     get_lower_bound( );
+     get_upper_bound( );
+     get_data_word_wodth( );
+     get_aligment( );
+     set_endianess( big_endianbig_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page ig{
+  kv nf;
+  kv jm;
+  ub tl;
+    ig( ){
+     add_address_range( 1, 6);
+     set_address_increment( 6);
+     get_address_increment( );
+     set_next_address( 1);
+     set_access_rights( access_write, access_write);
+     add_reserved_address_range( 2, 2);
+     get_lower_bound( );
+     set_data_word_width( 1);
+     get_aligment( );
+     set_endianess( little_endianlittle_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map ii{
+  ub hw;
+  kv ep;
+  ig cf;
+    ii( ){
+     auto_gen_memory_map( );
+     set_type( flat);
+  }
+}
+;
+csl_register jo{
+    jo( ){
+     set_width( 0);
+     get_width( );
+     add_logic( read_valid);
+     set_const_value( 8);
+     add_logic( bypass);
+  }
+}
+;

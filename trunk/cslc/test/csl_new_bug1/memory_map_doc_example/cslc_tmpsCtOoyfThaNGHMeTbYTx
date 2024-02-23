@@ -1,0 +1,30 @@
+# "/opt/he_fpl_svn/fpl_repo/cslc/test/csl_new_bug1/memory_map_doc_example/./mem_map_pag_set_next_add.csl" 1
+
+
+csl_fifo f{
+  f() {
+    set_width(32);
+    set_depth(8);
+  }
+};
+
+csl_unit u{
+  csl_signal push,pop,full,empty,data(32),rst,valid,clk;
+  f f(.push(push),.pop(pop),.full(full),.empty(empty),.rd_data(data),
+       .wr_data(data),.reset_(rst),.valid(valid),.clock(clk));
+u(){}
+};
+
+csl_memory_map_page mpage{
+   mpage(){
+   add_address_range(0, 1024);
+   set_unit_name(u);
+
+  }
+};
+
+csl_memory_map mmap{
+  mmap(){
+    set_data_word_width(32);
+    set_type(hierarchical);
+  }};

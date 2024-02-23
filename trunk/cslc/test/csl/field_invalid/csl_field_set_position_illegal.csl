@@ -1,0 +1,19 @@
+csl_field op {
+  op() {
+    set_width(2);
+  }
+};
+
+
+csl_field instr_fmt {
+  op op0;
+ 
+  instr_fmt() {
+    set_width(32);
+    set_field_position(op,30); 
+// can't set the position of the csl_field op
+// op is not in the scope of instr_fmt
+  }
+};
+
+

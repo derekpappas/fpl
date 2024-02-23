@@ -1,0 +1,170 @@
+<html>
+  <head>
+     <title>Reports for <TMPL_VAR NAME="testDirName"></title>
+     <link href="<TMPL_VAR NAME="styleCss">" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <h1>Test Results for <TMPL_VAR NAME="testDirName"></h1>
+
+    <div align="left">
+                Test suite : <TMPL_VAR NAME="testDirName"      ><br>
+           Test suite type : <b><TMPL_VAR NAME="testDirValInv" ></b><br>
+                 Date/Time : <TMPL_VAR NAME="dateTime"         ><br>
+    </div>
+    <div align="left">
+
+<!-- add these error cnts to the template
+    my @numberOfErrors=("Tests passed: cntValues{pass_cnt} of total_noskip \n",
+                        "Sources cnt for this testsuite: cntErrorValues{num_tests}\n",
+                        "Warnings:              cntErrorValues{warnings}\n",
+                        "Memcheck errors:       cntErrorValues{memcheckErrors}\n",
+                        "Exception errors:      cntErrorValues{exception_error}\n",      
+                        "Assert errors:         cntErrorValues{assert_error}\n",
+                        "Seg fault errors:      cntErrorValues{seg_fault_error}\n",
+                        "Abort errors:          cntErrorValues{abort_error}\n",
+                        "No via alt errors:     cntErrorValues{no_via_alt}\n",
+                        "Mismatch errors:       cntErrorValues{mismatch_error}\n",
+                        "Unexpect token errors: cntErrorValues{unexpected_token}\n",
+                        "Normal Error:          cntErrorValues{normal_error}\n",
+# FIX - RM                        "Errors preprocessing Verilog program: cntErrorValues{pps_error}\n",
+                        "Passed percentage:     percent_passed\n");
+-->
+
+    <p align="left">Regression tests execution time: 
+    <TMPL_VAR NAME="test_day">(s), <TMPL_VAR NAME="test_hour"> hour(s), <TMPL_VAR NAME="test_min> minute(s), <TMPL_VAR NAME="test_sec> sec(s).</p>
+
+    <p></p>
+    <link href="style.css" rel="stylesheet" type="text/css">Page Number: <TMPL_VAR NAME="testPageNumber"> 
+    <p></p>
+
+  <p>Links to <TMPL_VAR NAME="testDirName"> test results pages
+    
+    <TMPL_LOOP NAME="testLinkPageNumLoop">          
+        <span class="page_link"> <a href="<TMPL_VAR NAME="pageLink">"> <TMPL_VAR NAME="pageNum"> </a> &nbsp; </span>
+    </TMPL_LOOP>
+    </p>
+
+
+    <table border="0" width="40%" cellpadding="1" cellspacing="1" class="table">
+    <tr align="center">
+      <td class="table_header">No.                 </td>
+      <td class="table_header">Test Name           </td>
+      <td class="table_header">Lexer               </td>
+      <td class="table_header">Parser              </td>
+      <td class="table_header">TW CSLOM Cmd        </td>
+      <td class="table_header">Inst Tree           </td>
+      <td class="table_header">Auto Route          </td>
+      <td class="table_header">Auto Map            </td>
+      <td class="table_header">CSLOM Check         </td>
+      <td class="table_header">CSLOM Conn Check    </td>
+      <td class="table_header">Cpp Code Gen        </td>
+      <td class="table_header">Csim Code Gen       </td>
+      <td class="table_header">Adapt               </td>
+      <td class="table_header">CDOM Check          </td>
+      <td class="table_header">V. Code Gen         </td>
+      <td class="table_header">VHDL Code Gen       </td>
+      <td class="table_header">SC Code Gen         </td>	
+      <td class="table_header">min or err         </td>
+      <td class="table_header">maj or err         </td>
+      <td class="table_header">Val grind Error     </td>
+      <td class="table_header">File Over all       </td>
+      <td class="table_header">Pass %              </td>
+      <td class="table_header">CSLC Gen'ed V code</td>
+      <td class="table_header">GCC  Gen'ed VHDL code</td>
+      <td class="table_header">GCC  Gen'ed SysC code</td>
+      <td class="table_header">GCC  Gen'ed C++ code    </td>
+      <td class="table_header">GCC  Gen'ed CSim C++ code</td>
+      <td class="table_header">SystemC/Verilog simulation </td>
+    </tr>  
+    <TMPL_LOOP NAME="testListResultsLoop">
+    <tr align="center" start_test_result=true">
+      <td class="file_name"name="testnumber"                  ><TMPL_VAR NAME="testNumber"></td>
+      <td class="file_name"name="file_results"                ><a href="<TMPL_VAR NAME="linkToTestName"   >" ><TMPL_VAR NAME="testName">&nbsp    </a></td>
+      <td class="<TMPL_VAR NAME="lexerStatusCSSClass"         >" name="lexer"         >  <a href="<TMPL_VAR NAME="linkToLogFile">"  ><TMPL_VAR NAME="lexerStatus"          > </a></td>
+      <td class="<TMPL_VAR NAME="parserStatusCSSClass"        >" name="parser"        >  <a href="<TMPL_VAR NAME="linkToLogFile">"  ><TMPL_VAR NAME="parserStatus"         > </a></td>
+      <td class="<TMPL_VAR NAME="walkerStatusCSSClass"       >" name="treewalker"   >  <a href="<TMPL_VAR NAME="linkToLogFile">"  ><TMPL_VAR NAME="walkerStatus"     > </a></td>
+      <td class="<TMPL_VAR NAME="instance_treeStatusCSSClass" >" name="instanceTree"  >  <a href="<TMPL_VAR NAME="linkToLogFile">"  ><TMPL_VAR NAME="instance_treeStatus"   > </a></td>
+      <td class="<TMPL_VAR NAME="autorouterStatusCSSClass"    >" name="autorouter"    >  <a href="<TMPL_VAR NAME="linkToLogFile">"  ><TMPL_VAR NAME="autorouterStatus"     > </a></td>
+      <td class="<TMPL_VAR NAME="automapperStatusCSSClass"    >" name="automapper"    >  <a href="<TMPL_VAR NAME="linkToLogFile">"><TMPL_VAR NAME="automapperStatus"     > </a></td>
+      <td class="<TMPL_VAR NAME="cslom_checkerStatusCSSClass" >" name="cslomChecker"  >  <a href="<TMPL_VAR NAME="linkToLogFile">"  ><TMPL_VAR NAME="cslom_checkerStatus"   > </a></td>
+      <td class="<TMPL_VAR NAME="cslom_connection_checkerStatusCSSClass" >" name="cslomConnectionChecker"  >  <a href="<TMPL_VAR NAME="linkToLogFile">"  ><TMPL_VAR NAME="cslom_connection_checkerStatus"   > </a></td>
+      <td class="<TMPL_VAR NAME="cppcodegenStatusCSSClass"    >" name="cppCodeGen"    >  <a href="<TMPL_VAR NAME="linkToLogFile">"  ><TMPL_VAR NAME="cppcodegenStatus"     > </a></td>
+      <td class="<TMPL_VAR NAME="csimcodegenStatusCSSClass"   >" name="csimCodeGen"   >  <a href="<TMPL_VAR NAME="linkToLogFile">"  ><TMPL_VAR NAME="csimcodegenStatus"    > </a></td>
+      <td class="<TMPL_VAR NAME="adapterStatusCSSClass"       >" name="adapter"       >  <a href="<TMPL_VAR NAME="linkToLogFile">"  ><TMPL_VAR NAME="adapterStatus"        > </a></td>
+      <td class="<TMPL_VAR NAME="cdom_checkerStatusCSSClass"  >" name="cdomChecker"   >  <a href="<TMPL_VAR NAME="linkToLogFile">"  ><TMPL_VAR NAME="cdom_checkerStatus"    > </a></td>
+      <td class="<TMPL_VAR NAME="verilogcodegenStatusCSSClass">" name="verilogCodeGen">  <a href="<TMPL_VAR NAME="linkToLogFile">"  ><TMPL_VAR NAME="verilogCodeGenStatus" > </a></td>
+      <td class="<TMPL_VAR NAME="vhdlcodegenStatusCSSClass"    >" name="VHDLCodeGen">  <a href="<TMPL_VAR NAME="linkToLogFile">"  ><TMPL_VAR NAME="vhdlcodegenStatus" > </a></td>
+      <td class="<TMPL_VAR NAME="syscodegenStatusCSSClass"    >" name="systemCCodeGen">  <a href="<TMPL_VAR NAME="linkToLogFile">"  ><TMPL_VAR NAME="syscodegenStatus" > </a></td>
+      <td class="<TMPL_VAR NAME="minorErrorCntCSSClass"       >" name="minorErrorCnt" >  <TMPL_VAR NAME="minorErrorCnt"> </td>
+      <td class="<TMPL_VAR NAME="majorErrorCntCSSClass"       >" name="majorErrorCnt" >  <TMPL_VAR NAME="majorErrorCnt"> </td>
+      <td class="<TMPL_VAR NAME="valgrindErrorCntCSSClass"       >" name="valgrindError" >  <TMPL_VAR NAME="valgrindErrorCnt" > </td>
+      <td class="<TMPL_VAR NAME="overallTestStatusCSSClass"   >" name="overallTest"   >  <a href="<TMPL_VAR NAME="linkToLogFile">"  ><TMPL_VAR NAME="overallTestStatus"    > </a></td>
+      <td class="<TMPL_VAR NAME="compilerPhasePassedPercentageCSSClass">" name="overall">    <TMPL_VAR NAME="compilerPhasePassedPercentage"             > </td>
+      <td class="<TMPL_VAR NAME="cslcCompileGenVerilogStatusCSSClass">"> <a href="<TMPL_VAR NAME="cslcCompileVerilogLog">" ><TMPL_VAR NAME="cslcCompileVerilogCode"></a></td> 
+      <td class="<TMPL_VAR 
+NAME="gccCompileGenVHDLStatusCSSClass">" > <a href="<TMPL_VAR NAME="gccCompileVHDLLog" >" ><TMPL_VAR 
+NAME="gccCompileVHDLCode" ></a></td>          
+      <td class="<TMPL_VAR NAME="gccCompileGenSystemCStatusCSSClass">" > <a href="<TMPL_VAR NAME="gccCompileSystemCLog" >" ><TMPL_VAR NAME="gccCompileSystemCCode" ></a></td>   
+      <td class="<TMPL_VAR NAME="gccCompileGenCppStatusCSSClass">"     > <a href="<TMPL_VAR NAME="gccCompileCppLog"     >" ><TMPL_VAR NAME="gccCompileCppCode"     ></a></td>   
+      <td class="<TMPL_VAR NAME="gccCompileGenCsimStatusCSSClass">"    > <a href="<TMPL_VAR NAME="gccCompileCsimLog"    >" ><TMPL_VAR NAME="gccCompileCsimCode"    ></a></td> 
+      <td class="<TMPL_VAR NAME="sysCVerilogSimStatusCSSClass">" > <a href="<TMPL_VAR NAME="sysCVerilogSimLog" >" ><TMPL_VAR 
+NAME="sysCVerilogSim" ></a></td>   
+    </tr end_test_result="true">
+    </TMPL_LOOP>
+    <tr align="center">
+      <td class="table_header">No.                 </td>
+      <td class="table_header">Test Name           </td>
+      <td class="table_header">Lexer               </td>
+      <td class="table_header">Parser              </td>
+      <td class="table_header">TW CSLOM Cmd        </td>
+      <td class="table_header">Inst Tree           </td>
+      <td class="table_header">Auto Route          </td>
+      <td class="table_header">Auto Map            </td>
+      <td class="table_header">CSLOM Check         </td>
+      <td class="table_header">CSLOM Conn Check    </td>
+      <td class="table_header">Cpp Code Gen        </td>
+      <td class="table_header">Csim Code Gen       </td>
+      <td class="table_header">Adapt               </td>
+      <td class="table_header">CDOM Check          </td>
+      <td class="table_header">V. Code Gen         </td>
+      <td class="table_header">VHDL Code Gen       </td>
+      <td class="table_header">SC Code Gen         </td>
+      <td class="table_header">min or err         </td>
+      <td class="table_header">maj or err         </td>
+      <td class="table_header">Val grind Error     </td>
+      <td class="table_header">File Over all       </td>
+      <td class="table_header">Pass %              </td>
+      <td class="table_header">CSLC Gen'ed V code</td>
+      <td class="table_header">GCC  Gen'ed VHDL code</td>
+      <td class="table_header">GCC  Gen'ed SysC code</td>
+      <td class="table_header">GCC  Gen'ed C++ code    </td>
+      <td class="table_header">GCC  Gen'ed CSim C++ code</td>
+      <td class="table_header">SystemC/Verilog simulation</td>
+    </tr>  
+    </table>
+    
+    <p>Legend:
+    <ul>
+       <span class="passed"            > passed = compiler phase passed                    </span><br>
+       <span class="passed_w"          > passed = compiler phase passed with some warnings </span><br>
+       <span class="failed"            > failed = compiler phase failed                    </span><br>
+       <span class="compiler_phase_dnr"> cpdnr  = compiler phase did not run               </span><br>
+       <span class="valgrind_ne"       > vne    = valgrind not enabled                     </span><br>
+       <span class="tdne"              > tdne   = test does not exist                      </span><br>
+    </ul>
+    </p>
+
+    <p>Links to <TMPL_VAR NAME="testDirName"> test results pages
+    
+    <TMPL_LOOP NAME="testLinkPageNumLoop">          
+        <span class="page_link"> <a href="<TMPL_VAR NAME="pageLink">"> <TMPL_VAR NAME="pageNum"> </a> &nbsp; </span>
+    </TMPL_LOOP>
+    </p>
+
+    <p align="left">Regression test list execution time: 
+    <TMPL_VAR NAME="test_day">(s), <TMPL_VAR NAME="test_hour"> hour(s), <TMPL_VAR NAME="test_min> minute(s), <TMPL_VAR NAME="test_sec> sec(s).<br>
+     Regression script Path : <TMPL_VAR NAME="scriptRootDir"    ><br>
+     </p>
+    </body>
+</html>

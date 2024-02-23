@@ -1,0 +1,28 @@
+//monica
+//31 january 2008
+
+csl_interface ifc1{
+  csl_port p1(input,3),p2(output,4),p3(input);
+  ifc1(){}
+};
+csl_unit u1{
+  ifc1 ifc1;
+  u1(){}
+};
+
+csl_interface ifc2{
+  csl_port p1(output,3),p2(input,4),p3(output);
+  ifc2(){}
+};
+csl_unit u2{
+  ifc2 ifc2;
+  u2(){}
+};
+
+csl_unit top{
+  u1 u1;
+  u2 u2;
+  top(){
+    u1.ifc1.connect_by_name(u2.ifc2);
+  }
+};

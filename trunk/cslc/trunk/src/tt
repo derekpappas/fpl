@@ -1,0 +1,1181 @@
+Apache Ant version 1.7.1 compiled on November 10 2008
+Buildfile: build.xml
+Detected Java version: 1.6 in: /usr/lib/jvm/java-6-sun-1.6.0.16/jre
+Detected OS: Linux
+parsing buildfile /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/build.xml with URI = file:/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/build.xml
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src
+[antlib:org.apache.tools.ant] Could not load definitions from resource org/apache/tools/ant/antlib.xml. It could not be found.
+parsing buildfile jar:file:/usr/share/ant/lib/ant-contrib.jar!/net/sf/antcontrib/antlib.xml with URI = jar:file:/usr/share/ant/lib/ant-contrib.jar!/net/sf/antcontrib/antlib.xml
+Build sequence for target(s) `release' is [check.dependencies, set.project.list, release]
+Complete build sequence is [check.dependencies, set.project.list, release, debug, clean_release, set.csim.properties, csim_lib, csim_shell, help, drivers, clean, wall, rlm_off, ]
+
+check.dependencies:
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils
+ [antfetch] calling target check.all.dependencies in build file /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/new_dependencies.xml
+parsing buildfile /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/new_dependencies.xml with URI = file:/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/new_dependencies.xml
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils
+[antlib:org.apache.tools.ant] Could not load definitions from resource org/apache/tools/ant/antlib.xml. It could not be found.
+parsing buildfile jar:file:/usr/share/ant/lib/ant-contrib.jar!/net/sf/antcontrib/antlib.xml with URI = jar:file:/usr/share/ant/lib/ant-contrib.jar!/net/sf/antcontrib/antlib.xml
+Build sequence for target(s) `check.all.dependencies' is [check.all.dependencies]
+Complete build sequence is [check.all.dependencies, check.os, check.lib, check.antlr, check.boost, check.ant, check.gcc, ]
+
+check.all.dependencies:
+     [echo] -------------------- Check dependencies --------------------
+Build sequence for target(s) `check.os' is [check.os]
+Complete build sequence is [check.os, check.lib, check.antlr, check.boost, check.ant, check.all.dependencies, check.gcc, ]
+
+check.os:
+     [echo] Build directory: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64
+Build sequence for target(s) `check.gcc' is [check.gcc]
+Complete build sequence is [check.gcc, check.os, check.lib, check.antlr, check.boost, check.ant, check.all.dependencies, ]
+
+check.gcc:
+     [exec] Current OS is Linux
+     [exec] Output redirected to property: gcc.version
+     [exec] Executing 'perl' with arguments:
+     [exec] 'checkGccVersion.pl'
+     [exec] 
+     [exec] The ' characters around the executable and arguments are
+     [exec] not part of the command.
+Build sequence for target(s) `check.ant' is [check.ant]
+Complete build sequence is [check.ant, check.os, check.lib, check.antlr, check.boost, check.all.dependencies, check.gcc, ]
+
+check.ant:
+Build sequence for target(s) `check.antlr' is [check.antlr]
+Complete build sequence is [check.antlr, check.os, check.lib, check.boost, check.ant, check.all.dependencies, check.gcc, ]
+
+check.antlr:
+     [exec] Current OS is Linux
+     [exec] Executing '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../antlr/lib/cpp/src/compile.sh' with arguments:
+     [exec] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../antlr/lib/cpp/src'
+     [exec] 
+     [exec] The ' characters around the executable and arguments are
+     [exec] not part of the command.
+     [exec] ANTLR library up2date.
+Build sequence for target(s) `check.boost' is [check.boost]
+Complete build sequence is [check.boost, check.os, check.lib, check.antlr, check.ant, check.all.dependencies, check.gcc, ]
+
+check.boost:
+Build sequence for target(s) `check.lib' is [check.lib]
+Complete build sequence is [check.lib, check.os, check.antlr, check.boost, check.ant, check.all.dependencies, check.gcc, ]
+
+check.lib:
+     [exec] Current OS is Linux
+     [exec] Output redirected to property: lib.dir
+     [exec] Executing 'perl' with arguments:
+     [exec] 'getLibdir.pl'
+     [exec] 
+     [exec] The ' characters around the executable and arguments are
+     [exec] not part of the command.
+     [echo] lib dir: '/usr/lib64'
+     [echo] -------------------- Done checking dependencies --------------------
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64 because it already exists.
+
+set.project.list:
+Build sequence for target(s) `set.csim.properties' is [check.dependencies, set.csim.properties]
+Complete build sequence is [check.dependencies, set.csim.properties, set.project.list, debug, clean_release, csim_lib, csim_shell, help, drivers, clean, release, wall, rlm_off, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.csim.properties:
+
+release:
+     [echo] ---------------------- release flag on
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/csl_xml_warn_error
+      [ant] calling target(s) [compile] in build file /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/csl_xml_warn_error/build.xml
+parsing buildfile /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/csl_xml_warn_error/build.xml with URI = file:/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/csl_xml_warn_error/build.xml
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/csl_xml_warn_error
+      [ant] Entering /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/csl_xml_warn_error/build.xml...
+Build sequence for target(s) `compile' is [check.dependencies, set.all.properties, create.build.dir, compile]
+Complete build sequence is [check.dependencies, set.all.properties, create.build.dir, compile, debug, compile.error, help, drivers, clean, compile.logic, wall, compile.binary, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Override ignored for property "no.dependencies"
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/csl_xml_warn_error because it already exists.
+
+create.build.dir:
+     [echo] Build dir: '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/csl_xml_warn_error/release'
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/csl_xml_warn_error/release because it already exists.
+
+compile:
+     [echo] ==================== Compiling in csl_xml_warn_error ====================
+Build sequence for target(s) `compile.binary' is [compile.binary]
+Complete build sequence is [compile.binary, check.dependencies, set.all.properties, debug, compile.error, help, drivers, create.build.dir, clean, compile.logic, wall, compile, ]
+
+compile.binary:
+     [echo] -------------------- Compiling warnerr --------------------
+       [cc] Starting dependency analysis for 2 files.
+       [cc] Parsing ../../../../src/csl_xml_warn_error/warn_err.cpp
+       [cc] Parsing ../../../../src/csl_xml_warn_error/warn_err.h
+       [cc] Parsing ../../../../src/csl_xml_warn_error/WESAXHandlers.h
+       [cc] Parsing ../../../../src/csl_xml_warn_error/WESAXHandlers.cpp
+       [cc] 2 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+Build sequence for target(s) `compile.error' is [compile.error]
+Complete build sequence is [compile.error, check.dependencies, set.all.properties, debug, help, drivers, create.build.dir, clean, compile.logic, wall, compile.binary, compile, ]
+
+compile.error:
+     [echo] -------------------- Compiling CSLC_Errors --------------------
+       [cc] Starting dependency analysis for 1 files.
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/CSLC_Errors.cpp
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/CSLC_Errors.h
+       [cc] 1 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+  [symlink] ln -s /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/csl_xml_warn_error/release/libCSLC_Errors.a /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/csl_xml_warn_error/libCSLC_Errors.a
+  [symlink] Executing 'ln' with arguments:
+  [symlink] '-s'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/csl_xml_warn_error/release/libCSLC_Errors.a'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/csl_xml_warn_error/libCSLC_Errors.a'
+  [symlink] 
+  [symlink] The ' characters around the executable and arguments are
+  [symlink] not part of the command.
+Build sequence for target(s) `compile.logic' is [compile.logic]
+Complete build sequence is [compile.logic, check.dependencies, set.all.properties, debug, compile.error, help, drivers, create.build.dir, clean, wall, compile.binary, compile, ]
+
+compile.logic:
+     [echo] -------------------- Compiling WE --------------------
+       [cc] Starting dependency analysis for 1 files.
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/we_logic.cpp
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/we_logic.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/CSLC_Errors.h
+       [cc] 1 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+  [symlink] ln -s /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/csl_xml_warn_error/release/libWE.a /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/csl_xml_warn_error/libWE.a
+  [symlink] Executing 'ln' with arguments:
+  [symlink] '-s'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/csl_xml_warn_error/release/libWE.a'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/csl_xml_warn_error/libWE.a'
+  [symlink] 
+  [symlink] The ' characters around the executable and arguments are
+  [symlink] not part of the command.
+      [ant] Exiting /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/csl_xml_warn_error/build.xml.
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/support
+      [ant] calling target(s) [compile] in build file /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/support/build.xml
+parsing buildfile /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/support/build.xml with URI = file:/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/support/build.xml
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/support
+      [ant] Entering /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/support/build.xml...
+Build sequence for target(s) `compile' is [check.dependencies, set.all.properties, create.build.dir, compile]
+Complete build sequence is [check.dependencies, set.all.properties, create.build.dir, compile, debug, help, drivers, info1, clean, wall, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Override ignored for property "no.dependencies"
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/support because it already exists.
+
+create.build.dir:
+     [echo] Build dir: '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/support/release'
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/support/release because it already exists.
+
+compile:
+     [echo] ==================== Compiling in support ====================
+       [cc] Starting dependency analysis for 6 files.
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI_Typedef.cpp
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI_Support.h
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI_Typedef.h
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI_Include.h
+       [cc] Parsing ../../../../../src/support/singleton.h
+       [cc] Parsing ../../../../../src/cslc/cslc_Platform.h
+       [cc] Parsing ../../../../../src/support/CommonSupport.h
+       [cc] Parsing ../../../../../src/support/TypeDefs.h
+       [cc] Parsing ../../../../../src/support/SupportFunctions.h
+       [cc] Parsing ../../../../../src/support/Assert.h
+       [cc] Parsing ../../../../../src/support/DebugMesgs.h
+       [cc] Parsing ../../../../../src/support/ConstInts.h
+       [cc] Parsing ../../../../../src/support/ErrorAPI.h
+       [cc] Parsing ../../../../../src/support/Tracer.h
+       [cc] Parsing ../../../../../src/preproc/VPreprocessor.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/CSLC_Errors.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/we_logic.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/warn_err.h
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI_Support.cpp
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI.cpp
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI.h
+       [cc] Parsing ../../../../../src/support/ErrorAPI.cpp
+       [cc] Parsing ../../../../../src/support/SupportFunctions.cpp
+       [cc] Parsing ../../../../../src/support/Base.cpp
+       [cc] Parsing ../../../../../src/support/Base.hpp
+       [cc] 6 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+  [symlink] ln -s /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/support/release/libSupport.a /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/support/libSupport.a
+  [symlink] Executing 'ln' with arguments:
+  [symlink] '-s'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/support/release/libSupport.a'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/support/libSupport.a'
+  [symlink] 
+  [symlink] The ' characters around the executable and arguments are
+  [symlink] not part of the command.
+      [ant] Exiting /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/support/build.xml.
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/parser/verilog
+      [ant] calling target(s) [compile] in build file /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/parser/verilog/build.xml
+parsing buildfile /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/parser/verilog/build.xml with URI = file:/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/parser/verilog/build.xml
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/parser/verilog
+      [ant] Entering /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/parser/verilog/build.xml...
+Build sequence for target(s) `compile' is [check.dependencies, set.all.properties, create.build.dir, compile]
+Complete build sequence is [check.dependencies, set.all.properties, create.build.dir, compile, debug, generate.grammar.files, compile.src, help, drivers, clean, wall, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Override ignored for property "no.dependencies"
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/parser/verilog because it already exists.
+
+create.build.dir:
+     [echo] Build dir: '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/parser/verilog/release'
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/parser/verilog/release because it already exists.
+
+compile:
+     [echo] ==================== Compiling in parser/verilog ====================
+Build sequence for target(s) `generate.grammar.files' is [generate.grammar.files]
+Complete build sequence is [generate.grammar.files, check.dependencies, set.all.properties, debug, compile.src, help, drivers, create.build.dir, clean, wall, compile, ]
+
+generate.grammar.files:
+     [echo] -------------------- Checking grammar files --------------------
+Build sequence for target(s) `compile.src' is [compile.src]
+Complete build sequence is [compile.src, check.dependencies, set.all.properties, debug, generate.grammar.files, help, drivers, create.build.dir, clean, wall, compile, ]
+
+compile.src:
+     [echo] -------------------- Compiling VerilogParser --------------------
+       [cc] Starting dependency analysis for 7 files.
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogLexer.cpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogLexer.hpp
+       [cc] Parsing ../../../../../../src/support/Base.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogToken.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogLexer.inc
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogTokenTypes.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/Def.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogNumber.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogLexerUtils.hpp
+       [cc] Parsing ../../../../../../src/support/CommonSupport.h
+       [cc] Parsing ../../../../../../src/support/TypeDefs.h
+       [cc] Parsing ../../../../../../src/support/SupportFunctions.h
+       [cc] Parsing ../../../../../../src/support/Assert.h
+       [cc] Parsing ../../../../../../src/support/DebugMesgs.h
+       [cc] Parsing ../../../../../../src/support/ConstInts.h
+       [cc] Parsing ../../../../../../src/support/ErrorAPI.h
+       [cc] Parsing ../../../../../../src/support/Tracer.h
+       [cc] Parsing ../../../../../../src/preproc/VPreprocessor.h
+       [cc] Parsing ../../../../../../src/csl_xml_warn_error/CSLC_Errors.h
+       [cc] Parsing ../../../../../../src/csl_xml_warn_error/we_logic.h
+       [cc] Parsing ../../../../../../src/csl_xml_warn_error/warn_err.h
+       [cc] Parsing ../../../../../../src/parser/verilog/Tools.cpp
+       [cc] Parsing ../../../../../../src/parser/verilog/Tools.hpp
+       [cc] Parsing ../../../../../../src/cdom/CDOM.h
+       [cc] Parsing ../../../../../../src/cdom/VeriNum.h
+       [cc] Parsing ../../../../../../src/parser/verilog/VerAST.hpp
+       [cc] Parsing ../../../../../../src/cdom/Base.h
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogParser.cpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogParser.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogParserTokenTypes.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/ToolsParser.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogLexerUtils.cpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogTreeWalker.cpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogTreeWalker.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogTreeWalkerTokenTypes.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogToken.cpp
+       [cc] Parsing ../../../../../../src/parser/verilog/ToolsParser.cpp
+       [cc] 7 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+  [symlink] ln -s /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/parser/verilog/release/libVerilogParser.a /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/parser/verilog/libVerilogParser.a
+  [symlink] Executing 'ln' with arguments:
+  [symlink] '-s'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/parser/verilog/release/libVerilogParser.a'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/parser/verilog/libVerilogParser.a'
+  [symlink] 
+  [symlink] The ' characters around the executable and arguments are
+  [symlink] not part of the command.
+      [ant] Exiting /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/parser/verilog/build.xml.
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/parser/csl
+      [ant] calling target(s) [compile] in build file /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/parser/csl/build.xml
+parsing buildfile /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/parser/csl/build.xml with URI = file:/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/parser/csl/build.xml
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/parser/csl
+      [ant] Entering /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/parser/csl/build.xml...
+Build sequence for target(s) `compile' is [check.dependencies, set.all.properties, create.build.dir, compile]
+Complete build sequence is [check.dependencies, set.all.properties, create.build.dir, compile, debug, generate.grammar.files, compile.src, help, drivers, clean, wall, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Override ignored for property "no.dependencies"
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/parser/csl because it already exists.
+
+create.build.dir:
+     [echo] Build dir: '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/parser/csl/release'
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/parser/csl/release because it already exists.
+
+compile:
+     [echo] ==================== Compiling in parser/csl ====================
+Build sequence for target(s) `generate.grammar.files' is [generate.grammar.files]
+Complete build sequence is [generate.grammar.files, check.dependencies, set.all.properties, debug, compile.src, help, drivers, create.build.dir, clean, wall, compile, ]
+
+generate.grammar.files:
+     [echo] -------------------- Checking grammar files --------------------
+Build sequence for target(s) `compile.src' is [compile.src]
+Complete build sequence is [compile.src, check.dependencies, set.all.properties, debug, generate.grammar.files, help, drivers, create.build.dir, clean, wall, compile, ]
+
+compile.src:
+     [echo] -------------------- Compiling CslParser --------------------
+       [cc] Starting dependency analysis for 8 files.
+       [cc] Parsing ../../../../../../src/parser/csl/CslToken.cpp
+       [cc] Parsing ../../../../../../src/support/Base.hpp
+       [cc] Parsing ../../../../../../src/parser/csl/CslToken.hpp
+       [cc] Parsing ../../../../../../src/support/TypeDefs.h
+       [cc] Parsing ../../../../../../src/parser/csl/CslNumber.hpp
+       [cc] Parsing ../../../../../../src/parser/csl/CslLexerUtils.hpp
+       [cc] Parsing ../../../../../../src/parser/csl/Def.hpp
+       [cc] Parsing ../../../../../../src/cslom/CSLOM.h
+       [cc] Parsing ../../../../../../src/cslom/Base.h
+       [cc] Parsing ../../../../../../src/support/CommonSupport.h
+       [cc] Parsing ../../../../../../src/cslom/VeriNum.h
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_Declarations.h
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_Declarations.h
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_Base.h
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_Exprs.h
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_Scoping.h
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_Units.h
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_Misc.h
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_Stmt.h
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_UnitInstance.h
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_Ranges.h
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_Connectable.h
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_MemoryMap.h
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_Isa.h
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_VerifComp.h
+       [cc] Parsing ../../../../../../src/support/SupportFunctions.h
+       [cc] Parsing ../../../../../../src/support/Assert.h
+       [cc] Parsing ../../../../../../src/support/DebugMesgs.h
+       [cc] Parsing ../../../../../../src/support/ConstInts.h
+       [cc] Parsing ../../../../../../src/support/ErrorAPI.h
+       [cc] Parsing ../../../../../../src/support/Tracer.h
+       [cc] Parsing ../../../../../../src/preproc/VPreprocessor.h
+       [cc] Parsing ../../../../../../src/csl_xml_warn_error/CSLC_Errors.h
+       [cc] Parsing ../../../../../../src/csl_xml_warn_error/we_logic.h
+       [cc] Parsing ../../../../../../src/csl_xml_warn_error/warn_err.h
+       [cc] Parsing ../../../../../../src/parser/csl/SymTree.cpp
+       [cc] Parsing ../../../../../../src/parser/csl/CslParser.hpp
+       [cc] Parsing ../../../../../../src/parser/csl/SymTree.h
+       [cc] Parsing ../../../../../../src/parser/csl/CslParserTokenTypes.hpp
+       [cc] Parsing ../../../../../../src/parser/csl/CslAST.hpp
+       [cc] Parsing ../../../../../../src/parser/csl/Tools.cpp
+       [cc] Parsing ../../../../../../src/parser/csl/Tools.hpp
+       [cc] Parsing ../../../../../../src/parser/csl/CslParser.cpp
+       [cc] Parsing ../../../../../../src/cslc/cslc_Typedef.h
+       [cc] Parsing ../../../../../../src/cslc/cslc_Include.h
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogToken.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogLexer.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogParser.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogTreeWalker.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerAST.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VParserErrorCodes.hpp
+       [cc] Parsing ../../../../../../src/preproc/Preproc.h
+       [cc] Parsing ../../../../../../src/preproc/CSLcPP.h
+       [cc] Parsing ../../../../../../src/parser/csl/CslLexer.hpp
+       [cc] Parsing ../../../../../../src/parser/csl/CslTreeWalker.hpp
+       [cc] Parsing ../../../../../../src/parser/csl/CParserErrorCodes.hpp
+       [cc] Parsing ../../../../../../src/csl_xml_warn_error/WESAXHandlers.h
+       [cc] Parsing ../../../../../../src/cslom_generators/CSLOM_XML_generator.h
+       [cc] Parsing ../../../../../../src/cslom_generators/CSLOM_VerilogDefineGenerator.h
+       [cc] Parsing ../../../../../../src/cslom_generators/CSLOM_PDF_Generator.h
+       [cc] Parsing ../../../../../../src/cslom_generators/CSLOM_CPP_Generator.h
+       [cc] Parsing ../../../../../../src/cslom_generators/CSIM_CPP_Generator.h
+       [cc] Parsing ../../../../../../src/autorouter/CSLOM_InstTreeVisitor.h
+       [cc] Parsing ../../../../../../src/autorouter/CSLOM_ConnectionChecker.h
+       [cc] Parsing ../../../../../../src/cslom_design_checker/CSLOM_Design_Checker.h
+       [cc] Parsing ../../../../../../src/cslom2cdom_adapter/Adapter.h
+       [cc] Parsing ../../../../../../src/support/cli/cslcCLI.h
+       [cc] Parsing ../../../../../../src/cdom/CDOM.h
+       [cc] Parsing ../../../../../../src/cdom/CDOM_Checker.h
+       [cc] Parsing ../../../../../../src/cdom/CDOM_VerilogGenerator.h
+       [cc] Parsing ../../../../../../src/cdom/CDOM_VHDLGenerator.h
+       [cc] Parsing ../../../../../../src/cdom/CDOM_SystemCGenerator.h
+       [cc] Parsing ../../../../../../src/cdom/CDOM_SchematicCodeGenerator.h
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogNumber.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogLexerUtils.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/Def.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogTokenTypes.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogParserTokenTypes.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/ToolsParser.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/VerilogTreeWalkerTokenTypes.hpp
+       [cc] Parsing ../../../../../../src/parser/verilog/Tools.hpp
+       [cc] Parsing ../../../../../../src/cdom/VeriNum.h
+       [cc] Parsing ../../../../../../src/cdom/Base.h
+       [cc] Parsing ../../../../../../src/preproc/Preproc_Typedef.h
+       [cc] Parsing ../../../../../../src/preproc/Preproc_Include.h
+       [cc] Parsing ../../../../../../src/cslc/cslc_Platform.h
+       [cc] Parsing ../../../../../../src/support/cli/cslcCLI_Support.h
+       [cc] Parsing ../../../../../../src/support/cli/cslcCLI_Typedef.h
+       [cc] Parsing ../../../../../../src/support/cli/cslcCLI_Include.h
+       [cc] Parsing ../../../../../../src/support/singleton.h
+       [cc] Parsing ../../../../../../src/preproc/CSLcPP_Typedef.h
+       [cc] Parsing ../../../../../../src/preproc/CSLcPP_Include.h
+       [cc] Parsing ../../../../../../src/parser/csl/CslTokenTypes.hpp
+       [cc] Parsing ../../../../../../src/parser/csl/CslTreeWalkerTokenTypes.hpp
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_cmd.h
+       [cc] Parsing ../../../../../../src/autorouter/Autorouter.h
+       [cc] Parsing ../../../../../../src/autorouter/CSLOM_InstTree.h
+       [cc] Parsing ../../../../../../src/cslom/CSLOM_Visitor.h
+       [cc] Parsing ../../../../../../src/cslom_generators/CSLOM_PDF_Draw.h
+       [cc] Parsing ../../../../../../src/csim/CsimTypeDefs.h
+       [cc] Parsing ../../../../../../src/cdom/CDOM_Visitor.h
+       [cc] Parsing ../../../../../../src/cdom/CDOM_Type_Map.h
+       [cc] Parsing ../../../../../../src/support/RefCount.h
+       [cc] Parsing ../../../../../../src/cdom/CDOM_Consts.h
+       [cc] Parsing ../../../../../../src/parser/csl/CslLexer.cpp
+       [cc] Parsing ../../../../../../src/parser/csl/CslLexer.inc
+       [cc] Parsing ../../../../../../src/parser/csl/CslTreeWalker.cpp
+       [cc] Parsing ../../../../../../src/parser/csl/CParser.cpp
+       [cc] Parsing ../../../../../../src/parser/csl/CslNumber.cpp
+       [cc] 8 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+  [symlink] ln -s /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/parser/csl/release/libCslParser.a /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/parser/csl/libCslParser.a
+  [symlink] Executing 'ln' with arguments:
+  [symlink] '-s'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/parser/csl/release/libCslParser.a'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/parser/csl/libCslParser.a'
+  [symlink] 
+  [symlink] The ' characters around the executable and arguments are
+  [symlink] not part of the command.
+      [ant] Exiting /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/parser/csl/build.xml.
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/preproc
+      [ant] calling target(s) [compile] in build file /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/preproc/build.xml
+parsing buildfile /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/preproc/build.xml with URI = file:/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/preproc/build.xml
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/preproc
+      [ant] Entering /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/preproc/build.xml...
+Build sequence for target(s) `compile' is [check.dependencies, set.all.properties, create.build.dir, compile]
+Complete build sequence is [check.dependencies, set.all.properties, create.build.dir, compile, debug, help, drivers, clean, wall, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Override ignored for property "no.dependencies"
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/preproc because it already exists.
+
+create.build.dir:
+     [echo] Build dir: '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/preproc/release'
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/preproc/release because it already exists.
+
+compile:
+     [echo] ==================== Compiling in preproc ====================
+       [cc] Starting dependency analysis for 2 files.
+       [cc] Parsing ../../../../../src/preproc/Preproc.cpp
+       [cc] Parsing ../../../../../src/preproc/Preproc.h
+       [cc] Parsing ../../../../../src/preproc/Preproc_Typedef.h
+       [cc] Parsing ../../../../../src/preproc/Preproc_Include.h
+       [cc] Parsing ../../../../../src/support/CommonSupport.h
+       [cc] Parsing ../../../../../src/cslc/cslc_Platform.h
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI_Support.h
+       [cc] Parsing ../../../../../src/support/TypeDefs.h
+       [cc] Parsing ../../../../../src/support/SupportFunctions.h
+       [cc] Parsing ../../../../../src/support/Assert.h
+       [cc] Parsing ../../../../../src/support/DebugMesgs.h
+       [cc] Parsing ../../../../../src/support/ConstInts.h
+       [cc] Parsing ../../../../../src/support/ErrorAPI.h
+       [cc] Parsing ../../../../../src/support/Tracer.h
+       [cc] Parsing ../../../../../src/preproc/VPreprocessor.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/CSLC_Errors.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/we_logic.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/warn_err.h
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI_Typedef.h
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI_Include.h
+       [cc] Parsing ../../../../../src/support/singleton.h
+       [cc] Parsing ../../../../../src/preproc/CSLcPP.cpp
+       [cc] Parsing ../../../../../src/preproc/CSLcPP.h
+       [cc] Parsing ../../../../../src/preproc/CSLcPP_Typedef.h
+       [cc] Parsing ../../../../../src/preproc/CSLcPP_Include.h
+       [cc] 2 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+  [symlink] ln -s /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/preproc/release/libPreproc.a /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/preproc/libPreproc.a
+  [symlink] Executing 'ln' with arguments:
+  [symlink] '-s'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/preproc/release/libPreproc.a'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/preproc/libPreproc.a'
+  [symlink] 
+  [symlink] The ' characters around the executable and arguments are
+  [symlink] not part of the command.
+      [ant] Exiting /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/preproc/build.xml.
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cdom
+      [ant] calling target(s) [compile] in build file /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cdom/build.xml
+parsing buildfile /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cdom/build.xml with URI = file:/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cdom/build.xml
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cdom
+      [ant] Entering /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cdom/build.xml...
+Build sequence for target(s) `compile' is [check.dependencies, set.all.properties, create.build.dir, compile]
+Complete build sequence is [check.dependencies, set.all.properties, create.build.dir, compile, debug, help, drivers, clean, wall, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Override ignored for property "no.dependencies"
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/cdom because it already exists.
+
+create.build.dir:
+     [echo] Build dir: '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cdom/release'
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/cdom/release because it already exists.
+
+compile:
+     [echo] ==================== Compiling in cdom ====================
+       [cc] Starting dependency analysis for 9 files.
+       [cc] Parsing ../../../../../src/cdom/CDOM_SystemCGenerator.cpp
+       [cc] Parsing ../../../../../src/cdom/CDOM_SystemCGenerator.h
+       [cc] Parsing ../../../../../src/support/CommonSupport.h
+       [cc] Parsing ../../../../../src/cdom/CDOM.h
+       [cc] Parsing ../../../../../src/cdom/CDOM_Type_Map.h
+       [cc] Parsing ../../../../../src/cdom/CDOM_Visitor.h
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI_Support.h
+       [cc] Parsing ../../../../../src/cdom/Base.h
+       [cc] Parsing ../../../../../src/cdom/VeriNum.h
+       [cc] Parsing ../../../../../src/support/TypeDefs.h
+       [cc] Parsing ../../../../../src/support/SupportFunctions.h
+       [cc] Parsing ../../../../../src/support/Assert.h
+       [cc] Parsing ../../../../../src/support/DebugMesgs.h
+       [cc] Parsing ../../../../../src/support/ConstInts.h
+       [cc] Parsing ../../../../../src/support/ErrorAPI.h
+       [cc] Parsing ../../../../../src/support/Tracer.h
+       [cc] Parsing ../../../../../src/preproc/VPreprocessor.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/CSLC_Errors.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/we_logic.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/warn_err.h
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI_Typedef.h
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI_Include.h
+       [cc] Parsing ../../../../../src/support/singleton.h
+       [cc] Parsing ../../../../../src/cslc/cslc_Platform.h
+       [cc] Parsing ../../../../../src/cdom/CDOM.cpp
+       [cc] Parsing ../../../../../src/cdom/templateInitCDOM.cpp
+       [cc] Parsing ../../../../../src/cdom/CDOM_SchematicCodeGenerator.cpp
+       [cc] Parsing ../../../../../src/cdom/CDOM_SchematicCodeGenerator.h
+       [cc] Parsing ../../../../../src/cdom/CDOM_Visitor.cpp
+       [cc] Parsing ../../../../../src/cdom/VeriNum.cpp
+       [cc] Parsing ../../../../../src/cdom/CDOM_API.cpp
+       [cc] Parsing ../../../../../src/cdom/CDOM_API.h
+       [cc] Parsing ../../../../../src/cdom/CDOM_VerilogGenerator.cpp
+       [cc] Parsing ../../../../../src/cdom/CDOM_VerilogGenerator.h
+       [cc] Parsing ../../../../../src/cdom/CDOM_VHDLGenerator.cpp
+       [cc] Parsing ../../../../../src/cdom/CDOM_VHDLGenerator.h
+       [cc] Parsing ../../../../../src/cdom/CDOM_Consts.h
+       [cc] Parsing ../../../../../src/cdom/CDOM_Checker.cpp
+       [cc] Parsing ../../../../../src/cdom/CDOM_Checker.h
+       [cc] Parsing ../../../../../src/support/RefCount.h
+       [cc] 9 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+  [symlink] ln -s /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cdom/release/libCdom.a /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cdom/libCdom.a
+  [symlink] Executing 'ln' with arguments:
+  [symlink] '-s'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cdom/release/libCdom.a'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cdom/libCdom.a'
+  [symlink] 
+  [symlink] The ' characters around the executable and arguments are
+  [symlink] not part of the command.
+      [ant] Exiting /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cdom/build.xml.
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom
+      [ant] calling target(s) [compile] in build file /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom/build.xml
+parsing buildfile /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom/build.xml with URI = file:/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom/build.xml
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom
+      [ant] Entering /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom/build.xml...
+Build sequence for target(s) `compile' is [check.dependencies, set.all.properties, create.build.dir, compile]
+Complete build sequence is [check.dependencies, set.all.properties, create.build.dir, compile, debug, help, drivers, clean, wall, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Override ignored for property "no.dependencies"
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/cslom because it already exists.
+
+create.build.dir:
+     [echo] Build dir: '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom/release'
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/cslom/release because it already exists.
+
+compile:
+     [echo] ==================== Compiling in cslom ====================
+       [cc] Starting dependency analysis for 17 files.
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Base.cpp
+       [cc] Parsing ../../../../../src/cslom/CSLOM.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Visitor.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/CSLC_Errors.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/we_logic.h
+       [cc] Parsing ../../../../../src/support/CommonSupport.h
+       [cc] Parsing ../../../../../src/cslom/Base.h
+       [cc] Parsing ../../../../../src/cslom/VeriNum.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Declarations.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Declarations.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Base.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Exprs.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Scoping.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Units.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Misc.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Stmt.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_UnitInstance.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Ranges.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Connectable.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_MemoryMap.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Isa.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_VerifComp.h
+       [cc] Parsing ../../../../../src/support/TypeDefs.h
+       [cc] Parsing ../../../../../src/support/SupportFunctions.h
+       [cc] Parsing ../../../../../src/support/Assert.h
+       [cc] Parsing ../../../../../src/support/DebugMesgs.h
+       [cc] Parsing ../../../../../src/support/ConstInts.h
+       [cc] Parsing ../../../../../src/support/ErrorAPI.h
+       [cc] Parsing ../../../../../src/support/Tracer.h
+       [cc] Parsing ../../../../../src/preproc/VPreprocessor.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/warn_err.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_cmd.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Isa.cpp
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Misc.cpp
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Connectable.cpp
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Ranges.cpp
+       [cc] Parsing ../../../../../src/cslom/CSLOM_UnitInstance.cpp
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Units.cpp
+       [cc] Parsing ../../../../../src/cslom/CSLOM_cmd1.cpp
+       [cc] Parsing ../../../../../src/cslom/CSLOM_MemoryMap.cpp
+       [cc] Parsing ../../../../../src/cslom/CSLOM.cpp
+       [cc] Parsing ../../../../../src/cslom/templateInit.inc
+       [cc] Parsing ../../../../../src/cslom/CSLOM_cmd.cpp
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Scoping.cpp
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Stmt.cpp
+       [cc] Parsing ../../../../../src/cslom/VeriNum.cpp
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Visitor.cpp
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Exprs.cpp
+       [cc] Parsing ../../../../../src/cslom/CSLOM_VerifComp.cpp
+       [cc] 17 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+  [symlink] ln -s /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom/release/libCslom.a /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom/libCslom.a
+  [symlink] Executing 'ln' with arguments:
+  [symlink] '-s'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom/release/libCslom.a'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom/libCslom.a'
+  [symlink] 
+  [symlink] The ' characters around the executable and arguments are
+  [symlink] not part of the command.
+      [ant] Exiting /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom/build.xml.
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom2cdom_adapter
+      [ant] calling target(s) [compile] in build file /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom2cdom_adapter/build.xml
+parsing buildfile /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom2cdom_adapter/build.xml with URI = file:/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom2cdom_adapter/build.xml
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom2cdom_adapter
+      [ant] Entering /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom2cdom_adapter/build.xml...
+Build sequence for target(s) `compile' is [check.dependencies, set.all.properties, create.build.dir, compile]
+Complete build sequence is [check.dependencies, set.all.properties, create.build.dir, compile, debug, help, drivers, clean, wall, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Override ignored for property "no.dependencies"
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/cslom2cdom_adapter because it already exists.
+
+create.build.dir:
+     [echo] Build dir: '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom2cdom_adapter/release'
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/cslom2cdom_adapter/release because it already exists.
+
+compile:
+     [echo] ==================== Compiling in cslom2cdom_adapter ====================
+       [cc] Starting dependency analysis for 2 files.
+       [cc] Parsing ../../../../../src/cslom2cdom_adapter/Adapter.cpp
+       [cc] Parsing ../../../../../src/cslom2cdom_adapter/Adapter.h
+       [cc] Parsing ../../../../../src/cdom/CDOM.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Visitor.h
+       [cc] Parsing ../../../../../src/support/CommonSupport.h
+       [cc] Parsing ../../../../../src/cdom/Base.h
+       [cc] Parsing ../../../../../src/cdom/VeriNum.h
+       [cc] Parsing ../../../../../src/support/TypeDefs.h
+       [cc] Parsing ../../../../../src/support/SupportFunctions.h
+       [cc] Parsing ../../../../../src/support/Assert.h
+       [cc] Parsing ../../../../../src/support/DebugMesgs.h
+       [cc] Parsing ../../../../../src/support/ConstInts.h
+       [cc] Parsing ../../../../../src/support/ErrorAPI.h
+       [cc] Parsing ../../../../../src/support/Tracer.h
+       [cc] Parsing ../../../../../src/preproc/VPreprocessor.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/CSLC_Errors.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/we_logic.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/warn_err.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_cmd.h
+       [cc] Parsing ../../../../../src/cslom/Base.h
+       [cc] Parsing ../../../../../src/cslom/VeriNum.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Declarations.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Declarations.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Base.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Exprs.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Scoping.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Units.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Misc.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Stmt.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_UnitInstance.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Ranges.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Connectable.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_MemoryMap.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Isa.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_VerifComp.h
+       [cc] Parsing ../../../../../src/cslom2cdom_adapter/Adapter_SpecialUnits.cpp
+       [cc] 2 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+  [symlink] ln -s /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom2cdom_adapter/release/libAdapter.a /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom2cdom_adapter/libAdapter.a
+  [symlink] Executing 'ln' with arguments:
+  [symlink] '-s'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom2cdom_adapter/release/libAdapter.a'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom2cdom_adapter/libAdapter.a'
+  [symlink] 
+  [symlink] The ' characters around the executable and arguments are
+  [symlink] not part of the command.
+      [ant] Exiting /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom2cdom_adapter/build.xml.
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom_generators
+      [ant] calling target(s) [compile] in build file /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom_generators/build.xml
+parsing buildfile /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom_generators/build.xml with URI = file:/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom_generators/build.xml
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom_generators
+      [ant] Entering /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom_generators/build.xml...
+Build sequence for target(s) `compile' is [check.dependencies, set.all.properties, create.build.dir, compile]
+Complete build sequence is [check.dependencies, set.all.properties, create.build.dir, compile, debug, help, drivers, clean, wall, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Override ignored for property "no.dependencies"
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/cslom_generators because it already exists.
+
+create.build.dir:
+     [echo] Build dir: '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom_generators/release'
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/cslom_generators/release because it already exists.
+
+compile:
+     [echo] ==================== Compiling in cslom_generators ====================
+       [cc] Starting dependency analysis for 6 files.
+       [cc] Parsing ../../../../../src/cslom_generators/CSIM_CPP_Generator.cpp
+       [cc] Parsing ../../../../../src/cslom_generators/CSIM_CPP_Generator.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Visitor.h
+       [cc] Parsing ../../../../../src/support/CommonSupport.h
+       [cc] Parsing ../../../../../src/csim/CsimTypeDefs.h
+       [cc] Parsing ../../../../../src/cslom/Base.h
+       [cc] Parsing ../../../../../src/cslom/VeriNum.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Declarations.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Declarations.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Base.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Exprs.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Scoping.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Units.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Misc.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Stmt.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_UnitInstance.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Ranges.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Connectable.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_MemoryMap.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Isa.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_VerifComp.h
+       [cc] Parsing ../../../../../src/support/TypeDefs.h
+       [cc] Parsing ../../../../../src/support/SupportFunctions.h
+       [cc] Parsing ../../../../../src/support/Assert.h
+       [cc] Parsing ../../../../../src/support/DebugMesgs.h
+       [cc] Parsing ../../../../../src/support/ConstInts.h
+       [cc] Parsing ../../../../../src/support/ErrorAPI.h
+       [cc] Parsing ../../../../../src/support/Tracer.h
+       [cc] Parsing ../../../../../src/preproc/VPreprocessor.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/CSLC_Errors.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/we_logic.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/warn_err.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_cmd.h
+       [cc] Parsing ../../../../../src/cslom_generators/CSLOM_PDF_Draw.cpp
+       [cc] Parsing ../../../../../src/cslom_generators/CSLOM_PDF_Draw.h
+       [cc] Parsing ../../../../../src/cslom_generators/CSLOM_CPP_Generator.cpp
+       [cc] Parsing ../../../../../src/cslom_generators/CSLOM_CPP_Generator.h
+       [cc] Parsing ../../../../../src/cslom_generators/CSLOM_PDF_Generator.cpp
+       [cc] Parsing ../../../../../src/cslom_generators/CSLOM_PDF_Generator.h
+       [cc] Parsing ../../../../../src/cslom_generators/CSLOM_XML_generator.cpp
+       [cc] Parsing ../../../../../src/cslom_generators/CSLOM_XML_generator.h
+       [cc] Parsing ../../../../../src/cslom_generators/CSLOM_VerilogDefineGenerator.cpp
+       [cc] Parsing ../../../../../src/cslom_generators/CSLOM_VerilogDefineGenerator.h
+       [cc] 6 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+  [symlink] ln -s /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom_generators/release/libCslomGen.a /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom_generators/libCslomGen.a
+  [symlink] Executing 'ln' with arguments:
+  [symlink] '-s'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom_generators/release/libCslomGen.a'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom_generators/libCslomGen.a'
+  [symlink] 
+  [symlink] The ' characters around the executable and arguments are
+  [symlink] not part of the command.
+      [ant] Exiting /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom_generators/build.xml.
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/autorouter
+      [ant] calling target(s) [compile] in build file /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/autorouter/build.xml
+parsing buildfile /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/autorouter/build.xml with URI = file:/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/autorouter/build.xml
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/autorouter
+      [ant] Entering /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/autorouter/build.xml...
+Build sequence for target(s) `compile' is [check.dependencies, set.all.properties, create.build.dir, compile]
+Complete build sequence is [check.dependencies, set.all.properties, create.build.dir, compile, debug, help, drivers, clean, wall, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Override ignored for property "no.dependencies"
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/autorouter because it already exists.
+
+create.build.dir:
+     [echo] Build dir: '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/autorouter/release'
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/autorouter/release because it already exists.
+
+compile:
+     [echo] ==================== Compiling in autorouter ====================
+       [cc] Starting dependency analysis for 4 files.
+       [cc] Parsing ../../../../../src/autorouter/CSLOM_InstTreeVisitor.cpp
+       [cc] Parsing ../../../../../src/autorouter/CSLOM_InstTreeVisitor.h
+       [cc] Parsing ../../../../../src/autorouter/CSLOM_InstTree.h
+       [cc] Parsing ../../../../../src/support/CommonSupport.h
+       [cc] Parsing ../../../../../src/cslom/Base.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Visitor.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_cmd.h
+       [cc] Parsing ../../../../../src/cslom/VeriNum.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Declarations.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Declarations.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Base.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Exprs.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Scoping.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Units.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Misc.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Stmt.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_UnitInstance.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Ranges.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Connectable.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_MemoryMap.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Isa.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_VerifComp.h
+       [cc] Parsing ../../../../../src/support/TypeDefs.h
+       [cc] Parsing ../../../../../src/support/SupportFunctions.h
+       [cc] Parsing ../../../../../src/support/Assert.h
+       [cc] Parsing ../../../../../src/support/DebugMesgs.h
+       [cc] Parsing ../../../../../src/support/ConstInts.h
+       [cc] Parsing ../../../../../src/support/ErrorAPI.h
+       [cc] Parsing ../../../../../src/support/Tracer.h
+       [cc] Parsing ../../../../../src/preproc/VPreprocessor.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/CSLC_Errors.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/we_logic.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/warn_err.h
+       [cc] Parsing ../../../../../src/autorouter/Autorouter.cpp
+       [cc] Parsing ../../../../../src/autorouter/Autorouter.h
+       [cc] Parsing ../../../../../src/autorouter/CSLOM_ConnectionChecker.cpp
+       [cc] Parsing ../../../../../src/autorouter/CSLOM_ConnectionChecker.h
+       [cc] Parsing ../../../../../src/autorouter/CSLOM_InstTree.cpp
+       [cc] 4 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+  [symlink] ln -s /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/autorouter/release/libAR.a /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/autorouter/libAR.a
+  [symlink] Executing 'ln' with arguments:
+  [symlink] '-s'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/autorouter/release/libAR.a'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/autorouter/libAR.a'
+  [symlink] 
+  [symlink] The ' characters around the executable and arguments are
+  [symlink] not part of the command.
+      [ant] Exiting /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/autorouter/build.xml.
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom_design_checker
+      [ant] calling target(s) [compile] in build file /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom_design_checker/build.xml
+parsing buildfile /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom_design_checker/build.xml with URI = file:/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom_design_checker/build.xml
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom_design_checker
+      [ant] Entering /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom_design_checker/build.xml...
+Build sequence for target(s) `compile' is [check.dependencies, set.all.properties, create.build.dir, compile]
+Complete build sequence is [check.dependencies, set.all.properties, create.build.dir, compile, debug, help, drivers, clean, wall, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Override ignored for property "no.dependencies"
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/cslom_design_checker because it already exists.
+
+create.build.dir:
+     [echo] Build dir: '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom_design_checker/release'
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/cslom_design_checker/release because it already exists.
+
+compile:
+     [echo] ==================== Compiling in cslom_design_checker ====================
+       [cc] Starting dependency analysis for 1 files.
+       [cc] Parsing ../../../../../src/cslom_design_checker/CSLOM_Design_Checker.cpp
+       [cc] Parsing ../../../../../src/cslom_design_checker/CSLOM_Design_Checker.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/CSLC_Errors.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/we_logic.h
+       [cc] Parsing ../../../../../src/support/ErrorAPI.h
+       [cc] Parsing ../../../../../src/support/CommonSupport.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Visitor.h
+       [cc] Parsing ../../../../../src/cslom/Base.h
+       [cc] Parsing ../../../../../src/cslom/VeriNum.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Declarations.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Declarations.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Base.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Exprs.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Scoping.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Units.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Misc.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Stmt.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_UnitInstance.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Ranges.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Connectable.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_MemoryMap.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Isa.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_VerifComp.h
+       [cc] Parsing ../../../../../src/support/TypeDefs.h
+       [cc] Parsing ../../../../../src/support/SupportFunctions.h
+       [cc] Parsing ../../../../../src/support/Assert.h
+       [cc] Parsing ../../../../../src/support/DebugMesgs.h
+       [cc] Parsing ../../../../../src/support/ConstInts.h
+       [cc] Parsing ../../../../../src/support/Tracer.h
+       [cc] Parsing ../../../../../src/preproc/VPreprocessor.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/warn_err.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_cmd.h
+       [cc] 1 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+  [symlink] ln -s /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom_design_checker/release/libCslomChecker.a /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom_design_checker/libCslomChecker.a
+  [symlink] Executing 'ln' with arguments:
+  [symlink] '-s'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom_design_checker/release/libCslomChecker.a'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslom_design_checker/libCslomChecker.a'
+  [symlink] 
+  [symlink] The ' characters around the executable and arguments are
+  [symlink] not part of the command.
+      [ant] Exiting /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslom_design_checker/build.xml.
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslc
+      [ant] calling target(s) [compile] in build file /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslc/build.xml
+parsing buildfile /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslc/build.xml with URI = file:/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslc/build.xml
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslc
+      [ant] Entering /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslc/build.xml...
+Build sequence for target(s) `compile' is [check.dependencies, set.all.properties, create.build.dir, compile]
+Complete build sequence is [check.dependencies, set.all.properties, create.build.dir, compile, debug, help, drivers, clean, wall, rlm_off, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Override ignored for property "no.dependencies"
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/cslc because it already exists.
+
+create.build.dir:
+     [echo] Build dir: '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslc/release'
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/cslc/release because it already exists.
+
+compile:
+     [echo] ==================== Compiling in cslc ====================
+       [cc] Starting dependency analysis for 3 files.
+       [cc] Parsing ../../../../../src/cslc/new_cslc.cpp
+       [cc] Parsing ../../../../../src/cslc/new_cslc.h
+       [cc] Parsing ../../../../../src/cslc/cslc_Support.h
+       [cc] Parsing ../../../../../src/cslc/cslc_Typedef.h
+       [cc] Parsing ../../../../../src/cslc/cslc_Include.h
+       [cc] Parsing ../../../../../src/support/CommonSupport.h
+       [cc] Parsing ../../../../../src/support/Base.hpp
+       [cc] Parsing ../../../../../src/parser/verilog/VerilogToken.hpp
+       [cc] Parsing ../../../../../src/parser/verilog/VerilogLexer.hpp
+       [cc] Parsing ../../../../../src/parser/verilog/VerilogParser.hpp
+       [cc] Parsing ../../../../../src/parser/verilog/VerilogTreeWalker.hpp
+       [cc] Parsing ../../../../../src/parser/verilog/VerAST.hpp
+       [cc] Parsing ../../../../../src/parser/verilog/VParserErrorCodes.hpp
+       [cc] Parsing ../../../../../src/preproc/Preproc.h
+       [cc] Parsing ../../../../../src/preproc/CSLcPP.h
+       [cc] Parsing ../../../../../src/support/Base.hpp
+       [cc] Parsing ../../../../../src/parser/csl/CslToken.hpp
+       [cc] Parsing ../../../../../src/parser/csl/CslLexer.hpp
+       [cc] Parsing ../../../../../src/parser/csl/CslParser.hpp
+       [cc] Parsing ../../../../../src/parser/csl/CslTreeWalker.hpp
+       [cc] Parsing ../../../../../src/parser/csl/CslAST.hpp
+       [cc] Parsing ../../../../../src/parser/csl/CParserErrorCodes.hpp
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/WESAXHandlers.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM.h
+       [cc] Parsing ../../../../../src/cslom_generators/CSLOM_XML_generator.h
+       [cc] Parsing ../../../../../src/cslom_generators/CSLOM_VerilogDefineGenerator.h
+       [cc] Parsing ../../../../../src/cslom_generators/CSLOM_PDF_Generator.h
+       [cc] Parsing ../../../../../src/cslom_generators/CSLOM_CPP_Generator.h
+       [cc] Parsing ../../../../../src/cslom_generators/CSIM_CPP_Generator.h
+       [cc] Parsing ../../../../../src/autorouter/CSLOM_InstTreeVisitor.h
+       [cc] Parsing ../../../../../src/autorouter/CSLOM_ConnectionChecker.h
+       [cc] Parsing ../../../../../src/cslom_design_checker/CSLOM_Design_Checker.h
+       [cc] Parsing ../../../../../src/cslom2cdom_adapter/Adapter.h
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI.h
+       [cc] Parsing ../../../../../src/cdom/CDOM.h
+       [cc] Parsing ../../../../../src/cdom/CDOM_Checker.h
+       [cc] Parsing ../../../../../src/cdom/CDOM_VerilogGenerator.h
+       [cc] Parsing ../../../../../src/cdom/CDOM_VHDLGenerator.h
+       [cc] Parsing ../../../../../src/cdom/CDOM_SystemCGenerator.h
+       [cc] Parsing ../../../../../src/cdom/CDOM_SchematicCodeGenerator.h
+       [cc] Parsing ../../../../../src/support/TypeDefs.h
+       [cc] Parsing ../../../../../src/support/SupportFunctions.h
+       [cc] Parsing ../../../../../src/support/Assert.h
+       [cc] Parsing ../../../../../src/support/DebugMesgs.h
+       [cc] Parsing ../../../../../src/support/ConstInts.h
+       [cc] Parsing ../../../../../src/support/ErrorAPI.h
+       [cc] Parsing ../../../../../src/support/Tracer.h
+       [cc] Parsing ../../../../../src/preproc/VPreprocessor.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/CSLC_Errors.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/we_logic.h
+       [cc] Parsing ../../../../../src/csl_xml_warn_error/warn_err.h
+       [cc] Parsing ../../../../../src/parser/verilog/VerilogNumber.hpp
+       [cc] Parsing ../../../../../src/parser/verilog/VerilogLexerUtils.hpp
+       [cc] Parsing ../../../../../src/parser/verilog/Def.hpp
+       [cc] Parsing ../../../../../src/parser/verilog/VerilogTokenTypes.hpp
+       [cc] Parsing ../../../../../src/parser/verilog/VerilogParserTokenTypes.hpp
+       [cc] Parsing ../../../../../src/parser/verilog/ToolsParser.hpp
+       [cc] Parsing ../../../../../src/parser/verilog/VerilogTreeWalkerTokenTypes.hpp
+       [cc] Parsing ../../../../../src/parser/verilog/Tools.hpp
+       [cc] Parsing ../../../../../src/cdom/VeriNum.h
+       [cc] Parsing ../../../../../src/cdom/Base.h
+       [cc] Parsing ../../../../../src/preproc/Preproc_Typedef.h
+       [cc] Parsing ../../../../../src/preproc/Preproc_Include.h
+       [cc] Parsing ../../../../../src/cslc/cslc_Platform.h
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI_Support.h
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI_Typedef.h
+       [cc] Parsing ../../../../../src/support/cli/cslcCLI_Include.h
+       [cc] Parsing ../../../../../src/support/singleton.h
+       [cc] Parsing ../../../../../src/preproc/CSLcPP_Typedef.h
+       [cc] Parsing ../../../../../src/preproc/CSLcPP_Include.h
+       [cc] Parsing ../../../../../src/parser/csl/CslNumber.hpp
+       [cc] Parsing ../../../../../src/parser/csl/CslLexerUtils.hpp
+       [cc] Parsing ../../../../../src/parser/csl/Def.hpp
+       [cc] Parsing ../../../../../src/cslom/Base.h
+       [cc] Parsing ../../../../../src/cslom/VeriNum.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Declarations.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Declarations.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Base.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Exprs.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Scoping.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Units.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Misc.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Stmt.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_UnitInstance.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Ranges.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Connectable.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_MemoryMap.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Isa.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_VerifComp.h
+       [cc] Parsing ../../../../../src/parser/csl/CslTokenTypes.hpp
+       [cc] Parsing ../../../../../src/parser/csl/CslParserTokenTypes.hpp
+       [cc] Parsing ../../../../../src/parser/csl/SymTree.h
+       [cc] Parsing ../../../../../src/parser/csl/CslTreeWalkerTokenTypes.hpp
+       [cc] Parsing ../../../../../src/cslom/CSLOM_cmd.h
+       [cc] Parsing ../../../../../src/autorouter/Autorouter.h
+       [cc] Parsing ../../../../../src/parser/csl/Tools.hpp
+       [cc] Parsing ../../../../../src/autorouter/CSLOM_InstTree.h
+       [cc] Parsing ../../../../../src/cslom/CSLOM_Visitor.h
+       [cc] Parsing ../../../../../src/cslom_generators/CSLOM_PDF_Draw.h
+       [cc] Parsing ../../../../../src/csim/CsimTypeDefs.h
+       [cc] Parsing ../../../../../src/cdom/CDOM_Visitor.h
+       [cc] Parsing ../../../../../src/cdom/CDOM_Type_Map.h
+       [cc] Parsing ../../../../../src/support/RefCount.h
+       [cc] Parsing ../../../../../src/cdom/CDOM_Consts.h
+       [cc] Parsing ../../../../../src/cslc/cslc_Typedef.cpp
+       [cc] Parsing ../../../../../src/cslc/new_main.cpp
+       [cc] Parsing ../../../../../src/cslc/license.h
+       [cc] 3 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+  [symlink] ln -s /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslc/release/cslc /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslc/cslc
+  [symlink] Executing 'ln' with arguments:
+  [symlink] '-s'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslc/release/cslc'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslc/cslc'
+  [symlink] 
+  [symlink] The ' characters around the executable and arguments are
+  [symlink] not part of the command.
+     [copy] /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslc/generic_license.lic omitted as /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/cslc/release/generic_license.lic is up to date.
+  [symlink] ln -s /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslc/release/generic_license.lic /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslc/generic_license.lic
+  [symlink] Executing 'ln' with arguments:
+  [symlink] '-s'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslc/release/generic_license.lic'
+  [symlink] '/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build_utils/../build/linux/x86_64/cslc/generic_license.lic'
+  [symlink] 
+  [symlink] The ' characters around the executable and arguments are
+  [symlink] not part of the command.
+      [ant] Exiting /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/cslc/build.xml.
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/csim
+      [ant] calling target(s) [release] in build file /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/csim/build.xml
+parsing buildfile /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/csim/build.xml with URI = file:/storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/csim/build.xml
+Project base dir set to: /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/csim
+      [ant] Entering /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/csim/build.xml...
+Build sequence for target(s) `release' is [check.dependencies, set.all.properties, release]
+Complete build sequence is [check.dependencies, set.all.properties, release, debug, csim_lib, csim_shell, help, drivers, clean, wall, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Override ignored for property "no.dependencies"
+    [mkdir] Skipping /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/build/linux/x86_64/csim because it already exists.
+
+release:
+Override ignored for property "release.flag"
+Build sequence for target(s) `csim_lib' is [check.dependencies, set.all.properties, csim_lib]
+Complete build sequence is [check.dependencies, set.all.properties, csim_lib, debug, csim_shell, help, drivers, clean, release, wall, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Skipped because property 'properties.set' set.
+
+csim_lib:
+     [echo] ==================== Compiling libCsim.a ====================
+       [cc] Starting dependency analysis for 10 files.
+       [cc] Parsing ../../../../src/csim/CsimSupport.h
+       [cc] Parsing ../../../../src/support/TypeDefs.h
+       [cc] Parsing ../../../../src/support/SupportFunctions.h
+       [cc] Parsing ../../../../src/support/Assert.h
+       [cc] Parsing ../../../../src/support/DebugMesgs.h
+       [cc] Parsing ../../../../src/support/ErrorAPI.h
+       [cc] Parsing ../../../../src/support/Tracer.h
+       [cc] Parsing ../../../../src/preproc/VPreprocessor.h
+       [cc] Parsing ../../../../src/csl_xml_warn_error/CSLC_Errors.h
+       [cc] Parsing ../../../../src/csl_xml_warn_error/we_logic.h
+       [cc] Parsing ../../../../src/csl_xml_warn_error/warn_err.h
+       [cc] Parsing ../../../../src/csim/CsimFlipFlop.cpp
+       [cc] 10 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+Build sequence for target(s) `csim_shell' is [check.dependencies, set.all.properties, csim_shell]
+Complete build sequence is [check.dependencies, set.all.properties, csim_shell, debug, csim_lib, help, drivers, clean, release, wall, ]
+
+check.dependencies:
+Skipped because property 'no.dependencies' set.
+
+set.all.properties:
+Skipped because property 'properties.set' set.
+
+csim_shell:
+     [echo] ==================== Compiling libCsimShell.a ====================
+       [cc] Starting dependency analysis for 12 files.
+       [cc] Parsing ../../../../src/support/TypeDefs.h
+       [cc] Parsing ../../../../src/support/SupportFunctions.h
+       [cc] Parsing ../../../../src/support/Assert.h
+       [cc] Parsing ../../../../src/support/DebugMesgs.h
+       [cc] Parsing ../../../../src/support/ErrorAPI.h
+       [cc] Parsing ../../../../src/support/Tracer.h
+       [cc] Parsing ../../../../src/preproc/VPreprocessor.h
+       [cc] Parsing ../../../../src/csl_xml_warn_error/CSLC_Errors.h
+       [cc] Parsing ../../../../src/csl_xml_warn_error/we_logic.h
+       [cc] Parsing ../../../../src/csl_xml_warn_error/warn_err.h
+       [cc] Parsing ../../../../src/csim/CsimSupport.h
+       [cc] Parsing ../../../../src/csim/CsimSimulator.cpp
+       [cc] 12 files are up to date.
+       [cc] 0 files to be recompiled from dependency analysis.
+       [cc] 0 total files to be compiled.
+      [ant] Exiting /storage1/fpl_svn_2009_09/repos/trunk/cslc/trunk/src/csim/build.xml.
+
+BUILD SUCCESSFUL
+Total time: 3 seconds

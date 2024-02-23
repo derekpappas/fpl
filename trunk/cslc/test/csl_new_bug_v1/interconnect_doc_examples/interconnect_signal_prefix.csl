@@ -1,0 +1,33 @@
+//danielt
+//november 07,2007
+csl_unit d1{
+  csl_port d1_i(input), d1_o(output);
+  d1(){ }
+};
+csl_unit d2{
+  csl_port d2_i(input), d2_o(output);
+  d2(){ }
+};
+csl_unit u1{
+  csl_port v1_i(input), v1_o(output);
+  csl_signal v1,v12;
+  d1 d1(.d1_i(v1),.d1_o(v12));
+  u1(){
+    set_signal_prefix("uv");
+}
+};
+csl_unit u2{
+  csl_port v2_i(input), v2_o(output);
+  csl_signal v12,v2;
+  d2 d2(.d2_i(v12),.d2_o(v2));
+  u2(){
+    set_signal_prefix("uv");
+  }
+};
+csl_unit block{
+  csl_signal vl1,vl12,vl2;
+  u1 u1(.v1_i(vl1),.v1_o(vl12));
+  u2 u2(.v2_i(vl12),.v2_o(vl2));
+  block(){
+    set_unit_prefix("box1"); }
+};

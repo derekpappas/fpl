@@ -1,0 +1,38 @@
+// costelc
+//signal - interface concatenation
+
+
+csl_interface ifc{
+  csl_port p1(output,8);
+  csl_port p2(output,4);
+  ifc() {}
+};
+
+csl_unit c{
+  csl_port c_in(input);
+  csl_port c_out(output);
+  ifc ifc0;
+  c() {}
+};
+
+csl_unit a{
+  csl_port a_in(input);
+  csl_port a_out(output,4);
+  a() {}
+};
+
+csl_unit b{
+  csl_port b_in(input,12);
+  csl_port b_out(output);
+  b() {}
+};
+
+csl_unit top{
+  ifc ifc0;
+  csl_signal s1(4),s;
+  csl_signal s2(8);
+  a a0(.a_out(s1),.a_in(s1[3]));
+  b b0(.b_in({s1,s2}),.b_out(ifc0.p1[3]));
+  c c0(.c_in(s),.c_out(s2[3]),.ifc0(ifc0));
+  top() {}
+};

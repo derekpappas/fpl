@@ -1,0 +1,10 @@
+proc_ring{proc_ring}
+|pie_eth_dq1{pie_eth_dq1  }
+|pie_eth_nq01 {pie_eth_nq01 }
+|pie_eth_nq11 {pie_eth_nq11 }
+|pie_aud_nq1  {pie_aud_nq1  }
+|pie_aud_dq1  {pie_aud_dq1  }
+|ipc          {ipc          }
+|pie_ex_nq1   {pie_ex_nq1   }
+|pie_ex_dq1   {pie_ex_dq1   }
+|sram0        {sram0        }

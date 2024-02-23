@@ -1,0 +1,9 @@
+// csl_signal declaration parameteres invalid 2
+//andreim
+//16 June 2007
+
+csl_bitrange br_br(0,7);
+
+csl_unit u_unit1{
+	csl_signal sgn_sgn4(reg, br_br2);    // br_br2 does not exist
+};

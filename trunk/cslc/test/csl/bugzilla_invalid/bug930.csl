@@ -1,0 +1,6 @@
+csl_unit bitx1{
+   csl_bitrange coxa1(5);
+   csl_signal bijg1(tri1, bitx1.cadx1);
+  bitx1() {
+  }
+};

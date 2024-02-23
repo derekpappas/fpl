@@ -1,0 +1,187 @@
+
+Checks for part select
+
+Test matrices for part select can be found in /test/test_matrices/part_select_matrix.ods
+
+1. Width checking
+a. formal to actual
+``- number of bits of the part select must match the width of the formal
+port
+
+b. expression
+- the evaluation of the expression must result in a 
+signal whose number of bits must match the allowed width of the expression
+result. The allowed width of the expression depends on the place the
+expression is used:
+ * in a f2a, the width of the formal port or signal
+ * in a relation, the width of the LHS object
+
+c. concat
+- the width of the part select is used in checking the width of the
+resulted concatenation.
+
+The width of the concatenation depends on the width of all objects in
+the concatenation.
+The compiler must check that the width of object resulting from the
+concatenation is equal to the allowed width where the concatenation is
+used. In other words, the sum of the widths of objects in the
+concatenation must equal the allowed width. 
+
+d. replication
+- the width of the part select times the number of replication must
+not exceed the allowed width for the expression
+
+2. Direction checking
+
+Direction checking for part select implies checking the direction of
+the port/signal to which the part select belongs. 
+If the part selects belong to ports, the checks are made on those
+ports.
+If part selects of signals are involved, the checks must take in
+consideration the drivers of those signals.
+
+Example 1:
+
+csl_unit a{
+  csl_port pin(input,4);
+  csl_port pout(output,4);
+  a(){
+  }
+};
+
+csl_unit top{
+  csl_port tin(input,8);
+  csl_port tout(output,8);
+
+  a a0(.pin(tin[5:2],.pout(tout[8:5]); 
+
+// following check must be made:
+// -- width
+// part select tin[5:2] must have
+// same width with pin port of unit a
+// the same for tout[8:5] and port pout
+// -- direction
+// port tin must be input port as pin is an input port
+// port tout must be output port as pout is an input port
+   top(){
+   }
+};
+
+Example 2
+
+csl_unit a{
+  csl_port pin(input,4);
+  csl_port pout(output,4);
+  a(){
+  }
+};
+
+csl_unit top{
+  csl_port tin1(input,8);
+  csl_port tin2(input,8);
+  csl_port tout(output,8);
+
+  a a0(.pin(tin[5:2] & tin[3:1],.pout(tout[8:5]);
+
+// because expressions are bitwise operations
+// following checks must be made:
+// -- width
+// at least one of the part selects tin1[5:2] or tin2[3:1] must have
+// same width with pin port of unit a while the other can have 
+// a smaller width
+// -- direction
+// port tin must be input port as pin is an input port
+// port tout must be output port as pout is an input port
+
+top(){
+ }
+};
+
+Example 3
+
+csl_unit a{
+  csl_port pin(input,4);
+  csl_port pout(output,4);
+  a(){
+  }
+};
+
+csl_unit top{
+  csl_port tin1(input,8);
+  csl_port tin2(input,8);
+  csl_port tout(output,8);
+  csl_signal s(4);
+
+  a a0(.pin(tin1[5:2] & tin2[3:1],.pout(s);
+
+// because the expression is a bitwise operation 
+// following checks must be made:
+// -- width
+// at least one of the part selects tin1[5:2] or tin2[3:1] must have
+// same width with pin port of unit a while the other can have 
+// a smaller width
+// -- direction
+// both tin1 and tin2 ports must be input ports
+// the other connection (end part) of signal s must be
+// checked to see if the connection rules are respected
+
+top(){
+  tout=tin1 & tin2[6:5] | s;
+// the expression is a bitwise operation so following check must be
+made
+// -- width
+// at least one operand must have the width of the port tout (LHS)
+// -- direction
+// operands must be input ports of unit top or output ports of 
+// child units or signals driven by objects in the mentioned
+categories.
+// in this case signal s is driven by output of child unit a0
+  }
+};
+
+Example 4
+
+csl_unit u_a{
+  csl_port ain(input,4);
+  csl_port bin(input,4);
+  csl_port cin(input);
+  csl_port sout(output,4); 
+
+u_a(){
+  sout={ain[3:2],bin[2:1],cin};
+//the following checks must be made
+//-- width
+// the sum of the operands widths is equal to the width of the sout port
+//-- direction
+// each object whose part select is an operand in the concat expression
+// must be compabile from the point of direction with the LHS object
+// (i.e. sout)
+// the above example is illegal because the resulting width of 
+// concatenation is 5 
+ }
+};
+
+Example 5
+
+csl_unit u_a{
+
+  csl_port ain(input,4);
+  csl_port bin(input,4);
+  csl_port cin(input);
+  csl_port sout(output,17); 
+
+  u_a(){
+    sout={4{ain[3:2]},4{bin[2:1]},cin};
+//the following checks must be made
+//-- width
+// the sum of the operand width times the replication factor
+// is equal to the width of the sout port
+//-- direction
+// each object whose part select is an operand in the concat and
+// replication expression must be compabile from the point of 
+// direction with the LHS object (i.e. sout)
+// the above example is legal because the resulting width of 
+// concatenation is 17 and direction rules are respected 
+  }
+};
+

@@ -1,0 +1,24 @@
+//THIS CODE WAS GENERATED USING THE FASTPATHLOGIC HDL COMPILER
+//COPYRIGHT (c) 2006, 2007 FastpathLogic Inc
+//OUTPUT FILE NAME  : v_top.vf
+//FILE GENERATED ON : Tue Sep 30 16:36:13 2008
+
+usb_tm_dispatcher.v
+usb_tm_packetizer.v
+usb_transaction_mgr.v
+usb_protocol_mgr.v
+fab.v
+uart_mgr.v
+RAM.v
+jeff_uart.v
+i2c.v
+uart.v
+usb_phy.v
+fifo_regs.v
+fab_filter.v
+io_cell.v
+input_cell.v
+usb_analog_phy.v
+output_cell.v
+v_core.v
+v_top.v

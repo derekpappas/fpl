@@ -1,0 +1,49 @@
+//oanab
+//29 oct 2007
+//
+
+csl_register reg{
+  reg(){
+    set_width(4);
+    set_type(register);
+    set_attributes(rd);
+  }
+};
+
+csl_vector stim{
+  stim(){
+    set_unit_name(reg);
+    set_direction(input);
+    set_vc_header_comment("stim_vect");
+  }
+};
+
+csl_vector exp{
+  exp(){
+   set_unit_name(reg);
+   set_direction(output);
+   set_vc_header_comment("exp_vect");
+  }
+};
+
+
+csl_unit u1{
+  csl_port clk(input);
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(output,4);
+  csl_port p4(input,4);
+  reg r2(.reset_(p1),.enable(p2),.clock(clk),.reg_out(p3),.reg_in(p4));
+  u1(){
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+  reg re1;
+  reg reg2;
+   tb(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,4,ns);
+  }
+};

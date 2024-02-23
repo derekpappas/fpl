@@ -1,0 +1,11 @@
+# This is the input test file for CTestExprOp class
+# <> means obligatory
+# [] means optional
+# {} means group
+# *x means this should repeat x times
+# Syntax: ( <N = 1..3> <OPTYPE> {<EXPR_TYPE> <EXPR_TEST>}*N <N> {<EXPR_TYPE> <EXPR_TEST>}*N <RET_ISCONST> [RET_CONST_VALUE] )
+# examples:
+
+( 1 3 COmExprValInt ( 123 3 32 123 1 ) 0 1 0 )
+( 1 11 COmExprValInt ( 123 3 32 123 1 ) 1 COmExprValInt ( 123 3 32 123 1 ) 1 0 )
+( 1 11 COmExprValInt ( 123 3 32 123 1 ) 0 1 0 )

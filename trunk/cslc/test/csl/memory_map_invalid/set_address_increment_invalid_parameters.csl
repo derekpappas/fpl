@@ -1,0 +1,24 @@
+//illegal: set_address_increment parameter incorect
+//andreim
+//15 June 2007
+
+csl_enum enum{
+	r,
+	w
+};
+csl_memory_map_page mmp_page{
+	mmp_page(){
+		add_address_range(0,31);
+		set_endianess(big_endian);
+		set_data_word_width(32);
+		//set_alignment(4);           // increment = 16 / 4 = 4 
+		set_address_increment("a");
+ 	}
+};
+
+csl_memory_map mm{
+		mm(){
+		set_type(flat);
+	  set_data_word_width(128);
+		}
+	};

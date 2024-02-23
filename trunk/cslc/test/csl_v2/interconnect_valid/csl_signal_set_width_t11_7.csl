@@ -1,0 +1,15 @@
+//author: Ines
+//testing: signal_object_name.set_width(numeric_expr);
+
+
+
+csl_unit uu {
+
+  csl_signal s1,s2;
+  csl_bitrange br1(6);
+
+  uu() {
+    s1.set_bitrange(br1);
+    s2.set_bitrange(s1.get_bitrange());
+  }
+};

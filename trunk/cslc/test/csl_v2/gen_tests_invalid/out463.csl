@@ -1,0 +1,130 @@
+csl_enum ym {
+	dg,
+	im,
+	pi,
+	ke,
+	id,
+	kp,
+	um,
+	au
+};
+csl_enum bb {
+	id = 64,
+	xh = 23,
+	wc = 6,
+	vh = 14,
+	ga = 73,
+	kh = 92,
+	np = 24,
+	ox = 0,
+	eg = 67,
+	gp = 38
+};
+csl_enum ko {
+	su = 47,
+	hp = 64,
+	jh = 63,
+	kk = 80,
+	lv = 7,
+	pj = 76,
+	fo = 72,
+	nc = 92,
+	xu = 74,
+	cj = 48,
+	er = 19,
+	yu = 89,
+	pe = 22,
+	by = 64
+};
+csl_isa_instruction_format qn{
+    qn( ){
+     generate_decoder( dotmmd);
+  }
+}
+;
+csl_isa eo{
+    eo( ){
+     set_decoder_name( "ou");
+     set_decoder_out_name_prefix( "wb");
+     set_decoder_out_name_suffix( "mn");
+     generate_decoder( tmmd);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo yr{
+   yr( ){
+     add_logic( depth_extend, 4);
+     add_logic( rd_words, 9);
+     add_logic( flow);
+  }
+}
+;
+csl_memory_map_page wj{
+    wj( ){
+     add_address_range( 3, 4);
+     set_address_increment( 5);
+     get_address_increment( );
+     set_next_address( 2);
+     add_reserved_address_range( 6, 1);
+     add( yr, "ip", 9);
+     get_upper_bound( );
+     get_data_word_wodth( );
+     get_aligment( );
+     set_endianess( big_endian);
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page cv{
+  wj je;
+    cv( ){
+     set_address_increment( 2);
+     set_next_address( 3);
+     get_next_address( );
+     add_reserved_address_range( 5, 0);
+     add( wj);
+     get_upper_bound( );
+     set_data_word_width( 2);
+     get_data_word_wodth( );
+     set_aligment( 8);
+     get_aligment( );
+     set_endianess( big_endianlittle_endian);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page da{
+  wj gj;
+  cv hd;
+  wj md;
+  wj pk;
+    da( ){
+     get_address_increment( );
+     set_access_rights( access_read, none);
+     add_reserved_address_range( 1, 2);
+     add( wjcv);
+     get_upper_bound( );
+     set_aligment( 4);
+     get_aligment( );
+     get_endianess( );
+  }
+}
+;
+csl_memory_map va{
+    va( ){
+     set_type( flat);
+cv.set_access_rights_enum( cv); 
+     set_data_word_width( 3);
+     set_prefix( wp);
+  }
+}
+;
+csl_register iw{
+    iw( ){
+     set_depth( 5);
+     add_logic( read_valid);
+  }
+}
+;

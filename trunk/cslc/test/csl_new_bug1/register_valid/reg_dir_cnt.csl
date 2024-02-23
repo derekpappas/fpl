@@ -1,0 +1,19 @@
+//oanab
+//3 nov 2007
+
+csl_register counter{
+  counter(){
+    set_width(16);
+    set_type(counter);
+    add_logic(count_direction,up);
+  }
+};
+
+csl_unit u{
+  csl_signal rst,en,data(16),clk;
+  counter counter1(.reset_(rst),.enable(en),.clock(clk),.reg_out(data)); 
+  u(){
+    clk.set_attr(clock);
+}
+};
+

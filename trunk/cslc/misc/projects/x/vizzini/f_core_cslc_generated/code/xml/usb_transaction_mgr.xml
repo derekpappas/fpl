@@ -1,0 +1,77 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="usb_transaction_mgr">
+<interface name="ram_bus1" >
+<port name="valid" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="write_en" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="addr" offset="0" upper="5-1" lower="0" direction = "input" type = "wire" />
+<port name="write_data" offset="0" upper="12-1" lower="0" direction = "input" type = "wire" />
+<port name="read_data" offset="0" upper="12-1" lower="0" direction = "output" type = "wire" />
+<port name="ready" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="fabric" >
+<port name="drop_valid" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="drop_type" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="drop_src_nid" offset="0" upper="4-1" lower="0" direction = "input" type = "wire" />
+<port name="drop_addr" offset="0" upper="12-1" lower="0" direction = "input" type = "wire" />
+<port name="drop_data" offset="0" upper="12-1" lower="0" direction = "input" type = "wire" />
+<port name="add_valid" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="add_type" offset="0" upper="2-1" lower="0" direction = "output" type = "wire" />
+<port name="add_dst_nid" offset="0" upper="4-1" lower="0" direction = "output" type = "wire" />
+<port name="add_addr" offset="0" upper="12-1" lower="0" direction = "output" type = "wire" />
+<port name="add_data" offset="0" upper="12-1" lower="0" direction = "output" type = "wire" />
+<port name="add_ready" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="tp_bus" >
+<interface name="t2p" >
+<port name="valid" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="length" offset="0" upper="6-1" lower="0" direction = "input" type = "wire" />
+<port name="endpoint" offset="0" upper="4-1" lower="0" direction = "input" type = "wire" />
+<port name="ready" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="p2t" >
+<port name="valid" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="length" offset="0" upper="6-1" lower="0" direction = "output" type = "wire" />
+<port name="endpoint" offset="0" upper="4-1" lower="0" direction = "output" type = "wire" />
+<port name="ready" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+</interface>
+</interface>
+<interface name="phy_rx" >
+<port name="valid" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="cmd" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="data" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="ready" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="phy_tx" >
+<port name="valid" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="cmd" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="data" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="ready" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<instantiation type = "usb_tm_packetizer">
+<instance name="usb_tm_packetizer_">
+<f2a formal = "phy_rx.cmd" actual = "phy_rx.cmd" />
+<f2a formal = "phy_rx.data" actual = "phy_rx.data" />
+<f2a formal = "phy_rx.ready" actual = "phy_rx.ready" />
+<f2a formal = "phy_rx.valid" actual = "phy_rx.valid" />
+</instance>
+</instantiation>
+<instantiation type = "usb_tm_dispatcher">
+<instance name="usb_tm_dispatcher_">
+<f2a formal = "phy_tx.cmd" actual = "phy_tx.cmd" />
+<f2a formal = "phy_tx.data" actual = "phy_tx.data" />
+<f2a formal = "phy_tx.ready" actual = "phy_tx.ready" />
+<f2a formal = "phy_tx.valid" actual = "phy_tx.valid" />
+<f2a formal = "tp_bus.p2t.endpoint" actual = "tp_bus.p2t.endpoint" />
+<f2a formal = "tp_bus.p2t.length" actual = "tp_bus.p2t.length" />
+<f2a formal = "tp_bus.p2t.ready" actual = "tp_bus.p2t.ready" />
+<f2a formal = "tp_bus.p2t.valid" actual = "tp_bus.p2t.valid" />
+<f2a formal = "tp_bus.t2p.endpoint" actual = "tp_bus.t2p.endpoint" />
+<f2a formal = "tp_bus.t2p.length" actual = "tp_bus.t2p.length" />
+<f2a formal = "tp_bus.t2p.ready" actual = "tp_bus.t2p.ready" />
+<f2a formal = "tp_bus.t2p.valid" actual = "tp_bus.t2p.valid" />
+</instance>
+</instantiation>
+</unit>
+</design>

@@ -1,0 +1,69 @@
+//oanab
+//12 feb 2008
+
+csl_interface ifc1 {
+  csl_port x(input),y(output),z(output);
+  ifc1 () {}
+};
+
+csl_interface ifc2 {
+  ifc1 ifc10;
+  csl_port x2(output);
+  ifc2 () {}
+};
+
+csl_interface ifc3 {
+  ifc2 ifc20;
+  csl_port y2(output);
+  ifc3 () {}
+};
+
+csl_interface ifc4 {
+  ifc1 ifc11;
+  ifc2 ifc21;
+  ifc3 ifc30;
+  ifc4 () {}
+};
+
+csl_unit u1 {
+  ifc4 ifc40;
+  u1 () {}
+};
+
+csl_unit u2 {
+  u1 u10(.ifc40.ifc11(ifc22.ifc10));
+  ifc2 ifc22;
+  u2 () {
+    ifc22.connect_by_name(u10.ifc40.ifc21);
+  }
+};
+
+csl_unit u3 {
+  u2 u20(.ifc22(ifc31.ifc20));
+  ifc3 ifc31;
+  u3 () {
+    u20.u10.ifc40.ifc30.connect_by_name(ifc31);  
+  }
+};
+
+csl_unit u4 {
+  ifc3 ifc32;
+  u4 () {}
+};
+
+csl_unit u5 {
+  ifc3 ifc33;
+  u5 () {
+    ifc33.reverse();
+  }
+};
+
+csl_unit u {
+  ifc3 ifc34;
+  u3 u30(.ifc31(ifc34));
+  u4 u40;
+  u5 u50;
+  u () {
+     u50.ifc33.connect_by_name(u40.ifc32);
+  }
+};

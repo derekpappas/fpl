@@ -1,0 +1,8 @@
+//oanab
+
+csl_int x = 2;
+
+//csl_unit a {
+//  csl_port s(x);
+//  a () {}
+//};

@@ -1,0 +1,26 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="rf">
+<interface name="im_rf_in_rfi" >
+<port name="wr_addr" offset="0" upper="4-1" lower="0" direction = "input" type = "wire" />
+<port name="wr_en" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="wr_data" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+<port name="rd_addr_a" offset="0" upper="4-1" lower="0" direction = "input" type = "wire" />
+<port name="rd_en_a" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+<port name="rd_addr_b" offset="0" upper="4-1" lower="0" direction = "input" type = "wire" />
+<port name="rd_en_b" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="rf_eu_rfi" >
+<port name="rd_data_a" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="rd_data_b" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="eu_rf_in" >
+<port name="rd_data_a" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+<port name="rd_data_b" offset="0" upper="32-1" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="br_in" >
+<port name="qual_br" offset="0" upper="1-1" lower="0" direction = "input" type = "wire" />
+</interface>
+</unit>
+</design>

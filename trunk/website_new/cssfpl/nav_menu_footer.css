@@ -1,0 +1,99 @@
+
+/* set the image to use and establish the lower-right position */ .cssbox, .cssbox_body, .cssbox_head, .cssbox_head h2 { background: transparent url(../demobox.png) no-repeat bottom right; } .cssbox { width: 335px !important; /* intended total box width - padding-right(next) */ width: 320px; /* IE Win = width - padding */ padding-right: 15px; /* the gap on the right edge of the image (not content padding) */ margin: 20px auto; /* use to position the box */ } /* set the top-right image */ .cssbox_head { background-position: top right; margin-right: -15px; /* pull the right image over on top of border */ padding-right: 40px; /* right-image-gap + right-inside padding */ } /* set the top-left image */ .cssbox_head h2 { background-position: top left; margin: 0; /* reset main site styles*/ border: 0; /* ditto */ padding: 25px 0 15px 40px; /* padding-left = image gap + interior padding ... no padding-right */ height: auto !important; height: 1%; /* IE Holly Hack */ } /* set the lower-left corner image */ .cssbox_body { background-position: bottom left; margin-right: 25px; /* interior-padding right */ padding: 15px 0 15px 40px; /* mirror .cssbox_head right/left */ } 
+
+.interiorfg{
+  background:transparent;
+  width: 700px;
+}
+
+h1,h2,p {
+	margin: 0 10px;
+}
+h1 {
+	font-size: 250%;
+	color: #FFF;
+}
+h2 {
+	font-size: 200%;
+	color: #f0f0f0;
+}
+
+h2 {
+	padding-top: 0.3em;
+}
+
+div#search {
+	margin: 0 10%;
+	background: #9BD1FA;
+}
+div#search h3 {
+	margin: 0 10px;
+	color: #FFF;
+}
+div#search p {
+	margin: 0 10px;
+	padding-bottom:1em;
+	color: #FFF;
+}
+b.rtop, b.rbottom{display:block;background: #FFF}
+b.rtop b, b.rbottom b{display:block;height: 1px;
+    overflow: hidden; background: #9BD1FA}
+b.r1{margin: 0 5px}
+b.r2{margin: 0 3px}
+b.r3{margin: 0 2px}
+b.rtop b.r4, b.rbottom b.r4{margin: 0 1px;height: 2px}
+
+.nav-menu-header {
+ float:right;
+ width:350px;
+
+}
+
+.nav-menu-header ul {
+	font-family: Arial, Helvetica, Sans-serif;
+	font-size: 4/8 px;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	color: dimgrey;
+	text-decoration: none;
+}
+
+.nav-menu-header li {
+	font-family: Arial, Helvetica, Sans-serif;
+	font: 8pt/16pt arial;
+	float: left;
+	margin: 0 0.15em;
+	color: dimgrey;	
+	text-decoration: none;
+	
+}
+/* Hide from IE5-Mac \*/
+.nav-menu-header li a {
+	float: none;
+	color: #000080;
+	
+}
+.nav-menu-header a:link { 
+	
+	text-decoration: none; 
+	
+}
+.nav-menu-header a:visited { 
+	
+	text-decoration: none; 
+	
+}
+.nav-menu-header a:hover, a:active { 
+	text-decoration: none; 
+	color: #008000;
+}
+
+#mainFeature {
+	padding: 0;
+	margin: 0;
+	width: 500px; 
+	height: 261px;
+	visibility: visible;
+	display: block;
+	}

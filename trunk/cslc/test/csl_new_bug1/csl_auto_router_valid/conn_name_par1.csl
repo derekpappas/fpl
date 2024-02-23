@@ -1,0 +1,15 @@
+
+csl_unit a {
+  csl_parameter par(3);
+  csl_port p(input,par);
+  a () {}
+};
+
+csl_unit b {
+  a a0;
+  csl_port x(input,2);
+  b () {
+    x.connect_by_name(a0.p[2:1]);
+  }
+};
+

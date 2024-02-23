@@ -1,0 +1,13 @@
+//Monica
+
+csl_unit top1{
+  top1(){
+set_unit_prefix("unit");
+}
+};
+csl_unit top2{
+  top1 top1;
+  top2(){
+    //set_unit_prefix(top1.get_unit_prefix());
+}
+};

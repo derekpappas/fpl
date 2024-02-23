@@ -1,0 +1,13 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="pc">
+<interface name="me_cntl_out" >
+<port name="v" offset="0" upper="1-1" lower="0" direction = "output" type = "wire" />
+<port name="pc" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="npc" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="ir" offset="0" upper="32-1" lower="0" direction = "output" type = "wire" />
+<port name="br_offset" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+</interface>
+</unit>
+</design>

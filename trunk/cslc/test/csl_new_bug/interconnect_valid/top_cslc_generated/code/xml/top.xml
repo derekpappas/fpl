@@ -1,0 +1,48 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="top">
+<signal name="s1" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="s2" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="s3" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="s4" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="s5" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="s6" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="s7" offset="0" upper="0" lower="0" type = "wire"/>
+<instantiation type = "u_u">
+<instance name="u_1">
+<f2a formal = "p_p1" actual = "s1" />
+</instance>
+</instantiation>
+<instantiation type = "u_u">
+<instance name="u_2">
+<f2a formal = "p_p1" actual = "s2" />
+</instance>
+</instantiation>
+<instantiation type = "u_u">
+<instance name="u_3">
+<f2a formal = "p_p1" actual = "s3" />
+</instance>
+</instantiation>
+<instantiation type = "u_u">
+<instance name="u_4">
+<f2a formal = "p_p1" actual = "s4" />
+</instance>
+</instantiation>
+<instantiation type = "u_u">
+<instance name="u_5">
+<f2a formal = "p_p1" actual = "s5" />
+</instance>
+</instantiation>
+<instantiation type = "u_u">
+<instance name="u_6">
+<f2a formal = "p_p1" actual = "s6" />
+</instance>
+</instantiation>
+<instantiation type = "u_u">
+<instance name="u_7">
+<f2a formal = "p_p1" actual = "s7" />
+</instance>
+</instantiation>
+</unit>
+</design>

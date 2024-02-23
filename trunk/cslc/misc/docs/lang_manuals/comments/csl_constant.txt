@@ -1,0 +1,7 @@
+AndreiB
+
+reffered documents:
+.fm file is /docs/manuals/production/csl_files/csl_constant.fm
+
+document notes:
+- 1.6 what does the term "result" refer to ? The wire in the example ?

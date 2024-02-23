@@ -1,0 +1,5 @@
+Links:
+
+Static random access memory (wikipedia): http://en.wikipedia.org/wiki/Static_Random_Access_Memory
+Dynamic random access memory (wikipedia): http://en.wikipedia.org/wiki/Dynamic_random_access_memory
+CTL - The New Language of DFT: http://www.evaluationengineering.com/archive/articles/1003dft.htm

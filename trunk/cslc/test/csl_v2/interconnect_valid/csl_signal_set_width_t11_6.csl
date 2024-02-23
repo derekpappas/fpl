@@ -1,0 +1,16 @@
+//author: Ines
+//testing: signal_object_name.set_width(numeric_expr);
+
+
+
+csl_unit u {
+
+  csl_signal sgn;
+  csl_bitrange br(4);
+
+  u() {
+    sgn.set_number_of_dimensions(2);
+    sgn.set_dim_bitrange(0,br);
+    sgn.set_dim_bitrange(1,br);
+  }
+};

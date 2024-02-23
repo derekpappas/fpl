@@ -1,0 +1,20 @@
+//oanab
+//26 oct 2007
+//the sintax for command is set_range(upper_limit,
+//lower_limit)
+
+csl_unit u1{
+    csl_port x(input);
+    csl_port clk(input);
+    u1(){ 
+      x.set_range(0,20); // the numbers should be reversed
+ }
+};
+
+csl_unit u2{
+  csl_signal clk,x(21);
+  u1 u1(.clk(clk),.x(x));
+   u2(){
+    clk.set_attr(clock);
+ }
+};

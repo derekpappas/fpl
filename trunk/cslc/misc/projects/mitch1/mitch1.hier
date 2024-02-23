@@ -1,0 +1,26 @@
+proc_ring{proc_ring}
+|pie_eth_dq1{pie_eth_dq1  }
+||fabric_interface{fabric_interface}
+||fabric_add{fabric_add}
+||fabric_drop{fabric_drop}
+||fabric_dma{fabric_dma0}
+||fabric_dma{fabric_dma1}
+||put_dma{put_dma0}
+||put_dma{put_dma1}
+||doorbell{doorbell}
+||maclu{maclu}
+||reg{reg}
+||qm{qm}
+||arb{arb}
+||data_tcm{data_tcm}
+||inst_tcm{inst_tcm}
+||nios{nios}
+||cil{cil}
+|pie_eth_nq01 {pie_eth_nq01 }
+|pie_eth_nq11 {pie_eth_nq11 }
+|pie_aud_nq1  {pie_aud_nq1  }
+|pie_aud_dq1  {pie_aud_dq1  }
+|ipc          {ipc          }
+|pie_ex_nq1   {pie_ex_nq1   }
+|pie_ex_dq1   {pie_ex_dq1   }
+|sram0        {sram0        }

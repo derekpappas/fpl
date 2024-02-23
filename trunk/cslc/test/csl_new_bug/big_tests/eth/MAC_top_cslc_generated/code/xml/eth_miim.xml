@@ -1,0 +1,25 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="eth_miim">
+<port name="Clk" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Reset" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Divider" offset="0" upper="8-1" lower="0" direction = "input" type = "wire" />
+<port name="CtrlData" offset="0" upper="16-1" lower="0" direction = "input" type = "wire" />
+<port name="Rgad" offset="0" upper="5-1" lower="0" direction = "input" type = "wire" />
+<port name="Fiad" offset="0" upper="5-1" lower="0" direction = "input" type = "wire" />
+<port name="NoPre" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="WCtrlData" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="RStat" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="ScanStat" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Mdio" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="Mdc" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Busy" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="LinkFail" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Nvalid" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="Prsd" offset="0" upper="16-1" lower="0" direction = "output" type = "wire" />
+<port name="WCtrlDataStart" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="RStatStart" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="UpdateMIIRX_DATAReg" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</unit>
+</design>

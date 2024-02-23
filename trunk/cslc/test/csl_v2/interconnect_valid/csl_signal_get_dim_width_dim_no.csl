@@ -1,0 +1,14 @@
+//author: Ines
+//test08: int signal_object_name.get_dim_width(dimension_number)
+
+csl_unit test {
+
+  csl_signal sgn53,sgn54,sgn55;
+
+  test(){
+    sgn53.set_number_of_dimensions(2);
+    //    sgn53.set_dim_width(1,5);
+    sgn54.set_number_of_dimensions(2);
+    //    sgn54.set_dim_width(1,sgn53.get_dim_width(1));
+  }
+};

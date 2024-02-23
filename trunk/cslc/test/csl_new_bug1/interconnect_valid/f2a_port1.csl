@@ -1,0 +1,15 @@
+//oanab
+//08 july 2008
+
+csl_bitrange br(4);
+
+csl_unit a {
+  csl_port x(input,4);
+  a () {}
+};
+
+csl_unit b {
+  csl_port y(input,br);
+  a a0(.x(y));
+  b () {}
+};

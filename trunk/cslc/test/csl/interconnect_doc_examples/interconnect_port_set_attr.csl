@@ -1,0 +1,18 @@
+//danielt
+//november 07,2007
+
+csl_unit ff{
+  csl_port q(output), data(input);
+  ff(){
+ }
+};
+
+csl_unit top{
+  csl_signal d_data1,d_data2,data_in,data_out;
+  ff ff_1(.data(data_in),.q(d_data1));
+  ff ff_2(.data(d_data1),.q(d_data2));
+  ff ff_3(.data(d_data2),.q(data_out));
+  top(){
+  
+ }
+};

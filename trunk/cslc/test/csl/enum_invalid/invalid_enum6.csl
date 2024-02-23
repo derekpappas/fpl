@@ -1,0 +1,14 @@
+//Petronela
+
+csl_enum e3{
+  RD=0,
+  WR,
+  NOP=1,
+  EN,
+  e3//has the same name as the identifier
+};
+
+
+
+
+

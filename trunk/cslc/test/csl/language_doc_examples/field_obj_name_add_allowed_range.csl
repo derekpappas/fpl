@@ -1,0 +1,11 @@
+//AnamariaH
+//07.03.08
+
+csl_field fd1(4);
+    fd1.add_allowed_range(0,8);
+
+
+ 
+
+
+

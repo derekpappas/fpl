@@ -1,0 +1,18 @@
+//danielt
+//november 07,2007
+
+csl_unit mux{
+csl_port in1(input), in2(input), out(output);
+csl_port sel(input);
+mux(){
+  set_type(combinational);
+}
+};
+
+csl_unit top{
+csl_port clk(input);
+mux mux1;
+top(){
+clk.set_attr(clock);
+}
+};

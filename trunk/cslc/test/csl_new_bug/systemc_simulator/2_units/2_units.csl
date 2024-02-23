@@ -1,0 +1,42 @@
+
+csl_unit a {
+  csl_port in(input,3);
+  csl_port out(output,3);
+  csl_port clk(input);
+  a () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_unit b{
+  csl_port in(input,3);
+  csl_port out(output,3);
+  csl_port clk(input);
+  a a0(.in(in),.out(out),.clk(clk));
+  b () {
+    clk.set_attr(clock);
+  }
+};
+
+csl_vector stim {
+  stim () {
+    set_unit_name(b);
+    set_direction(input);
+  }
+};
+
+csl_vector exp {
+  exp () {
+    set_unit_name(b);
+    set_direction(output);
+  }
+};
+
+csl_testbench tb {
+  b b0(.clk(clk));
+  csl_signal clk(reg);
+  tb () {
+    clk.set_attr(clock);
+    add_logic(clock,clk,20,ns);
+  }
+};

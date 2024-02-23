@@ -1,0 +1,25 @@
+//oanab
+//20 oct 2007
+csl_unit send{
+   csl_port a(output),b(input);
+   csl_port clk(input);
+   send(){ }
+};
+csl_unit receive{
+     csl_port a(send.a),b(send.b);
+     csl_port clk(input);
+     receive(){
+        a.reverse();
+        b.reverse();
+  }
+};
+csl_unit transm{
+     csl_signal data1(4),data2(4);
+     csl_signal clk;
+     send send(.a(data1),.b(data2),.clk(clk));
+     receive receive(.a(data1),.b(data2),.clk(clk));
+     transm(){
+       clk.set_attr(clock);
+  }
+};
+   

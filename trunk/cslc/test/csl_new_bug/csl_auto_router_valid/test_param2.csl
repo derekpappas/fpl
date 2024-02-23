@@ -1,0 +1,23 @@
+csl_unit unit_a1 {
+  csl_parameter p2(13);
+  csl_port p_data(output,p2);
+  unit_a1(){}
+};
+
+csl_unit unit_b1 {
+  csl_parameter p2(4'd5);
+  csl_port p_data(output,p2);
+ unit_a1  a1_31;
+  unit_b1(){
+ a1_31.override_parameter(p2,31);
+  }
+};
+ 
+ csl_unit unit_top{
+ csl_port p1(output,31);
+ unit_b1  b10_31(.p_data(p1));
+ unit_top(){
+ b10_31.override_parameter(p2,31);
+ b10_31.p_data.connect_by_name(b10_31.a1_31.p_data);
+}
+};

@@ -1,0 +1,32 @@
+//oanab
+//27 oct 2007
+//the address specified by add_reserved_address_range is not contained in the 
+//one specified by add_address_range
+
+csl_register_file rf{
+  rf(){
+    set_width(8);
+    set_depth(16);
+  }
+};
+
+csl_unit u{
+  rf rf;
+  u(){}
+};
+
+csl_memory_map_page mpg1{
+  mpg1(){
+    add_address_range(2,128);
+    add_reserved_address_range(6,130); // this address should be inside the
+// address specified by add_address_range
+    set_unit(u);
+    add(rf);
+  }
+};
+
+csl_memory_map mmp{
+  mmp(){
+    set_type(hierarchical);
+  }
+};

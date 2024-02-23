@@ -1,0 +1,114 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="me">
+<signalgroup name="im_rf">
+<signal name="wr_addr" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="wr_en" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="wr_data" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="rd_addr_a" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="rd_en_a" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="rd_addr_b" offset="0" upper="4-1" lower="0" type = "wire"/>
+<signal name="rd_en_b" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="pc_im_me_cntl">
+<signal name="v" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="pc" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="npc" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="ir" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="br_offset" offset="0" upper="8-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="im_rf_me_cntl">
+<signal name="v" offset="0" upper="1-1" lower="0" type = "wire"/>
+<signal name="pc" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="npc" offset="0" upper="8-1" lower="0" type = "wire"/>
+<signal name="ir" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="br_offset" offset="0" upper="8-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="rf_eu_rfi">
+<signal name="rd_data_a" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="rd_data_b" offset="0" upper="32-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="eu_wb_rfi">
+<signal name="rd_data_a" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="rd_data_b" offset="0" upper="32-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="eu_rf_rfi">
+<signal name="rd_data_a" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="rd_data_b" offset="0" upper="32-1" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="me_br">
+<signal name="qual_br" offset="0" upper="1-1" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "rf">
+<instance name="rf">
+<f2a formal = "br_in.qual_br" actual = "me_br.qual_br" />
+<f2a formal = "eu_rf_in.rd_data_a" actual = "eu_rf_rfi.rd_data_a" />
+<f2a formal = "eu_rf_in.rd_data_b" actual = "eu_rf_rfi.rd_data_b" />
+<f2a formal = "im_rf_in_rfi.rd_addr_a" actual = "im_rf.rd_addr_a" />
+<f2a formal = "im_rf_in_rfi.rd_addr_b" actual = "im_rf.rd_addr_b" />
+<f2a formal = "im_rf_in_rfi.rd_en_a" actual = "im_rf.rd_en_a" />
+<f2a formal = "im_rf_in_rfi.rd_en_b" actual = "im_rf.rd_en_b" />
+<f2a formal = "im_rf_in_rfi.wr_addr" actual = "im_rf.wr_addr" />
+<f2a formal = "im_rf_in_rfi.wr_data" actual = "im_rf.wr_data" />
+<f2a formal = "im_rf_in_rfi.wr_en" actual = "im_rf.wr_en" />
+<f2a formal = "rf_eu_rfi.rd_data_a" actual = "rf_eu_rfi.rd_data_a" />
+<f2a formal = "rf_eu_rfi.rd_data_b" actual = "rf_eu_rfi.rd_data_b" />
+</instance>
+</instantiation>
+<instantiation type = "im">
+<instance name="im">
+<f2a formal = "br_in.qual_br" actual = "me_br.qual_br" />
+<f2a formal = "im_rf_out_rfi.rd_addr_a" actual = "im_rf.rd_addr_a" />
+<f2a formal = "im_rf_out_rfi.rd_addr_b" actual = "im_rf.rd_addr_b" />
+<f2a formal = "im_rf_out_rfi.rd_en_a" actual = "im_rf.rd_en_a" />
+<f2a formal = "im_rf_out_rfi.rd_en_b" actual = "im_rf.rd_en_b" />
+<f2a formal = "im_rf_out_rfi.wr_addr" actual = "im_rf.wr_addr" />
+<f2a formal = "im_rf_out_rfi.wr_data" actual = "im_rf.wr_data" />
+<f2a formal = "im_rf_out_rfi.wr_en" actual = "im_rf.wr_en" />
+<f2a formal = "me_cntl_in.br_offset" actual = "pc_im_me_cntl.br_offset" />
+<f2a formal = "me_cntl_in.ir" actual = "pc_im_me_cntl.ir" />
+<f2a formal = "me_cntl_in.npc" actual = "pc_im_me_cntl.npc" />
+<f2a formal = "me_cntl_in.pc" actual = "pc_im_me_cntl.pc" />
+<f2a formal = "me_cntl_in.v" actual = "pc_im_me_cntl.v" />
+<f2a formal = "me_cntl_out.br_offset" actual = "im_rf_me_cntl.br_offset" />
+<f2a formal = "me_cntl_out.ir" actual = "im_rf_me_cntl.ir" />
+<f2a formal = "me_cntl_out.npc" actual = "im_rf_me_cntl.npc" />
+<f2a formal = "me_cntl_out.pc" actual = "im_rf_me_cntl.pc" />
+<f2a formal = "me_cntl_out.v" actual = "im_rf_me_cntl.v" />
+</instance>
+</instantiation>
+<instantiation type = "eu">
+<instance name="eu">
+<f2a formal = "br_in.qual_br" actual = "me_br.qual_br" />
+<f2a formal = "eu_im_out.rd_data_a" actual = "eu_wb_rfi.rd_data_a" />
+<f2a formal = "eu_im_out.rd_data_b" actual = "eu_wb_rfi.rd_data_b" />
+<f2a formal = "eu_rf_out.rd_data_a" actual = "eu_rf_rfi.rd_data_a" />
+<f2a formal = "eu_rf_out.rd_data_b" actual = "eu_rf_rfi.rd_data_b" />
+<f2a formal = "rf_eu_rfi.rd_data_a" actual = "rf_eu_rfi.rd_data_a" />
+<f2a formal = "rf_eu_rfi.rd_data_b" actual = "rf_eu_rfi.rd_data_b" />
+</instance>
+</instantiation>
+<instantiation type = "pc">
+<instance name="pc">
+<f2a formal = "me_cntl_out.br_offset" actual = "pc_im_me_cntl.br_offset" />
+<f2a formal = "me_cntl_out.ir" actual = "pc_im_me_cntl.ir" />
+<f2a formal = "me_cntl_out.npc" actual = "pc_im_me_cntl.npc" />
+<f2a formal = "me_cntl_out.pc" actual = "pc_im_me_cntl.pc" />
+<f2a formal = "me_cntl_out.v" actual = "pc_im_me_cntl.v" />
+</instance>
+</instantiation>
+<instantiation type = "wb">
+<instance name="wb">
+<f2a formal = "br_out.qual_br" actual = "me_br.qual_br" />
+<f2a formal = "eu_wb_in.rd_data_a" actual = "eu_wb_rfi.rd_data_a" />
+<f2a formal = "eu_wb_in.rd_data_b" actual = "eu_wb_rfi.rd_data_b" />
+<f2a formal = "me_cntl_in.br_offset" actual = "im_rf_me_cntl.br_offset" />
+<f2a formal = "me_cntl_in.ir" actual = "im_rf_me_cntl.ir" />
+<f2a formal = "me_cntl_in.npc" actual = "im_rf_me_cntl.npc" />
+<f2a formal = "me_cntl_in.pc" actual = "im_rf_me_cntl.pc" />
+<f2a formal = "me_cntl_in.v" actual = "im_rf_me_cntl.v" />
+</instance>
+</instantiation>
+</unit>
+</design>

@@ -1,0 +1,5 @@
+csl_bitrange fblm1(6, 7);
+csl_interface ihxl1{
+  csl_port embd1(output, fblm1);
+  ihxl1(){}
+};

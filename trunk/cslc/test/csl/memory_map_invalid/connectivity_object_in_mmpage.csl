@@ -1,0 +1,29 @@
+// connectivity object are not supposed to be added to memory map page
+csl_register_file rf1{
+        rf1(){
+            set_width(64); set_depth(4);
+        }
+};
+
+csl_unit a{
+	csl_port p1(input, wire, 4);
+  a(){
+    
+  }
+};
+
+csl_memory_map_page page0{
+	a a2;
+	page0(){
+		add_address_range(0, 3);
+		set_data_word_width(128);
+		set_endianess(big_endian);
+	}
+};
+
+csl_memory_map mm{
+	page0 page_0(a);
+	mm(){
+      set_data_word_width(128);
+      }
+};

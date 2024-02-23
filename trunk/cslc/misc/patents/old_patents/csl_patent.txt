@@ -1,0 +1,191 @@
+Chip Sepcification Language (CSL) and compiler (cslc)
+
+CSL Interconnect Specification
+The CSL is used to capture a chip design's architectural, design implementation,
+and verification infrastructure details that can be described in a high level
+language. A chip is a set of functional units. The units have an
+interface (ports) which are connected to other ports or to the pads of
+the chip (the system interface). The functional unit hierarchy and
+interconnections are described using CSL. 
+
+CSL Memory Map Specification
+The functional units communicate with one another and with the system
+and software running on other chips via the interfaces. The functional 
+units have address maps which are written to or read from by other 
+funcitional units or by software. The functional and alternate models 
+are typically written in different languages. The different languages 
+require that the shared address map constants and functions be 
+automatically generated from a specification language. 
+
+CSL Enumeration Specification
+Enums which are identical to C++ enums may be specified.
+Enums may be attached to signals, fields, and registers.
+
+CSL Field Specification
+Fields are bit ranges that are named objects. Fields have an upper and
+a lower bit range index. The field has a name. Fields may be joined
+with other fields using a linked list like set_next or set_previous
+operation. Trees of fields may be constructed to build a hierarchial
+set of fields. Hierarchial fields are used in the design of
+instruction sets. Enums can be associated with feilds. 
+
+CSL ISA Specification
+Functional units and alternate models may execute programs which are 
+built from an instruction set architecture specification written in
+CSL. The ISA is described using CSL. Both the functional units and the 
+external model which implment the ISA and execute programs written in 
+the ISA assembly language need to use the same set of instruction
+format and instruction field deifnitions and enumerated type values. 
+The functional and alternate models are typically written in different 
+languages. The different languages require that the shared constants
+which describe the width and position of each field in each
+instruction format and instruction and associated functions to insert
+and extract values to and from the instruction words int he programs
+being generated/compiled or read from memory and decoded be
+automatically generated from a specification language.The automatic
+generation of an ISA in the functional unit RTL and alternate model 
+languages elimates inconsistencies between the functioan unit and
+alternate models. Instruction formats and instructions are built using
+hierarchies of fields. Enums are created to specfiy the opcodes and
+other sets of select values for an instruction set. The enums area
+associated with a field in an instruction format or instruction.
+Instruction formats may be inherited by other instruction formats or 
+instructions. 
+
+CSL Register Specifications
+CSL can be used to specify registers. The registers can be added to
+the CSL memory map specification. The registers can be addressed for
+read or write operations. The cslc generates hardware which selects
+the registers for read and/or write operations. ISA's can be
+associated with registers. Fields in registers can be defined
+
+CSL Decoder Specifications
+CSL can be used to specfiy that decoders be generated from signals,
+registers, fields, and ISA's. The fields can reside in signal or 
+registers. Decoders can be generated from registers with ISA's
+associated with them. The decoders can have enable signals which
+qualify the decoders outputs. Decoders can be generated to decode the
+memory addresses using the CSL memory map specification.
+
+CSL Pipeline Specifications
+The functional units contain logic which implements an algorithm or 
+instruction set architecture or other digital pipeline. Digital
+pipelines can be specified and generated using CSL. Pipelines contain
+pipestages. The pipestages in a pipeline share signals such as clock,
+reset, and stalls. Moreover, there are signals common to the
+connection between each pipestage such as data, valid, and control.
+In fact data, valid, and control can be modeled as three separate
+pipelines whose latencies, clock, reset, and stalls are connected
+identically in each pipeline. Branches and merges of the three
+different types of parallel pipelines requiers careful design and any
+changes to one pipeline must be mirrored in the two other
+pipelines. Register leaks (data loss due to a pipeline continuing to
+execute when a downstream pipestage is stalled) or register data
+duplication (due to failing to qualify a valid bit with a down
+stream stall signal) are all problems faced by designers of didgital
+pipelines. Pipeline design and subsequent changes can be simlpified 
+by specifiying the digital pipeline in a CSL specfication. The
+specfication can be checked for the above mentioned problems and the
+designer can make the ncessary changes. CSL pipelines can be combined
+with inteconnect aggreagte structures (signal group) to create
+maintainable pipelines where the defintion of the signals in the
+pipeline is done once in a signal group and the signals are then added
+to the pipeline from a starting piepestage to an ending pipestage. 
+
+CSL Verification Specifications
+Functional units may be verified by modeling the external drivers and receivers
+of the functional units interface (input and output ports) using
+alternate models built in different lanuguages. The stimulas and
+expect vectors and state data generated by the alternate models are 
+used to verify the functional units. The software which performs the
+following tasks is generated by the cslc from a CSL speification 
+o vectors and state data are captured in the alternate model and sent
+  to a file or connected to the functional unit testbench via
+  inter-process communications.
+o the file format is understood by the compiler via the vector and
+  state data specfication and a file reader is created in the
+  testbench and the file is read into a memory in the testbench which
+  is the correct size to hold the vector
+o a set of signals to control reading the vector/state data memory are
+  created
+o a set of signals to connect the stimulas memory to the functional unit under
+  test are inserted into the testbench.
+o a set of signals to connect the expect memory to the output
+  comparators are inserted into the testbench.
+The automatic connection of the vectors/state data generated by the
+alternate model to the functional unit in the testbench is fully
+automated. The CSL interconnect, vector, state data, and testbench
+specification are all defined in one language. The inconsistencies
+introduced by specifying these different components in different
+lanugages and using different tools to generate the RTL and alternate
+model code is avoided. Moreover, the cslc can check the CSL
+interconnect, vector, state data, and testbench specification in one
+tool and find inconstencies between the vearious specifications. 
+Moreover, since the CSL interconnect, vector, state data, and testbench
+specifications have been read into one object model in a single
+software program the CSL syntax supports reading objects such as the
+entire set of output signals from a functional unit using one
+statement. Using a signal signal which refers to a group of objects
+facilitates changes in the sub objects (name and width changes,
+additions and deletions) without having to change the upper level
+interface name which is used to specifiy that the output signals
+constitute a vector.
+
+
+CSL FIFO Specification
+
+
+CSL Register File Specification
+
+
+clsc generators
+-auto router
+-auto mapper
+
+cslc checkers
+-interconnect
+-pipeline
+-memory map
+
+CSL types have relationships that create a system for specifying chip
+designs that has not been previously available in one language and
+compiler. 
+
+signal<->field
+
+field<->enum
+field<->decoder generation
+
+interconnect_connectivity_objects<->vector specification
+
+fifo<->state data
+memory<->state data
+register_file<->state data
+
+vector<->testbnech
+state data<->testbnech
+
+memory map<->interconnect
+memory map<->registers
+
+registers<->field
+registers<->ISA
+registers<->interconnect
+
+ISA<->decoder generation
+
+pipeline<->interconnect
+pipeline<->register file
+pipeline<->fifo
+
+CSL features
+high level language for specfiying the relationships between different
+design components
+
+
+
+
+
+
+
+

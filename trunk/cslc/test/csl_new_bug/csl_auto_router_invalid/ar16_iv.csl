@@ -1,0 +1,257 @@
+csl_interface ifc0 {
+csl_port clk (input, 1 );
+csl_port reset (input, 1 );
+ifc0 (){ 
+ } 
+ }; 
+csl_interface ifc1 {
+  csl_port clk1 (input, 2 );
+  csl_port reset1 (input, 2 );
+ifc1 (){ 
+ } 
+ }; 
+csl_interface ifc2 {
+  csl_port clk2 (input, 3 );
+  csl_port reset2 (input, 3 );
+ifc2 (){ 
+ } 
+ }; 
+csl_interface ifc3 {
+csl_port clk3 (input, 4 );
+csl_port reset3 (input, 4 );
+ifc3 (){ 
+ } 
+ }; 
+csl_interface ifc4 {
+csl_port clk4 (input, 5 );
+csl_port reset4 (input, 5 );
+ifc4 (){ 
+ } 
+ }; 
+csl_unit u0 { 
+u0 (){
+} 
+ }; 
+csl_unit u1 { 
+u1 (){
+} 
+ }; 
+csl_unit u2 { 
+u2 (){
+} 
+ }; 
+csl_unit u3 { 
+u3 (){
+} 
+ }; 
+csl_unit u4 { 
+u4 (){
+} 
+ }; 
+csl_unit u5 { 
+u5 (){
+} 
+ }; 
+csl_unit uk232 { 
+csl_port pin2(input,8);
+csl_port pout1(output,4);
+csl_port pout0(output,9);
+ifc4 ifci0;
+csl_signal s2(1);
+csl_signal s0(5);
+u3 ui0;
+u3 ui1;
+u5 ui2;
+uk232 (){
+} 
+ }; 
+csl_unit uk419 { 
+csl_port pin3(input,3);
+csl_port pin1(input,12);
+csl_port pin0(input,3);
+csl_port pout2(output,2);
+csl_port pout1(output,4);
+csl_port pout0(output,9);
+ifc1 ifci0;
+ifc3 ifci1;
+ifc0 ifci2;
+ifc4 ifci3;
+csl_signal s2(1);
+csl_signal s3(14);
+csl_signal s1(1);
+csl_signal s0(5);
+u4 ui0;
+u1 ui1;
+u5 ui2;
+uk419 (){
+} 
+ }; 
+csl_unit uk300 { 
+csl_port pin0(input,3);
+csl_port pin3(input,3);
+csl_port pout1(output,4);
+csl_port pout2(output,2);
+csl_port pout0(output,9);
+ifc3 ifci0;
+csl_signal s3(14);
+csl_signal s0(5);
+csl_signal s2(1);
+csl_signal s1(1);
+u1 ui0;
+u1 ui1;
+u4 ui2;
+u0 ui3;
+uk300 (){
+} 
+ }; 
+csl_unit uk381 { 
+csl_port pin3(input,3);
+csl_port pin1(input,12);
+csl_port pin2(input,8);
+csl_port pout1(output,4);
+ifc3 ifci0;
+ifc3 ifci1;
+ifc0 ifci2;
+ifc4 ifci3;
+csl_signal s1(1);
+csl_signal s3(14);
+csl_signal s0(5);
+csl_signal s2(1);
+u4 ui0;
+u3 ui1;
+u3 ui2;
+u3 ui3;
+u3 ui4;
+u3 ui5;
+uk381 (){
+} 
+ }; 
+csl_unit uk842 { 
+csl_port pin0(input,3);
+csl_port pin1(input,12);
+csl_port pout0(output,9);
+ifc0 ifci0;
+ifc4 ifci1;
+ifc2 ifci2;
+csl_signal s1(1);
+u3 ui0;
+u4 ui1;
+u5 ui2;
+uk842 (){
+} 
+ }; 
+csl_unit uk757 { 
+csl_port pin2(input,8);
+csl_port pin1(input,12);
+csl_port pin0(input,3);
+csl_port pin3(input,3);
+csl_port pout0(output,9);
+csl_port pout1(output,4);
+csl_port pout2(output,2);
+ifc4 ifci0;
+csl_signal s2(1);
+csl_signal s0(5);
+csl_signal s1(1);
+csl_signal s3(14);
+u4 ui0;
+u3 ui1;
+u0 ui2;
+u1 ui3;
+u3 ui4;
+uk757 (){
+} 
+ }; 
+csl_unit uk168 { 
+csl_port pin0(input,3);
+csl_port pin2(input,8);
+csl_port pout1(output,4);
+ifc1 ifci0;
+ifc1 ifci1;
+ifc0 ifci2;
+csl_signal s0(5);
+csl_signal s2(1);
+csl_signal s3(14);
+csl_signal s1(1);
+u1 ui0;
+u0 ui1;
+u4 ui2;
+u2 ui3;
+u4 ui4;
+u4 ui5;
+uk168 (){
+} 
+ }; 
+csl_unit uk982 { 
+csl_port pin1(input,12);
+csl_port pin3(input,3);
+csl_port pin0(input,3);
+csl_port pout2(output,2);
+csl_port pout0(output,9);
+csl_port pout1(output,4);
+ifc1 ifci0;
+csl_signal s1(1);
+csl_signal s3(14);
+csl_signal s2(1);
+u2 ui0;
+u5 ui1;
+u0 ui2;
+u2 ui3;
+u1 ui4;
+uk982 (){
+} 
+ }; 
+csl_unit uk688 { 
+csl_port pin3(input,3);
+csl_port pout0(output,9);
+csl_port pout2(output,2);
+ifc0 ifci0;
+ifc2 ifci1;
+csl_signal s1(1);
+csl_signal s2(1);
+u0 ui0;
+u4 ui1;
+u1 ui2;
+u1 ui3;
+uk688 (){
+} 
+ }; 
+csl_unit uk882 { 
+csl_port pin1(input,12);
+csl_port pin2(input,8);
+csl_port pin3(input,3);
+csl_port pin0(input,3);
+csl_port pout2(output,2);
+csl_port pout1(output,4);
+ifc3 ifci0;
+ifc2 ifci1;
+ifc1 ifci2;
+ifc0 ifci3;
+csl_signal s1(1);
+u4 ui0;
+uk882 (){
+} 
+ }; 
+csl_unit top { 
+csl_port pin0(input,3);
+csl_port pin1(input,12);
+csl_port pin2(input,8);
+csl_port pin3(input,3);
+
+ ifc0 ifctop;
+// csl_port clock(input);
+// csl_port reset(input);
+uk232 ui0;
+uk419 ui1;
+uk300 ui2;
+uk381 ui3;
+uk842 ui4;
+uk757 ui5;
+uk168 ui6;
+uk982 ui7;
+uk688 ui8;
+uk882 ui9;
+top (){
+  ifctop.connect(ifci0);
+  pin1.connect(pin1);
+} 
+ }; 

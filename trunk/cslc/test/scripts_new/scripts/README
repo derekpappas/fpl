@@ -1,0 +1,137 @@
+// Created on 6 June 2008 by Monica
+// This file contains the details about each generator from the
+// directory: svn/test/scripts/ 
+// each generator displays the path where test files are written
+
+CSL_Auto_Router :: connect() 
+      I. Valid tests: 
+         - ar_sg_ifc_ifc1.pl => generates valid tests for autorouter using connect method between: 
+                                  sg.signal,sg.signal[ps],sg.sg1.signal,sg.sg1.signal[ps], with ifc.ifc1.port;
+         - ar_sg_ifc_ifc1_ps.pl => generates valid tests for autorouter using connect method between: 
+                                  sg.signal,sg.signal[ps],sg.sg1.signal,sg.sg1.signal[ps], with ifc.ifc1.port[ps];
+         - ar_sg_ifc.pl => generates valid tests for autorouter using connect method between: 
+                          sg.signal  with ifc.port, and ifc.port with sg.signal;
+         - ar_sg_ifc_ps.pl => generates valid tests for autorouter using connect method between: 
+                             sg.signal,sg.signal[ps],sg.sg1.signal,sg.sg1.signal[ps], with ifc.port[ps];     
+         - ar_sg_op_expr.pl => generates valid tests for autorouter using connect method between: 
+                              sg.signal,sg.signal[ps],sg.sg1.signal,sg.sg1.signal[ps], with operation_expression;
+         - ar_sg_sig_concat_valid.pl => generates valid tests for autorouter using connect method between: 
+                                      sg.signal,sg.signal[ps],sg.sg1.signal,sg.sg1.signal[ps], with concat_expression;
+         - ar_sg_sig_replic_valid.pl => generates valid tests for autorouter using connect method between: 
+                                      sg.signal,sg.signal[ps],sg.sg1.signal,sg.sg1.signal[ps], with replicate_expression; 
+         -ifc_ifc_p_connect_ifc_p.pl => generates valid tests for autorouter using connect method between interfaces;
+      
+
+      II.Invalid tests:
+         - ar_concat_expr_ifc_invalid.pl => generates invalid tests for autorouter using connect method between 
+                                            a concat_expr and: ifc.port, ifc.port[ps], ifc.ifc1.port,ifc.ifc1.port[ps],
+                                                               operation_expression,concat_expression,replicate_expression;
+         - ar_op_expr_ifc_invalid.pl => generates invalid tests for autorouter using connect method between 
+                                        a operation_expr and: ifc.port, ifc.port[ps], ifc.ifc1.port,ifc.ifc1.port[ps],
+                                                              operation_expression,concat_expression,replicate_expression;
+         - ar_port_fifo_invalid.pl => generates invalid tests for autorouter using connect method between 
+                                      a fifo and: port, signal,unit,register_file; 
+         - ar_port_rf_invalid.pl => generates invalid tests for autorouter using connect method between 
+                                      a RF and: port,signal,unit,register_file;    
+         - ar_port_unit_invalid.pl => generates invalid tests for autorouter using connect method between 
+                                      a unit and: port, signal,fifo,register_file;         
+         - ar_sg_sg_invalid.pl => generates invalid tests for autorouter using connect method between                               
+                                  sg.signal,sg.signal[ps],sg.sg1.signal,sg.sg1.signal[ps] with sg.sg1.signal;
+         - ar_unit_port_invalid.pl =>generates invalid tests for autorouter using connect method between 
+                                      a unit with port,and RF with port ;  
+         - ar_unit_port_ps_invalid.pl =>generates invalid tests for autorouter using connect method between 
+                                      a unit with port[ps],and RF with port[ps];  
+         - ar_unit_sig_invalid.pl =>generates invalid tests for autorouter using connect method between 
+                                      a unit with signal,and RF with signal ;  
+CSL_Language :: Concat & Replicate
+      I. Valid tests: 
+          - assign_concat.pl =>generates valid tests with concatenation expression on RHS of assign operation.
+                                 Assign a concat_expr to a port/signal.Concat_expr contains signals,ports,ports/signals with HIDs 
+          - concat_assign_ps.pl =>generates valid tests with concatenation expression on RHS of assign operation.
+                                   Assign a concat_expr to a port.Concat_expr contains signals,ports with part_select.
+          - concat_expr_valid.pl =>generates valid tests with concat_expr used in RHS and LHS assign operation, used in
+                                   f2a,and all legal cases for concat_expr; 
+          - ar_replic_in_assign.pl =>generates valid tests with replicate_expr used in RHS assign operation, used in
+                                    f2a,and all legal cases for replicate_expr; 
+     II.Invalid tests:
+          - concat_expr_invalid.pl =>generates invalid tests with concatenation expression used in assign and f2a operation.
+                                     The generated tests show the following invalid cases: 
+                                     concat_expr on LHS contains the numeric expressions, assign a concat_expr with different
+                                     width,operation expression on LHS of assign in concat_expr,use ifc and sg inside of
+                                     concat_expr,illegal formal or actual parameter in f2a. 
+
+          - replic_in_assign_invalid.pl =>generates invalid tests with replication expression used in assign  operation.
+                                          The generated tests show the following invalid cases: 
+                                          replic_expr on LHS, assign a replic_expr with different width,
+                                          assign to an operation expression an replic_expr,use ifc and sg inside of
+                                          replic_expr or assign to an ifc and a sg a replicate expression. 
+
+
+CSL_Language :: Csl_Parameter  
+      I. Valid tests: 
+          - unit_parameter.pl =>generates valid tests for units 
+          - reg_parameter.pl=> generates valid tests for register
+          - reg_file_fifo_parameter.pl=>generates valid tests for
+      register_file and fifo
+          - mem_parameter.pl => generates valid tests for memory
+          -ifc_sgr_parameter.pl => generates valid tests for
+      interfaces and signal_groups
+     II.Invalid tests:   
+CSL_Language :: Prefix && Suffix
+      I. Valid tests: 
+     II.Invalid tests:
+CSL_Language :: Csl_field
+      I. Valid tests: 
+     II.Invalid tests:
+CSL_Language :: Enum
+      I. Valid tests:
+           - enum_ei_eq_ei.pl => generates valid tests for enum with verilog numbers
+           - enum_verilog_valid_gen.pl => generates valid tests for enum
+     II.Invalid tests:
+           - enum_no_char_float_invalid.pl =>generates invalid tests for enum with verilog number
+           - enum_verilog_invalid_gen.pl => generates invalid tests  for enum
+
+CSL_Interconnect :: Do_not_gen_rtl()
+      I. Valid tests: 
+     II.Invalid tests:
+CSL_Interconnect :: Do_not_gen_cpp()
+      I. Valid tests: 
+     II.Invalid tests:
+CSL_Interconnect :: Gen_unique_rtl()
+      I. Valid tests: 
+     II.Invalid tests:
+CSL_Interconnect :: Register_ios()
+      I. Valid tests: 
+     II.Invalid tests:
+CSL_Interconnect :: Set_clock()
+      I. Valid tests: 
+     II.Invalid tests:
+CSL_Interconnect :: Assign operation
+      I. Valid tests: 
+         - assign_ifc_ifc.pl => generates valid tests with assign operation between two interfaces,
+                                between an interface and an interface with HIDs; 
+         - assign.pl => generates valid tests with assign operation
+                        between ports, using the operations with ports on RHS; 
+         - assign_port_ifc.pl => generates valid tests with assign operation
+                                between a port and an interface (with HIDs);
+         - assign_port_sg.pl => generates valid tests with assign operation
+                                between a port and a signal_group (with HIDs);
+         - assign_port_signal.pl => generates valid tests with assign operation
+                                   between a port and a signal (with HIDs);
+         - assign_replication.pl =>generats valid tests with assign operation between a port/signal
+                                   and a replication_expression which contains a port or a signal;
+         - assign_sg_sg.pl => generates valid tests with assign operation
+                              between a signal_group and a signal_group (with HIDs); 
+         - assign_signal_signal.pl => generates valid tests with assign operation
+                                      between a signal and a signal (with HIDs); 
+ 
+      II.Invalid tests:
+
+CSL_Interconnect :: Formal to actual
+      I. Valid tests: 
+          - f2a_port_port.pl => generates valid tests with f2a connection 
+                                between two ports and HIDs ports.
+      II.Invalid tests:
+          -f2a_sg_sg_invalid.pl => generates invalid tests with f2a connection 
+                                   using a signal_group/signal as formal.
+   

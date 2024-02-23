@@ -1,0 +1,15 @@
+//bug 792
+csl_enum e {
+  RD,
+  WR,
+  EN
+};
+csl_field f{  
+  f(){
+  set_type
+  set_enum(e);
+  set_range(9,3);
+//  set_lower(5);//error because we have set_range(lower limit)
+//  and set_lower_index 
+  }
+};

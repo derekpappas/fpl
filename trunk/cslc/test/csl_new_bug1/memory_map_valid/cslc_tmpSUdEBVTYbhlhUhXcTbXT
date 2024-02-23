@@ -1,0 +1,56 @@
+# "/opt/he_fpl_svn/fpl_repo/cslc/test/csl_new_bug1/memory_map_valid/./test_mem_map.csl" 1
+
+
+csl_register pc {
+  pc() {
+    set_width(32);
+    set_type(register);
+  }
+};
+
+csl_register stat {
+  stat() {
+    set_width(16);
+    set_type(register);
+  }
+};
+
+csl_register error {
+  error() {
+    set_width(32);
+    set_type(register);
+  }
+};
+
+csl_register interrupt {
+  interrupt() {
+    set_width(32);
+    set_type(register);
+  }
+};
+
+csl_unit proc {
+  pc pc0;
+  stat status0;
+  error error0;
+  interrupt interrupt0;
+  proc() {
+  }
+};
+
+csl_memory_map_page proc_map {
+  proc_map() {
+    add_address_range(0,256);
+    set_unit_name(proc);
+    add(proc.pc0, "PC",0);
+    add(proc.status0, "STATUS",40);
+    add(proc.error0, "ERROR",80);
+    add(proc.interrupt0, "INTERRUPT",120);
+  };
+};
+
+csl_memory_map map {
+  map() {
+    set_type(hierarchical);
+  }
+};

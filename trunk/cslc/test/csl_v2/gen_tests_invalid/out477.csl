@@ -1,0 +1,148 @@
+csl_enum pa {
+	dk = 35,
+	os = 52,
+	ua = 41,
+	xe = 80,
+	bm = 22,
+	mm = 92,
+	uo = 64
+};
+csl_enum cs {
+	hk = 22,
+	wf = 41
+};
+csl_enum rb {
+	vp,
+	ok,
+	fv,
+	mu,
+	yp,
+	gp,
+	kd,
+	pl,
+	jr,
+	xv,
+	gu,
+	mk,
+	nt,
+	vn,
+	bp
+};
+csl_isa_instruction_format cb{
+    cb( ){
+     set_width( 1);
+  }
+}
+;
+csl_isa_instruction df : cb{
+    df( ){
+    set_asm_mnemonic( csl_list "ki", "po", "jt", "qs", "em", "hk", "bs");
+  }
+}
+;
+csl_isa_instruction et : cb{
+    et( ){
+    set_asm_mnemonic( csl_list "ku", "ys", "fc", "nm");
+  }
+}
+;
+csl_isa_instruction jm : cb{
+    jm( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa nu{
+    nu( ){
+  }
+}
+;
+csl_fifo dd{
+   dd( ){
+     add_logic( width_extend, 4);
+     add_logic( parallel_output, all);
+     add_logic( parallel_input, all);
+  }
+}
+;
+csl_memory_map_page xj{
+    xj( ){
+     add_address_range( 7, 0);
+     get_address_increment( );
+     set_next_address( 3);
+     get_next_address( );
+     set_access_rights( access_read, access_read_write);
+     get_lower_bound( );
+     set_data_word_width( 8);
+     get_data_word_wodth( );
+     set_endianess( big_endian);
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page ba{
+    ba( ){
+     add_address_range( 9, 4);
+     get_address_increment( );
+     set_next_address( 4);
+     get_next_address( );
+     set_access_rights( access_read, none);
+     add( dd, "af", 0);
+     get_lower_bound( );
+     get_upper_bound( );
+     set_data_word_width( 0);
+     set_aligment( 9);
+     get_aligment( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page cu{
+    cu( ){
+     add_address_range( 3, 1);
+     get_address_increment( );
+     set_next_address( 3);
+     set_access_rights( access_read_write, access_write);
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 4);
+     set_endianess( big_endian);
+  }
+}
+;
+csl_memory_map dm{
+  xj pp;
+  ba ch;
+  cu gx;
+  xj ts;
+  cu to;
+  xj qh;
+  cu qr;
+    dm( ){
+     auto_gen_memory_map( );
+     set_type( flat);
+xjcu.set_access_rights_enum( xj); 
+     set_prefix( kr);
+     get_prefix( );
+     set_suffix( ku);
+  }
+}
+;
+csl_register bp{
+    bp( ){
+     set_range( [8:4]);
+     add_logic( serial_output);
+     init_value( 0);
+     set_value( 1);
+     set_count_amount( 3);
+     set_end_value( 5);
+  }
+}
+;
+csl_register mv{
+    mv( ){
+     set_width( 5);
+     create_rtl_module( );
+  }
+}
+;

@@ -1,0 +1,73 @@
+//Monica
+
+csl_isa_field op{
+  op(){
+ set_type(opcode);
+ set_width(3);
+  }};
+csl_isa_field rega{
+  rega(){
+ set_type(rf_address);
+ set_width(3);
+  }};
+csl_isa_field regb{
+  regb(){
+ set_type(rf_address);
+ set_width(3);
+  }};
+csl_isa_field imm{
+  imm(){
+set_type(constant);
+ set_width(7);
+  }};
+csl_isa_element isa{
+  isa(){
+    set_type(root_format);
+    set_width(32);
+  }
+};
+csl_isa_element format: isa {
+  op op;
+  format() {
+    set_type(instr_format);
+    set_position(op,0);
+    
+  }
+};
+csl_isa_element format1: format {
+  rega rega;
+  regb regb;
+ 
+  format1() {
+    set_type(instr_format);
+    set_position(rega,4);
+    set_previous(rega,regb);
+  }
+};
+csl_isa_element format2: format {
+  
+  imm imm;
+  format2() {
+    set_type(instr_format);
+    set_position(imm,4);
+    
+  }
+};
+csl_isa_element f1: format2{
+
+  f1(){
+    set_type(instr);
+    imm.set_value(5);
+  }
+};
+csl_isa_element f2: format1{
+
+  f2(){
+    set_type(instr);
+    rega.set_value(4);
+    regb.set_value(4);
+  }
+};
+
+csl_unit top {
+};

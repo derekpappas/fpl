@@ -1,0 +1,26 @@
+csl_register_file  rf{
+     rf(){
+        set_width(4);
+        set_depth(4);
+     }
+};
+
+csl_isa_field field(5);
+
+csl_isa_element root{
+  root(){
+    set_width(6);
+    set_type(root_format);
+  }
+};
+
+csl_isa_element format: root{
+//    rf rf_i;   //this is illegal
+    field field_i;
+    format(){
+	set_type(instr_format);
+    //       set_width(6);
+    set_position(field_i, 2);//the width of the field is 6 and 2+5 is 7 so is not possible to put there the field
+    set_next(field_i, rf_i);
+    }
+};

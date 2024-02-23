@@ -1,0 +1,57 @@
+//andreim
+//03 November 2007
+//testing DUT with multiple clock ports
+
+csl_unit DUT{
+   csl_port clk  ( input  );
+   csl_port clk_1  ( input  );
+   csl_port clk_2  ( input  );
+   csl_port clk_3  ( input  );
+
+   csl_port stim_in_0 ( input  );
+   csl_port stim_in_1 ( input  );
+   csl_port exp_out_0 ( output );
+   csl_port exp_out_1 ( output );
+   DUT(){
+      clk.set_attr(clock);
+      clk_1.set_attr(clock);
+      clk_2.set_attr(clock);
+      clk_3.set_attr(clock);
+   }
+};
+
+csl_vector stim_vec{
+   stim_vec(){
+      set_unit_name ( DUT );
+      set_direction   ( input );
+   }
+};
+
+csl_vector exp_vec{
+   exp_vec(){
+      set_unit_name ( DUT );
+      set_direction   ( output );
+   }
+};
+
+csl_unit a {
+  csl_port p1(input);
+  csl_port p2(input);
+  csl_port p3(input);
+  csl_port p4(input);
+  csl_port p5(input);
+  csl_port p6(input);
+  csl_port p7(output);
+  csl_port p8(output);
+  DUT dut1(.clk(p1),.clk_1(p2),.clk_2(p3),.clk_3(p4),.stim_in_0(p5),.stim_in_1(p6),.exp_out_0(p7),.exp_out_1(p8));
+  a (){}
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+   DUT DUT_;
+   tb(){
+         clk.set_attr(clock);
+         add_logic(clock, clk,2,ns);
+      }
+};

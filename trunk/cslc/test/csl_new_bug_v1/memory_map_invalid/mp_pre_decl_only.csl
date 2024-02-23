@@ -1,0 +1,4 @@
+// illegal-only a pre-declaration
+
+csl_memory_map_page mpage;
+

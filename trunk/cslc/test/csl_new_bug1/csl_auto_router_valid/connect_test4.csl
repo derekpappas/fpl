@@ -1,0 +1,30 @@
+//Monica
+//15 January 2008
+// hierarchical port to signal connections
+
+csl_unit test3{
+  csl_port in1(input,2),in2(input,4);
+  csl_port out1(output,2),out2(output,4);
+  csl_port out3(output),in3(input);
+
+  test3(){}
+};
+csl_unit top1{
+  csl_signal s_in1(2),s_in2(4),s_out1(2),s_out2(4);
+  test3 test3;
+  top1(){
+    test3.in1.connect_by_name(s_in1);
+    test3.in2.connect_by_name(s_in2);
+    test3.out1.connect_by_name(s_out1);
+    test3.out2.connect_by_name(s_out2);
+  }};
+csl_unit top2{
+  csl_signal s1(2),s2(4),s3,s4,s5(4);
+  top1 top1;
+  top2(){
+//    top1.test3.in1.connect_by_name(s1);
+//    top1.test3.in2.connect_by_name(s2);
+    top1.test3.in3.connect_by_name(s3);
+    top1.test3.out3.connect_by_name(s4);
+   
+  }};

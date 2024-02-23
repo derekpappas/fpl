@@ -1,0 +1,3 @@
+csl_unit u_unit1{
+        csl_signal sgn_sgn4(reg, br_br2);   
+};

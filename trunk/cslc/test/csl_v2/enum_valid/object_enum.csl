@@ -1,0 +1,12 @@
+enum Days               
+{                       
+   Saturday,            
+   Sunday = 0,          
+   Monday,              
+   Tuesday,             
+   Wednesday,           
+   Thursday,
+   Friday
+};
+
+Days tomorrow = Sunday;

@@ -1,0 +1,36 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="sfd_trans_cluster">
+<interface name="stf_ef_fab" >
+<port name="bus80" offset="0" upper="79" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="mtf_stf_fab" >
+<port name="bus80" offset="0" upper="79" lower="0" direction = "input" type = "wire" />
+</interface>
+<signalgroup name="stf_stl_fab">
+<signal name="dummy2" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="stl_st_lb">
+<signal name="dummy3" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "sfd_trans">
+<instance name="sfd_trans">
+<f2a formal = "lb.dummy3" actual = "stl_st_lb.dummy3" />
+</instance>
+</instantiation>
+<instantiation type = "msi_fabric_if">
+<instance name="sfd_trans_fab">
+<f2a formal = "fab_add.bus80" actual = "stf_ef_fab.bus80" />
+<f2a formal = "fab_drop.bus80" actual = "mtf_stf_fab.bus80" />
+<f2a formal = "lba.dummy2" actual = "stf_stl_fab.dummy2" />
+</instance>
+</instantiation>
+<instantiation type = "sfd_trans_lba">
+<instance name="sfd_trans_lba">
+<f2a formal = "lb.dummy3" actual = "stl_st_lb.dummy3" />
+<f2a formal = "lba.dummy2" actual = "stf_stl_fab.dummy2" />
+</instance>
+</instantiation>
+</unit>
+</design>

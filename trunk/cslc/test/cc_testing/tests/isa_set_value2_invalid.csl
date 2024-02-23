@@ -1,0 +1,29 @@
+//illegal: set_value invalid 2
+
+csl_isa_field op(2);
+csl_isa_field field(2);
+
+csl_isa_element format{
+    op op_i;
+    field field_i;
+    format(){
+	set_type(instr_format);
+       set_width(4);            
+       set_position(op_i, 2);
+       set_next(op_i,field_i);
+    }
+};
+
+csl_isa_element add1 : format{
+     add1(){
+	set_type(instr);
+         op.set_value(1024);       //value to big (2^10)
+     }
+};
+
+csl_isa_element sub1 : format2{  
+     sub1(){
+	set_type(instr);
+          op_i.set_value(0);   //op has attached an enum
+     }
+};

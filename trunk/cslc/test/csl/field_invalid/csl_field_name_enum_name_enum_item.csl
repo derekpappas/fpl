@@ -1,0 +1,11 @@
+//author: Ines
+//testing the command enum in field
+
+csl_enum enum{a, b, c};
+csl_enum enum1{d};
+
+csl_field field(1,a);
+csl_field field1(1,enum1);
+
+csl_unit top {
+};

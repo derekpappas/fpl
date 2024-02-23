@@ -1,0 +1,18 @@
+-right before 1.2 there is an incomplete sentence (marked with many question signs)
+-paragraphs 1.2.1.1 to 1.2.1.5 contain only figures (the text is missing)
+-1.2.2 & 1.2.3 text is also missing
+-fig 1.12 has no name
+-1.2.7: after the numbered list at the bottom of the page, there is a Typical flow(in bold) which doesn't make much sense
+-1.2.7: don't You think that figures are more appropriate to describe the memory operations?
+-1.2.7: bottom of page 10: the read operation is described in words, but I think a figure would really help.
+-the sentence right before 1.2.10 should be developed a litlle
+-right after 1.2.9 there are two sentences in bold which I do not understand.
+-Consumer read engine(1.2.6) description and Producer write engine(1.2.5) description both have programmable registers (the bulleted list). The last 3 items in each list, what do they represent? Are they registers too? Do they belong in that list?
+-figure 1.13 has no name.
+-there is a portion of text in bold, right before figure 1.15, which is confusing.
+-figure 1.15 has no name
+-in Commands section, all CSL commands have poor explanations.
+-1.4.1 is and empty paragraph.
+
+
+

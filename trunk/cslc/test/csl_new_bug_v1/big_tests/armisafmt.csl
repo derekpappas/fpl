@@ -1,0 +1,174 @@
+
+// ISA of the ARM processor
+
+csl_isa_field  b1(27,25);
+b1.set_type(selector);
+csl_isa_field  c1(27,25);
+c1.set_type(constant);
+csl_isa_field  c10(21,20);
+c10.set_type(constant);
+csl_isa_field  c11(19,0);
+c11.set_type(constant);
+csl_isa_field  c12(21,20);
+c12.set_type(constant);
+csl_isa_field  c13(27,25);
+c13.set_type(constant);
+csl_isa_field  c14(27,25);
+c14.set_type(constant);
+csl_isa_field  c15(24,5);
+c15.set_type(constant);
+csl_isa_field  c16(31,28);
+c16.set_type(constant);
+csl_isa_field  c17(27,27);
+c17.set_type(constant);
+csl_isa_field  c18(26,0);
+c18.set_type(constant);
+csl_isa_field  c19(27,25);
+c19.set_type(constant);
+csl_isa_field  c2(24,21);
+c2.set_type(constant);
+csl_isa_field  c20(24,0);
+c20.set_type(constant);
+csl_isa_field  c21(27,25);
+c21.set_type(constant);
+csl_isa_field  c22(27,25);
+c22.set_type(constant);
+csl_isa_field  c23(27,24);
+c23.set_type(constant);
+csl_isa_field  c24(27,24);
+c24.set_type(constant);
+csl_isa_field  c25(23,0);
+c25.set_type(constant);
+csl_isa_field  c26(6,5);
+c26.set_type(constant);
+csl_isa_field  c3(19,5);
+c3.set_type(constant);
+csl_isa_field  c4(3,0);
+c4.set_type(constant);
+csl_isa_field  c5(19,8);
+c5.set_type(constant);
+csl_isa_field  c6(24,8);
+c6.set_type(constant);
+csl_isa_field  c7(27,25);
+c7.set_type(constant);
+csl_isa_field  c8(24,23);
+c8.set_type(constant);
+csl_isa_field  c9(22,22);
+c9.set_type(constant);
+csl_isa_field  cond(31,28);
+cond.set_type(selector);
+csl_isa_field  cpnum(11,8);
+cpnum.set_type(unused);
+csl_isa_field  crd(15,12);
+crd.set_type(rf_address);
+csl_isa_field  crm(3,0);
+crm.set_type(rf_address);
+csl_isa_field  crn(19,16);
+crn.set_type(rf_address);
+csl_isa_field  h(24,24);
+h.set_type(selector);
+csl_isa_field  immediate(7,0);
+immediate.set_type(constant);
+csl_isa_field  immediate2(11,0);
+immediate2.set_type(constant);
+csl_isa_field  l(24,24);
+l.set_type(selector);
+csl_isa_field  lu(20,20);
+lu.set_type(selector);
+csl_isa_field  mask(19,16);
+mask.set_type(constant);
+csl_isa_field  n(22,22);
+n.set_type(selector);
+csl_isa_field  o(4,4);
+o.set_type(constant);
+csl_isa_field  offs24(23,0);
+offs24.set_type(rf_address);
+csl_isa_field  offs8(7,0);
+offs8.set_type(rf_address);
+csl_isa_field  opcode(24,21);
+opcode.set_type(opcode);
+csl_isa_field  opcode1(23,20);
+opcode1.set_type(opcode);
+csl_isa_field  opcode2(7,5);
+opcode2.set_type(opcode);
+csl_isa_field  opcode12(23,21);
+opcode12.set_type(opcode);
+csl_isa_field  oup(7,7);
+oup.set_type(constant);
+csl_isa_field  p(24,24);
+p.set_type(selector);
+csl_isa_field  r(22,22);
+r.set_type(constant);
+csl_isa_field  rd1(15,12);
+rd1.set_type(rf_address);
+csl_isa_field  rlist(15,0);
+rlist.set_type(rf_address);
+csl_isa_field  rm(3,0);
+rm.set_type(rf_address);
+csl_isa_field  rn(19,16);
+rn.set_type(rf_address);
+csl_isa_field  rotate(11,8);
+rotate.set_type(constant);
+csl_isa_field  rs(11,8);
+rs.set_type(rf_address);
+csl_isa_field  s1(20,20);
+s1.set_type(selector);
+csl_isa_field  sbo(15,12);
+sbo.set_type(constant);
+csl_isa_field  sh(6,5);
+sh.set_type(selector);
+csl_isa_field  sham(11,7);
+sham.set_type(constant);
+csl_isa_field  sup(22,22);
+sup.set_type(selector);
+csl_isa_field  swin(23,0);
+swin.set_type(constant);
+csl_isa_field  u(23,23);
+u.set_type(selector);
+csl_isa_field  w(21,21);
+w.set_type(selector);
+csl_isa_field  z(4,4);
+z.set_type(constant);
+csl_isa_field  zm(7,7);
+zm.set_type(constant);
+csl_isa_field  zup(20,20);
+zup.set_type(constant);
+
+
+//Define formats
+csl_isa_element root{
+  root(){
+    set_type(root_format);
+    set_width(32);
+  }
+};
+csl_isa_element baseformat :root {
+  baseformat() {
+    set_type(instr_format);
+  }
+};
+
+
+csl_isa_element Format1 :baseformat {cond cond0; c1 c10; opcode opcode0; s1 s10; rn rn0; rd1 rd10; sham sham0; sh sh0; z z0; rm rm0; Format1(){set_type(instr);}  };
+csl_isa_element Format10 :baseformat{cond cond0; c14 c140; p p0; u u0; b1 b10; w w0; lu lu0; rn rn0; rd1 rd10; sham sham0; sh sh0; z z0; rm rm0; Format10(){set_type(instr);} };
+csl_isa_element Format11:baseformat {cond cond0; c14 c140; c15 c150; o o0; c4 c40;  Format11(){set_type(instr);} };
+csl_isa_element Format12 :baseformat{c16 c160; c17 c170; c18 c180;  Format12(){set_type(instr);} };
+csl_isa_element Format13 :baseformat{cond cond0; c19 c190; p p0; u u0; sup sup0; w w0; lu lu0; rn rn0; rlist rlist0; Format13(){set_type(instr);}  };
+csl_isa_element Format14 :baseformat{c16 c160; c19 c190; c20 c200;  Format14(){set_type(instr);} };
+csl_isa_element Format15 :baseformat{cond cond0; c21 c210; l l0; offs24 offs240; Format15(){set_type(instr);}  };
+csl_isa_element Format16 :baseformat{c16 c160; c21 c210; h h0; offs24 offs240;  Format16(){set_type(instr);} };
+csl_isa_element Format17 :baseformat{cond cond0; c22 c220; p p0; u u0; n n0; w w0; lu lu0; rn rn0; crd crd0; cpnum cpnum0; offs8 offs80;  Format17(){set_type(instr);} };
+csl_isa_element Format18 :baseformat{cond cond0; c23 c230; opcode1 opcode10; crn crn0; crd crd0; cpnum cpnum0; opcode2 opcode20; z z0; crm crm0;  Format18(){set_type(instr);} };
+csl_isa_element Format19 :baseformat{cond cond0; c23 c230; opcode12 opcode120; lu lu0; crn crn0; rd1 rd10; cpnum cpnum0; opcode2 opcode20; o o0; crm crm0; Format19(){set_type(instr);}  };
+csl_isa_element Format2 :baseformat{cond cond0; c1 c10; c2 c20; zup zup0; c3 c30; z z0; c4 c40;  Format2(){set_type(instr);} };
+csl_isa_element Format20 :baseformat{cond cond0; c24 c240; swin swin0;  Format20(){set_type(instr);} };
+csl_isa_element Format21 :baseformat{c16 c160; c24 c240; c25 c250;  Format21(){set_type(instr);} };
+csl_isa_element Format3 :baseformat{cond cond0; c1 c10; opcode opcode0; s1 s10; rn rn0; rd1 rd10; rs rs0; zm zm0; sh sh0; o o0; rm rm0;  Format3(){set_type(instr);} };
+csl_isa_element Format4 :baseformat{cond cond0; c1 c10; c2 c20; zup zup0; c5 c50; zm zm0; c26 c260; o o0; c4 c40;  Format4(){set_type(instr);} };
+csl_isa_element Format5 :baseformat{cond cond0; c1 c10; c6 c60; oup oup0; c26 c260; o o0; c4 c40; Format5(){set_type(instr);} };
+csl_isa_element Format6 :baseformat{cond cond0; c7 c70; opcode opcode0; s1 s10; rn rn0; rd1 rd10; rotate rotate0; immediate immediate0;  Format6(){set_type(instr);} };
+csl_isa_element Format7 :baseformat{cond cond0; c7 c70; c8 c80; c9 c90; c10 c100; c11 c110;  Format7(){set_type(instr);} };
+csl_isa_element Format8 :baseformat{cond cond0; c7 c70; c8 c80; r r0; c12 c120; mask mask0; sbo sbo0; rotate rotate0; immediate immediate0;  Format8(){set_type(instr);} };
+csl_isa_element Format9 :baseformat{cond cond0; c13 c130; p p0; u u0; b1 b0; w w0; lu lu0; rn rn0; rd1 rd10; immediate2 immediate20; Format9(){set_type(instr);} };
+
+

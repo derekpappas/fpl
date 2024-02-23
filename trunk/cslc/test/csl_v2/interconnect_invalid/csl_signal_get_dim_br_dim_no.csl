@@ -1,0 +1,18 @@
+//author: Ines
+//test02: bitrange_object signal_object_name.get_dim_bitrange(dimension_number);
+
+csl_unit test {
+  csl_signal sgn1, sgn2, sgn3, sgn4, sgn5;           
+  csl_multi_dim_bitrange br7(3);
+  csl_multi_dim_bitrange br8(2);
+  csl_multi_dim_bitrange br9(0); // should fail because num dims can't be zero    
+
+  test(){
+    sgn1.set_number_of_dimensions(3); // should fail because num dims was already set
+//    sgn2.set_dim_bitrange(1,br8);       // should fail because num dims was already set
+//    sgn2.set_dim_bitrange(2,br9);        // should fail because num dims was already set
+    sgn4.set_number_of_dimensions(2);
+    //    sgn5.set_dim_bitrange(0,sgn2.get_dim_bitrange(1));
+   
+  }
+};

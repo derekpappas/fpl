@@ -1,0 +1,25 @@
+//oanab
+//14 nov 2007
+//fifo can't be instantiated in a memory map
+
+csl_fifo ff{
+  ff(){
+    set_width(8);
+    set_depth(4);
+  }
+};
+
+csl_memory_map_page mpag{
+  mpag(){
+    add_address_range(0,127);
+    //    set_address_increment(4);
+  }
+};
+
+csl_memory_map mmap1{
+   ff ff; // ff can only be instantiated in a testbench or unit
+  mmap1(){
+    set_data_word_width(16);
+    set_type(hierarchical);
+  }
+};

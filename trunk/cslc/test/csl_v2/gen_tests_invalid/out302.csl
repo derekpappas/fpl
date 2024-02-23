@@ -1,0 +1,143 @@
+csl_enum ai {
+	oq,
+	mu,
+	yu,
+	oj,
+	pm,
+	tr,
+	xq,
+	dp,
+	pq,
+	nb,
+	pn,
+	dd,
+	cw,
+	xa,
+	jx,
+	ia,
+	qw
+};
+csl_enum up {
+	uj = 88,
+	bk = 21,
+	xu = 26,
+	ey = 31,
+	oj = 85,
+	og = 5,
+	bf = 81,
+	is = 84,
+	ul = 43,
+	ww = 28
+};
+csl_enum ku {
+	ww = 38,
+	vi = 97,
+	wm = 58,
+	fs = 1,
+	da = 0,
+	ee = 69,
+	nd = 23,
+	ct = 88,
+	es = 11,
+	eu = 98,
+	yf = 76
+};
+csl_isa_instruction_format ac{
+    ac( ){
+     set_width( 8);
+     generate_decoder( usxtai);
+  }
+}
+;
+csl_isa eu{
+    eu( ){
+     set_decoder_name( "bp");
+     set_decoder_out_name_prefix( "ru");
+     set_decoder_out_name_suffix( "cj");
+     generate_decoder( xtqg);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo xm{
+   xm( ){
+     add_logic( programable_depth, 9);
+     add_logic( width_extend, 6);
+  }
+}
+;
+csl_memory_map_page ma{
+    ma( ){
+     add_address_range( 5, 7);
+     get_lower_bound( );
+     get_upper_bound( );
+     get_endianess( );
+  }
+}
+;
+csl_memory_map_page cu{
+  ma pl;
+    cu( ){
+     set_address_increment( 1);
+     get_address_increment( );
+     get_next_address( );
+     add( ma);
+     get_upper_bound( );
+     set_data_word_width( 7);
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page bm{
+    bm( ){
+     set_address_increment( 3);
+     get_address_increment( );
+     set_next_address( 3);
+     set_access_rights( none, access_write);
+     get_aligment( );
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map by{
+  ma eb;
+  cu xs;
+  bm xa;
+  ma jj;
+  bm pd;
+  cu je;
+    by( ){
+     auto_gen_memory_map( );
+     set_top_unit( usai);
+macu.add_to_memory_map( 1); 
+     set_type( hierach);
+macu.set_access_rights_enum( cubm); 
+     set_data_word_width( 9);
+     get_data_word_width( );
+     set_suffix( gx);
+  }
+}
+;
+csl_register gl{
+    gl( ){
+     add_logic( serial_output);
+     add_logic( wr_en);
+     set_count_direction( 5);
+     set_end_value( 0);
+     set_start_value( 0);
+     get_cnt_dir_signal( );
+  }
+}
+;
+csl_register de{
+    de( ){
+     set_depth( 4);
+     get_depth( );
+     add_logic( read_valid);
+     set_const_value( 9);
+     add_logic( bypass);
+  }
+}
+;

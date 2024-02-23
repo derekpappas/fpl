@@ -1,0 +1,2032 @@
+AFTER : opt_f = vizzini_core.csv
+CSL library filename      = usb.ifc.lib.csl       
+Design Hierarchy filename = vizzini_core.hier
+CSL csv filename          = vizzini_core.csv       
+Generated CSL filename    = generated/vizzini_core.csl
+$VAR1 = {};
+Opening hier file : vizzini_core.hier
+rootUnitName = /v_top/ rootInstName = /v_top/
+hid = 
+before hidPath[1] =   instName = v_core hidPath = v_top                    
+after hidPath[1] = v_core  instName = v_core hidPath = v_top v_core                   
+hid = v_core
+vvv parentUnitName = v_top instName = v_core 
+ZZZ1 clearing children ARRAY(0x813bb4)
+ZZZ1 clearing children ARRAY(0x813bb4)
+ZZZ0 array reference unitChildrenHash{v_top}  = ARRAY(0x815f6c) 
+ZZZ1 array unitChildrenHash{v_top}  = v_core 
+before hidPath[2] =   instName = RAM_ hidPath = v_top v_core                   
+after hidPath[2] = RAM_  instName = RAM_ hidPath = v_top v_core RAM_                  
+hid = v_core.RAM_
+vvv parentUnitName = v_core instName = RAM_ 
+ZZZ1 clearing children ARRAY(0x813bb4)
+ZZZ1 clearing children ARRAY(0x813bb4)
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_ 
+before hidPath[2] = RAM_  instName = fab_uart_mgr hidPath = v_top v_core RAM_                  
+after hidPath[2] = fab_uart_mgr  instName = fab_uart_mgr hidPath = v_top v_core fab_uart_mgr                  
+hid = v_core.fab_uart_mgr
+vvv parentUnitName = v_core instName = fab_uart_mgr 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgr 
+before hidPath[2] = fab_uart_mgr  instName = uart_mgr_ hidPath = v_top v_core fab_uart_mgr                  
+after hidPath[2] = uart_mgr_  instName = uart_mgr_ hidPath = v_top v_core uart_mgr_                  
+hid = v_core.uart_mgr_
+vvv parentUnitName = v_core instName = uart_mgr_ 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_ 
+before hidPath[2] = uart_mgr_  instName = uart_fab_0 hidPath = v_top v_core uart_mgr_                  
+after hidPath[2] = uart_fab_0  instName = uart_fab_0 hidPath = v_top v_core uart_fab_0                  
+hid = v_core.uart_fab_0
+vvv parentUnitName = v_core instName = uart_fab_0 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0 
+before hidPath[2] = uart_fab_0  instName = uart_mod0 hidPath = v_top v_core uart_fab_0                  
+after hidPath[2] = uart_mod0  instName = uart_mod0 hidPath = v_top v_core uart_mod0                  
+hid = v_core.uart_mod0
+vvv parentUnitName = v_core instName = uart_mod0 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0 
+before hidPath[2] = uart_mod0  instName = uart_fab_1 hidPath = v_top v_core uart_mod0                  
+after hidPath[2] = uart_fab_1  instName = uart_fab_1 hidPath = v_top v_core uart_fab_1                  
+hid = v_core.uart_fab_1
+vvv parentUnitName = v_core instName = uart_fab_1 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1 
+before hidPath[2] = uart_fab_1  instName = uart_mod1 hidPath = v_top v_core uart_fab_1                  
+after hidPath[2] = uart_mod1  instName = uart_mod1 hidPath = v_top v_core uart_mod1                  
+hid = v_core.uart_mod1
+vvv parentUnitName = v_core instName = uart_mod1 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1uart_mod1 
+before hidPath[2] = uart_mod1  instName = uart_fab_2 hidPath = v_top v_core uart_mod1                  
+after hidPath[2] = uart_fab_2  instName = uart_fab_2 hidPath = v_top v_core uart_fab_2                  
+hid = v_core.uart_fab_2
+vvv parentUnitName = v_core instName = uart_fab_2 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1uart_mod1uart_fab_2 
+before hidPath[2] = uart_fab_2  instName = uart_mod2 hidPath = v_top v_core uart_fab_2                  
+after hidPath[2] = uart_mod2  instName = uart_mod2 hidPath = v_top v_core uart_mod2                  
+hid = v_core.uart_mod2
+vvv parentUnitName = v_core instName = uart_mod2 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1uart_mod1uart_fab_2uart_mod2 
+before hidPath[2] = uart_mod2  instName = uart_fab_3 hidPath = v_top v_core uart_mod2                  
+after hidPath[2] = uart_fab_3  instName = uart_fab_3 hidPath = v_top v_core uart_fab_3                  
+hid = v_core.uart_fab_3
+vvv parentUnitName = v_core instName = uart_fab_3 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1uart_mod1uart_fab_2uart_mod2uart_fab_3 
+before hidPath[2] = uart_fab_3  instName = uart_mod3 hidPath = v_top v_core uart_fab_3                  
+after hidPath[2] = uart_mod3  instName = uart_mod3 hidPath = v_top v_core uart_mod3                  
+hid = v_core.uart_mod3
+vvv parentUnitName = v_core instName = uart_mod3 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1uart_mod1uart_fab_2uart_mod2uart_fab_3uart_mod3 
+before hidPath[2] = uart_mod3  instName = fab_i2c hidPath = v_top v_core uart_mod3                  
+after hidPath[2] = fab_i2c  instName = fab_i2c hidPath = v_top v_core fab_i2c                  
+hid = v_core.fab_i2c
+vvv parentUnitName = v_core instName = fab_i2c 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1uart_mod1uart_fab_2uart_mod2uart_fab_3uart_mod3fab_i2c 
+before hidPath[2] = fab_i2c  instName = i2c_ hidPath = v_top v_core fab_i2c                  
+after hidPath[2] = i2c_  instName = i2c_ hidPath = v_top v_core i2c_                  
+hid = v_core.i2c_
+vvv parentUnitName = v_core instName = i2c_ 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1uart_mod1uart_fab_2uart_mod2uart_fab_3uart_mod3fab_i2ci2c_ 
+before hidPath[2] = i2c_  instName = proto_fab hidPath = v_top v_core i2c_                  
+after hidPath[2] = proto_fab  instName = proto_fab hidPath = v_top v_core proto_fab                  
+hid = v_core.proto_fab
+vvv parentUnitName = v_core instName = proto_fab 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1uart_mod1uart_fab_2uart_mod2uart_fab_3uart_mod3fab_i2ci2c_proto_fab 
+before hidPath[2] = proto_fab  instName = usb_protocol_mgr_ hidPath = v_top v_core proto_fab                  
+after hidPath[2] = usb_protocol_mgr_  instName = usb_protocol_mgr_ hidPath = v_top v_core usb_protocol_mgr_                  
+hid = v_core.usb_protocol_mgr_
+vvv parentUnitName = v_core instName = usb_protocol_mgr_ 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1uart_mod1uart_fab_2uart_mod2uart_fab_3uart_mod3fab_i2ci2c_proto_fabusb_protocol_mgr_ 
+before hidPath[2] = usb_protocol_mgr_  instName = fab_filter_ hidPath = v_top v_core usb_protocol_mgr_                  
+after hidPath[2] = fab_filter_  instName = fab_filter_ hidPath = v_top v_core fab_filter_                  
+hid = v_core.fab_filter_
+vvv parentUnitName = v_core instName = fab_filter_ 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1uart_mod1uart_fab_2uart_mod2uart_fab_3uart_mod3fab_i2ci2c_proto_fabusb_protocol_mgr_fab_filter_ 
+before hidPath[2] = fab_filter_  instName = trans_fab hidPath = v_top v_core fab_filter_                  
+after hidPath[2] = trans_fab  instName = trans_fab hidPath = v_top v_core trans_fab                  
+hid = v_core.trans_fab
+vvv parentUnitName = v_core instName = trans_fab 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1uart_mod1uart_fab_2uart_mod2uart_fab_3uart_mod3fab_i2ci2c_proto_fabusb_protocol_mgr_fab_filter_trans_fab 
+before hidPath[2] = trans_fab  instName = usb_transaction_mgr_ hidPath = v_top v_core trans_fab                  
+after hidPath[2] = usb_transaction_mgr_  instName = usb_transaction_mgr_ hidPath = v_top v_core usb_transaction_mgr_                  
+hid = v_core.usb_transaction_mgr_
+vvv parentUnitName = v_core instName = usb_transaction_mgr_ 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1uart_mod1uart_fab_2uart_mod2uart_fab_3uart_mod3fab_i2ci2c_proto_fabusb_protocol_mgr_fab_filter_trans_fabusb_transaction_mgr_ 
+before hidPath[3] =   instName = usb_tm_packetizer_ hidPath = v_top v_core usb_transaction_mgr_                  
+after hidPath[3] = usb_tm_packetizer_  instName = usb_tm_packetizer_ hidPath = v_top v_core usb_transaction_mgr_ usb_tm_packetizer_                 
+hid = v_core.usb_transaction_mgr_.usb_tm_packetizer_
+vvv parentUnitName = usb_transaction_mgr instName = usb_tm_packetizer_ 
+ZZZ1 clearing children ARRAY(0x813bb4)
+ZZZ1 clearing children ARRAY(0x813bb4)
+ZZZ0 array reference unitChildrenHash{usb_transaction_mgr}  = ARRAY(0x84d300) 
+ZZZ1 array unitChildrenHash{usb_transaction_mgr}  = usb_tm_packetizer_ 
+before hidPath[3] = usb_tm_packetizer_  instName = usb_tm_dispatcher_ hidPath = v_top v_core usb_transaction_mgr_ usb_tm_packetizer_                 
+after hidPath[3] = usb_tm_dispatcher_  instName = usb_tm_dispatcher_ hidPath = v_top v_core usb_transaction_mgr_ usb_tm_dispatcher_                 
+hid = v_core.usb_transaction_mgr_.usb_tm_dispatcher_
+vvv parentUnitName = usb_transaction_mgr instName = usb_tm_dispatcher_ 
+ZZZ0 array reference unitChildrenHash{usb_transaction_mgr}  = ARRAY(0x84d300) 
+ZZZ1 array unitChildrenHash{usb_transaction_mgr}  = usb_tm_packetizer_usb_tm_dispatcher_ 
+before hidPath[2] = usb_transaction_mgr_  instName = fifo_regs_ hidPath = v_top v_core usb_transaction_mgr_ usb_tm_dispatcher_                 
+after hidPath[2] = fifo_regs_  instName = fifo_regs_ hidPath = v_top v_core fifo_regs_ usb_tm_dispatcher_                 
+hid = v_core.fifo_regs_
+vvv parentUnitName = v_core instName = fifo_regs_ 
+ZZZ1 clearing children ARRAY(0x813bb4)
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1uart_mod1uart_fab_2uart_mod2uart_fab_3uart_mod3fab_i2ci2c_proto_fabusb_protocol_mgr_fab_filter_trans_fabusb_transaction_mgr_fifo_regs_ 
+before hidPath[2] = fifo_regs_  instName = usb_phy_ hidPath = v_top v_core fifo_regs_ usb_tm_dispatcher_                 
+after hidPath[2] = usb_phy_  instName = usb_phy_ hidPath = v_top v_core usb_phy_ usb_tm_dispatcher_                 
+hid = v_core.usb_phy_
+vvv parentUnitName = v_core instName = usb_phy_ 
+ZZZ0 array reference unitChildrenHash{v_core}  = ARRAY(0x815ad4) 
+ZZZ1 array unitChildrenHash{v_core}  = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1uart_mod1uart_fab_2uart_mod2uart_fab_3uart_mod3fab_i2ci2c_proto_fabusb_protocol_mgr_fab_filter_trans_fabusb_transaction_mgr_fifo_regs_usb_phy_ 
+before hidPath[1] = v_core  instName = rx_mod_0 hidPath = v_top v_core usb_phy_ usb_tm_dispatcher_                 
+after hidPath[1] = rx_mod_0  instName = rx_mod_0 hidPath = v_top rx_mod_0 usb_phy_ usb_tm_dispatcher_                 
+hid = rx_mod_0
+vvv parentUnitName = v_top instName = rx_mod_0 
+ZZZ1 clearing children ARRAY(0x813bb4)
+ZZZ0 array reference unitChildrenHash{v_top}  = ARRAY(0x815f6c) 
+ZZZ1 array unitChildrenHash{v_top}  = v_corerx_mod_0 
+before hidPath[1] = rx_mod_0  instName = tx_mod_0 hidPath = v_top rx_mod_0 usb_phy_ usb_tm_dispatcher_                 
+after hidPath[1] = tx_mod_0  instName = tx_mod_0 hidPath = v_top tx_mod_0 usb_phy_ usb_tm_dispatcher_                 
+hid = tx_mod_0
+vvv parentUnitName = v_top instName = tx_mod_0 
+ZZZ0 array reference unitChildrenHash{v_top}  = ARRAY(0x815f6c) 
+ZZZ1 array unitChildrenHash{v_top}  = v_corerx_mod_0tx_mod_0 
+before hidPath[1] = tx_mod_0  instName = gpio_mod_a0 hidPath = v_top tx_mod_0 usb_phy_ usb_tm_dispatcher_                 
+after hidPath[1] = gpio_mod_a0  instName = gpio_mod_a0 hidPath = v_top gpio_mod_a0 usb_phy_ usb_tm_dispatcher_                 
+hid = gpio_mod_a0
+vvv parentUnitName = v_top instName = gpio_mod_a0 
+ZZZ0 array reference unitChildrenHash{v_top}  = ARRAY(0x815f6c) 
+ZZZ1 array unitChildrenHash{v_top}  = v_corerx_mod_0tx_mod_0gpio_mod_a0 
+before hidPath[1] = gpio_mod_a0  instName = gpio_mod_a1 hidPath = v_top gpio_mod_a0 usb_phy_ usb_tm_dispatcher_                 
+after hidPath[1] = gpio_mod_a1  instName = gpio_mod_a1 hidPath = v_top gpio_mod_a1 usb_phy_ usb_tm_dispatcher_                 
+hid = gpio_mod_a1
+vvv parentUnitName = v_top instName = gpio_mod_a1 
+ZZZ0 array reference unitChildrenHash{v_top}  = ARRAY(0x815f6c) 
+ZZZ1 array unitChildrenHash{v_top}  = v_corerx_mod_0tx_mod_0gpio_mod_a0gpio_mod_a1 
+before hidPath[1] = gpio_mod_a1  instName = gpio_mod_a2 hidPath = v_top gpio_mod_a1 usb_phy_ usb_tm_dispatcher_                 
+after hidPath[1] = gpio_mod_a2  instName = gpio_mod_a2 hidPath = v_top gpio_mod_a2 usb_phy_ usb_tm_dispatcher_                 
+hid = gpio_mod_a2
+vvv parentUnitName = v_top instName = gpio_mod_a2 
+ZZZ0 array reference unitChildrenHash{v_top}  = ARRAY(0x815f6c) 
+ZZZ1 array unitChildrenHash{v_top}  = v_corerx_mod_0tx_mod_0gpio_mod_a0gpio_mod_a1gpio_mod_a2 
+before hidPath[1] = gpio_mod_a2  instName = gpio_mod_a3 hidPath = v_top gpio_mod_a2 usb_phy_ usb_tm_dispatcher_                 
+after hidPath[1] = gpio_mod_a3  instName = gpio_mod_a3 hidPath = v_top gpio_mod_a3 usb_phy_ usb_tm_dispatcher_                 
+hid = gpio_mod_a3
+vvv parentUnitName = v_top instName = gpio_mod_a3 
+ZZZ0 array reference unitChildrenHash{v_top}  = ARRAY(0x815f6c) 
+ZZZ1 array unitChildrenHash{v_top}  = v_corerx_mod_0tx_mod_0gpio_mod_a0gpio_mod_a1gpio_mod_a2gpio_mod_a3 
+before hidPath[1] = gpio_mod_a3  instName = gpio_mod_a4 hidPath = v_top gpio_mod_a3 usb_phy_ usb_tm_dispatcher_                 
+after hidPath[1] = gpio_mod_a4  instName = gpio_mod_a4 hidPath = v_top gpio_mod_a4 usb_phy_ usb_tm_dispatcher_                 
+hid = gpio_mod_a4
+vvv parentUnitName = v_top instName = gpio_mod_a4 
+ZZZ0 array reference unitChildrenHash{v_top}  = ARRAY(0x815f6c) 
+ZZZ1 array unitChildrenHash{v_top}  = v_corerx_mod_0tx_mod_0gpio_mod_a0gpio_mod_a1gpio_mod_a2gpio_mod_a3gpio_mod_a4 
+before hidPath[1] = gpio_mod_a4  instName = gpio_mod_a5 hidPath = v_top gpio_mod_a4 usb_phy_ usb_tm_dispatcher_                 
+after hidPath[1] = gpio_mod_a5  instName = gpio_mod_a5 hidPath = v_top gpio_mod_a5 usb_phy_ usb_tm_dispatcher_                 
+hid = gpio_mod_a5
+vvv parentUnitName = v_top instName = gpio_mod_a5 
+ZZZ0 array reference unitChildrenHash{v_top}  = ARRAY(0x815f6c) 
+ZZZ1 array unitChildrenHash{v_top}  = v_corerx_mod_0tx_mod_0gpio_mod_a0gpio_mod_a1gpio_mod_a2gpio_mod_a3gpio_mod_a4gpio_mod_a5 
+before hidPath[1] = gpio_mod_a5  instName = usb_analog_phy_ hidPath = v_top gpio_mod_a5 usb_phy_ usb_tm_dispatcher_                 
+after hidPath[1] = usb_analog_phy_  instName = usb_analog_phy_ hidPath = v_top usb_analog_phy_ usb_phy_ usb_tm_dispatcher_                 
+hid = usb_analog_phy_
+vvv parentUnitName = v_top instName = usb_analog_phy_ 
+ZZZ0 array reference unitChildrenHash{v_top}  = ARRAY(0x815f6c) 
+ZZZ1 array unitChildrenHash{v_top}  = v_corerx_mod_0tx_mod_0gpio_mod_a0gpio_mod_a1gpio_mod_a2gpio_mod_a3gpio_mod_a4gpio_mod_a5usb_analog_phy_ 
+instHIDPathHash{usb_transaction_mgr_} = v_core.usb_transaction_mgr_
+instHIDPathHash{usb_protocol_mgr_} = v_core.usb_protocol_mgr_
+instHIDPathHash{gpio_mod_a5} = gpio_mod_a5
+instHIDPathHash{fab_i2c} = v_core.fab_i2c
+instHIDPathHash{uart_mgr_} = v_core.uart_mgr_
+instHIDPathHash{uart_fab_0} = v_core.uart_fab_0
+instHIDPathHash{uart_fab_3} = v_core.uart_fab_3
+instHIDPathHash{rx_mod_0} = rx_mod_0
+instHIDPathHash{RAM_} = v_core.RAM_
+instHIDPathHash{usb_tm_dispatcher_} = v_core.usb_transaction_mgr_.usb_tm_dispatcher_
+instHIDPathHash{uart_mod0} = v_core.uart_mod0
+instHIDPathHash{i2c_} = v_core.i2c_
+instHIDPathHash{proto_fab} = v_core.proto_fab
+instHIDPathHash{usb_analog_phy_} = usb_analog_phy_
+instHIDPathHash{uart_mod3} = v_core.uart_mod3
+instHIDPathHash{uart_mod1} = v_core.uart_mod1
+instHIDPathHash{usb_tm_packetizer_} = v_core.usb_transaction_mgr_.usb_tm_packetizer_
+instHIDPathHash{tx_mod_0} = tx_mod_0
+instHIDPathHash{usb_phy_} = v_core.usb_phy_
+instHIDPathHash{gpio_mod_a4} = gpio_mod_a4
+instHIDPathHash{trans_fab} = v_core.trans_fab
+instHIDPathHash{fifo_regs_} = v_core.fifo_regs_
+instHIDPathHash{fab_filter_} = v_core.fab_filter_
+instHIDPathHash{uart_fab_2} = v_core.uart_fab_2
+instHIDPathHash{gpio_mod_a2} = gpio_mod_a2
+instHIDPathHash{gpio_mod_a1} = gpio_mod_a1
+instHIDPathHash{uart_fab_1} = v_core.uart_fab_1
+instHIDPathHash{v_core} = v_core
+instHIDPathHash{gpio_mod_a3} = gpio_mod_a3
+instHIDPathHash{uart_mod2} = v_core.uart_mod2
+instHIDPathHash{v_top} = 
+instHIDPathHash{gpio_mod_a0} = gpio_mod_a0
+instHIDPathHash{fab_uart_mgr} = v_core.fab_uart_mgr
+unitHash{usb_tm_packetizer} = 1
+unitHash{uart} = 1
+unitHash{fab} = 1
+unitHash{usb_analog_phy} = 1
+unitHash{fifo_regs} = 1
+unitHash{uart_mgr} = 1
+unitHash{usb_protocol_mgr} = 1
+unitHash{output_cell} = 1
+unitHash{usb_tm_dispatcher} = 1
+unitHash{i2c} = 1
+unitHash{io_cell} = 1
+unitHash{v_core} = 1
+unitHash{fab_filter} = 1
+unitHash{input_cell} = 1
+unitHash{usb_phy} = 1
+unitHash{v_top} = 1
+unitHash{RAM} = 1
+unitHash{jeff_uart} = 1
+unitHash{usb_transaction_mgr} = 1
+instHash{usb_transaction_mgr_} = usb_transaction_mgr
+instHash{usb_protocol_mgr_} = usb_protocol_mgr
+instHash{gpio_mod_a5} = io_cell
+instHash{fab_i2c} = fab
+instHash{uart_mgr_} = uart_mgr
+instHash{uart_fab_0} = fab
+instHash{uart_fab_3} = fab
+instHash{rx_mod_0} = input_cell
+instHash{RAM_} = RAM
+instHash{usb_tm_dispatcher_} = usb_tm_dispatcher
+instHash{uart_mod0} = jeff_uart
+instHash{i2c_} = i2c
+instHash{proto_fab} = fab
+instHash{usb_analog_phy_} = usb_analog_phy
+instHash{uart_mod3} = uart
+instHash{uart_mod1} = uart
+instHash{usb_tm_packetizer_} = usb_tm_packetizer
+instHash{tx_mod_0} = output_cell
+instHash{usb_phy_} = usb_phy
+instHash{gpio_mod_a4} = io_cell
+instHash{trans_fab} = fab
+instHash{fifo_regs_} = fifo_regs
+instHash{fab_filter_} = fab_filter
+instHash{uart_fab_2} = fab
+instHash{gpio_mod_a2} = io_cell
+instHash{gpio_mod_a1} = io_cell
+instHash{uart_fab_1} = fab
+instHash{v_core} = v_core
+instHash{gpio_mod_a3} = io_cell
+instHash{uart_mod2} = uart
+instHash{v_top} = v_top
+instHash{gpio_mod_a0} = io_cell
+instHash{fab_uart_mgr} = fab
+instHashLevel{usb_transaction_mgr_} = 2
+instHashLevel{usb_protocol_mgr_} = 2
+instHashLevel{gpio_mod_a5} = 1
+instHashLevel{fab_i2c} = 2
+instHashLevel{uart_mgr_} = 2
+instHashLevel{uart_fab_0} = 2
+instHashLevel{uart_fab_3} = 2
+instHashLevel{rx_mod_0} = 1
+instHashLevel{RAM_} = 2
+instHashLevel{usb_tm_dispatcher_} = 3
+instHashLevel{uart_mod0} = 2
+instHashLevel{i2c_} = 2
+instHashLevel{proto_fab} = 2
+instHashLevel{usb_analog_phy_} = 1
+instHashLevel{uart_mod3} = 2
+instHashLevel{uart_mod1} = 2
+instHashLevel{usb_tm_packetizer_} = 3
+instHashLevel{tx_mod_0} = 1
+instHashLevel{usb_phy_} = 2
+instHashLevel{gpio_mod_a4} = 1
+instHashLevel{trans_fab} = 2
+instHashLevel{fifo_regs_} = 2
+instHashLevel{fab_filter_} = 2
+instHashLevel{uart_fab_2} = 2
+instHashLevel{gpio_mod_a2} = 1
+instHashLevel{gpio_mod_a1} = 1
+instHashLevel{uart_fab_1} = 2
+instHashLevel{v_core} = 1
+instHashLevel{gpio_mod_a3} = 1
+instHashLevel{uart_mod2} = 2
+instHashLevel{v_top} = 0
+instHashLevel{gpio_mod_a0} = 1
+instHashLevel{fab_uart_mgr} = 2
+XXX unitChildrenHash{v_top} = v_corerx_mod_0tx_mod_0gpio_mod_a0gpio_mod_a1gpio_mod_a2gpio_mod_a3gpio_mod_a4gpio_mod_a5usb_analog_phy_
+XXX unitChildrenHash{v_core} = RAM_fab_uart_mgruart_mgr_uart_fab_0uart_mod0uart_fab_1uart_mod1uart_fab_2uart_mod2uart_fab_3uart_mod3fab_i2ci2c_proto_fabusb_protocol_mgr_fab_filter_trans_fabusb_transaction_mgr_fifo_regs_usb_phy_
+XXX unitChildrenHash{usb_transaction_mgr} = usb_tm_packetizer_usb_tm_dispatcher_
+stack:: HASH(0x836d9c)
+Begin unitHash
+RAM
+fab
+fab_filter
+fifo_regs
+i2c
+input_cell
+io_cell
+jeff_uart
+output_cell
+uart
+uart_mgr
+usb_analog_phy
+usb_phy
+usb_protocol_mgr
+usb_tm_dispatcher
+usb_tm_packetizer
+usb_transaction_mgr
+v_core
+v_top
+End unitHash
+Begin instHash
+0 instHash RAM_
+1 instHash fab_filter_
+2 instHash fab_i2c
+3 instHash fab_uart_mgr
+4 instHash fifo_regs_
+5 instHash gpio_mod_a0
+6 instHash gpio_mod_a1
+7 instHash gpio_mod_a2
+8 instHash gpio_mod_a3
+9 instHash gpio_mod_a4
+10 instHash gpio_mod_a5
+11 instHash i2c_
+12 instHash proto_fab
+13 instHash rx_mod_0
+14 instHash trans_fab
+15 instHash tx_mod_0
+16 instHash uart_fab_0
+17 instHash uart_fab_1
+18 instHash uart_fab_2
+19 instHash uart_fab_3
+20 instHash uart_mgr_
+21 instHash uart_mod0
+22 instHash uart_mod1
+23 instHash uart_mod2
+24 instHash uart_mod3
+25 instHash usb_analog_phy_
+26 instHash usb_phy_
+27 instHash usb_protocol_mgr_
+28 instHash usb_tm_dispatcher_
+29 instHash usb_tm_packetizer_
+30 instHash usb_transaction_mgr_
+31 instHash v_core
+32 instHash v_top
+End instHash
+instHash count = 33
+UnitHash k:: usb_tm_packetizer
+UnitHash k:: uart
+UnitHash k:: fab
+UnitHash k:: usb_analog_phy
+UnitHash k:: fifo_regs
+UnitHash k:: uart_mgr
+UnitHash k:: usb_protocol_mgr
+UnitHash k:: output_cell
+UnitHash k:: usb_tm_dispatcher
+UnitHash k:: i2c
+UnitHash k:: io_cell
+UnitHash k:: v_core
+UnitHash k:: fab_filter
+UnitHash k:: input_cell
+UnitHash k:: usb_phy
+UnitHash k:: v_top
+UnitHash k:: RAM
+UnitHash k:: jeff_uart
+UnitHash k:: usb_transaction_mgr
+2 linein = interface gpio_ifc uart_mod0 uart_gpio_0   gpio_mod_a0 pad   gpio_connect_a0
+t = interface
+t = gpio_ifc
+t = uart_mod0
+t = uart_gpio_0
+t = 
+t = 
+t = gpio_mod_a0
+t = pad
+t = 
+t = 
+t = gpio_connect_a0
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = gpio_ifc
+getCellValue:: linein[2] = uart_mod0
+getCellValue:: linein[3] = uart_gpio_0
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = gpio_mod_a0
+getCellValue:: linein[7] = pad
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = gpio_connect_a0
+AAA hidconnection = v_core.uart_mod0, gpio_mod_a0, uart_gpio_0, pad, gpio_connect_a0
+*********found interface***********
+FROM     ADDING fun = jeff_uart fin = uart_mod0 connection = gpio_ifc uart_gpio_0
+FROM     ADDING fun =  fin = uart_mod0 connection = 
+FROM     ADDING fun =  fin = uart_mod0 connection = 
+toConnection = gpio_ifc pad v_core.uart_mod0 gpio_mod_a0
+TO       ADDING tun = io_cell tin = gpio_mod_a0 connection = gpio_ifc pad v_core.uart_mod0 gpio_mod_a0
+TO       ADDING tun =  tin = gpio_mod_a0 connection = 
+TO       ADDING tun =  tin = gpio_mod_a0 connection = 
+3 linein = interface gpio_ifc uart_mod0 uart_gpio_1   gpio_mod_a1 pad   gpio_connect_a1
+t = interface
+t = gpio_ifc
+t = uart_mod0
+t = uart_gpio_1
+t = 
+t = 
+t = gpio_mod_a1
+t = pad
+t = 
+t = 
+t = gpio_connect_a1
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = gpio_ifc
+getCellValue:: linein[2] = uart_mod0
+getCellValue:: linein[3] = uart_gpio_1
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = gpio_mod_a1
+getCellValue:: linein[7] = pad
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = gpio_connect_a1
+AAA hidconnection = v_core.uart_mod0, gpio_mod_a1, uart_gpio_1, pad, gpio_connect_a1
+*********found interface***********
+FROM     ADDING fun = jeff_uart fin = uart_mod0 connection = gpio_ifc uart_gpio_1
+FROM NOT ADDING fun =  fin = uart_mod0 connection = 
+FROM NOT ADDING fun =  fin = uart_mod0 connection = 
+TO   NOT ADDING tun = io_cell tin = gpio_mod_a1 connection = gpio_ifc pad v_core.uart_mod0 gpio_mod_a1
+TO   NOT ADDING tun =  tin = gpio_mod_a1 connection = 
+TO   NOT ADDING tun =  tin = gpio_mod_a1 connection = 
+4 linein = interface gpio_ifc uart_mod0 uart_gpio_2   gpio_mod_a2 pad   gpio_connect_a2
+t = interface
+t = gpio_ifc
+t = uart_mod0
+t = uart_gpio_2
+t = 
+t = 
+t = gpio_mod_a2
+t = pad
+t = 
+t = 
+t = gpio_connect_a2
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = gpio_ifc
+getCellValue:: linein[2] = uart_mod0
+getCellValue:: linein[3] = uart_gpio_2
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = gpio_mod_a2
+getCellValue:: linein[7] = pad
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = gpio_connect_a2
+AAA hidconnection = v_core.uart_mod0, gpio_mod_a2, uart_gpio_2, pad, gpio_connect_a2
+*********found interface***********
+FROM     ADDING fun = jeff_uart fin = uart_mod0 connection = gpio_ifc uart_gpio_2
+FROM NOT ADDING fun =  fin = uart_mod0 connection = 
+FROM NOT ADDING fun =  fin = uart_mod0 connection = 
+TO   NOT ADDING tun = io_cell tin = gpio_mod_a2 connection = gpio_ifc pad v_core.uart_mod0 gpio_mod_a2
+TO   NOT ADDING tun =  tin = gpio_mod_a2 connection = 
+TO   NOT ADDING tun =  tin = gpio_mod_a2 connection = 
+5 linein = interface gpio_ifc uart_mod0 uart_gpio_3   gpio_mod_a3 pad   gpio_connect_a3
+t = interface
+t = gpio_ifc
+t = uart_mod0
+t = uart_gpio_3
+t = 
+t = 
+t = gpio_mod_a3
+t = pad
+t = 
+t = 
+t = gpio_connect_a3
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = gpio_ifc
+getCellValue:: linein[2] = uart_mod0
+getCellValue:: linein[3] = uart_gpio_3
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = gpio_mod_a3
+getCellValue:: linein[7] = pad
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = gpio_connect_a3
+AAA hidconnection = v_core.uart_mod0, gpio_mod_a3, uart_gpio_3, pad, gpio_connect_a3
+*********found interface***********
+FROM     ADDING fun = jeff_uart fin = uart_mod0 connection = gpio_ifc uart_gpio_3
+FROM NOT ADDING fun =  fin = uart_mod0 connection = 
+FROM NOT ADDING fun =  fin = uart_mod0 connection = 
+TO   NOT ADDING tun = io_cell tin = gpio_mod_a3 connection = gpio_ifc pad v_core.uart_mod0 gpio_mod_a3
+TO   NOT ADDING tun =  tin = gpio_mod_a3 connection = 
+TO   NOT ADDING tun =  tin = gpio_mod_a3 connection = 
+6 linein = interface gpio_ifc uart_mod0 uart_gpio_4   gpio_mod_a4 pad   gpio_connect_a4
+t = interface
+t = gpio_ifc
+t = uart_mod0
+t = uart_gpio_4
+t = 
+t = 
+t = gpio_mod_a4
+t = pad
+t = 
+t = 
+t = gpio_connect_a4
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = gpio_ifc
+getCellValue:: linein[2] = uart_mod0
+getCellValue:: linein[3] = uart_gpio_4
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = gpio_mod_a4
+getCellValue:: linein[7] = pad
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = gpio_connect_a4
+AAA hidconnection = v_core.uart_mod0, gpio_mod_a4, uart_gpio_4, pad, gpio_connect_a4
+*********found interface***********
+FROM     ADDING fun = jeff_uart fin = uart_mod0 connection = gpio_ifc uart_gpio_4
+FROM NOT ADDING fun =  fin = uart_mod0 connection = 
+FROM NOT ADDING fun =  fin = uart_mod0 connection = 
+TO   NOT ADDING tun = io_cell tin = gpio_mod_a4 connection = gpio_ifc pad v_core.uart_mod0 gpio_mod_a4
+TO   NOT ADDING tun =  tin = gpio_mod_a4 connection = 
+TO   NOT ADDING tun =  tin = gpio_mod_a4 connection = 
+7 linein = interface gpio_ifc uart_mod0 uart_gpio_5   gpio_mod_a5 pad   gpio_connect_a5
+t = interface
+t = gpio_ifc
+t = uart_mod0
+t = uart_gpio_5
+t = 
+t = 
+t = gpio_mod_a5
+t = pad
+t = 
+t = 
+t = gpio_connect_a5
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = gpio_ifc
+getCellValue:: linein[2] = uart_mod0
+getCellValue:: linein[3] = uart_gpio_5
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = gpio_mod_a5
+getCellValue:: linein[7] = pad
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = gpio_connect_a5
+AAA hidconnection = v_core.uart_mod0, gpio_mod_a5, uart_gpio_5, pad, gpio_connect_a5
+*********found interface***********
+FROM     ADDING fun = jeff_uart fin = uart_mod0 connection = gpio_ifc uart_gpio_5
+FROM NOT ADDING fun =  fin = uart_mod0 connection = 
+FROM NOT ADDING fun =  fin = uart_mod0 connection = 
+TO   NOT ADDING tun = io_cell tin = gpio_mod_a5 connection = gpio_ifc pad v_core.uart_mod0 gpio_mod_a5
+TO   NOT ADDING tun =  tin = gpio_mod_a5 connection = 
+TO   NOT ADDING tun =  tin = gpio_mod_a5 connection = 
+8 linein = port  v_top gpio_a0  inout gpio_mod_a0 pad_pin  inout 
+t = port
+t = 
+t = v_top
+t = gpio_a0
+t = 
+t = inout
+t = gpio_mod_a0
+t = pad_pin
+t = 
+t = inout
+t = 
+getCellValue:: linein[0] = port
+getCellValue:: linein[1] = 
+getCellValue:: linein[2] = v_top
+getCellValue:: linein[3] = gpio_a0
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = inout
+getCellValue:: linein[6] = gpio_mod_a0
+getCellValue:: linein[7] = pad_pin
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = inout
+getCellValue:: linein[10] = 
+**********found port***********
+fin = v_top tin = gpio_mod_a0 from port = gpio_a0 inout , to port = pad_pin inout  gpio_mod_a0
+FROM     ADDING fun =  fin = v_top connection = 
+FROM     ADDING fun =  fin = v_top connection = gpio_a0 inout
+FROM NOT ADDING fun =  fin = v_top connection = 
+toConnection = 
+TO       ADDING tun =  tin = gpio_mod_a0 connection = 
+TO       ADDING tun =  tin = gpio_mod_a0 connection = pad_pin inout  gpio_mod_a0
+TO   NOT ADDING tun =  tin = gpio_mod_a0 connection = 
+9 linein = port  v_top gpio_a1  inout gpio_mod_a1 pad_pin  inout 
+t = port
+t = 
+t = v_top
+t = gpio_a1
+t = 
+t = inout
+t = gpio_mod_a1
+t = pad_pin
+t = 
+t = inout
+t = 
+getCellValue:: linein[0] = port
+getCellValue:: linein[1] = 
+getCellValue:: linein[2] = v_top
+getCellValue:: linein[3] = gpio_a1
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = inout
+getCellValue:: linein[6] = gpio_mod_a1
+getCellValue:: linein[7] = pad_pin
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = inout
+getCellValue:: linein[10] = 
+**********found port***********
+fin = v_top tin = gpio_mod_a1 from port = gpio_a1 inout , to port = pad_pin inout  gpio_mod_a1
+FROM NOT ADDING fun =  fin = v_top connection = 
+FROM     ADDING fun =  fin = v_top connection = gpio_a1 inout
+FROM NOT ADDING fun =  fin = v_top connection = 
+TO   NOT ADDING tun =  tin = gpio_mod_a1 connection = 
+TO   NOT ADDING tun =  tin = gpio_mod_a1 connection = pad_pin inout  gpio_mod_a1
+TO   NOT ADDING tun =  tin = gpio_mod_a1 connection = 
+10 linein = port  v_top gpio_a2  inout gpio_mod_a2 pad_pin  inout 
+t = port
+t = 
+t = v_top
+t = gpio_a2
+t = 
+t = inout
+t = gpio_mod_a2
+t = pad_pin
+t = 
+t = inout
+t = 
+getCellValue:: linein[0] = port
+getCellValue:: linein[1] = 
+getCellValue:: linein[2] = v_top
+getCellValue:: linein[3] = gpio_a2
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = inout
+getCellValue:: linein[6] = gpio_mod_a2
+getCellValue:: linein[7] = pad_pin
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = inout
+getCellValue:: linein[10] = 
+**********found port***********
+fin = v_top tin = gpio_mod_a2 from port = gpio_a2 inout , to port = pad_pin inout  gpio_mod_a2
+FROM NOT ADDING fun =  fin = v_top connection = 
+FROM     ADDING fun =  fin = v_top connection = gpio_a2 inout
+FROM NOT ADDING fun =  fin = v_top connection = 
+TO   NOT ADDING tun =  tin = gpio_mod_a2 connection = 
+TO   NOT ADDING tun =  tin = gpio_mod_a2 connection = pad_pin inout  gpio_mod_a2
+TO   NOT ADDING tun =  tin = gpio_mod_a2 connection = 
+11 linein = port  v_top gpio_a3  inout gpio_mod_a3 pad_pin  inout 
+t = port
+t = 
+t = v_top
+t = gpio_a3
+t = 
+t = inout
+t = gpio_mod_a3
+t = pad_pin
+t = 
+t = inout
+t = 
+getCellValue:: linein[0] = port
+getCellValue:: linein[1] = 
+getCellValue:: linein[2] = v_top
+getCellValue:: linein[3] = gpio_a3
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = inout
+getCellValue:: linein[6] = gpio_mod_a3
+getCellValue:: linein[7] = pad_pin
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = inout
+getCellValue:: linein[10] = 
+**********found port***********
+fin = v_top tin = gpio_mod_a3 from port = gpio_a3 inout , to port = pad_pin inout  gpio_mod_a3
+FROM NOT ADDING fun =  fin = v_top connection = 
+FROM     ADDING fun =  fin = v_top connection = gpio_a3 inout
+FROM NOT ADDING fun =  fin = v_top connection = 
+TO   NOT ADDING tun =  tin = gpio_mod_a3 connection = 
+TO   NOT ADDING tun =  tin = gpio_mod_a3 connection = pad_pin inout  gpio_mod_a3
+TO   NOT ADDING tun =  tin = gpio_mod_a3 connection = 
+12 linein = port  v_top gpio_a4  inout gpio_mod_a4 pad_pin  inout 
+t = port
+t = 
+t = v_top
+t = gpio_a4
+t = 
+t = inout
+t = gpio_mod_a4
+t = pad_pin
+t = 
+t = inout
+t = 
+getCellValue:: linein[0] = port
+getCellValue:: linein[1] = 
+getCellValue:: linein[2] = v_top
+getCellValue:: linein[3] = gpio_a4
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = inout
+getCellValue:: linein[6] = gpio_mod_a4
+getCellValue:: linein[7] = pad_pin
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = inout
+getCellValue:: linein[10] = 
+**********found port***********
+fin = v_top tin = gpio_mod_a4 from port = gpio_a4 inout , to port = pad_pin inout  gpio_mod_a4
+FROM NOT ADDING fun =  fin = v_top connection = 
+FROM     ADDING fun =  fin = v_top connection = gpio_a4 inout
+FROM NOT ADDING fun =  fin = v_top connection = 
+TO   NOT ADDING tun =  tin = gpio_mod_a4 connection = 
+TO   NOT ADDING tun =  tin = gpio_mod_a4 connection = pad_pin inout  gpio_mod_a4
+TO   NOT ADDING tun =  tin = gpio_mod_a4 connection = 
+13 linein = port  v_top gpio_a5  inout gpio_mod_a5 pad_pin  inout 
+t = port
+t = 
+t = v_top
+t = gpio_a5
+t = 
+t = inout
+t = gpio_mod_a5
+t = pad_pin
+t = 
+t = inout
+t = 
+getCellValue:: linein[0] = port
+getCellValue:: linein[1] = 
+getCellValue:: linein[2] = v_top
+getCellValue:: linein[3] = gpio_a5
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = inout
+getCellValue:: linein[6] = gpio_mod_a5
+getCellValue:: linein[7] = pad_pin
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = inout
+getCellValue:: linein[10] = 
+**********found port***********
+fin = v_top tin = gpio_mod_a5 from port = gpio_a5 inout , to port = pad_pin inout  gpio_mod_a5
+FROM NOT ADDING fun =  fin = v_top connection = 
+FROM     ADDING fun =  fin = v_top connection = gpio_a5 inout
+FROM NOT ADDING fun =  fin = v_top connection = 
+TO   NOT ADDING tun =  tin = gpio_mod_a5 connection = 
+TO   NOT ADDING tun =  tin = gpio_mod_a5 connection = pad_pin inout  gpio_mod_a5
+TO   NOT ADDING tun =  tin = gpio_mod_a5 connection = 
+14 linein = interface uart_ifc v_top uart1   uart_mod1 modem   u1_modem
+t = interface
+t = uart_ifc
+t = v_top
+t = uart1
+t = 
+t = 
+t = uart_mod1
+t = modem
+t = 
+t = 
+t = u1_modem
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = uart_ifc
+getCellValue:: linein[2] = v_top
+getCellValue:: linein[3] = uart1
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = uart_mod1
+getCellValue:: linein[7] = modem
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = u1_modem
+AAA hidconnection = , v_core.uart_mod1, uart1, modem, u1_modem
+*********found interface***********
+FROM     ADDING fun = v_top fin = v_top connection = uart_ifc uart1
+FROM NOT ADDING fun =  fin = v_top connection = 
+FROM NOT ADDING fun =  fin = v_top connection = 
+toConnection = uart_ifc modem  v_core.uart_mod1
+TO       ADDING tun = uart tin = uart_mod1 connection = uart_ifc modem  v_core.uart_mod1
+TO   NOT ADDING tun =  tin = uart_mod1 connection = 
+TO   NOT ADDING tun =  tin = uart_mod1 connection = 
+15 linein = interface uart_ifc v_top uart2   uart_mod2 modem   u2_modem
+t = interface
+t = uart_ifc
+t = v_top
+t = uart2
+t = 
+t = 
+t = uart_mod2
+t = modem
+t = 
+t = 
+t = u2_modem
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = uart_ifc
+getCellValue:: linein[2] = v_top
+getCellValue:: linein[3] = uart2
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = uart_mod2
+getCellValue:: linein[7] = modem
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = u2_modem
+AAA hidconnection = , v_core.uart_mod2, uart2, modem, u2_modem
+*********found interface***********
+FROM     ADDING fun = v_top fin = v_top connection = uart_ifc uart2
+FROM NOT ADDING fun =  fin = v_top connection = 
+FROM NOT ADDING fun =  fin = v_top connection = 
+TO   NOT ADDING tun = uart tin = uart_mod2 connection = uart_ifc modem  v_core.uart_mod2
+TO   NOT ADDING tun =  tin = uart_mod2 connection = 
+TO   NOT ADDING tun =  tin = uart_mod2 connection = 
+16 linein = interface uart_ifc v_top uart3   uart_mod3 modem   u3_modem
+t = interface
+t = uart_ifc
+t = v_top
+t = uart3
+t = 
+t = 
+t = uart_mod3
+t = modem
+t = 
+t = 
+t = u3_modem
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = uart_ifc
+getCellValue:: linein[2] = v_top
+getCellValue:: linein[3] = uart3
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = uart_mod3
+getCellValue:: linein[7] = modem
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = u3_modem
+AAA hidconnection = , v_core.uart_mod3, uart3, modem, u3_modem
+*********found interface***********
+FROM     ADDING fun = v_top fin = v_top connection = uart_ifc uart3
+FROM NOT ADDING fun =  fin = v_top connection = 
+FROM NOT ADDING fun =  fin = v_top connection = 
+TO   NOT ADDING tun = uart tin = uart_mod3 connection = uart_ifc modem  v_core.uart_mod3
+TO   NOT ADDING tun =  tin = uart_mod3 connection = 
+TO   NOT ADDING tun =  tin = uart_mod3 connection = 
+17 linein = interface ram_bus RAM_ ram_bus0   uart_mgr_ ram_bus1   ram_ufm
+t = interface
+t = ram_bus
+t = RAM_
+t = ram_bus0
+t = 
+t = 
+t = uart_mgr_
+t = ram_bus1
+t = 
+t = 
+t = ram_ufm
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = ram_bus
+getCellValue:: linein[2] = RAM_
+getCellValue:: linein[3] = ram_bus0
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = uart_mgr_
+getCellValue:: linein[7] = ram_bus1
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = ram_ufm
+AAA hidconnection = v_core.RAM_, v_core.uart_mgr_, ram_bus0, ram_bus1, ram_ufm
+*********found interface***********
+FROM     ADDING fun = RAM fin = RAM_ connection = ram_bus ram_bus0
+FROM NOT ADDING fun =  fin = RAM_ connection = 
+FROM NOT ADDING fun =  fin = RAM_ connection = 
+toConnection = ram_bus ram_bus1 v_core.RAM_ v_core.uart_mgr_
+TO       ADDING tun = uart_mgr tin = uart_mgr_ connection = ram_bus ram_bus1 v_core.RAM_ v_core.uart_mgr_
+TO   NOT ADDING tun =  tin = uart_mgr_ connection = 
+TO   NOT ADDING tun =  tin = uart_mgr_ connection = 
+18 linein = interface ram_bus RAM_ ram_bus1   usb_protocol_mgr_ ram_bus1   ram_upm
+t = interface
+t = ram_bus
+t = RAM_
+t = ram_bus1
+t = 
+t = 
+t = usb_protocol_mgr_
+t = ram_bus1
+t = 
+t = 
+t = ram_upm
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = ram_bus
+getCellValue:: linein[2] = RAM_
+getCellValue:: linein[3] = ram_bus1
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = usb_protocol_mgr_
+getCellValue:: linein[7] = ram_bus1
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = ram_upm
+AAA hidconnection = v_core.RAM_, v_core.usb_protocol_mgr_, ram_bus1, ram_bus1, ram_upm
+*********found interface***********
+FROM     ADDING fun = RAM fin = RAM_ connection = ram_bus ram_bus1
+FROM NOT ADDING fun =  fin = RAM_ connection = 
+FROM NOT ADDING fun =  fin = RAM_ connection = 
+toConnection = ram_bus ram_bus1 v_core.RAM_ v_core.usb_protocol_mgr_
+TO       ADDING tun = usb_protocol_mgr tin = usb_protocol_mgr_ connection = ram_bus ram_bus1 v_core.RAM_ v_core.usb_protocol_mgr_
+TO   NOT ADDING tun =  tin = usb_protocol_mgr_ connection = 
+TO   NOT ADDING tun =  tin = usb_protocol_mgr_ connection = 
+19 linein = interface ram_bus RAM_ ram_bus2   usb_transaction_mgr_ ram_bus1   ram_utm
+t = interface
+t = ram_bus
+t = RAM_
+t = ram_bus2
+t = 
+t = 
+t = usb_transaction_mgr_
+t = ram_bus1
+t = 
+t = 
+t = ram_utm
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = ram_bus
+getCellValue:: linein[2] = RAM_
+getCellValue:: linein[3] = ram_bus2
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = usb_transaction_mgr_
+getCellValue:: linein[7] = ram_bus1
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = ram_utm
+AAA hidconnection = v_core.RAM_, v_core.usb_transaction_mgr_, ram_bus2, ram_bus1, ram_utm
+*********found interface***********
+FROM     ADDING fun = RAM fin = RAM_ connection = ram_bus ram_bus2
+FROM NOT ADDING fun =  fin = RAM_ connection = 
+FROM NOT ADDING fun =  fin = RAM_ connection = 
+toConnection = ram_bus ram_bus1 v_core.RAM_ v_core.usb_transaction_mgr_
+TO       ADDING tun = usb_transaction_mgr tin = usb_transaction_mgr_ connection = ram_bus ram_bus1 v_core.RAM_ v_core.usb_transaction_mgr_
+TO   NOT ADDING tun =  tin = usb_transaction_mgr_ connection = 
+TO   NOT ADDING tun =  tin = usb_transaction_mgr_ connection = 
+20 linein = interface fabric_ad fab_uart_mgr fabric   uart_mgr_ fabric   umf_ufm
+t = interface
+t = fabric_ad
+t = fab_uart_mgr
+t = fabric
+t = 
+t = 
+t = uart_mgr_
+t = fabric
+t = 
+t = 
+t = umf_ufm
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_ad
+getCellValue:: linein[2] = fab_uart_mgr
+getCellValue:: linein[3] = fabric
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = uart_mgr_
+getCellValue:: linein[7] = fabric
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = umf_ufm
+AAA hidconnection = v_core.fab_uart_mgr, v_core.uart_mgr_, fabric, fabric, umf_ufm
+*********found interface***********
+FROM     ADDING fun = fab fin = fab_uart_mgr connection = fabric_ad fabric
+FROM NOT ADDING fun =  fin = fab_uart_mgr connection = 
+FROM NOT ADDING fun =  fin = fab_uart_mgr connection = 
+toConnection = fabric_ad fabric v_core.fab_uart_mgr v_core.uart_mgr_
+TO       ADDING tun = uart_mgr tin = uart_mgr_ connection = fabric_ad fabric v_core.fab_uart_mgr v_core.uart_mgr_
+TO   NOT ADDING tun =  tin = uart_mgr_ connection = 
+TO   NOT ADDING tun =  tin = uart_mgr_ connection = 
+21 linein = interface fabric_ad uart_fab_0 fabric   uart_mod0 fabric   uf0_ut0
+t = interface
+t = fabric_ad
+t = uart_fab_0
+t = fabric
+t = 
+t = 
+t = uart_mod0
+t = fabric
+t = 
+t = 
+t = uf0_ut0
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_ad
+getCellValue:: linein[2] = uart_fab_0
+getCellValue:: linein[3] = fabric
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = uart_mod0
+getCellValue:: linein[7] = fabric
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = uf0_ut0
+AAA hidconnection = v_core.uart_fab_0, v_core.uart_mod0, fabric, fabric, uf0_ut0
+*********found interface***********
+FROM NOT ADDING fun = fab fin = uart_fab_0 connection = fabric_ad fabric
+FROM NOT ADDING fun =  fin = uart_fab_0 connection = 
+FROM NOT ADDING fun =  fin = uart_fab_0 connection = 
+toConnection = fabric_ad fabric v_core.uart_fab_0 v_core.uart_mod0
+TO       ADDING tun = jeff_uart tin = uart_mod0 connection = fabric_ad fabric v_core.uart_fab_0 v_core.uart_mod0
+TO   NOT ADDING tun =  tin = uart_mod0 connection = 
+TO   NOT ADDING tun =  tin = uart_mod0 connection = 
+22 linein = interface fabric_ad uart_fab_1 fabric   uart_mod1 fabric   uf1_ut1
+t = interface
+t = fabric_ad
+t = uart_fab_1
+t = fabric
+t = 
+t = 
+t = uart_mod1
+t = fabric
+t = 
+t = 
+t = uf1_ut1
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_ad
+getCellValue:: linein[2] = uart_fab_1
+getCellValue:: linein[3] = fabric
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = uart_mod1
+getCellValue:: linein[7] = fabric
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = uf1_ut1
+AAA hidconnection = v_core.uart_fab_1, v_core.uart_mod1, fabric, fabric, uf1_ut1
+*********found interface***********
+FROM NOT ADDING fun = fab fin = uart_fab_1 connection = fabric_ad fabric
+FROM NOT ADDING fun =  fin = uart_fab_1 connection = 
+FROM NOT ADDING fun =  fin = uart_fab_1 connection = 
+toConnection = fabric_ad fabric v_core.uart_fab_1 v_core.uart_mod1
+TO       ADDING tun = uart tin = uart_mod1 connection = fabric_ad fabric v_core.uart_fab_1 v_core.uart_mod1
+TO   NOT ADDING tun =  tin = uart_mod1 connection = 
+TO   NOT ADDING tun =  tin = uart_mod1 connection = 
+23 linein = interface fabric_ad uart_fab_2 fabric   uart_mod2 fabric   uf2_ut2
+t = interface
+t = fabric_ad
+t = uart_fab_2
+t = fabric
+t = 
+t = 
+t = uart_mod2
+t = fabric
+t = 
+t = 
+t = uf2_ut2
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_ad
+getCellValue:: linein[2] = uart_fab_2
+getCellValue:: linein[3] = fabric
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = uart_mod2
+getCellValue:: linein[7] = fabric
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = uf2_ut2
+AAA hidconnection = v_core.uart_fab_2, v_core.uart_mod2, fabric, fabric, uf2_ut2
+*********found interface***********
+FROM NOT ADDING fun = fab fin = uart_fab_2 connection = fabric_ad fabric
+FROM NOT ADDING fun =  fin = uart_fab_2 connection = 
+FROM NOT ADDING fun =  fin = uart_fab_2 connection = 
+TO   NOT ADDING tun = uart tin = uart_mod2 connection = fabric_ad fabric v_core.uart_fab_2 v_core.uart_mod2
+TO   NOT ADDING tun =  tin = uart_mod2 connection = 
+TO   NOT ADDING tun =  tin = uart_mod2 connection = 
+24 linein = interface fabric_ad uart_fab_3 fabric   uart_mod3 fabric   uf3_ut3
+t = interface
+t = fabric_ad
+t = uart_fab_3
+t = fabric
+t = 
+t = 
+t = uart_mod3
+t = fabric
+t = 
+t = 
+t = uf3_ut3
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_ad
+getCellValue:: linein[2] = uart_fab_3
+getCellValue:: linein[3] = fabric
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = uart_mod3
+getCellValue:: linein[7] = fabric
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = uf3_ut3
+AAA hidconnection = v_core.uart_fab_3, v_core.uart_mod3, fabric, fabric, uf3_ut3
+*********found interface***********
+FROM NOT ADDING fun = fab fin = uart_fab_3 connection = fabric_ad fabric
+FROM NOT ADDING fun =  fin = uart_fab_3 connection = 
+FROM NOT ADDING fun =  fin = uart_fab_3 connection = 
+TO   NOT ADDING tun = uart tin = uart_mod3 connection = fabric_ad fabric v_core.uart_fab_3 v_core.uart_mod3
+TO   NOT ADDING tun =  tin = uart_mod3 connection = 
+TO   NOT ADDING tun =  tin = uart_mod3 connection = 
+25 linein = interface fabric_ad fab_i2c fabric   i2c_ fabric   fic_i2c
+t = interface
+t = fabric_ad
+t = fab_i2c
+t = fabric
+t = 
+t = 
+t = i2c_
+t = fabric
+t = 
+t = 
+t = fic_i2c
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_ad
+getCellValue:: linein[2] = fab_i2c
+getCellValue:: linein[3] = fabric
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = i2c_
+getCellValue:: linein[7] = fabric
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = fic_i2c
+AAA hidconnection = v_core.fab_i2c, v_core.i2c_, fabric, fabric, fic_i2c
+*********found interface***********
+FROM NOT ADDING fun = fab fin = fab_i2c connection = fabric_ad fabric
+FROM NOT ADDING fun =  fin = fab_i2c connection = 
+FROM NOT ADDING fun =  fin = fab_i2c connection = 
+toConnection = fabric_ad fabric v_core.fab_i2c v_core.i2c_
+TO       ADDING tun = i2c tin = i2c_ connection = fabric_ad fabric v_core.fab_i2c v_core.i2c_
+TO   NOT ADDING tun =  tin = i2c_ connection = 
+TO   NOT ADDING tun =  tin = i2c_ connection = 
+26 linein = interface fabric_ad proto_fab fabric   usb_protocol_mgr_ fabric   prf_upm
+t = interface
+t = fabric_ad
+t = proto_fab
+t = fabric
+t = 
+t = 
+t = usb_protocol_mgr_
+t = fabric
+t = 
+t = 
+t = prf_upm
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_ad
+getCellValue:: linein[2] = proto_fab
+getCellValue:: linein[3] = fabric
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = usb_protocol_mgr_
+getCellValue:: linein[7] = fabric
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = prf_upm
+AAA hidconnection = v_core.proto_fab, v_core.usb_protocol_mgr_, fabric, fabric, prf_upm
+*********found interface***********
+FROM NOT ADDING fun = fab fin = proto_fab connection = fabric_ad fabric
+FROM NOT ADDING fun =  fin = proto_fab connection = 
+FROM NOT ADDING fun =  fin = proto_fab connection = 
+toConnection = fabric_ad fabric v_core.proto_fab v_core.usb_protocol_mgr_
+TO       ADDING tun = usb_protocol_mgr tin = usb_protocol_mgr_ connection = fabric_ad fabric v_core.proto_fab v_core.usb_protocol_mgr_
+TO   NOT ADDING tun =  tin = usb_protocol_mgr_ connection = 
+TO   NOT ADDING tun =  tin = usb_protocol_mgr_ connection = 
+27 linein = interface fabric_ad trans_fab fabric   usb_transaction_mgr_ fabric   trf_utm
+t = interface
+t = fabric_ad
+t = trans_fab
+t = fabric
+t = 
+t = 
+t = usb_transaction_mgr_
+t = fabric
+t = 
+t = 
+t = trf_utm
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_ad
+getCellValue:: linein[2] = trans_fab
+getCellValue:: linein[3] = fabric
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = usb_transaction_mgr_
+getCellValue:: linein[7] = fabric
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = trf_utm
+AAA hidconnection = v_core.trans_fab, v_core.usb_transaction_mgr_, fabric, fabric, trf_utm
+*********found interface***********
+FROM NOT ADDING fun = fab fin = trans_fab connection = fabric_ad fabric
+FROM NOT ADDING fun =  fin = trans_fab connection = 
+FROM NOT ADDING fun =  fin = trans_fab connection = 
+toConnection = fabric_ad fabric v_core.trans_fab v_core.usb_transaction_mgr_
+TO       ADDING tun = usb_transaction_mgr tin = usb_transaction_mgr_ connection = fabric_ad fabric v_core.trans_fab v_core.usb_transaction_mgr_
+TO   NOT ADDING tun =  tin = usb_transaction_mgr_ connection = 
+TO   NOT ADDING tun =  tin = usb_transaction_mgr_ connection = 
+28 linein = interface fabric_bus trans_fab fabric_out   proto_fab fabric_in   trf_prf
+t = interface
+t = fabric_bus
+t = trans_fab
+t = fabric_out
+t = 
+t = 
+t = proto_fab
+t = fabric_in
+t = 
+t = 
+t = trf_prf
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_bus
+getCellValue:: linein[2] = trans_fab
+getCellValue:: linein[3] = fabric_out
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = proto_fab
+getCellValue:: linein[7] = fabric_in
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = trf_prf
+AAA hidconnection = v_core.trans_fab, v_core.proto_fab, fabric_out, fabric_in, trf_prf
+*********found interface***********
+FROM     ADDING fun = fab fin = trans_fab connection = fabric_bus fabric_out
+FROM NOT ADDING fun =  fin = trans_fab connection = 
+FROM NOT ADDING fun =  fin = trans_fab connection = 
+toConnection = fabric_bus fabric_in v_core.trans_fab v_core.proto_fab
+TO       ADDING tun = fab tin = proto_fab connection = fabric_bus fabric_in v_core.trans_fab v_core.proto_fab
+TO   NOT ADDING tun =  tin = proto_fab connection = 
+TO   NOT ADDING tun =  tin = proto_fab connection = 
+29 linein = interface fabric_bus proto_fab fabric_out   fab_filter_ fabric_in   prf_ffl
+t = interface
+t = fabric_bus
+t = proto_fab
+t = fabric_out
+t = 
+t = 
+t = fab_filter_
+t = fabric_in
+t = 
+t = 
+t = prf_ffl
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_bus
+getCellValue:: linein[2] = proto_fab
+getCellValue:: linein[3] = fabric_out
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = fab_filter_
+getCellValue:: linein[7] = fabric_in
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = prf_ffl
+AAA hidconnection = v_core.proto_fab, v_core.fab_filter_, fabric_out, fabric_in, prf_ffl
+*********found interface***********
+FROM NOT ADDING fun = fab fin = proto_fab connection = fabric_bus fabric_out
+FROM NOT ADDING fun =  fin = proto_fab connection = 
+FROM NOT ADDING fun =  fin = proto_fab connection = 
+toConnection = fabric_bus fabric_in v_core.proto_fab v_core.fab_filter_
+TO       ADDING tun = fab_filter tin = fab_filter_ connection = fabric_bus fabric_in v_core.proto_fab v_core.fab_filter_
+TO   NOT ADDING tun =  tin = fab_filter_ connection = 
+TO   NOT ADDING tun =  tin = fab_filter_ connection = 
+30 linein = interface fabric_bus fab_filter_ fabric_out   fab_uart_mgr fabric_in   ffl_umf
+t = interface
+t = fabric_bus
+t = fab_filter_
+t = fabric_out
+t = 
+t = 
+t = fab_uart_mgr
+t = fabric_in
+t = 
+t = 
+t = ffl_umf
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_bus
+getCellValue:: linein[2] = fab_filter_
+getCellValue:: linein[3] = fabric_out
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = fab_uart_mgr
+getCellValue:: linein[7] = fabric_in
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = ffl_umf
+AAA hidconnection = v_core.fab_filter_, v_core.fab_uart_mgr, fabric_out, fabric_in, ffl_umf
+*********found interface***********
+FROM     ADDING fun = fab_filter fin = fab_filter_ connection = fabric_bus fabric_out
+FROM NOT ADDING fun =  fin = fab_filter_ connection = 
+FROM NOT ADDING fun =  fin = fab_filter_ connection = 
+TO   NOT ADDING tun = fab tin = fab_uart_mgr connection = fabric_bus fabric_in v_core.fab_filter_ v_core.fab_uart_mgr
+TO   NOT ADDING tun =  tin = fab_uart_mgr connection = 
+TO   NOT ADDING tun =  tin = fab_uart_mgr connection = 
+31 linein = interface fabric_bus fab_uart_mgr fabric_out   fab_i2c fabric_in   umf_fic
+t = interface
+t = fabric_bus
+t = fab_uart_mgr
+t = fabric_out
+t = 
+t = 
+t = fab_i2c
+t = fabric_in
+t = 
+t = 
+t = umf_fic
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_bus
+getCellValue:: linein[2] = fab_uart_mgr
+getCellValue:: linein[3] = fabric_out
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = fab_i2c
+getCellValue:: linein[7] = fabric_in
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = umf_fic
+AAA hidconnection = v_core.fab_uart_mgr, v_core.fab_i2c, fabric_out, fabric_in, umf_fic
+*********found interface***********
+FROM NOT ADDING fun = fab fin = fab_uart_mgr connection = fabric_bus fabric_out
+FROM NOT ADDING fun =  fin = fab_uart_mgr connection = 
+FROM NOT ADDING fun =  fin = fab_uart_mgr connection = 
+TO   NOT ADDING tun = fab tin = fab_i2c connection = fabric_bus fabric_in v_core.fab_uart_mgr v_core.fab_i2c
+TO   NOT ADDING tun =  tin = fab_i2c connection = 
+TO   NOT ADDING tun =  tin = fab_i2c connection = 
+32 linein = interface fabric_bus fab_i2c fabric_out   uart_fab_0 fabric_in   fic_uf0
+t = interface
+t = fabric_bus
+t = fab_i2c
+t = fabric_out
+t = 
+t = 
+t = uart_fab_0
+t = fabric_in
+t = 
+t = 
+t = fic_uf0
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_bus
+getCellValue:: linein[2] = fab_i2c
+getCellValue:: linein[3] = fabric_out
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = uart_fab_0
+getCellValue:: linein[7] = fabric_in
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = fic_uf0
+AAA hidconnection = v_core.fab_i2c, v_core.uart_fab_0, fabric_out, fabric_in, fic_uf0
+*********found interface***********
+FROM NOT ADDING fun = fab fin = fab_i2c connection = fabric_bus fabric_out
+FROM NOT ADDING fun =  fin = fab_i2c connection = 
+FROM NOT ADDING fun =  fin = fab_i2c connection = 
+TO   NOT ADDING tun = fab tin = uart_fab_0 connection = fabric_bus fabric_in v_core.fab_i2c v_core.uart_fab_0
+TO   NOT ADDING tun =  tin = uart_fab_0 connection = 
+TO   NOT ADDING tun =  tin = uart_fab_0 connection = 
+33 linein = interface fabric_bus uart_fab_0 fabric_out   uart_fab_1 fabric_in   uf0_uf1
+t = interface
+t = fabric_bus
+t = uart_fab_0
+t = fabric_out
+t = 
+t = 
+t = uart_fab_1
+t = fabric_in
+t = 
+t = 
+t = uf0_uf1
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_bus
+getCellValue:: linein[2] = uart_fab_0
+getCellValue:: linein[3] = fabric_out
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = uart_fab_1
+getCellValue:: linein[7] = fabric_in
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = uf0_uf1
+AAA hidconnection = v_core.uart_fab_0, v_core.uart_fab_1, fabric_out, fabric_in, uf0_uf1
+*********found interface***********
+FROM NOT ADDING fun = fab fin = uart_fab_0 connection = fabric_bus fabric_out
+FROM NOT ADDING fun =  fin = uart_fab_0 connection = 
+FROM NOT ADDING fun =  fin = uart_fab_0 connection = 
+TO   NOT ADDING tun = fab tin = uart_fab_1 connection = fabric_bus fabric_in v_core.uart_fab_0 v_core.uart_fab_1
+TO   NOT ADDING tun =  tin = uart_fab_1 connection = 
+TO   NOT ADDING tun =  tin = uart_fab_1 connection = 
+34 linein = interface fabric_bus uart_fab_1 fabric_out   uart_fab_2 fabric_in   uf1_uf2
+t = interface
+t = fabric_bus
+t = uart_fab_1
+t = fabric_out
+t = 
+t = 
+t = uart_fab_2
+t = fabric_in
+t = 
+t = 
+t = uf1_uf2
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_bus
+getCellValue:: linein[2] = uart_fab_1
+getCellValue:: linein[3] = fabric_out
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = uart_fab_2
+getCellValue:: linein[7] = fabric_in
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = uf1_uf2
+AAA hidconnection = v_core.uart_fab_1, v_core.uart_fab_2, fabric_out, fabric_in, uf1_uf2
+*********found interface***********
+FROM NOT ADDING fun = fab fin = uart_fab_1 connection = fabric_bus fabric_out
+FROM NOT ADDING fun =  fin = uart_fab_1 connection = 
+FROM NOT ADDING fun =  fin = uart_fab_1 connection = 
+TO   NOT ADDING tun = fab tin = uart_fab_2 connection = fabric_bus fabric_in v_core.uart_fab_1 v_core.uart_fab_2
+TO   NOT ADDING tun =  tin = uart_fab_2 connection = 
+TO   NOT ADDING tun =  tin = uart_fab_2 connection = 
+35 linein = interface fabric_bus uart_fab_2 fabric_out   uart_fab_3 fabric_in   uf2_uf3
+t = interface
+t = fabric_bus
+t = uart_fab_2
+t = fabric_out
+t = 
+t = 
+t = uart_fab_3
+t = fabric_in
+t = 
+t = 
+t = uf2_uf3
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_bus
+getCellValue:: linein[2] = uart_fab_2
+getCellValue:: linein[3] = fabric_out
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = uart_fab_3
+getCellValue:: linein[7] = fabric_in
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = uf2_uf3
+AAA hidconnection = v_core.uart_fab_2, v_core.uart_fab_3, fabric_out, fabric_in, uf2_uf3
+*********found interface***********
+FROM NOT ADDING fun = fab fin = uart_fab_2 connection = fabric_bus fabric_out
+FROM NOT ADDING fun =  fin = uart_fab_2 connection = 
+FROM NOT ADDING fun =  fin = uart_fab_2 connection = 
+TO   NOT ADDING tun = fab tin = uart_fab_3 connection = fabric_bus fabric_in v_core.uart_fab_2 v_core.uart_fab_3
+TO   NOT ADDING tun =  tin = uart_fab_3 connection = 
+TO   NOT ADDING tun =  tin = uart_fab_3 connection = 
+36 linein = interface fabric_bus uart_fab_3 fabric_out   trans_fab fabric_in   uf3_trf
+t = interface
+t = fabric_bus
+t = uart_fab_3
+t = fabric_out
+t = 
+t = 
+t = trans_fab
+t = fabric_in
+t = 
+t = 
+t = uf3_trf
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fabric_bus
+getCellValue:: linein[2] = uart_fab_3
+getCellValue:: linein[3] = fabric_out
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = trans_fab
+getCellValue:: linein[7] = fabric_in
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = uf3_trf
+AAA hidconnection = v_core.uart_fab_3, v_core.trans_fab, fabric_out, fabric_in, uf3_trf
+*********found interface***********
+FROM NOT ADDING fun = fab fin = uart_fab_3 connection = fabric_bus fabric_out
+FROM NOT ADDING fun =  fin = uart_fab_3 connection = 
+FROM NOT ADDING fun =  fin = uart_fab_3 connection = 
+TO   NOT ADDING tun = fab tin = trans_fab connection = fabric_bus fabric_in v_core.uart_fab_3 v_core.trans_fab
+TO   NOT ADDING tun =  tin = trans_fab connection = 
+TO   NOT ADDING tun =  tin = trans_fab connection = 
+37 linein = interface fifo_reg_bus uart_mgr_ fifo_reg_bus0   fifo_regs_ fifo_reg   ufm_ffr
+t = interface
+t = fifo_reg_bus
+t = uart_mgr_
+t = fifo_reg_bus0
+t = 
+t = 
+t = fifo_regs_
+t = fifo_reg
+t = 
+t = 
+t = ufm_ffr
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fifo_reg_bus
+getCellValue:: linein[2] = uart_mgr_
+getCellValue:: linein[3] = fifo_reg_bus0
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = fifo_regs_
+getCellValue:: linein[7] = fifo_reg
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = ufm_ffr
+AAA hidconnection = v_core.uart_mgr_, v_core.fifo_regs_, fifo_reg_bus0, fifo_reg, ufm_ffr
+*********found interface***********
+FROM     ADDING fun = uart_mgr fin = uart_mgr_ connection = fifo_reg_bus fifo_reg_bus0
+FROM NOT ADDING fun =  fin = uart_mgr_ connection = 
+FROM NOT ADDING fun =  fin = uart_mgr_ connection = 
+toConnection = fifo_reg_bus fifo_reg v_core.uart_mgr_ v_core.fifo_regs_
+TO       ADDING tun = fifo_regs tin = fifo_regs_ connection = fifo_reg_bus fifo_reg v_core.uart_mgr_ v_core.fifo_regs_
+TO   NOT ADDING tun =  tin = fifo_regs_ connection = 
+TO   NOT ADDING tun =  tin = fifo_regs_ connection = 
+38 linein = interface fifo_reg_bus fifo_regs_ fifo_reg_bus0   usb_protocol_mgr_ fifo_reg   ffr_upm
+t = interface
+t = fifo_reg_bus
+t = fifo_regs_
+t = fifo_reg_bus0
+t = 
+t = 
+t = usb_protocol_mgr_
+t = fifo_reg
+t = 
+t = 
+t = ffr_upm
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = fifo_reg_bus
+getCellValue:: linein[2] = fifo_regs_
+getCellValue:: linein[3] = fifo_reg_bus0
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = usb_protocol_mgr_
+getCellValue:: linein[7] = fifo_reg
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = ffr_upm
+AAA hidconnection = v_core.fifo_regs_, v_core.usb_protocol_mgr_, fifo_reg_bus0, fifo_reg, ffr_upm
+*********found interface***********
+FROM     ADDING fun = fifo_regs fin = fifo_regs_ connection = fifo_reg_bus fifo_reg_bus0
+FROM NOT ADDING fun =  fin = fifo_regs_ connection = 
+FROM NOT ADDING fun =  fin = fifo_regs_ connection = 
+toConnection = fifo_reg_bus fifo_reg v_core.fifo_regs_ v_core.usb_protocol_mgr_
+TO       ADDING tun = usb_protocol_mgr tin = usb_protocol_mgr_ connection = fifo_reg_bus fifo_reg v_core.fifo_regs_ v_core.usb_protocol_mgr_
+TO   NOT ADDING tun =  tin = usb_protocol_mgr_ connection = 
+TO   NOT ADDING tun =  tin = usb_protocol_mgr_ connection = 
+39 linein = interface tp_bus usb_protocol_mgr_ tp_bus   usb_transaction_mgr_ tp_bus   
+t = interface
+t = tp_bus
+t = usb_protocol_mgr_
+t = tp_bus
+t = 
+t = 
+t = usb_transaction_mgr_
+t = tp_bus
+t = 
+t = 
+t = 
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = tp_bus
+getCellValue:: linein[2] = usb_protocol_mgr_
+getCellValue:: linein[3] = tp_bus
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = usb_transaction_mgr_
+getCellValue:: linein[7] = tp_bus
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = 
+AAA hidconnection = v_core.usb_protocol_mgr_, v_core.usb_transaction_mgr_, tp_bus, tp_bus, 
+*********found interface***********
+FROM     ADDING fun = usb_protocol_mgr fin = usb_protocol_mgr_ connection = tp_bus tp_bus
+FROM NOT ADDING fun =  fin = usb_protocol_mgr_ connection = 
+FROM NOT ADDING fun =  fin = usb_protocol_mgr_ connection = 
+toConnection = tp_bus tp_bus v_core.usb_protocol_mgr_ v_core.usb_transaction_mgr_
+TO       ADDING tun = usb_transaction_mgr tin = usb_transaction_mgr_ connection = tp_bus tp_bus v_core.usb_protocol_mgr_ v_core.usb_transaction_mgr_
+TO   NOT ADDING tun =  tin = usb_transaction_mgr_ connection = 
+TO   NOT ADDING tun =  tin = usb_transaction_mgr_ connection = 
+40 linein = interface ix_bus usb_phy_ phy_rx   usb_tm_packetizer_ phy_rx   
+t = interface
+t = ix_bus
+t = usb_phy_
+t = phy_rx
+t = 
+t = 
+t = usb_tm_packetizer_
+t = phy_rx
+t = 
+t = 
+t = 
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = ix_bus
+getCellValue:: linein[2] = usb_phy_
+getCellValue:: linein[3] = phy_rx
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = usb_tm_packetizer_
+getCellValue:: linein[7] = phy_rx
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = 
+AAA hidconnection = v_core.usb_phy_, v_core.usb_transaction_mgr_.usb_tm_packetizer_, phy_rx, phy_rx, 
+*********found interface***********
+FROM     ADDING fun = usb_phy fin = usb_phy_ connection = ix_bus phy_rx
+FROM NOT ADDING fun =  fin = usb_phy_ connection = 
+FROM NOT ADDING fun =  fin = usb_phy_ connection = 
+toConnection = ix_bus phy_rx v_core.usb_phy_ v_core.usb_transaction_mgr_.usb_tm_packetizer_
+TO       ADDING tun = usb_tm_packetizer tin = usb_tm_packetizer_ connection = ix_bus phy_rx v_core.usb_phy_ v_core.usb_transaction_mgr_.usb_tm_packetizer_
+TO   NOT ADDING tun =  tin = usb_tm_packetizer_ connection = 
+TO   NOT ADDING tun =  tin = usb_tm_packetizer_ connection = 
+41 linein = interface ix_bus usb_tm_dispatcher_ phy_tx   usb_phy_ phy_tx   
+t = interface
+t = ix_bus
+t = usb_tm_dispatcher_
+t = phy_tx
+t = 
+t = 
+t = usb_phy_
+t = phy_tx
+t = 
+t = 
+t = 
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = ix_bus
+getCellValue:: linein[2] = usb_tm_dispatcher_
+getCellValue:: linein[3] = phy_tx
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = usb_phy_
+getCellValue:: linein[7] = phy_tx
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = 
+AAA hidconnection = v_core.usb_transaction_mgr_.usb_tm_dispatcher_, v_core.usb_phy_, phy_tx, phy_tx, 
+*********found interface***********
+FROM     ADDING fun = usb_tm_dispatcher fin = usb_tm_dispatcher_ connection = ix_bus phy_tx
+FROM NOT ADDING fun =  fin = usb_tm_dispatcher_ connection = 
+FROM NOT ADDING fun =  fin = usb_tm_dispatcher_ connection = 
+toConnection = ix_bus phy_tx v_core.usb_transaction_mgr_.usb_tm_dispatcher_ v_core.usb_phy_
+TO       ADDING tun = usb_phy tin = usb_phy_ connection = ix_bus phy_tx v_core.usb_transaction_mgr_.usb_tm_dispatcher_ v_core.usb_phy_
+TO   NOT ADDING tun =  tin = usb_phy_ connection = 
+TO   NOT ADDING tun =  tin = usb_phy_ connection = 
+42 linein = interface usb_phy_ifc v_top usb   usb_phy_ usb   
+t = interface
+t = usb_phy_ifc
+t = v_top
+t = usb
+t = 
+t = 
+t = usb_phy_
+t = usb
+t = 
+t = 
+t = 
+getCellValue:: linein[0] = interface
+getCellValue:: linein[1] = usb_phy_ifc
+getCellValue:: linein[2] = v_top
+getCellValue:: linein[3] = usb
+getCellValue:: linein[4] = 
+getCellValue:: linein[5] = 
+getCellValue:: linein[6] = usb_phy_
+getCellValue:: linein[7] = usb
+getCellValue:: linein[8] = 
+getCellValue:: linein[9] = 
+getCellValue:: linein[10] = 
+AAA hidconnection = , v_core.usb_phy_, usb, usb, 
+*********found interface***********
+FROM     ADDING fun = v_top fin = v_top connection = usb_phy_ifc usb
+FROM NOT ADDING fun =  fin = v_top connection = 
+FROM NOT ADDING fun =  fin = v_top connection = 
+toConnection = usb_phy_ifc usb  v_core.usb_phy_
+TO       ADDING tun = usb_phy tin = usb_phy_ connection = usb_phy_ifc usb  v_core.usb_phy_
+TO   NOT ADDING tun =  tin = usb_phy_ connection = 
+TO   NOT ADDING tun =  tin = usb_phy_ connection = 
+printCSL inst = usb_tm_dispatcher_ instHashLevel{usb_tm_dispatcher_} = 3
+ fin inst usb_tm_dispatcher_
+fin done /usb_tm_dispatcher_/
+fin if defined fromIfcHash usb_tm_dispatcher
+ifcgen interfaceType     =  ix_bus         
+ifcgen connFromName       =  phy_tx      
+printCSL inst = usb_tm_packetizer_ instHashLevel{usb_tm_packetizer_} = 3
+ fin inst usb_tm_packetizer_
+fin done /usb_tm_packetizer_/
+fin if defined toIfcHash usb_tm_packetizer
+ifcgen interfaceType     =  ix_bus         
+ifcgen connToName       =  phy_rx      
+CCC unit = usb_tm_packetizer connection = ARRAY(0x85ba10)
+-----SS connection v_core.usb_phy_ to v_core.usb_transaction_mgr_.usb_tm_packetizer_
+revifc connToName       =  phy_rx       
+printCSL inst = usb_transaction_mgr_ instHashLevel{usb_transaction_mgr_} = 2
+ fin inst usb_transaction_mgr_
+fin done /usb_transaction_mgr_/
+fin if defined toIfcHash usb_transaction_mgr
+ifcgen interfaceType     =  ram_bus         
+ifcgen connToName       =  ram_bus1      
+ifcgen interfaceType     =  fabric_ad         
+ifcgen connToName       =  fabric      
+ifcgen interfaceType     =  tp_bus         
+ifcgen connToName       =  tp_bus      
+CCC unit = usb_transaction_mgr connection = ARRAY(0x858d64)
+CCC unit = usb_transaction_mgr connection = ARRAY(0x859298)
+CCC unit = usb_transaction_mgr connection = ARRAY(0x85b92c)
+-----SS connection v_core.RAM_ to v_core.usb_transaction_mgr_
+revifc connToName       =  ram_bus1       
+-----SS connection v_core.trans_fab to v_core.usb_transaction_mgr_
+revifc connToName       =  fabric       
+-----SS connection v_core.usb_protocol_mgr_ to v_core.usb_transaction_mgr_
+revifc connToName       =  tp_bus       
+printCSL inst = usb_protocol_mgr_ instHashLevel{usb_protocol_mgr_} = 2
+ fin inst usb_protocol_mgr_
+fin done /usb_protocol_mgr_/
+fin if defined fromIfcHash usb_protocol_mgr
+ifcgen interfaceType     =  tp_bus         
+ifcgen connFromName       =  tp_bus      
+fin if defined toIfcHash usb_protocol_mgr
+ifcgen interfaceType     =  ram_bus         
+ifcgen connToName       =  ram_bus1      
+ifcgen interfaceType     =  fabric_ad         
+ifcgen connToName       =  fabric      
+ifcgen interfaceType     =  fifo_reg_bus         
+ifcgen connToName       =  fifo_reg      
+CCC unit = usb_protocol_mgr connection = ARRAY(0x858c80)
+CCC unit = usb_protocol_mgr connection = ARRAY(0x8591fc)
+CCC unit = usb_protocol_mgr connection = ARRAY(0x85b854)
+-----SS connection v_core.RAM_ to v_core.usb_protocol_mgr_
+revifc connToName       =  ram_bus1       
+-----SS connection v_core.proto_fab to v_core.usb_protocol_mgr_
+revifc connToName       =  fabric       
+-----SS connection v_core.fifo_regs_ to v_core.usb_protocol_mgr_
+revifc connToName       =  fifo_reg       
+printCSL inst = fab_i2c instHashLevel{fab_i2c} = 2
+ fin inst fab_i2c
+fin done /fab_i2c/
+fin if defined fromIfcHash fab
+ifcgen interfaceType     =  fabric_ad         
+ifcgen connFromName       =  fabric      
+ifcgen interfaceType     =  fabric_bus         
+ifcgen connFromName       =  fabric_out      
+fin if defined toIfcHash fab
+ifcgen interfaceType     =  fabric_bus         
+ifcgen connToName       =  fabric_in      
+CCC unit = fab connection = ARRAY(0x859334)
+-----SS connection v_core.trans_fab to v_core.proto_fab
+revifc connToName       =  fabric_in       
+printCSL inst = uart_mgr_ instHashLevel{uart_mgr_} = 2
+ fin inst uart_mgr_
+fin done /uart_mgr_/
+fin if defined fromIfcHash uart_mgr
+ifcgen interfaceType     =  fifo_reg_bus         
+ifcgen connFromName       =  fifo_reg_bus0      
+fin if defined toIfcHash uart_mgr
+ifcgen interfaceType     =  ram_bus         
+ifcgen connToName       =  ram_bus1      
+ifcgen interfaceType     =  fabric_ad         
+ifcgen connToName       =  fabric      
+CCC unit = uart_mgr connection = ARRAY(0x858a7c)
+CCC unit = uart_mgr connection = ARRAY(0x858e48)
+-----SS connection v_core.RAM_ to v_core.uart_mgr_
+revifc connToName       =  ram_bus1       
+-----SS connection v_core.fab_uart_mgr to v_core.uart_mgr_
+revifc connToName       =  fabric       
+printCSL inst = uart_fab_0 instHashLevel{uart_fab_0} = 2
+ fin inst uart_fab_0
+printCSL inst = uart_fab_3 instHashLevel{uart_fab_3} = 2
+ fin inst uart_fab_3
+printCSL inst = RAM_ instHashLevel{RAM_} = 2
+ fin inst RAM_
+fin done /RAM_/
+fin if defined fromIfcHash RAM
+ifcgen interfaceType     =  ram_bus         
+ifcgen connFromName       =  ram_bus0      
+ifcgen interfaceType     =  ram_bus         
+ifcgen connFromName       =  ram_bus1      
+ifcgen interfaceType     =  ram_bus         
+ifcgen connFromName       =  ram_bus2      
+printCSL inst = uart_mod0 instHashLevel{uart_mod0} = 2
+ fin inst uart_mod0
+fin done /uart_mod0/
+fin if defined fromIfcHash jeff_uart
+ifcgen interfaceType     =  gpio_ifc         
+ifcgen connFromName       =  uart_gpio_0      
+ifcgen interfaceType     =  gpio_ifc         
+ifcgen connFromName       =  uart_gpio_1      
+ifcgen interfaceType     =  gpio_ifc         
+ifcgen connFromName       =  uart_gpio_2      
+ifcgen interfaceType     =  gpio_ifc         
+ifcgen connFromName       =  uart_gpio_3      
+ifcgen interfaceType     =  gpio_ifc         
+ifcgen connFromName       =  uart_gpio_4      
+ifcgen interfaceType     =  gpio_ifc         
+ifcgen connFromName       =  uart_gpio_5      
+fin if defined toIfcHash jeff_uart
+ifcgen interfaceType     =  fabric_ad         
+ifcgen connToName       =  fabric      
+CCC unit = jeff_uart connection = ARRAY(0x858f20)
+-----SS connection v_core.uart_fab_0 to v_core.uart_mod0
+revifc connToName       =  fabric       
+printCSL inst = i2c_ instHashLevel{i2c_} = 2
+ fin inst i2c_
+fin done /i2c_/
+fin if defined toIfcHash i2c
+ifcgen interfaceType     =  fabric_ad         
+ifcgen connToName       =  fabric      
+CCC unit = i2c connection = ARRAY(0x8590a0)
+-----SS connection v_core.fab_i2c to v_core.i2c_
+revifc connToName       =  fabric       
+printCSL inst = proto_fab instHashLevel{proto_fab} = 2
+ fin inst proto_fab
+printCSL inst = uart_mod3 instHashLevel{uart_mod3} = 2
+ fin inst uart_mod3
+fin done /uart_mod3/
+fin if defined toIfcHash uart
+ifcgen interfaceType     =  uart_ifc         
+ifcgen connToName       =  modem      
+ifcgen interfaceType     =  fabric_ad         
+ifcgen connToName       =  fabric      
+CCC unit = uart connection = ARRAY(0x80cae4)
+CCC unit = uart connection = ARRAY(0x859004)
+-----SS connection v_core.uart_fab_1 to v_core.uart_mod1
+revifc connToName       =  fabric       
+printCSL inst = uart_mod1 instHashLevel{uart_mod1} = 2
+ fin inst uart_mod1
+printCSL inst = usb_phy_ instHashLevel{usb_phy_} = 2
+ fin inst usb_phy_
+fin done /usb_phy_/
+fin if defined fromIfcHash usb_phy
+ifcgen interfaceType     =  ix_bus         
+ifcgen connFromName       =  phy_rx      
+fin if defined toIfcHash usb_phy
+ifcgen interfaceType     =  ix_bus         
+ifcgen connToName       =  phy_tx      
+ifcgen interfaceType     =  usb_phy_ifc         
+ifcgen connToName       =  usb      
+CCC unit = usb_phy connection = ARRAY(0x85bb18)
+CCC unit = usb_phy connection = ARRAY(0x85bc14)
+-----SS connection v_core.usb_transaction_mgr_.usb_tm_dispatcher_ to v_core.usb_phy_
+revifc connToName       =  phy_tx       
+printCSL inst = trans_fab instHashLevel{trans_fab} = 2
+ fin inst trans_fab
+printCSL inst = fifo_regs_ instHashLevel{fifo_regs_} = 2
+ fin inst fifo_regs_
+fin done /fifo_regs_/
+fin if defined fromIfcHash fifo_regs
+ifcgen interfaceType     =  fifo_reg_bus         
+ifcgen connFromName       =  fifo_reg_bus0      
+fin if defined toIfcHash fifo_regs
+ifcgen interfaceType     =  fifo_reg_bus         
+ifcgen connToName       =  fifo_reg      
+CCC unit = fifo_regs connection = ARRAY(0x8594cc)
+-----SS connection v_core.uart_mgr_ to v_core.fifo_regs_
+revifc connToName       =  fifo_reg       
+printCSL inst = fab_filter_ instHashLevel{fab_filter_} = 2
+ fin inst fab_filter_
+fin done /fab_filter_/
+fin if defined fromIfcHash fab_filter
+ifcgen interfaceType     =  fabric_bus         
+ifcgen connFromName       =  fabric_out      
+fin if defined toIfcHash fab_filter
+ifcgen interfaceType     =  fabric_bus         
+ifcgen connToName       =  fabric_in      
+CCC unit = fab_filter connection = ARRAY(0x8593f4)
+-----SS connection v_core.proto_fab to v_core.fab_filter_
+revifc connToName       =  fabric_in       
+printCSL inst = uart_fab_2 instHashLevel{uart_fab_2} = 2
+ fin inst uart_fab_2
+printCSL inst = uart_fab_1 instHashLevel{uart_fab_1} = 2
+ fin inst uart_fab_1
+printCSL inst = uart_mod2 instHashLevel{uart_mod2} = 2
+ fin inst uart_mod2
+printCSL inst = fab_uart_mgr instHashLevel{fab_uart_mgr} = 2
+ fin inst fab_uart_mgr
+printCSL inst = gpio_mod_a5 instHashLevel{gpio_mod_a5} = 1
+ fin inst gpio_mod_a5
+fin done /gpio_mod_a5/
+fin if defined toIfcHash io_cell
+ifcgen interfaceType     =  gpio_ifc         
+ifcgen connToName       =  pad      
+CCC unit = io_cell connection = ARRAY(0x38c2dc)
+fin if defined toPortHash io_cell
+portgen connToPNameRev       =  pad_pin      
+-----SS connection v_core.uart_mod0 to gpio_mod_a0
+revifc connToName       =  pad       
+printCSL inst = rx_mod_0 instHashLevel{rx_mod_0} = 1
+ fin inst rx_mod_0
+fin done /rx_mod_0/
+printCSL inst = usb_analog_phy_ instHashLevel{usb_analog_phy_} = 1
+ fin inst usb_analog_phy_
+fin done /usb_analog_phy_/
+printCSL inst = tx_mod_0 instHashLevel{tx_mod_0} = 1
+ fin inst tx_mod_0
+fin done /tx_mod_0/
+printCSL inst = gpio_mod_a4 instHashLevel{gpio_mod_a4} = 1
+ fin inst gpio_mod_a4
+printCSL inst = gpio_mod_a2 instHashLevel{gpio_mod_a2} = 1
+ fin inst gpio_mod_a2
+printCSL inst = gpio_mod_a1 instHashLevel{gpio_mod_a1} = 1
+ fin inst gpio_mod_a1
+printCSL inst = v_core instHashLevel{v_core} = 1
+ fin inst v_core
+fin done /v_core/
+printCSL inst = gpio_mod_a3 instHashLevel{gpio_mod_a3} = 1
+ fin inst gpio_mod_a3
+printCSL inst = gpio_mod_a0 instHashLevel{gpio_mod_a0} = 1
+ fin inst gpio_mod_a0
+printCSL inst = v_top instHashLevel{v_top} = 0
+ fin done /v_top/
+fin if defined fromIfcHash v_top
+ifcgen interfaceType     =  uart_ifc         
+ifcgen connFromName       =  uart1      
+ifcgen interfaceType     =  uart_ifc         
+ifcgen connFromName       =  uart2      
+ifcgen interfaceType     =  uart_ifc         
+ifcgen connFromName       =  uart3      
+ifcgen interfaceType     =  usb_phy_ifc         
+ifcgen connFromName       =  usb      
+fin if defined fromPortHash v_top
+portgen connFromPNameRev       =  gpio_a0      
+portgen connFromPNameRev       =  gpio_a1      
+portgen connFromPNameRev       =  gpio_a2      
+portgen connFromPNameRev       =  gpio_a3      
+portgen connFromPNameRev       =  gpio_a4      
+portgen connFromPNameRev       =  gpio_a5      
+connect_by_name v_core.uart_mod0 ne v_top
+------v_core.uart_mod0.uart_gpio_0--------gpio_mod_a0.pad
+connect_by_name v_core.uart_mod0 ne v_top
+------v_core.uart_mod0.uart_gpio_1--------gpio_mod_a1.pad
+connect_by_name v_core.uart_mod0 ne v_top
+------v_core.uart_mod0.uart_gpio_2--------gpio_mod_a2.pad
+connect_by_name v_core.uart_mod0 ne v_top
+------v_core.uart_mod0.uart_gpio_3--------gpio_mod_a3.pad
+connect_by_name v_core.uart_mod0 ne v_top
+------v_core.uart_mod0.uart_gpio_4--------gpio_mod_a4.pad
+connect_by_name v_core.uart_mod0 ne v_top
+------v_core.uart_mod0.uart_gpio_5--------gpio_mod_a5.pad
+connect_by_name  eq v_top
+------.gpio_a0--------gpio_mod_a0.pad_pin
+connect_by_name  eq v_top
+------.gpio_a1--------gpio_mod_a1.pad_pin
+connect_by_name  eq v_top
+------.gpio_a2--------gpio_mod_a2.pad_pin
+connect_by_name  eq v_top
+------.gpio_a3--------gpio_mod_a3.pad_pin
+connect_by_name  eq v_top
+------.gpio_a4--------gpio_mod_a4.pad_pin
+connect_by_name  eq v_top
+------.gpio_a5--------gpio_mod_a5.pad_pin
+connect_by_name  eq v_top
+------.uart1--------v_core.uart_mod1.modem
+connect_by_name  eq v_top
+------.uart2--------v_core.uart_mod2.modem
+connect_by_name  eq v_top
+------.uart3--------v_core.uart_mod3.modem
+connect_by_name v_core.RAM_ ne v_top
+------v_core.RAM_.ram_bus0--------v_core.uart_mgr_.ram_bus1
+connect_by_name v_core.RAM_ ne v_top
+------v_core.RAM_.ram_bus1--------v_core.usb_protocol_mgr_.ram_bus1
+connect_by_name v_core.RAM_ ne v_top
+------v_core.RAM_.ram_bus2--------v_core.usb_transaction_mgr_.ram_bus1
+connect_by_name v_core.fab_uart_mgr ne v_top
+------v_core.fab_uart_mgr.fabric--------v_core.uart_mgr_.fabric
+connect_by_name v_core.uart_fab_0 ne v_top
+------v_core.uart_fab_0.fabric--------v_core.uart_mod0.fabric
+connect_by_name v_core.uart_fab_1 ne v_top
+------v_core.uart_fab_1.fabric--------v_core.uart_mod1.fabric
+connect_by_name v_core.uart_fab_2 ne v_top
+------v_core.uart_fab_2.fabric--------v_core.uart_mod2.fabric
+connect_by_name v_core.uart_fab_3 ne v_top
+------v_core.uart_fab_3.fabric--------v_core.uart_mod3.fabric
+connect_by_name v_core.fab_i2c ne v_top
+------v_core.fab_i2c.fabric--------v_core.i2c_.fabric
+connect_by_name v_core.proto_fab ne v_top
+------v_core.proto_fab.fabric--------v_core.usb_protocol_mgr_.fabric
+connect_by_name v_core.trans_fab ne v_top
+------v_core.trans_fab.fabric--------v_core.usb_transaction_mgr_.fabric
+connect_by_name v_core.trans_fab ne v_top
+------v_core.trans_fab.fabric_out--------v_core.proto_fab.fabric_in
+connect_by_name v_core.proto_fab ne v_top
+------v_core.proto_fab.fabric_out--------v_core.fab_filter_.fabric_in
+connect_by_name v_core.fab_filter_ ne v_top
+------v_core.fab_filter_.fabric_out--------v_core.fab_uart_mgr.fabric_in
+connect_by_name v_core.fab_uart_mgr ne v_top
+------v_core.fab_uart_mgr.fabric_out--------v_core.fab_i2c.fabric_in
+connect_by_name v_core.fab_i2c ne v_top
+------v_core.fab_i2c.fabric_out--------v_core.uart_fab_0.fabric_in
+connect_by_name v_core.uart_fab_0 ne v_top
+------v_core.uart_fab_0.fabric_out--------v_core.uart_fab_1.fabric_in
+connect_by_name v_core.uart_fab_1 ne v_top
+------v_core.uart_fab_1.fabric_out--------v_core.uart_fab_2.fabric_in
+connect_by_name v_core.uart_fab_2 ne v_top
+------v_core.uart_fab_2.fabric_out--------v_core.uart_fab_3.fabric_in
+connect_by_name v_core.uart_fab_3 ne v_top
+------v_core.uart_fab_3.fabric_out--------v_core.trans_fab.fabric_in
+connect_by_name v_core.uart_mgr_ ne v_top
+------v_core.uart_mgr_.fifo_reg_bus0--------v_core.fifo_regs_.fifo_reg
+connect_by_name v_core.fifo_regs_ ne v_top
+------v_core.fifo_regs_.fifo_reg_bus0--------v_core.usb_protocol_mgr_.fifo_reg
+connect_by_name v_core.usb_protocol_mgr_ ne v_top
+------v_core.usb_protocol_mgr_.tp_bus--------v_core.usb_transaction_mgr_.tp_bus
+connect_by_name v_core.usb_phy_ ne v_top
+------v_core.usb_phy_.phy_rx--------v_core.usb_transaction_mgr_.usb_tm_packetizer_.phy_rx
+connect_by_name v_core.usb_transaction_mgr_.usb_tm_dispatcher_ ne v_top
+------v_core.usb_transaction_mgr_.usb_tm_dispatcher_.phy_tx--------v_core.usb_phy_.phy_tx
+connect_by_name  eq v_top
+------.usb--------v_core.usb_phy_.usb
+
+
+## End CSL_CSV_GENGEN AutoGenerated Stuff
+

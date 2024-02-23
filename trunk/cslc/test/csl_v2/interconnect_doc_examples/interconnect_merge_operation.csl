@@ -1,0 +1,11 @@
+//danielt
+//november 07,2007
+
+csl_unit u1{
+csl_signal s1,s2,s3;
+csl_signal sig1, sig2;
+u1(){
+sig1.merge(xor,s1,s2,s3);
+sig2.merge(or,s1,s2);
+}
+}:

@@ -1,0 +1,21 @@
+//author: Ines
+//testing: obj_multi_dim.set_dim_bitrange(num_expr, br_obj_name);
+//         - param 1 : dimension index(dimension indexes start from 0 and go up to num_of_dims-1)
+//         - param 2 : simple bitrange to be set as a dimension to the multi dim bitrange 
+
+
+csl_bitrange br2(2);
+csl_bitrange br3(3);
+csl_bitrange br4(4);
+csl_bitrange br5(5);
+csl_bitrange br6(6);
+
+csl_multi_dim_bitrange obj_name(6);
+obj_name.set_dim_bitrange(0, br1);
+obj_name.set_dim_bitrange(br2);
+obj_name.set_dim_bitrange(2);
+obj_name.set_dim_bitrange(bitrange);
+obj_name.set_dim_bitrange( , );
+obj_name.set_dim_bitrange();
+
+

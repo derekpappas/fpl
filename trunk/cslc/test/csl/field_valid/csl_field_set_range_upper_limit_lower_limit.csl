@@ -1,0 +1,12 @@
+//author: Ines
+//testing the command set_range() in field
+
+
+csl_field field {
+  field(){
+    set_range(2,10);
+  }
+};
+
+csl_unit top {
+};

@@ -1,0 +1,190 @@
+#!/usr/bin/perl
+
+use Switch;               # the switch/case command
+use strict;
+use File::Find;           # traversing the directory tree
+use File::Basename;       # retrieving the basename of a directory
+use File::Path;           # mkpath command
+
+my $set_h   = "set_h";
+my $set_v   = "set_v";
+my $set_r   = "set_r";
+my $set_s   = "set_s";
+my $set_t   = "set_t";
+my $set_sg  = "set_sg";
+my $set_eg  = "set_eg";
+my $set_c   = "set_c";
+my $set_m   = "set_m";
+my $set_cy  = "set_cy";
+my $set_f   = "set_f";
+my $set_a   = "set_a";
+my %mapcommd;
+$mapcommd{$set_h }  = "set_vc_header_comment";
+$mapcommd{$set_v }  = "set_version";
+$mapcommd{$set_r }  = "set_radix";
+$mapcommd{$set_s }  = "set_vc_stall";
+$mapcommd{$set_t }  = "set_vc_start_output_transaction";
+$mapcommd{$set_sg}  = "set_vc_start_generation_trigger";
+$mapcommd{$set_eg}  = "set_vc_end_generation_trigger";
+$mapcommd{$set_c }  = "set_vc_capture_edge_type";
+$mapcommd{$set_m }  = "set_vc_max_number_of_mismatches";
+$mapcommd{$set_cy}  = "set_vc_max_cycles";
+$mapcommd{$set_f }  = "set_vc_output_filename";
+$mapcommd{$set_a }  = "add_logic";
+my $test_type = "_illegal";
+
+foreach my $commd(keys %mapcommd) {
+    &comds($commd);
+    &comds1($commd);
+    &comds2($commd);
+    &comds3($commd);
+    &comds4($commd);
+    &comds5($commd);
+}
+sub comds {
+    my $commd = $_[0];
+    my $val;
+    my $test_name;
+    for(my $i=1;$i<11;$i++) {
+        $val = $i;
+        if($commd ne $set_v && $commd ne $set_m && $commd ne $set_cy ){
+            $test_name="verifcomp_stim_$commd"."_"."$val$test_type".".csl";
+            &cslFile($test_name,$mapcommd{$commd},$val);
+        }
+    }
+}
+
+sub comds1 {
+    my $commd = $_[0];
+    my $val;
+    my $test_name;
+    for(my $i=1;$i<11;$i++) {
+        $val =-$i;
+        my $val1=-$val;
+        $test_name="verifcomp_stim_$commd"."_"."m$val1$test_type".".csl";
+        &cslFile($test_name,$mapcommd{$commd},$val);
+    }
+    
+}
+
+sub comds2 {
+    my $commd = $_[0];
+    my $val;
+    my $test_name;
+    my @alphanumeric = ('a'..'z');
+    for(my $i=1;$i<11;$i++){
+            $val = join '', map $alphanumeric[rand @alphanumeric], 0..$i;
+            $test_name="verifcomp_stim_$commd"."_"."$val$test_type".".csl";
+            &cslFile($test_name,$mapcommd{$commd},$val);
+        
+    }
+}
+sub comds3 {
+    my $commd = $_[0];
+    my $val;
+    my $test_name;
+    my @alphanumeric = ('A'..'Z');
+    for(my $i=1;$i<11;$i++){
+            $val = join '', map $alphanumeric[rand @alphanumeric], 0..$i;
+            $test_name="verifcomp_stim_$commd"."_"."$val$test_type".".csl";
+            &cslFile($test_name,$mapcommd{$commd},$val);
+        
+    }
+}
+
+sub comds4 {
+    my $commd = $_[0];
+    my $val;
+    my $test_name;
+    my @alphanumeric = ('a'..'z','A'..'Z');
+    for(my $i=1;$i<11;$i++){
+            $val = join '', map $alphanumeric[rand @alphanumeric], 0..$i;
+            $test_name="verifcomp_stim_$commd"."_"."$val$test_type".".csl";
+            &cslFile($test_name,$mapcommd{$commd},$val);
+        
+    }
+}
+
+sub comds5 {
+    my $commd = $_[0];
+    my $val;
+    my $test_name;
+    my @alphanumeric = ('a'..'z','A'..'Z',0..9);
+    for(my $i=1;$i<11;$i++){
+            $val = join '', map $alphanumeric[rand @alphanumeric], 0..$i;
+            $test_name="verifcomp_stim_$commd"."_"."$val$test_type".".csl";
+            &cslFile($test_name,$mapcommd{$commd},$val);
+        
+    }
+}
+
+sub mkDir {
+    my($dirName) = @_;
+    unless(-e "$dirName")  { `mkdir $dirName`; }
+}
+
+sub cslFile {
+    my ($test_name,$commd,$val)=@_;
+    my $path="$ENV{WORK}/test/csl_test_gen/";
+    &mkDir("$path/verif_comp_stim_invalid");
+    open(FH,">$path/verif_comp_stim_invalid/$test_name");
+    &header($test_name);
+    &description($commd);
+    &legend();
+    print FH "csl_unit dut{\n";
+    print FH "    csl_port stim_in(input),exp_out(output);\n";
+    print FH "    csl_port clk(input);\n";
+    print FH "    dut(){\n";
+    print FH "       clk.set_attr(clock);\n";
+    print FH "    }\n";
+    print FH "};\n";
+    print FH "csl_signal trigg;\n";
+    print FH "csl_vector stim_vec{\n";
+    print FH "    stim_vec(){\n";
+    print FH "       set_unit_name(dut);\n";
+    print FH "       set_direction(input);\n";
+    print FH "       $commd($val);\n";
+    print FH "    }\n";
+    print FH "};\n";
+    print FH "csl_vector exp_vec{\n";
+    print FH "    exp_vec(){\n";
+    print FH "       set_unit_name(dut);\n";
+    print FH "       set_direction(output);\n";
+    print FH "    }\n";
+    print FH "};\n";
+    printf FH "csl_testbench tb{ \n";
+    printf FH "    csl_signal clk(wire); \n";
+    printf FH "    dut dut_1(.clk(clk)); \n";
+    printf FH "    tb(){ \n";
+    printf FH "        clk.set_attr(clock); \n";
+    printf FH "        add_logic(clock,clk,100,ps); \n";
+    printf FH "    } \n";
+    printf FH "}; \n";
+}
+ 
+
+sub header
+{
+    my $test_name=$_[0];
+    my $test_date = `date "+%d/%m/%G, %T"`;
+    print FH "//Test generated by Petronela\n";
+    print FH "//Test name: $test_name\n";
+    print FH "//Date: $test_date\n";
+    
+}
+
+sub description {
+    my $cmd = $_[0];
+    print FH "//Description:\n";
+    print FH "//testing the command $cmd for stim vector\n\n ";
+
+}
+
+sub legend {
+    print FH "//Legend:\n";
+    foreach my $commd(keys %mapcommd){
+        print FH "//$commd = $mapcommd{$commd}\n";
+    }
+    print FH "//m = minus\n";
+    print FH "\n\n";
+} 

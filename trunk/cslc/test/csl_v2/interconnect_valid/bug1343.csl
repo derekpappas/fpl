@@ -1,0 +1,11 @@
+csl_bitrange br_a(0,15);
+
+csl_unit a{
+  csl_port p_in(input,br_a);
+  csl_port p_out(output,p_in.get_bitrange());
+  csl_port p_sel(input,p_in.get_width());
+  csl_signal s_1(br_a.get_width());
+  csl_signal s_2(p_in.get_bitrange());
+  a(){
+  }
+};

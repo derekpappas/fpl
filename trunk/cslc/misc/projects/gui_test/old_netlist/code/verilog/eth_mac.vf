@@ -1,0 +1,8 @@
+//THIS CODE WAS GENERATED USING THE FASTPATHLOGIC HDL COMPILER
+//COPYRIGHT (c) 2006, 2007 FastpathLogic Inc
+//OUTPUT FILE NAME  : eth_mac.vf
+//FILE GENERATED ON : Tue Jun 17 01:23:46 2008
+
+enum_define.v
+
+eth_mac.v

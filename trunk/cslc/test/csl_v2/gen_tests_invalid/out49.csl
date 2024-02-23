@@ -1,0 +1,139 @@
+csl_enum rb {
+	de,
+	jw,
+	if,
+	iv,
+	yg,
+	pb
+};
+csl_enum uk {
+	wb,
+	ka,
+	jx,
+	yy,
+	rf,
+	ud,
+	xb,
+	fp,
+	cj,
+	wo,
+	if,
+	vq,
+	du,
+	yt,
+	yv
+};
+csl_enum gv {
+	xq,
+	vh
+};
+csl_isa_instruction_format oc{
+    oc( ){
+     set_width( 6);
+     generate_decoder( ckhp);
+  }
+}
+;
+csl_isa_instruction ou : oc{
+    ou( ){
+    set_asm_mnemonic( );
+  }
+}
+;
+csl_isa my{
+  ou ux;
+  ou nu;
+  ou tm;
+  ou hw;
+  ou xt;
+  ou du;
+  ou wh;
+    my( ){
+     set_decoder_name( "qi");
+     set_decoder_out_name_prefix( "yf");
+     set_decoder_out_name_suffix( "qd");
+     generate_decoder( hp);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo di{
+   di( ){
+     add_logic( priority_bypass);
+     add_logic( wr_words, 0);
+     add_logic( pushback);
+     add_logic( credit);
+     add_logic( flow);
+  }
+}
+;
+csl_memory_map_page me{
+    me( ){
+     add_address_range( 2, 9);
+     set_address_increment( 7);
+     get_address_increment( );
+     set_next_address( 6);
+     get_next_address( );
+     add_reserved_address_range( 4, 1);
+     add( di, "ut", 4);
+     get_lower_bound( );
+     set_data_word_width( 5);
+     get_data_word_wodth( );
+     set_aligment( 7);
+     get_endianess( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page ww{
+    ww( ){
+     add_address_range( 0, 3);
+     set_address_increment( 4);
+     get_address_increment( );
+     get_next_address( );
+     get_lower_bound( );
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 0);
+     get_aligment( );
+     set_endianess( big_endianlittle_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page bx{
+  me ml;
+  ww iy;
+  me hf;
+  ww xq;
+    bx( ){
+     add_address_range( 2, 7);
+     set_address_increment( 6);
+     set_access_rights( none, access_write);
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 6);
+     get_endianess( );
+  }
+}
+;
+csl_register he{
+    he( ){
+     set_type( STATUS);
+     set_atribute( shadow);
+     constant( 1);
+     add_logic( neg_output);
+     add_logic( serial_output);
+     add_logic( rd_en);
+     set_start_value( 5);
+     add_logic( cnt_dir_signal);
+     add_logic( dec_signal);
+  }
+}
+;
+csl_register yp{
+    yp( ){
+  }
+}
+;

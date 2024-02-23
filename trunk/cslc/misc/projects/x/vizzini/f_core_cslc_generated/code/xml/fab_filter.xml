@@ -1,0 +1,24 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="fab_filter">
+<interface name="fabric_out" >
+<port name="valid" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="age" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="type" offset="0" upper="2-1" lower="0" direction = "output" type = "wire" />
+<port name="src_nid" offset="0" upper="4-1" lower="0" direction = "output" type = "wire" />
+<port name="dst_nid" offset="0" upper="4-1" lower="0" direction = "output" type = "wire" />
+<port name="addr" offset="0" upper="12-1" lower="0" direction = "output" type = "wire" />
+<port name="data" offset="0" upper="12-1" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="fabric_in" >
+<port name="valid" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="age" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="type" offset="0" upper="2-1" lower="0" direction = "input" type = "wire" />
+<port name="src_nid" offset="0" upper="4-1" lower="0" direction = "input" type = "wire" />
+<port name="dst_nid" offset="0" upper="4-1" lower="0" direction = "input" type = "wire" />
+<port name="addr" offset="0" upper="12-1" lower="0" direction = "input" type = "wire" />
+<port name="data" offset="0" upper="12-1" lower="0" direction = "input" type = "wire" />
+</interface>
+</unit>
+</design>

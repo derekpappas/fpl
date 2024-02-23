@@ -1,0 +1,25 @@
+#Regress control list (to be filled manually)
+#test suite settings:
+
+default_test_list = PF		#pass/fail
+execute_testsuite = 1		#enable/desable testing current testsuite
+
+#exceptions:
+ALUWaves.v                skip    "module/included file"
+exceptionWaves.v          skip    "invalid test"
+extIntWaves.v             skip    "invalid test"
+extWorldWaves.v           skip    "invalid test"
+instrFetchWaves.v         skip    "invalid test"
+interface.v               skip    "module definitions"
+regFileWaves.v            skip    "invalid test"
+regTorchWaves.v           skip    "invalid test"
+TestCodeWavesB.v          skip    "invalid test"
+TestCodeWavesNB.v         skip    "invalid test"
+TestCodeWaves.v           skip    "invalid test"
+tlbExtIntWaves.v          skip    "invalid test"
+tlbWaves.v                skip    "invalid test"
+
+hack.v                    skip    "undefined macros"
+init.v                    skip    "undefined macros"
+
+

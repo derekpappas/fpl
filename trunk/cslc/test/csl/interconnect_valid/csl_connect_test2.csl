@@ -1,0 +1,354 @@
+//author: Ines
+//testing the command csl_unit & csl_port & connect
+
+csl_unit a0{
+  csl_port sa0(input);
+  a0(){
+ }
+};
+
+csl_unit b0{
+  a0 a0;
+  b0(){
+ }
+};
+
+csl_unit c0{
+  b0 b0;
+  c0(){
+ }
+};
+
+csl_unit d0{
+  c0 c0;
+  d0(){
+ }
+};
+
+csl_unit e0{
+  d0 d0;
+  e0(){
+   
+ }
+};
+
+csl_unit f0{
+  e0 e0;
+  f0(){
+   
+ }
+};
+
+csl_unit g0 {
+  f0 f0;
+ 
+  g0(){
+
+ }
+};
+
+csl_unit h0 {
+  g0 g0;
+ 
+  h0(){
+
+ }
+};
+
+csl_unit i0 {
+  h0 h0;
+ 
+  i0(){
+
+ }
+};
+
+csl_unit j0 {
+  i0 i0;
+ 
+  j0(){
+
+ }
+};
+
+csl_unit k0 {
+  j0 j0;
+ 
+  k0(){
+
+ }
+};
+
+csl_unit l0 {
+  k0 k0;
+ 
+  l0(){
+
+ }
+};
+
+csl_unit m0 {
+  l0 l0;
+ 
+  m0(){
+
+ }
+};
+
+csl_unit n0 {
+  m0 m0;
+  n0(){
+ }
+};
+
+csl_unit o0 {
+  n0 n0;
+  o0(){
+ }
+};
+
+csl_unit p0 {
+  o0 o0;
+  p0(){
+ }
+};
+
+csl_unit q0 {
+  p0 p0;
+  q0(){
+ }
+};
+
+csl_unit r0 {
+  q0 q0;
+ 
+  r0(){
+
+ }
+};
+
+csl_unit s0 {
+  r0 r0;
+ 
+  s0(){
+
+ }
+};
+
+csl_unit t0 {
+  s0 s0;
+ 
+  t0(){
+
+ }
+};
+
+csl_unit u0 {
+  t0 t0;
+ 
+  u0(){
+
+ }
+};
+csl_unit v0 {
+  u0 u0;
+ 
+  v0(){
+
+ }
+};
+
+csl_unit w0 {
+  v0 v0;
+  w0(){
+
+ }
+};
+
+csl_unit x0 {
+  w0 w0;
+ 
+  x0(){
+
+ }
+};
+
+csl_unit y0 {
+  x0 x0;
+ 
+  y0(){
+
+ }
+};
+
+
+csl_unit  a1 {
+   csl_port s10(output );
+  a1(){
+ 
+ }
+};
+
+csl_unit b1{
+  a1 a10;
+  b1(){
+ }
+};
+
+csl_unit c1  {
+  b1 b10;
+  c1(){
+ }
+};
+
+csl_unit d1  {
+  c1 c10;
+  d1(){
+ }
+};
+
+csl_unit e1  {
+  d1 d10;
+  e1(){
+ }
+};
+
+csl_unit f1  {
+  e1 e10;
+  f1(){
+ }
+};
+
+csl_unit g1  {
+  f1 f10;
+  g1(){
+
+ }
+};
+
+csl_unit h1  {
+  g1 g10;
+  h1(){
+ }
+};
+
+csl_unit i1  {
+  h1 h10;
+  i1(){
+ }
+};
+
+csl_unit j1  {
+  i1 i10;
+  j1(){
+ }
+};
+
+csl_unit k1  {
+  j1 j10;
+  k1(){
+ }
+};
+
+csl_unit l1  {
+  k1 k10;
+  l1(){
+ }
+};
+
+csl_unit m1  {
+  l1 l10;
+  m1(){
+ }
+};
+
+csl_unit n1  {
+  m1 m10;
+  n1(){
+ }
+};
+
+csl_unit o1  {
+  n1 n10;
+  o1(){
+ }
+};
+
+csl_unit p1  {
+  o1 o10;
+  p1(){
+ }
+};
+
+csl_unit q1  {
+  p1 p10;
+  q1(){
+ }
+};
+
+csl_unit r1  {
+  q1 q10;
+  r1(){
+ }
+};
+
+csl_unit s1  {
+  r1 r10;
+  s1(){
+ }
+};
+
+csl_unit t1  {
+  s1 s10;
+  t1(){
+ }
+};
+
+csl_unit u1  {
+  csl_port su1(output );
+  t1 t10;
+  u1(){
+
+ }
+};
+csl_unit v1  {
+  u1 u10;
+  v1(){
+
+ }
+};
+
+csl_unit w1  {
+  v1 v10;
+  w1(){
+
+ }
+};
+
+csl_unit x1  {
+  csl_port sx1(output );
+  w1 w10;
+  x1(){
+
+ }
+};
+
+csl_unit y1  {
+  // csl_port sy1(output );
+  x1 x10; 
+  y1(){
+
+ }
+};
+
+csl_unit z0  {
+  y0 y0;
+  y1 y10;
+  z0(){   
+    y0.x0.w0.v0.u0.t0.s0.r0.q0.p0.o0.n0.m0.l0.k0.j0.i0.h0.g0.f0.e0.d0.c0.b0.a0.sa0.connect_by_name(y10.x10.w10.v10.u10.t10.s10.r10.q10.p10.o10.n10.m10.l10.k10.j10.i10.h10.g10.f10.e10.d10.c10.b10.a10.s10);
+    //y0.x0.w0.v0.u0.t0.s0.r0.q0.p0.o0.n0.m0.l0.k0.j0.i0.h0.g0.f0.e0.d0.c0.b0.a0.sa0.connect_by_name(y10.sy1);
+    y0.x0.w0.v0.u0.t0.s0.r0.q0.p0.o0.n0.m0.l0.k0.j0.i0.h0.g0.f0.e0.d0.c0.b0.a0.sa0.connect_by_name(y10.x10.sx1);
+    y0.x0.w0.v0.u0.t0.s0.r0.q0.p0.o0.n0.m0.l0.k0.j0.i0.h0.g0.f0.e0.d0.c0.b0.a0.sa0.connect_by_name(y10.x10.w10.v10.u10.su1);
+ }
+};
+

@@ -1,0 +1,14 @@
+//wrong numeric expression
+
+csl_field fa{
+  fa(){
+    set_width(3);
+  }
+};
+csl_field f1{
+  fa fa_1;
+  f1(){
+    set_width(32);
+    set_field_position(fa,0......32+2);
+  }
+};

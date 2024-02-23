@@ -1,0 +1,22 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="u1">
+<signal name="rst" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="clk" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="en" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="data" offset="0" upper="16-1" lower="0" type = "wire"/>
+<instantiation type = "reg1">
+<instance name="reg1">
+<f2a formal = "clock" actual = "clk" />
+<f2a formal = "enable" actual = "en" />
+<f2a formal = "reg_out" actual = "data" />
+<f2a formal = "reset_" actual = "rst" />
+data_width16<f2a formal = "clock" actual = "clk" />
+<f2a formal = "enable" actual = "en" />
+<f2a formal = "reg_out" actual = "data" />
+<f2a formal = "reset_" actual = "rst" />
+</instance>
+</instantiation>
+</unit>
+</design>

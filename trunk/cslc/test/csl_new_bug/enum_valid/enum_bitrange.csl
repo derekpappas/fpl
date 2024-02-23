@@ -1,0 +1,7 @@
+//Monica
+  
+csl_bitrange br(6);
+csl_enum e{
+  a=br,
+  b=a
+};

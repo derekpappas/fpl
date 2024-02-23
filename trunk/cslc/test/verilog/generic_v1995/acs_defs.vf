@@ -1,0 +1,13 @@
+`define WD_FSM 7
+`define WD_DIST 1
+`define N_ACS 7
+`define WD_STATE 1
+`define WD_METR 1
+`define WD_CODE 1
+`define WD_DEPTH 1
+`define WD_RAM_ADDRESS 17
+`define WD_RAM_DATA 7
+`define WD_TB_ADDRESS 7
+`define HALF 3
+`define N_ITER 7
+`define CONSTRAINT 1

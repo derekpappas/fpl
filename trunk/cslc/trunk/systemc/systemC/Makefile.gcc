@@ -1,0 +1,16 @@
+TARGET_ARCH = gccsparcOS5
+
+CC = g++
+OPT    = -O3 
+DEBUG  =    
+CFLAGS = $(DEBUG) $(OPT) -fexceptions
+
+
+MODULE = main
+SRCS = $(WORK)/trunk/src/cdom/SystemCVectorWriterTrace.cpp \
+	main.cpp 
+
+##OBJS = $(SRCS:.cpp=.o) 
+OBJS = $(SRCS:.cpp = SystemCVectorWriterTrace.o main.o)
+
+include ./Makefile.defs

@@ -1,0 +1,32 @@
+//------------------testbench signals---------------------------
+//-------------------fixed signals-----------------------------
+  <TMPL_VAR clk_type> <TMPL_VAR clk> ;
+  <TMPL_VAR tb_reset_type> <TMPL_VAR testbench_reset_ > ;
+  <TMPL_VAR rand_valid_type> <TMPL_VAR rand_valid > ;
+  <TMPL_VAR file_mcd_type> <TMPL_VAR file_mcd > ;
+  <TMPL_VAR report_file_mcd_type> <TMPL_VAR report_file_mcd > ;
+  <TMPL_VAR cycle_cnt_type> <TMPL_VAR cycle_cnt > ;
+
+  <TMPL_VAR exp_match_count_type> [<TMPL_VAR EXP_ADDR_WIDTH> -1 : 0] <TMPL_VAR exp_match_count> ;
+  <TMPL_VAR exp_mismatch_count_type> [<TMPL_VAR EXP_ADDR_WIDTH> -1 : 0] <TMPL_VAR exp_mismatch_count> ;
+  <TMPL_VAR exp_transaction_count_type> [<TMPL_VAR EXP_ADDR_WIDTH> -1 : 0] <TMPL_VAR exp_transaction_count> ;
+  <TMPL_VAR exp_mismatch_type> <TMPL_VAR exp_mismatch> ;
+  <TMPL_VAR expect_out_valid_type> <TMPL_VAR expect_out_valid> ;
+  <TMPL_VAR rd_en_type> <TMPL_VAR rd_en> ;
+  <TMPL_VAR stim_mem_version_err_type> <TMPL_VAR stim_mem_version_err> ;
+  <TMPL_VAR exp_mem_version_err_type> <TMPL_VAR exp_mem_version_err> ;
+  <TMPL_VAR stim_mem_id_err_type> <TMPL_VAR stim_mem_id_err> ;
+  <TMPL_VAR exp_mem_id_err_type> <TMPL_VAR exp_mem_id_err> ;
+  <TMPL_VAR stop_sim_type> <TMPL_VAR stop_sim> = <TMPL_VAR cycle_cnt> >= <TMPL_VAR SIM_TIMEOUT_CNT>;
+//-----------DUT dependent signals-------------------------
+<TMPL_LOOP input_signals>
+ <TMPL_VAR in_sig_type> [<TMPL_VAR STIM_VEC> -1 : 0] <TMPL_VAR in_in>;
+</TMPL_LOOP>
+<TMPL_LOOP output_signals>
+  <TMPL_VAR out_sig_type> [<TMPL_VAR EXP_VEC> -1 : 0] <TMPL_VAR out_out>;
+  <TMPL_VAR out_sig_type> [<TMPL_VAR EXP_VEC> -1 : 0] <TMPL_VAR out_out_expect>;
+</TMPL_LOOP>
+  assign <TMPL_VAR rd_en> = <TMPL_VAR rand_valid>;
+
+//----------------------------------------------------------------
+

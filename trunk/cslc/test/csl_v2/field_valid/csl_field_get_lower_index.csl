@@ -1,0 +1,18 @@
+//author: Ines
+//testing the command set_range()
+
+csl_field field {
+  field(){
+  set_range(3,0);
+  }
+};
+
+csl_field field1 {
+  field1(){
+    set_range(field.get_lower(),field.get_upper());
+  }
+};
+
+
+csl_unit top {
+};

@@ -1,0 +1,126 @@
+csl_enum sr {
+	mk,
+	yf,
+	uc,
+	oa,
+	al,
+	yk
+};
+csl_enum vi {
+	nx = 53,
+	we = 36,
+	jp = 10,
+	dw = 44,
+	tw = 4
+};
+csl_enum vp {
+	et = 68,
+	py = 42,
+	ne = 78,
+	lo = 43,
+	lg = 9
+};
+csl_isa_instruction_format ad{
+    ad( ){
+     set_width( 9);
+     generate_decoder( qsibcsld);
+  }
+}
+;
+csl_isa dg{
+    dg( ){
+     set_decoder_name( "cu");
+     set_decoder_out_name_prefix( "qy");
+     set_decoder_out_name_suffix( "hk");
+     generate_decoder( qsibld);
+     print( isa.txt);
+  }
+}
+;
+csl_fifo qf{
+   qf( ){
+     add_logic( string_through, 6);
+     add_logic( almost_full, 2);
+  }
+}
+;
+csl_memory_map_page xd{
+    xd( ){
+     add_address_range( 9, 9);
+     get_address_increment( );
+     set_access_rights( access_read_write, none);
+     add_reserved_address_range( 4, 5);
+     set_data_word_width( 0);
+     get_data_word_wodth( );
+     set_aligment( 5);
+     set_endianess( big_endianbig_endian);
+     get_endianess( );
+     set_symbol_max_lenght( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map_page dy{
+    dy( ){
+     set_next_address( 7);
+     get_next_address( );
+     get_lower_bound( );
+     get_upper_bound( );
+     get_data_word_wodth( );
+     set_aligment( 7);
+     set_symbol_max_lenght( );
+  }
+}
+;
+csl_memory_map_page lg{
+    lg( ){
+     set_address_increment( 0);
+     set_next_address( 9);
+     add_reserved_address_range( 5, 6);
+     add( dy);
+     get_upper_bound( );
+     set_aligment( 8);
+     get_aligment( );
+     get_symbol_lenght( );
+  }
+}
+;
+csl_memory_map qh{
+  dy do;
+  lg vi;
+  xd dg;
+  dy im;
+  lg vm;
+    qh( ){
+     auto_gen_memory_map( );
+     set_top_unit( qsibld);
+xddy.add_to_memory_map( 2); 
+     set_type( flat);
+     set_prefix( kx);
+     get_prefix( );
+  }
+}
+;
+csl_register cb{
+    cb( ){
+     set_range( {[4:5], [9:6], [9:1], [4:5], [0:3]});
+     constant( 3);
+     get_atributes( );
+     add_logic( neg_output);
+     add_logic( rd_en);
+     init_value( 9);
+     clear_value( 8);
+     set_lock_enable_bit( 5);
+     add_logic( gray_output);
+     set_count_amount( 3);
+     set_count_direction( 8);
+     set_end_value( 0);
+     stop_at_end_value( );
+  }
+}
+;
+csl_register wv{
+    wv( ){
+  }
+}
+;

@@ -1,0 +1,24 @@
+//illegal: recursiv memory map page instanciate!
+//andreim
+//15 June 2007
+
+csl_unit u{
+u(){}
+};
+
+csl_memory_map_page mmp_page{
+	mmp_page page_i;
+	mmp_page(){
+		add_address_range(0,31);
+		set_unit_name(u);
+		set_data_word_width(16);
+		set_alignment(4);           // increment = 16 / 4 = 4 
+	}
+};
+
+csl_memory_map mm{
+	mm(){
+	set_type(hierarchical);
+        set_data_word_width(128);
+  }
+};

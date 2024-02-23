@@ -1,0 +1,555 @@
+#pageHeader { 
+	background: transparent url(../imagesfpl/fpl_logo.png) no-repeat top left;
+ 	width: 910px;
+	height: 900px;
+	margin: 0;
+	position: relative;
+	padding: 0;
+	}
+tr.header { background: #fff;
+
+}
+td.menu-bg { 
+
+	padding-right: 20px;
+	
+	
+}
+table.content{
+border-right: 2px solid silver; 
+border-left: 2px solid silver; 
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+color: black;
+padding: 0 0 0 0;
+margin-right: 12px;
+}
+
+.content a:link { 
+	font-weight: bold; 
+	text-decoration: none; 
+	color: #8B0000;
+}
+.content a:visited { 
+	font-weight: bold; 
+	text-decoration: none; 
+	color: #8B0000;
+}
+.content a:hover, a:active { 
+	text-decoration: underline; 
+	color: #8B0000;
+}
+div.taxonomy{
+	font-size: 11px;
+	font-weight: normal; 
+	text-decoration: none; 
+	color: 	#5D5D5D;
+}
+.taxonomy a:link { 
+	font-weight: normal; 
+	text-decoration: underline; 
+	color: #808080;
+}
+.taxonomy a:visited { 
+	font-weight: normal; 
+	text-decoration: underline; 
+	color: #808080;
+}
+.taxonomy a:hover, a:active { 
+	text-decoration: underline; 
+	color: #808080;
+}
+/*td.content-align {
+border-right: 2px solid silver; 
+border-left: 2px solid silver; 
+padding-left: 15px; 
+padding-right: 15px;
+}*/
+
+td.container-align {
+border-right: 2px solid #d1cfd0;  
+border-left: 2px solid #d1cfd0;  
+padding-left: 100px; 
+padding-right: 0px;
+}
+div.container-title{
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+font-weight: bold;
+color: #8B0000;
+}
+div.container-content{
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+color: black;
+padding: 0 0 0 0;
+}
+a.link-color:link{
+font-size: 9px;
+color: #8B0000;
+}
+a.link-color:visited{
+color: #00008B;
+}
+
+a.link-color:hover{
+font-style: none;
+text-decoration:none;
+color: #68EB64;
+}
+
+
+/*========================= TOP LEVEL OF THE MENU CASCADE =========================*/
+
+#menu {
+	position: absolute; /* establish a menu-relative positioning context */
+	display: inline;
+	top: 50px;
+	right: 120px;
+	width: 500px !important; /* IE 6 and below escape hack */
+	width: 492px;
+	margin: 0;
+	padding: 0 5px 0 0 !important;
+	padding: 0;
+	background: transparent;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px; /* this (and also below) sets the menu's font size */
+	vertical-align: bottom;
+	float: right;
+	z-index: 100;
+}
+
+#menu img {
+	vertical-align: top;      	/* prevent images from being pushed down by text */
+}
+
+#menu ul {
+	padding:0;
+	margin:0;
+	list-style-type:none;          /* we don't want to view the list as a list */
+	line-height:1.5em;           /* globally set the menu's item spacing. note */
+	}                               
+
+#menu li {
+	float:left;    /* this creates the side-by-side array of top-level buttons */
+	position:relative;    /* create local positioning contexts for each button */
+	margin:1px 0 0 0;
+	padding: 0 5px 0 5px !important;
+	padding: 0 3px 0 3px;
+	list-style-type:none;          /* we don't want to view the list as a list */
+	list-style-image: none;
+}
+
+#menu ul li table {
+	margin:-1px 0;              /* IE5 needs -1px top and bottom table margins */
+	margin:0;               	/* re-zero the table margins for everyone but IE5 */
+	border-collapse:collapse;	/* IE5 needs this for the sub-menus to work */
+	font-size:12px;        		/* this sets the base font size for our entire menu */
+}
+
+.menuDivider { 											/* Top-level menu separator */
+	padding: 0;
+	margin: 0;
+	text-align: left;
+	vertical-align: top;
+	background: transparent;
+	visibility: visible;
+	width: 1px;
+	height: 11px;
+}
+
+/*======================== TOP LEVEL MENU DEFINITIONS ========================*/
+
+#menu ul li ul {
+	display:none;                  	/* initially hide the entire list hierarchy */
+	padding: 1px; 					/* this is our box border width */
+}
+
+#menu ul li a,
+#menuv ul li a:visited {					/* unselected top-level menu items */
+	display:inline;
+	float:left;
+	text-decoration:none;
+	height: 18px;
+	margin: 0;
+}
+
+#menu ul li:hover a,
+#menu ul li a:hover {                   /* selected top-level menu items */
+	height:18px;
+	display:inline;
+}
+
+
+/* PRODUCTS */
+#menu ul li.productsMainMenu {			/* Set on the list background to avoid flicker issue in IE6 */
+	color: #000080;
+	background: transparent no-repeat top center;
+	width: 73px !important;		/*another freaking IE box modle excape hack */
+	width: 72px;				/*Add 10px for IE and set important for other brosers*/
+}
+#menu ul li a.products, ul li a.products:visited {				/* unselected top-level menu items */
+	color: #000080;
+	background: transparent no-repeat top center;
+	width: 73px !important;								/*another freaking IE box modle excape hack */
+	width: 72px;	/*Add 10px for IE and set important for other brosers*/	
+}
+#menu ul li a.products:hover, ul li a.products:active {              /* Mouseover top-level menu items */
+	color: #000080;
+	background: transparent no-repeat top center;
+	visibility: visible;
+	width: 73px !important;								/*another freaking IE box modle excape hack */
+	width: 72px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu ul li a.productsOn, ul li a.productsOn:visited {			/* Seleted top-level menu items */
+	color: #000080;
+	background: transparent no-repeat top center;
+	width: 73px !important;								/*another freaking IE box modle excape hack */
+	width: 72px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu a.productsOn:hover, ul li a.productsOn:active {          /* Mouseover top-level menu items - need to add this for IE */
+	color: #000080;
+	background: transparent no-repeat top center;
+	visibility: visible;
+	width: 73px !important;								/*another freaking IE box modle excape hack */
+	width: 72px;										/*Add 10px for IE and set important for other brosers*/
+}
+
+
+/* SOLUTIONS */
+#menu ul li.solutionsMainMenu {			/* Set on the list background to avoid flicker issue in IE6 */
+	background: transparent no-repeat top center;
+	color: #000080;
+	width: 76px !important;		/*another freaking IE box modle excape hack */
+	width: 76px;				/*Add 10px for IE and set important for other brosers*/
+	padding: 0 1px 0 1px;
+}
+#menu ul li a.solutions, ul li a.solutions:visited {				/* unselected top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	width: 76px !important;								/*another freaking IE box modle excape hack */
+	width: 76px;										/*Add 10px for IE and set important for other brosers*/			
+}
+#menu ul li a.solutions:hover, ul li a.solutions:active {              /* Mouseover top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	visibility: visible;
+	width: 76px !important;								/*another freaking IE box modle excape hack */
+	width: 76px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu ul li a.solutionsOn, ul li a.solutionsOn:visited {			/* Seleted top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	width: 76px !important;								/*another freaking IE box modle excape hack */
+	width: 76px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu a.solutionsOn:hover, ul li a.solutionsOn:active {          /* Mouseover top-level menu items - need to add this for IE */
+	background: transparent no-repeat top center;
+	color: #000080;
+	visibility: visible;
+	width: 76px !important;								/*another freaking IE box modle excape hack */
+	width: 76px;										/*Add 10px for IE and set important for other brosers*/
+}
+
+
+/* SUPPORT */
+#menu ul li.supportMainMenu {			/* Set on the list background to avoid flicker issue in IE6 */
+	background: transparent no-repeat top center;
+	color: #000080;
+	width: 63px !important;								/*another freaking IE box modle excape hack */
+	width: 63px;	
+}
+#menu ul li a.support, ul li a.support:visited {					/* unselected top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	width: 63px !important;								/*another freaking IE box modle excape hack */
+	width: 63px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu ul li a.support:hover, ul li a.support:active {                /* Mouseover top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	visibility: visible;
+	width: 63px !important;								/*another freaking IE box modle excape hack */
+	width: 63px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu ul li a.supportOn, ul li a.supportOn:visited {				/* Selected top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	width: 63px !important;								/*another freaking IE box modle excape hack */
+	width: 63px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu ul li a.supportOn:hover, ul li a.supportOn:active {            /* Mouseover top-level menu items  - need to add tthis for IE*/
+	background: transparent no-repeat top center;
+	color: #000080;
+	visibility: visible;
+	width: 63px !important;								/*another freaking IE box modle excape hack */
+	width: 63px;										/*Add 10px for IE and set important for other brosers*/
+}
+
+/* NEWS */
+#menu ul li.newsMainMenu {			/* Set on the list background to avoid flicker issue in IE6 */
+	background: transparent no-repeat top center;
+	color: #000080;
+	width: 40px !important;								/*another freaking IE box modle excape hack */
+	width: 65px;
+}
+#menu ul li a.news, ul li a.news:visited {                /* unselected top-level menu items */
+	background: transparent  no-repeat top center;
+	color: #000080;
+	width: 40px !important;								/*another freaking IE box modle excape hack */
+	width: 65px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu ul li a.news:hover, ul li a.news:active {             	/* Mouseover top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	visibility: visible;
+	width: 40px !important;								/*another freaking IE box modle excape hack */
+	width: 65px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu ul li a.newsOn, ul li a.newsOn:visited {			/* Selected top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	width: 40px !important;								/*another freaking IE box modle excape hack */
+	width: 65px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu ul li a.newsOn:hover, ul li a.newsOn:active {          /* Mouseover top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	visibility: visible;
+	width: 40px !important;								/*another freaking IE box modle excape hack */
+	width: 65px;										/*Add 10px for IE and set important for other brosers*/
+}
+
+/* PARTNERS */
+#menu ul li.partnersMainMenu {			/* Set on the list background to avoid flicker issue in IE6 */
+	background: transparent no-repeat top center;
+	color: #000080;
+	width: 50px !important;								/*another freaking IE box modle excape hack */
+	width: 75px;
+}
+#menu ul li a.partners, ul li a.partners:visited {                /* unselected top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	width: 50px !important;								/*another freaking IE box modle excape hack */
+	width: 75px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu ul li a.partners:hover, ul li a.partners:active {              /* Mouseover top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	visibility: visible;
+	width: 50px !important;								/*another freaking IE box modle excape hack */
+	width: 75px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu ul li a.partnersOn, ul li a.partnersOn:visited {			/* Selected top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	width: 50px !important;								/*another freaking IE box modle excape hack */
+	width: 75px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu ul li a.partnersOn:hover, ul li a.partnersOn:active {          /* Mouseover top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	visibility: visible;
+	width: 50px !important;								/*another freaking IE box modle excape hack */
+	width: 75px;										/*Add 10px for IE and set important for other brosers*/
+}
+/* COMPANY */
+#menu ul li.companyMainMenu {			/* Set on the list background to avoid flicker issue in IE6 */
+	background: transparent no-repeat top center;
+	color: #000080;
+	width: 68px !important;								/*another freaking IE box modle excape hack */
+	width: 80px;
+}
+#menu ul li a.company, ul li a.company:visited {                  /* unselected top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	width: 68px !important;								/*another freaking IE box modle excape hack */
+	width: 80px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu ul li a.company:hover, ul li a.company:active {                 /* Mouseover top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	visibility: visible;
+	width: 68px !important;								/*another freaking IE box modle excape hack */
+	width: 80px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu ul li a.companyOn, ul li a.companyOn:visited {              /* Selected top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	width: 68px !important;								/*another freaking IE box modle excape hack */
+	width: 80px;										/*Add 10px for IE and set important for other brosers*/
+}
+#menu ul li a.companyOn:hover, ul li a.companyOn:active {            /* Mouseover top-level menu items */
+	background: transparent no-repeat top center;
+	color: #000080;
+	visibility: visible;
+	width: 68px !important;								/*another freaking IE box modle excape hack */
+	width: 80px;										/*Add 10px for IE and set important for other brosers*/
+}
+
+
+/*======================== 2ND LEVEL MENU DEFINITIONS ========================*/
+
+#menu ul li:hover ul,
+#menu ul li a:hover ul {
+	/* 2nd level drop-down box */
+	display: block;
+	position: absolute;
+	margin: -1px 0 0 0;
+	top: 18px; 				/* place us just up below the top-level images */
+	left: -1px; 			/* left-align our drop-down to the previous button border */
+	color: #ffffff; 		/* this sets the unselected-text color */
+	font-family: Arial, Helvetica, Sans-serif;
+	font-size: 12px;
+	text-align: left;
+	background: #006300;
+	z-index: 300;
+	/* special styling for IE5.5 and IE6 - transparency is non validating */
+	_background: #009999 filter: alpha(opacity=93);
+	filter: /* this too is hidden from IE5.5 */progid:DXImageTransform.Microsoft.Alpha(opacity=93);
+	_opacity: /* this too is hidden from IE5.5 */ 0.93;
+	
+}
+
+#menu ul li:visited ul:hover,
+#menu ul li a:visited ul:hover {
+	visibility: hidden;			/* Hide the submenu once visited in IE  */
+}
+
+
+#menu ul li:hover ul.subProducts,			
+#menu ul li a:hover ul.subProducts{				/* Products dropdown  */
+	left:0px;								/* our first dropdown should not be skewed */
+	padding: 5px;
+	width: 200px;							/* For Netscpae 6+ to show background */
+	visibility: visible;
+}
+
+#menu ul li:hover ul.subSolutions,			
+#menu ul li a:hover ul.subSolutions{				/* Products dropdown  */
+	left:0px;								/* our first dropdown should not be skewed */
+	padding: 5px;
+	width: 150px;							/* For Netscpae 6+ to show background */
+	visibility: visible;
+}
+
+#menu ul li:hover ul.subSupport,			
+#menu ul li a:hover ul.subSupport {				/* Support dropdown  */
+	left:0px;
+	padding: 5px;
+	width: 150px;							/* For Netscpae 6+ to show background */
+	visibility: visible;
+}
+
+
+#menu ul li:hover ul.subNews,			
+#menu ul li a:hover ul.subNews {				/* Services dropdown  */
+	left:0px;
+	padding: 5px;
+	width: 170px;							/* For Netscpae 6+ to show background */
+	visibility: visible;
+}
+
+#menu ul li:hover ul.subPartners,
+#menu ul li a:hover ul.subPartners{				/* Partners dropdown  */
+	left: -74px !important; 				/* to get the drop down menu to flush against the right side */
+	left: -41px;
+	padding: 5px;
+	width: 210px;							/* For Netscpae 6+ to show background */
+	visibility: visible;
+}
+
+#menu ul li:hover ul.subCompany,
+#menu ul li a:hover ul.subCompany{				/* Company dropdown */
+	left: 0px !important; 
+	left: -130px;
+	right: 0;
+	padding: 5px;
+	width: 150px;							/* For Netscpae 6+ to show background */
+	visibility: visible;
+}
+
+
+#menu ul li:hover ul li a,
+#menu ul li a:hover ul li a {                   	/* 2nd level unselected items */
+	margin:0 0 2px 0 !important;
+	margin: 0;
+	padding: 0 5px 0 10px;					/*  5px left padding - see compensate for the 5px rollover padding on the right above */
+	color:#ffffff;               			/* this sets the unselected drop-down text color */
+	background:transparent;    				/* this sets the drop-down menu background color */
+}
+
+#menu ul li:hover ul li:hover a,
+#menu ul li a:hover ul li a:hover,
+#menu ul li a:hover ul li a:active {                	/* 2nd level selected item */
+	color: #004545;	
+	background:#B7E7D7;						/* 2nd level highlight color */
+	text-decoration: none;	
+	font-weight: bold;
+}
+	
+#menu ul li:hover ul.subProducts li a,
+#menu ul li a:hover ul.subProducts li a,
+#menu ul li:hover ul.subProducts li a:hover,
+#menu ul li a:hover ul.subProducts li a:hover {     /* 2nd level un+selected Products */	
+	width: 180px !important;
+	width: 180px;
+	font-family: Arial, Helvetica, Sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+	}
+	
+#menu ul li:hover ul.subSolutions li a,
+#menu ul li a:hover ul.subSolutions li a,
+#menu ul li:hover ul.subSolutions li a:hover,
+#menu ul li a:hover ul.subSolutions li a:hover {     /* 2nd level un+selected Products */	
+	width: 130px !important;
+	width: 130px;
+	font-family: Arial, Helvetica, Sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+	}	
+
+#menu ul li:hover ul.subSupport li a,
+#menu ul li a:hover ul.subSupport li a,
+#menu ul li:hover ul.subSupport li a:hover,
+#menu ul li a:hover ul.subSupport li a:hover  {     /* 2nd level un+selected Products */
+	width: 130px !important;
+	width: 130px;
+	font-family: Arial, Helvetica, Sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+}
+
+#menu ul li:hover ul.subNews li a,
+#menu ul li a:hover ul.subNews li a,
+#menu ul li:hover ul.subNews li a:hover,
+#menu ul li a:hover ul.subNews li a:hover {     /* 2nd level un+selected Products */
+	width: 150px !important;
+	width: 150px;
+	font-family: Arial, Helvetica, Sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+}
+
+#menu ul li:hover ul.subPartners li a,
+#menu ul li a:hover ul.subPartners li a,
+#menu ul li:hover ul.subPartners li a:hover,
+#menu ul li a:hover ul.subPartners li a:hover {     /* 2nd level un+selected Products */
+	width: 190px !important;
+	width: 190px;
+	font-family: Arial, Helvetica, Sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+}
+
+#menu ul li:hover ul.subCompany li a,
+#menu ul li a:hover ul.subCompany li a,
+#menu ul li:hover ul.subCompany li a:hover,
+#menu ul li a:hover ul.subCompany li a:hover {     /* 2nd level un+selected Products */
+	width: 130px !important;
+	width: 130px;
+	font-family: Arial, Helvetica, Sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+}

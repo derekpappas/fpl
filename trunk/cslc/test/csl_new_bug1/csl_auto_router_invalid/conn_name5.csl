@@ -1,0 +1,33 @@
+
+csl_interface ifc {
+  csl_port x(input),y(output);
+  ifc () {}
+};
+
+csl_unit a {
+  csl_port x(input);
+  ifc ifc1;
+  ifc ifc2;
+  a () {}
+};
+
+csl_unit b {
+  csl_port y(output);
+  ifc ifc0;
+  a a0;
+  b () {
+    ifc0.reverse();
+  }
+};
+
+csl_unit c {
+  b b0;
+  b b1;
+  ifc ifc3;
+  c () {
+    b0.a0.ifc1.connect_by_name(b1.ifc0);
+    b1.a0.ifc2.connect_by_name(b0.a0.ifc1);
+    ifc3.set_prefix("ifc0");
+    ifc3.connect_by_name(b1.a0.ifc2);
+  }
+};

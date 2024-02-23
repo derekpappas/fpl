@@ -1,0 +1,53 @@
+`define NUM_OF_STATIONS 20
+`define ID_LNGTH 8
+`define NS_IDLE 1
+`define NO_ONE 0
+`define UNKNOWN 1'bx
+`define SS_IDLE 3'b000 //[2:0] - not in a sending process
+`define SS_WAIT 3'b001 //[2:0] - wait till can start transmiting
+`define SS_HEAD 1 //- transmiting head
+`define SS_DATA 3'b111 //- transmiting data
+`define SS_TAIL 3'b010 //[2:0]   - transmiting tail
+`define SS_IFG 3'b011 //[2:0] - waiting IFG (Inter Frame Gap) time
+`define SS_JAM 3'b100 //[2:0] - jamming (after collision detected)
+`define SS_COL_WAIT 3'b101 //[2:0] - waiting random time after collision
+
+`define RS_IDLE 2'b00
+`define RS_WAIT 2'b01
+`define RS_FIRST 2'b10
+`define RS_CHAIN 2'b11
+
+`define DEBUG 1
+`define BUFFER_SIZE 8
+`define JAM_SIZE 10
+`define BIT_TIME 5
+
+`define RESOLUTION 3
+`define INTER_FRAME_GAP 100
+`define OVERHEAD 30
+
+`define RT_PACHET_SIZE 32
+`define fic my_turn_in_chain
+`define finish send_rt_status
+`define trns bus
+`define TAU 1
+`define rts bus
+`define NS_TAIL 10
+`define lic send_rt_status
+`define NRT_PACKETS_FRQ 5
+`define RT_FILE_DELAY 10
+`define RT_MIN_PACKETS 10
+`define RT_MAX_PACKETS 100
+`define MIN_PACKET_SIZE 1
+`define MAX_PACKET_SIZE 100
+`define SLOT_TIME 15
+`define seed 10
+`define act bus
+`define sim_end 10000
+`define next bus
+`define TAIL_TIME 20
+`define RT_TIME 10
+`define RT_FRAME_SIZE 10
+`define NS_DATA 0
+`define NS_HEAD 1
+`define RT_PACKET_SIZE 2

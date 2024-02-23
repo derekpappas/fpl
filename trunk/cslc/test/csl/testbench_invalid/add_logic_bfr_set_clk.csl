@@ -1,0 +1,33 @@
+//oanab
+//29 oct 2007
+//add_logic(..) in tb is used before clk is set as clock 
+
+csl_fifo ff{
+  ff(){
+    set_depth(16);
+    set_width(4);
+    add_logic(depth_extend,4);
+  }
+};
+
+csl_vector stim{
+  stim(){
+    set_unit_name(ff);
+    set_direction(input);
+  }
+};
+
+csl_vector exp{
+  exp(){
+   set_unit_name(ff);
+   set_direction(output);
+  }
+};
+
+csl_testbench tb{
+  csl_signal clk(reg);
+  ff ff;
+   tb(){
+     add_logic(clock,clk,4,ns); //clk should be set as clock before this command     clk.set_attr(clock);
+  }
+};

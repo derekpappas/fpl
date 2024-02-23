@@ -1,0 +1,20 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit >
+<signal name="x1" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="x2" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="x3" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="y1" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="y2" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="y3" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="x" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="y" offset="0" upper="0" lower="0" type = "wire"/>
+<instantiation type = "top">
+<instance name="top">
+</instance>
+</instantiation>
+<assign-stmt lhs="x" rhs="x1x2x3"/>
+<assign-stmt lhs="y" rhs="y1y2y3"/>
+</unit>
+</design>

@@ -1,0 +1,19 @@
+//author: Monica
+//testing csl_signal
+csl_bitrange BR(1);
+csl_unit U {
+  csl_signal sgn;
+  csl_signal sgn1(BR);
+
+  U(){
+    sgn =sgn1;
+  }
+};
+
+csl_unit V {
+  U U0;
+    
+  V(){
+
+  }
+};

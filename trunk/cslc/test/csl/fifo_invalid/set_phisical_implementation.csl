@@ -1,0 +1,7 @@
+csl_fifo fifo_name {
+  fifo_name(){
+    set_depth(16);
+    set_width(4);
+    set_physical_implementation(SRAM);//invalid cmd
+  }
+};

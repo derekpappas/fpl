@@ -1,0 +1,38 @@
+Subject:   	current job
+From:   	"Derek Pappas" <dpappas@fastpathlogic.ro>
+Date:   	Wed, March 7, 2007 08:02
+----------------------------------------------------------
+
+Alex,
+
+Forward this email to Oana B.
+
+1. Mihai will write the ISA for the RISC chapter in the NLP book
+
+2. Take the latest information about the ring processor and update
+the ring processor document that OanaB should have checked in yesterday.
+Cut and paste the text. Convert ASCII tables into Open Office Write tables.
+
+3. Understand the operation of the ring processor.
+
+4. Talk to CL and divide the CSL/Verilog work between the two of you.
+
+5. Write the ring node (no processor) CSL and Verilog. This should take the
+    two of you less than a week to get up and running
+
+6. Get instructions from California first then add the NIOS2 to the Ring 
+Node.
+The people in California have a stripped down version of the NIOS2 Verilog.
+
+7. Get instructions from California first then ddd the Ethernet MAC
+
+STOP DEVELOPMENT HERE AND ASK WHAT TO DO NEXT.
+
+Power PC, or Flash  is the next phase after you get the ring nodes working
+but we need to talk about this..
+
+3. Collect a list of the current jobs and people assigned to each
+job  for the HW team and send them to Mr. Haba and I.
+
+Thanks.
+

@@ -1,0 +1,26 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="usb_tm_dispatcher">
+<interface name="phy_tx" >
+<port name="valid" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="cmd" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="data" offset="0" upper="8-1" lower="0" direction = "output" type = "wire" />
+<port name="ready" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+<interface name="tp_bus" >
+<interface name="t2p" >
+<port name="valid" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+<port name="length" offset="0" upper="6-1" lower="0" direction = "input" type = "wire" />
+<port name="endpoint" offset="0" upper="4-1" lower="0" direction = "input" type = "wire" />
+<port name="ready" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="p2t" >
+<port name="valid" offset="0" upper="0" lower="0" direction = "output" type = "wire" />
+<port name="length" offset="0" upper="6-1" lower="0" direction = "output" type = "wire" />
+<port name="endpoint" offset="0" upper="4-1" lower="0" direction = "output" type = "wire" />
+<port name="ready" offset="0" upper="0" lower="0" direction = "input" type = "wire" />
+</interface>
+</interface>
+</unit>
+</design>

@@ -1,0 +1,21 @@
+//oanab
+//21 mar 2008
+//connecting 2 instances of the same unit
+
+csl_interface ifc {
+  csl_port x1(input),x2(input),y(output);
+  ifc () {}
+};
+
+csl_unit u1 {
+  ifc ifc1;
+  u1 () {}
+};
+
+csl_unit u2 {
+  u1 u11;
+  u1 u12;
+  u2 () {
+    u11.connect(u12); // illegal to connect 2 instances of the same unit
+  }
+};

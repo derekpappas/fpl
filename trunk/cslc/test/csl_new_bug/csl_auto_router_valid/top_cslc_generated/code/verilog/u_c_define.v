@@ -1,0 +1,21 @@
+`ifndef INC_GUARD_u_c
+`define INC_GUARD_u_c
+
+`define P_CK_UPPER_INDEX  (0)
+`define P_CK_LOWER_INDEX  (0)
+`define P_CK_WIDTH  (0-0+1)
+`define P_CK_RANGE `P_CK_UPPER_INDEX:`P_CK_LOWER_INDEX
+`define P_RESET_UPPER_INDEX  (0)
+`define P_RESET_LOWER_INDEX  (0)
+`define P_RESET_WIDTH  (0-0+1)
+`define P_RESET_RANGE `P_RESET_UPPER_INDEX:`P_RESET_LOWER_INDEX
+`define P_P_C_IN_UPPER_INDEX  (8-1)
+`define P_P_C_IN_LOWER_INDEX  (0)
+`define P_P_C_IN_WIDTH  (8)
+`define P_P_C_IN_RANGE `P_P_C_IN_UPPER_INDEX:`P_P_C_IN_LOWER_INDEX
+`define P_P_C_OUT_UPPER_INDEX  (8-1)
+`define P_P_C_OUT_LOWER_INDEX  (0)
+`define P_P_C_OUT_WIDTH  (8)
+`define P_P_C_OUT_RANGE `P_P_C_OUT_UPPER_INDEX:`P_P_C_OUT_LOWER_INDEX
+
+`endif

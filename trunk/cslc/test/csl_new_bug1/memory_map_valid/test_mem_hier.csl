@@ -1,0 +1,55 @@
+//
+
+csl_register pc {
+  pc() {
+    set_width(32);
+    set_type(register);
+  }
+};
+
+csl_register stat {
+  stat() {
+    set_width(32);
+    set_type(register);
+  }
+};
+
+csl_register error {
+  error() {
+    set_width(32);
+    set_type(register);
+  }
+};
+
+csl_register interrupt {
+  interrupt() {
+    set_width(32);
+    set_type(register);
+  }
+};
+
+csl_unit proc {
+  pc pc0;
+  stat status0;
+  error error0;
+  interrupt interrupt0;
+  proc() {
+  }
+};
+
+csl_memory_map_page proc_map {
+  proc_map() {
+    add_address_range(0, 1024           );
+    set_unit_name(proc);
+    add(proc.pc0       , "PC",       4  ); // assign addres 0
+    add(proc.status0   , "STATUS"   ,50 ); // assign addres 1 
+    add(error0    , "ERROR"    ,100); // assign addres 2
+    add(proc.interrupt0, "INTERRUPT",300); // assign addres 3
+  };
+};
+
+csl_memory_map map {
+    map() {
+    set_type(hierarchical); 
+  }
+};

@@ -1,0 +1,6 @@
+//isa_field_obj_name.get_upper();
+
+csl_isa_field f_op(16,12);
+f_op.set_type(opcode);
+csl_isa_field f_alu(f_op.get_upper(),f_op.get_lower());
+f_alu.set_type(selector);

@@ -1,0 +1,20 @@
+//andreim
+//13 october 2007
+//any design should have a clk port with clock attr, if not then
+//should give error
+
+csl_unit u{
+  csl_port clk_p(input);
+  u(){
+   //here should be this command:  clk_p.set_attr( clock );
+  }
+};
+
+csl_unit top{
+   csl_signal clk_sgn;
+   u u_(.clk_p(clk_sgn));
+   top(){
+    //here should be this command:  clk_sgn.set_attr( clock );
+   }
+};
+

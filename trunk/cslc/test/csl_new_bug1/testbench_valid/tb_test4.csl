@@ -1,0 +1,41 @@
+//Monica
+// 7 apr 2008
+
+csl_memory ram{
+  ram(){
+    set_width(32);
+    set_depth(8);
+  }
+};
+
+csl_unit u_dut{
+  csl_port clk(input);
+  csl_port en(input),data(input,32),addr(input,8),d(output);
+  csl_signal s;
+  ram ram; 
+  u_dut(){
+    clk.set_attr(clock);
+    clk = en;
+    addr = data[16:9];
+    d = s;
+  }};
+
+csl_vector stim{
+  stim(){
+    set_unit_name(u_dut);
+    set_direction(input);
+  }};
+csl_vector exp{
+  exp(){
+    set_unit_name(u_dut);
+    set_direction(output);
+  }};
+csl_testbench tb_mem{
+  csl_signal clk(reg);
+  u_dut dut(.clk(clk));
+
+  tb_mem(){
+    clk.set_attr(clock);
+    add_logic(clock,clk,10,ns);
+  }
+  };

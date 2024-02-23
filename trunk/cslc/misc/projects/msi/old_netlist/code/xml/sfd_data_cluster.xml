@@ -1,0 +1,18 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="sfd_data_cluster">
+<instantiation type = "sfd_data">
+<instance name="sfd_data">
+</instance>
+</instantiation>
+<instantiation type = "msi_fabric_if">
+<instance name="sfd_data_fab">
+</instance>
+</instantiation>
+<instantiation type = "sfd_data_lba">
+<instance name="sfd_data_lba">
+</instance>
+</instantiation>
+</unit>
+</design>

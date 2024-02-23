@@ -1,0 +1,18 @@
+//oanab
+//15 aug 2008
+
+csl_signal_group sg { 
+  csl_signal s1; 
+  csl_signal s2; 
+  sg() {} 
+}; 
+
+csl_unit a{ 
+  sg sg1;
+  sg sg2;
+  a() { 
+    sg2=sg1;  
+  } 
+}; 
+
+

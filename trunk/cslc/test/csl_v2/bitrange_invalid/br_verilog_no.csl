@@ -1,0 +1,2 @@
+// -- is illegal - bug1712
+csl_bitrange br('d123--2'o123);

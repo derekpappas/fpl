@@ -1,0 +1,21 @@
+/Petronela
+
+csl_multi_dim_bitrange obj_name(9);
+obj_name.set_dim_width(0, 1);
+obj_name.set_dim_width(1, 2);
+obj_name.set_dim_width(4, 3);
+obj_name.set_dim_width(3, 4);
+obj_name.set_dim_width(2, 5);
+obj_name.set_dim_width(6, 6);
+obj_name.set_dim_width(8, 7);
+obj_name.set_dim_width(5, 8);
+obj_name.set_dim_width(7, 10);
+obj_name.set_dim_width(9, 11);//error 
+
+
+csl_unit u1{
+  csl_signal s1;
+  u1(){
+    s1.set_bitrange(obj_name);  
+  }
+};

@@ -1,0 +1,19 @@
+//author: Ines
+//testing: csl_signal signal_object_name;
+
+
+csl_unit u1_t7 {
+
+  csl_signal sgn1_1_t7,sgn1_6_t7;
+  csl_signal sgn1_2_t7(8),sgn1_3_t7(1);
+  csl_signal sgn1_4_t7(8);
+  csl_signal sgn1_5_t7(1,1);
+
+  u1_t7() {
+    sgn1_1_t7.set_width(3);
+    sgn1_6_t7.set_range(9,7);
+    sgn1_1_t7 = sgn1_6_t7;
+    sgn1_2_t7 = sgn1_4_t7;
+    sgn1_3_t7 = sgn1_5_t7;
+  }
+};

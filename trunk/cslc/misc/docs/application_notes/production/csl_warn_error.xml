@@ -1,0 +1,3625 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Derek E. Pappas</Author>
+  <LastAuthor>Derek E. Pappas</LastAuthor>
+  <Created>2006-07-05T11:02:14Z</Created>
+  <LastSaved>2006-07-05T11:04:50Z</LastSaved>
+  <Company>X</Company>
+  <Version>11.6568</Version>
+ </DocumentProperties>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>8700</WindowHeight>
+  <WindowWidth>9060</WindowWidth>
+  <WindowTopX>360</WindowTopX>
+  <WindowTopY>105</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s21">
+   <NumberFormat/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <Table ss:ExpandedColumnCount="7" ss:ExpandedRowCount="760" x:FullColumns="1"
+   x:FullRows="1">
+   <Row>
+    <Cell><Data ss:Type="String">List o warning and error messages</Data></Cell>
+   </Row>
+   <Row ss:Index="8">
+    <Cell><Data ss:Type="String">Category</Data></Cell>
+   </Row>
+   <Row ss:Index="14">
+    <Cell><Data ss:Type="String">Phase</Data></Cell>
+   </Row>
+   <Row ss:Index="20">
+    <Cell><Data ss:Type="String">w/e</Data></Cell>
+   </Row>
+   <Row ss:Index="26">
+    <Cell><Data ss:Type="String">t</Data></Cell>
+   </Row>
+   <Row ss:Index="32">
+    <Cell><Data ss:Type="String">type</Data></Cell>
+   </Row>
+   <Row ss:Index="38">
+    <Cell><Data ss:Type="String">Description</Data></Cell>
+    <Cell><Data ss:Type="String">          </Data></Cell>
+   </Row>
+   <Row ss:Index="41">
+    <Cell><Data ss:Type="String">v</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">9</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">9</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:Index="48">
+    <Cell><Data ss:Type="String">v</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">t</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">m</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">v</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">r</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">l</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">o</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">g</Data></Cell>
+   </Row>
+   <Row ss:Index="68">
+    <Cell><Data ss:Type="String">c</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">l</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Function definition  contains non-blocking assignment</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">pa</Data></Cell>
+    <Cell><Data ss:Type="String">w</Data></Cell>
+    <Cell><Data ss:Type="String">F</Data></Cell>
+    <Cell ss:Index="6"><Data ss:Type="String">Line too long, maximum line size is number characters</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">P</Data></Cell>
+    <Cell ss:Index="6"><Data ss:Type="String">Illegal character char hex number </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">P</Data></Cell>
+    <Cell ss:Index="6"><Data ss:Type="String">Macro name contains too many actual arguments</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">P</Data></Cell>
+    <Cell ss:Index="6"><Data ss:Type="String">Macro name is missing some actual arguments</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">P</Data></Cell>
+    <Cell ss:Index="6"><Data ss:Type="String">Unmatched 'else directive</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">P</Data></Cell>
+    <Cell ss:Index="6"><Data ss:Type="String">Unmatched 'endif directive</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">P</Data></Cell>
+    <Cell ss:Index="6"><Data ss:Type="String">Missing filename for 'include directive</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">P</Data></Cell>
+    <Cell ss:Index="6"><Data ss:Type="String">Badly formed include directive</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">P</Data></Cell>
+    <Cell ss:Index="6"><Data ss:Type="String">Filename missing in #include directive</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">S</Data></Cell>
+    <Cell ss:Index="6"><Data ss:Type="String">Trailing comma in parentheses enclosed list</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ccd</Data></Cell>
+    <Cell><Data ss:Type="String">CSL directive outside of module</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">ew</Data></Cell>
+    <Cell><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">num</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal number radix, 'h expected</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">ew</Data></Cell>
+    <Cell><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">num</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal number radix, 'b expected</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">ew</Data></Cell>
+    <Cell><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">num</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal number radix, 'd expected</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">ew</Data></Cell>
+    <Cell><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">num</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal number radix; 'o expected</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Missing comma</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Missing semi colon</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Missing character</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Keyword expected</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Malformed unary Expression expr</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Malformed binary Expression expr</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Malformed ternary Expression expr</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Mintypmax Expressions are not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Function call missing argument(s)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Expression S</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Constant Expression contains variable name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Constant Expression usage</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mod</Data></Cell>
+    <Cell><Data ss:Type="String">Not a module item item</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Duplicate port port name in the port list for module module name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal part select specifier, ‘define missing '</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mod</Data></Cell>
+    <Cell><Data ss:Type="String">Duplicate Declaration of port port name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">parm</Data></Cell>
+    <Cell><Data ss:Type="String">Module module parameter parameter declaration missing value</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Type type does not support part select specifier </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mem</Data></Cell>
+    <Cell><Data ss:Type="String">Memories do not support part select specifier</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Ports may not be an array</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">file</Data></Cell>
+    <Cell><Data ss:Type="String">Directory name does not exist</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">blk</Data></Cell>
+    <Cell><Data ss:Type="String">Named block register name declared in multiple locations</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">dly</Data></Cell>
+    <Cell><Data ss:Type="String">Too many delay values, max number</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">chrs</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal value value</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">wire</Data></Cell>
+    <Cell><Data ss:Type="String">Wire type type not defined</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mod</Data></Cell>
+    <Cell><Data ss:Type="String">Module name module parameter list contains an Incorrect number of parameter overrides</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Port list cannot contain both formal to actual mappings and ordered port connections</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">LHS expression is illegal</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Equal sign missing</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Null (semi colon) found in illegal position</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot be parsed</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Found event id syntax in the design</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Repeat clause in delay not supported </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Repeat clause in event control not supported </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">@ event id is not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal procedural continuous assignment statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal de-assign statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal force statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal release statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">case</Data></Cell>
+    <Cell><Data ss:Type="String">Missing character character</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Repeat as delay not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Repeat as event control not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">@ event-id not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell ss:Index="6"><Data ss:Type="String">Illegal register assignment statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Wait statement is not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Disable statement is not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Events are not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Fork/join blocks are not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported function return time</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Events are not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pars</Data></Cell>
+    <Cell><Data ss:Type="String">Endfunction missing</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pars</Data></Cell>
+    <Cell><Data ss:Type="String">Endtask missing</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pars</Data></Cell>
+    <Cell><Data ss:Type="String">Endmodule missing</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pars</Data></Cell>
+    <Cell><Data ss:Type="String">Missing = sign for continuous assignment</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Null statement is not allowed here</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pars</Data></Cell>
+    <Cell><Data ss:Type="String">Statement S</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">@ event id is not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Repeat clause in delay or Event control</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">@ event id is not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal procedural continuous assignment statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal de-assign statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal force statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal release statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">case</Data></Cell>
+    <Cell><Data ss:Type="String">Colon expected for Case item</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Repeat as delay or event control not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">@ event id is not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">net</Data></Cell>
+    <Cell><Data ss:Type="String">Register name cannot be used on LHS of this assignment statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Wait statement is not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Disable statement is not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Events are not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Fork/join blocks are not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal function return type</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Events are not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Events are not supported </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">Task name body statement missing</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">gate</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal output terminal Expression pin pin name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">UDPs are not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Defparam is not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Parameter Declaration missing value</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">lib</Data></Cell>
+    <Cell><Data ss:Type="String">Library file name doesn't contain a module Declaration</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">parm</Data></Cell>
+    <Cell><Data ss:Type="String">Parameter re-declared as reg name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">parm</Data></Cell>
+    <Cell><Data ss:Type="String">Parameter re-declared as port port</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">parm</Data></Cell>
+    <Cell><Data ss:Type="String">Parameter re-declared as Net name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">parm</Data></Cell>
+    <Cell><Data ss:Type="String">Duplicate declaration of parameter name name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Expected identifier but found reserved word word</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Port identifier</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mod</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal module name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">parm</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal parameter identifier</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">nett</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal register name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">nett</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal net name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal module instance name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">port</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal formal port name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">blk</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal block identifier</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal function name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal task name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">id</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal terminal identifier</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mem</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal hid reference to memory (name)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ccd</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal position for CSLC directive in module name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">lib</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot open library file name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Instance name name already defined in this module</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Empty filename for 'include directive</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Empty parameter list for module instantiation isntance_name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal macro name name matches existing compiler directive – illegal according to IEEE 1364-1995 S </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cmdl</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal +incdir+ path path directory does not exist</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cmdl</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal -y path path directory does not exist</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">Variable re-declared as a task name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">Task name defined in multiple places (list all places it is defined here)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Variable re-declared as a function name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Function name defined in multiple places (list all places it is defined here)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Port port direction cannot be output</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">gate</Data></Cell>
+    <Cell><Data ss:Type="String">Gate instance gate is missing input connections</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Missing macro name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal macro name name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">casn</Data></Cell>
+    <Cell><Data ss:Type="String">LHS cannot be a register name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">nett</Data></Cell>
+    <Cell><Data ss:Type="String">Net declared as both scalar and vector</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Text macro string used recursively</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Parameter name[number : number]part select is out of range</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Concatenation empty</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Badly formed part select</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">net</Data></Cell>
+    <Cell><Data ss:Type="String">Implicitly declared as a wire name re-declared as a reg name.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mod</Data></Cell>
+    <Cell><Data ss:Type="String">MultipleDeclarations of string detected in module module</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal value for part select of instance array 'name'</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Too many bits for port port of instance array array, formal number, actual number</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Port 'port' of instance array 'array' is not connected to variable</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Insufficient bits for port 'port' of instance array 'array ', formal number, actual number</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal use of task name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal use of function name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mod</Data></Cell>
+    <Cell><Data ss:Type="String">Module name defined in multiple places</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">file</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot open file name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Part select indices variable</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Part select specifier Expression must be constant Expression</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ccd</Data></Cell>
+    <Cell><Data ss:Type="String">CSL directive size must be constant Expression</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cmdl</Data></Cell>
+    <Cell><Data ss:Type="String">Bad 'uselib syntax expected dir, file, 'libext or clear , got character-string</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot open library file name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cmdl</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal 'uselib directory path path no such directory </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Repetition multiplier in concatenation is not a constant Expression</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ectl</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot use event control statement in this position</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">nett</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported register type type</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Event variables are not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Port 'port' has multiple connections specified</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Clock name not found in cslc directive</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Module name not defined</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Too many module instance parameter assignments (number &gt; rrumber)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">str</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal character character found after backslash</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Text macro (name) not defined</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">'ifdef missing macro name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">'undef missing macro name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Missing 'endif directive</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mod</Data></Cell>
+    <Cell><Data ss:Type="String">Missing endmodule</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Array-latches which use multiple clocks cannot mix latch types</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">num</Data></Cell>
+    <Cell><Data ss:Type="String">Width 0 not allowed for sized number </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">trns</Data></Cell>
+    <Cell><Data ss:Type="String">Transistor-level instantiations instance_name not allowed</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">dely</Data></Cell>
+    <Cell><Data ss:Type="String">Intra-assignmentDelay control in blocking assignment not of form #O or #1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">D</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Statement intra-assignment repeat event control in blocking assignment detected</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">D</Data></Cell>
+    <Cell><Data ss:Type="String">cb </Data></Cell>
+    <Cell><Data ss:Type="String">Statement intra-assignment event control in blocking assignment detected</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">blk</Data></Cell>
+    <Cell><Data ss:Type="String">Procedural continuous assignment is not allowed</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb </Data></Cell>
+    <Cell><Data ss:Type="String">Statement intra-assignment repeat event control in non-blocking assignment detected</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb </Data></Cell>
+    <Cell><Data ss:Type="String">Statement intra-assignment event control in non-blocking assignment detected</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb </Data></Cell>
+    <Cell><Data ss:Type="String">De-assign statement can’t be simulated</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb </Data></Cell>
+    <Cell><Data ss:Type="String">Forever-loop is can’t be simulated</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Unknown port direction for port port</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">port</Data></Cell>
+    <Cell><Data ss:Type="String">Implicitly declared Net (inferred 1-bit width) used with bit/part select</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">port</Data></Cell>
+    <Cell><Data ss:Type="String">Port declared with no range specification used with bit/part select</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">netd</Data></Cell>
+    <Cell><Data ss:Type="String">Net declared with no range specification used with bit/part select</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Function name not defined</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">syst</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal system task name Argument arg</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ask</Data></Cell>
+    <Cell><Data ss:Type="String">Variable name used but not declared</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Unknown port name name in named port connection</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Too many port connections specified for instance name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">proc</Data></Cell>
+    <Cell><Data ss:Type="String">Always block missing event control</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">num</Data></Cell>
+    <Cell><Data ss:Type="String">Real numbers not allowed</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mod</Data></Cell>
+    <Cell><Data ss:Type="String">no modules found</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Simple identifier expected for LHS Expression in force-statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Simple identifier expected for LHS Expression in release-statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">loop</Data></Cell>
+    <Cell><Data ss:Type="String">While control initial variable name unassigned. Initial value unknown </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">loop</Data></Cell>
+    <Cell><Data ss:Type="String">While loop body  does not contain an assignment statement for control variable name </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">loop</Data></Cell>
+    <Cell><Data ss:Type="String">While loop body  does not contain an assignment statement for control variable name </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">loop</Data></Cell>
+    <Cell><Data ss:Type="String">Assignment statement for control variable name not last statement in while loop </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">Task name  not defined</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Module name input port name declared as type reg </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Module name inout port name declared as type reg </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Module name output port  re-declared as type reg after use as implicitly declared wire</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">decl</Data></Cell>
+    <Cell><Data ss:Type="String">Array name exceeds maximum size limit</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mins</Data></Cell>
+    <Cell><Data ss:Type="String">Expression expression has an incompatible argument type type with the port</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">stsk</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot redefine Verilog system task task</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Constant part select select  contains a non-constant selector  selector</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Port type type unsupported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal bit select expression expression</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal operator operator</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal operand operand</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String"> </Data></Cell>
+    <Cell><Data ss:Type="String">Division/modulus by a number not a power of 2. Inefficient simulation operation.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Too many arguments passed to function name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">Too many arguments passed to task name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Too few arguments passed to function name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">Too few arguments passed to task name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">loop</Data></Cell>
+    <Cell><Data ss:Type="String">Unable to determine init value for loop</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">loop</Data></Cell>
+    <Cell><Data ss:Type="String">Unable to determine limit for loop</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Undefined function name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">Undefined task name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Latch not connected to a clock pin.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">FF not connected to a clock pin.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">sens</Data></Cell>
+    <Cell><Data ss:Type="String">Mixed edge types</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">udp</Data></Cell>
+    <Cell><Data ss:Type="String">UDP’s are not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Function expression expression cannot be expanded</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ectl</Data></Cell>
+    <Cell><Data ss:Type="String">Edge trigger is not allowed in this location</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Clock file name cannot be opened</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mod</Data></Cell>
+    <Cell><Data ss:Type="String">Failed to find module name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">dsgn</Data></Cell>
+    <Cell><Data ss:Type="String">Top module name cannot be identified</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">dsgn</Data></Cell>
+    <Cell><Data ss:Type="String">Unit design hierarchy contains a cycle. Hierarchy is not a spanning tree.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inhw</Data></Cell>
+    <Cell><Data ss:Type="String">Scan latch not connected to clock</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inhw</Data></Cell>
+    <Cell><Data ss:Type="String">Scan latch not connected to data in</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inhw</Data></Cell>
+    <Cell><Data ss:Type="String">Scan latch not connected to output</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Clock source name cannot be a vector bit</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">The clock source name is not driven by a clock and is driven by net net_name. Inferring a net type instead of clock per the clock directive.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">A clock should drive clock name.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Clock source definition contains a clock</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot open the clock file filename</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Clock source specification error </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Clock name assigned to constant value. </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Clock name assigned to multiplexed clock gate with glitch. </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Clock name assigned to phase shifted clock. </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Generated clock name is not driven by FF.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">The clock source clock is driven by another clock (reword this msg)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">num</Data></Cell>
+    <Cell><Data ss:Type="String">Division by zero</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">SimpleExpression port at top module port port</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">ComplexExpression expr cannot be mapped to inout port port </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">ComplexExpression expr cannot be mapped to unknown type port port</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mdn</Data></Cell>
+    <Cell><Data ss:Type="String">Multiple drive Net 'ttarne' cannot be forced.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">forc</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot force a partially selected NetNet</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">rel</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot release a partially selected NetNet</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">NetDeclaration [nurnber: nurnber] contains an illegal part select</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">RegDeclaration [number : number] contains an illegal part select</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String"> hid</Data></Cell>
+    <Cell><Data ss:Type="String">Can’t locate hierarchical identifier hid</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">forc</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal force object type type</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String"> rel</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal release object type type </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String"> hid</Data></Cell>
+    <Cell><Data ss:Type="String">References a module instance module instance found in anExpression hid</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String"> hid</Data></Cell>
+    <Cell><Data ss:Type="String">References a module instance module instance passed as argument to PLI task call is also found in anExpression hid</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String"> hid</Data></Cell>
+    <Cell><Data ss:Type="String">Hid hid name traverses into a function function name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String"> hid</Data></Cell>
+    <Cell><Data ss:Type="String">Hid hid referencing a module instance passed as 'out' type argument to a system task task</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String"> mem</Data></Cell>
+    <Cell><Data ss:Type="String">Memory memory_name referenced without index through hierarchical ID hid</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Input port port in module width mismatch, actual-width (port-width)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Output port port in module width mismatch, actual-width (port-width)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Module module  does not contain Port port </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Complex port Declaration port of module module is not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Inout port port in module width mismatch, actual width (port-width)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Unknown port direction direction (port)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Input port port is memory type</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Output port port is memory type</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Inout port port is memory type</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Complex actual Expression associated with port port of module module instantiated in parent module</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Mod module name Output port port name width mismatch, actual-width ( port-width )</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Mod module name Input port port name width mismatch, actual-width (port-width)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Bad multi–driven Net name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported component type type driving in multi-driven Net name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">tri</Data></Cell>
+    <Cell><Data ss:Type="String">Instance name is not a tri-state device</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported component type type driving multi-driven Net natne</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Multiply driven Net driven by transistor primitive type type</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">D</Data></Cell>
+    <Cell><Data ss:Type="String">tri</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported gate type type used for tristate</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">D</Data></Cell>
+    <Cell><Data ss:Type="String">tri</Data></Cell>
+    <Cell><Data ss:Type="String">Tristate not designed correctly gate name can cause contention</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">D</Data></Cell>
+    <Cell><Data ss:Type="String">nett</Data></Cell>
+    <Cell><Data ss:Type="String">One hot mux can not be used for bus connection between modules Net name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">D</Data></Cell>
+    <Cell><Data ss:Type="String">tri</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported type instance type used for tristate name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">D</Data></Cell>
+    <Cell><Data ss:Type="String">tri</Data></Cell>
+    <Cell><Data ss:Type="String">Incorrect continuous assign statement for tristate gate name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">D</Data></Cell>
+    <Cell><Data ss:Type="String">tri</Data></Cell>
+    <Cell><Data ss:Type="String">Constant (constiznt) assigned to multi-driven Net name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">D</Data></Cell>
+    <Cell><Data ss:Type="String">tri</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported Expression type type for tristate</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">D</Data></Cell>
+    <Cell><Data ss:Type="String">drvc</Data></Cell>
+    <Cell><Data ss:Type="String">Incompatible drivers for Net name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">D</Data></Cell>
+    <Cell><Data ss:Type="String">drvc</Data></Cell>
+    <Cell><Data ss:Type="String">Multiple drive Net partially overlap</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">D</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported component type driving Net drives Net connected to multi-driven Net</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">D</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Incompatible driver driving tandem NetNet drives Net connected to multi-driven Net</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">D</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported LHS concatenation in multi-drive 'device</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">D</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Bus has too many drivers.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Bus index index integer of part select  [expr:expr] for variable name out of range</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Bus part select [expr:expr] for variable name out of range</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Bus part select  [expr:expr] index  integer out of range for variable name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">dmsn</Data></Cell>
+    <Cell><Data ss:Type="String">Memory part select  [expr:expr] index integer out range for memory name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">hid</Data></Cell>
+    <Cell><Data ss:Type="String">Hid name reference not found</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mins</Data></Cell>
+    <Cell><Data ss:Type="String">Module name does not exist</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">hid</Data></Cell>
+    <Cell><Data ss:Type="String">Module instance name in hid does not exist </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">file</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot open filter specification file filename</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">hid</Data></Cell>
+    <Cell><Data ss:Type="String">Module modulename found  in path path in the design</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Recursive INCLUDE file filename</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">dime</Data></Cell>
+    <Cell><Data ss:Type="String">Select for memory memoryname missing</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">dime</Data></Cell>
+    <Cell><Data ss:Type="String">Index &lt;index&gt; out of bounds for memory memory_name. Range [expr: expr]</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">dime</Data></Cell>
+    <Cell><Data ss:Type="String">Part select [expr : expr] out of bounds for net net. Range [expr : expr] </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">dime</Data></Cell>
+    <Cell><Data ss:Type="String">Part select [expr : expr] reg reg. Range [expr : expr]</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal type type can only accept net, reg, memory</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal token in part select token</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Incomplete part select specification part_select</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal index in part select part_select</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Negative index in part select part_select not allowed</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">file</Data></Cell>
+    <Cell><Data ss:Type="String">Filter specification file name file_name is missing</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">hid</Data></Cell>
+    <Cell><Data ss:Type="String">Hierarchical ID hid path contains a function</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Expression subject to different clock phases</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">No clock source specified clock clock_name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Merge clock phases (clock A-phase) vs (clock B-phase) Path for (clock A-phase)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">datl</Data></Cell>
+    <Cell><Data ss:Type="String">Combinational logic loop in data logic</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">datl</Data></Cell>
+    <Cell><Data ss:Type="String">Combinational logic loop in data logic with Latch Buffer</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Gated clock clock is connected to both clock and data logic</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Unable to continue trace of clock in clock tree which causes the clock to merge with the data signals</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">seq</Data></Cell>
+    <Cell><Data ss:Type="String">Latch connected to latch in loop</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Clock tree analysis can not analyze the gated clock type type</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot find the clock source clock</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell ss:StyleID="s21"><Data ss:Type="String">Clock pin 'pin' is not driven by a clock tree through combinational gates (there must be combinational path from a clock source to clock_name. The user must identify generated clocks by using a “cslc_gen_clk &lt;clock_name&gt;” directive the endpoint of  generated clocks. The end point is the end point of the combinational path from a clock source to a combinational gate.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Clock net name derived from sequential logic driver name name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Merged clock and data logic. A gate is connected to both a clock signal and a data signal. Clock and data signals cannot be connected to the same combinational gate. Do you need to use a gated clock directive to specify a gated clock? End point name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">datl</Data></Cell>
+    <Cell><Data ss:Type="String">Component loop A combinational loop was detected which involves a  split vector which is part of a combinational loop. Starting point name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">datl</Data></Cell>
+    <Cell><Data ss:Type="String">Component loop detected loop path starting point name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">datl</Data></Cell>
+    <Cell><Data ss:Type="String">Irregular latch in component loop. An irregular latch is a latch that can be open continuously for the entire cycle. One latch in the loop must be closed at some point during the clock cycle. starting point name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Mux output is used as a clock. Either the mux select or al of the mux inputs must be driven by a gated clock</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Generated clock clock is self -clocked.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Combinational logic loop in clock tree start point name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Clock enable name is a generated clock clock_name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">clk </Data></Cell>
+    <Cell><Data ss:Type="String">Generated clock clock_name has more than one driver</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">dely</Data></Cell>
+    <Cell><Data ss:Type="String">Found gate delay which are not allowed</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">dely</Data></Cell>
+    <Cell><Data ss:Type="String">Found delay in continuous assignment which are not allowed </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">dely</Data></Cell>
+    <Cell><Data ss:Type="String">Delay Ignoring delay specification in NetDeclaration</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">dely</Data></Cell>
+    <Cell><Data ss:Type="String">Delay Ignoring delay before statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">Specify blocks are not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">num</Data></Cell>
+    <Cell><Data ss:Type="String">Found x and/or z value in number literal</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Use of operator === detected</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Use of operator !== detected</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal parameter value</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Module not defined</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">mem</Data></Cell>
+    <Cell><Data ss:Type="String">Unknown latch type in latch-array declaration</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">mem</Data></Cell>
+    <Cell><Data ss:Type="String">Latch type missing ' in latch-array declaration</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">mem</Data></Cell>
+    <Cell><Data ss:Type="String">Clock name missing in latch-array directive declaration</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">pli</Data></Cell>
+    <Cell><Data ss:Type="String">User system task task is not listed in PLI table</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Clock glitch design rule checking found the following unsupported gated clock logic type type</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot open include file name, file does not exist</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot open include file name, file does not have read permission</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Missing module instance name. This syntax is an error according to IEEE 1364-1995 but is allowed by commercial Verilog compilers</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">sdir</Data></Cell>
+    <Cell><Data ss:Type="String">Ignored a synopsis case directive which is not applied to a Case statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">sdir</Data></Cell>
+    <Cell><Data ss:Type="String">Ignored a synopsis case directive which is missing the end&lt;directive&gt;</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">ccd</Data></Cell>
+    <Cell><Data ss:Type="String">CSLC directive in wrong location. Ignored</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">cmdl</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot use +librescan when +liborder has already been specified</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">cmdl</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot use +liborder when +librescan has already been specified</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Attempt to 'undef a nonexistent macro name </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">syst</Data></Cell>
+    <Cell><Data ss:Type="String">CSLC converts the system task $realtime return value to an integer</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">cb</Data></Cell>
+    <Cell><Data ss:Type="String">mintypmax Expressions are not supported</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Repetition multiplier in concatenation is not a constant Expression</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">num</Data></Cell>
+    <Cell><Data ss:Type="String">Number of digits exceeds the width in a sized number</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">cmnt</Data></Cell>
+    <Cell><Data ss:Type="String"> /* comment missing closing */</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Function name is not being used in an Expression</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">parm</Data></Cell>
+    <Cell><Data ss:Type="String">Parameter select width &gt; 32. The value is OS and platform dependent</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">ccd</Data></Cell>
+    <Cell><Data ss:Type="String">CSL clock directive not applied to design. Could not find clock</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">loop</Data></Cell>
+    <Cell><Data ss:Type="String">Loop bounds are calculated to be integer integer, check that this is correct</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Expression in lhs of assignment contains a variable bit select</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">loop</Data></Cell>
+    <Cell><Data ss:Type="String">Loop bounds are non-constant </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">loop</Data></Cell>
+    <Cell><Data ss:Type="String">Non-constant loop bound. Loop control variable initialization Expression is not a constant Expression</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">loop</Data></Cell>
+    <Cell><Data ss:Type="String">Non-constant loop bound. loop terminating Expression could not be evaluated to a constant</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">loop</Data></Cell>
+    <Cell><Data ss:Type="String">Non-constant loop bound. initializing Expression reset by variable</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Module rnodule output port port formal to actual width mismatch</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">snsl</Data></Cell>
+    <Cell><Data ss:Type="String">Incomplete sensitivity list. Name is not in the sensitivity list.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">snsl</Data></Cell>
+    <Cell><Data ss:Type="String">Edge sensitive process contains a data pin pin in the sensitivity list</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">case</Data></Cell>
+    <Cell><Data ss:Type="String">Assume a full case, missing 'default' or synopsys pragma ‘full case'.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">snsl</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported Expression type type in sensitivity list '</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">syst</Data></Cell>
+    <Cell><Data ss:Type="String">Return variable of user system task is used as a RHS variable</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">simr</Data></Cell>
+    <Cell><Data ss:Type="String">Multiple initial blocks force name. Unpredictable simulation result </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Module module instance name port port width mismatch, actual width integer formal width integer</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Multiple always blocks drive name name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">non-tri-state gate drives multi-driven Net </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Bus contention.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Wired bus connected to pull up(s) and pull down(s)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Multi-driven Net driven by different driver types</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Single module drives same multi driven Net with multiple tri-state drivers</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Expression type type unsupported on LHS in multi-drivenNet </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Found unsupported logic operation type type during clock tree analysis.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Found unsupported gated clock logic type type during clock tree analysis.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Found unsupported logic Expression type type during clock tree analysis.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Found unsupported gated clock component type type during clock tree analysis. 1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">A logic component clock pin is driven by unsupported clock 1 logic gate.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Found complex gated clock CSLC primitive 'primitive' during clock tree analysis.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Multiplexer both the select select and input input are driven by gated clock.. This warning now reports the path from the path from the clock source to the input pin and the dock source to the mux select pin.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Multiplexer has one data input name driven by gated clock clock and the other data pin name not driven by gated clock. Output name may be undefined.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported gated clock type  type</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported logic instance instance in clock tree logic</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">init</Data></Cell>
+    <Cell><Data ss:Type="String">Initialization time domain contains an Invalid component type type </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Logic operator has integer operands instead of 1-bit operands</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported Expression type type</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported operator type type</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">User system task output port drives non-sequential logic component</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Use of unsupported gated clock type clock_ type </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">The enable signal of a gated clock logic may be asserted when the clock signal is inactive.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Text macro redefined and replaced name. Previous definition filename, line number macro name New definition filename, line number macro name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Function Declaration name already declared as another type</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">loop</Data></Cell>
+    <Cell><Data ss:Type="String">The loop control variable name is one bit wide. Check the loop control variable Declaration.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">gate</Data></Cell>
+    <Cell><Data ss:Type="String">IEEE 1364-1995 error output terminal terminal. This will compile and simulate correctly on commercial verilog simulators</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Part select select on a vectored Net may not be allowed according to IEEE 1364-1995</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">list</Data></Cell>
+    <Cell><Data ss:Type="String">Missing comma between name and name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">snsl</Data></Cell>
+    <Cell><Data ss:Type="String">Edge type of clock clock is not specified</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">snsl</Data></Cell>
+    <Cell><Data ss:Type="String">Edge type of clock clock is incorrect</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">snsl</Data></Cell>
+    <Cell><Data ss:Type="String">Expression type type is unsupprted</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">drvc</Data></Cell>
+    <Cell><Data ss:Type="String">Output argument arg of user system task appears in RHS and is driven elsewhere</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">drvc</Data></Cell>
+    <Cell><Data ss:Type="String">Multiple initial blocks  force 'narne'</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">drvc</Data></Cell>
+    <Cell><Data ss:Type="String">Net name driven by multiple always blocks</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">drvc</Data></Cell>
+    <Cell><Data ss:Type="String">Net name driven by multiple statements with in the same always</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">drvc</Data></Cell>
+    <Cell><Data ss:Type="String">Multiply drivenNet driven by a non-tristate gate</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">drvc</Data></Cell>
+    <Cell><Data ss:Type="String">Incompatible driver of type type drivingNet_name drives multi drivenNet of type type name name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">A single component  contains multiple tristate drivers</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">md</Data></Cell>
+    <Cell><Data ss:Type="String">UnsupportedExpression type type on LHS ofNet driver statement </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported logic operation type type.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported gated clock logic type.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported logicExpression type op</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Unsupported gated clock component type type.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">By unsupported clock logic gate a logic component clock pin pin</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Found complex gated clock  clock_name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">The mux select pin and one or more mux input pins are driven by gated clocks</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Mux has one data pin driven by gated clock clock_name and the other data pin name not driven by gated clock clock_name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot analyze gated clock type type</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">seq</Data></Cell>
+    <Cell><Data ss:Type="String">Found unconventional always block</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">seq</Data></Cell>
+    <Cell><Data ss:Type="String">Always block cannot infer all outputs as latches not all outputs can be inferred</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">seq</Data></Cell>
+    <Cell><Data ss:Type="String">Candidate for special always</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Gated clock has more than 1 output pin</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">No clockNet found in always block with edge statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">No clockNet found in always block which can be inferred as a latch</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">file</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot open statistics file filename</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">forc</Data></Cell>
+    <Cell><Data ss:Type="String">Force name statement  in the initial block and there is no release statement.for name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">forc</Data></Cell>
+    <Cell><Data ss:Type="String">Release name statement  in the and there is no force statement.for name</Data></Cell>
+    <Cell><Data ss:Type="String">?</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">drvc</Data></Cell>
+    <Cell><Data ss:Type="String">tristate list_of_tristate_name and non-tristate list_of_names drivers onNet</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Merged clock clock_name with latching point</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Merged clock domains clocks clock_name_list</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">seq</Data></Cell>
+    <Cell><Data ss:Type="String">Irregular latch detected. Latch may be transparent for longer than one cvcle.</Data></Cell>
+    <Cell><Data ss:Type="String">?</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Clock domains mergedNets unknown…</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Module module exceeds the maximum number of ports. (trumber read / trumber write ports in use.). Specify the port number threshold with the cslc directive csl_max_num_ports.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">seq</Data></Cell>
+    <Cell><Data ss:Type="String">Detected a latching point</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">seq</Data></Cell>
+    <Cell><Data ss:Type="String">Latch driven by both phases</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Merged clock phases clock clock_name phase phase merged with clock clock_name phase phase merged</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">seq</Data></Cell>
+    <Cell><Data ss:Type="String">Latch driven by clock logic</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk </Data></Cell>
+    <Cell><Data ss:Type="String">Clock tree logic has  integer outputs which exceeds the maximimum threshold for gated clock fan out</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">comb</Data></Cell>
+    <Cell><Data ss:Type="String">Combinational logic cone depth. Level exceeds maximum specified depth depth</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Driver of scan latch clock 'clock' has no domain.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">topo</Data></Cell>
+    <Cell><Data ss:Type="String">The topological sort of the graph.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">net</Data></Cell>
+    <Cell><Data ss:Type="String">InferredNet name used in statement.Net not declared</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">ccd</Data></Cell>
+    <Cell><Data ss:Type="String">Duplicated filter directive cslc_msg_id</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">ccd</Data></Cell>
+    <Cell><Data ss:Type="String">Unused filter directive cslc_msg_id</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">ccd</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal  filter directive cslc_msg_id</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Clock name duplicated in multiple clock directives</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">case</Data></Cell>
+    <Cell><Data ss:Type="String">Case statement could be coded as a ternaryExpression</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">cmpl</Data></Cell>
+    <Cell><Data ss:Type="String">Component with component loop has been automatically split</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">clk</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot locate the clockNet clock in design</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">sig</Data></Cell>
+    <Cell><Data ss:Type="String">Signal signal name does not exist in the design</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">ccd</Data></Cell>
+    <Cell><Data ss:Type="String">CSL message filter cslc_msg_id not found. Filter cslc_msg_id is unused.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">ccd</Data></Cell>
+    <Cell><Data ss:Type="String">CSL message filter cslc_msg_id can not be filtered. Filter cslc_msg_id is unused.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">W</Data></Cell>
+    <Cell><Data ss:Type="String">ccd</Data></Cell>
+    <Cell><Data ss:Type="String">Error CSL directive csl_directive not found. Error csl_directive is unused.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Undefined  function function</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">Undefined task task </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Case equality operator == </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Deassign statement </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Defparam </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Delay control </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Event control </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">TimeDeclaration </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Wait statement </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Command line argument used in define </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Use of single bit constat </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">num</Data></Cell>
+    <Cell><Data ss:Type="String">Divide by zero </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">snsl</Data></Cell>
+    <Cell><Data ss:Type="String">Variable name modified in sense list</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">snsl</Data></Cell>
+    <Cell><Data ss:Type="String">Variable name in sensitivity list not used in block </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">num</Data></Cell>
+    <Cell><Data ss:Type="String">Variable name modulus by zero </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">netd</Data></Cell>
+    <Cell><Data ss:Type="String">Variable name never assigned</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">blk</Data></Cell>
+    <Cell><Data ss:Type="String">Variable name not assigned in all branches</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">snsl</Data></Cell>
+    <Cell><Data ss:Type="String">RHS variable not in sensitivity list</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Part select  index order reversed [index : index] [lower_index : upper_index] should be </Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">[upper_index : lower_index]</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Vector index index exceeds the size of the vector. Index truncated </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">parm</Data></Cell>
+    <Cell><Data ss:Type="String">Parameter parameter redefined</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">nett</Data></Cell>
+    <Cell><Data ss:Type="String">Reg reg_name connnected to instantiation name inout port_name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">lib</Data></Cell>
+    <Cell><Data ss:Type="String">Library does not contain supply  name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">sdir</Data></Cell>
+    <Cell><Data ss:Type="String">Found Synopsys compiler directive</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">udir</Data></Cell>
+    <Cell><Data ss:Type="String">Found other compiler directive </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">sysc</Data></Cell>
+    <Cell><Data ss:Type="String">Found system call name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">Task declaration</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">net</Data></Cell>
+    <Cell><Data ss:Type="String">Time variable name declared</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">net</Data></Cell>
+    <Cell><Data ss:Type="String">Time variable name bit used</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">net</Data></Cell>
+    <Cell><Data ss:Type="String"> t riandNet name  has on1y one driver</Data></Cell>
+    <Cell><Data ss:Type="String">?</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mdb </Data></Cell>
+    <Cell><Data ss:Type="String">Tristate not in top module</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Tristate primitive imtantiation </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Unary op with comparison  </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">net</Data></Cell>
+    <Cell><Data ss:Type="String">Undeclared net name in module module</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Undef macro_name not defined macro </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Undefined function name </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mins</Data></Cell>
+    <Cell><Data ss:Type="String">Undefined instance name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Undefined macro macro</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mod</Data></Cell>
+    <Cell><Data ss:Type="String">Undefined module module</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mmod</Data></Cell>
+    <Cell><Data ss:Type="String">Unexpandable macromodule macromodule</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">Found function parameter parameter</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Found function parameter parameter</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">snsl</Data></Cell>
+    <Cell><Data ss:Type="String">Always block is missing sensitivity list </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Include file contains non constant name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Non constant repeator in concatention </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mod</Data></Cell>
+    <Cell><Data ss:Type="String">Non interconnect in hierarchical module name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">blk</Data></Cell>
+    <Cell><Data ss:Type="String">Non blockinq aasignment in combinational always block </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">snsl</Data></Cell>
+    <Cell><Data ss:Type="String">Not all bus bits of sensitivity variable name are used in process</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">case</Data></Cell>
+    <Cell><Data ss:Type="String">Not allCase items are specified list_of_missing_items </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Out of range bus bit referenced</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">case</Data></Cell>
+    <Cell><Data ss:Type="String">DuplicateCase item item</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">parm</Data></Cell>
+    <Cell><Data ss:Type="String">Unused parameter parameter</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">cnst</Data></Cell>
+    <Cell><Data ss:Type="String">Assignment contains a real number constant</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">case</Data></Cell>
+    <Cell><Data ss:Type="String">Case selector contains a constant  real number </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">case</Data></Cell>
+    <Cell><Data ss:Type="String">Case item contains a constant  real number </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">case</Data></Cell>
+    <Cell><Data ss:Type="String">Real real in case item </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">scop</Data></Cell>
+    <Cell><Data ss:Type="String">Variable name redfined in scope scope_name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">While statement usage discouraged</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Wired net type only connected to one driver driver_name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Wired net type name found</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Name name used  in define and parameter name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">mod</Data></Cell>
+    <Cell><Data ss:Type="String">Wrong order in port declaration</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Wrong port order in instantiation instance_name list_of_ports_which_are_in_wrong order and correct port order</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">case</Data></Cell>
+    <Cell><Data ss:Type="String">Case item with x or X not in casex</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">assn</Data></Cell>
+    <Cell><Data ss:Type="String">x in rhs of assignment</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">assn</Data></Cell>
+    <Cell><Data ss:Type="String">x in rhs of assignement in defaultCase item</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">x or z in conditional expression</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">dely</Data></Cell>
+    <Cell><Data ss:Type="String">x or z in delay</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">x or z in vector bit select index</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">case</Data></Cell>
+    <Cell><Data ss:Type="String">z case item not in casez</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">prim</Data></Cell>
+    <Cell><Data ss:Type="String">z in primitive instantiation</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">assn</Data></Cell>
+    <Cell><Data ss:Type="String">z in rhs of assignement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Zero repeator in concatenation</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">sdir</Data></Cell>
+    <Cell><Data ss:Type="String">Unmatched synopsys translate off on</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Unmatched type in function/task function_task_name parameter parameter</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Unparameterized instantiation to parameter parameter</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Unused function name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">Unused task name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Un-synthesizable case equality operator = =</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Un-synthesizable deassign statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Un-synthesizable defparam</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Un-synthesizable delay control</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Un-synthesizable event control</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Un-synthesizable event declaration</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Un-synthesizable force statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Un-synthesizable fork statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Un-synthesizable initial</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Un-synthesizable primitive definition</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Un-synthesizable release statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Un-synthesizable repeat statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Un-synthesizable timeDeclaration</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Un-synthesizable transistor</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">unsy</Data></Cell>
+    <Cell><Data ss:Type="String">Un-synthesizable wait statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">sply</Data></Cell>
+    <Cell><Data ss:Type="String">Non-library element define name  used as supply</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">net</Data></Cell>
+    <Cell><Data ss:Type="String">Variable name assigned but never referenced</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">net</Data></Cell>
+    <Cell><Data ss:Type="String">Variable name never assigned</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">net</Data></Cell>
+    <Cell><Data ss:Type="String">Variable name not being assigned in all paths</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">net</Data></Cell>
+    <Cell><Data ss:Type="String">Variable name not in sensitivity list</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Vector index index order incorrect</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">prts</Data></Cell>
+    <Cell><Data ss:Type="String">Vector index index truncated</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Redefined macro name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">mod</Data></Cell>
+    <Cell><Data ss:Type="String">Redefined module name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">parm</Data></Cell>
+    <Cell><Data ss:Type="String">Redefined parameter parameter_name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">net</Data></Cell>
+    <Cell><Data ss:Type="String">Reg name connected to inout name in instantiation name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">net</Data></Cell>
+    <Cell><Data ss:Type="String">Reg name connected  to output in instantiation</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">net</Data></Cell>
+    <Cell><Data ss:Type="String">Reg name used as output of continuous assign</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">blk</Data></Cell>
+    <Cell><Data ss:Type="String">Repeat in non-blocking assignment</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Return value not at end of function</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">lib</Data></Cell>
+    <Cell><Data ss:Type="String">Block name not in library</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Shift by non constant name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">mem</Data></Cell>
+    <Cell><Data ss:Type="String">Single bit memory name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">spec</Data></Cell>
+    <Cell><Data ss:Type="String">Specify block found</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">sply</Data></Cell>
+    <Cell><Data ss:Type="String">Supply being driven</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">sply</Data></Cell>
+    <Cell><Data ss:Type="String">Supply not defined with user defined keyword</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">sply</Data></Cell>
+    <Cell><Data ss:Type="String">Supply not in library</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">sdir</Data></Cell>
+    <Cell><Data ss:Type="String">Found synopsys compiler directive</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Time and event control in function</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">time</Data></Cell>
+    <Cell><Data ss:Type="String">Time variable bit used</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">mdb</Data></Cell>
+    <Cell><Data ss:Type="String">Tri Net has only one driver</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">tri</Data></Cell>
+    <Cell><Data ss:Type="String">Tristate name not in top module</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">tri</Data></Cell>
+    <Cell><Data ss:Type="String">Tristate primitive instantiation instance_name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Unary op op with comparison op op missing precedence parenthesis</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Unmatched function parameter name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">Unmatched task parameter name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Unmatched port name connect in instance instance_name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">cnst</Data></Cell>
+    <Cell><Data ss:Type="String">Non-constantCase item item</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">cnst</Data></Cell>
+    <Cell><Data ss:Type="String">Non-constant delay delay</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">cnst</Data></Cell>
+    <Cell><Data ss:Type="String">Non-constant in include file non_constant</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">cnst</Data></Cell>
+    <Cell><Data ss:Type="String">Non-constant repeator in concatenation</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">dely</Data></Cell>
+    <Cell><Data ss:Type="String">Non integer delay</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Missing else statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">sply</Data></Cell>
+    <Cell><Data ss:Type="String">Output name connect to supply</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">snsl</Data></Cell>
+    <Cell><Data ss:Type="String">Partial bus name declared width full_width used_width used_width</Data></Cell>
+    <Cell><Data ss:Type="String">?</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Port name name different in upper lower case</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Port name not defined in ioDeclaration</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Port name not defined in port list</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Port name wireDeclaration mismatch</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Position based null instance port</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">prim</Data></Cell>
+    <Cell><Data ss:Type="String">Primitive instantiation name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">real</Data></Cell>
+    <Cell><Data ss:Type="String">Real nameDeclaration</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">real</Data></Cell>
+    <Cell><Data ss:Type="String">Real name in assignement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">real</Data></Cell>
+    <Cell><Data ss:Type="String">Real name inCase item</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">real</Data></Cell>
+    <Cell><Data ss:Type="String">Real name in comparaison</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">ectl</Data></Cell>
+    <Cell><Data ss:Type="String">Event control in assignement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Expression expr in module port dir</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Expression expr in inst instance_name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">expr</Data></Cell>
+    <Cell><Data ss:Type="String">Expression operator op operands operands unequal length</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">mifc</Data></Cell>
+    <Cell><Data ss:Type="String">Last portDeclaration contains a trailing comma</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">file</Data></Cell>
+    <Cell><Data ss:Type="String">Mismatch between module name name and file name name </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">rst</Data></Cell>
+    <Cell><Data ss:Type="String">FF without reset</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">rst</Data></Cell>
+    <Cell><Data ss:Type="String">FF with reset. Low power designs reduce the load on the reset line by eliminating reset on FF’s</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">forc</Data></Cell>
+    <Cell><Data ss:Type="String">Forcing input port name </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">tbcd</Data></Cell>
+    <Cell><Data ss:Type="String">Found forever</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">func</Data></Cell>
+    <Cell><Data ss:Type="String">Function name calling itself recursively</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">task</Data></Cell>
+    <Cell><Data ss:Type="String">Task name calling itself recursively</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">cond</Data></Cell>
+    <Cell><Data ss:Type="String">If/case conditional expression expr syntax error </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">cond</Data></Cell>
+    <Cell><Data ss:Type="String">If case question conditionalExpression </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">cond</Data></Cell>
+    <Cell><Data ss:Type="String">If no else</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">cond</Data></Cell>
+    <Cell><Data ss:Type="String">If no else in combinational block</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">num</Data></Cell>
+    <Cell><Data ss:Type="String">Unkown number base base</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">nett</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal net type type in procedural assignement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">mem</Data></Cell>
+    <Cell><Data ss:Type="String">Illegal memory nameDeclaration</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">netd</Data></Cell>
+    <Cell><Data ss:Type="String">IllegalDeclaration of vector name </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Include file name not found</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Input port name being driven from inside of module name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Input port name not connected in parent module</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">inst</Data></Cell>
+    <Cell><Data ss:Type="String">Instance name name differs in case from module name name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">snsl</Data></Cell>
+    <Cell><Data ss:Type="String">Contains instance name name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">num</Data></Cell>
+    <Cell><Data ss:Type="String">Child module name instantiates parent module name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">num</Data></Cell>
+    <Cell><Data ss:Type="String">IntegerDeclaration incorrect</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">num</Data></Cell>
+    <Cell><Data ss:Type="String">Integer variable inedexed</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">file</Data></Cell>
+    <Cell><Data ss:Type="String">Line length overflow line_length line_length</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">case</Data></Cell>
+    <Cell><Data ss:Type="String">ConditionalExpression inCase item</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">port</Data></Cell>
+    <Cell><Data ss:Type="String">Port name used prior toDeclaration</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Arithmetic operator RHS has one less bit than the RHS</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Arithmetic operator unequal width LHS and RHS</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Arithmetic operator unequal width variables var_list on RHS</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">init</Data></Cell>
+    <Cell><Data ss:Type="String">Assign memory in initial block</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">assn</Data></Cell>
+    <Cell><Data ss:Type="String">Unequal length LHS and RHS</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">assn</Data></Cell>
+    <Cell><Data ss:Type="String">Unequal length LHS and RHS off by one bit</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">tbcd</Data></Cell>
+    <Cell><Data ss:Type="String">Behavioral code in module name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">blk</Data></Cell>
+    <Cell><Data ss:Type="String">Sequential block  contains blocking assignement </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">nett</Data></Cell>
+    <Cell><Data ss:Type="String">1-bit with part select</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">snsl</Data></Cell>
+    <Cell><Data ss:Type="String">Bus bus indexed in sensitivity list</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">case</Data></Cell>
+    <Cell><Data ss:Type="String">Full case has default</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">case</Data></Cell>
+    <Cell><Data ss:Type="String">Case item item width mismatch</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">case</Data></Cell>
+    <Cell><Data ss:Type="String">Default missing</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">def</Data></Cell>
+    <Cell><Data ss:Type="String">Module define within module but not in include</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">dely</Data></Cell>
+    <Cell><Data ss:Type="String">Combinational block  contains delay assignement </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">dely</Data></Cell>
+    <Cell><Data ss:Type="String">Sequential block  contains delay assignement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">dely</Data></Cell>
+    <Cell><Data ss:Type="String">Combinational block  contains delay between statements </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">dely</Data></Cell>
+    <Cell><Data ss:Type="String">Sequential block contains delay between statements </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">dely</Data></Cell>
+    <Cell><Data ss:Type="String">Delay in nonblocking assignement in combinational</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">dely</Data></Cell>
+    <Cell><Data ss:Type="String">Delay in nonblocking assignement in sequential</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">dsbl</Data></Cell>
+    <Cell><Data ss:Type="String">Disable used</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">drvs</Data></Cell>
+    <Cell><Data ss:Type="String">Drive strength strength not in library</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">Net</Data></Cell>
+    <Cell><Data ss:Type="String">Duplicate signal name in sensitivity list</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">ectl</Data></Cell>
+    <Cell><Data ss:Type="String">Embedded-event-control</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">blk</Data></Cell>
+    <Cell><Data ss:Type="String">Empty-block</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">mod</Data></Cell>
+    <Cell><Data ss:Type="String">Empty module</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">stmt</Data></Cell>
+    <Cell><Data ss:Type="String">Empty-statement</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">pp</Data></Cell>
+    <Cell><Data ss:Type="String">Endif-or-else-without ifdef</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">file</Data></Cell>
+    <Cell><Data ss:Type="String">Environ variable in file list</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">sig</Data></Cell>
+    <Cell><Data ss:Type="String">Signal signal name will float when it is released</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">vec</Data></Cell>
+    <Cell><Data ss:Type="String">Vector vector_name is invalid.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">vec</Data></Cell>
+    <Cell><Data ss:Type="String">Vector vector name module name does not exist </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">vec</Data></Cell>
+    <Cell><Data ss:Type="String">Vector vector_name does not contain any data signals</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">vec</Data></Cell>
+    <Cell><Data ss:Type="String">Vector vector_name does not contain a clock signal</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">vec</Data></Cell>
+    <Cell><Data ss:Type="String">Vector vector_name does not contain a reset signal</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">vec</Data></Cell>
+    <Cell><Data ss:Type="String">Vector vector_name which is a stimulus vector does not contain any input ports</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">vec</Data></Cell>
+    <Cell><Data ss:Type="String">Vector vector_name which is an expect vector does not contain any output ports</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">vec</Data></Cell>
+    <Cell><Data ss:Type="String">Vector vector_name is missing the vector_name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">vec</Data></Cell>
+    <Cell><Data ss:Type="String">Vector vector_name data signals name not found</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">vec</Data></Cell>
+    <Cell><Data ss:Type="String">Vector vector_name clock signal name not found</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">vec</Data></Cell>
+    <Cell><Data ss:Type="String">Vector vector_name reset signal name not found</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">vec</Data></Cell>
+    <Cell><Data ss:Type="String">Vector vector_name stimulus vector input port name not found</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">vec</Data></Cell>
+    <Cell><Data ss:Type="String">Vector vector_name expect vector output port name not found</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ase</Data></Cell>
+    <Cell><Data ss:Type="String">Architectural state element arch_state_name  module name does not exist </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ase</Data></Cell>
+    <Cell><Data ss:Type="String">Architectural state element arch_state_name is missing the clock name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ase</Data></Cell>
+    <Cell><Data ss:Type="String">Architectural state element arch_state_name is missing the memory name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ase</Data></Cell>
+    <Cell><Data ss:Type="String">Architectural state element arch_state_name is missing the arch_state_name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ase</Data></Cell>
+    <Cell><Data ss:Type="String">Architectural state element arch_state_name is missing the reset name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ase</Data></Cell>
+    <Cell><Data ss:Type="String">Architectural state element arch_state_name is event triggered and is missing the event name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ase</Data></Cell>
+    <Cell><Data ss:Type="String">Architectural state element arch_state_name clock name name not found</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ase</Data></Cell>
+    <Cell><Data ss:Type="String">Architectural state element arch_state_name memory name name not found</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ase</Data></Cell>
+    <Cell><Data ss:Type="String">Architectural state element arch_state_name arch_state_name name not found</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ase</Data></Cell>
+    <Cell><Data ss:Type="String">Architectural state element arch_state_name reset name name not found</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ase</Data></Cell>
+    <Cell><Data ss:Type="String">Architectural state element arch_state_name event name name not found</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ccs</Data></Cell>
+    <Cell><Data ss:Type="String">Clock specification clock_spec_name is missing the clock name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">ccs</Data></Cell>
+    <Cell><Data ss:Type="String">Clock specification  clock_spec_name clock name name not found</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Selected/>
+   <TopRowVisible>70</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>81</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

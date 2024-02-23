@@ -1,0 +1,11 @@
+//Petronela
+csl_unit top,a,b,c;
+csl_interface ifc1{
+  csl_signal s1;//we shouldn't have a signal in an interface
+  ifc1(){
+  }
+};
+csl_unit a{
+  a(){
+  }
+};

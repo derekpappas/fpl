@@ -1,0 +1,7 @@
+//author: Ines
+//testing the command constructor field
+
+csl_field field(10, 20);
+
+csl_unit top {
+};

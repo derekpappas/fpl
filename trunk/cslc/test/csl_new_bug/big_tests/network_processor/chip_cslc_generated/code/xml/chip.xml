@@ -1,0 +1,78 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="chip">
+<signal name="reset" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="clear" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="clk" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="wr_addr" offset="0" upper="7-1" lower="0" type = "wire"/>
+<signal name="rd_addr0" offset="0" upper="7-1" lower="0" type = "wire"/>
+<signal name="rd_addr1" offset="0" upper="7-1" lower="0" type = "wire"/>
+<signal name="data_in" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="data_out0" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="data_out1" offset="0" upper="32-1" lower="0" type = "wire"/>
+<signal name="wr_en" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="rd_en0" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="rd_en1" offset="0" upper="0" lower="0" type = "wire"/>
+<signal name="valid" offset="0" upper="0" lower="0" type = "wire"/>
+<instantiation type = "dram">
+<instance name="dram0">
+<f2a formal = "clear" actual = "clear" />
+<f2a formal = "clock" actual = "clk" />
+<f2a formal = "data_in" actual = "data_in" />
+<f2a formal = "data_out0" actual = "data_out0" />
+<f2a formal = "data_out1" actual = "data_out1" />
+<f2a formal = "rd_addr0" actual = "rd_addr0" />
+<f2a formal = "rd_addr1" actual = "rd_addr1" />
+<f2a formal = "rd_en0" actual = "rd_en0" />
+<f2a formal = "rd_en1" actual = "rd_en1" />
+<f2a formal = "reset" actual = "reset" />
+<f2a formal = "valid" actual = "valid" />
+<f2a formal = "wr_addr" actual = "wr_addr" />
+<f2a formal = "wr_en" actual = "wr_en" />
+</instance>
+</instantiation>
+<instantiation type = "msf">
+<instance name="msf0">
+</instance>
+</instantiation>
+<instantiation type = "sramctrl">
+<instance name="sramctrl0">
+</instance>
+</instantiation>
+<instantiation type = "sramctrl">
+<instance name="sramctrl1">
+</instance>
+</instantiation>
+<instantiation type = "dramctrl">
+<instance name="dramctrl0">
+</instance>
+</instantiation>
+<instantiation type = "hash">
+<instance name="hash0">
+</instance>
+</instantiation>
+<instantiation type = "pcictrl">
+<instance name="pcictrl0">
+</instance>
+</instantiation>
+<instantiation type = "cap">
+<instance name="cap0">
+</instance>
+</instantiation>
+<instantiation type = "mecluster">
+<instance name="mecluster0">
+</instance>
+<instance name="mecluster1">
+</instance>
+</instantiation>
+<instantiation type = "xpi">
+<instance name="xpi0">
+</instance>
+</instantiation>
+<instantiation type = "xscalecore">
+<instance name="xscalecore0">
+</instance>
+</instantiation>
+</unit>
+</design>

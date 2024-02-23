@@ -1,0 +1,9 @@
+//bug 843
+csl_register hiic1{
+    hiic1(){
+     reset_value(9);
+     add_logic(cnt_dir_signal);
+     //add_logic(dec_signal); //ver 2.0 command
+  }
+}
+;

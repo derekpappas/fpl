@@ -1,0 +1,32 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="output.xsl"?>
+<design>
+<unit  name="Va2r_tap" > 
+ </unit>
+<unit  name="arm" > 
+ </unit>
+<unit  name="cmpr" > 
+ </unit>
+<unit  name="dsp" > 
+ </unit>
+<unit  name="dummy_unit_synth_removes" > 
+ </unit>
+<unit  name="eu" > 
+ </unit>
+<unit  name="h264" > 
+ </unit>
+<unit  name="im" > 
+ </unit>
+<unit  name="me" > 
+ </unit>
+<unit  name="pc" > 
+ </unit>
+<unit  name="rf" > 
+ </unit>
+<unit  name="ssm" > 
+ </unit>
+<unit  name="ssm_master" > 
+ </unit>
+<unit  name="wb" > 
+ </unit>
+</design>

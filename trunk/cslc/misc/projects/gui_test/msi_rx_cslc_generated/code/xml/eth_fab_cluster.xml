@@ -1,0 +1,48 @@
+<?xml version = "1.0" ?>
+<?xml-stylesheet type="text/xsl" href="unit.xsl"?>
+<design>
+<unit name="eth_fab_cluster">
+<interface name="ef_df_fab" >
+<port name="bus80" offset="0" upper="79" lower="0" direction = "output" type = "wire" />
+</interface>
+<interface name="stf_ef_fab" >
+<port name="bus80" offset="0" upper="79" lower="0" direction = "input" type = "wire" />
+</interface>
+<signalgroup name="ef_eb_fab">
+<signal name="dummy2" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<signalgroup name="eb_em_lb">
+<signal name="dummy3" offset="0" upper="0" lower="0" type = "wire"/>
+</signalgroup>
+<instantiation type = "eth_tx">
+<instance name="eth_tx">
+</instance>
+</instantiation>
+<instantiation type = "eth_mac">
+<instance name="eth_mac">
+<f2a formal = "lb.dummy3" actual = "eb_em_lb.dummy3" />
+</instance>
+</instantiation>
+<instantiation type = "eth_io">
+<instance name="eth_io">
+</instance>
+</instantiation>
+<instantiation type = "eth_bridge">
+<instance name="eth_bridge">
+<f2a formal = "lb.dummy3" actual = "eb_em_lb.dummy3" />
+<f2a formal = "lba.dummy2" actual = "ef_eb_fab.dummy2" />
+</instance>
+</instantiation>
+<instantiation type = "msi_fabric_if">
+<instance name="eth_fab">
+<f2a formal = "fab_add.bus80" actual = "ef_df_fab.bus80" />
+<f2a formal = "fab_drop.bus80" actual = "stf_ef_fab.bus80" />
+<f2a formal = "lba.dummy2" actual = "ef_eb_fab.dummy2" />
+</instance>
+</instantiation>
+<instantiation type = "eth_rx">
+<instance name="eth_rx">
+</instance>
+</instantiation>
+</unit>
+</design>

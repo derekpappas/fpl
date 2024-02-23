@@ -1,0 +1,22 @@
+// add an reserved address range that overlaps with an illegal range(on lower and upper)
+
+csl_fifo f1{
+  f1(){
+    set_width(32);
+    set_depth(32);
+  }
+};
+
+csl_unit u{
+  f1 f1_1;
+u(){}
+};
+
+csl_memory_map_page mmp1{
+  mmp1(){
+    add_address_range(0, 1024);
+    set_unit_name(u);
+    add(u.f1_1, "f1", 32);
+    add_reserved_address_range(31, 31);
+  }
+};

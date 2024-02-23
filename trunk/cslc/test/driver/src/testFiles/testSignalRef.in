@@ -1,0 +1,12 @@
+# This is the input test file for CTestSignalRef class
+# <> means obligatory
+# [] means optional
+# {} means group
+# *x means this should repeat x times
+# Syntax: ( <name> <MODULE_TEST> )
+# the module test has to add a signal with the same name as the signalRef for this to work, else assert(0)
+# examples:
+
+( test ( n gigi y ( 0 0 1 COmSignalPort ( 1 0 test 0 ) 0 ) 0 0 ) )
+#this sould end the program abnormaly:
+#( test1 ( n gigi y ( 0 0 1 COmSignalPort ( 1 0 test 0 ) 0 ) 0 0 ) )

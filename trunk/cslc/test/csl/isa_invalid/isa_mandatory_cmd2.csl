@@ -1,0 +1,14 @@
+//set_type -mandatory command for isa_element
+//danielt
+
+csl_isa_field  fld_op{
+  fld_op(){
+    set_width(2);
+    set_type(opcode);
+  }
+};
+csl_isa_element fmtbase {
+  fmtbase () {
+    set_width(32);
+  }
+};

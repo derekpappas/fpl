@@ -1,0 +1,5 @@
+csl_unit u{
+  csl_signal sig1;
+  u(){
+    sig1.generate_decoder(dec1);
+  }};
