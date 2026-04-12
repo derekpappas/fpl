@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.random.RandomGenerator;
 
 /**
  * Port of {@code NSCSLinterconnect::CSLbase} ({@code csl_gen_base.h} / {@code csl_gen_base.cpp}) — Java manages
@@ -97,5 +98,83 @@ public abstract class CslGenCslBase {
                 PRINT_SINK.remove();
             }
         }
+    }
+
+    /** Legacy {@code CSLbase::addToScope} ({@code cslInterconnectGen_TB.cpp}). */
+    protected final String interconnectAddToScope(String scope, String toAdd) {
+        return scope + toAdd + ".";
+    }
+
+    /** Legacy {@code CSLbase::removeFromScope} ({@code cslInterconnectGen_TB.cpp}). */
+    protected final String interconnectRemoveFromScope(String scope) {
+        if (scope.isEmpty()) {
+            return "";
+        }
+        int pos = scope.lastIndexOf('.') - 1;
+        while (pos > 0 && scope.charAt(pos) != '.') {
+            pos--;
+        }
+        if (pos > 0) {
+            return scope.substring(0, pos + 1);
+        }
+        return "";
+    }
+
+    /**
+     * Legacy {@code CSLbase::randSelObj} ({@code cslInterconnectGen_TB.cpp}) — random walk from {@code this} to find
+     * a child of {@code type} with optional dotted {@code scope} prefix.
+     */
+    public final CslGenScopedSelection randSelObj(CslGenCslType type, RandomGenerator rng) {
+        String scope = "";
+        boolean canAdd = true;
+        CslGenCslBase walk = this;
+        CslGenCslBase randObj = null;
+
+        while (walk != null) {
+            if (walk.getType() == CslGenCslType.CSL_UNIT_INST && type != CslGenCslType.CSL_UNIT) {
+                scope = interconnectAddToScope(scope, walk.getName());
+                CslGenUnit resolved = ((CslGenUnitInst) walk).getInstUnit();
+                if (resolved == null) {
+                    scope = interconnectRemoveFromScope(scope);
+                    walk = walk.getParent().orElse(null);
+                } else {
+                    walk = resolved;
+                    canAdd = false;
+                }
+                continue;
+            }
+            if (walk.getChildrenCount() > 0) {
+                if (walk.getType() != CslGenCslType.CSL_DESIGN && canAdd) {
+                    scope = interconnectAddToScope(scope, walk.getName());
+                } else {
+                    canAdd = true;
+                }
+                int maxPos = rng.nextInt(walk.getChildrenCount());
+                randObj = null;
+                for (CslGenCslBase ch : walk.getChildren()) {
+                    if (maxPos <= 0) {
+                        break;
+                    }
+                    if (ch.getType() == type) {
+                        randObj = ch;
+                    }
+                    maxPos--;
+                }
+                if (randObj != null && rng.nextBoolean()) {
+                    return new CslGenScopedSelection(scope, randObj);
+                }
+                if (rng.nextBoolean()) {
+                    int n = walk.getChildrenCount();
+                    walk = walk.getChildAt(rng.nextInt(n)).orElse(null);
+                } else {
+                    scope = interconnectRemoveFromScope(scope);
+                    walk = walk.getParent().orElse(null);
+                }
+            } else {
+                scope = interconnectRemoveFromScope(scope);
+                walk = walk.getParent().orElse(null);
+            }
+        }
+        return new CslGenScopedSelection(scope, randObj);
     }
 }
