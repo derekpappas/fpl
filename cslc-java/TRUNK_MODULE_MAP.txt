@@ -60,6 +60,13 @@ Incremental port (Java, vs TRUNK_FILE_INVENTORY.tsv backlog)
     CslGenDesign; csl_gen_unit → CslGenUnit; csl_code_gen.cpp → CslCodeGenMain
   cslc-xml-warn-error: CSLC_Errors.h slice → CslcLegacyErrorCodes; we_logic addError slice → CslWeCollector
   cslc-driver: WE_Driver.cpp → WeDriverMain
-  cslc-csl-gen: scripts/rand.cpp → CslGenRandString; support.cpp IntToString → CslGenInt.intToString
+  cslc-csl-gen: scripts/rand.cpp → CslGenRandString; support.cpp IntToString → CslGenInt.intToString; support.cpp
+    emit helpers → CslGenSupportEmit; numExpr / randNumExpr / createTree / displayTree → CslGenNumExpr +
+    CslGenNumExprSupport; UNARY_POSTFIXED_OP / BINARY_OP → CslGenExprTables; cslMemory.h/cpp → CslGenMemoryTables,
+    CslGenMemory, CslGenDesign.addMemory; randString() no-arg → CslGenRandString.randString()
   cslc-fastpath: refcounted.h/cpp → RefCounted + RefCounting; fploptions → FplOptions; main.cpp → FastPathMain stub
-  cslc-cdom: fpl_module_class.h/cpp → FplModule (abstract, no SystemC)
+  cslc-cdom: fpl_module_class.h/cpp → FplModule (abstract, no SystemC); CDOM_Checker.cpp path-prefix / undef slice →
+    CdomCheckerState
+  cslc-driver: Adapter_Driver.cpp → AdapterDriverMain; CDOM_VerilogGeneratorDriver.cpp →
+    CdomVerilogGeneratorDriverMain; SD_Driver.cpp → SdDriverMain; CSIM_Driver.cpp → CsimDriverMain
+  cslc-aa: src/aa/wincslc/main/main.cpp → WincslcMain

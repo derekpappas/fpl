@@ -14,6 +14,11 @@ public final class CslGenRandString {
 
     private CslGenRandString() {}
 
+    /** Legacy {@code randString()} with no prefix ({@code support.h} — implementation was commented in {@code support.cpp}). */
+    public static String randString() {
+        return randString("");
+    }
+
     public static String randString(String name) {
         Objects.requireNonNull(name, "name");
         ThreadLocalRandom r = ThreadLocalRandom.current();

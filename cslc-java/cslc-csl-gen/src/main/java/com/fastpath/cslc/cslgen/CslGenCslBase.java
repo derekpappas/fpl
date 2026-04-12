@@ -9,8 +9,13 @@ import java.util.Optional;
 /**
  * Port of {@code NSCSLinterconnect::CSLbase} ({@code csl_gen_base.h} / {@code csl_gen_base.cpp}) — Java manages
  * lifetime; no manual {@code delete}.
+ *
+ * <p>Legacy static {@code CSLbase::m_out} is modeled with a per-thread {@link StringBuilder} sink (see
+ * {@link #printSink()}, {@link #runWithPrintSink}).
  */
 public abstract class CslGenCslBase {
+
+    private static final ThreadLocal<StringBuilder> PRINT_SINK = new ThreadLocal<>();
 
     private final CslGenCslType type;
     private final String name;
@@ -68,4 +73,29 @@ public abstract class CslGenCslBase {
     public abstract boolean buildDecl();
 
     public abstract void print();
+
+    /** Current print target for this thread (legacy {@code m_out}); {@code null} if unset. */
+    protected static StringBuilder printSink() {
+        return PRINT_SINK.get();
+    }
+
+    /**
+     * Runs {@code action} with {@link #printSink()} set to {@code out}, restoring the previous sink afterward
+     * (supports one level of nesting).
+     */
+    public static void runWithPrintSink(StringBuilder out, Runnable action) {
+        Objects.requireNonNull(out, "out");
+        Objects.requireNonNull(action, "action");
+        StringBuilder prev = PRINT_SINK.get();
+        PRINT_SINK.set(out);
+        try {
+            action.run();
+        } finally {
+            if (prev != null) {
+                PRINT_SINK.set(prev);
+            } else {
+                PRINT_SINK.remove();
+            }
+        }
+    }
 }

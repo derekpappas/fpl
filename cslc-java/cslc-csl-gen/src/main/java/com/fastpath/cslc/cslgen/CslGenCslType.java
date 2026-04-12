@@ -18,5 +18,9 @@ public enum CslGenCslType {
     CSL_ENUM_ITEM,
     CSL_ISA_INSTR_FORMAT,
     CSL_ISA_INSTR,
-    CSL_ISA
+    CSL_ISA,
+    /** Interconnect generator ({@code cslInterconnectGen_TB.h} / {@code cslMemory.h}) — beyond base {@code csl_gen_base.h} slice. */
+    CSL_MEMORY,
+    CSL_MEMORY_MAP,
+    CSL_MEMORY_MAP_PAGE
 }

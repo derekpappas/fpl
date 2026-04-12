@@ -4,8 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
 class CslGenRandStringTest {
+
+    @Test
+    void randStringNoArgIsTwoDigits() {
+        String s = CslGenRandString.randString();
+        assertEquals(2, s.length());
+        assertTrue(s.charAt(0) >= '0' && s.charAt(0) <= '8');
+        assertTrue(s.charAt(1) >= '0' && s.charAt(1) <= '8');
+    }
 
     @RepeatedTest(20)
     void appendsTwoAsciiDigitsInLegacyRange() {

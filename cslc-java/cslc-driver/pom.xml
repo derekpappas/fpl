@@ -25,6 +25,10 @@
       <artifactId>cslc-xml-warn-error</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.fastpath.cslc</groupId>
+      <artifactId>cslc-csim</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
       <scope>test</scope>
