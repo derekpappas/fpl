@@ -39,5 +39,27 @@ trunk/cslc/trunk (top level)
   src/parser/verilog             → cslc-parser-verilog
   src/preproc/                   → cslc-preproc
   src/support/                   → cslc-support
+  trunk/include/ (boost fs)      → cslc-support LegacyBoostFilesystemNote
+  trunk/assert/                → cslc-assert
+  trunk/build_utils/main.cpp   → cslc-build-utils BuildUtilsCsimMain + cslc-csim shell stub
+  trunk/scripts/*.pl           → regression/python/trunk_scripts (see SCRIPT_INDEX.tsv)
   src/t/                         → (sample .csl — no module)
   src/wincslc/                   → cslc-wincslc
+
+trunk/cslc/misc (separate tree, ~4800 files — not all Java)
+  See MISC_PORT_MAP.txt and run:  python3 cslc-java/scripts/inventory_misc.py
+
+Incremental port (Java, vs TRUNK_FILE_INVENTORY.tsv backlog)
+  cslc-cslom: CSLOM_Declarations.h slice → CslomNodeType + CslomDeclarations; CSLOM_Base.h slice → CslomBase,
+    CslomPlaceholder; CSLOM.cpp → CslomUtil (ltos, checkIdName); CSLOM_Visitor.h slice → visitor/CslomVisitor,
+    CslomTraversal.preorder
+  cslc-generators: NoopCslomTraversal (toward CVisitorTraversal generators under src/cslom_generators/)
+  cslc-csim: CsimSimulatorPort/Stub, CsimCmdLinePort/Stub, unit/clock/vector-writer marker ports (Csim*.h)
+  cslc-support: include/src/convenience.cpp → FilesystemConvenience (nio)
+  cslc-csl-gen: csl_gen_base.cpp/h slice → CslGenCslBase, CslGenScope, CslGenWireTables, CslGenInt; csl_gen_design →
+    CslGenDesign; csl_gen_unit → CslGenUnit; csl_code_gen.cpp → CslCodeGenMain
+  cslc-xml-warn-error: CSLC_Errors.h slice → CslcLegacyErrorCodes; we_logic addError slice → CslWeCollector
+  cslc-driver: WE_Driver.cpp → WeDriverMain
+  cslc-csl-gen: scripts/rand.cpp → CslGenRandString; support.cpp IntToString → CslGenInt.intToString
+  cslc-fastpath: refcounted.h/cpp → RefCounted + RefCounting; fploptions → FplOptions; main.cpp → FastPathMain stub
+  cslc-cdom: fpl_module_class.h/cpp → FplModule (abstract, no SystemC)

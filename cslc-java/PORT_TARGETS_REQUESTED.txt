@@ -1,0 +1,17 @@
+User-requested conversion scope (this pass)
+============================================
+
+Java (trunk/cslc/trunk):
+  src/              → existing cslc-* modules (incremental port; not exhaustive in one change)
+  libc/             → cslc-libc-stub (Makefile-only tree; LibcRulesNote)
+  include/          → cslc-support LegacyBoostFilesystemNote (vendored Boost FS → java.nio.file)
+  csl_gen/          → cslc-csl-gen CGenConsts.java (+ existing package-info)
+  assert/           → cslc-assert module AssertLegacySample
+  build_utils/main.cpp → cslc-build-utils BuildUtilsCsimMain (+ CsimShellPort/Stub in cslc-csim)
+  systemc/          → cslc-systemc-assets SystemcTrunkLayout
+
+Scripts (trunk/cslc/trunk/scripts):
+  regression/python/trunk_scripts/remove_file_ext.py — port of remove_file_ext.pl (dry-run default)
+  regression/python/trunk_scripts/SCRIPT_INDEX.tsv — inventory + port status
+
+Full src/ tree remains mostly C++ in trunk; extend module-by-module using TRUNK_FILE_INVENTORY.tsv.

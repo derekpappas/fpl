@@ -15,6 +15,7 @@
     <module>cslc-support</module>
     <module>cslc-license</module>
     <module>cslc-libc-stub</module>
+    <module>cslc-assert</module>
     <module>cslc-stringtemplate</module>
     <module>cslc-templates</module>
     <module>cslc-systemc-assets</module>
@@ -81,6 +82,11 @@
       <dependency>
         <groupId>com.fastpath.cslc</groupId>
         <artifactId>cslc-libc-stub</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fastpath.cslc</groupId>
+        <artifactId>cslc-assert</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

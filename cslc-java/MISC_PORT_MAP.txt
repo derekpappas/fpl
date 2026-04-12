@@ -1,0 +1,27 @@
+trunk/cslc/misc → Java / Python port policy
+============================================
+
+misc/ is ~4800+ files: patents, large example projects (Verilog/SystemC/Verilator),
+generated tests, docs, editor configs — not one Java module.
+
+Inventory (every file, one row each):
+  python3 cslc-java/scripts/inventory_misc.py
+Outputs:
+  cslc-java/MISC_FILE_INVENTORY.tsv
+  cslc-java/MISC_FILE_INVENTORY_SUMMARY.json
+
+Top-level intent (not all are “convert to Java”):
+  patents/           Legal / iWork bundles — reference only; do not port to code.
+  generated-test/    Generated .csl — regression fixtures → regression/python or drop.
+  projects/          Customer-style trees (C++, Verilog, Makefiles) — port only if you
+                     extract a reusable library; otherwise keep as examples outside core JAR.
+  docs/, test_docs/  Documentation — keep or migrate to published docs, not compiler JAR.
+  support/           Emacs/RTF — developer tooling, not product runtime.
+  build_instructions/ README-style — documentation.
+  verilog/, library/ HDL snippets — reference or template resources, not Java classes.
+  prj_management/    XML planners — process metadata.
+  specs/             Text specs — requirements input, not bytecode.
+
+Core CSLC Java port stays under cslc-java/* modules mapped from trunk/cslc/trunk (see
+TRUNK_MODULE_MAP.txt). misc/ feeds regression fixtures and documentation unless you
+explicitly promote a subdirectory into a new Maven module.

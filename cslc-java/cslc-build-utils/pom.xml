@@ -16,6 +16,10 @@
       <groupId>com.fastpath.cslc</groupId>
       <artifactId>cslc-support</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.fastpath.cslc</groupId>
+      <artifactId>cslc-csim</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

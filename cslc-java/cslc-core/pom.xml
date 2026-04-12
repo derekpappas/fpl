@@ -26,6 +26,10 @@
     </dependency>
     <dependency>
       <groupId>com.fastpath.cslc</groupId>
+      <artifactId>cslc-assert</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fastpath.cslc</groupId>
       <artifactId>cslc-stringtemplate</artifactId>
     </dependency>
     <dependency>
