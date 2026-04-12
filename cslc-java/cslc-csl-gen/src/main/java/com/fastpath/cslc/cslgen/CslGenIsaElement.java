@@ -2,7 +2,9 @@ package com.fastpath.cslc.cslgen;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.random.RandomGenerator;
 
 /**
@@ -41,8 +43,10 @@ public final class CslGenIsaElement extends CslGenCslBase {
         Arrays.fill(used, 0);
     }
 
-    boolean isaElementUsed(int idx) {
-        return idx >= 0 && idx < used.length && used[idx] != 0;
+    /** {@code m_used[slot]} ({@code CSLisaElement}). */
+    public int getIsaElementUsedAt(int slot) {
+        Objects.checkIndex(slot, used.length);
+        return used[slot];
     }
 
     public void addIsaElementInstance(CslGenCslBase design, RandomGenerator rng) {
@@ -82,7 +86,7 @@ public final class CslGenIsaElement extends CslGenCslBase {
                     continue;
                 }
                 CslGenIsaElement el = (CslGenIsaElement) ch;
-                if (el.isaElementUsed(GET_TYPE) && rng.nextBoolean() && !ok) {
+                if (el.getIsaElementUsedAt(GET_TYPE) != 0 && rng.nextBoolean() && !ok) {
                     setType.append(ch.getName()).append('.').append(CslGenIsaTables.ISA_ELEMENT_FUNCTION[GET_TYPE]).append("()");
                     ok = true;
                 }
@@ -101,7 +105,7 @@ public final class CslGenIsaElement extends CslGenCslBase {
                     continue;
                 }
                 CslGenIsaElement el = (CslGenIsaElement) ch;
-                if (rng.nextBoolean() && !ok && el.isaElementUsed(SET_WIDTH)) {
+                if (rng.nextBoolean() && !ok && el.getIsaElementUsedAt(SET_WIDTH) != 0) {
                     width.append(ch.getName()).append('.').append(CslGenIsaTables.ISA_ELEMENT_FUNCTION[GET_WIDTH]).append("()");
                     ok = true;
                 }
@@ -262,9 +266,9 @@ public final class CslGenIsaElement extends CslGenCslBase {
                     /* other ran values: no switch body */
                 }
             }
-            if (ran == GET_TYPE && isaElementUsed(SET_TYPE)) {
+            if (ran == GET_TYPE && getIsaElementUsedAt(SET_TYPE) != 0) {
                 used[GET_TYPE] = 1;
-            } else if (ran == GET_WIDTH && isaElementUsed(SET_WIDTH)) {
+            } else if (ran == GET_WIDTH && getIsaElementUsedAt(SET_WIDTH) != 0) {
                 used[GET_WIDTH] = 1;
             } else if (ran != SET_WIDTH) {
                 used[ran] = 1;
@@ -344,5 +348,61 @@ public final class CslGenIsaElement extends CslGenCslBase {
 
     public void appendPrintedCsl(StringBuilder out) {
         CslGenCslBase.runWithPrintSink(out, this::print);
+    }
+
+    /** {@code m_deriv}. */
+    public String getDerivText() {
+        return deriv.toString();
+    }
+
+    /** {@code m_setType}. */
+    public String getSetTypeText() {
+        return setType.toString();
+    }
+
+    /** {@code m_width}. */
+    public String getWidthText() {
+        return width.toString();
+    }
+
+    public List<String> getPosFieldNames() {
+        return Collections.unmodifiableList(posField);
+    }
+
+    public List<String> getPosNumExprs() {
+        return Collections.unmodifiableList(posNumExpr);
+    }
+
+    public List<String> getNextLeftStrings() {
+        return Collections.unmodifiableList(nextLeft);
+    }
+
+    public List<String> getNextRightStrings() {
+        return Collections.unmodifiableList(nextRight);
+    }
+
+    public List<String> getPrevLeftStrings() {
+        return Collections.unmodifiableList(prevLeft);
+    }
+
+    public List<String> getPrevRightStrings() {
+        return Collections.unmodifiableList(prevRight);
+    }
+
+    /** {@code m_derivF}. */
+    public boolean isDerivF() {
+        return derivF;
+    }
+
+    public boolean isPosF() {
+        return posF;
+    }
+
+    public boolean isNextF() {
+        return nextF;
+    }
+
+    public boolean isPrevF() {
+        return prevF;
     }
 }

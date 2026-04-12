@@ -1,6 +1,7 @@
 package com.fastpath.cslc.cslgen;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.random.RandomGenerator;
 
 /**
@@ -57,8 +58,10 @@ public final class CslGenMemMapPage extends CslGenCslBase {
         Arrays.fill(used, 0);
     }
 
-    boolean isMmpUsed(int idx) {
-        return idx >= 0 && idx < used.length && used[idx] != 0;
+    /** {@code m_used[slot]} ({@code CSLmemMapPage}). */
+    public int getMemMapPageUsedAt(int slot) {
+        Objects.checkIndex(slot, used.length);
+        return used[slot];
     }
 
     public void genAddAddrRange(CslGenCslBase design, RandomGenerator rng) {
@@ -71,8 +74,8 @@ public final class CslGenMemMapPage extends CslGenCslBase {
                 CslGenMemMapPage p = (CslGenMemMapPage) ch;
                 if (rng.nextBoolean()
                         && !ok
-                        && p.isMmpUsed(GET_LOWER_BOUND)
-                        && p.isMmpUsed(GET_UPPER_BOUND)) {
+                        && p.getMemMapPageUsedAt(GET_LOWER_BOUND) != 0
+                        && p.getMemMapPageUsedAt(GET_UPPER_BOUND) != 0) {
                     lowerBound.append(ch.getName()).append('.').append(CslGenMemoryMapTables.MMP_FUNCTION[GET_LOWER_BOUND]).append("()");
                     upperBound.append(ch.getName()).append('.').append(CslGenMemoryMapTables.MMP_FUNCTION[GET_UPPER_BOUND]).append("()");
                     ok = true;
@@ -93,7 +96,7 @@ public final class CslGenMemMapPage extends CslGenCslBase {
                     continue;
                 }
                 CslGenMemMapPage p = (CslGenMemMapPage) ch;
-                if (rng.nextBoolean() && !ok && p.isMmpUsed(GET_ADDR_INCR)) {
+                if (rng.nextBoolean() && !ok && p.getMemMapPageUsedAt(GET_ADDR_INCR) != 0) {
                     setAddrIncr.append(ch.getName()).append('.').append(CslGenMemoryMapTables.MMP_FUNCTION[GET_ADDR_INCR]).append("()");
                     ok = true;
                 }
@@ -112,7 +115,7 @@ public final class CslGenMemMapPage extends CslGenCslBase {
                     continue;
                 }
                 CslGenMemMapPage p = (CslGenMemMapPage) ch;
-                if (rng.nextBoolean() && !ok && p.isMmpUsed(GET_NEXT_ADDR)) {
+                if (rng.nextBoolean() && !ok && p.getMemMapPageUsedAt(GET_NEXT_ADDR) != 0) {
                     setNextAddr.append(ch.getName()).append('.').append(CslGenMemoryMapTables.MMP_FUNCTION[GET_NEXT_ADDR]).append("()");
                     ok = true;
                 }
@@ -194,7 +197,7 @@ public final class CslGenMemMapPage extends CslGenCslBase {
                     continue;
                 }
                 CslGenMemMapPage p = (CslGenMemMapPage) ch;
-                if (rng.nextBoolean() && !ok && p.isMmpUsed(GET_DATA_WORD_WIDTH)) {
+                if (rng.nextBoolean() && !ok && p.getMemMapPageUsedAt(GET_DATA_WORD_WIDTH) != 0) {
                     dataWordWidth.append(ch.getName()).append('.').append(CslGenMemoryMapTables.MMP_FUNCTION[GET_DATA_WORD_WIDTH]).append("()");
                     ok = true;
                 }
@@ -213,7 +216,7 @@ public final class CslGenMemMapPage extends CslGenCslBase {
                     continue;
                 }
                 CslGenMemMapPage p = (CslGenMemMapPage) ch;
-                if (rng.nextBoolean() && !ok && p.isMmpUsed(GET_ALIGNMENT)) {
+                if (rng.nextBoolean() && !ok && p.getMemMapPageUsedAt(GET_ALIGNMENT) != 0) {
                     setAlignment.append(ch.getName()).append('.').append(CslGenMemoryMapTables.MMP_FUNCTION[GET_ALIGNMENT]).append("()");
                     ok = true;
                 }
@@ -237,7 +240,7 @@ public final class CslGenMemMapPage extends CslGenCslBase {
                     continue;
                 }
                 CslGenMemMapPage p = (CslGenMemMapPage) ch;
-                if (rng.nextBoolean() && !ok && p.isMmpUsed(GET_SYMB_LENGHT)) {
+                if (rng.nextBoolean() && !ok && p.getMemMapPageUsedAt(GET_SYMB_LENGHT) != 0) {
                     symbolLength.append(ch.getName()).append('.').append(CslGenMemoryMapTables.MMP_FUNCTION[GET_SYMB_LENGHT]).append("()");
                     ok = true;
                 }
@@ -373,5 +376,86 @@ public final class CslGenMemMapPage extends CslGenCslBase {
 
     public void appendPrintedCsl(StringBuilder out) {
         CslGenCslBase.runWithPrintSink(out, this::print);
+    }
+
+    public String getLowerBoundText() {
+        return lowerBound.toString();
+    }
+
+    public String getUpperBoundText() {
+        return upperBound.toString();
+    }
+
+    public String getSetAddrIncrText() {
+        return setAddrIncr.toString();
+    }
+
+    public String getSetNextAddrText() {
+        return setNextAddr.toString();
+    }
+
+    public String getGroupAccessText() {
+        return groupAccess.toString();
+    }
+
+    public String getAccRightText() {
+        return accRight;
+    }
+
+    public String getResLowerBoundText() {
+        return resLowerBound.toString();
+    }
+
+    public String getResUpperBoundText() {
+        return resUpperBound.toString();
+    }
+
+    public String getAddObjText() {
+        return addObj.toString();
+    }
+
+    public String getSymbolText() {
+        return symbol.toString();
+    }
+
+    public String getBaseAddrText() {
+        return baseAddr.toString();
+    }
+
+    public String getMemMapPageObjText() {
+        return memMapPageObj.toString();
+    }
+
+    public String getDataWordWidthText() {
+        return dataWordWidth.toString();
+    }
+
+    public String getSetAlignmentText() {
+        return setAlignment.toString();
+    }
+
+    public String getEndianessText() {
+        return endianess.toString();
+    }
+
+    /** {@code m_symbolLenght}. */
+    public String getSymbolLengthText() {
+        return symbolLength.toString();
+    }
+
+    public boolean isBaseAddrF() {
+        return baseAddrF;
+    }
+
+    public boolean isAddAddrObjF() {
+        return addAddrObjF;
+    }
+
+    public boolean isMemMapPageObjF() {
+        return memMapPageObjF;
+    }
+
+    public boolean isGroupAccessF() {
+        return groupAccessF;
     }
 }

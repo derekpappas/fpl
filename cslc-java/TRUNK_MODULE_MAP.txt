@@ -66,33 +66,40 @@ Incremental port (Java, vs TRUNK_FILE_INVENTORY.tsv backlog)
   cslc-csl-gen: scripts/rand.cpp → CslGenRandString; support.cpp IntToString → CslGenInt.intToString; support.cpp
     emit helpers → CslGenSupportEmit; numExpr / randNumExpr / createTree / displayTree → CslGenNumExpr +
     CslGenNumExprSupport; UNARY_POSTFIXED_OP / BINARY_OP → CslGenExprTables; cslMemory.h/cpp → CslGenMemoryTables,
-    CslGenMemory, CslGenDesign.addMemory; cslMemoryMap.h/cpp → CslGenMemoryMapTables, CslGenMemMapPage, CslGenMemMap,
-    CslGenDesign.addMemMapPage / addMemMap; cslIsa.h/cpp → CslGenIsaTables, CslGenIsaField, CslGenIsaElement,
-    CslGenDesign.addIsaField / addIsaElement; cslField.h/cpp → CslGenFieldTables, CslGenField, CslGenFieldInst
+    CslGenMemory (getMemoryUsedAt, getDepthText/getWidthText), CslGenDesign.addMemory; cslMemoryMap.h/cpp → CslGenMemoryMapTables,
+    CslGenMemMapPage (getMemMapPageUsedAt + m_* Text getters + m_*F flags), CslGenMemMap
+    (getMemMapUsedAt + m_* Text getters + list snapshots + m_*F flags), CslGenDesign.addMemMapPage / addMemMap; cslIsa.h/cpp → CslGenIsaTables,
+    CslGenIsaField (getIsaFieldUsedAt, getIsaFieldTypeDeclUsedAt, m_* Text getters, list snapshots, m_*F flags),
+    CslGenIsaElement (getIsaElementUsedAt, m_* Text getters, list snapshots, m_*F flags),
+    CslGenDesign.addIsaField / addIsaElement; cslField.h/cpp → CslGenFieldTables,
+    CslGenField (getFieldUsedAt, getFieldTypeDeclUsedAt, m_* Text getters, list snapshots, m_*F flags), CslGenFieldInst
     (getFieldInstTypeName = m_field_inst),
     CslGenDesign.addField;
     cslRegister.h/cpp slice → CslGenRegisterTables, CslGenRegister (getRegisterUsedAt + m_* Text getters + m_*F flags),
     CslGenDesign.addRegister, CslGenRegisterFile (all m_* Text getters, m_*F flags, getRegisterFileUsedAt),
-    CslGenDesign.addRegisterFile; CSLinstance → CslGenInstance;
+    CslGenDesign.addRegisterFile; CSLinstance → CslGenInstance (getInstantiatedObj/getInstObj = m_instObj);
     CSLunit::addRegFileInst → CslGenUnit.addRegFileInst; cGenFifo_ao.h/cpp → CslGenFifoTables, CslGenFifo
     (m_depth/m_width + other m_* getters, getFifoUsedAt = used[]), CslGenDesign.addFifo, CslGenUnit.addFifoInst;
-    cslMemory.h/cpp → CslGenMemory (getDepthText/getWidthText = m_depth/m_width); cslInterconnectGen_TB slice →
+    cslInterconnectGen_TB slice →
     CslGenInterconnectConsts
     (NAMES_SIZE, tbRandString = CSLbase::randString),
-    CslGenBitrangeState, CslGenBitrange (copyBitrange), CslGenPort (PORT_DECL_COPY, getBitrCopyText = m_bitrCopy),
-    CslGenSignal (getBitrCopyText/getSigCopyText = m_bitrCopy/m_sigCopy),
+    CslGenBitrangeState, CslGenBitrange (copyBitrange, getDeclForm = m_declForm), CslGenPort
+    (PORT_DECL_COPY, getBitrCopyText = m_bitrCopy, getDeclForm), CslGenSignal
+    (getBitrCopyText/getSigCopyText, getDeclForm),
     CslGenScopedSelection (first/second = legacy pair),
     CslGenCslBase.randSelObj,
     CslGenCslBase.newNameIsValid (parent-chain + enum items),
-    CslGenIfc / CslGenIfcInst, CslGenUnitInst, CslGenEnum / CslGenEnumItem (getValue/isValueSet),
+    CslGenIfc, CslGenIfcInst (getIfcType/getInstType/getIfc, randSelIfc), CslGenUnitInst, CslGenEnum / CslGenEnumItem (getValue/isValueSet),
     CslGenPort/CslGenSignal.getBitrangeState (= getBitrange), CslGenDesign.addEnum +
     CslGenDesign.buildDecl(RandomGenerator), CslGenDesign.addBitrange/addSignal/addIfc/addUnit,
     CslGenUnit.randSelPort/randSelSignal/randSelBitrange + addIfcInst/addUnitInst/… + modif*; CslGenUnitInst.randSelUnit;
-    CslGenIfcInst.randSelIfc; CslGenPort.randSelBitrange; CslGenSignal.randSelBitrange/randSelSignal;
+    CslGenPort.randSelBitrange; CslGenSignal.randSelBitrange/randSelSignal;
     CslGenPort.copySignal/copyPort/buildSet, CslGenSignal/CslGenBitrange.buildSet; randString() no-arg →
     CslGenRandString.randString(); CSLbase::m_out →
     CslGenCslBase.printSink / runWithPrintSink (ThreadLocal StringBuilder); cGenIsa_ao.h/cpp → CslGenIsaAoTables,
-    CslGenIsaInstrFormat, CslGenIsaInstr (getInst = m_inst), CslGenIsa, CslGenDesign.addIsaInstrFormat / addIsaInstr / addIsa
+    CslGenIsaInstrFormat (getIsaInstrFormatUsedAt + m_* Text + m_*F flags, EFlags = public int constants),
+    CslGenIsaInstr (getIsaInstrUsedAt, getInst = m_inst, m_* accessors), CslGenIsa (getIsaUsedAt + m_* Text + m_generateDecoderF),
+    CslGenDesign.addIsaInstrFormat / addIsaInstr / addIsa
   cslc-fastpath: refcounted.h/cpp → RefCounted + RefCounting; fploptions → FplOptions; main.cpp → FastPathMain stub
   cslc-cdom: fpl_module_class.h/cpp → FplModule (abstract, no SystemC); CDOM_Checker.cpp path-prefix / undef slice →
     CdomCheckerState

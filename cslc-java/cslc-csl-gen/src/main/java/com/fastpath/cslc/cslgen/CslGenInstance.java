@@ -14,7 +14,13 @@ public final class CslGenInstance extends CslGenCslBase {
         this.instObj = Objects.requireNonNull(instantiatedObj, "instantiatedObj");
     }
 
+    /** Legacy {@code CSLinstance::getInstantiatedObj()} / {@code m_instObj}. */
     public CslGenCslBase getInstantiatedObj() {
+        return instObj;
+    }
+
+    /** Field view of {@code m_instObj} (same as {@link #getInstantiatedObj()}). */
+    public CslGenCslBase getInstObj() {
         return instObj;
     }
 

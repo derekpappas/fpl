@@ -59,6 +59,11 @@ public final class CslGenBitrange extends CslGenCslBase {
         return state.setRange(lower, upper);
     }
 
+    /** {@code m_declForm} ({@code ECSLbitrDecl}). */
+    public int getDeclForm() {
+        return declForm;
+    }
+
     @Override
     public boolean buildDecl() {
         return buildDecl(RandomGenerator.getDefault());

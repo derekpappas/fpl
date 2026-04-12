@@ -1,5 +1,7 @@
 package com.fastpath.cslc.cslgen;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.random.RandomGenerator;
 
 /**
@@ -25,14 +27,21 @@ public final class CslGenIsaInstrFormat extends CslGenCslBase {
     private boolean pRightFieldNameF;
     private boolean decoderUnitNameF;
 
-    private static final int WIDTH = 0;
-    private static final int FIELD_POS = 1;
-    private static final int NEXT_FIELD = 2;
-    private static final int PREVIOUS_FIELD = 3;
-    private static final int GEN_DECODER = 4;
+    public static final int WIDTH = 0;
+    public static final int FIELD_POS = 1;
+    public static final int NEXT_FIELD = 2;
+    public static final int PREVIOUS_FIELD = 3;
+    public static final int GEN_DECODER = 4;
 
     public CslGenIsaInstrFormat(CslGenCslBase parent, String name) {
         super(CslGenCslType.CSL_ISA_INSTR_FORMAT, parent, name);
+        Arrays.fill(used, 0);
+    }
+
+    /** {@code m_used[slot]} ({@code CSLisaInstrFormat}). */
+    public int getIsaInstrFormatUsedAt(int slot) {
+        Objects.checkIndex(slot, used.length);
+        return used[slot];
     }
 
     private CslGenCslBase design() {
@@ -223,5 +232,69 @@ public final class CslGenIsaInstrFormat extends CslGenCslBase {
         CslGenSupportEmit.rCbrace(out);
         CslGenSupportEmit.rCbrace(out);
         CslGenSupportEmit.semicolon(out);
+    }
+
+    public void appendPrintedCsl(StringBuilder out) {
+        CslGenCslBase.runWithPrintSink(out, this::print);
+    }
+
+    public String getFormatNameText() {
+        return formatName;
+    }
+
+    public String getWidthNumExprText() {
+        return widthNumExpr;
+    }
+
+    public String getFieldNameText() {
+        return fieldName;
+    }
+
+    public String getFieldPosNumExprText() {
+        return fieldPosNumExpr;
+    }
+
+    public String getNLeftFieldNameText() {
+        return nLeftFieldName;
+    }
+
+    public String getNRightFieldNameText() {
+        return nRightFieldName;
+    }
+
+    public String getPLeftFieldNameText() {
+        return pLeftFieldName;
+    }
+
+    public String getPRightFieldNameText() {
+        return pRightFieldName;
+    }
+
+    public String getDecoderUnitNameText() {
+        return decoderUnitName;
+    }
+
+    public boolean isFieldNameF() {
+        return fieldNameF;
+    }
+
+    public boolean isNLeftFieldNameF() {
+        return nLeftFieldNameF;
+    }
+
+    public boolean isNRightFieldNameF() {
+        return nRightFieldNameF;
+    }
+
+    public boolean isPLeftFieldNameF() {
+        return pLeftFieldNameF;
+    }
+
+    public boolean isPRightFieldNameF() {
+        return pRightFieldNameF;
+    }
+
+    public boolean isDecoderUnitNameF() {
+        return decoderUnitNameF;
     }
 }

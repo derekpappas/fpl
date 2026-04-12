@@ -1,7 +1,10 @@
 package com.fastpath.cslc.cslgen;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.random.RandomGenerator;
 
 /**
@@ -19,10 +22,18 @@ public final class CslGenIsaInstr extends CslGenCslBase {
     private boolean setAsmMnemonicFieldF;
     private boolean setAsmMnemonicStringF;
 
-    private static final int SET_ASM_MNEMONIC = 0;
+    public static final int SET_ASM_MNEMONIC = 0;
+    public static final int GET_ASM_MNEMONIC = 1;
 
     public CslGenIsaInstr(CslGenCslBase parent, String name) {
         super(CslGenCslType.CSL_ISA_INSTR, parent, name);
+        Arrays.fill(used, 0);
+    }
+
+    /** {@code m_used[slot]} ({@code CSLisaInstr}). */
+    public int getIsaInstrUsedAt(int slot) {
+        Objects.checkIndex(slot, used.length);
+        return used[slot];
     }
 
     void setInst(String formatName) {
@@ -32,11 +43,6 @@ public final class CslGenIsaInstr extends CslGenCslBase {
     /** Legacy {@code CSLisaInstr::m_inst} — instruction format name bound by {@link CslGenDesign#addIsaInstr}. */
     public String getInst() {
         return inst;
-    }
-
-    /** Legacy {@code m_used[SET_ASM_MNEMONIC]} for sibling scans in {@code genSetAsmMnemonic}. */
-    boolean isSetAsmMnemonicUsed() {
-        return used[SET_ASM_MNEMONIC] != 0;
     }
 
     private void genSetAsmMnemonic(CslGenCslBase design, RandomGenerator rng) {
@@ -53,7 +59,7 @@ public final class CslGenIsaInstr extends CslGenCslBase {
                         if (rng.nextBoolean()
                                 && !ok
                                 && ch instanceof CslGenIsaInstr other
-                                && other.isSetAsmMnemonicUsed()) {
+                                && other.getIsaInstrUsedAt(SET_ASM_MNEMONIC) != 0) {
                             genAsmMnemonicString += ch.getName();
                             setAsmMnemonicStringF = true;
                             ok = true;
@@ -142,5 +148,34 @@ public final class CslGenIsaInstr extends CslGenCslBase {
         CslGenSupportEmit.rCbrace(out);
         CslGenSupportEmit.rCbrace(out);
         CslGenSupportEmit.semicolon(out);
+    }
+
+    public void appendPrintedCsl(StringBuilder out) {
+        CslGenCslBase.runWithPrintSink(out, this::print);
+    }
+
+    /** {@code m_setAsmMnemonicOption}. */
+    public int getSetAsmMnemonicOption() {
+        return setAsmMnemonicOption;
+    }
+
+    public String getSetAsmMnemonicStringText() {
+        return setAsmMnemonicString;
+    }
+
+    public String getGenAsmMnemonicStringText() {
+        return genAsmMnemonicString;
+    }
+
+    public List<String> getSetAsmMnemonicFieldNames() {
+        return Collections.unmodifiableList(setAsmMnemonicField);
+    }
+
+    public boolean isSetAsmMnemonicFieldF() {
+        return setAsmMnemonicFieldF;
+    }
+
+    public boolean isSetAsmMnemonicStringF() {
+        return setAsmMnemonicStringF;
     }
 }

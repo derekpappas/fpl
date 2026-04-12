@@ -2,7 +2,9 @@ package com.fastpath.cslc.cslgen;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.random.RandomGenerator;
 
 /**
@@ -85,8 +87,16 @@ public final class CslGenIsaField extends CslGenCslBase {
         Arrays.fill(usedTypeDecl, 0);
     }
 
-    boolean isaUsed(int idx) {
-        return idx >= 0 && idx < used.length && used[idx] != 0;
+    /** {@code m_used[slot]} ({@code CSLisaField}). */
+    public int getIsaFieldUsedAt(int slot) {
+        Objects.checkIndex(slot, used.length);
+        return used[slot];
+    }
+
+    /** {@code m_usedTypeDecl[slot]} ({@code CSLisaField}). */
+    public int getIsaFieldTypeDeclUsedAt(int slot) {
+        Objects.checkIndex(slot, usedTypeDecl.length);
+        return usedTypeDecl[slot];
     }
 
     public void addFieldInstance(CslGenCslBase design, RandomGenerator rng) {
@@ -115,7 +125,9 @@ public final class CslGenIsaField extends CslGenCslBase {
                 CslGenIsaField f = (CslGenIsaField) ch;
                 if (rng.nextBoolean()
                         && !ok
-                        && (f.isaUsed(SET_WIDTH) || f.isaUsed(SET_RANGE) || f.isaUsed(SET_BITRANGE))) {
+                        && (f.getIsaFieldUsedAt(SET_WIDTH) != 0
+                                || f.getIsaFieldUsedAt(SET_RANGE) != 0
+                                || f.getIsaFieldUsedAt(SET_BITRANGE) != 0)) {
                     width.append(ch.getName()).append('.').append(CslGenIsaTables.ISA_FIELD_FUNCTION[GET_WIDTH]).append("()");
                     ok = true;
                 }
@@ -153,7 +165,9 @@ public final class CslGenIsaField extends CslGenCslBase {
                 CslGenIsaField f = (CslGenIsaField) ch;
                 if (rng.nextBoolean()
                         && !ok
-                        && (f.isaUsed(SET_WIDTH) || f.isaUsed(SET_RANGE) || f.isaUsed(SET_BITRANGE))) {
+                        && (f.getIsaFieldUsedAt(SET_WIDTH) != 0
+                                || f.getIsaFieldUsedAt(SET_RANGE) != 0
+                                || f.getIsaFieldUsedAt(SET_BITRANGE) != 0)) {
                     range.append(ch.getName())
                             .append('.')
                             .append(CslGenIsaTables.ISA_FIELD_FUNCTION[GET_LOWER])
@@ -176,7 +190,7 @@ public final class CslGenIsaField extends CslGenCslBase {
                     continue;
                 }
                 CslGenIsaField f = (CslGenIsaField) ch;
-                if (rng.nextBoolean() && !ok && f.isaUsed(GET_OFFSET)) {
+                if (rng.nextBoolean() && !ok && f.getIsaFieldUsedAt(GET_OFFSET) != 0) {
                     offset.append(ch.getName()).append('.').append(CslGenIsaTables.ISA_FIELD_FUNCTION[GET_OFFSET]).append("()");
                     ok = true;
                 }
@@ -370,7 +384,7 @@ public final class CslGenIsaField extends CslGenCslBase {
                     continue;
                 }
                 CslGenIsaField f = (CslGenIsaField) ch;
-                if (f.isaUsed(GET_TYPE) && rng.nextBoolean() && !ok) {
+                if (f.getIsaFieldUsedAt(GET_TYPE) != 0 && rng.nextBoolean() && !ok) {
                     setType.append(ch.getName()).append('.').append(CslGenIsaTables.ISA_FIELD_FUNCTION[GET_TYPE]).append("()");
                     ok = true;
                 }
@@ -389,7 +403,7 @@ public final class CslGenIsaField extends CslGenCslBase {
                     continue;
                 }
                 CslGenIsaField f = (CslGenIsaField) ch;
-                if (f.isaUsed(GET_NAME) && rng.nextBoolean() && !ok) {
+                if (f.getIsaFieldUsedAt(GET_NAME) != 0 && rng.nextBoolean() && !ok) {
                     setName.append(ch.getName()).append('.').append(CslGenIsaTables.ISA_FIELD_FUNCTION[GET_NAME]).append("()");
                     ok = true;
                 }
@@ -408,7 +422,7 @@ public final class CslGenIsaField extends CslGenCslBase {
                     continue;
                 }
                 CslGenIsaField f = (CslGenIsaField) ch;
-                if (f.isaUsed(GET_MNEMONIC) && rng.nextBoolean() && !ok) {
+                if (f.getIsaFieldUsedAt(GET_MNEMONIC) != 0 && rng.nextBoolean() && !ok) {
                     setMnemonic
                             .append(ch.getName())
                             .append('.')
@@ -511,17 +525,17 @@ public final class CslGenIsaField extends CslGenCslBase {
                             || (ran == GET_VALUE && !hierarchicalF)) {
                         switch (ran) {
                             case GET_ENUM -> {
-                                if (isaUsed(SET_ENUM)) {
+                                if (getIsaFieldUsedAt(SET_ENUM) != 0) {
                                     used[GET_ENUM] = 1;
                                 }
                             }
                             case GET_ENUM_ITEM -> {
-                                if (isaUsed(SET_ENUM_ITEM)) {
+                                if (getIsaFieldUsedAt(SET_ENUM_ITEM) != 0) {
                                     used[GET_ENUM_ITEM] = 1;
                                 }
                             }
                             case GET_VALUE -> {
-                                if (isaUsed(SET_VALUE)) {
+                                if (getIsaFieldUsedAt(SET_VALUE) != 0) {
                                     used[GET_VALUE] = 1;
                                 }
                             }
@@ -563,7 +577,7 @@ public final class CslGenIsaField extends CslGenCslBase {
                                 used[SET_OFFSET] = 1;
                                 break;
                             case GET_OFFSET:
-                                if (isaUsed(SET_OFFSET)) {
+                                if (getIsaFieldUsedAt(SET_OFFSET) != 0) {
                                     used[GET_OFFSET] = 1;
                                 }
                                 break;
@@ -576,7 +590,7 @@ public final class CslGenIsaField extends CslGenCslBase {
                                 used[SET_NAME] = 1;
                                 // fall through
                             case GET_NAME:
-                                if (isaUsed(SET_NAME)) {
+                                if (getIsaFieldUsedAt(SET_NAME) != 0) {
                                     used[GET_NAME] = 1;
                                 }
                                 // fall through
@@ -585,7 +599,7 @@ public final class CslGenIsaField extends CslGenCslBase {
                                 used[SET_MNEMONIC] = 1;
                                 // fall through
                             case GET_MNEMONIC:
-                                if (isaUsed(SET_MNEMONIC)) {
+                                if (getIsaFieldUsedAt(SET_MNEMONIC) != 0) {
                                     used[GET_MNEMONIC] = 1;
                                 }
                                 break;
@@ -623,7 +637,7 @@ public final class CslGenIsaField extends CslGenCslBase {
                     case WIDTH -> {
                         CslGenSupportEmit.lParenthesis(out);
                         out.append(width);
-                        if (isaUsed(SET_ENUM) || isaUsed(SET_ENUM_ITEM)) {
+                        if (getIsaFieldUsedAt(SET_ENUM) != 0 || getIsaFieldUsedAt(SET_ENUM_ITEM) != 0) {
                             CslGenSupportEmit.comma(out);
                         }
                     }
@@ -632,7 +646,7 @@ public final class CslGenIsaField extends CslGenCslBase {
                         out.append(upper);
                         CslGenSupportEmit.comma(out);
                         out.append(lower);
-                        if (isaUsed(SET_ENUM) || isaUsed(SET_ENUM_ITEM)) {
+                        if (getIsaFieldUsedAt(SET_ENUM) != 0 || getIsaFieldUsedAt(SET_ENUM_ITEM) != 0) {
                             CslGenSupportEmit.comma(out);
                         }
                     }
@@ -647,9 +661,9 @@ public final class CslGenIsaField extends CslGenCslBase {
                     }
                 }
                 if (usedTypeDecl[i] != usedTypeDecl[CONSTR]) {
-                    if (isaUsed(SET_ENUM)) {
+                    if (getIsaFieldUsedAt(SET_ENUM) != 0) {
                         out.append(enumName);
-                    } else if (isaUsed(SET_ENUM_ITEM)) {
+                    } else if (getIsaFieldUsedAt(SET_ENUM_ITEM) != 0) {
                         out.append(enumItem);
                     }
                     if (!(usedTypeDecl[COPY_CONSTR] != 0 && !copyF)) {
@@ -662,7 +676,7 @@ public final class CslGenIsaField extends CslGenCslBase {
         boolean parentIsDesign = getParent().map(p -> p.getType() == CslGenCslType.CSL_DESIGN).orElse(false);
         if ((printF || parentIsDesign) && usedTypeDecl[CONSTR] == 0) {
             if (!(usedTypeDecl[COPY_CONSTR] != 0 && !copyF)) {
-                if (isaUsed(SET_TYPE)) {
+                if (getIsaFieldUsedAt(SET_TYPE) != 0) {
                     out.append(getName()).append('.').append(CslGenIsaTables.ISA_FIELD_FUNCTION[SET_TYPE]);
                     CslGenSupportEmit.lParenthesis(out);
                     out.append(setType);
@@ -752,5 +766,133 @@ public final class CslGenIsaField extends CslGenCslBase {
 
     public void appendPrintedCsl(StringBuilder out) {
         CslGenCslBase.runWithPrintSink(out, this::print);
+    }
+
+    public String getTypeDeclText() {
+        return typeDecl.toString();
+    }
+
+    public String getEnumNameText() {
+        return enumName.toString();
+    }
+
+    public String getEnumItemText() {
+        return enumItem.toString();
+    }
+
+    public String getValueText() {
+        return value.toString();
+    }
+
+    public String getWidthText() {
+        return width.toString();
+    }
+
+    public String getBitrangeText() {
+        return bitrange.toString();
+    }
+
+    public String getRangeText() {
+        return range.toString();
+    }
+
+    public String getOffsetText() {
+        return offset.toString();
+    }
+
+    public String getUpperText() {
+        return upper.toString();
+    }
+
+    public String getLowerText() {
+        return lower.toString();
+    }
+
+    public String getAllowedRangeText() {
+        return allowedRange.toString();
+    }
+
+    public String getCopyText() {
+        return copy.toString();
+    }
+
+    public String getSetNameText() {
+        return setName.toString();
+    }
+
+    public String getSetTypeText() {
+        return setType.toString();
+    }
+
+    public String getSetMnemonicText() {
+        return setMnemonic.toString();
+    }
+
+    public List<String> getPosFieldNames() {
+        return Collections.unmodifiableList(posField);
+    }
+
+    public List<String> getPosNumExprs() {
+        return Collections.unmodifiableList(posNumExpr);
+    }
+
+    public List<String> getNextLeftStrings() {
+        return Collections.unmodifiableList(nextLeft);
+    }
+
+    public List<String> getNextRightStrings() {
+        return Collections.unmodifiableList(nextRight);
+    }
+
+    public List<String> getPrevLeftStrings() {
+        return Collections.unmodifiableList(prevLeft);
+    }
+
+    public List<String> getPrevRightStrings() {
+        return Collections.unmodifiableList(prevRight);
+    }
+
+    public boolean isCopyF() {
+        return copyF;
+    }
+
+    public boolean isBitrangeF() {
+        return bitrangeF;
+    }
+
+    public boolean isEnumF() {
+        return enumF;
+    }
+
+    public boolean isEnumItemF() {
+        return enumItemF;
+    }
+
+    public boolean isFieldTypeF() {
+        return fieldTypeF;
+    }
+
+    public boolean isElementTypeF() {
+        return elementTypeF;
+    }
+
+    public boolean isPrintF() {
+        return printF;
+    }
+
+    public boolean isPosF() {
+        return posF;
+    }
+
+    public boolean isNextF() {
+        return nextF;
+    }
+
+    public boolean isPrevF() {
+        return prevF;
+    }
+
+    public boolean isHierarchicalF() {
+        return hierarchicalF;
     }
 }

@@ -72,6 +72,11 @@ public final class CslGenSignal extends CslGenCslBase {
         return sigCopy.toString();
     }
 
+    /** {@code m_declForm} ({@code ECSLsigDecl}). */
+    public int getDeclForm() {
+        return declForm;
+    }
+
     public void setSigType(String type) {
         this.sigType = type;
     }

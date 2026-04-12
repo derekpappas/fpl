@@ -13,7 +13,13 @@ public final class CslGenIfcInst extends CslGenCslBase {
         super(CslGenCslType.CSL_IFC_INST, parent, name);
     }
 
+    /** Legacy {@code CSLifcInst::getIfcType()} / {@code m_instType}. */
     public CslGenIfc getIfcType() {
+        return instType;
+    }
+
+    /** Field view of {@code m_instType} (same as {@link #getIfcType()}, cf. {@link CslGenUnitInst#getInstUnit()}). */
+    public CslGenIfc getInstType() {
         return instType;
     }
 

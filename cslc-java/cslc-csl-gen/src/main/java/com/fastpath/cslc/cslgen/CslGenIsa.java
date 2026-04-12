@@ -1,5 +1,7 @@
 package com.fastpath.cslc.cslgen;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.random.RandomGenerator;
 
 /**
@@ -17,14 +19,21 @@ public final class CslGenIsa extends CslGenCslBase {
 
     private boolean generateDecoderF;
 
-    private static final int DECODER_NAME = 0;
-    private static final int DECODER_PREFIX = 1;
-    private static final int DECODER_SUFFIX = 2;
-    private static final int GEN_DECODER = 3;
-    private static final int PRINT = 4;
+    public static final int DECODER_NAME = 0;
+    public static final int DECODER_PREFIX = 1;
+    public static final int DECODER_SUFFIX = 2;
+    public static final int GEN_DECODER = 3;
+    public static final int PRINT = 4;
 
     public CslGenIsa(CslGenCslBase parent, String name) {
         super(CslGenCslType.CSL_ISA, parent, name);
+        Arrays.fill(used, 0);
+    }
+
+    /** {@code m_used[slot]} ({@code CSLisa}). */
+    public int getIsaUsedAt(int slot) {
+        Objects.checkIndex(slot, used.length);
+        return used[slot];
     }
 
     void addIsaInstance(CslGenCslBase design, RandomGenerator rng) {
@@ -163,5 +172,33 @@ public final class CslGenIsa extends CslGenCslBase {
         CslGenSupportEmit.rCbrace(out);
         CslGenSupportEmit.rCbrace(out);
         CslGenSupportEmit.semicolon(out);
+    }
+
+    public void appendPrintedCsl(StringBuilder out) {
+        CslGenCslBase.runWithPrintSink(out, this::print);
+    }
+
+    public String getSetDecoderNameText() {
+        return setDecoderName;
+    }
+
+    public String getSetDecoderPrefixText() {
+        return setDecoderPrefix;
+    }
+
+    public String getSetDecoderSuffixText() {
+        return setDecoderSuffix;
+    }
+
+    public String getGenerateDecoderText() {
+        return generateDecoder;
+    }
+
+    public String getPrintFileNameText() {
+        return printFileName;
+    }
+
+    public boolean isGenerateDecoderF() {
+        return generateDecoderF;
     }
 }

@@ -2,6 +2,7 @@ package com.fastpath.cslc.cslgen;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Random;
@@ -52,6 +53,7 @@ class CslGenUnitTest {
         d.addChild(u);
         u.addRegFileInst(rng);
         CslGenInstance inst = (CslGenInstance) u.getChildAt(0).orElseThrow();
+        assertSame(inst.getInstObj(), inst.getInstantiatedObj());
         StringBuilder out = new StringBuilder();
         inst.appendPrintedCsl(out);
         String line = out.toString();

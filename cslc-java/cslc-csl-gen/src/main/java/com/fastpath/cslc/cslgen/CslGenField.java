@@ -2,7 +2,9 @@ package com.fastpath.cslc.cslgen;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.random.RandomGenerator;
 
 /**
@@ -73,8 +75,16 @@ public final class CslGenField extends CslGenCslBase {
         Arrays.fill(usedTypeDecl, 0);
     }
 
-    boolean fieldUsed(int idx) {
-        return idx >= 0 && idx < used.length && used[idx] != 0;
+    /** {@code m_used[slot]} ({@code CSLfield}). */
+    public int getFieldUsedAt(int slot) {
+        Objects.checkIndex(slot, used.length);
+        return used[slot];
+    }
+
+    /** {@code m_usedTypeDecl[slot]} ({@code CSLfield}). */
+    public int getFieldTypeDeclUsedAt(int slot) {
+        Objects.checkIndex(slot, usedTypeDecl.length);
+        return usedTypeDecl[slot];
     }
 
     /**
@@ -111,7 +121,9 @@ public final class CslGenField extends CslGenCslBase {
                 CslGenField f = (CslGenField) ch;
                 if (rng.nextBoolean()
                         && !ok
-                        && (f.fieldUsed(SET_WIDTH) || f.fieldUsed(SET_RANGE) || f.fieldUsed(SET_BITRANGE))) {
+                        && (f.getFieldUsedAt(SET_WIDTH) != 0
+                                || f.getFieldUsedAt(SET_RANGE) != 0
+                                || f.getFieldUsedAt(SET_BITRANGE) != 0)) {
                     width.append(ch.getName()).append('.').append(CslGenFieldTables.FIELD_FUNCTION[GET_WIDTH]).append("()");
                     ok = true;
                 }
@@ -149,7 +161,9 @@ public final class CslGenField extends CslGenCslBase {
                 CslGenField f = (CslGenField) ch;
                 if (rng.nextBoolean()
                         && !ok
-                        && (f.fieldUsed(SET_WIDTH) || f.fieldUsed(SET_RANGE) || f.fieldUsed(SET_BITRANGE))) {
+                        && (f.getFieldUsedAt(SET_WIDTH) != 0
+                                || f.getFieldUsedAt(SET_RANGE) != 0
+                                || f.getFieldUsedAt(SET_BITRANGE) != 0)) {
                     range.append(ch.getName())
                             .append('.')
                             .append(CslGenFieldTables.FIELD_FUNCTION[GET_LOWER])
@@ -172,7 +186,7 @@ public final class CslGenField extends CslGenCslBase {
                     continue;
                 }
                 CslGenField f = (CslGenField) ch;
-                if (rng.nextBoolean() && !ok && f.fieldUsed(GET_OFFSET)) {
+                if (rng.nextBoolean() && !ok && f.getFieldUsedAt(GET_OFFSET) != 0) {
                     offset.append(ch.getName()).append('.').append(CslGenFieldTables.FIELD_FUNCTION[GET_OFFSET]).append("()");
                     ok = true;
                 }
@@ -447,17 +461,17 @@ public final class CslGenField extends CslGenCslBase {
                             || (ran == GET_VALUE && !hierarchicalF)) {
                         switch (ran) {
                             case GET_ENUM -> {
-                                if (fieldUsed(SET_ENUM)) {
+                                if (getFieldUsedAt(SET_ENUM) != 0) {
                                     used[GET_ENUM] = 1;
                                 }
                             }
                             case GET_ENUM_ITEM -> {
-                                if (fieldUsed(SET_ENUM_ITEM)) {
+                                if (getFieldUsedAt(SET_ENUM_ITEM) != 0) {
                                     used[GET_ENUM_ITEM] = 1;
                                 }
                             }
                             case GET_VALUE -> {
-                                if (fieldUsed(SET_VALUE)) {
+                                if (getFieldUsedAt(SET_VALUE) != 0) {
                                     used[GET_VALUE] = 1;
                                 }
                             }
@@ -500,7 +514,7 @@ public final class CslGenField extends CslGenCslBase {
                                 used[GET_OFFSET] = 1;
                                 break;
                             case GET_OFFSET:
-                                if (fieldUsed(SET_OFFSET)) {
+                                if (getFieldUsedAt(SET_OFFSET) != 0) {
                                     used[GET_OFFSET] = 1;
                                 }
                                 break;
@@ -540,7 +554,7 @@ public final class CslGenField extends CslGenCslBase {
                 case WIDTH -> {
                     CslGenSupportEmit.lParenthesis(out);
                     out.append(width);
-                    if (fieldUsed(SET_ENUM) || fieldUsed(SET_ENUM_ITEM)) {
+                    if (getFieldUsedAt(SET_ENUM) != 0 || getFieldUsedAt(SET_ENUM_ITEM) != 0) {
                         CslGenSupportEmit.comma(out);
                     }
                 }
@@ -549,7 +563,7 @@ public final class CslGenField extends CslGenCslBase {
                     out.append(upper);
                     CslGenSupportEmit.comma(out);
                     out.append(lower);
-                    if (fieldUsed(SET_ENUM) || fieldUsed(SET_ENUM_ITEM)) {
+                    if (getFieldUsedAt(SET_ENUM) != 0 || getFieldUsedAt(SET_ENUM_ITEM) != 0) {
                         CslGenSupportEmit.comma(out);
                     }
                 }
@@ -557,7 +571,7 @@ public final class CslGenField extends CslGenCslBase {
                     if (copyF) {
                         CslGenSupportEmit.lParenthesis(out);
                         out.append(copy);
-                        if (fieldUsed(SET_ENUM) || fieldUsed(SET_ENUM_ITEM)) {
+                        if (getFieldUsedAt(SET_ENUM) != 0 || getFieldUsedAt(SET_ENUM_ITEM) != 0) {
                             CslGenSupportEmit.comma(out);
                         }
                     } else {
@@ -569,9 +583,9 @@ public final class CslGenField extends CslGenCslBase {
                 }
             }
             if (usedTypeDecl[i] != usedTypeDecl[CONSTR]) {
-                if (fieldUsed(SET_ENUM)) {
+                if (getFieldUsedAt(SET_ENUM) != 0) {
                     out.append(enumName);
-                } else if (fieldUsed(SET_ENUM_ITEM)) {
+                } else if (getFieldUsedAt(SET_ENUM_ITEM) != 0) {
                     out.append(enumItem);
                 }
                 if (!(usedTypeDecl[COPY_CONSTR] != 0 && !copyF)) {
@@ -654,5 +668,110 @@ public final class CslGenField extends CslGenCslBase {
 
     public void appendPrintedCsl(StringBuilder out) {
         CslGenCslBase.runWithPrintSink(out, this::print);
+    }
+
+    public String getEnumNameText() {
+        return enumName.toString();
+    }
+
+    public String getEnumItemText() {
+        return enumItem.toString();
+    }
+
+    public String getValueText() {
+        return value.toString();
+    }
+
+    public String getWidthText() {
+        return width.toString();
+    }
+
+    public String getBitrangeText() {
+        return bitrange.toString();
+    }
+
+    public String getRangeText() {
+        return range.toString();
+    }
+
+    public String getOffsetText() {
+        return offset.toString();
+    }
+
+    public String getUpperText() {
+        return upper.toString();
+    }
+
+    public String getLowerText() {
+        return lower.toString();
+    }
+
+    public String getAllowedRangeText() {
+        return allowedRange.toString();
+    }
+
+    public String getCopyText() {
+        return copy.toString();
+    }
+
+    public List<String> getPosFieldNames() {
+        return Collections.unmodifiableList(posField);
+    }
+
+    public List<String> getPosNumExprs() {
+        return Collections.unmodifiableList(posNumExpr);
+    }
+
+    public List<String> getNextLeftStrings() {
+        return Collections.unmodifiableList(nextLeft);
+    }
+
+    public List<String> getNextRightStrings() {
+        return Collections.unmodifiableList(nextRight);
+    }
+
+    public List<String> getPrevLeftStrings() {
+        return Collections.unmodifiableList(prevLeft);
+    }
+
+    public List<String> getPrevRightStrings() {
+        return Collections.unmodifiableList(prevRight);
+    }
+
+    public boolean isCopyF() {
+        return copyF;
+    }
+
+    public boolean isBitrangeF() {
+        return bitrangeF;
+    }
+
+    public boolean isEnumF() {
+        return enumF;
+    }
+
+    public boolean isEnumItemF() {
+        return enumItemF;
+    }
+
+    /** {@code m_fieldType}. */
+    public boolean isFieldTypeF() {
+        return fieldTypeF;
+    }
+
+    public boolean isPosF() {
+        return posF;
+    }
+
+    public boolean isNextF() {
+        return nextF;
+    }
+
+    public boolean isPrevF() {
+        return prevF;
+    }
+
+    public boolean isHierarchicalF() {
+        return hierarchicalF;
     }
 }

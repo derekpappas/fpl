@@ -66,6 +66,11 @@ public final class CslGenPort extends CslGenCslBase {
         return bitrCopy.toString();
     }
 
+    /** {@code m_declForm} ({@code ECSLportDecl}). */
+    public int getDeclForm() {
+        return declForm;
+    }
+
     public void setPortType(String type) {
         this.prtType = type;
     }

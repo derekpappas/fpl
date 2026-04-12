@@ -261,7 +261,7 @@ public final class CslGenMemMap extends CslGenCslBase {
                 continue;
             }
             CslGenMemMapPage page = (CslGenMemMapPage) obj;
-            if (isValidInst(ch, i) && page.isMmpUsed(CslGenMemMapPage.SET_ADDR_RIGHTS)) {
+            if (isValidInst(ch, i) && page.getMemMapPageUsedAt(CslGenMemMapPage.SET_ADDR_RIGHTS) != 0) {
                 genSetAccessRight(design, obj.getName(), rng);
                 used[SET_ACC_RIGHT] = 1;
             }
@@ -397,22 +397,18 @@ public final class CslGenMemMap extends CslGenCslBase {
         return suffix.toString();
     }
 
-    /** Legacy {@code m_topUnitF}. */
     public boolean isTopUnitF() {
         return topUnitF;
     }
 
-    /** Legacy {@code m_addToMemObjF}. */
     public boolean isAddToMemObjF() {
         return addToMemObjF;
     }
 
-    /** Legacy {@code m_addToMemAddrF}. */
     public boolean isAddToMemAddrF() {
         return addToMemAddrF;
     }
 
-    /** Legacy {@code m_addToMemRightF}. */
     public boolean isAddToMemRightF() {
         return addToMemRightF;
     }

@@ -3,6 +3,7 @@ package com.fastpath.cslc.cslgen;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Random;
 import org.junit.jupiter.api.Test;
 
 class CslGenPortCopyTest {
@@ -63,5 +64,23 @@ class CslGenPortCopyTest {
         CslGenSignal s = new CslGenSignal(new CslGenDesign("d"), "s");
         assertTrue(s.getBitrCopyText().isEmpty());
         assertTrue(s.getSigCopyText().isEmpty());
+    }
+
+    @Test
+    void portDeclFormVisibleAfterBuildDecl() {
+        CslGenPort p = new CslGenPort(new CslGenDesign("d"), "p");
+        assertEquals(CslGenPort.PORT_DECL_EMPTY, p.getDeclForm());
+        p.buildDecl(new Random(77L));
+        int f = p.getDeclForm();
+        assertTrue(f >= 0 && f < CslGenPort.PORT_DECL_MAX);
+    }
+
+    @Test
+    void signalDeclFormVisibleAfterBuildDecl() {
+        CslGenSignal s = new CslGenSignal(new CslGenDesign("d"), "s");
+        assertEquals(CslGenSignal.SIG_DECL_EMPTY, s.getDeclForm());
+        s.buildDecl(new Random(88L));
+        int f = s.getDeclForm();
+        assertTrue(f >= 0 && f < CslGenSignal.SIG_DECL_MAX);
     }
 }

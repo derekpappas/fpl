@@ -1,6 +1,7 @@
 package com.fastpath.cslc.cslgen;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.random.RandomGenerator;
 
 /**
@@ -20,6 +21,12 @@ public final class CslGenMemory extends CslGenCslBase {
     public CslGenMemory(CslGenCslBase parent, String name) {
         super(CslGenCslType.CSL_MEMORY, parent, name);
         Arrays.fill(used, 0);
+    }
+
+    /** {@code m_used[slot]} ({@code CSLmemory}). */
+    public int getMemoryUsedAt(int slot) {
+        Objects.checkIndex(slot, used.length);
+        return used[slot];
     }
 
     public void genSetDepth(RandomGenerator rng) {
@@ -80,12 +87,12 @@ public final class CslGenMemory extends CslGenCslBase {
         CslGenSupportEmit.semicolon(mOut);
     }
 
-    /** Legacy public {@code CSLmemory::m_depth} ({@code cslMemory.h}). */
+    /** {@code m_depth}. */
     public String getDepthText() {
         return depth.toString();
     }
 
-    /** Legacy public {@code CSLmemory::m_width} ({@code cslMemory.h}). */
+    /** {@code m_width}. */
     public String getWidthText() {
         return width.toString();
     }
