@@ -21,6 +21,17 @@ public enum CslGenCslType {
     CSL_ISA,
     /** Interconnect generator ({@code cslInterconnectGen_TB.h} / {@code cslMemory.h}) — beyond base {@code csl_gen_base.h} slice. */
     CSL_MEMORY,
+    /** CDom-style names from {@code cGen_Declarations.h}; interconnect also uses {@code CSL_MEM_MAP} ({@code cslInterconnectGen_TB.h}). */
     CSL_MEMORY_MAP,
-    CSL_MEMORY_MAP_PAGE
+    CSL_MEMORY_MAP_PAGE,
+    CSL_INSTANCE,
+    CSL_ISA_FIELD,
+    CSL_ISA_ELEMENT,
+    CSL_FIFO,
+    CSL_MEM_MAP_PAGE,
+    CSL_MEM_MAP,
+    /** Interconnect {@code CSL_FIELD_INST} ({@code cslInterconnectGen_TB.h}); distinct from {@link #CSL_FIELD_INSTANCE}. */
+    CSL_FIELD_INST,
+    CSL_REG,
+    CSL_REG_FILE
 }

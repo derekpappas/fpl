@@ -22,6 +22,16 @@ public final class CslGenDesign extends CslGenCslBase {
         }
     }
 
+    /** Legacy {@code CSLdesign::addRegister()} ({@code cslRegister.cpp}). */
+    public void addRegister(RandomGenerator rng) {
+        String name = CslGenRandString.randString();
+        if (newNameIsValid(name)) {
+            CslGenRegister reg = new CslGenRegister(this, name);
+            reg.buildDecl(rng);
+            addChild(reg);
+        }
+    }
+
     @Override
     public boolean buildDecl() {
         return true;
