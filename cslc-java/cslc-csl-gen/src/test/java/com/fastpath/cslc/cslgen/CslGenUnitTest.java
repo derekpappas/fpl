@@ -27,6 +27,22 @@ class CslGenUnitTest {
     }
 
     @Test
+    void addFifoInstCreatesInstancePerFifoOnDesign() {
+        CslGenDesign d = new CslGenDesign("d");
+        Random rng = new Random(99L);
+        d.addFifo(rng);
+        d.addFifo(rng);
+        CslGenUnit u = new CslGenUnit(d, "u");
+        d.addChild(u);
+        u.addFifoInst(rng);
+        assertEquals(2, u.getChildrenCount());
+        for (int i = 0; i < 2; i++) {
+            CslGenInstance inst = (CslGenInstance) u.getChildAt(i).orElseThrow();
+            assertInstanceOf(CslGenFifo.class, inst.getInstantiatedObj());
+        }
+    }
+
+    @Test
     void instancePrintMatchesDecl0param() {
         CslGenDesign d = new CslGenDesign("d");
         Random rng = new Random(7L);

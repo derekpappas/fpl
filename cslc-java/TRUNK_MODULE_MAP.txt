@@ -65,7 +65,8 @@ Incremental port (Java, vs TRUNK_FILE_INVENTORY.tsv backlog)
     CslGenNumExprSupport; UNARY_POSTFIXED_OP / BINARY_OP → CslGenExprTables; cslMemory.h/cpp → CslGenMemoryTables,
     CslGenMemory, CslGenDesign.addMemory; cslRegister.h/cpp slice → CslGenRegisterTables, CslGenRegister,
     CslGenDesign.addRegister, CslGenRegisterFile, CslGenDesign.addRegisterFile; CSLinstance → CslGenInstance;
-    CSLunit::addRegFileInst → CslGenUnit.addRegFileInst; randString() no-arg →
+    CSLunit::addRegFileInst → CslGenUnit.addRegFileInst; cGenFifo_ao.h/cpp → CslGenFifoTables, CslGenFifo,
+    CslGenDesign.addFifo, CslGenUnit.addFifoInst; randString() no-arg →
     CslGenRandString.randString(); CSLbase::m_out →
     CslGenCslBase.printSink / runWithPrintSink (ThreadLocal StringBuilder)
   cslc-fastpath: refcounted.h/cpp → RefCounted + RefCounting; fploptions → FplOptions; main.cpp → FastPathMain stub

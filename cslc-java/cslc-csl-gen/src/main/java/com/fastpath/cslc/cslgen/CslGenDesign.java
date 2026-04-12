@@ -42,6 +42,16 @@ public final class CslGenDesign extends CslGenCslBase {
         }
     }
 
+    /** Legacy {@code CSLdesign::addFifo()} ({@code cGenFifo_ao.cpp}). */
+    public void addFifo(RandomGenerator rng) {
+        String name = CslGenRandString.randString();
+        if (newNameIsValid(name)) {
+            CslGenFifo fifo = new CslGenFifo(this, name);
+            fifo.buildDecl(rng);
+            addChild(fifo);
+        }
+    }
+
     @Override
     public boolean buildDecl() {
         return true;

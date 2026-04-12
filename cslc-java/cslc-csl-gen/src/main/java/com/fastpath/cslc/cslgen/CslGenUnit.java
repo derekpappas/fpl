@@ -13,6 +13,26 @@ public final class CslGenUnit extends CslGenCslBase {
     }
 
     /**
+     * Legacy {@code CSLunit::addFifoInst()} ({@code cGenFifo_ao.cpp}): for each {@link CslGenCslType#CSL_FIFO} child
+     * of the parent design, add a {@link CslGenInstance} under this unit.
+     */
+    public void addFifoInst(RandomGenerator rng) {
+        CslGenCslBase design = getParent().orElse(null);
+        if (design == null) {
+            return;
+        }
+        for (CslGenCslBase ch : design.getChildren()) {
+            if (ch.getType() == CslGenCslType.CSL_FIFO) {
+                String name = CslGenRandString.randString(rng);
+                if (newNameIsValid(name)) {
+                    CslGenInstance inst = new CslGenInstance(this, ch, name);
+                    addChild(inst);
+                }
+            }
+        }
+    }
+
+    /**
      * Legacy {@code CSLunit::addRegFileInst()} ({@code cslRegister.cpp}): for each {@link CslGenCslType#CSL_REG_FILE}
      * child of the parent design, add a {@link CslGenInstance} under this unit.
      */
