@@ -2,6 +2,7 @@ package com.fastpath.cslc.cslgen;
 
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.random.RandomGenerator;
 
 /**
  * Legacy {@code randString(string)} from {@code trunk/cslc/trunk/scripts/rand.cpp} (also referenced from
@@ -19,9 +20,18 @@ public final class CslGenRandString {
         return randString("");
     }
 
+    /** Same as {@link #randString()} but draws digits from {@code rng} (deterministic tests). */
+    public static String randString(RandomGenerator rng) {
+        return randString("", Objects.requireNonNull(rng, "rng"));
+    }
+
     public static String randString(String name) {
+        return randString(name, ThreadLocalRandom.current());
+    }
+
+    public static String randString(String name, RandomGenerator rng) {
         Objects.requireNonNull(name, "name");
-        ThreadLocalRandom r = ThreadLocalRandom.current();
-        return name + (char) ('0' + r.nextInt(DIGIT_MOD)) + (char) ('0' + r.nextInt(DIGIT_MOD));
+        Objects.requireNonNull(rng, "rng");
+        return name + (char) ('0' + rng.nextInt(DIGIT_MOD)) + (char) ('0' + rng.nextInt(DIGIT_MOD));
     }
 }

@@ -3,6 +3,7 @@ package com.fastpath.cslc.cslgen;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Random;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +15,14 @@ class CslGenRandStringTest {
         assertEquals(2, s.length());
         assertTrue(s.charAt(0) >= '0' && s.charAt(0) <= '8');
         assertTrue(s.charAt(1) >= '0' && s.charAt(1) <= '8');
+    }
+
+    @Test
+    void randStringWithSeededGeneratorIsDeterministic() {
+        var a = CslGenRandString.randString(new Random(1L));
+        var b = CslGenRandString.randString(new Random(1L));
+        assertEquals(a, b);
+        assertEquals(2, a.length());
     }
 
     @RepeatedTest(20)
