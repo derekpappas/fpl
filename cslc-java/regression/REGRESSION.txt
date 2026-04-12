@@ -1,0 +1,21 @@
+CSLC Java regression layout
+============================
+
+Maven (JUnit 5)
+  cslc-java/regression/src/test/java/  — in-process and integration tests
+
+Python (pytest) — Perl/shell driver replacement
+  cslc-java/regression/python/           — harness and translated scripts
+
+Policy
+------
+- Do not add new source under trunk/; reference legacy code read-only until deprecation.
+- When the Java port is complete, move the legacy tree aside, for example from the repo root:
+    mkdir -p deprecated
+    git mv trunk deprecated/trunk
+  (Adjust if your default branch already uses another layout.)
+
+Running
+-------
+  cd cslc-java && mvn -q test
+  cd cslc-java/regression/python && python3 -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt && pytest -q

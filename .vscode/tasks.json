@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "cslc-java: Maven test (local .m2)",
+      "type": "shell",
+      "command": "mvn -B -q -Dmaven.repo.local=${workspaceFolder}/cslc-java/.m2/repository test",
+      "options": {
+        "cwd": "${workspaceFolder}/cslc-java",
+        "env": {}
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared",
+        "showReuseMessage": false
+      },
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}

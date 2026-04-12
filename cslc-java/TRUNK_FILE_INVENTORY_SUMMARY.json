@@ -1,0 +1,32 @@
+{
+  "trunk_root": "/Users/derekpappas/fpl/trunk/cslc/trunk",
+  "file_count": 1807,
+  "by_category": {
+    "PORT_CPP_TO_JAVA": 269,
+    "PORT_HEADER_TO_JAVA": 267,
+    "VENDOR_ANTLR2": 257,
+    "BUILD_TREE_OR_OUTPUT": 244,
+    "BINARY_BUILD_ARTIFACT": 176,
+    "BINARY_IMAGE": 143,
+    "TEXT_RESOURCE": 91,
+    "OTHER": 75,
+    "IDE_PROJECT_FILE": 73,
+    "BUILD_METADATA_XML": 63,
+    "TEMPLATE_TO_RESOURCE_OR_ST": 44,
+    "SCRIPT_TO_PYTHON": 26,
+    "SCRIPT_TO_PYTHON_OR_SHELL": 16,
+    "QT_UI_TO_JAVAFX": 11,
+    "XSL_TRANSFORM": 10,
+    "ARCHIVED_SOURCE": 7,
+    "PORT_GRAMMAR_TO_G4": 7,
+    "DOCUMENTATION": 6,
+    "CSL_FIXTURE": 5,
+    "CONFIG_XML": 5,
+    "QMAKE_PROJECT": 4,
+    "STATIC_HTML": 3,
+    "DOCUMENTATION_PDF": 2,
+    "DOXYGEN_CONFIG": 1,
+    "LOG_OR_NOTES": 1,
+    "GCOV_ARTIFACT": 1
+  }
+}

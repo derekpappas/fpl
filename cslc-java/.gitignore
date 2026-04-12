@@ -1,0 +1,8 @@
+.m2/
+target/
+.idea/
+*.iml
+.regression-venv/
+regression/python/.venv/
+regression/python/__pycache__/
+**/.pytest_cache/

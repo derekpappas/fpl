@@ -1,0 +1,43 @@
+Mapping: trunk/cslc/trunk → cslc-java Maven modules
+====================================================
+Machine-readable list of EVERY file: run
+  python3 cslc-java/scripts/inventory_trunk.py
+which writes TRUNK_FILE_INVENTORY.tsv and TRUNK_FILE_INVENTORY_SUMMARY.json.
+
+
+trunk/cslc/trunk (top level)
+  3rd_party_libs/stringTemplate  → cslc-stringtemplate (Java ST4 dependency)
+  antlr/                         → (excluded — legacy ANTLR 2 toolchain/runtime)
+  assert/                        → cslc-support (assertions)
+  build/                         → (build output — no module)
+  build_utils/                   → cslc-build-utils
+  csl_gen/                       → cslc-csl-gen
+  doc/                           → (docs — no module yet)
+  driver/                        → cslc-driver
+  include/                       → cslc-support / shared headers → Java types
+  libc/                          → cslc-libc-stub (native placeholder)
+  old_src/                       → (archived — no module)
+  scripts/                       → cslc-java/regression/python (harness)
+  systemc/                       → cslc-systemc-assets
+  templates/                     → cslc-templates
+  src/aa/                        → cslc-aa
+  src/autorouter/                → cslc-autorouter
+  src/cdom/                      → cslc-cdom
+  src/csim/                      → cslc-csim
+  src/csl_command_shell/         → cslc-command-shell
+  src/csl_xml_warn_error/        → cslc-xml-warn-error
+  src/cslc/                      → cslc-core (orchestration; was split from CLI)
+  src/cslom/                     → cslc-cslom
+  src/cslom_design_checker/      → cslc-design-checker
+  src/cslom_generators/          → cslc-generators
+  src/cslom2cdom_adapter/        → cslc-adapter
+  src/FastPath/                  → cslc-fastpath
+  src/gui_cslom/                 → cslc-gui-cslom
+  src/ide/                       → cslc-ide
+  src/license/                   → cslc-license
+  src/parser/csl + grammars      → cslc-grammars + cslc-parser-csl
+  src/parser/verilog             → cslc-parser-verilog
+  src/preproc/                   → cslc-preproc
+  src/support/                   → cslc-support
+  src/t/                         → (sample .csl — no module)
+  src/wincslc/                   → cslc-wincslc

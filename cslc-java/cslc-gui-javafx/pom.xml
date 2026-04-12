@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.fastpath.cslc</groupId>
+    <artifactId>cslc-java</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>cslc-gui-javafx</artifactId>
+  <name>CSLC FastPath / gui_cslom (JavaFX)</name>
+  <packaging>jar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>com.fastpath.cslc</groupId>
+      <artifactId>cslc-cli</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fastpath.cslc</groupId>
+      <artifactId>cslc-fastpath</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fastpath.cslc</groupId>
+      <artifactId>cslc-gui-cslom</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fastpath.cslc</groupId>
+      <artifactId>cslc-ide</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>${javafx.version}</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+</project>
