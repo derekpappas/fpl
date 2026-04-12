@@ -56,7 +56,8 @@ Incremental port (Java, vs TRUNK_FILE_INVENTORY.tsv backlog)
   cslc-generators: NoopCslomTraversal (toward CVisitorTraversal generators under src/cslom_generators/)
   cslc-csim: CsimSimulatorPort/Stub, CsimCmdLinePort/Stub, unit/clock/vector-writer marker ports (Csim*.h)
   cslc-support: include/src/convenience.cpp → FilesystemConvenience (nio)
-  cslc-csl-gen: csl_gen_base.cpp/h slice → CslGenCslBase (getRegisteredNames = m_names view), CslGenScope,
+  cslc-csl-gen: csl_gen_base.cpp/h slice → CslGenCslBase (getRegisteredNames = m_names view, getChildrenOfType),
+    CslGenScope (addToScope/removeFromScope; CslGenCslBase delegates interconnect*Scope),
     CslGenWireTables, CslGenInt; csl_gen_design →
     CslGenDesign; csl_gen_unit → CslGenUnit; csl_code_gen.cpp → CslCodeGenMain (--print/-p, --seed, --ao-batch dir [n],
     createRng); cGen_ao.cpp → CGenConsts (LEGAL_/ILLEGAL_TEST_FILE_NAME_PREFIX), CslGenAoBatch (LEGACY_DEFAULT_FILE_COUNT,
@@ -73,7 +74,7 @@ Incremental port (Java, vs TRUNK_FILE_INVENTORY.tsv backlog)
     CslGenIsaElement (getIsaElementUsedAt, m_* Text getters, list snapshots, m_*F flags),
     CslGenDesign.addIsaField / addIsaElement; cslField.h/cpp → CslGenFieldTables,
     CslGenField (getFieldUsedAt, getFieldTypeDeclUsedAt, m_* Text getters, list snapshots, m_*F flags), CslGenFieldInst
-    (getFieldInstTypeName = m_field_inst),
+    (getFieldInstTypeName/getFieldInstText = m_field_inst, getInstObj/getInstField),
     CslGenDesign.addField;
     cslRegister.h/cpp slice → CslGenRegisterTables, CslGenRegister (getRegisterUsedAt + m_* Text getters + m_*F flags),
     CslGenDesign.addRegister, CslGenRegisterFile (all m_* Text getters, m_*F flags, getRegisterFileUsedAt),
@@ -89,7 +90,8 @@ Incremental port (Java, vs TRUNK_FILE_INVENTORY.tsv backlog)
     CslGenScopedSelection (first/second = legacy pair),
     CslGenCslBase.randSelObj,
     CslGenCslBase.newNameIsValid (parent-chain + enum items),
-    CslGenIfc, CslGenIfcInst (getIfcType/getInstType/getIfc, randSelIfc), CslGenUnitInst, CslGenEnum / CslGenEnumItem (getValue/isValueSet),
+    CslGenIfc, CslGenIfcInst (getIfcType/getInstType/getIfc, randSelIfc), CslGenUnitInst, CslGenEnum (getEnumItems),
+    CslGenEnumItem (getValue, isValueSet/isValueF = m_valueF),
     CslGenPort/CslGenSignal.getBitrangeState (= getBitrange), CslGenDesign.addEnum +
     CslGenDesign.buildDecl(RandomGenerator), CslGenDesign.addBitrange/addSignal/addIfc/addUnit,
     CslGenUnit.randSelPort/randSelSignal/randSelBitrange + addIfcInst/addUnitInst/… + modif*; CslGenUnitInst.randSelUnit;

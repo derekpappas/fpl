@@ -46,6 +46,21 @@ public abstract class CslGenCslBase {
         return Collections.unmodifiableList(children);
     }
 
+    /**
+     * Direct children whose {@link #getType()} equals {@code filter} (read-only snapshot; common when porting C++ walks
+     * over {@code m_children} by {@code m_type}).
+     */
+    public final List<CslGenCslBase> getChildrenOfType(CslGenCslType filter) {
+        Objects.requireNonNull(filter, "filter");
+        List<CslGenCslBase> out = new ArrayList<>();
+        for (CslGenCslBase ch : children) {
+            if (ch.getType() == filter) {
+                out.add(ch);
+            }
+        }
+        return Collections.unmodifiableList(out);
+    }
+
     public final int getChildrenCount() {
         return children.size();
     }
@@ -133,24 +148,14 @@ public abstract class CslGenCslBase {
         }
     }
 
-    /** Legacy {@code CSLbase::addToScope} ({@code cslInterconnectGen_TB.cpp}). */
+    /** Legacy {@code CSLbase::addToScope} — delegates to {@link CslGenScope#addToScope}. */
     protected final String interconnectAddToScope(String scope, String toAdd) {
-        return scope + toAdd + ".";
+        return CslGenScope.addToScope(scope, toAdd);
     }
 
-    /** Legacy {@code CSLbase::removeFromScope} ({@code cslInterconnectGen_TB.cpp}). */
+    /** Legacy {@code CSLbase::removeFromScope} — delegates to {@link CslGenScope#removeFromScope}. */
     protected final String interconnectRemoveFromScope(String scope) {
-        if (scope.isEmpty()) {
-            return "";
-        }
-        int pos = scope.lastIndexOf('.') - 1;
-        while (pos > 0 && scope.charAt(pos) != '.') {
-            pos--;
-        }
-        if (pos > 0) {
-            return scope.substring(0, pos + 1);
-        }
-        return "";
+        return CslGenScope.removeFromScope(scope);
     }
 
     /**

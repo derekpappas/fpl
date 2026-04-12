@@ -1,6 +1,7 @@
 package com.fastpath.cslc.cslgen;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.random.RandomGenerator;
 
@@ -11,6 +12,17 @@ public final class CslGenEnum extends CslGenCslBase {
 
     public CslGenEnum(CslGenCslBase parent, String name) {
         super(CslGenCslType.CSL_ENUM, parent, name);
+    }
+
+    /** Read-only snapshot of {@code CSL_ENUM_ITEM} children (legacy item list). */
+    public List<CslGenEnumItem> getEnumItems() {
+        List<CslGenEnumItem> items = new ArrayList<>();
+        for (CslGenCslBase ch : getChildren()) {
+            if (ch instanceof CslGenEnumItem ei) {
+                items.add(ei);
+            }
+        }
+        return Collections.unmodifiableList(items);
     }
 
     @Override

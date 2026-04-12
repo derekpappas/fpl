@@ -19,6 +19,11 @@ public final class CslGenEnumItem extends CslGenCslBase {
         return valueSet;
     }
 
+    /** Field name view of {@code m_valueF} (same as {@link #isValueSet()}). */
+    public boolean isValueF() {
+        return valueSet;
+    }
+
     /** Legacy {@code CSLenumItem::m_value} (meaningful when {@link #isValueSet()}). */
     public int getValue() {
         return value;

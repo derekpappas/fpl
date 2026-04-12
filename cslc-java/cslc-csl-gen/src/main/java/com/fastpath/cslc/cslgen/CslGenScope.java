@@ -1,6 +1,10 @@
 package com.fastpath.cslc.cslgen;
 
-/** Legacy {@code CSLbase::addToScope} / {@code removeFromScope} ({@code csl_gen_base.cpp}). */
+/**
+ * Legacy {@code CSLbase::addToScope} / {@code removeFromScope} ({@code cslInterconnectGen_TB.cpp}); used from
+ * {@link CslGenCslBase#interconnectAddToScope} / {@link CslGenCslBase#interconnectRemoveFromScope} for {@code randSelObj}
+ * scope strings.
+ */
 public final class CslGenScope {
 
     private CslGenScope() {}

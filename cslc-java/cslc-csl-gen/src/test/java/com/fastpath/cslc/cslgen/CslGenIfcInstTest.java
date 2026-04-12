@@ -1,5 +1,7 @@
 package com.fastpath.cslc.cslgen;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,9 +19,48 @@ class CslGenIfcInstTest {
         CslGenIfcInst bound = findBoundIfcInstWithRetry();
         assertNotNull(bound, "expected a seeded design to produce at least one resolved CslGenIfcInst");
         assertSame(bound.getIfcType(), bound.getInstType());
+        assertSame(bound.getIfcType(), bound.getIfc());
         StringBuilder out = new StringBuilder();
         bound.appendPrintedCsl(out);
         assertTrue(out.length() > 0);
+    }
+
+    @Test
+    void getIfcAliasMatchesGetIfcTypeWhenBound() {
+        CslGenIfcInst bound = findBoundIfcInstWithRetry();
+        assertNotNull(bound);
+        assertSame(bound.getIfc(), bound.getIfcType());
+    }
+
+    @Test
+    void unboundIfcInstBuildDeclFailsWhenDesignHasNoIfc() {
+        CslGenDesign d = new CslGenDesign("d");
+        CslGenIfcInst ii = new CslGenIfcInst(d, "orph");
+        assertFalse(ii.buildDecl(new Random(11L)));
+        assertTrue(ii.getIfcType() == null);
+    }
+
+    @Test
+    void noArgBuildDeclDispatchesToDefaultRandomGenerator() {
+        CslGenIfcInst ii = new CslGenIfcInst(new CslGenDesign("d"), "solo");
+        ii.buildDecl();
+    }
+
+    @Test
+    void appendPrintedCslIsEmptyWhenIfcTypeNotResolved() {
+        CslGenDesign d = new CslGenDesign("d");
+        CslGenIfcInst ii = new CslGenIfcInst(d, "orph");
+        ii.buildDecl(new Random(11L));
+        StringBuilder out = new StringBuilder();
+        ii.appendPrintedCsl(out);
+        assertEquals("", out.toString());
+    }
+
+    @Test
+    void printWithoutPrintSinkIsNoOpEvenWhenBound() {
+        CslGenIfcInst bound = findBoundIfcInstWithRetry();
+        assertNotNull(bound);
+        bound.print();
     }
 
     private static CslGenIfcInst findBoundIfcInstWithRetry() {

@@ -23,11 +23,26 @@ public final class CslGenFieldInst extends CslGenCslBase {
         return fieldObj;
     }
 
+    /** Same as {@link #getFieldObj()} (cf. {@link CslGenInstance#getInstObj()}). */
+    public CslGenCslBase getInstObj() {
+        return fieldObj;
+    }
+
+    /** Narrow view of the instantiated {@code csl_field}. */
+    public CslGenField getInstField() {
+        return (CslGenField) fieldObj;
+    }
+
     /**
      * Legacy {@code CSLfieldInst::m_field_inst} string used in {@code print()} ({@code cslGenEnumFieldEM.cpp}) — the
      * referenced {@code csl_field} type name (equivalent to {@link #getFieldObj()} {@link CslGenCslBase#getName()}).
      */
     public String getFieldInstTypeName() {
+        return fieldObj.getName();
+    }
+
+    /** {@code m_field_inst} as plain text (same as {@link #getFieldInstTypeName()}). */
+    public String getFieldInstText() {
         return fieldObj.getName();
     }
 

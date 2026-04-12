@@ -5,9 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Test;
@@ -42,6 +49,132 @@ class CslCodeGenMainTest {
         assertTrue(Files.isRegularFile(out0));
         assertTrue(Files.readString(out0).contains("//Automatically generated"));
     }
+
+    @Test
+    void mainWithPrintWritesCslToStdout() {
+        PrintStream prev = System.out;
+        ByteArrayOutputStream capture = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(capture, true, StandardCharsets.UTF_8));
+        try {
+            CslCodeGenMain.main(new String[] {"--print", "--seed", "7"});
+        } finally {
+            System.setOut(prev);
+        }
+        String out = capture.toString(StandardCharsets.UTF_8);
+        assertTrue(out.contains("//Automatically generated"), out);
+    }
+
+    @Test
+    void mainShortPrintFlagWritesCslToStdout() {
+        PrintStream prev = System.out;
+        ByteArrayOutputStream capture = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(capture, true, StandardCharsets.UTF_8));
+        try {
+            CslCodeGenMain.main(new String[] {"-p", "--seed", "7"});
+        } finally {
+            System.setOut(prev);
+        }
+        String out = capture.toString(StandardCharsets.UTF_8);
+        assertTrue(out.contains("//Automatically generated"), out);
+    }
+
+    @Test
+    void mainWithoutPrintLeavesStdoutEmpty() {
+        PrintStream prev = System.out;
+        ByteArrayOutputStream capture = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(capture, true, StandardCharsets.UTF_8));
+        try {
+            CslCodeGenMain.main(new String[] {"--seed", "7"});
+        } finally {
+            System.setOut(prev);
+        }
+        assertEquals("", capture.toString(StandardCharsets.UTF_8));
+    }
+
+    @Test
+    void mainHelpWritesUsageToStderr() {
+        PrintStream prev = System.err;
+        ByteArrayOutputStream capture = new ByteArrayOutputStream();
+        System.setErr(new PrintStream(capture, true, StandardCharsets.UTF_8));
+        try {
+            CslCodeGenMain.main(new String[] {"--help"});
+        } finally {
+            System.setErr(prev);
+        }
+        String err = capture.toString(StandardCharsets.UTF_8);
+        assertTrue(err.contains("Usage:"), err);
+        assertTrue(err.contains("--print"), err);
+    }
+
+    @Test
+    void mainShortHelpWritesUsageToStderr() {
+        PrintStream prev = System.err;
+        ByteArrayOutputStream capture = new ByteArrayOutputStream();
+        System.setErr(new PrintStream(capture, true, StandardCharsets.UTF_8));
+        try {
+            CslCodeGenMain.main(new String[] {"-h"});
+        } finally {
+            System.setErr(prev);
+        }
+        String err = capture.toString(StandardCharsets.UTF_8);
+        assertTrue(err.contains("Usage:"), err);
+    }
+
+    @Test
+    void subprocessMainSeedWithoutValueExitsOne() throws Exception {
+        MainProcResult r = runMainInSubprocess("--seed");
+        assertEquals(1, r.exit);
+        assertTrue(r.err.contains("--seed requires"), r.err);
+    }
+
+    @Test
+    void subprocessMainInvalidSeedExitsOne() throws Exception {
+        MainProcResult r = runMainInSubprocess("--seed", "not-a-long");
+        assertEquals(1, r.exit);
+        assertTrue(r.err.contains("invalid --seed"), r.err);
+    }
+
+    @Test
+    void subprocessMainAoBatchWithoutDirExitsOne() throws Exception {
+        MainProcResult r = runMainInSubprocess("--ao-batch");
+        assertEquals(1, r.exit);
+        assertTrue(r.err.contains("--ao-batch requires"), r.err);
+    }
+
+    @Test
+    void subprocessMainAoBatchInvalidCountExitsOne(@TempDir Path tmp) throws Exception {
+        MainProcResult r = runMainInSubprocess("--seed", "1", "--ao-batch", tmp.toString(), "bogus");
+        assertEquals(1, r.exit);
+        assertTrue(r.err.contains("invalid --ao-batch count"), r.err);
+    }
+
+    @Test
+    void subprocessMainAoBatchWhenBasePathIsFileExitsOne(@TempDir Path tmp) throws Exception {
+        Path blocker = tmp.resolve("not-a-directory");
+        Files.writeString(blocker, "x");
+        MainProcResult r = runMainInSubprocess("--seed", "1", "--ao-batch", blocker.toString(), "1");
+        assertEquals(1, r.exit);
+        assertTrue(r.err.contains("batch write failed"), r.err);
+    }
+
+    private static MainProcResult runMainInSubprocess(String... args) throws Exception {
+        List<String> cmd = new ArrayList<>();
+        cmd.add(Path.of(System.getProperty("java.home"), "bin", "java").toString());
+        cmd.add("-cp");
+        cmd.add(System.getProperty("java.class.path"));
+        cmd.add("com.fastpath.cslc.cslgen.CslCodeGenMain");
+        cmd.addAll(Arrays.asList(args));
+        ProcessBuilder pb = new ProcessBuilder(cmd);
+        pb.redirectError(ProcessBuilder.Redirect.PIPE);
+        pb.redirectOutput(ProcessBuilder.Redirect.PIPE);
+        Process p = pb.start();
+        String out = new String(p.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+        String err = new String(p.getErrorStream().readAllBytes(), StandardCharsets.UTF_8);
+        assertTrue(p.waitFor(120, TimeUnit.SECONDS), "CslCodeGenMain subprocess did not finish");
+        return new MainProcResult(p.exitValue(), out, err);
+    }
+
+    private record MainProcResult(int exit, String out, String err) {}
 
     private static String buildPrinted(RandomGenerator rng) {
         CslGenDesign design = new CslGenDesign("design");

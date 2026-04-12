@@ -58,4 +58,44 @@ class CslGenIsaAoPrintTest {
         isa.buildDecl(new Random(5L));
         isa.getSetDecoderNameText();
     }
+
+    @Test
+    void isaInstrCoversSetAsmMnemonicPrintBranches() {
+        boolean sawQuotedLiteral = false;
+        boolean sawFieldList = false;
+        boolean sawOtherInstrName = false;
+        for (long s = 0;
+                s < 800_000L && !(sawQuotedLiteral && sawFieldList && sawOtherInstrName);
+                s++) {
+            CslGenDesign d = new CslGenDesign("d");
+            CslGenIsaInstrFormat fmt = new CslGenIsaInstrFormat(d, "fmt");
+            fmt.buildDecl(new Random(s));
+            d.addChild(fmt);
+            CslGenField fld = new CslGenField(d, "fld");
+            fld.buildDecl(new Random(s + 11));
+            d.addChild(fld);
+            CslGenIsaInstr prior = new CslGenIsaInstr(d, "prior");
+            prior.buildDecl(new Random(s + 22));
+            prior.setInst("fmt");
+            d.addChild(prior);
+            CslGenIsaInstr subject = new CslGenIsaInstr(d, "subj");
+            subject.buildDecl(new Random(s + 33));
+            subject.setInst("fmt");
+            StringBuilder out = new StringBuilder();
+            subject.appendPrintedCsl(out);
+            if (!out.toString().contains(CslGenIsaAoTables.ISA_INSTR_FUNCTION[0])) {
+                continue;
+            }
+            if (subject.isSetAsmMnemonicFieldF()) {
+                sawFieldList = true;
+            } else if (subject.isSetAsmMnemonicStringF()) {
+                sawOtherInstrName = true;
+            } else if (subject.getSetAsmMnemonicStringText().contains("\"")) {
+                sawQuotedLiteral = true;
+            }
+        }
+        assertTrue(sawQuotedLiteral, "expected quoted-literal set_asm_mnemonic branch");
+        assertTrue(sawFieldList, "expected csl_list set_asm_mnemonic branch");
+        assertTrue(sawOtherInstrName, "expected name-from-other-instr set_asm_mnemonic branch");
+    }
 }

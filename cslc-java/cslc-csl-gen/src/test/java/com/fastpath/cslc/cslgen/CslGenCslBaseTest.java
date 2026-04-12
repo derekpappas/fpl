@@ -22,6 +22,10 @@ class CslGenCslBaseTest {
         d.addChild(u);
         assertEquals(1, d.getChildrenCount());
         assertSame(u, d.getChildAt(0).orElseThrow());
+        assertEquals(1, d.getChildrenOfType(CslGenCslType.CSL_UNIT).size());
+        assertSame(u, d.getChildrenOfType(CslGenCslType.CSL_UNIT).get(0));
+        assertTrue(d.getChildrenOfType(CslGenCslType.CSL_IFC).isEmpty());
+        assertThrows(UnsupportedOperationException.class, () -> d.getChildrenOfType(CslGenCslType.CSL_UNIT).remove(0));
         assertFalse(d.newNameIsValid("u1"), "legacy newNameIsValid rejects names of existing design children");
     }
 

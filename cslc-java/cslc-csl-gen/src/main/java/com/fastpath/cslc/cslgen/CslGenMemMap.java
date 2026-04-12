@@ -225,7 +225,7 @@ public final class CslGenMemMap extends CslGenCslBase {
         CslGenCslBase design = getParent().orElse(null);
         int cmds = rng.nextInt(CslGenMemoryMapTables.MM_CMD);
         for (int k = 0; k < cmds; k++) {
-            int ran = ADD_TO_MM;
+            int ran = rng.nextInt(CslGenMemoryMapTables.MM_USED_VECTOR_SIZE);
             if (used[ran] == 0) {
                 switch (ran) {
                     case SET_TOP_UNIT -> genSetTopUnit(design, rng);

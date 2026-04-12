@@ -98,4 +98,16 @@ class CslGenIsaPrintTest {
         el.getPosFieldNames();
         assertThrows(UnsupportedOperationException.class, () -> el.getNextLeftStrings().add("x"));
     }
+
+    @Test
+    void isaFieldAddFieldInstanceNullDesignIsNoOp() {
+        CslGenIsaField f = new CslGenIsaField(new CslGenDesign("d"), "if0");
+        f.addFieldInstance(null, new Random(1L));
+    }
+
+    @Test
+    void isaElementAddIsaElementInstanceNullDesignIsNoOp() {
+        CslGenIsaElement el = new CslGenIsaElement(new CslGenDesign("d"), "ie0");
+        el.addIsaElementInstance(null, new Random(1L));
+    }
 }
