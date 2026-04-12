@@ -12,6 +12,61 @@ public final class CslGenUnit extends CslGenCslBase {
         super(CslGenCslType.CSL_UNIT, parent, name);
     }
 
+    /** Legacy {@code CSLunit::addIfcInst()} ({@code cslInterconnectGen_TB.cpp}). */
+    public void addIfcInst(RandomGenerator rng) {
+        String n = CslGenRandString.randString(rng);
+        if (newNameIsValid(n)) {
+            CslGenIfcInst inst = new CslGenIfcInst(this, n);
+            if (inst.buildDecl(rng)) {
+                addChild(inst);
+            }
+        }
+    }
+
+    /** Legacy {@code CSLunit::addUnitInst()} ({@code cslInterconnectGen_TB.cpp}). */
+    public void addUnitInst(RandomGenerator rng) {
+        String n = CslGenRandString.randString(rng);
+        if (newNameIsValid(n)) {
+            CslGenUnitInst inst = new CslGenUnitInst(this, n);
+            if (inst.buildDecl(rng)) {
+                addChild(inst);
+            }
+        }
+    }
+
+    /** Legacy {@code CSLunit::addBitrange()} ({@code cslInterconnectGen_TB.cpp}). */
+    public void addBitrange(RandomGenerator rng) {
+        String n = CslGenRandString.randString(rng);
+        if (newNameIsValid(n)) {
+            CslGenBitrange br = new CslGenBitrange(this, n);
+            if (br.buildDecl(rng)) {
+                addChild(br);
+            }
+        }
+    }
+
+    /** Legacy {@code CSLunit::addSignal()} ({@code cslInterconnectGen_TB.cpp}). */
+    public void addSignal(RandomGenerator rng) {
+        String n = CslGenRandString.randString(rng);
+        if (newNameIsValid(n)) {
+            CslGenSignal sig = new CslGenSignal(this, n);
+            if (sig.buildDecl(rng)) {
+                addChild(sig);
+            }
+        }
+    }
+
+    /** Legacy {@code CSLunit::addPort()} ({@code cslInterconnectGen_TB.cpp}). */
+    public void addPort(RandomGenerator rng) {
+        String n = CslGenRandString.randString(rng);
+        if (newNameIsValid(n)) {
+            CslGenPort p = new CslGenPort(this, n);
+            if (p.buildDecl(rng)) {
+                addChild(p);
+            }
+        }
+    }
+
     /**
      * Legacy {@code CSLunit::addFifoInst()} ({@code cGenFifo_ao.cpp}): for each {@link CslGenCslType#CSL_FIFO} child
      * of the parent design, add a {@link CslGenInstance} under this unit.
@@ -59,6 +114,20 @@ public final class CslGenUnit extends CslGenCslBase {
 
     @Override
     public void print() {
-        // No legacy body in trunk {@code csl_gen_unit.cpp}.
+        StringBuilder mOut = printSink();
+        if (mOut == null) {
+            return;
+        }
+        CslGenSupportEmit.declSHbegin(mOut, "csl_unit", getName());
+        for (CslGenCslBase ch : getChildren()) {
+            ch.print();
+        }
+        CslGenSupportEmit.constrSHbegin(mOut, getName());
+        CslGenSupportEmit.constrSHend(mOut);
+        CslGenSupportEmit.declSHend(mOut);
+    }
+
+    public void appendPrintedCsl(StringBuilder out) {
+        CslGenCslBase.runWithPrintSink(out, this::print);
     }
 }
