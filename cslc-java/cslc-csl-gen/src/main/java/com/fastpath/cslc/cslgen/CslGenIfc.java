@@ -12,7 +12,7 @@ public final class CslGenIfc extends CslGenCslBase {
     }
 
     public void addIfcInst(RandomGenerator rng) {
-        String n = CslGenRandString.randString();
+        String n = CslGenRandString.randString(rng);
         if (newNameIsValid(n)) {
             CslGenIfcInst inst = new CslGenIfcInst(this, n);
             if (inst.buildDecl(rng)) {
@@ -22,7 +22,7 @@ public final class CslGenIfc extends CslGenCslBase {
     }
 
     public void addPort(RandomGenerator rng) {
-        String n = CslGenRandString.randString();
+        String n = CslGenRandString.randString(rng);
         if (newNameIsValid(n)) {
             CslGenPort p = new CslGenPort(this, n);
             if (p.buildDecl(rng)) {

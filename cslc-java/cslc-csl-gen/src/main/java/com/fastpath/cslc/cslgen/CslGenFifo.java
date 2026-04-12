@@ -1,6 +1,7 @@
 package com.fastpath.cslc.cslgen;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.random.RandomGenerator;
 
 /**
@@ -216,5 +217,84 @@ public final class CslGenFifo extends CslGenCslBase {
         CslGenSupportEmit.rCbrace(mOut);
         CslGenSupportEmit.rCbrace(mOut);
         CslGenSupportEmit.semicolon(mOut);
+    }
+
+    /** Legacy public {@code CSLfifo::m_depth} ({@code cGenFifo_ao.h}). */
+    public String getDepthText() {
+        return depth.toString();
+    }
+
+    /** Legacy public {@code CSLfifo::m_width} ({@code cGenFifo_ao.h}). */
+    public String getWidthText() {
+        return width.toString();
+    }
+
+    /** Legacy public {@code CSLfifo::m_phImpl}. */
+    public String getPhImplText() {
+        return phImpl.toString();
+    }
+
+    /** Legacy public {@code CSLfifo::m_prefix}. */
+    public String getPrefixText() {
+        return prefix.toString();
+    }
+
+    /** Legacy public {@code CSLfifo::m_defaultDepth}. */
+    public String getDefaultDepthText() {
+        return defaultDepth.toString();
+    }
+
+    /** Legacy public {@code CSLfifo::m_sync}. */
+    public String getSyncText() {
+        return sync.toString();
+    }
+
+    /** Legacy public {@code CSLfifo::m_numExprDepthExt}. */
+    public String getNumExprDepthExtText() {
+        return numExprDepthExt.toString();
+    }
+
+    /** Legacy public {@code CSLfifo::m_numExprWidthExt}. */
+    public String getNumExprWidthExtText() {
+        return numExprWidthExt.toString();
+    }
+
+    /** Legacy public {@code CSLfifo::m_numExprWrHold}. */
+    public String getNumExprWrHoldText() {
+        return numExprWrHold.toString();
+    }
+
+    /** Legacy public {@code CSLfifo::m_rdWordsAddr}. */
+    public String getRdWordsAddrText() {
+        return rdWordsAddr.toString();
+    }
+
+    /** Legacy public {@code CSLfifo::m_wrWordsAddr}. */
+    public String getWrWordsAddrText() {
+        return wrWordsAddr.toString();
+    }
+
+    /** Legacy public {@code CSLfifo::m_flowNumExpr}. */
+    public String getFlowNumExprText() {
+        return flowNumExpr.toString();
+    }
+
+    /** Legacy public {@code CSLfifo::m_emptyAddress}. */
+    public String getEmptyAddressText() {
+        return emptyAddress.toString();
+    }
+
+    /** Legacy public {@code CSLfifo::m_fullAddress}. */
+    public String getFullAddressText() {
+        return fullAddress.toString();
+    }
+
+    /**
+     * Legacy public {@code CSLfifo::used[slot]} ({@code cGenFifo_ao.h}): {@code 0} or {@code 1} when the generator
+     * marked that {@code add_logic} / option slot.
+     */
+    public int getFifoUsedAt(int slot) {
+        Objects.checkIndex(slot, used.length);
+        return used[slot];
     }
 }

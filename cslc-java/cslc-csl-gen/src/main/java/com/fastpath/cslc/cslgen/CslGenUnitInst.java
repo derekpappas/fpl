@@ -17,13 +17,23 @@ public final class CslGenUnitInst extends CslGenCslBase {
         return instUnit;
     }
 
+    /** Legacy {@code CSLunitInst::getUnit()} ({@code cslInterconnectGen_TB.cpp}). */
+    public CslGenUnit getUnit() {
+        return instUnit;
+    }
+
     @Override
     public boolean buildDecl() {
         return buildDecl(RandomGenerator.getDefault());
     }
 
+    /** Legacy {@code CSLunitInst::randSelUnit()} ({@code cslInterconnectGen_TB.cpp}). */
+    public CslGenScopedSelection randSelUnit(RandomGenerator rng) {
+        return randSelObj(CslGenCslType.CSL_UNIT, rng);
+    }
+
     public boolean buildDecl(RandomGenerator rng) {
-        CslGenScopedSelection sel = randSelObj(CslGenCslType.CSL_UNIT, rng);
+        CslGenScopedSelection sel = randSelUnit(rng);
         if (sel.selected() != null && !getName().equals(sel.selected().getName())) {
             instUnit = (CslGenUnit) sel.selected();
             return true;

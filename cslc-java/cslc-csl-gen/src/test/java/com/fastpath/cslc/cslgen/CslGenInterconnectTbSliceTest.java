@@ -27,8 +27,21 @@ class CslGenInterconnectTbSliceTest {
         d.addUnit(rng);
         d.addUnit(rng);
         CslGenUnit u0 = (CslGenUnit) d.getChildAt(0).orElseThrow();
-        u0.addUnitInst(rng);
-        assertTrue(u0.getChildrenCount() >= 1);
-        assertTrue(u0.getChildAt(0).orElseThrow() instanceof CslGenUnitInst);
+        int before = u0.getChildrenCount();
+        boolean appended = false;
+        /*
+         * Single try can fail like legacy C++: {@code randSelObj} may yield no unit, or the chosen unit may match the
+         * instance name ({@code CSLunitInst::buildDecl} rejects that case).
+         */
+        for (int i = 0; i < 64; i++) {
+            u0.addUnitInst(rng);
+            if (u0.getChildrenCount() > before) {
+                appended = true;
+                break;
+            }
+        }
+        assertTrue(appended, "with two design units, addUnitInst should eventually resolve a peer unit and append");
+        assertTrue(
+                u0.getChildAt(u0.getChildrenCount() - 1).orElseThrow() instanceof CslGenUnitInst);
     }
 }

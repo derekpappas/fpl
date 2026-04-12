@@ -19,6 +19,16 @@ public final class CGenConsts {
     public static final String INVALID_TEST_HEADER = "//Type: invalid\n";
     public static final String TEST_EXTENSION = ".csl";
 
+    /**
+     * Legacy global {@code legalTestFileName} prefix in {@code cGen_ao.cpp} ({@code "legal_test_"} + stem + extension).
+     */
+    public static final String LEGAL_TEST_FILE_NAME_PREFIX = "legal_test_";
+
+    /**
+     * Legacy global {@code illegalTestFileName} prefix in {@code cGen_ao.cpp} ({@code "illegal_test_"} + stem + extension).
+     */
+    public static final String ILLEGAL_TEST_FILE_NAME_PREFIX = "illegal_test_";
+
     public static final String REGRESSION_CTRL_FILE_NAME = "regression_control";
     public static final String REGRESSION_CTRL_VALID =
             "default_test_list = PF          #pass/fail\n"

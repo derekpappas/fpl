@@ -67,6 +67,45 @@ public final class CslGenUnit extends CslGenCslBase {
         }
     }
 
+    /** Legacy {@code CSLunit::randSelPort()} ({@code cslInterconnectGen_TB.cpp}). */
+    public CslGenScopedSelection randSelPort(RandomGenerator rng) {
+        return randSelObj(CslGenCslType.CSL_PORT, rng);
+    }
+
+    /** Legacy {@code CSLunit::randSelSignal()} ({@code cslInterconnectGen_TB.cpp}). */
+    public CslGenScopedSelection randSelSignal(RandomGenerator rng) {
+        return randSelObj(CslGenCslType.CSL_SIGNAL, rng);
+    }
+
+    /** Legacy {@code CSLunit::randSelBitrange()} ({@code cslInterconnectGen_TB.cpp}). */
+    public CslGenScopedSelection randSelBitrange(RandomGenerator rng) {
+        return randSelObj(CslGenCslType.CSL_BITRANGE, rng);
+    }
+
+    /** Legacy {@code CSLunit::modifPort()} ({@code cslInterconnectGen_TB.cpp}); TB leaves calls commented in {@code print}. */
+    public void modifPort(RandomGenerator rng) {
+        CslGenScopedSelection p = randSelPort(rng);
+        if (p.selected() instanceof CslGenPort port) {
+            port.buildSet(p.scope(), rng);
+        }
+    }
+
+    /** Legacy {@code CSLunit::modifSignal()} ({@code cslInterconnectGen_TB.cpp}). */
+    public void modifSignal(RandomGenerator rng) {
+        CslGenScopedSelection s = randSelSignal(rng);
+        if (s.selected() instanceof CslGenSignal sig) {
+            sig.buildSet(s.scope(), rng);
+        }
+    }
+
+    /** Legacy {@code CSLunit::modifBitrange()} ({@code cslInterconnectGen_TB.cpp}). */
+    public void modifBitrange(RandomGenerator rng) {
+        CslGenScopedSelection b = randSelBitrange(rng);
+        if (b.selected() instanceof CslGenBitrange br) {
+            br.buildSet(b.scope(), rng);
+        }
+    }
+
     /**
      * Legacy {@code CSLunit::addFifoInst()} ({@code cGenFifo_ao.cpp}): for each {@link CslGenCslType#CSL_FIFO} child
      * of the parent design, add a {@link CslGenInstance} under this unit.
@@ -107,8 +146,33 @@ public final class CslGenUnit extends CslGenCslBase {
         }
     }
 
+    /**
+     * Legacy {@code CSLunit::buildDecl()} ({@code cslInterconnectGen_TB.cpp}) — same counts of {@code add*} calls;
+     * passes {@code rng} through to each helper.
+     */
     @Override
     public boolean buildDecl() {
+        return buildDecl(RandomGenerator.getDefault());
+    }
+
+    public boolean buildDecl(RandomGenerator rng) {
+        for (int i = 0; i < 5; i++) {
+            addUnitInst(rng);
+        }
+        for (int i = 0; i < 6; i++) {
+            addBitrange(rng);
+        }
+        for (int i = 0; i < 4; i++) {
+            addSignal(rng);
+        }
+        for (int i = 0; i < 6; i++) {
+            addPort(rng);
+        }
+        for (int i = 0; i < 5; i++) {
+            addIfcInst(rng);
+        }
+        addFifoInst(rng);
+        addRegFileInst(rng);
         return true;
     }
 

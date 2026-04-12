@@ -48,6 +48,30 @@ public final class CslGenSignal extends CslGenCslBase {
         return sigBitr.getOffset();
     }
 
+    /**
+     * Legacy {@code CSLsignal::getBitrange()} ({@code cslInterconnectGen_TB.cpp}): embedded range state (see {@link
+     * CslGenPort#getBitrangeState()}).
+     */
+    public CslGenBitrangeState getBitrangeState() {
+        return sigBitr;
+    }
+
+    /**
+     * Legacy {@code CSLsignal::m_bitrCopy} ({@code cslInterconnectGen_TB.h}) — scoped bitrange reference for
+     * {@code SIG_DECL_BITRANGE} / {@code SIG_DECL_TYPE_BITRANGE}.
+     */
+    public String getBitrCopyText() {
+        return bitrCopy.toString();
+    }
+
+    /**
+     * Legacy {@code CSLsignal::m_sigCopy} ({@code cslInterconnectGen_TB.h}) — scoped signal reference for
+     * {@code SIG_DECL_COPY}.
+     */
+    public String getSigCopyText() {
+        return sigCopy.toString();
+    }
+
     public void setSigType(String type) {
         this.sigType = type;
     }
@@ -77,11 +101,13 @@ public final class CslGenSignal extends CslGenCslBase {
         target.copyFrom(sigBitr);
     }
 
-    private CslGenScopedSelection randSelBitrange(RandomGenerator rng) {
+    /** Legacy {@code CSLsignal::randSelBitrange()} ({@code cslInterconnectGen_TB.cpp}). */
+    public CslGenScopedSelection randSelBitrange(RandomGenerator rng) {
         return randSelObj(CslGenCslType.CSL_BITRANGE, rng);
     }
 
-    private CslGenScopedSelection randSelSignal(RandomGenerator rng) {
+    /** Legacy {@code CSLsignal::randSelSignal()} ({@code cslInterconnectGen_TB.cpp}). */
+    public CslGenScopedSelection randSelSignal(RandomGenerator rng) {
         return randSelObj(CslGenCslType.CSL_SIGNAL, rng);
     }
 
@@ -153,6 +179,39 @@ public final class CslGenSignal extends CslGenCslBase {
             return false;
         }
         return false;
+    }
+
+    /** Legacy {@code CSLsignal::buildSet} ({@code cslInterconnectGen_TB.cpp}). */
+    public void buildSet(String scope, RandomGenerator rng) {
+        StringBuilder out = printSink();
+        if (out == null) {
+            return;
+        }
+        int form = rng.nextInt(CslGenInterconnectConsts.SIG_MODIF_MAX);
+        if (form == CslGenInterconnectConsts.SIG_MODIF_RANGE) {
+            int low = rng.nextInt(CslGenInterconnectConsts.MAX_WIDTH / 2);
+            int up = low + rng.nextInt(CslGenInterconnectConsts.MAX_WIDTH / 2) + 1;
+            if (setRange(low, up)) {
+                CslGenSupportEmit.call2param(
+                        out,
+                        scope,
+                        getName(),
+                        "set_range",
+                        CslGenInt.intToString(getLower()),
+                        CslGenInt.intToString(getUpper()));
+            }
+        } else if (form == CslGenInterconnectConsts.SIG_MODIF_WIDTH) {
+            int width = rng.nextInt(CslGenInterconnectConsts.MAX_WIDTH) + 1;
+            if (setWidth(width)) {
+                CslGenSupportEmit.call1param(out, scope, getName(), "set_width", CslGenInt.intToString(getWidth()));
+            }
+        } else if (form == CslGenInterconnectConsts.SIG_MODIF_OFFSET) {
+            int offset = rng.nextInt(CslGenInterconnectConsts.MAX_OFFSET);
+            if (setOffset(offset)) {
+                CslGenSupportEmit.call1param(out, scope, getName(), "set_offset", CslGenInt.intToString(getOffset()));
+            }
+        }
+        /* SIG_MODIF_BITR: present in header but trunk {@code buildSet} emits nothing for that case. */
     }
 
     @Override

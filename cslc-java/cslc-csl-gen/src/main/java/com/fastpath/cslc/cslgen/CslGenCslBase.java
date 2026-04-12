@@ -57,13 +57,46 @@ public abstract class CslGenCslBase {
         return Optional.empty();
     }
 
+    /**
+     * Legacy {@code CSLbase::newNameIsValid} ({@code cslInterconnectGen_TB.cpp}): walk toward the root; at each level
+     * reject if any sibling matches, or any {@link CslGenCslType#CSL_ENUM} child has an {@link CslGenCslType#CSL_ENUM_ITEM}
+     * with that name. Also rejects names registered via {@link #registerName}.
+     */
     public final boolean newNameIsValid(String candidate) {
-        return !names.contains(candidate);
+        Objects.requireNonNull(candidate, "candidate");
+        if (names.contains(candidate)) {
+            return false;
+        }
+        CslGenCslBase walk = this;
+        while (walk != null) {
+            for (CslGenCslBase ch : walk.getChildren()) {
+                if (candidate.equals(ch.getName())) {
+                    return false;
+                }
+                if (ch.getType() == CslGenCslType.CSL_ENUM) {
+                    for (CslGenCslBase it : ch.getChildren()) {
+                        if (it.getType() == CslGenCslType.CSL_ENUM_ITEM && candidate.equals(it.getName())) {
+                            return false;
+                        }
+                    }
+                }
+            }
+            walk = walk.getParent().orElse(null);
+        }
+        return true;
     }
 
     /** Registers a name used by this node (legacy {@code m_names} bookkeeping). */
     public final void registerName(String name) {
         names.add(name);
+    }
+
+    /**
+     * Names registered on this node via {@link #registerName} (legacy {@code CSLbase::m_names} in {@code csl_gen_design}
+     * / interconnect generators — not the same as child {@link #getName()} values).
+     */
+    public final List<String> getRegisteredNames() {
+        return Collections.unmodifiableList(names);
     }
 
     public final void addChild(CslGenCslBase child) {
@@ -159,6 +192,30 @@ public abstract class CslGenCslBase {
                         randObj = ch;
                     }
                     maxPos--;
+                }
+                /*
+                 * Legacy C++ uses {@code while (maxPos > 0)}, so {@code maxPos == 0} skips all direct children and a
+                 * match may sit in an unscanned suffix; fall back to a uniform pick among matching children.
+                 */
+                if (randObj == null) {
+                    int matchCount = 0;
+                    for (CslGenCslBase ch : walk.getChildren()) {
+                        if (ch.getType() == type) {
+                            matchCount++;
+                        }
+                    }
+                    if (matchCount > 0) {
+                        int pick = rng.nextInt(matchCount);
+                        for (CslGenCslBase ch : walk.getChildren()) {
+                            if (ch.getType() == type) {
+                                if (pick == 0) {
+                                    randObj = ch;
+                                    break;
+                                }
+                                pick--;
+                            }
+                        }
+                    }
                 }
                 if (randObj != null && rng.nextBoolean()) {
                     return new CslGenScopedSelection(scope, randObj);

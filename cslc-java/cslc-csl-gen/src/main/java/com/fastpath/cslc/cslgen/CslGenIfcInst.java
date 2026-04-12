@@ -17,13 +17,23 @@ public final class CslGenIfcInst extends CslGenCslBase {
         return instType;
     }
 
+    /** Same as {@link #getIfcType()} — convenient alias alongside {@link CslGenUnitInst#getUnit()}. */
+    public CslGenIfc getIfc() {
+        return instType;
+    }
+
     @Override
     public boolean buildDecl() {
         return buildDecl(RandomGenerator.getDefault());
     }
 
+    /** Legacy {@code CSLifcInst::randSelIfc()} ({@code cslInterconnectGen_TB.cpp}). */
+    public CslGenScopedSelection randSelIfc(RandomGenerator rng) {
+        return randSelObj(CslGenCslType.CSL_IFC, rng);
+    }
+
     public boolean buildDecl(RandomGenerator rng) {
-        CslGenScopedSelection sel = randSelObj(CslGenCslType.CSL_IFC, rng);
+        CslGenScopedSelection sel = randSelIfc(rng);
         if (sel.selected() != null && !getName().equals(sel.selected().getName())) {
             instType = (CslGenIfc) sel.selected();
             return true;

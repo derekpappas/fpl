@@ -50,6 +50,21 @@ public final class CslGenSupportEmit {
         return out.append("csl_isa_element ");
     }
 
+    /** Legacy {@code cslIsaInstructionFormat(m_out)} in {@code cGenIsa_ao.cpp} (comment: {@code csl_isa_instruction_format}). */
+    public static StringBuilder cslIsaInstructionFormat(StringBuilder out) {
+        return out.append("csl_isa_instruction_format ");
+    }
+
+    /** Legacy {@code cslIsaInstruction(m_out)} in {@code cGenIsa_ao.cpp}. */
+    public static StringBuilder cslIsaInstruction(StringBuilder out) {
+        return out.append("csl_isa_instruction ");
+    }
+
+    /** Legacy {@code cslIsa(m_out)} in {@code cGenIsa_ao.cpp}. */
+    public static StringBuilder cslIsa(StringBuilder out) {
+        return out.append("csl_isa ");
+    }
+
     public static StringBuilder cslMemoryMapPage(StringBuilder out) {
         return out.append("csl_memory_map_page ");
     }

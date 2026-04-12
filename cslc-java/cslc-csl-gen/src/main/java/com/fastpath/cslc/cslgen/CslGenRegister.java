@@ -1,6 +1,7 @@
 package com.fastpath.cslc.cslgen;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.random.RandomGenerator;
 
 /**
@@ -83,10 +84,6 @@ public final class CslGenRegister extends CslGenCslBase {
     public CslGenRegister(CslGenCslBase parent, String name) {
         super(CslGenCslType.CSL_REG, parent, name);
         Arrays.fill(used, 0);
-    }
-
-    int usedFlag(int i) {
-        return used[i];
     }
 
     public void appendPrintedCsl(StringBuilder out) {
@@ -348,7 +345,7 @@ public final class CslGenRegister extends CslGenCslBase {
         }
         boolean ok = false;
         for (CslGenCslBase ch : design.getChildren()) {
-            if (ch instanceof CslGenRegister reg && rng.nextBoolean() && !ok && reg.usedFlag(GET_INPUT_FILE) != 0) {
+            if (ch instanceof CslGenRegister reg && rng.nextBoolean() && !ok && reg.getRegisterUsedAt(GET_INPUT_FILE) != 0) {
                 conInputField.append(ch.getName()).append('.').append(CslGenRegisterTables.R_FUNCTION[GET_INPUT_FILE]).append("()");
                 ok = true;
                 conInputFieldF = true;
@@ -371,7 +368,7 @@ public final class CslGenRegister extends CslGenCslBase {
         }
         boolean ok = false;
         for (CslGenCslBase ch : design.getChildren()) {
-            if (ch instanceof CslGenRegister reg && rng.nextBoolean() && !ok && reg.usedFlag(GET_OUTPUT_FILE) != 0) {
+            if (ch instanceof CslGenRegister reg && rng.nextBoolean() && !ok && reg.getRegisterUsedAt(GET_OUTPUT_FILE) != 0) {
                 conOutputField.append(ch.getName()).append('.').append(CslGenRegisterTables.R_FUNCTION[GET_OUTPUT_FILE]).append("()");
                 ok = true;
                 conOutputFieldF = true;
@@ -411,7 +408,7 @@ public final class CslGenRegister extends CslGenCslBase {
         }
         boolean ok = false;
         for (CslGenCslBase ch : design.getChildren()) {
-            if (ch instanceof CslGenRegister reg && rng.nextBoolean() && !ok && reg.usedFlag(GET_LOCK_ENABLE_BIT) != 0) {
+            if (ch instanceof CslGenRegister reg && rng.nextBoolean() && !ok && reg.getRegisterUsedAt(GET_LOCK_ENABLE_BIT) != 0) {
                 lockEnBit.append(ch.getName()).append('.').append(CslGenRegisterTables.R_FUNCTION[GET_LOCK_ENABLE_BIT]).append("()");
                 ok = true;
             }
@@ -448,7 +445,7 @@ public final class CslGenRegister extends CslGenCslBase {
         }
         boolean ok = false;
         for (CslGenCslBase ch : design.getChildren()) {
-            if (ch instanceof CslGenRegister reg && rng.nextBoolean() && !ok && reg.usedFlag(CNT_DIR_SGN) != 0) {
+            if (ch instanceof CslGenRegister reg && rng.nextBoolean() && !ok && reg.getRegisterUsedAt(CNT_DIR_SGN) != 0) {
                 cntDirSgn.append(ch.getName())
                         .append('.')
                         .append(CslGenRegisterTables.R_FUNCTION[CNT_DIR_SGN])
@@ -460,5 +457,168 @@ public final class CslGenRegister extends CslGenCslBase {
         if (!ok) {
             cntDirSgn.append(CslGenRegisterTables.R_ADD_LOGIC_FCT[8]);
         }
+    }
+
+    /**
+     * Legacy public {@code CSLregister::m_used[slot]} ({@code cslRegister.h}): {@code 0} or {@code 1} per generator slot.
+     */
+    public int getRegisterUsedAt(int slot) {
+        Objects.checkIndex(slot, used.length);
+        return used[slot];
+    }
+
+    /** Legacy {@code m_range}. */
+    public String getRangeText() {
+        return range.toString();
+    }
+
+    /** Legacy {@code m_regType}. */
+    public String getRegTypeText() {
+        return regType.toString();
+    }
+
+    /** Legacy {@code m_width}. */
+    public String getWidthText() {
+        return width.toString();
+    }
+
+    /** Legacy {@code m_mpSetAddr}. */
+    public String getMpSetAddrText() {
+        return mpSetAddr.toString();
+    }
+
+    /** Legacy {@code m_setAddr}. */
+    public String getSetAddrText() {
+        return setAddr.toString();
+    }
+
+    /** Legacy {@code m_mpIndexDataRange}. */
+    public String getMpIndexDataRangeText() {
+        return mpIndexDataRange.toString();
+    }
+
+    /** Legacy {@code m_indexDataRange}. */
+    public String getIndexDataRangeText() {
+        return indexDataRange.toString();
+    }
+
+    /** Legacy {@code m_attr}. */
+    public String getAttrText() {
+        return attr.toString();
+    }
+
+    /** Legacy {@code m_const}. */
+    public String getConstText() {
+        return constant.toString();
+    }
+
+    /** Legacy {@code m_attrObj}. */
+    public String getAttrObjText() {
+        return attrObj.toString();
+    }
+
+    /** Legacy {@code m_attrList}. */
+    public String getAttrListText() {
+        return attrList.toString();
+    }
+
+    /** Legacy {@code m_conInputField}. */
+    public String getConInputFieldText() {
+        return conInputField.toString();
+    }
+
+    /** Legacy {@code m_conOutputField}. */
+    public String getConOutputFieldText() {
+        return conOutputField.toString();
+    }
+
+    /** Legacy {@code m_initVal}. */
+    public String getInitValText() {
+        return initVal.toString();
+    }
+
+    /** Legacy {@code m_setVal}. */
+    public String getSetValText() {
+        return setVal.toString();
+    }
+
+    /** Legacy {@code m_resetVal}. */
+    public String getResetValText() {
+        return resetVal.toString();
+    }
+
+    /** Legacy {@code m_clearVal}. */
+    public String getClearValText() {
+        return clearVal.toString();
+    }
+
+    /** Legacy {@code m_lockEnBit}. */
+    public String getLockEnBitText() {
+        return lockEnBit.toString();
+    }
+
+    /** Legacy {@code m_countAmount}. */
+    public String getCountAmountText() {
+        return countAmount.toString();
+    }
+
+    /** Legacy {@code m_countDir}. */
+    public String getCountDirText() {
+        return countDir.toString();
+    }
+
+    /** Legacy {@code m_endVal}. */
+    public String getEndValText() {
+        return endVal.toString();
+    }
+
+    /** Legacy {@code m_startVal}. */
+    public String getStartValText() {
+        return startVal.toString();
+    }
+
+    /** Legacy {@code m_cntDirSgn}. */
+    public String getCntDirSgnText() {
+        return cntDirSgn.toString();
+    }
+
+    /** Legacy public {@code m_mpSetAddrF}. */
+    public boolean isMpSetAddrF() {
+        return mpSetAddrF;
+    }
+
+    /** Legacy public {@code m_setAddrF}. */
+    public boolean isSetAddrF() {
+        return setAddrF;
+    }
+
+    /** Legacy public {@code m_mpIndexDataRangeF}. */
+    public boolean isMpIndexDataRangeF() {
+        return mpIndexDataRangeF;
+    }
+
+    /** Legacy public {@code m_indexDataRangeF}. */
+    public boolean isIndexDataRangeF() {
+        return indexDataRangeF;
+    }
+
+    /** Legacy public {@code m_attrObjF}. */
+    public boolean isAttrObjF() {
+        return attrObjF;
+    }
+
+    /** Legacy public {@code m_conInputFieldF}. */
+    public boolean isConInputFieldF() {
+        return conInputFieldF;
+    }
+
+    /** Legacy public {@code m_conOutputFieldF}. */
+    public boolean isConOutputFieldF() {
+        return conOutputFieldF;
+    }
+
+    /** Legacy public {@code m_cntDirSgnF}. */
+    public boolean isCntDirSgnF() {
+        return cntDirSgnF;
     }
 }

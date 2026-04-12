@@ -80,10 +80,12 @@ public final class CslGenMemory extends CslGenCslBase {
         CslGenSupportEmit.semicolon(mOut);
     }
 
+    /** Legacy public {@code CSLmemory::m_depth} ({@code cslMemory.h}). */
     public String getDepthText() {
         return depth.toString();
     }
 
+    /** Legacy public {@code CSLmemory::m_width} ({@code cslMemory.h}). */
     public String getWidthText() {
         return width.toString();
     }

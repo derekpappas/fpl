@@ -22,6 +22,11 @@ public final class CslGenBitrange extends CslGenCslBase {
         target.copyFrom(state);
     }
 
+    /** Legacy {@code CSLbitrange::copyBitrange} ({@code cslInterconnectGen_TB.cpp}). */
+    public void copyBitrange(CslGenBitrange br) {
+        state.copyFrom(br.state);
+    }
+
     public int getLower() {
         return state.getLower();
     }
@@ -72,6 +77,21 @@ public final class CslGenBitrange extends CslGenCslBase {
             return true;
         }
         return false;
+    }
+
+    /** Legacy {@code CSLbitrange::buildSet} ({@code cslInterconnectGen_TB.cpp}). */
+    public void buildSet(String scope, RandomGenerator rng) {
+        StringBuilder out = printSink();
+        if (out == null) {
+            return;
+        }
+        int form = rng.nextInt(CslGenInterconnectConsts.BITR_MODIF_MAX);
+        if (form == CslGenInterconnectConsts.BITR_MODIF_OFFSET) {
+            int offset = rng.nextInt(CslGenInterconnectConsts.MAX_OFFSET);
+            if (setOffset(offset)) {
+                CslGenSupportEmit.call1param(out, scope, getName(), "set_offset", CslGenInt.intToString(getOffset()));
+            }
+        }
     }
 
     public void appendPrintedCsl(StringBuilder out) {

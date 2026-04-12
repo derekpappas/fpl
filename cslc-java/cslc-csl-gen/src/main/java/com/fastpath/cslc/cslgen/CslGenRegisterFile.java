@@ -1,6 +1,7 @@
 package com.fastpath.cslc.cslgen;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.random.RandomGenerator;
 
 /**
@@ -239,11 +240,11 @@ public final class CslGenRegisterFile extends CslGenCslBase {
     }
 
     private void genSetPrefix(CslGenCslBase design, RandomGenerator rng) {
-        String p = CslGenRandString.randString();
+        String p = CslGenRandString.randString(rng);
         if (!newNameIsValid(p)) {
             return;
         }
-        prefix.append('"').append(CslGenRandString.randString()).append('"');
+        prefix.append('"').append(CslGenRandString.randString(rng)).append('"');
         ioput.append(CslGenRegisterTables.RF_IOPUT[rng.nextInt(2)]);
         if (rng.nextBoolean()) {
             prefixAll.append("all");
@@ -284,7 +285,7 @@ public final class CslGenRegisterFile extends CslGenCslBase {
             }
         }
         if (regAllF) {
-            groupName.append(CslGenRandString.randString());
+            groupName.append(CslGenRandString.randString(rng));
         }
     }
 
@@ -331,5 +332,119 @@ public final class CslGenRegisterFile extends CslGenCslBase {
                 }
             }
         }
+    }
+
+    /** Legacy public {@code CSLregisterFile::m_width}. */
+    public String getWidthText() {
+        return width.toString();
+    }
+
+    /** Legacy public {@code CSLregisterFile::m_depth}. */
+    public String getDepthText() {
+        return depth.toString();
+    }
+
+    /**
+     * Legacy public {@code CSLregisterFile::m_used[slot]} ({@code cslRegister.h}): {@code 0} or {@code 1} per emitted
+     * option slot.
+     */
+    public int getRegisterFileUsedAt(int slot) {
+        Objects.checkIndex(slot, used.length);
+        return used[slot];
+    }
+
+    /** Legacy public {@code CSLregisterFile::m_constVal}. */
+    public String getConstValText() {
+        return constVal.toString();
+    }
+
+    /** Legacy public {@code CSLregisterFile::m_fieldName}. */
+    public String getFieldNameText() {
+        return fieldName.toString();
+    }
+
+    /** Legacy public {@code CSLregisterFile::m_fieldNumExpr}. */
+    public String getFieldNumExprText() {
+        return fieldNumExpr.toString();
+    }
+
+    /** Legacy public {@code CSLregisterFile::m_extNumExpr}. */
+    public String getExtNumExprText() {
+        return extNumExpr.toString();
+    }
+
+    /** Legacy public {@code CSLregisterFile::m_extPort}. */
+    public String getExtPortText() {
+        return extPort.toString();
+    }
+
+    /** Legacy public {@code CSLregisterFile::m_prefix}. */
+    public String getPrefixText() {
+        return prefix.toString();
+    }
+
+    /** Legacy public {@code CSLregisterFile::m_ioput}. */
+    public String getIoputText() {
+        return ioput.toString();
+    }
+
+    /** Legacy public {@code CSLregisterFile::m_prefixAll}. */
+    public String getPrefixAllText() {
+        return prefixAll.toString();
+    }
+
+    /** Legacy public {@code CSLregisterFile::m_groupName}. */
+    public String getGroupNameText() {
+        return groupName.toString();
+    }
+
+    /** Legacy public {@code CSLregisterFile::m_regAll}. */
+    public String getRegAllText() {
+        return regAll.toString();
+    }
+
+    /** Legacy public {@code CSLregisterFile::m_discAll}. */
+    public String getDiscAllText() {
+        return discAll.toString();
+    }
+
+    /** Legacy public {@code CSLregisterFile::m_conAll}. */
+    public String getConAllText() {
+        return conAll.toString();
+    }
+
+    /** Legacy public {@code CSLregisterFile::m_conIOput}. */
+    public String getConIOputText() {
+        return conIOput.toString();
+    }
+
+    /** Legacy public {@code m_fieldNameF}. */
+    public boolean isFieldNameF() {
+        return fieldNameF;
+    }
+
+    /** Legacy public {@code m_extPortF}. */
+    public boolean isExtPortF() {
+        return extPortF;
+    }
+
+    /** Legacy public {@code m_prefixAllF}. */
+    public boolean isPrefixAllF() {
+        return prefixAllF;
+    }
+
+    /** Legacy public {@code m_regAllF}. */
+    public boolean isRegAllF() {
+        return regAllF;
+    }
+
+    /** Legacy public {@code m_discAllF}. */
+    public boolean isDiscAllF() {
+        return discAllF;
+    }
+
+    /** Legacy public {@code m_conAllF}. */
+    public boolean isConAllF() {
+        return conAllF;
     }
 }
