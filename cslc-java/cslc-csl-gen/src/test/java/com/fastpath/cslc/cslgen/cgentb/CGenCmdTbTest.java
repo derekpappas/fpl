@@ -8,6 +8,12 @@ import org.junit.jupiter.api.Test;
 class CGenCmdTbTest {
 
     @Test
+    void stubMainAcceptsLegacyArgShape() {
+        assertEquals(0, CGenCmdTb.runStubMain(new String[] {"cgen_cmds_tb"}));
+        assertEquals(1, CGenCmdTb.runStubMain(new String[] {"cgen_cmds_tb", "not_a_chapter"}));
+    }
+
+    @Test
     void globalPlainCallNoParamsSingleAux() {
         CGenTbCmdRef cmd = new CGenTbCmdRef(CGenTbCmdType.CMD_PRINT, CGenTbEslClass.CSL_PORT, true);
         CGenTbClassRef cls = new CGenTbClassRef("p1", CGenTbEslClass.CSL_PORT, false);

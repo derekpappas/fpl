@@ -11,6 +11,10 @@
   <artifactId>cslc-csl-gen</artifactId>
   <name>CSLC csl_gen utilities</name>
   <packaging>jar</packaging>
+  <properties>
+    <!-- Sparse checkouts without trunk/: mvn -Dcgentb.codegen.skip=true verify -->
+    <cgentb.codegen.skip>false</cgentb.codegen.skip>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>com.fastpath.cslc</groupId>
@@ -27,6 +31,43 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.0</version>
+        <executions>
+          <execution>
+            <id>cgentb-check-cmd-type</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <skip>${cgentb.codegen.skip}</skip>
+              <executable>python3</executable>
+              <arguments>
+                <argument>${project.basedir}/../scripts/gen_cgen_tb_cmd_type.py</argument>
+                <argument>--check</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>cgentb-check-esl-class</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <skip>${cgentb.codegen.skip}</skip>
+              <executable>python3</executable>
+              <arguments>
+                <argument>${project.basedir}/../scripts/gen_cgen_tb_esl_class.py</argument>
+                <argument>--check</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

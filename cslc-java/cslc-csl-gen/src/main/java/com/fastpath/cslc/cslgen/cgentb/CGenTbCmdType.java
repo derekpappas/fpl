@@ -8,6 +8,8 @@ import java.util.Map;
  * Legacy {@code ECSLCmdType} ({@code trunk/cslc/trunk/csl_gen/cGen_Declarations.h}). Declaration order matches the
  * C++ enum (ordinal = legacy discriminant). {@link #legacyCslCmdName()} mirrors {@code buildCmdNames()} in
  * {@code cGenBase_tb.cpp} ({@code ECSLCmdStringMap} / {@code cslCmdName}).
+ *
+ * <p><b>Generated</b> — regenerate with {@code python3 cslc-java/scripts/gen_cgen_tb_cmd_type.py}.
  */
 public enum CGenTbCmdType {
     CMD_ADD("add"),

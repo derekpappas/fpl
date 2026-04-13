@@ -104,10 +104,17 @@ Incremental port (Java, vs TRUNK_FILE_INVENTORY.tsv backlog)
     CslGenIsaInstrFormat (getIsaInstrFormatUsedAt + m_* Text + m_*F flags, EFlags = public int constants),
     CslGenIsaInstr (getIsaInstrUsedAt, getInst = m_inst, m_* accessors), CslGenIsa (getIsaUsedAt + m_* Text + m_generateDecoderF),
     CslGenDesign.addIsaInstrFormat / addIsaInstr / addIsa
-  cslc-csl-gen: cGen_Support.h (include stack) + decl/cmd TB harness → com.fastpath.cslc.cslgen.cgentb.CGenTbEslClass,
-    CGenTbClassRef, CGenTbError, CGenTbTestGen, CGenTbChapter, CGenTbParamDecl, CGenTbParamType, CGenTbCmdType
-    (ECSLCmdType + legacy strings from cGenBase_tb buildCmdNames), CGenTbCmdRef, CGenDeclTb.testScopeDecl /
-    testPlainDecl (cGenDecl_tb), CGenCmdTb.testGlobalPlainDeclGlobalCall (cGenCmds_tb); cGen_Declarations.h enums;
+  cslc-csl-gen: cGen_Support.h (include stack) + decl/cmd TB harness → com.fastpath.cslc.cslgen.cgentb.CGenTbEslClass
+    (regen: scripts/gen_cgen_tb_esl_class.py + Maven validate --check; stems from cslGenericName), CGenTbClassRef, CGenTbError,
+    CGenTbTestGen,
+    CGenTbChapter, CGenTbParamDecl, CGenTbParamType, CGenTbCmdType (regen: scripts/gen_cgen_tb_cmd_type.py; Maven validate runs
+    --check), CGenTbCmdRef,
+    CGenDeclTb (testScopeDecl / testPlainDecl / testScopeObjDecl / testScopeConstrObjDecl / testScopeObjScopeDecl +
+    stub main TG_DECLARATION), CGenCmdTb (trace + stub main TG_COMMAND_CALL),
+    CGenTbMainArgs (checkMainArgs / chapter names), CGenTbRepositoryPath (WORK + test/csl_test_gen), CGenTbRunStub (shared
+    runTestGen-stub entry), CGenInstCmdTb
+    (cGenInstCmds_tb), CGenInstDeclTb (cGenInstDecl_tb);
+    cGen_Declarations.h enums;
     csl_enum_field.cpp alternate enum/field
     path superseded for Java by interconnect CslGenEnum/CslGenField + CslGenEnumFieldTraceTest
   cslc-csl-gen: cslGen_TB.h/cpp (namespace NSCslGen — distinct mini-model) → com.fastpath.cslc.cslgen.tb.CslGenTbConsts,

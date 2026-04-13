@@ -3,11 +3,28 @@ package com.fastpath.cslc.cslgen.cgentb;
 import java.util.Objects;
 
 /**
- * Cmd TB trace ports toward {@code cGenCmds_tb.cpp} / {@code testGlobalPlainDeclGlobalCall*} (no file I/O).
+ * Cmd TB harness: {@code cGenCmds_tb.cpp}. Trace methods mirror {@code testGlobalPlainDeclGlobalCall*} (no file I/O). Legacy
+ * {@code main} uses {@code runTestGen(TG_COMMAND_CALL, argc, argv, &buildTests)} — see {@link #runStubMain} / {@link #buildTests}.
  */
 public final class CGenCmdTb {
 
     private CGenCmdTb() {}
+
+    /** Legacy {@code cGenCmds_tb.cpp} {@code buildTests()} — not ported (requires cmd/class containers). */
+    public static void buildTests() {}
+
+    /**
+     * Stub for legacy {@code main}: {@link CGenTbMainArgs#validate} then {@link #buildTests()}. Full {@code runTestGen} is not
+     * ported.
+     */
+    public static int runStubMain(String[] argv) {
+        return CGenTbRunStub.runAfterMainArgs(argv, CGenCmdTb::buildTests);
+    }
+
+    /** Like {@link #runStubMain} plus {@link CGenTbRepositoryPath#check}. */
+    public static int runStubMainWithRepository(String[] argv) {
+        return CGenTbRunStub.runAfterLegacyRunChecks(argv, CGenCmdTb::buildTests);
+    }
 
     /** Legacy {@code testGlobalPlainDeclGlobalCallAux(...)} — trace line only. */
     public static void testGlobalPlainDeclGlobalCallAux(

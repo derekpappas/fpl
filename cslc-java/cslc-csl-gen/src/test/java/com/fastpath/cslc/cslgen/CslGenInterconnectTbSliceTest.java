@@ -30,17 +30,18 @@ class CslGenInterconnectTbSliceTest {
         int before = u0.getChildrenCount();
         boolean appended = false;
         /*
-         * Single try can fail like legacy C++: {@code randSelObj} may yield no unit, or the chosen unit may match the
-         * instance name ({@code CSLunitInst::buildDecl} rejects that case).
+         * {@code randSelObj(CSL_UNIT)} from inside a unit may wander the subtree before reaching the design; a fixed
+         * RNG stream can fail many times in a row. Use a fresh seed per attempt (still deterministic) so some draw reaches
+         * the sibling unit with a non-colliding instance name.
          */
-        for (int i = 0; i < 64; i++) {
-            u0.addUnitInst(rng);
+        for (int attempt = 0; attempt < 512; attempt++) {
+            u0.addUnitInst(new Random(attempt));
             if (u0.getChildrenCount() > before) {
                 appended = true;
                 break;
             }
         }
-        assertTrue(appended, "with two design units, addUnitInst should eventually resolve a peer unit and append");
+        assertTrue(appended, "with two design units, addUnitInst should resolve a peer unit within many RNG trials");
         assertTrue(
                 u0.getChildAt(u0.getChildrenCount() - 1).orElseThrow() instanceof CslGenUnitInst);
     }

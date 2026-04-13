@@ -48,5 +48,9 @@ Update status as items are fixed.
 
 **Inventory:** regenerate file lists with `python3 cslc-java/scripts/inventory_trunk.py`.
 
+**cgentb codegen:** `python3 cslc-java/scripts/gen_cgen_tb_cmd_type.py` refreshes `CGenTbCmdType.java`;
+`python3 cslc-java/scripts/gen_cgen_tb_esl_class.py` refreshes `CGenTbEslClass.java`. Building `cslc-csl-gen` runs both with
+`--check` during the Maven `validate` phase (skip with `-Dcgentb.codegen.skip=true` if `trunk/` is absent).
+
 **csl_gen C++ backlog (filtered):** after regenerating the inventory, `docs/TRUNK_CSL_GEN_PORT_CPP_BACKLOG.tsv` lists rows with
 `category=PORT_CPP_TO_JAVA` and `target_module_hint=cslc-csl-gen` (26 paths as of last refresh).

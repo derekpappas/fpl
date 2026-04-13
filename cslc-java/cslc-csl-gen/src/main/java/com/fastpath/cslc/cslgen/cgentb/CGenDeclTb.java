@@ -3,12 +3,31 @@ package com.fastpath.cslc.cslgen.cgentb;
 import java.util.Objects;
 
 /**
- * Decl TB harness trace ports: {@code testScopeDecl*} and {@code testPlainDecl*} ({@code cGenDecl_tb.h} /
- * {@code cGenDecl_tb.cpp}). Writes comment lines into {@code out} instead of {@code ofstream}.
+ * Decl TB harness: {@code cGenDecl_tb.h} / {@code cGenDecl_tb.cpp}. Trace methods write {@code //} lines into {@code out}
+ * instead of {@code ofstream}. Legacy {@code main} uses {@code runTestGen(TG_DECLARATION, argc, argv, &buildTests)} — see
+ * {@link #runStubMain} / {@link #buildTests}.
  */
 public final class CGenDeclTb {
 
     private CGenDeclTb() {}
+
+    /** Legacy {@code cGenDecl_tb.cpp} {@code buildTests()} — not ported (requires {@code cslClasses} / {@code belongsToChapter}). */
+    public static void buildTests() {}
+
+    /**
+     * Stub for legacy {@code main}: {@link CGenTbMainArgs#validate} then {@link #buildTests()}. Full {@code runTestGen} is not
+     * ported.
+     */
+    public static int runStubMain(String[] argv) {
+        return CGenTbRunStub.runAfterMainArgs(argv, CGenDeclTb::buildTests);
+    }
+
+    /**
+     * Like {@link #runStubMain} but also enforces legacy {@code checkRepositoryPath} ({@link CGenTbRepositoryPath#check}).
+     */
+    public static int runStubMainWithRepository(String[] argv) {
+        return CGenTbRunStub.runAfterLegacyRunChecks(argv, CGenDeclTb::buildTests);
+    }
 
     /**
      * Legacy {@code testScopeDecl(CSLClassPoint cls)} — one {@link #testScopeDeclAux} per mandatory ordering row, or
@@ -66,6 +85,116 @@ public final class CGenDeclTb {
                 .append(legal)
                 .append(" declType=")
                 .append(declType.name())
+                .append('\n');
+    }
+
+    /** Legacy {@code testScopeObjDeclAux}. */
+    public static void testScopeObjDeclAux(
+            CGenTbClassRef cls, CGenTbClassRef obj, boolean legal, CGenTbParamDecl declType, StringBuilder out) {
+        Objects.requireNonNull(cls, "cls");
+        Objects.requireNonNull(obj, "obj");
+        Objects.requireNonNull(declType, "declType");
+        Objects.requireNonNull(out, "out");
+        out.append("// testScopeObjDeclAux outer=")
+                .append(cls.name())
+                .append(" inner=")
+                .append(obj.name())
+                .append(" legal=")
+                .append(legal)
+                .append(" declType=")
+                .append(declType.name())
+                .append('\n');
+    }
+
+    /**
+     * Legacy {@code testScopeObjDecl}: {@code mandatoryDeclPasses} is the number of outer {@code createPreDeclVectOrder}
+     * rows (0 means the no-mandatory branch); {@code paramVectRowCount} is {@code obj->getParams()} size (0 = empty-params
+     * aux).
+     */
+    public static void testScopeObjDecl(
+            CGenTbClassRef cls,
+            CGenTbClassRef obj,
+            boolean isLegal,
+            int mandatoryDeclPasses,
+            int paramVectRowCount,
+            StringBuilder out) {
+        Objects.requireNonNull(cls, "cls");
+        Objects.requireNonNull(obj, "obj");
+        Objects.requireNonNull(out, "out");
+        if (mandatoryDeclPasses > 0) {
+            for (int m = 0; m < mandatoryDeclPasses; m++) {
+                if (paramVectRowCount > 0) {
+                    for (int p = 0; p < paramVectRowCount; p++) {
+                        testScopeObjDeclAux(cls, obj, isLegal, CGenTbParamDecl.PD_GLOBAL, out);
+                    }
+                } else {
+                    testScopeObjDeclAux(cls, obj, isLegal, CGenTbParamDecl.PD_GLOBAL, out);
+                }
+            }
+        } else {
+            if (paramVectRowCount > 0) {
+                for (int p = 0; p < paramVectRowCount; p++) {
+                    testScopeObjDeclAux(cls, obj, isLegal, CGenTbParamDecl.PD_GLOBAL, out);
+                }
+            } else {
+                testScopeObjDeclAux(cls, obj, isLegal, CGenTbParamDecl.PD_GLOBAL, out);
+            }
+        }
+    }
+
+    /** Legacy {@code testScopeConstrObjDeclAux}. */
+    public static void testScopeConstrObjDeclAux(
+            CGenTbClassRef cls, CGenTbClassRef obj, boolean legal, CGenTbParamDecl declType, StringBuilder out) {
+        Objects.requireNonNull(cls, "cls");
+        Objects.requireNonNull(obj, "obj");
+        Objects.requireNonNull(declType, "declType");
+        Objects.requireNonNull(out, "out");
+        out.append("// testScopeConstrObjDeclAux outer=")
+                .append(cls.name())
+                .append(" inner=")
+                .append(obj.name())
+                .append(" legal=")
+                .append(legal)
+                .append(" declType=")
+                .append(declType.name())
+                .append('\n');
+    }
+
+    /** Legacy {@code testScopeConstrObjDecl} — C++ uses {@code legal=false} in each aux. */
+    public static void testScopeConstrObjDecl(CGenTbClassRef cls, CGenTbClassRef obj, int paramVectRowCount, StringBuilder out) {
+        Objects.requireNonNull(cls, "cls");
+        Objects.requireNonNull(obj, "obj");
+        Objects.requireNonNull(out, "out");
+        if (paramVectRowCount > 0) {
+            for (int p = 0; p < paramVectRowCount; p++) {
+                testScopeConstrObjDeclAux(cls, obj, false, CGenTbParamDecl.PD_GLOBAL, out);
+            }
+        } else {
+            testScopeConstrObjDeclAux(cls, obj, false, CGenTbParamDecl.PD_GLOBAL, out);
+        }
+    }
+
+    /** Legacy {@code testScopeObjScopeDecl}. */
+    public static void testScopeObjScopeDecl(CGenTbClassRef cls, CGenTbClassRef obj, StringBuilder out) {
+        Objects.requireNonNull(cls, "cls");
+        Objects.requireNonNull(obj, "obj");
+        Objects.requireNonNull(out, "out");
+        out.append("// testScopeObjScopeDecl outer=")
+                .append(cls.name())
+                .append(" inner=")
+                .append(obj.name())
+                .append('\n');
+    }
+
+    /** Legacy {@code testScopeConstrObjScopeDecl}. */
+    public static void testScopeConstrObjScopeDecl(CGenTbClassRef cls, CGenTbClassRef obj, StringBuilder out) {
+        Objects.requireNonNull(cls, "cls");
+        Objects.requireNonNull(obj, "obj");
+        Objects.requireNonNull(out, "out");
+        out.append("// testScopeConstrObjScopeDecl outer=")
+                .append(cls.name())
+                .append(" inner=")
+                .append(obj.name())
                 .append('\n');
     }
 }

@@ -9,6 +9,13 @@ import org.junit.jupiter.api.Test;
 class CGenDeclTbTest {
 
     @Test
+    void stubMainAcceptsLegacyArgShape() {
+        assertEquals(0, CGenDeclTb.runStubMain(new String[] {"cgen_decl_tb"}));
+        assertEquals(0, CGenDeclTb.runStubMain(new String[] {"cgen_decl_tb", "interconnect"}));
+        assertEquals(1, CGenDeclTb.runStubMain(new String[] {"cgen_decl_tb", "--help"}));
+    }
+
+    @Test
     void testScopeDeclNoMandatorySingleAuxLine() {
         CGenTbClassRef unit = new CGenTbClassRef("u1", CGenTbEslClass.CSL_UNIT, true);
         StringBuilder out = new StringBuilder();
@@ -53,5 +60,33 @@ class CGenDeclTbTest {
         assertEquals(2, text.lines().count());
         assertTrue(text.contains("kind=CSL_TESTBENCH"));
         assertTrue(text.contains("legal=true"));
+    }
+
+    @Test
+    void testScopeObjDeclMultipliesMandatoryPassesByParamRows() {
+        CGenTbClassRef u = new CGenTbClassRef("u", CGenTbEslClass.CSL_UNIT, true);
+        CGenTbClassRef p = new CGenTbClassRef("p", CGenTbEslClass.CSL_PORT, false);
+        StringBuilder out = new StringBuilder();
+        CGenDeclTb.testScopeObjDecl(u, p, true, 2, 3, out);
+        assertEquals(6, out.toString().lines().count());
+    }
+
+    @Test
+    void testScopeConstrObjDeclUsesLegalFalse() {
+        CGenTbClassRef u = new CGenTbClassRef("u", CGenTbEslClass.CSL_UNIT, true);
+        CGenTbClassRef s = new CGenTbClassRef("s", CGenTbEslClass.CSL_SIGNAL, false);
+        StringBuilder out = new StringBuilder();
+        CGenDeclTb.testScopeConstrObjDecl(u, s, 1, out);
+        assertTrue(out.toString().contains("legal=false"));
+    }
+
+    @Test
+    void testScopeObjScopeDeclTrace() {
+        CGenTbClassRef u = new CGenTbClassRef("u", CGenTbEslClass.CSL_UNIT, true);
+        CGenTbClassRef v = new CGenTbClassRef("v", CGenTbEslClass.CSL_UNIT, true);
+        StringBuilder out = new StringBuilder();
+        CGenDeclTb.testScopeObjScopeDecl(u, v, out);
+        CGenDeclTb.testScopeConstrObjScopeDecl(u, v, out);
+        assertEquals(2, out.toString().lines().count());
     }
 }
