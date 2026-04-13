@@ -215,6 +215,9 @@ public final class CslGenIsaField extends CslGenCslBase {
                 enumF = true;
             }
         }
+        if (enumF) {
+            used[SET_ENUM] = 1;
+        }
     }
 
     public void genSetEnumItem(CslGenCslBase design, RandomGenerator rng) {
@@ -231,6 +234,9 @@ public final class CslGenIsaField extends CslGenCslBase {
                     enumItemF = true;
                 }
             }
+        }
+        if (enumItemF) {
+            used[SET_ENUM_ITEM] = 1;
         }
     }
 
@@ -377,6 +383,7 @@ public final class CslGenIsaField extends CslGenCslBase {
     }
 
     public void genSetType(CslGenCslBase design, RandomGenerator rng) {
+        setType.setLength(0);
         boolean ok = false;
         if (design != null) {
             for (CslGenCslBase ch : design.getChildren()) {
@@ -392,6 +399,9 @@ public final class CslGenIsaField extends CslGenCslBase {
         }
         if (!ok) {
             setType.append(CslGenIsaTables.ISA_FIELD_TYPE[rng.nextInt(CslGenIsaTables.ISA_FIELD_TYPE_NO)]);
+        }
+        if (!setType.isEmpty()) {
+            used[SET_TYPE] = 1;
         }
     }
 
@@ -456,12 +466,17 @@ public final class CslGenIsaField extends CslGenCslBase {
             case WIDTH -> {
                 genSetWidth(design, rng);
                 genEnum(design, rng);
+                genSetType(design, rng);
             }
             case UPPER_LOWER -> {
                 genUpperLower(rng);
                 genEnum(design, rng);
+                genSetType(design, rng);
             }
-            case COPY_CONSTR -> genCopyConstr(design, rng);
+            case COPY_CONSTR -> {
+                genCopyConstr(design, rng);
+                genSetType(design, rng);
+            }
             case CONSTR -> {
                 for (int j = 0; j < CslGenIsaTables.ISA_FIELDS_NO; j++) {
                     String n = CslGenRandString.randString(rng);
@@ -563,6 +578,19 @@ public final class CslGenIsaField extends CslGenCslBase {
                         }
                     } else {
                         switch (ran) {
+                            case SET_ENUM:
+                                genSetEnum(design, rng);
+                                break;
+                            case SET_ENUM_ITEM:
+                                genSetEnumItem(design, rng);
+                                break;
+                            case SET_VALUE:
+                                genSetValue(rng);
+                                used[SET_VALUE] = 1;
+                                break;
+                            case SET_TYPE:
+                                genSetType(design, rng);
+                                break;
                             case GET_WIDTH:
                                 used[GET_WIDTH] = 1;
                                 break;

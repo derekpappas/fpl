@@ -50,4 +50,11 @@ class CslGenRegisterFileTest {
         assertTrue(text.contains("set_depth"));
         assertTrue(text.endsWith(";\n"));
     }
+
+    @Test
+    void registerFileNoArgBuildDeclUsesDefaultGenerator() {
+        CslGenRegisterFile rf = new CslGenRegisterFile(new CslGenDesign("d"), "rf0");
+        rf.buildDecl();
+        assertEquals(1, rf.getRegisterFileUsedAt(CslGenRegisterFile.SET_WIDTH));
+    }
 }

@@ -1,6 +1,7 @@
 package com.fastpath.cslc.cslgen;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
@@ -19,7 +20,9 @@ import java.util.random.RandomGenerator;
  * <p>{@code --ao-batch &lt;dir&gt; [n]} mirrors {@code cGen_ao.cpp} {@code main}: writes {@code n} files (default {@value
  * CslGenAoBatch#LEGACY_DEFAULT_FILE_COUNT}) under {@code dir}/{@link CslGenAoBatch#GEN_TESTS_DIR_NAME} and exits (no
  * single-design stdout path). Optional {@code n} is any string accepted by {@link Integer#parseInt(String)} (including
- * negative values, which are rejected with an error message).
+ * {@code -1}), which are rejected with an error message). A non-integer token after the directory that does not start
+ * with {@code '-'} is rejected (invalid count); tokens starting with {@code '-'} that are not valid integers are left
+ * unconsumed so they can be parsed as flags.
  */
 public final class CslCodeGenMain {
 
@@ -77,17 +80,21 @@ public final class CslCodeGenMain {
                 }
                 i++;
                 aoBatchDir = Paths.get(args[i]);
-                if (i + 1 < args.length && isOptionalBatchCountToken(args[i + 1])) {
-                    i++;
-                    String countStr = args[i];
+                if (i + 1 < args.length) {
+                    String next = args[i + 1];
                     try {
-                        int c = Integer.parseInt(countStr);
+                        int c = Integer.parseInt(next);
                         if (c < 0) {
                             return CliParseResult.error("CslCodeGenMain: --ao-batch count must be >= 0");
                         }
                         aoBatchCount = c;
+                        i++;
                     } catch (NumberFormatException e) {
-                        return CliParseResult.error("CslCodeGenMain: invalid --ao-batch count: " + countStr);
+                        if (next.startsWith("-")) {
+                            /* e.g. --print; leave for the outer loop */
+                        } else {
+                            return CliParseResult.error("CslCodeGenMain: invalid --ao-batch count: " + next);
+                        }
                     }
                 }
             } else if ("--help".equals(a) || "-h".equals(a)) {
@@ -97,39 +104,41 @@ public final class CslCodeGenMain {
         return CliParseResult.ok(print, seed, aoBatchDir, aoBatchCount);
     }
 
-    /** True when {@code token} is a valid {@link Integer#parseInt} argument (e.g. {@code 3}, {@code -1}). */
-    private static boolean isOptionalBatchCountToken(String token) {
-        try {
-            Integer.parseInt(token);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
+    public static void main(String[] args) {
+        int exit = runMainBody(args, System.err, System.out);
+        if (exit != 0) {
+            System.exit(exit);
         }
     }
 
-    public static void main(String[] args) {
+    /**
+     * Full CLI run without {@link System#exit(int)} — returns {@code 0} on success, {@code 1} on parse error or batch
+     * {@link IOException}. Package-private for tests.
+     */
+    static int runMainBody(String[] args, PrintStream err, PrintStream out) {
         CliParseResult r = parseCli(args);
         if (r.help()) {
-            printUsage();
-            return;
+            printUsage(err);
+            return 0;
         }
         if (r.hasError()) {
-            System.err.println(r.errorMessage());
-            System.exit(1);
+            err.println(r.errorMessage());
+            return 1;
         }
         try {
-            runFromParsed(r);
+            runFromParsed(r, out);
         } catch (IOException e) {
-            System.err.println("CslCodeGenMain: batch write failed: " + e.getMessage());
-            System.exit(1);
+            err.println("CslCodeGenMain: batch write failed: " + e.getMessage());
+            return 1;
         }
+        return 0;
     }
 
-    private static void printUsage() {
-        System.err.println("Usage: CslCodeGenMain [--print|-p] [--seed <long>] [--ao-batch <dir> [n]]]");
-        System.err.println("  --print, -p       Write generated CSL to stdout after buildDecl (single design).");
-        System.err.println("  --seed <long>     Fixed RNG seed (java.util.Random).");
-        System.err.println("  --ao-batch <dir> [n]  Write n CSL files (default "
+    private static void printUsage(PrintStream err) {
+        err.println("Usage: CslCodeGenMain [--print|-p] [--seed <long>] [--ao-batch <dir> [n]]]");
+        err.println("  --print, -p       Write generated CSL to stdout after buildDecl (single design).");
+        err.println("  --seed <long>     Fixed RNG seed (java.util.Random).");
+        err.println("  --ao-batch <dir> [n]  Write n CSL files (default "
                 + CslGenAoBatch.LEGACY_DEFAULT_FILE_COUNT + ") under dir/"
                 + CslGenAoBatch.GEN_TESTS_DIR_NAME + "/ (cGen_ao.cpp batch mode); then exit.");
     }
@@ -138,6 +147,10 @@ public final class CslCodeGenMain {
      * Runs generation from a successful {@link CliParseResult}. Package-private for tests (e.g. batch {@link IOException}).
      */
     static void runFromParsed(CliParseResult r) throws IOException {
+        runFromParsed(r, System.out);
+    }
+
+    static void runFromParsed(CliParseResult r, PrintStream out) throws IOException {
         RandomGenerator rng = createRng(r.seed());
         if (r.aoBatchDir() != null) {
             int n = r.aoBatchCount() != null ? r.aoBatchCount() : CslGenAoBatch.LEGACY_DEFAULT_FILE_COUNT;
@@ -147,9 +160,9 @@ public final class CslCodeGenMain {
         CslGenDesign design = new CslGenDesign("design");
         design.buildDecl(rng);
         if (r.print()) {
-            StringBuilder out = new StringBuilder();
-            design.appendPrintedCsl(out);
-            System.out.print(out);
+            StringBuilder sb = new StringBuilder();
+            design.appendPrintedCsl(sb);
+            out.print(sb.toString());
         }
     }
 

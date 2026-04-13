@@ -3,7 +3,9 @@ package com.fastpath.cslc.cslgen;
 import java.util.random.RandomGenerator;
 
 /**
- * Port of {@code NSCSLinterconnect::CSLifcInst} ({@code cslInterconnectGen_TB.h} / {@code cslInterconnectGen_TB.cpp}).
+ * Port of {@code NSCSLinterconnect::CSLifcInst}:
+ * {@code trunk/cslc/trunk/csl_gen/cslInterconnectGen_TB.h} (class ~351-371),
+ * {@code trunk/cslc/trunk/csl_gen/cslInterconnectGen_TB.cpp} (impl ~659-695).
  */
 public final class CslGenIfcInst extends CslGenCslBase {
 

@@ -23,6 +23,7 @@ class CslGenRegisterFilePrintWalkCoverageTest {
             "set_external(",
             "bypass",
             "set_prefix(",
+            "get_width()",
             "register_group",
             "disconnect_register_fields_from_ios",
             "connect_register_fields_to_ios");
@@ -45,10 +46,10 @@ class CslGenRegisterFilePrintWalkCoverageTest {
         for (int i = 0; i < 10; i++) {
             d.addField(r);
         }
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 12; i++) {
             d.addRegister(r);
         }
-        for (int i = 0; i < 14; i++) {
+        for (int i = 0; i < 22; i++) {
             d.addRegisterFile(r);
         }
     }
@@ -57,7 +58,7 @@ class CslGenRegisterFilePrintWalkCoverageTest {
     void seededDesignsCoverRegisterFilePrintEmitters() {
         Set<String> hit = new HashSet<>();
         long s = 0;
-        long limit = 200_000L;
+        long limit = 350_000L;
         for (; s < limit && hit.size() < RF_EMIT.size(); s++) {
             CslGenDesign d = new CslGenDesign("d");
             addRegisterFileHeavyFixture(d, s);

@@ -102,6 +102,9 @@ Incremental port (Java, vs TRUNK_FILE_INVENTORY.tsv backlog)
     CslGenIsaInstrFormat (getIsaInstrFormatUsedAt + m_* Text + m_*F flags, EFlags = public int constants),
     CslGenIsaInstr (getIsaInstrUsedAt, getInst = m_inst, m_* accessors), CslGenIsa (getIsaUsedAt + m_* Text + m_generateDecoderF),
     CslGenDesign.addIsaInstrFormat / addIsaInstr / addIsa
+  cslc-csl-gen: cslGen_TB.h/cpp (namespace NSCslGen — distinct mini-model) → com.fastpath.cslc.cslgen.tb.CslGenTbConsts,
+    CslGenTbBitrange, CslGenTbSignal, CslGenTbPort, CslGenTbInstance, CslGenTbInterface, CslGenTbUnitDecl/Init/Unit,
+    CslGenTbGenerator, CslGenTbMain (legacy CSLgenerator::build / main)
   cslc-fastpath: refcounted.h/cpp → RefCounted + RefCounting; fploptions → FplOptions; main.cpp → FastPathMain stub
   cslc-cdom: fpl_module_class.h/cpp → FplModule (abstract, no SystemC); CDOM_Checker.cpp path-prefix / undef slice →
     CdomCheckerState

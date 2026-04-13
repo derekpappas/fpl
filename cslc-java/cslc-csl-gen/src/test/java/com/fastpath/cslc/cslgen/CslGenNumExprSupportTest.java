@@ -29,4 +29,26 @@ class CslGenNumExprSupportTest {
             assertTrue(Character.isDigit(s.charAt(i)));
         }
     }
+
+    @Test
+    void createTreeWithDepthAtLeastOneReturnsNull() {
+        assertNull(CslGenNumExprSupport.createTree(1, new Random(0L)));
+    }
+
+    @Test
+    void displayTreeNullIsNoOp() {
+        StringBuilder sb = new StringBuilder("keep");
+        CslGenNumExprSupport.displayTree(null, sb);
+        assertEquals("keep", sb.toString());
+    }
+
+    @Test
+    void displayTreeWalksLeftValueRightInOrder() {
+        CslGenNumExpr left = new CslGenNumExpr("1", null, null);
+        CslGenNumExpr right = new CslGenNumExpr("2", null, null);
+        CslGenNumExpr root = new CslGenNumExpr("+", left, right);
+        StringBuilder sb = new StringBuilder();
+        CslGenNumExprSupport.displayTree(root, sb);
+        assertEquals("1+2", sb.toString());
+    }
 }

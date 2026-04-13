@@ -1,6 +1,7 @@
 package com.fastpath.cslc.cslgen;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +13,13 @@ class CslGenSupportEmitTest {
         CslGenSupportEmit.declSHbegin(sb, "csl_unit", "u");
         CslGenSupportEmit.declSHend(sb);
         assertEquals("csl_unit u{\n};\n", sb.toString());
+    }
+
+    @Test
+    void initEmitsLegacyInitialiseKeyword() {
+        StringBuilder sb = new StringBuilder();
+        CslGenSupportEmit.init(sb);
+        assertEquals("  void initialise()", sb.toString());
     }
 
     @Test
@@ -34,5 +42,24 @@ class CslGenSupportEmitTest {
         CslGenSupportEmit.cslMemory(sb);
         CslGenSupportEmit.cslRegister(sb);
         assertEquals("csl_memory csl_register ", sb.toString());
+    }
+
+    @Test
+    void displayFunctDeclAppendsCommandNameAndSemicolon() {
+        StringBuilder sb = new StringBuilder();
+        CslGenSupportEmit.displayFunctDecl(sb, "void", "foo");
+        assertEquals("  void foo;\n", sb.toString());
+    }
+
+    @Test
+    void displayFunctDeclRejectsNullCommand() {
+        assertThrows(NullPointerException.class, () -> CslGenSupportEmit.displayFunctDecl(new StringBuilder(), null, "x"));
+    }
+
+    @Test
+    void call0paramMatchesLegacyCallShape() {
+        StringBuilder sb = new StringBuilder();
+        CslGenSupportEmit.call0param(sb, "self.", "sig", "clear");
+        assertEquals("    self.sig.clear();\n", sb.toString());
     }
 }

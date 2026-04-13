@@ -27,6 +27,9 @@ bool CSLgenerator::newNameIsValid(string name, CSLunit* unit) {
   for (vector<CSLsignal*>::const_iterator its = unit->m_uDecl.m_dSignals.begin(); its != unit->m_uDecl.m_dSignals.end(); its++)
     if ((*its)->m_sName == name)
       return false;
+  for (vector<CSLport*>::const_iterator itp = unit->m_uDecl.m_dPorts.begin(); itp != unit->m_uDecl.m_dPorts.end(); itp++)
+    if ((*itp)->m_pName == name)
+      return false;
   return true;
 }
 
@@ -79,7 +82,7 @@ void CSLgenerator::addBitrange(CSLunit* unit) {
         newBitrange->m_bUpper = newBitrange->m_bLower + rand() % (_MAX_WIDTH / 2);
 
         printBitrangeDeclBegin(bitrangeName);
-        printBitrangeDeclLower(newBitrange->m_bUpper);
+        printBitrangeDeclLower(newBitrange->m_bLower);
         printComma();
         printBitrangeDeclUpper(newBitrange->m_bUpper);
         printBitrangeDeclEnd();
@@ -208,7 +211,7 @@ void CSLgenerator::addSignal(CSLunit* unit) {
         break;
       case 8: //csl_signal name(other_sig);
         newSignal->m_sCopyOf = randSelSignal(unit);
-        if (newSignal->m_sBitrange == NULL)
+        if (newSignal->m_sCopyOf == NULL)
           break;
         newSignal->m_sType = newSignal->m_sCopyOf->m_sType;
         newSignal->m_sAttr = newSignal->m_sCopyOf->m_sAttr;
@@ -222,6 +225,28 @@ void CSLgenerator::addSignal(CSLunit* unit) {
         unit->m_uDecl.m_dSignals.push_back(newSignal);
         break;
     }
+  }
+}
+
+void CSLgenerator::addPort(CSLunit* unit) {
+  string portName = randString();
+
+  if (newNameIsValid(portName, unit)) {
+    CSLport* newPort = new CSLport();
+    newPort->m_pName = portName;
+    newPort->m_pDir = portDirections[rand() % 3];
+    newPort->m_pType = signalTypes[rand() % 16];
+    newPort->m_pAttr = "";
+    newPort->m_pLower = 0;
+    newPort->m_pUpper = 1;
+
+    printPortDeclBegin(portName);
+    m_out << newPort->m_pDir;
+    printComma();
+    m_out << newPort->m_pType;
+    printPortDeclEnd();
+
+    unit->m_uDecl.m_dPorts.push_back(newPort);
   }
 }
 
