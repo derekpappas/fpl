@@ -37,6 +37,7 @@ bool CSLenum :: buildDecl() {
   addEnumItem();
   print_enum_bk();
   }
+  return true;
 }
 
 void CSLenum :: print_enum_fr() {
@@ -142,39 +143,49 @@ const short CSLfield::getfieldWidth() const {
 
 void CSLfield :: buildDecl(CSLdesign design) {
   int r = rand()% 5 +1;
-  int c;
   for(int i=1; i<=r;i++){
-    c= rand()% 1;
-    if(c==0)
-      //    field_object(design);
-    else if(c==1)
-  buildSet();
+    (void)design;
+    // Legacy had rand()%1 (always 0) and an empty if (c==0) branch so buildSet() never ran.
+    buildSet();
   }
 }
 
 bool CSLfield::buildSet() {
   short form = rand() % CSL_FIELD_DECL_MAX;
   switch(form){
-    case CSL_FIELD_DECL_EMPTY:{  printFieldDeclE(); break; }
+    case CSL_FIELD_DECL_EMPTY:
+      printFieldDeclE();
+      break;
     case CSL_FIELD_DECL_LOWER_UPPER: {
       short low = rand() % (MAX_WIDTH / 2);
       short up  = low + rand() % (MAX_WIDTH / 2) + 1;
-      // setRange(low, up);
+      m_fieldLower = low;
+      m_fieldUpper = up;
       printFieldDeclL_U();
+      break;
     }
     case CSL_FIELD_DECL_WIDTH: {
       short width = rand() % (MAX_WIDTH - 1) + 1;
+      m_fieldWidth = width;
       printFieldDeclW();
-    }
-    case CSL_FIELD_DECL_COPY: {
-      CSLfieldPoint field;
-      m_fieldLower = field->getfieldLower();
-      m_fieldUpper = field->getfieldUpper();
       break;
     }
-   case CSL_FIELD_DECL_MAX: { cerr << "Case field max. Error! " <<endl ; break; }
-    default: { cerr << "This could not happen " <<endl; break;}
+    case CSL_FIELD_DECL_COPY: {
+      // Legacy dereferenced an uninitialized field pointer; no peer field pool in this TU.
+      printFieldDeclE();
+      break;
+    }
+    case CSL_FIELD_DECL_OBJECT:
+      printFieldDeclE();
+      break;
+    case CSL_FIELD_DECL_MAX:
+      cerr << "Case field max. Error! " << endl;
+      break;
+    default:
+      cerr << "This could not happen " << endl;
+      break;
   }
+  return true;
 }
 
 void CSLfield::printFieldDeclE(){

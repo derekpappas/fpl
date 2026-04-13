@@ -53,8 +53,10 @@ Incremental port (Java, vs TRUNK_FILE_INVENTORY.tsv backlog)
   cslc-cslom: CSLOM_Declarations.h slice → CslomNodeType + CslomDeclarations; CSLOM_Base.h slice → CslomBase,
     CslomPlaceholder; CSLOM.cpp → CslomUtil (ltos, checkIdName); CSLOM_Visitor.h slice → visitor/CslomVisitor,
     CslomTraversal.preorder
-  cslc-generators: NoopCslomTraversal (toward CVisitorTraversal generators under src/cslom_generators/)
-  cslc-csim: CsimSimulatorPort/Stub, CsimCmdLinePort/Stub, unit/clock/vector-writer marker ports (Csim*.h)
+  cslc-generators: NoopCslomTraversal; CslomNodeCounter, CslomPreorderTypeRecorder, CslomIndentedDebugVisitor
+    (preorder indent + nodeType/line/col/file trace toward CVisitorTraversal / src/cslom_generators/)
+  cslc-csim: CsimSimulatorPort/Stub (getClockByName, getUnitByName), CsimClockPort/CsimClockStub,
+    CsimUnitPort (unitName/instanceName) / CsimUnitStub; CsimCmdLinePort/Stub; vector-writer marker (Csim*.h)
   cslc-support: include/src/convenience.cpp → FilesystemConvenience (nio)
   cslc-csl-gen: csl_gen_base.cpp/h slice → CslGenCslBase (getRegisteredNames = m_names view, getChildrenOfType),
     CslGenScope (addToScope/removeFromScope; CslGenCslBase delegates interconnect*Scope),
@@ -102,9 +104,15 @@ Incremental port (Java, vs TRUNK_FILE_INVENTORY.tsv backlog)
     CslGenIsaInstrFormat (getIsaInstrFormatUsedAt + m_* Text + m_*F flags, EFlags = public int constants),
     CslGenIsaInstr (getIsaInstrUsedAt, getInst = m_inst, m_* accessors), CslGenIsa (getIsaUsedAt + m_* Text + m_generateDecoderF),
     CslGenDesign.addIsaInstrFormat / addIsaInstr / addIsa
+  cslc-csl-gen: cGen_Support.h (include stack) + decl/cmd TB harness → com.fastpath.cslc.cslgen.cgentb.CGenTbEslClass,
+    CGenTbClassRef, CGenTbError, CGenTbTestGen, CGenTbChapter, CGenTbParamDecl, CGenTbParamType, CGenTbCmdType
+    (ECSLCmdType + legacy strings from cGenBase_tb buildCmdNames), CGenTbCmdRef, CGenDeclTb.testScopeDecl /
+    testPlainDecl (cGenDecl_tb), CGenCmdTb.testGlobalPlainDeclGlobalCall (cGenCmds_tb); cGen_Declarations.h enums;
+    csl_enum_field.cpp alternate enum/field
+    path superseded for Java by interconnect CslGenEnum/CslGenField + CslGenEnumFieldTraceTest
   cslc-csl-gen: cslGen_TB.h/cpp (namespace NSCslGen — distinct mini-model) → com.fastpath.cslc.cslgen.tb.CslGenTbConsts,
     CslGenTbBitrange, CslGenTbSignal, CslGenTbPort, CslGenTbInstance, CslGenTbInterface, CslGenTbUnitDecl/Init/Unit,
-    CslGenTbGenerator, CslGenTbMain (legacy CSLgenerator::build / main)
+    CslGenTbGenerator (addPort, newNameIsValid includes ports; bitrange lower/upper; signal copy branch), CslGenTbMain
   cslc-fastpath: refcounted.h/cpp → RefCounted + RefCounting; fploptions → FplOptions; main.cpp → FastPathMain stub
   cslc-cdom: fpl_module_class.h/cpp → FplModule (abstract, no SystemC); CDOM_Checker.cpp path-prefix / undef slice →
     CdomCheckerState

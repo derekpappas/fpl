@@ -16,6 +16,19 @@ class CslGenTbGeneratorTest {
     }
 
     @Test
+    void addPortEmitsCslPortLine() {
+        StringBuilder out = new StringBuilder();
+        CslGenTbGenerator g = new CslGenTbGenerator(out, new SplittableRandom(404L));
+        CslGenTbUnit u = new CslGenTbUnit("Z");
+        g.printUnitBegin("Z");
+        g.addPort(u);
+        String line = out.toString();
+        assertTrue(line.contains("csl_port "));
+        assertTrue(line.contains(");"));
+        assertEquals(1, u.m_uDecl.m_dPorts.size());
+    }
+
+    @Test
     void buildEmitsCslUnitsAndDeclarations() {
         StringBuilder out = new StringBuilder();
         CslGenTbGenerator g = new CslGenTbGenerator(out, new SplittableRandom(9_021_773L));

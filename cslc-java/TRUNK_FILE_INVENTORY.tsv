@@ -652,7 +652,7 @@ csl_gen/cslGenEnum.cpp	.cpp	2628	PORT_CPP_TO_JAVA	cslc-csl-gen
 csl_gen/cslGenEnum.h	.h	1399	PORT_HEADER_TO_JAVA	cslc-csl-gen
 csl_gen/cslGenEnumFieldEM.cpp	.cpp	17823	PORT_CPP_TO_JAVA	cslc-csl-gen
 csl_gen/cslGenEnumFieldEM.h	.h	2642	PORT_HEADER_TO_JAVA	cslc-csl-gen
-csl_gen/cslGen_TB.cpp	.cpp	9660	PORT_CPP_TO_JAVA	cslc-csl-gen
+csl_gen/cslGen_TB.cpp	.cpp	10396	PORT_CPP_TO_JAVA	cslc-csl-gen
 csl_gen/cslGen_TB.h	.h	6002	PORT_HEADER_TO_JAVA	cslc-csl-gen
 csl_gen/cslInterconnectGen_TB.cpp	.cpp	32409	PORT_CPP_TO_JAVA	cslc-csl-gen
 csl_gen/cslInterconnectGen_TB.h	.h	16753	PORT_HEADER_TO_JAVA	cslc-csl-gen
@@ -665,7 +665,7 @@ csl_gen/cslMemoryMap.h	.h	9929	PORT_HEADER_TO_JAVA	cslc-csl-gen
 csl_gen/cslRegister.cpp	.cpp	28579	PORT_CPP_TO_JAVA	cslc-csl-gen
 csl_gen/cslRegister.h	.h	13947	PORT_HEADER_TO_JAVA	cslc-csl-gen
 csl_gen/csl_code_gen.cpp	.cpp	500	PORT_CPP_TO_JAVA	cslc-csl-gen
-csl_gen/csl_enum_field.cpp	.cpp	4779	PORT_CPP_TO_JAVA	cslc-csl-gen
+csl_gen/csl_enum_field.cpp	.cpp	5004	PORT_CPP_TO_JAVA	cslc-csl-gen
 csl_gen/csl_enum_field.h	.h	1631	PORT_HEADER_TO_JAVA	cslc-csl-gen
 csl_gen/csl_gen.cpp	.cpp	6110	PORT_CPP_TO_JAVA	cslc-csl-gen
 csl_gen/csl_gen.h	.h	6925	PORT_HEADER_TO_JAVA	cslc-csl-gen

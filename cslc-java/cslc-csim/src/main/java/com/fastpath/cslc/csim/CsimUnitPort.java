@@ -1,4 +1,12 @@
 package com.fastpath.cslc.csim;
 
-/** Port marker for {@code NSCsimLib::CsimUnit} ({@code CsimUnit.h}). */
-public interface CsimUnitPort {}
+/**
+ * Port surface for {@code NSCsimLib::CsimUnit} ({@code trunk/cslc/trunk/src/csim/CsimUnit.h}) — unit and instance
+ * names. See {@link CsimUnitStub}.
+ */
+public interface CsimUnitPort {
+
+    String unitName();
+
+    String instanceName();
+}
