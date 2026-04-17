@@ -109,11 +109,11 @@ Incremental port (Java, vs TRUNK_FILE_INVENTORY.tsv backlog)
     CGenTbTestGen,
     CGenTbChapter, CGenTbParamDecl, CGenTbParamType, CGenTbCmdType (regen: scripts/gen_cgen_tb_cmd_type.py; Maven validate runs
     --check), CGenTbCmdRef,
-    CGenDeclTb (testScopeDecl / testPlainDecl / testScopeObjDecl / testScopeConstrObjDecl / testScopeObjScopeDecl +
-    stub main TG_DECLARATION), CGenCmdTb (trace + stub main TG_COMMAND_CALL),
-    CGenTbMainArgs (checkMainArgs / chapter names), CGenTbRepositoryPath (WORK + test/csl_test_gen), CGenTbRunStub (shared
-    runTestGen-stub entry), CGenInstCmdTb
-    (cGenInstCmds_tb), CGenInstDeclTb (cGenInstDecl_tb);
+    CGenDeclTb / CGenCmdTb / CGenInstCmdTb / CGenInstDeclTb (trace + stub mains + …AndDirs / …AndReport per ETestGen),
+    CGenTbMainArgs, CGenTbRepositoryPath, CGenTbChapterDirs (executeClean purge + buildMakeDirs + regression_control leaves),
+    CGenTbBuildContainers + CGenTbContainers (generic/cmd lookup maps), CGenTbRunContext (ThreadLocal TB globals during f()),
+    CGenTbFileHeader, CGenTbGeneratedFile (closeFile trailer + counter), CGenTbStubBuild (driver marker), CGenTbTestCounter,
+    CGenTbRegressionCtrl, CGenTbRunStub (containers + purge + layout + context + report), CGenTbReport;
     cGen_Declarations.h enums;
     csl_enum_field.cpp alternate enum/field
     path superseded for Java by interconnect CslGenEnum/CslGenField + CslGenEnumFieldTraceTest

@@ -6,19 +6,25 @@ import java.util.Objects;
  * Instance-declaration TB harness: {@code trunk/cslc/trunk/csl_gen/cGenInstDecl_tb.cpp} / {@code cGenInstDecl_tb.h}.
  *
  * <p>Legacy {@code main} calls {@code runTestGen(TG_INSTANCE_DECLARATION, argc, argv, &buildTests)}. Trace methods write
- * {@code //} lines into a {@link StringBuilder} instead of {@code ofstream}, matching {@link CGenDeclTb}. {@code buildTests}
- * is a no-op here; the C++ loop over {@code cslClasses} is not ported.
+ * {@code //} lines into a {@link StringBuilder} instead of {@code ofstream}, matching {@link CGenDeclTb}. Class-loop
+ * {@code buildTests} body is not ported; with {@link CGenTbRunContext}, {@link CGenTbStubBuild} emits a marker file like
+ * {@link CGenDeclTb}.
  */
 public final class CGenInstDeclTb {
 
     private CGenInstDeclTb() {}
 
-    /** Legacy {@code cGenInstDecl_tb.cpp} {@code buildTests()} body — not ported (requires {@code cslClasses} graph). */
-    public static void buildTests() {}
+    /**
+     * Legacy {@code cGenInstDecl_tb.cpp} {@code buildTests()} — graph loops not ported; with {@link CGenTbRunContext}, emits
+     * {@link CGenTbStubBuild} marker + {@link CGenTbTestCounter} like {@code closeFile}.
+     */
+    public static void buildTests() {
+        CGenTbStubBuild.emitDefaultMarkerIfRunContext();
+    }
 
     /**
-     * Stub for legacy {@code main}: {@link CGenTbMainArgs#validate} then {@link #buildTests()}. {@code runTestGen} repo /
-     * container / report steps are not ported.
+     * Stub for legacy {@code main}: {@link CGenTbMainArgs#validate} then {@link #buildTests()}. Repo + dirs + report +
+     * {@link CGenTbRunContext} via {@link #runStubMainWithRepositoryAndDirs} / {@link #runStubMainWithRepositoryAndReport}.
      */
     public static int runStubMain(String[] argv) {
         return CGenTbRunStub.runAfterMainArgs(argv, CGenInstDeclTb::buildTests);
@@ -27,6 +33,20 @@ public final class CGenInstDeclTb {
     /** Like {@link #runStubMain} plus {@link CGenTbRepositoryPath#check}. */
     public static int runStubMainWithRepository(String[] argv) {
         return CGenTbRunStub.runAfterLegacyRunChecks(argv, CGenInstDeclTb::buildTests);
+    }
+
+    /** Like {@link #runStubMainWithRepository} plus {@code buildMakeDirs} layout. */
+    public static int runStubMainWithRepositoryAndDirs(String[] argv) {
+        return CGenTbRunStub.runAfterLegacyRunChecksWithDirs(
+                argv, CGenInstDeclTb::buildTests, CGenTbTestGen.TG_INSTANCE_DECLARATION);
+    }
+
+    /**
+     * Like {@link #runStubMainWithRepositoryAndDirs} plus {@code createReport} for {@link CGenTbTestGen#TG_INSTANCE_DECLARATION}.
+     */
+    public static int runStubMainWithRepositoryAndReport(String[] argv) {
+        return CGenTbRunStub.runAfterLegacyRunChecksWithReport(
+                argv, CGenInstDeclTb::buildTests, CGenTbTestGen.TG_INSTANCE_DECLARATION);
     }
 
     /** Legacy {@code testGlobalInstDecl}. */

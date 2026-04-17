@@ -4,7 +4,7 @@
     {
       "label": "cslc-java: Maven test (local .m2)",
       "type": "shell",
-      "command": "mvn -Dmaven.repo.local=${workspaceFolder}/cslc-java/.m2/repository test",
+      "command": "mvn -B -ntp -Dmaven.repo.local=${workspaceFolder}/cslc-java/.m2/repository -Dsurefire.failIfNoSpecifiedTests=false test",
       "options": {
         "cwd": "${workspaceFolder}/cslc-java",
         "env": {}

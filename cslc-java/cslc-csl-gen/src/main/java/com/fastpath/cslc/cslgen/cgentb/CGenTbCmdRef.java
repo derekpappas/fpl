@@ -30,8 +30,14 @@ public final class CGenTbCmdRef {
         return canCallFromGlobalScope;
     }
 
+    /** Legacy {@code cmd->isCaller(cls->getClass())} — same ESL kind as {@link CGenTbClassRef#kind()}. */
+    public boolean isCaller(CGenTbClassRef cls) {
+        Objects.requireNonNull(cls, "cls");
+        return callerClass == cls.kind();
+    }
+
     /** Legacy {@code cmd->isCaller(cls->getClass()) && cmd->getCanCallFromGlobalScope()} (simplified: same {@link CGenTbEslClass}). */
     public boolean isLegalFor(CGenTbClassRef cls) {
-        return callerClass == cls.kind() && canCallFromGlobalScope;
+        return isCaller(cls) && canCallFromGlobalScope;
     }
 }

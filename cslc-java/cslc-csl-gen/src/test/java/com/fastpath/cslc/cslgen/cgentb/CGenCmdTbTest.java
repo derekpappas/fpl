@@ -40,4 +40,32 @@ class CGenCmdTbTest {
         CGenCmdTb.testGlobalPlainDeclGlobalCall(cmd, cls, 2, 3, out);
         assertEquals(6, out.toString().lines().count());
     }
+
+    @Test
+    void cmdRefIsCallerMatchesKindOnly() {
+        CGenTbCmdRef cmd = new CGenTbCmdRef(CGenTbCmdType.CMD_PRINT, CGenTbEslClass.CSL_PORT, false);
+        CGenTbClassRef port = new CGenTbClassRef("p", CGenTbEslClass.CSL_PORT, false);
+        CGenTbClassRef unit = new CGenTbClassRef("u", CGenTbEslClass.CSL_UNIT, true);
+        assertTrue(cmd.isCaller(port));
+        assertTrue(!cmd.isCaller(unit));
+    }
+
+    @Test
+    void globalPlainDeclScopeCallEmitsScopeName() {
+        CGenTbCmdRef cmd = new CGenTbCmdRef(CGenTbCmdType.CMD_PRINT, CGenTbEslClass.CSL_PORT, true);
+        CGenTbClassRef sig = new CGenTbClassRef("s", CGenTbEslClass.CSL_SIGNAL, false);
+        CGenTbClassRef tb = new CGenTbClassRef("tb", CGenTbEslClass.CSL_TESTBENCH, true);
+        StringBuilder out = new StringBuilder();
+        CGenCmdTb.testGlobalPlainDeclScopeCall(cmd, sig, tb, 1, 1, out);
+        assertTrue(out.toString().contains("scope=tb"));
+    }
+
+    @Test
+    void globalScopeDeclScopeCallRepeatsByPredeclRows() {
+        CGenTbCmdRef cmd = new CGenTbCmdRef(CGenTbCmdType.CMD_PRINT, CGenTbEslClass.CSL_UNIT, true);
+        CGenTbClassRef u = new CGenTbClassRef("u", CGenTbEslClass.CSL_UNIT, true);
+        StringBuilder out = new StringBuilder();
+        CGenCmdTb.testGlobalScopeDeclScopeCall(cmd, u, 3, out);
+        assertEquals(3, out.toString().lines().count());
+    }
 }

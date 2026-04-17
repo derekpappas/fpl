@@ -11,12 +11,18 @@ public final class CGenDeclTb {
 
     private CGenDeclTb() {}
 
-    /** Legacy {@code cGenDecl_tb.cpp} {@code buildTests()} — not ported (requires {@code cslClasses} / {@code belongsToChapter}). */
-    public static void buildTests() {}
+    /**
+     * Legacy {@code cGenDecl_tb.cpp} {@code buildTests()} — class loops not ported; when {@link CGenTbRunStub} installs
+     * {@link CGenTbRunContext}, emits one {@link CGenTbStubBuild} marker file and increments {@link CGenTbTestCounter} like
+     * {@code closeFile}.
+     */
+    public static void buildTests() {
+        CGenTbStubBuild.emitDefaultMarkerIfRunContext();
+    }
 
     /**
-     * Stub for legacy {@code main}: {@link CGenTbMainArgs#validate} then {@link #buildTests()}. Full {@code runTestGen} is not
-     * ported.
+     * Stub for legacy {@code main}: {@link CGenTbMainArgs#validate} then {@link #buildTests()}. Generator loops are not ported;
+     * {@code runTestGen} wiring is via {@link CGenTbRunStub} helpers.
      */
     public static int runStubMain(String[] argv) {
         return CGenTbRunStub.runAfterMainArgs(argv, CGenDeclTb::buildTests);
@@ -27,6 +33,23 @@ public final class CGenDeclTb {
      */
     public static int runStubMainWithRepository(String[] argv) {
         return CGenTbRunStub.runAfterLegacyRunChecks(argv, CGenDeclTb::buildTests);
+    }
+
+    /**
+     * Like {@link #runStubMainWithRepository} plus {@code buildMakeDirs} layout ({@link CGenTbRunStub#runAfterLegacyRunChecksWithDirs}).
+     */
+    public static int runStubMainWithRepositoryAndDirs(String[] argv) {
+        return CGenTbRunStub.runAfterLegacyRunChecksWithDirs(
+                argv, CGenDeclTb::buildTests, CGenTbTestGen.TG_DECLARATION);
+    }
+
+    /**
+     * Like {@link #runStubMainWithRepositoryAndDirs} and legacy {@code createReport} for {@link CGenTbTestGen#TG_DECLARATION}
+     * ({@link CGenTbRunStub#runAfterLegacyRunChecksWithReport}).
+     */
+    public static int runStubMainWithRepositoryAndReport(String[] argv) {
+        return CGenTbRunStub.runAfterLegacyRunChecksWithReport(
+                argv, CGenDeclTb::buildTests, CGenTbTestGen.TG_DECLARATION);
     }
 
     /**

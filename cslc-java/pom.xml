@@ -257,6 +257,8 @@
           <version>3.5.2</version>
           <configuration>
             <argLine>${argLine}</argLine>
+            <!-- -pl … -am -Dtest=…: upstream modules run Surefire with no matching tests -->
+            <failIfNoSpecifiedTests>false</failIfNoSpecifiedTests>
           </configuration>
         </plugin>
         <plugin>
