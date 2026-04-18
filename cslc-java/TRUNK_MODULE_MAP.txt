@@ -112,6 +112,9 @@ Incremental port (Java, vs TRUNK_FILE_INVENTORY.tsv backlog)
     CGenDeclTb / CGenCmdTb / CGenInstCmdTb / CGenInstDeclTb (trace + stub mains + …AndDirs / …AndReport per ETestGen),
     CGenTbMainArgs, CGenTbRepositoryPath, CGenTbChapterDirs (executeClean purge + buildMakeDirs + regression_control leaves),
     CGenTbBuildContainers + CGenTbContainers (generic/cmd lookup maps), CGenTbRunContext (ThreadLocal TB globals during f()),
+    CGenTbClassSpec + CGenTbSpecs (minimal decl/cmd specs: LANG BITRANGE/FIELD/ENUM, FIFO, INTERCON port/signal/signal_group/interface/unit, MEM memory, REG register, ISA isa_field, TESTBENCH; FIELD/UNIT/ISA_FIELD BITRANGE predecl; SIGNAL_GROUP mandatory inner signal),
+    CGenTbPreDeclOrder (createPreDeclVectOrder cartesian),
+    CGenTbDeclEmit (writes legal decl files), CGenTbCmdEmit (writes legal cmd-call files),
     CGenTbFileHeader, CGenTbGeneratedFile (closeFile trailer + counter), CGenTbStubBuild (driver marker), CGenTbTestCounter,
     CGenTbRegressionCtrl, CGenTbRunStub (containers + purge + layout + context + report), CGenTbReport;
     cGen_Declarations.h enums;

@@ -11,8 +11,12 @@
  * com.fastpath.cslc.cslgen.cgentb.CGenInstCmdTb}, {@link com.fastpath.cslc.cslgen.cgentb.CGenTbMainArgs}, {@link
  * com.fastpath.cslc.cslgen.cgentb.CGenTbRepositoryPath}, {@link com.fastpath.cslc.cslgen.cgentb.CGenTbChapterDirs}, {@link
  * com.fastpath.cslc.cslgen.cgentb.CGenTbBuildContainers}, {@link com.fastpath.cslc.cslgen.cgentb.CGenTbContainers}, {@link
- * com.fastpath.cslc.cslgen.cgentb.CGenTbRunContext}, {@link com.fastpath.cslc.cslgen.cgentb.CGenTbFileHeader}, {@link
- * com.fastpath.cslc.cslgen.cgentb.CGenTbGeneratedFile}, {@link com.fastpath.cslc.cslgen.cgentb.CGenTbStubBuild}, {@link
+ * com.fastpath.cslc.cslgen.cgentb.CGenTbRunContext}, {@link com.fastpath.cslc.cslgen.cgentb.CGenTbClassSpec}, {@link
+ * com.fastpath.cslc.cslgen.cgentb.CGenTbSpecs}, {@link com.fastpath.cslc.cslgen.cgentb.CGenTbPreDeclOrder}, {@link
+ * com.fastpath.cslc.cslgen.cgentb.CGenTbDeclEmit}, {@link
+ * com.fastpath.cslc.cslgen.cgentb.CGenTbCmdEmit}, {@link
+ * com.fastpath.cslc.cslgen.cgentb.CGenTbFileHeader}, {@link com.fastpath.cslc.cslgen.cgentb.CGenTbGeneratedFile}, {@link
+ * com.fastpath.cslc.cslgen.cgentb.CGenTbStubBuild}, {@link
  * com.fastpath.cslc.cslgen.cgentb.CGenTbTestCounter}, {@link com.fastpath.cslc.cslgen.cgentb.CGenTbRegressionCtrl}, {@link
  * com.fastpath.cslc.cslgen.cgentb.CGenTbRunStub} ({@code runAfterLegacyRunChecksWithDirs},
  * {@code runAfterLegacyRunChecksWithReport}), {@link com.fastpath.cslc.cslgen.cgentb.CGenTbReport}, enums {@link

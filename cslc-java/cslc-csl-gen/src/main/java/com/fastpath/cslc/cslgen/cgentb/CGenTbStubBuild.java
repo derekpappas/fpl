@@ -14,6 +14,20 @@ public final class CGenTbStubBuild {
     private CGenTbStubBuild() {}
 
     /**
+     * Writes only the legacy-style marker file {@code tb_stub_<tgType>_emit.csl} under the test-gen root when a
+     * {@link CGenTbRunContext} is installed.
+     */
+    public static void emitMarkerOnlyIfRunContext() {
+        CGenTbRunContext.current()
+                .ifPresent(ctx -> {
+                    Path marker =
+                            ctx.absoluteTestGenRoot().resolve("tb_stub_" + ctx.tgType().name().toLowerCase() + "_emit.csl");
+                    CGenTbGeneratedFile.writeClosedUnchecked(
+                            marker, "// TB stub marker\n", ctx.binaryName(), ctx.testCounter());
+                });
+    }
+
+    /**
      * If {@link CGenTbRunContext#current()} is present, writes one {@code legal_test_*} file per class in the selected chapter
      * (or all classes when {@link CGenTbChapter#CPT_ALL}), then also writes {@code tb_stub_<tgType>_emit.csl} under the test-gen
      * root. Each output file uses {@link CGenTbGeneratedFile} so {@link CGenTbTestCounter} matches legacy {@code closeFile}.
@@ -48,10 +62,7 @@ public final class CGenTbStubBuild {
                                         + "\n";
                         CGenTbGeneratedFile.writeClosedUnchecked(f, body, ctx.binaryName(), ctx.testCounter());
                     }
-                    Path marker =
-                            ctx.absoluteTestGenRoot().resolve("tb_stub_" + ctx.tgType().name().toLowerCase() + "_emit.csl");
-                    CGenTbGeneratedFile.writeClosedUnchecked(
-                            marker, "// TB stub marker\n", ctx.binaryName(), ctx.testCounter());
+                    emitMarkerOnlyIfRunContext();
                 });
     }
 }

@@ -12,10 +12,17 @@ public final class CGenCmdTb {
 
     /**
      * Legacy {@code cGenCmds_tb.cpp} {@code buildTests()} — loops not ported; with {@link CGenTbRunContext}, emits
-     * {@link CGenTbStubBuild} marker + {@link CGenTbTestCounter} like {@code closeFile}.
+     * a small set of real “legal command call” test files (Slice 3) and increments {@link CGenTbTestCounter} via
+     * {@link CGenTbGeneratedFile}.
      */
     public static void buildTests() {
-        CGenTbStubBuild.emitDefaultMarkerIfRunContext();
+        CGenTbRunContext.current()
+                .ifPresentOrElse(
+                        ctx -> {
+                            CGenTbCmdEmit.emitForRunContext(ctx);
+                            CGenTbStubBuild.emitMarkerOnlyIfRunContext();
+                        },
+                        () -> {});
     }
 
     /**

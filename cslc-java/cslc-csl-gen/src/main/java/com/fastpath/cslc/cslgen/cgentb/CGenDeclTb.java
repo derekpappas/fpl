@@ -13,11 +13,17 @@ public final class CGenDeclTb {
 
     /**
      * Legacy {@code cGenDecl_tb.cpp} {@code buildTests()} — class loops not ported; when {@link CGenTbRunStub} installs
-     * {@link CGenTbRunContext}, emits one {@link CGenTbStubBuild} marker file and increments {@link CGenTbTestCounter} like
-     * {@code closeFile}.
+     * {@link CGenTbRunContext}, emits a small set of real “legal declaration” test files (Slice 2) and increments
+     * {@link CGenTbTestCounter} via {@link CGenTbGeneratedFile}.
      */
     public static void buildTests() {
-        CGenTbStubBuild.emitDefaultMarkerIfRunContext();
+        CGenTbRunContext.current()
+                .ifPresentOrElse(
+                        ctx -> {
+                            CGenTbDeclEmit.emitForRunContext(ctx);
+                            CGenTbStubBuild.emitMarkerOnlyIfRunContext();
+                        },
+                        () -> {});
     }
 
     /**
