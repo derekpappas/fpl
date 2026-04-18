@@ -816,17 +816,17 @@ gate_instantiation
     cmos_switch_instance 
     (COMMA cmos_switch_instance)*
   | enable_gatetype
-    (  LPAREN drive_strength RPAREN | )
+    ( LPAREN drive_strength RPAREN )?
     (delay3)?
     enable_gate_instance (COMMA enable_gate_instance)*
   | mos_switchtype (delay3)?
     mos_switch_instance (COMMA mos_switch_instance)*
   | n_input_gatetype
-    (LPAREN drive_strength RPAREN |)
+    ( LPAREN drive_strength RPAREN )?
     (delay2)?
     n_input_gate_instance (COMMA n_input_gate_instance)*
   | n_output_gatetype
-    (LPAREN drive_strength RPAREN |)
+    ( LPAREN drive_strength RPAREN )?
     (delay2)?
     n_output_gate_instance (COMMA n_output_gate_instance)*
   | pass_enable_switchtype (delay2)?
@@ -834,10 +834,10 @@ gate_instantiation
   | pass_switchtype
     pass_switch_instance (COMMA pass_switch_instance)*
   | K_PULLDOWN
-    (LPAREN pulldown_strength RPAREN |)
+    ( LPAREN pulldown_strength RPAREN )?
     pull_gate_instance (COMMA pull_gate_instance)*
   | K_PULLUP
-    (LPAREN pullup_strength RPAREN |)
+    ( LPAREN pullup_strength RPAREN )?
     pull_gate_instance (COMMA pull_gate_instance)*
   )
   SEMI

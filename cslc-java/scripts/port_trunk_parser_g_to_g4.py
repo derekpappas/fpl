@@ -433,6 +433,16 @@ def strip_parser_return_clauses(text: str) -> str:
     return re.sub(r"\s+returns\s+\[[^\]]*\]", "", text)
 
 
+def patch_empty_alternatives_in_gate_instantiation(text: str) -> str:
+    """ANTLR2 ``( X | )`` / ``( X |)`` optional groups -> ANTLR4 ``( X )?``."""
+    t = text
+    t = t.replace("(  LPAREN drive_strength RPAREN | )", "( LPAREN drive_strength RPAREN )?")
+    t = t.replace("(LPAREN drive_strength RPAREN |)", "( LPAREN drive_strength RPAREN )?")
+    t = t.replace("(LPAREN pulldown_strength RPAREN |)", "( LPAREN pulldown_strength RPAREN )?")
+    t = t.replace("(LPAREN pullup_strength RPAREN |)", "( LPAREN pullup_strength RPAREN )?")
+    return t
+
+
 def patch_empty_port_rule(text: str) -> str:
     """``port`` had ``| { empty = TRUE; }``; after stripping actions the alt is empty and breaks ANTLR4."""
     return re.sub(
@@ -480,6 +490,7 @@ def port_body(raw_lines: list[str]) -> str:
     text = strip_invocation_arguments(text)
     text = remove_orphan_optional_markers(text)
     text = strip_empty_optional_openers(text)
+    text = patch_empty_alternatives_in_gate_instantiation(text)
     text = patch_empty_port_rule(text)
     text = strip_parser_return_clauses(text)
     return text
