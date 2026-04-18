@@ -6,18 +6,24 @@ package com.fastpath.cslc.cslgen.cgentb;
  * <p>Legacy {@code main} calls {@code runTestGen(TG_INSTANCE_COMMAND_CALL, argc, argv, &buildTests)}. The Java port models
  * {@code checkMainArgs} via {@link CGenTbMainArgs#validate}. {@code runTestGen} wiring uses {@link CGenTbBuildContainers},
  * {@link CGenTbRunContext}, and {@link CGenTbGeneratedFile} through {@link #runStubMainWithRepositoryAndDirs} /
- * {@link #runStubMainWithRepositoryAndReport}; full generator loops remain stubs.
+ * {@link #runStubMainWithRepositoryAndReport}; {@link #buildTests()} mirrors {@link CGenCmdTb} for spec-driven cmd files.
  */
 public final class CGenInstCmdTb {
 
     private CGenInstCmdTb() {}
 
     /**
-     * Legacy {@code cGenInstCmds_tb.cpp} {@code buildTests()} — loops not ported; with {@link CGenTbRunContext}, emits
-     * {@link CGenTbStubBuild} marker + {@link CGenTbTestCounter} like {@code closeFile}.
+     * Legacy {@code cGenInstCmds_tb.cpp} {@code buildTests()} — same spec-driven emission as {@link CGenCmdTb#buildTests()}
+     * with {@link CGenTbTestGen#TG_INSTANCE_COMMAND_CALL} ordinals in output paths.
      */
     public static void buildTests() {
-        CGenTbStubBuild.emitDefaultMarkerIfRunContext();
+        CGenTbRunContext.current()
+                .ifPresentOrElse(
+                        ctx -> {
+                            CGenTbCmdEmit.emitForRunContext(ctx);
+                            CGenTbStubBuild.emitMarkerOnlyIfRunContext();
+                        },
+                        () -> {});
     }
 
     /**

@@ -1,6 +1,6 @@
 package com.fastpath.cslc.parser;
 
-import com.fastpath.cslc.parser.csl.CslLexer;
+import com.fastpath.cslc.parser.verilog.VerilogLexer;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.Token;
@@ -13,21 +13,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Lex-only helpers using generated {@link CslLexer}. For parse trees see {@link CslParserFacade} and {@code CslParser.g4}
- * (incremental port of legacy {@code csl.parser.g}).
+ * Lex-only helpers using generated {@link VerilogLexer}. For parse trees see {@link VerilogParserFacade}.
  */
-public final class CslLexerFacade {
+public final class VerilogLexerFacade {
 
-    private CslLexerFacade() {}
+    private VerilogLexerFacade() {}
 
     public static List<Token> tokenize(String text) {
-        CslLexer lexer = new CslLexer(CharStreams.fromString(text));
+        VerilogLexer lexer = new VerilogLexer(CharStreams.fromString(text));
         return drain(lexer);
     }
 
     public static List<Token> tokenizeFile(Path path) {
         try {
-            CslLexer lexer = new CslLexer(CharStreams.fromPath(path, StandardCharsets.UTF_8));
+            VerilogLexer lexer = new VerilogLexer(CharStreams.fromPath(path, StandardCharsets.UTF_8));
             return drain(lexer);
         } catch (IOException e) {
             throw new UncheckedIOException(e);

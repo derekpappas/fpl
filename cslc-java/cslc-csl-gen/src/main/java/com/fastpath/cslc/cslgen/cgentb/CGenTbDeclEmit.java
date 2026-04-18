@@ -7,15 +7,20 @@ import java.util.Objects;
 
 /**
  * Minimal declaration emitter (Slice 2): generate a handful of real “legal” declaration files from {@link CGenTbSpecs} under
- * the legacy chapter {@code _valid} leaf dir for {@link CGenTbTestGen#TG_DECLARATION}.
+ * the legacy chapter {@code _valid} leaf dir for {@link CGenTbTestGen#TG_DECLARATION} and
+ * {@link CGenTbTestGen#TG_INSTANCE_DECLARATION} (same layout, different {@code ETestGen} ordinal in dir names).
  */
 public final class CGenTbDeclEmit {
 
     private CGenTbDeclEmit() {}
 
+    private static boolean emitsDeclarationFiles(CGenTbTestGen tgType) {
+        return tgType == CGenTbTestGen.TG_DECLARATION || tgType == CGenTbTestGen.TG_INSTANCE_DECLARATION;
+    }
+
     public static void emitForRunContext(CGenTbRunContext ctx) {
         Objects.requireNonNull(ctx, "ctx");
-        if (ctx.tgType() != CGenTbTestGen.TG_DECLARATION) {
+        if (!emitsDeclarationFiles(ctx.tgType())) {
             return;
         }
         List<CGenTbClassSpec> specs = CGenTbSpecs.forChapter(ctx.chapterFilter());

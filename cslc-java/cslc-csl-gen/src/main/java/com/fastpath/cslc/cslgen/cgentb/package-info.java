@@ -13,8 +13,8 @@
  * com.fastpath.cslc.cslgen.cgentb.CGenTbBuildContainers}, {@link com.fastpath.cslc.cslgen.cgentb.CGenTbContainers}, {@link
  * com.fastpath.cslc.cslgen.cgentb.CGenTbRunContext}, {@link com.fastpath.cslc.cslgen.cgentb.CGenTbClassSpec}, {@link
  * com.fastpath.cslc.cslgen.cgentb.CGenTbSpecs}, {@link com.fastpath.cslc.cslgen.cgentb.CGenTbPreDeclOrder}, {@link
- * com.fastpath.cslc.cslgen.cgentb.CGenTbDeclEmit}, {@link
- * com.fastpath.cslc.cslgen.cgentb.CGenTbCmdEmit}, {@link
+ * com.fastpath.cslc.cslgen.cgentb.CGenTbDeclEmit} (TG_DECLARATION + TG_INSTANCE_DECLARATION), {@link
+ * com.fastpath.cslc.cslgen.cgentb.CGenTbCmdEmit} (TG_COMMAND_CALL + TG_INSTANCE_COMMAND_CALL), {@link
  * com.fastpath.cslc.cslgen.cgentb.CGenTbFileHeader}, {@link com.fastpath.cslc.cslgen.cgentb.CGenTbGeneratedFile}, {@link
  * com.fastpath.cslc.cslgen.cgentb.CGenTbStubBuild}, {@link
  * com.fastpath.cslc.cslgen.cgentb.CGenTbTestCounter}, {@link com.fastpath.cslc.cslgen.cgentb.CGenTbRegressionCtrl}, {@link

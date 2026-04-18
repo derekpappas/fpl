@@ -109,10 +109,10 @@ Incremental port (Java, vs TRUNK_FILE_INVENTORY.tsv backlog)
     CGenTbTestGen,
     CGenTbChapter, CGenTbParamDecl, CGenTbParamType, CGenTbCmdType (regen: scripts/gen_cgen_tb_cmd_type.py; Maven validate runs
     --check), CGenTbCmdRef,
-    CGenDeclTb / CGenCmdTb / CGenInstCmdTb / CGenInstDeclTb (trace + stub mains + …AndDirs / …AndReport per ETestGen),
+    CGenDeclTb / CGenCmdTb / CGenInstCmdTb / CGenInstDeclTb (trace + mains + …AndDirs / …AndReport; inst drivers call DeclEmit/CmdEmit for TG_INSTANCE_*),
     CGenTbMainArgs, CGenTbRepositoryPath, CGenTbChapterDirs (executeClean purge + buildMakeDirs + regression_control leaves),
     CGenTbBuildContainers + CGenTbContainers (generic/cmd lookup maps), CGenTbRunContext (ThreadLocal TB globals during f()),
-    CGenTbClassSpec + CGenTbSpecs (minimal decl/cmd specs: LANG BITRANGE/FIELD/ENUM, FIFO, INTERCON port/signal/signal_group/interface/unit, MEM memory, REG register, ISA isa_field, TESTBENCH; FIELD/UNIT/ISA_FIELD BITRANGE predecl; SIGNAL_GROUP mandatory inner signal),
+    CGenTbClassSpec + CGenTbSpecs (decl/cmd specs: LANG BITRANGE/FIELD/ENUM/EVENT/MULTI_DIM_BITRANGE, FIFO, INTERCON, MEM/MEM_MAP/REG/REG_FILE/ISA/TESTBENCH/VERIFC state_data+vector; FIELD/UNIT/ISA_FIELD BITRANGE predecl; SIGNAL_GROUP mandatory inner signal),
     CGenTbPreDeclOrder (createPreDeclVectOrder cartesian),
     CGenTbDeclEmit (writes legal decl files), CGenTbCmdEmit (writes legal cmd-call files),
     CGenTbFileHeader, CGenTbGeneratedFile (closeFile trailer + counter), CGenTbStubBuild (driver marker), CGenTbTestCounter,

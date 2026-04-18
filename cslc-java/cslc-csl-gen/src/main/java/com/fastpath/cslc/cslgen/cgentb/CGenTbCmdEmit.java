@@ -7,7 +7,7 @@ import java.util.Objects;
 
 /**
  * Minimal command-call emitter (Slice 3): generate a handful of real “legal” command-call files under the legacy chapter
- * {@code _valid} leaf dir for {@link CGenTbTestGen#TG_COMMAND_CALL}.
+ * {@code _valid} leaf dir for {@link CGenTbTestGen#TG_COMMAND_CALL} and {@link CGenTbTestGen#TG_INSTANCE_COMMAND_CALL}.
  *
  * <p>This does not attempt to fully match the legacy command legality matrix; it simply emits representative calls that
  * appear in {@code cGenBase_tb.cpp} for BITRANGE and FIFO.
@@ -16,9 +16,13 @@ public final class CGenTbCmdEmit {
 
     private CGenTbCmdEmit() {}
 
+    private static boolean emitsCommandCallFiles(CGenTbTestGen tgType) {
+        return tgType == CGenTbTestGen.TG_COMMAND_CALL || tgType == CGenTbTestGen.TG_INSTANCE_COMMAND_CALL;
+    }
+
     public static void emitForRunContext(CGenTbRunContext ctx) {
         Objects.requireNonNull(ctx, "ctx");
-        if (ctx.tgType() != CGenTbTestGen.TG_COMMAND_CALL) {
+        if (!emitsCommandCallFiles(ctx.tgType())) {
             return;
         }
         List<CGenTbClassSpec> specs = CGenTbSpecs.forChapter(ctx.chapterFilter());
@@ -44,6 +48,13 @@ public final class CGenTbCmdEmit {
             case CSL_MEMORY -> "mem";
             case CSL_REGISTER -> "reg";
             case CSL_ISA_FIELD -> "isf";
+            case CSL_MEMORY_MAP -> "mm";
+            case CSL_MEMORY_MAP_PAGE -> "mmp";
+            case CSL_REGISTER_FILE -> "rf";
+            case CSL_STATE_DATA -> "sd";
+            case CSL_VECTOR -> "vc";
+            case CSL_EVENT -> "ev";
+            case CSL_MULTI_DIM_BITRANGE -> "mdb";
             default -> "o";
         };
 
@@ -95,6 +106,23 @@ public final class CGenTbCmdEmit {
                     + ");\n"
                     + obj
                     + ".set_type(opcode);\n";
+            case CSL_MEMORY_MAP -> "csl_memory_map " + obj + ";\n";
+            case CSL_MEMORY_MAP_PAGE -> "csl_memory_map_page " + obj + ";\n";
+            case CSL_REGISTER_FILE -> "csl_register_file "
+                    + obj
+                    + ";\n"
+                    + obj
+                    + ".set_depth("
+                    + CGenConsts.DEPTH_DEFAULT
+                    + ");\n"
+                    + obj
+                    + ".set_width("
+                    + CGenConsts.WIDTH_DEFAULT
+                    + ");\n";
+            case CSL_STATE_DATA -> "csl_state_data " + obj + ";\n";
+            case CSL_VECTOR -> "csl_vector " + obj + ";\n";
+            case CSL_EVENT -> "csl_event " + obj + ";\n";
+            case CSL_MULTI_DIM_BITRANGE -> "csl_multi_dim_bitrange " + obj + "(" + CGenConsts.DIMENSION_DEFAULT + ");\n";
             default -> "";
         };
 

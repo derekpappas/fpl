@@ -7,19 +7,26 @@ import java.util.Objects;
  *
  * <p>Legacy {@code main} calls {@code runTestGen(TG_INSTANCE_DECLARATION, argc, argv, &buildTests)}. Trace methods write
  * {@code //} lines into a {@link StringBuilder} instead of {@code ofstream}, matching {@link CGenDeclTb}. Class-loop
- * {@code buildTests} body is not ported; with {@link CGenTbRunContext}, {@link CGenTbStubBuild} emits a marker file like
- * {@link CGenDeclTb}.
+ * {@code buildTests} mirrors {@link CGenDeclTb}: with {@link CGenTbRunContext}, {@link CGenTbDeclEmit} writes the same
+ * spec-driven legal decl files under the {@link CGenTbTestGen#TG_INSTANCE_DECLARATION} chapter dirs, then
+ * {@link CGenTbStubBuild#emitMarkerOnlyIfRunContext()}.
  */
 public final class CGenInstDeclTb {
 
     private CGenInstDeclTb() {}
 
     /**
-     * Legacy {@code cGenInstDecl_tb.cpp} {@code buildTests()} — graph loops not ported; with {@link CGenTbRunContext}, emits
-     * {@link CGenTbStubBuild} marker + {@link CGenTbTestCounter} like {@code closeFile}.
+     * Legacy {@code cGenInstDecl_tb.cpp} {@code buildTests()} — same spec-driven emission as {@link CGenDeclTb#buildTests()}
+     * with {@link CGenTbTestGen#TG_INSTANCE_DECLARATION} ordinals in output paths.
      */
     public static void buildTests() {
-        CGenTbStubBuild.emitDefaultMarkerIfRunContext();
+        CGenTbRunContext.current()
+                .ifPresentOrElse(
+                        ctx -> {
+                            CGenTbDeclEmit.emitForRunContext(ctx);
+                            CGenTbStubBuild.emitMarkerOnlyIfRunContext();
+                        },
+                        () -> {});
     }
 
     /**

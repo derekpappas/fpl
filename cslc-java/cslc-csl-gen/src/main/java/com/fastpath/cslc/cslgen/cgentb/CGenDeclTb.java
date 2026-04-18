@@ -12,9 +12,10 @@ public final class CGenDeclTb {
     private CGenDeclTb() {}
 
     /**
-     * Legacy {@code cGenDecl_tb.cpp} {@code buildTests()} — class loops not ported; when {@link CGenTbRunStub} installs
-     * {@link CGenTbRunContext}, emits a small set of real “legal declaration” test files (Slice 2) and increments
-     * {@link CGenTbTestCounter} via {@link CGenTbGeneratedFile}.
+     * Legacy {@code cGenDecl_tb.cpp} {@code buildTests()} — when {@link CGenTbRunStub} installs {@link CGenTbRunContext} with
+     * {@link CGenTbTestGen#TG_DECLARATION}, {@link CGenTbDeclEmit} writes spec-driven legal decl files and increments
+     * {@link CGenTbTestCounter} via {@link CGenTbGeneratedFile} ({@link CGenInstDeclTb} uses the same emitter with
+     * {@link CGenTbTestGen#TG_INSTANCE_DECLARATION}).
      */
     public static void buildTests() {
         CGenTbRunContext.current()

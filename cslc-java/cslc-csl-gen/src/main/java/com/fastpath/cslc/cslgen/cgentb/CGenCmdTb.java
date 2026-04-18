@@ -11,9 +11,9 @@ public final class CGenCmdTb {
     private CGenCmdTb() {}
 
     /**
-     * Legacy {@code cGenCmds_tb.cpp} {@code buildTests()} — loops not ported; with {@link CGenTbRunContext}, emits
-     * a small set of real “legal command call” test files (Slice 3) and increments {@link CGenTbTestCounter} via
-     * {@link CGenTbGeneratedFile}.
+     * Legacy {@code cGenCmds_tb.cpp} {@code buildTests()} — with {@link CGenTbRunContext} and {@link CGenTbTestGen#TG_COMMAND_CALL},
+     * {@link CGenTbCmdEmit} writes spec-driven legal cmd-call files and increments {@link CGenTbTestCounter} via
+     * {@link CGenTbGeneratedFile} ({@link CGenInstCmdTb} uses the same emitter with {@link CGenTbTestGen#TG_INSTANCE_COMMAND_CALL}).
      */
     public static void buildTests() {
         CGenTbRunContext.current()

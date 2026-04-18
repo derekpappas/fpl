@@ -13,6 +13,8 @@ public final class CGenTbSpecs {
                 bitrange(),
                 field(),
                 enum_(),
+                event(),
+                multiDimBitrange(),
                 port(),
                 signal(),
                 signalGroup(),
@@ -22,6 +24,11 @@ public final class CGenTbSpecs {
                 memory(),
                 register(),
                 isaField(),
+                memoryMap(),
+                memoryMapPage(),
+                registerFile(),
+                stateData(),
+                vector(),
                 testbench());
     }
 
@@ -113,6 +120,39 @@ public final class CGenTbSpecs {
                 List.of(),
                 List.of(new CGenTbClassSpec.DeclVariant("one_item", "csl_enum " + en + " {\n  " + item + "\n};\n")),
                 List.of());
+    }
+
+    /**
+     * From legacy {@code buildEvent()} ({@code CPT_LANG}): cmd {@code add_equation(CONST_ONE)} (no decl param rows in legacy
+     * snippet).
+     */
+    private static CGenTbClassSpec event() {
+        String ev = "ev";
+        return new CGenTbClassSpec(
+                CGenTbEslClass.CSL_EVENT,
+                CGenTbChapter.CPT_LANG,
+                List.of(),
+                List.of(new CGenTbClassSpec.DeclVariant("plain", "csl_event " + ev + ";\n")),
+                List.of(
+                        new CGenTbClassSpec.CmdVariant(
+                                "add_equation", ev + ".add_equation(" + CGenConsts.CONST_ONE + ");\n")));
+    }
+
+    /**
+     * From legacy {@code buildMultiDimBitrange()} ({@code CPT_LANG}): dimension decl and several {@code get_dim_*} cmds.
+     */
+    private static CGenTbClassSpec multiDimBitrange() {
+        String mdb = "mdb";
+        return new CGenTbClassSpec(
+                CGenTbEslClass.CSL_MULTI_DIM_BITRANGE,
+                CGenTbChapter.CPT_LANG,
+                List.of(),
+                List.of(
+                        new CGenTbClassSpec.DeclVariant(
+                                "dim", "csl_multi_dim_bitrange " + mdb + "(" + CGenConsts.DIMENSION_DEFAULT + ");\n")),
+                List.of(
+                        new CGenTbClassSpec.CmdVariant("get_dim_width", mdb + ".get_dim_width();\n"),
+                        new CGenTbClassSpec.CmdVariant("get_dim_lower", mdb + ".get_dim_lower();\n")));
     }
 
     /**
@@ -295,6 +335,94 @@ public final class CGenTbSpecs {
                 List.of(CGenTbEslClass.CSL_BITRANGE),
                 List.of(new CGenTbClassSpec.DeclVariant("plain", "csl_unit " + u + " {\n};\n")),
                 List.of(new CGenTbClassSpec.CmdVariant("get_unit_prefix", u + ".get_unit_prefix();\n")));
+    }
+
+    /**
+     * From legacy {@code buildMemMap()} ({@code CPT_MEM_MAP}): scope-holder with {@code get_data_word_width} / {@code get_prefix}
+     * style cmds.
+     */
+    private static CGenTbClassSpec memoryMap() {
+        String mm = "mm";
+        return new CGenTbClassSpec(
+                CGenTbEslClass.CSL_MEMORY_MAP,
+                CGenTbChapter.CPT_MEM_MAP,
+                List.of(),
+                List.of(new CGenTbClassSpec.DeclVariant("plain", "csl_memory_map " + mm + ";\n")),
+                List.of(
+                        new CGenTbClassSpec.CmdVariant("get_data_word_width", mm + ".get_data_word_width();\n"),
+                        new CGenTbClassSpec.CmdVariant("get_prefix", mm + ".get_prefix();\n")));
+    }
+
+    /**
+     * From legacy {@code buildMemMapPage()} ({@code CPT_MEM_MAP}): {@code csl_memory_map_page} with representative getter
+     * cmd.
+     */
+    private static CGenTbClassSpec memoryMapPage() {
+        String mmp = "mmp";
+        return new CGenTbClassSpec(
+                CGenTbEslClass.CSL_MEMORY_MAP_PAGE,
+                CGenTbChapter.CPT_MEM_MAP,
+                List.of(),
+                List.of(new CGenTbClassSpec.DeclVariant("plain", "csl_memory_map_page " + mmp + ";\n")),
+                List.of(new CGenTbClassSpec.CmdVariant("get_address_increment", mmp + ".get_address_increment();\n")));
+    }
+
+    /**
+     * From legacy {@code buildRegFile()} ({@code CPT_REG_FILE}): mandatory {@code set_depth} / {@code set_width} like
+     * {@link #memory()}.
+     */
+    private static CGenTbClassSpec registerFile() {
+        String rf = "rf";
+        return new CGenTbClassSpec(
+                CGenTbEslClass.CSL_REGISTER_FILE,
+                CGenTbChapter.CPT_REG_FILE,
+                List.of(),
+                List.of(
+                        new CGenTbClassSpec.DeclVariant(
+                                "mand",
+                                "csl_register_file "
+                                        + rf
+                                        + ";\n"
+                                        + rf
+                                        + ".set_depth("
+                                        + CGenConsts.DEPTH_DEFAULT
+                                        + ");\n"
+                                        + rf
+                                        + ".set_width("
+                                        + CGenConsts.WIDTH_DEFAULT
+                                        + ");\n")),
+                List.of(
+                        new CGenTbClassSpec.CmdVariant("get_width", rf + ".get_width();\n"),
+                        new CGenTbClassSpec.CmdVariant("get_depth", rf + ".get_depth();\n")));
+    }
+
+    /**
+     * From legacy {@code buildStateData()} ({@code CPT_VERIFC}): verification-component object with {@code get_radix} /
+     * {@code get_output_filename}.
+     */
+    private static CGenTbClassSpec stateData() {
+        String sd = "sd";
+        return new CGenTbClassSpec(
+                CGenTbEslClass.CSL_STATE_DATA,
+                CGenTbChapter.CPT_VERIFC,
+                List.of(),
+                List.of(new CGenTbClassSpec.DeclVariant("plain", "csl_state_data " + sd + ";\n")),
+                List.of(
+                        new CGenTbClassSpec.CmdVariant("get_radix", sd + ".get_radix();\n"),
+                        new CGenTbClassSpec.CmdVariant("get_output_filename", sd + ".get_output_filename();\n")));
+    }
+
+    /**
+     * From legacy {@code buildVector()} ({@code CPT_VERIFC}): {@code csl_vector} with a simple getter.
+     */
+    private static CGenTbClassSpec vector() {
+        String vc = "vc";
+        return new CGenTbClassSpec(
+                CGenTbEslClass.CSL_VECTOR,
+                CGenTbChapter.CPT_VERIFC,
+                List.of(),
+                List.of(new CGenTbClassSpec.DeclVariant("plain", "csl_vector " + vc + ";\n")),
+                List.of(new CGenTbClassSpec.CmdVariant("get_radix", vc + ".get_radix();\n")));
     }
 
     /**

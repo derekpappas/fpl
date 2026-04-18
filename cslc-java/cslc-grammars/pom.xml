@@ -38,10 +38,30 @@
               <sourceDirectory>${project.basedir}/src/main/antlr4/com/fastpath/cslc/parser/csl</sourceDirectory>
               <includes>
                 <include>CslLexer.g4</include>
+                <include>CslParser.g4</include>
               </includes>
               <arguments>
                 <argument>-package</argument>
                 <argument>com.fastpath.cslc.parser.csl</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>antlr-verilog</id>
+            <goals>
+              <goal>antlr4</goal>
+            </goals>
+            <configuration>
+              <visitor>true</visitor>
+              <listener>true</listener>
+              <sourceDirectory>${project.basedir}/src/main/antlr4/com/fastpath/cslc/parser/verilog</sourceDirectory>
+              <includes>
+                <include>VerilogLexer.g4</include>
+                <include>VerilogParser.g4</include>
+              </includes>
+              <arguments>
+                <argument>-package</argument>
+                <argument>com.fastpath.cslc.parser.verilog</argument>
               </arguments>
             </configuration>
           </execution>

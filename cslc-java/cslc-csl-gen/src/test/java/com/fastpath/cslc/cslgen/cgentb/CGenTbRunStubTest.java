@@ -160,9 +160,11 @@ class CGenTbRunStubTest {
         assertTrue(Files.isRegularFile(langValid.resolve("legal_test_bitrange_0.csl")));
         assertTrue(Files.isRegularFile(langValid.resolve("legal_test_field_0.csl")));
         assertTrue(Files.isRegularFile(langValid.resolve("legal_test_enum_0.csl")));
-        // bitrange: 3, field: 1 x 3 predecl, enum: 1, + marker = 8
+        assertTrue(Files.isRegularFile(langValid.resolve("legal_test_event_0.csl")));
+        assertTrue(Files.isRegularFile(langValid.resolve("legal_test_multi_dim_bitrange_0.csl")));
+        // bitrange: 3, field: 1 x 3 predecl, enum: 1, event: 1, multi_dim_bitrange: 1, + marker = 10
         assertTrue(Files.readString(CGenTbReport.reportFilePath(gen, CGenTbTestGen.TG_DECLARATION))
-                .contains("Test count : 8\n"));
+                .contains("Test count : 10\n"));
     }
 
     @Test
@@ -221,9 +223,12 @@ class CGenTbRunStubTest {
         assertTrue(Files.isRegularFile(langValid.resolve("legal_test_bitrange_2.csl")));
         assertTrue(Files.isRegularFile(langValid.resolve("legal_test_field_0.csl")));
         assertTrue(Files.isRegularFile(langValid.resolve("legal_test_field_2.csl")));
-        // bitrange: 3 cmd variants, field: 1 cmd variant x 3 predecl combos, + marker = 7
+        assertTrue(Files.isRegularFile(langValid.resolve("legal_test_event_0.csl")));
+        assertTrue(Files.isRegularFile(langValid.resolve("legal_test_multi_dim_bitrange_0.csl")));
+        assertTrue(Files.isRegularFile(langValid.resolve("legal_test_multi_dim_bitrange_1.csl")));
+        // bitrange: 3, field: 1 x 3, event: 1, multi_dim_bitrange: 2, + marker = 10
         assertTrue(Files.readString(CGenTbReport.reportFilePath(gen, CGenTbTestGen.TG_COMMAND_CALL))
-                .contains("Test count : 7\n"));
+                .contains("Test count : 10\n"));
     }
 
     @Test
@@ -378,6 +383,141 @@ class CGenTbRunStubTest {
         assertTrue(Files.isRegularFile(isaValid.resolve("legal_test_isa_field_0.csl")));
         assertTrue(Files.isRegularFile(isaValid.resolve("legal_test_isa_field_2.csl")));
         assertTrue(Files.readString(CGenTbReport.reportFilePath(gen, CGenTbTestGen.TG_COMMAND_CALL))
+                .contains("Test count : 4\n"));
+    }
+
+    @Test
+    void legacyRunWithReportDeclBuildTestsMemoryMapChapter(@TempDir Path tmp) throws Exception {
+        Path gen = Files.createDirectories(tmp.resolve("test").resolve("csl_test_gen"));
+        assertEquals(
+                0,
+                CGenTbRunStub.runAfterLegacyRunChecksWithReport(
+                        new String[] {"cgen_decl_tb", "memory_map"},
+                        CGenDeclTb::buildTests,
+                        CGenTbTestGen.TG_DECLARATION,
+                        () -> CGenTbRepositoryPath.Outcome.success(gen)));
+        Path mmValid = CGenTbChapterDirs.validDir(gen, CGenTbChapter.CPT_MEM_MAP, CGenTbTestGen.TG_DECLARATION);
+        assertTrue(Files.isRegularFile(mmValid.resolve("legal_test_memory_map_0.csl")));
+        assertTrue(Files.isRegularFile(mmValid.resolve("legal_test_memory_map_page_0.csl")));
+        assertTrue(Files.readString(CGenTbReport.reportFilePath(gen, CGenTbTestGen.TG_DECLARATION))
+                .contains("Test count : 3\n"));
+    }
+
+    @Test
+    void legacyRunWithReportCmdBuildTestsMemoryMapChapter(@TempDir Path tmp) throws Exception {
+        Path gen = Files.createDirectories(tmp.resolve("test").resolve("csl_test_gen"));
+        assertEquals(
+                0,
+                CGenTbRunStub.runAfterLegacyRunChecksWithReport(
+                        new String[] {"cgen_cmds_tb", "memory_map"},
+                        CGenCmdTb::buildTests,
+                        CGenTbTestGen.TG_COMMAND_CALL,
+                        () -> CGenTbRepositoryPath.Outcome.success(gen)));
+        Path mmValid = CGenTbChapterDirs.validDir(gen, CGenTbChapter.CPT_MEM_MAP, CGenTbTestGen.TG_COMMAND_CALL);
+        assertTrue(Files.isRegularFile(mmValid.resolve("legal_test_memory_map_0.csl")));
+        assertTrue(Files.isRegularFile(mmValid.resolve("legal_test_memory_map_1.csl")));
+        assertTrue(Files.isRegularFile(mmValid.resolve("legal_test_memory_map_page_0.csl")));
+        assertTrue(Files.readString(CGenTbReport.reportFilePath(gen, CGenTbTestGen.TG_COMMAND_CALL))
+                .contains("Test count : 4\n"));
+    }
+
+    @Test
+    void legacyRunWithReportDeclBuildTestsRegisterFileChapter(@TempDir Path tmp) throws Exception {
+        Path gen = Files.createDirectories(tmp.resolve("test").resolve("csl_test_gen"));
+        assertEquals(
+                0,
+                CGenTbRunStub.runAfterLegacyRunChecksWithReport(
+                        new String[] {"cgen_decl_tb", "register_file"},
+                        CGenDeclTb::buildTests,
+                        CGenTbTestGen.TG_DECLARATION,
+                        () -> CGenTbRepositoryPath.Outcome.success(gen)));
+        Path rfValid = CGenTbChapterDirs.validDir(gen, CGenTbChapter.CPT_REG_FILE, CGenTbTestGen.TG_DECLARATION);
+        assertTrue(Files.isRegularFile(rfValid.resolve("legal_test_register_file_0.csl")));
+        assertTrue(Files.readString(CGenTbReport.reportFilePath(gen, CGenTbTestGen.TG_DECLARATION))
+                .contains("Test count : 2\n"));
+    }
+
+    @Test
+    void legacyRunWithReportCmdBuildTestsRegisterFileChapter(@TempDir Path tmp) throws Exception {
+        Path gen = Files.createDirectories(tmp.resolve("test").resolve("csl_test_gen"));
+        assertEquals(
+                0,
+                CGenTbRunStub.runAfterLegacyRunChecksWithReport(
+                        new String[] {"cgen_cmds_tb", "register_file"},
+                        CGenCmdTb::buildTests,
+                        CGenTbTestGen.TG_COMMAND_CALL,
+                        () -> CGenTbRepositoryPath.Outcome.success(gen)));
+        Path rfValid = CGenTbChapterDirs.validDir(gen, CGenTbChapter.CPT_REG_FILE, CGenTbTestGen.TG_COMMAND_CALL);
+        assertTrue(Files.isRegularFile(rfValid.resolve("legal_test_register_file_0.csl")));
+        assertTrue(Files.isRegularFile(rfValid.resolve("legal_test_register_file_1.csl")));
+        assertTrue(Files.readString(CGenTbReport.reportFilePath(gen, CGenTbTestGen.TG_COMMAND_CALL))
+                .contains("Test count : 3\n"));
+    }
+
+    @Test
+    void legacyRunWithReportDeclBuildTestsVerificationComponentsChapter(@TempDir Path tmp) throws Exception {
+        Path gen = Files.createDirectories(tmp.resolve("test").resolve("csl_test_gen"));
+        assertEquals(
+                0,
+                CGenTbRunStub.runAfterLegacyRunChecksWithReport(
+                        new String[] {"cgen_decl_tb", "verification_components"},
+                        CGenDeclTb::buildTests,
+                        CGenTbTestGen.TG_DECLARATION,
+                        () -> CGenTbRepositoryPath.Outcome.success(gen)));
+        Path vValid = CGenTbChapterDirs.validDir(gen, CGenTbChapter.CPT_VERIFC, CGenTbTestGen.TG_DECLARATION);
+        assertTrue(Files.isRegularFile(vValid.resolve("legal_test_state_data_0.csl")));
+        assertTrue(Files.isRegularFile(vValid.resolve("legal_test_vector_0.csl")));
+        assertTrue(Files.readString(CGenTbReport.reportFilePath(gen, CGenTbTestGen.TG_DECLARATION))
+                .contains("Test count : 3\n"));
+    }
+
+    @Test
+    void legacyRunWithReportCmdBuildTestsVerificationComponentsChapter(@TempDir Path tmp) throws Exception {
+        Path gen = Files.createDirectories(tmp.resolve("test").resolve("csl_test_gen"));
+        assertEquals(
+                0,
+                CGenTbRunStub.runAfterLegacyRunChecksWithReport(
+                        new String[] {"cgen_cmds_tb", "verification_components"},
+                        CGenCmdTb::buildTests,
+                        CGenTbTestGen.TG_COMMAND_CALL,
+                        () -> CGenTbRepositoryPath.Outcome.success(gen)));
+        Path vValid = CGenTbChapterDirs.validDir(gen, CGenTbChapter.CPT_VERIFC, CGenTbTestGen.TG_COMMAND_CALL);
+        assertTrue(Files.isRegularFile(vValid.resolve("legal_test_state_data_0.csl")));
+        assertTrue(Files.isRegularFile(vValid.resolve("legal_test_state_data_1.csl")));
+        assertTrue(Files.isRegularFile(vValid.resolve("legal_test_vector_0.csl")));
+        assertTrue(Files.readString(CGenTbReport.reportFilePath(gen, CGenTbTestGen.TG_COMMAND_CALL))
+                .contains("Test count : 4\n"));
+    }
+
+    @Test
+    void legacyRunWithReportInstDeclBuildTestsMemoryMapWritesCg1Leaves(@TempDir Path tmp) throws Exception {
+        Path gen = Files.createDirectories(tmp.resolve("test").resolve("csl_test_gen"));
+        assertEquals(
+                0,
+                CGenTbRunStub.runAfterLegacyRunChecksWithReport(
+                        new String[] {"cgen_inst_decl_tb", "memory_map"},
+                        CGenInstDeclTb::buildTests,
+                        CGenTbTestGen.TG_INSTANCE_DECLARATION,
+                        () -> CGenTbRepositoryPath.Outcome.success(gen)));
+        Path mmValid = CGenTbChapterDirs.validDir(gen, CGenTbChapter.CPT_MEM_MAP, CGenTbTestGen.TG_INSTANCE_DECLARATION);
+        assertTrue(Files.isRegularFile(mmValid.resolve("legal_test_memory_map_0.csl")));
+        assertTrue(Files.readString(CGenTbReport.reportFilePath(gen, CGenTbTestGen.TG_INSTANCE_DECLARATION))
+                .contains("Test count : 3\n"));
+    }
+
+    @Test
+    void legacyRunWithReportInstCmdBuildTestsVerificationComponentsWritesCg3Leaves(@TempDir Path tmp) throws Exception {
+        Path gen = Files.createDirectories(tmp.resolve("test").resolve("csl_test_gen"));
+        assertEquals(
+                0,
+                CGenTbRunStub.runAfterLegacyRunChecksWithReport(
+                        new String[] {"cgen_inst_cmds_tb", "verification_components"},
+                        CGenInstCmdTb::buildTests,
+                        CGenTbTestGen.TG_INSTANCE_COMMAND_CALL,
+                        () -> CGenTbRepositoryPath.Outcome.success(gen)));
+        Path vValid = CGenTbChapterDirs.validDir(gen, CGenTbChapter.CPT_VERIFC, CGenTbTestGen.TG_INSTANCE_COMMAND_CALL);
+        assertTrue(Files.isRegularFile(vValid.resolve("legal_test_vector_0.csl")));
+        assertTrue(Files.readString(CGenTbReport.reportFilePath(gen, CGenTbTestGen.TG_INSTANCE_COMMAND_CALL))
                 .contains("Test count : 4\n"));
     }
 
