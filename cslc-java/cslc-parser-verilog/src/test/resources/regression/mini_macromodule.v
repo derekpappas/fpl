@@ -1,0 +1,2 @@
+macromodule mm ();
+endmodule

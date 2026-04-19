@@ -1,14 +1,9 @@
 package com.fastpath.cslc.parser;
 
 import com.fastpath.cslc.parser.csl.CslParserTrunkPort;
-import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -35,11 +30,7 @@ public final class CslWalkerPortCommandVerbListener extends CslTrunkPortListener
         commandTextsInExitOrder.add(raw != null ? raw : "");
         TerminalNode id0 = ctx.IDENTIFIER(0);
         lastReceiverIdentifier = id0 != null ? id0.getText() : null;
-        if (ctx.ASSIGN() != null) {
-            verbsInExitOrder.add("assign");
-            return;
-        }
-        String verb = inferVerbFromParamListAccessors(ctx);
+        String verb = CslCommandVerbInference.inferVerbLabelOrNull(ctx);
         verbsInExitOrder.add(verb != null ? verb : "unknown");
     }
 
@@ -63,26 +54,4 @@ public final class CslWalkerPortCommandVerbListener extends CslTrunkPortListener
         return lastReceiverIdentifier;
     }
 
-    private static String inferVerbFromParamListAccessors(CslParserTrunkPort.Csl_commandContext ctx) {
-        Method[] methods = CslParserTrunkPort.Csl_commandContext.class.getMethods();
-        Arrays.sort(methods, Comparator.comparing(Method::getName));
-        for (Method m : methods) {
-            String n = m.getName();
-            if (!n.startsWith("param_list_") || m.getParameterCount() != 0) {
-                continue;
-            }
-            if (!ParserRuleContext.class.isAssignableFrom(m.getReturnType())) {
-                continue;
-            }
-            try {
-                Object v = m.invoke(ctx);
-                if (v != null) {
-                    return n.substring("param_list_".length());
-                }
-            } catch (IllegalAccessException | InvocationTargetException ignored) {
-                return null;
-            }
-        }
-        return null;
-    }
 }

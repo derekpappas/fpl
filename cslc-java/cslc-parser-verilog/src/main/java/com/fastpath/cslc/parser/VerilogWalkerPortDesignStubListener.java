@@ -11,8 +11,10 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Collects flat {@link VerilogDesignElementStub} entries from completed {@code module}, {@code port_declaration},
+ * Collects flat {@link VerilogDesignElementStub} entries from completed {@code module} (incl. {@code macromodule}
+ * via {@link VerilogModuleDeclStub#macromodule()}), {@code port_declaration},
  * {@code list_of_port_declarations} (comma-only {@code variable_port_identifier} in ANSI lists),
+ * {@code list_of_ports} (non-ANSI header list as {@link VerilogListOfPortsStub}),
  * {@code net_declaration}, {@code reg_declaration}, {@code integer_declaration}, {@code time_declaration},
  * {@code real_declaration}, {@code realtime_declaration}, {@code event_declaration}, {@code genvar_declaration},
  * {@code udp_declaration}, {@code module_or_udp_instantiation}, {@code continuous_assign} (one
@@ -21,7 +23,13 @@ import java.util.Objects;
  * {@link VerilogDefparamAssignmentStub} per {@code defparam_assignment}), {@code task_declaration},
  * {@code function_declaration}, {@code specparam_declaration} (one {@link VerilogSpecparamAssignmentStub} per
  * {@code specparam_assignment}), {@code parameter_declaration} and {@code local_parameter_declaration} (one
- * {@link VerilogParamDeclAssignmentStub} per {@code param_assignment})
+ * {@link VerilogParamDeclAssignmentStub} per {@code param_assignment}; {@code module_parameter_port_list} uses
+ * {@code declarationKind} {@code "module_parameter_port"}, {@code generated_instantiation}
+ * ({@link VerilogGenerateRegionStub} for the whole {@code generate} … {@code endgenerate} region),
+ * {@code generate_block} and {@code generate_loop_statement} ({@link VerilogGenerateBlockStub}),
+ * {@code generate_conditional_statement} ({@link VerilogGenerateConditionalStub}),
+ * {@code generate_case_statement} ({@link VerilogGenerateCaseStub}), {@code specify_block}
+ * ({@link VerilogSpecifyBlockStub})
  * rules (syntax-only; no {@code cslc-cslom} dependency).
  *
  * @see VerilogParserTrunkPortFacade
@@ -57,12 +65,22 @@ public final class VerilogWalkerPortDesignStubListener extends VerilogTrunkPortL
             int line = start != null ? start.getLine() : 0;
             int col = start != null ? start.getCharPositionInLine() : 0;
             String file = start != null ? start.getTokenSource().getSourceName() : null;
-            sink.add(new VerilogModuleDeclStub(name, line, col, file));
+            boolean macromodule = false;
+            VerilogParserTrunkPort.Module_keywordContext mkw = ctx.module_keyword();
+            if (mkw != null && mkw.K_MACROMODULE() != null) {
+                macromodule = true;
+            }
+            sink.add(new VerilogModuleDeclStub(name, line, col, file, macromodule));
         } finally {
             if (!enclosingModuleNames.isEmpty()) {
                 enclosingModuleNames.pop();
             }
         }
+    }
+
+    @Override
+    public void exitModule_parameter_port_list(VerilogParserTrunkPort.Module_parameter_port_listContext ctx) {
+        emitParamAssignmentContexts(ctx.param_assignment(), "module_parameter_port");
     }
 
     @Override
@@ -142,6 +160,20 @@ public final class VerilogWalkerPortDesignStubListener extends VerilogTrunkPortL
     }
 
     @Override
+    public void exitList_of_ports(VerilogParserTrunkPort.List_of_portsContext ctx) {
+        String text = ctx.getText();
+        if (text == null || text.isEmpty()) {
+            return;
+        }
+        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+        Token start = positionToken(ctx);
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        sink.add(new VerilogListOfPortsStub(module, text, line, col, file));
+    }
+
+    @Override
     public void exitContinuous_assign(VerilogParserTrunkPort.Continuous_assignContext ctx) {
         VerilogParserTrunkPort.List_of_net_assignmentsContext list = ctx.list_of_net_assignments();
         if (list == null) {
@@ -208,6 +240,72 @@ public final class VerilogWalkerPortDesignStubListener extends VerilogTrunkPortL
         int col = start != null ? start.getCharPositionInLine() : 0;
         String file = start != null ? start.getTokenSource().getSourceName() : null;
         sink.add(new VerilogAlwaysConstructStub(module, text, line, col, file));
+    }
+
+    @Override
+    public void exitSpecify_block(VerilogParserTrunkPort.Specify_blockContext ctx) {
+        String text = ctx.getText();
+        if (text == null || text.isEmpty()) {
+            return;
+        }
+        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+        Token start = positionToken(ctx);
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        sink.add(new VerilogSpecifyBlockStub(module, text, line, col, file));
+    }
+
+    @Override
+    public void exitGenerated_instantiation(VerilogParserTrunkPort.Generated_instantiationContext ctx) {
+        String text = ctx.getText();
+        if (text == null || text.isEmpty()) {
+            return;
+        }
+        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+        Token start = positionToken(ctx);
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        sink.add(new VerilogGenerateRegionStub(module, text, line, col, file));
+    }
+
+    @Override
+    public void exitGenerate_block(VerilogParserTrunkPort.Generate_blockContext ctx) {
+        emitGenerateBlockStub("block", ctx.generate_block_identifier(), ctx);
+    }
+
+    @Override
+    public void exitGenerate_loop_statement(VerilogParserTrunkPort.Generate_loop_statementContext ctx) {
+        emitGenerateBlockStub("for_loop", ctx.generate_block_identifier(), ctx);
+    }
+
+    @Override
+    public void exitGenerate_conditional_statement(VerilogParserTrunkPort.Generate_conditional_statementContext ctx) {
+        String text = ctx.getText();
+        if (text == null || text.isEmpty()) {
+            return;
+        }
+        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+        Token start = positionToken(ctx);
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        sink.add(new VerilogGenerateConditionalStub(module, text, line, col, file));
+    }
+
+    @Override
+    public void exitGenerate_case_statement(VerilogParserTrunkPort.Generate_case_statementContext ctx) {
+        String text = ctx.getText();
+        if (text == null || text.isEmpty()) {
+            return;
+        }
+        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+        Token start = positionToken(ctx);
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        sink.add(new VerilogGenerateCaseStub(module, text, line, col, file));
     }
 
     @Override
@@ -315,7 +413,11 @@ public final class VerilogWalkerPortDesignStubListener extends VerilogTrunkPortL
         if (list == null) {
             return;
         }
-        List<VerilogParserTrunkPort.Param_assignmentContext> pas = list.param_assignment();
+        emitParamAssignmentContexts(list.param_assignment(), declarationKind);
+    }
+
+    private void emitParamAssignmentContexts(
+            List<VerilogParserTrunkPort.Param_assignmentContext> pas, String declarationKind) {
         if (pas == null) {
             return;
         }
@@ -554,6 +656,27 @@ public final class VerilogWalkerPortDesignStubListener extends VerilogTrunkPortL
             String file = start != null ? start.getTokenSource().getSourceName() : null;
             sink.add(new VerilogSignalDeclStub(module, name, declarationKind, flavor, line, col, file));
         }
+    }
+
+    private void emitGenerateBlockStub(
+            String blockKind, VerilogParserTrunkPort.Generate_block_identifierContext labelCtx, ParserRuleContext ctx) {
+        String text = ctx.getText();
+        if (text == null || text.isEmpty()) {
+            return;
+        }
+        String label = null;
+        if (labelCtx != null) {
+            String t = labelCtx.getText();
+            if (t != null && !t.isEmpty()) {
+                label = t;
+            }
+        }
+        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+        Token start = positionToken(ctx);
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        sink.add(new VerilogGenerateBlockStub(module, blockKind, label, text, line, col, file));
     }
 
     private static Token positionToken(ParserRuleContext ctx) {

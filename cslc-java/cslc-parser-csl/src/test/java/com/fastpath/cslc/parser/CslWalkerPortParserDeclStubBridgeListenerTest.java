@@ -5,6 +5,7 @@ import com.fastpath.cslc.cslom.CslomDesignStub;
 import com.fastpath.cslc.cslom.CslomNamedDecl;
 import com.fastpath.cslc.cslom.CslomNodeType;
 import com.fastpath.cslc.cslom.CslomUnitDecl;
+import com.fastpath.cslc.cslom.decl.CslomCommandDecl;
 import com.fastpath.cslc.cslom.decl.CslomSignalDecl;
 import org.junit.jupiter.api.Test;
 
@@ -182,6 +183,8 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
         assertEquals(1, sink.size());
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("no_prefix", cmd.inferredVerb().orElseThrow());
     }
 
     @Test
@@ -230,6 +233,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
         assertEquals(3, sink.size());
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "command");
+        assertEquals(
+                "no_prefix",
+                assertInstanceOf(CslomCommandDecl.class, sink.get(0)).inferredVerb().orElseThrow());
         assertStub(sink.get(1), CslomNodeType.TYPE_INST_UNIT, "sub_unit");
         assertStub(sink.get(2), CslomNodeType.TYPE_DECL_UNIT, "parent");
     }
@@ -250,6 +256,11 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertEquals("parent", unit.declaredName().orElseThrow());
         assertEquals(2, unit.getChildren().size());
         assertStub(unit.getChildren().get(0), CslomNodeType.TYPE_COMMAND, "command");
+        assertEquals(
+                "no_prefix",
+                assertInstanceOf(CslomCommandDecl.class, unit.getChildren().get(0))
+                        .inferredVerb()
+                        .orElseThrow());
         assertStub(unit.getChildren().get(1), CslomNodeType.TYPE_INST_UNIT, "sub_unit");
         assertEquals(3, sink.size());
     }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -25,6 +26,18 @@ class VerilogWalkerPortDesignStubListenerTest {
         var m = assertInstanceOf(VerilogModuleDeclStub.class, sink.get(0));
         assertEquals("m", m.moduleName());
         assertEquals(1, m.line());
+        assertFalse(m.macromodule());
+    }
+
+    @Test
+    void macromoduleSetsMacromoduleFlagOnModuleStub() throws IOException {
+        String text = readResource("/regression/mini_macromodule.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(1, sink.size());
+        var m = assertInstanceOf(VerilogModuleDeclStub.class, sink.get(0));
+        assertEquals("mm", m.moduleName());
+        assertTrue(m.macromodule());
     }
 
     @Test
@@ -103,6 +116,24 @@ class VerilogWalkerPortDesignStubListenerTest {
         assertEquals("b", pb.portName());
         assertEquals("output", pb.direction());
         assertInstanceOf(VerilogModuleDeclStub.class, sink.get(2));
+    }
+
+    @Test
+    void miniNonAnsiPortsEmitsListStubThenBodyPortDeclsThenModule() throws IOException {
+        String text = readResource("/regression/mini_non_ansi_ports.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(4, sink.size());
+        var list = assertInstanceOf(VerilogListOfPortsStub.class, sink.get(0));
+        assertEquals("top", list.enclosingModuleName());
+        assertTrue(list.synopsis().contains("a"));
+        assertTrue(list.synopsis().contains("b"));
+        var pa = assertInstanceOf(VerilogPortDeclStub.class, sink.get(1));
+        assertEquals("a", pa.portName());
+        assertEquals("input", pa.direction());
+        var pb = assertInstanceOf(VerilogPortDeclStub.class, sink.get(2));
+        assertEquals("b", pb.portName());
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
     }
 
     @Test
@@ -194,6 +225,25 @@ class VerilogWalkerPortDesignStubListenerTest {
     }
 
     @Test
+    void miniModuleHeaderParamsEmitModuleParameterPortStubsThenAnsiPortsThenModule() throws IOException {
+        String text = readResource("/regression/mini_module_header_params.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(4, sink.size());
+        var h0 = assertInstanceOf(VerilogParamDeclAssignmentStub.class, sink.get(0));
+        assertEquals("m", h0.enclosingModuleName());
+        assertEquals("module_parameter_port", h0.declarationKind());
+        assertTrue(h0.assignmentText().contains("W"));
+        var h1 = assertInstanceOf(VerilogParamDeclAssignmentStub.class, sink.get(1));
+        assertEquals("module_parameter_port", h1.declarationKind());
+        assertTrue(h1.assignmentText().contains("X"));
+        var port = assertInstanceOf(VerilogPortDeclStub.class, sink.get(2));
+        assertEquals("clk", port.portName());
+        assertEquals("input", port.direction());
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
+    }
+
+    @Test
     void miniSpecparamEmitsOneStubPerAssignmentThenModule() throws IOException {
         String text = readResource("/regression/mini_specparam.v");
         List<VerilogDesignElementStub> sink = new ArrayList<>();
@@ -204,6 +254,21 @@ class VerilogWalkerPortDesignStubListenerTest {
         assertTrue(s0.assignmentText().contains("dly"));
         var s1 = assertInstanceOf(VerilogSpecparamAssignmentStub.class, sink.get(1));
         assertTrue(s1.assignmentText().contains("x"));
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(2));
+    }
+
+    @Test
+    void miniSpecifyBlockEmitsSpecparamStubsThenSpecifyBlockThenModule() throws IOException {
+        String text = readResource("/regression/mini_specify_block.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(3, sink.size());
+        assertInstanceOf(VerilogSpecparamAssignmentStub.class, sink.get(0));
+        var sp = assertInstanceOf(VerilogSpecifyBlockStub.class, sink.get(1));
+        assertEquals("m", sp.enclosingModuleName());
+        assertTrue(sp.synopsis().contains("specify"));
+        assertTrue(sp.synopsis().contains("endspecify"));
+        assertTrue(sp.synopsis().contains("t"));
         assertInstanceOf(VerilogModuleDeclStub.class, sink.get(2));
     }
 
@@ -221,6 +286,106 @@ class VerilogWalkerPortDesignStubListenerTest {
         assertTrue(d1.assignmentText().contains("c"));
         assertTrue(d1.assignmentText().contains("d"));
         assertInstanceOf(VerilogModuleDeclStub.class, sink.get(2));
+    }
+
+    @Test
+    void miniGenerateLabeledBlockEmitsBlockStubThenRegion() throws IOException {
+        String text = readResource("/regression/mini_generate_labeled_block.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(5, sink.size());
+        assertInstanceOf(VerilogSignalDeclStub.class, sink.get(0));
+        assertInstanceOf(VerilogContinuousAssignStub.class, sink.get(1));
+        var blk = assertInstanceOf(VerilogGenerateBlockStub.class, sink.get(2));
+        assertEquals("m", blk.enclosingModuleName());
+        assertEquals("block", blk.blockKind());
+        assertEquals("gb", blk.blockLabel());
+        assertTrue(blk.synopsis().contains("begin"));
+        assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(3));
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(4));
+    }
+
+    @Test
+    void miniGenerateForLoopEmitsForLoopStubWithLabel() throws IOException {
+        String text = readResource("/regression/mini_generate_for_loop.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(6, sink.size());
+        assertInstanceOf(VerilogSignalDeclStub.class, sink.get(0));
+        assertEquals("genvar", assertInstanceOf(VerilogSignalDeclStub.class, sink.get(1)).declarationKind());
+        assertInstanceOf(VerilogContinuousAssignStub.class, sink.get(2));
+        var loop = assertInstanceOf(VerilogGenerateBlockStub.class, sink.get(3));
+        assertEquals("for_loop", loop.blockKind());
+        assertEquals("gfor", loop.blockLabel());
+        assertTrue(loop.synopsis().contains("for"));
+        assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(4));
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(5));
+    }
+
+    @Test
+    void miniGenerateUnlabeledBlockHasNullBlockLabel() throws IOException {
+        String text = readResource("/regression/mini_generate_unlabeled_block.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(5, sink.size());
+        var blk = assertInstanceOf(VerilogGenerateBlockStub.class, sink.get(2));
+        assertEquals("block", blk.blockKind());
+        assertNull(blk.blockLabel());
+        assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(3));
+    }
+
+    @Test
+    void miniGenerateIfElseEmitsAssignsThenConditionalThenRegion() throws IOException {
+        String text = readResource("/regression/mini_generate_if_else.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(7, sink.size());
+        assertInstanceOf(VerilogParamDeclAssignmentStub.class, sink.get(0));
+        assertInstanceOf(VerilogSignalDeclStub.class, sink.get(1));
+        assertInstanceOf(VerilogContinuousAssignStub.class, sink.get(2));
+        assertInstanceOf(VerilogContinuousAssignStub.class, sink.get(3));
+        var cond = assertInstanceOf(VerilogGenerateConditionalStub.class, sink.get(4));
+        assertEquals("m", cond.enclosingModuleName());
+        assertTrue(cond.synopsis().contains("if"));
+        assertTrue(cond.synopsis().contains("else"));
+        assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(5));
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(6));
+    }
+
+    @Test
+    void miniGenerateCaseEmitsAssignsThenCaseThenRegion() throws IOException {
+        String text = readResource("/regression/mini_generate_case.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(7, sink.size());
+        assertInstanceOf(VerilogParamDeclAssignmentStub.class, sink.get(0));
+        assertInstanceOf(VerilogSignalDeclStub.class, sink.get(1));
+        assertInstanceOf(VerilogContinuousAssignStub.class, sink.get(2));
+        assertInstanceOf(VerilogContinuousAssignStub.class, sink.get(3));
+        var cs = assertInstanceOf(VerilogGenerateCaseStub.class, sink.get(4));
+        assertEquals("m", cs.enclosingModuleName());
+        assertTrue(cs.synopsis().contains("case"));
+        assertTrue(cs.synopsis().contains("endcase"));
+        assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(5));
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(6));
+    }
+
+    @Test
+    void miniGenerateRegionEmitsInnerAssignThenRegionThenModule() throws IOException {
+        String text = readResource("/regression/mini_generate_region.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(4, sink.size());
+        var net = assertInstanceOf(VerilogSignalDeclStub.class, sink.get(0));
+        assertEquals("m", net.enclosingModuleName());
+        assertEquals("x", net.signalName());
+        var ca = assertInstanceOf(VerilogContinuousAssignStub.class, sink.get(1));
+        assertTrue(ca.assignText().contains("x"));
+        var gen = assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(2));
+        assertEquals("m", gen.enclosingModuleName());
+        assertTrue(gen.synopsis().contains("generate"));
+        assertTrue(gen.synopsis().contains("assign"));
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
     }
 
     @Test

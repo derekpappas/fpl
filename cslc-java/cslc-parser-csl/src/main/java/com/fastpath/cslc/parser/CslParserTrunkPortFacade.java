@@ -27,7 +27,8 @@ import java.nio.file.Path;
  * batches 2–4). Batch 3: {@link com.fastpath.cslc.cslom.CslomNamedDecl#antlrRuleSimpleName} and
  * {@link com.fastpath.cslc.cslom.CslomNamedDecl#antlrText} on bridge-produced nodes.
  * Command verb metrics (walker port batch 5): {@link CslWalkerPortCommandVerbListener} (verbs, receivers,
- * {@link CslWalkerPortCommandVerbListener#commandTextsInExitOrder command text}).
+ * {@link CslWalkerPortCommandVerbListener#commandTextsInExitOrder command text}); the decl bridge attaches the
+ * same verb label on {@link com.fastpath.cslc.cslom.decl.CslomCommandDecl} via {@link CslCommandVerbInference}.
  */
 public final class CslParserTrunkPortFacade {
 

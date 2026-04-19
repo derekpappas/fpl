@@ -312,7 +312,10 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
         int line = pos != null ? pos.getLine() : 0;
         int col = pos != null ? pos.getCharPositionInLine() : 0;
         String file = pos != null ? pos.getTokenSource().getSourceName() : null;
-        emitStub(new CslomCommandDecl(name, line, col, file), ctx);
+        var cmd = new CslomCommandDecl(name, line, col, file);
+        String verb = CslCommandVerbInference.inferVerbLabelOrNull(ctx);
+        cmd.attachInferredVerb(verb != null ? verb : "unknown");
+        emitStub(cmd, ctx);
     }
 
     @FunctionalInterface
