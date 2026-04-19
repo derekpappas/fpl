@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CslWalkerPortCommandVerbListenerTest {
 
@@ -20,6 +21,9 @@ class CslWalkerPortCommandVerbListenerTest {
         assertEquals(1, listener.getCslCommandExitCount());
         assertEquals("no_prefix", listener.verbsInExitOrder().get(0));
         assertEquals("u", listener.getLastReceiverIdentifier());
+        assertEquals(1, listener.commandTextsInExitOrder().size());
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("no_prefix"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("u"));
     }
 
     @Test
@@ -30,6 +34,7 @@ class CslWalkerPortCommandVerbListenerTest {
         assertEquals(1, listener.getCslCommandExitCount());
         assertEquals("no_prefix", listener.verbsInExitOrder().get(0));
         assertNull(listener.getLastReceiverIdentifier());
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("no_prefix"));
     }
 
     @Test
@@ -45,6 +50,9 @@ class CslWalkerPortCommandVerbListenerTest {
         assertEquals("no_prefix", listener.verbsInExitOrder().get(0));
         assertEquals("no_prefix", listener.verbsInExitOrder().get(1));
         assertEquals("b", listener.getLastReceiverIdentifier());
+        assertEquals(2, listener.commandTextsInExitOrder().size());
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("a"));
+        assertTrue(listener.commandTextsInExitOrder().get(1).contains("b"));
     }
 
     private static String read(String path) throws IOException {

@@ -5,9 +5,17 @@ package com.fastpath.cslc.parser;
  * (batch 6 stub path).
  */
 public sealed interface VerilogDesignElementStub
-        permits VerilogContinuousAssignStub,
+        permits VerilogAlwaysConstructStub,
+                VerilogContinuousAssignStub,
+                VerilogDefparamAssignmentStub,
+                VerilogFunctionDeclStub,
+                VerilogGateInstantiationStub,
+                VerilogInitialConstructStub,
                 VerilogModuleDeclStub,
                 VerilogModuleInstanceStub,
+                VerilogParamDeclAssignmentStub,
                 VerilogPortDeclStub,
                 VerilogSignalDeclStub,
+                VerilogSpecparamAssignmentStub,
+                VerilogTaskDeclStub,
                 VerilogUdpDeclStub {}

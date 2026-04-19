@@ -15,8 +15,13 @@ import java.util.Objects;
  * {@code list_of_port_declarations} (comma-only {@code variable_port_identifier} in ANSI lists),
  * {@code net_declaration}, {@code reg_declaration}, {@code integer_declaration}, {@code time_declaration},
  * {@code real_declaration}, {@code realtime_declaration}, {@code event_declaration}, {@code genvar_declaration},
- * {@code udp_declaration}, {@code module_or_udp_instantiation}, and {@code continuous_assign} (one
- * {@link VerilogContinuousAssignStub} per {@code net_assignment})
+ * {@code udp_declaration}, {@code module_or_udp_instantiation}, {@code continuous_assign} (one
+ * {@link VerilogContinuousAssignStub} per {@code net_assignment}), {@code gate_instantiation},
+ * {@code initial_construct}, {@code always_construct}, {@code parameter_override} ({@code defparam}; one
+ * {@link VerilogDefparamAssignmentStub} per {@code defparam_assignment}), {@code task_declaration},
+ * {@code function_declaration}, {@code specparam_declaration} (one {@link VerilogSpecparamAssignmentStub} per
+ * {@code specparam_assignment}), {@code parameter_declaration} and {@code local_parameter_declaration} (one
+ * {@link VerilogParamDeclAssignmentStub} per {@code param_assignment})
  * rules (syntax-only; no {@code cslc-cslom} dependency).
  *
  * @see VerilogParserTrunkPortFacade
@@ -160,6 +165,174 @@ public final class VerilogWalkerPortDesignStubListener extends VerilogTrunkPortL
             int col = start != null ? start.getCharPositionInLine() : 0;
             String file = start != null ? start.getTokenSource().getSourceName() : null;
             sink.add(new VerilogContinuousAssignStub(module, text, line, col, file));
+        }
+    }
+
+    @Override
+    public void exitGate_instantiation(VerilogParserTrunkPort.Gate_instantiationContext ctx) {
+        String text = ctx.getText();
+        if (text == null || text.isEmpty()) {
+            return;
+        }
+        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+        Token start = positionToken(ctx);
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        sink.add(new VerilogGateInstantiationStub(module, text, line, col, file));
+    }
+
+    @Override
+    public void exitInitial_construct(VerilogParserTrunkPort.Initial_constructContext ctx) {
+        String text = ctx.getText();
+        if (text == null || text.isEmpty()) {
+            return;
+        }
+        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+        Token start = positionToken(ctx);
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        sink.add(new VerilogInitialConstructStub(module, text, line, col, file));
+    }
+
+    @Override
+    public void exitAlways_construct(VerilogParserTrunkPort.Always_constructContext ctx) {
+        String text = ctx.getText();
+        if (text == null || text.isEmpty()) {
+            return;
+        }
+        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+        Token start = positionToken(ctx);
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        sink.add(new VerilogAlwaysConstructStub(module, text, line, col, file));
+    }
+
+    @Override
+    public void exitParameter_override(VerilogParserTrunkPort.Parameter_overrideContext ctx) {
+        VerilogParserTrunkPort.List_of_defparam_assignmentsContext list = ctx.list_of_defparam_assignments();
+        if (list == null) {
+            return;
+        }
+        List<VerilogParserTrunkPort.Defparam_assignmentContext> assigns = list.defparam_assignment();
+        if (assigns == null) {
+            return;
+        }
+        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+        for (VerilogParserTrunkPort.Defparam_assignmentContext da : assigns) {
+            if (da == null) {
+                continue;
+            }
+            String t = da.getText();
+            if (t == null || t.isEmpty()) {
+                continue;
+            }
+            Token start = positionToken(da);
+            int line = start != null ? start.getLine() : 0;
+            int col = start != null ? start.getCharPositionInLine() : 0;
+            String file = start != null ? start.getTokenSource().getSourceName() : null;
+            sink.add(new VerilogDefparamAssignmentStub(module, t, line, col, file));
+        }
+    }
+
+    @Override
+    public void exitTask_declaration(VerilogParserTrunkPort.Task_declarationContext ctx) {
+        VerilogParserTrunkPort.Task_identifierContext tid = ctx.task_identifier();
+        if (tid == null) {
+            return;
+        }
+        String name = tid.getText();
+        if (name == null || name.isEmpty()) {
+            return;
+        }
+        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+        Token start = positionToken(tid);
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        sink.add(new VerilogTaskDeclStub(module, name, line, col, file));
+    }
+
+    @Override
+    public void exitFunction_declaration(VerilogParserTrunkPort.Function_declarationContext ctx) {
+        VerilogParserTrunkPort.Function_identifierContext fid = ctx.function_identifier();
+        if (fid == null) {
+            return;
+        }
+        String name = fid.getText();
+        if (name == null || name.isEmpty()) {
+            return;
+        }
+        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+        Token start = positionToken(fid);
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        sink.add(new VerilogFunctionDeclStub(module, name, line, col, file));
+    }
+
+    @Override
+    public void exitSpecparam_declaration(VerilogParserTrunkPort.Specparam_declarationContext ctx) {
+        VerilogParserTrunkPort.List_of_specparam_assignmentsContext list = ctx.list_of_specparam_assignments();
+        if (list == null) {
+            return;
+        }
+        List<VerilogParserTrunkPort.Specparam_assignmentContext> assigns = list.specparam_assignment();
+        if (assigns == null) {
+            return;
+        }
+        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+        for (VerilogParserTrunkPort.Specparam_assignmentContext sa : assigns) {
+            if (sa == null) {
+                continue;
+            }
+            String t = sa.getText();
+            if (t == null || t.isEmpty()) {
+                continue;
+            }
+            Token start = positionToken(sa);
+            int line = start != null ? start.getLine() : 0;
+            int col = start != null ? start.getCharPositionInLine() : 0;
+            String file = start != null ? start.getTokenSource().getSourceName() : null;
+            sink.add(new VerilogSpecparamAssignmentStub(module, t, line, col, file));
+        }
+    }
+
+    @Override
+    public void exitParameter_declaration(VerilogParserTrunkPort.Parameter_declarationContext ctx) {
+        emitParamAssignments(ctx.list_of_param_assignments(), "parameter");
+    }
+
+    @Override
+    public void exitLocal_parameter_declaration(VerilogParserTrunkPort.Local_parameter_declarationContext ctx) {
+        emitParamAssignments(ctx.list_of_param_assignments(), "localparam");
+    }
+
+    private void emitParamAssignments(
+            VerilogParserTrunkPort.List_of_param_assignmentsContext list, String declarationKind) {
+        if (list == null) {
+            return;
+        }
+        List<VerilogParserTrunkPort.Param_assignmentContext> pas = list.param_assignment();
+        if (pas == null) {
+            return;
+        }
+        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+        for (VerilogParserTrunkPort.Param_assignmentContext pa : pas) {
+            if (pa == null) {
+                continue;
+            }
+            String t = pa.getText();
+            if (t == null || t.isEmpty()) {
+                continue;
+            }
+            Token start = positionToken(pa);
+            int line = start != null ? start.getLine() : 0;
+            int col = start != null ? start.getCharPositionInLine() : 0;
+            String file = start != null ? start.getTokenSource().getSourceName() : null;
+            sink.add(new VerilogParamDeclAssignmentStub(module, declarationKind, t, line, col, file));
         }
     }
 

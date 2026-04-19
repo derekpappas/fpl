@@ -45,21 +45,29 @@ Done (reference)
     antlrText / attachAntlrText from ParserRuleContext#getText (source slice incl. whitespace). Bridge attaches both.
     Tests assert rule names and substring checks on fixtures.
 
-  Batch 5 — Walker command port (starter)
+  Batch 5 — Walker command port (starter + continuation)
     CslWalkerPortCommandVerbListener: on exit csl_command, counts exits; infers verb from first (alphabetically)
     non-null param_list_* accessor on Csl_commandContext; labels assign-shaped commands as assign; records last
-    receiver IDENTIFIER(0). Tests: CslWalkerPortCommandVerbListenerTest.
+    receiver IDENTIFIER(0); commandTextsInExitOrder from Csl_commandContext#getText. Tests: CslWalkerPortCommandVerbListenerTest.
 
   Batch 6 — Verilog trunk → stubs (partial)
     cslc-parser-verilog: sealed VerilogDesignElementStub (VerilogModuleDeclStub, VerilogUdpDeclStub,
-    VerilogModuleInstanceStub, VerilogPortDeclStub, VerilogSignalDeclStub, VerilogContinuousAssignStub);
+    VerilogModuleInstanceStub, VerilogPortDeclStub, VerilogSignalDeclStub, VerilogContinuousAssignStub,
+    VerilogGateInstantiationStub, VerilogInitialConstructStub, VerilogAlwaysConstructStub,
+    VerilogDefparamAssignmentStub, VerilogTaskDeclStub, VerilogFunctionDeclStub, VerilogSpecparamAssignmentStub,
+    VerilogParamDeclAssignmentStub);
     VerilogWalkerPortDesignStubListener on exitModule (stacked enclosing name), exitPort_declaration,
     exitList_of_port_declarations (ANSI comma-only identifiers), exitModule_item (comma-only ports in body),
     exitNet_declaration, exitReg_declaration, exitInteger_declaration, exitTime_declaration, exitReal_declaration,
     exitRealtime_declaration, exitEvent_declaration, exitGenvar_declaration, exitUdp_declaration,
-    exitModule_or_udp_instantiation, exitContinuous_assign (one stub per net_assignment; flat sink; no cslc-cslom).
+    exitModule_or_udp_instantiation, exitContinuous_assign (one stub per net_assignment), exitGate_instantiation,
+    exitInitial_construct, exitAlways_construct, exitParameter_override (one stub per defparam_assignment),
+    exitTask_declaration, exitFunction_declaration, exitSpecparam_declaration (one stub per specparam_assignment),
+    exitParameter_declaration, exitLocal_parameter_declaration (one stub per param_assignment; flat sink; no cslc-cslom).
     Fixtures: mini_instance.v, mini_udp.v, mini_module_item_ports.v, mini_ansi_ports.v, mini_ansi_comma_ident.v,
-    mini_net_reg.v, mini_misc_decl.v, mini_continuous_assign.v; tests: VerilogWalkerPortDesignStubListenerTest.
+    mini_net_reg.v, mini_misc_decl.v, mini_continuous_assign.v, mini_gate_initial_always.v, mini_defparam.v,
+    mini_task_function.v, mini_specparam.v, mini_parameter_decl.v;
+    tests: VerilogWalkerPortDesignStubListenerTest.
 
 Remaining (ordered roughly by dependency)
 -------------------------------------------
@@ -79,8 +87,8 @@ Remaining (ordered roughly by dependency)
     walker actions incrementally; tighten verb inference if multiple param_list contexts could be non-null.
 
   Batch 6 — Verilog trunk listener → CDOM or placeholder (remainder)
-    Gate / initial / always items; map design stubs into cslc-cdom when APIs exist; generate-block hierarchy; attrs
-    on port lists if needed for IR.
+    Finer-grained gate/instance/initial/always metadata; map design stubs into cslc-cdom when APIs exist;
+    generate-block hierarchy; attrs on port lists if needed for IR.
 
   Batch 7 — Lexer behavioral parity
     Beyond tokens{} name audit: trunk-only lexer paths (numbers, identifiers, modes) vs .g4 behavior;

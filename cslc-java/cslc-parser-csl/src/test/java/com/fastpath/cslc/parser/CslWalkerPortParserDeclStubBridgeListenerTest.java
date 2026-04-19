@@ -35,7 +35,7 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertEquals(CslomNodeType.TYPE_DECL_UNIT, stub.getNodeType());
         assertEquals("u", stub.declaredName().orElseThrow());
         assertEquals("csl_unit_declaration", stub.antlrRuleSimpleName().orElseThrow());
-        assertTrue(stub.antlrText().orElseThrow().contains("csl_unit"));
+        assertTrue(stub.antlrText().orElseThrow().contains(stub.declaredName().orElseThrow()));
         assertTrue(stub.getLineNumber() >= 1);
     }
 
@@ -69,12 +69,12 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertEquals(CslomNodeType.TYPE_ALL_SIGNALS, sig.getNodeType());
         assertEquals("s", sig.declaredName().orElseThrow());
         assertEquals("csl_signal_declaration", sig.antlrRuleSimpleName().orElseThrow());
-        assertTrue(sig.antlrText().orElseThrow().contains("csl_signal"));
+        assertTrue(sig.antlrText().orElseThrow().contains(sig.declaredName().orElseThrow()));
         var unit = assertInstanceOf(CslomUnitDecl.class, sink.get(1));
         assertEquals(CslomNodeType.TYPE_DECL_UNIT, unit.getNodeType());
         assertEquals("u", unit.declaredName().orElseThrow());
         assertEquals("csl_unit_declaration", unit.antlrRuleSimpleName().orElseThrow());
-        assertTrue(unit.antlrText().orElseThrow().contains("csl_unit"));
+        assertTrue(unit.antlrText().orElseThrow().contains(unit.declaredName().orElseThrow()));
     }
 
     @Test

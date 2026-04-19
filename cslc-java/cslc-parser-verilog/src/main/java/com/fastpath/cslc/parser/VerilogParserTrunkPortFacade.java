@@ -26,7 +26,10 @@ import java.nio.file.Path;
  * {@code module_item}, {@code net_declaration}, {@code reg_declaration}, {@code integer_declaration},
  * {@code time_declaration}, {@code real_declaration}, {@code realtime_declaration}, {@code event_declaration},
  * {@code genvar_declaration}, {@code udp_declaration}, {@code module_or_udp_instantiation},
- * {@code continuous_assign}; see {@code ANTLR_PORT_BATCH_PLAN.txt} batch 6).
+ * {@code continuous_assign}, {@code gate_instantiation}, {@code initial_construct}, {@code always_construct},
+ * {@code parameter_override} ({@code defparam}), {@code task_declaration}, {@code function_declaration},
+ * {@code specparam_declaration}, {@code parameter_declaration}, {@code local_parameter_declaration};
+ * see {@code ANTLR_PORT_BATCH_PLAN.txt} batch 6).
  */
 public final class VerilogParserTrunkPortFacade {
 

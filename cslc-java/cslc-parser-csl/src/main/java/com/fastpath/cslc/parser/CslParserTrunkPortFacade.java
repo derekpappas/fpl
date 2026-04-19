@@ -26,7 +26,8 @@ import java.nio.file.Path;
  * for units; plus {@code csl_inst} / ctor-branch {@code csl_inst_or_cstor}; see {@code ANTLR_PORT_BATCH_PLAN.txt}
  * batches 2–4). Batch 3: {@link com.fastpath.cslc.cslom.CslomNamedDecl#antlrRuleSimpleName} and
  * {@link com.fastpath.cslc.cslom.CslomNamedDecl#antlrText} on bridge-produced nodes.
- * Command verb metrics (walker port batch 5 starter): {@link CslWalkerPortCommandVerbListener}.
+ * Command verb metrics (walker port batch 5): {@link CslWalkerPortCommandVerbListener} (verbs, receivers,
+ * {@link CslWalkerPortCommandVerbListener#commandTextsInExitOrder command text}).
  */
 public final class CslParserTrunkPortFacade {
 

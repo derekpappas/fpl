@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class VerilogWalkerPortDesignStubListenerTest {
 
@@ -141,6 +142,85 @@ class VerilogWalkerPortDesignStubListenerTest {
         assertEquals("reg", s2.declarationKind());
         assertEquals("r1", s2.signalName());
         assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
+    }
+
+    @Test
+    void miniGateInitialAlwaysEmitsStubsThenModule() throws IOException {
+        String text = readResource("/regression/mini_gate_initial_always.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(4, sink.size());
+        var g = assertInstanceOf(VerilogGateInstantiationStub.class, sink.get(0));
+        assertEquals("top", g.enclosingModuleName());
+        assertTrue(g.gateText().contains("buf"));
+        var ini = assertInstanceOf(VerilogInitialConstructStub.class, sink.get(1));
+        assertTrue(ini.synopsis().contains("initial"));
+        var alw = assertInstanceOf(VerilogAlwaysConstructStub.class, sink.get(2));
+        assertTrue(alw.synopsis().contains("always"));
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
+    }
+
+    @Test
+    void miniTaskFunctionEmitsDeclStubsThenModule() throws IOException {
+        String text = readResource("/regression/mini_task_function.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(3, sink.size());
+        var task = assertInstanceOf(VerilogTaskDeclStub.class, sink.get(0));
+        assertEquals("top", task.enclosingModuleName());
+        assertEquals("t", task.taskName());
+        var fn = assertInstanceOf(VerilogFunctionDeclStub.class, sink.get(1));
+        assertEquals("f", fn.functionName());
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(2));
+    }
+
+    @Test
+    void miniParameterDeclEmitsOneStubPerParamAssignmentThenModule() throws IOException {
+        String text = readResource("/regression/mini_parameter_decl.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(4, sink.size());
+        var p0 = assertInstanceOf(VerilogParamDeclAssignmentStub.class, sink.get(0));
+        assertEquals("m", p0.enclosingModuleName());
+        assertEquals("parameter", p0.declarationKind());
+        assertTrue(p0.assignmentText().contains("p"));
+        var p1 = assertInstanceOf(VerilogParamDeclAssignmentStub.class, sink.get(1));
+        assertEquals("localparam", p1.declarationKind());
+        assertTrue(p1.assignmentText().contains("q"));
+        var p2 = assertInstanceOf(VerilogParamDeclAssignmentStub.class, sink.get(2));
+        assertEquals("localparam", p2.declarationKind());
+        assertTrue(p2.assignmentText().contains("r"));
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
+    }
+
+    @Test
+    void miniSpecparamEmitsOneStubPerAssignmentThenModule() throws IOException {
+        String text = readResource("/regression/mini_specparam.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(3, sink.size());
+        var s0 = assertInstanceOf(VerilogSpecparamAssignmentStub.class, sink.get(0));
+        assertEquals("m", s0.enclosingModuleName());
+        assertTrue(s0.assignmentText().contains("dly"));
+        var s1 = assertInstanceOf(VerilogSpecparamAssignmentStub.class, sink.get(1));
+        assertTrue(s1.assignmentText().contains("x"));
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(2));
+    }
+
+    @Test
+    void miniDefparamEmitsOneStubPerAssignmentThenModule() throws IOException {
+        String text = readResource("/regression/mini_defparam.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(3, sink.size());
+        var d0 = assertInstanceOf(VerilogDefparamAssignmentStub.class, sink.get(0));
+        assertEquals("top", d0.enclosingModuleName());
+        assertTrue(d0.assignmentText().contains("a"));
+        assertTrue(d0.assignmentText().contains("b"));
+        var d1 = assertInstanceOf(VerilogDefparamAssignmentStub.class, sink.get(1));
+        assertTrue(d1.assignmentText().contains("c"));
+        assertTrue(d1.assignmentText().contains("d"));
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(2));
     }
 
     @Test
