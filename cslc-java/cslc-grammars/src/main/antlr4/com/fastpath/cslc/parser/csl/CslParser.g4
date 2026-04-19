@@ -3,9 +3,9 @@ parser grammar CslParser;
 options { tokenVocab = CslLexer; }
 
 /*
- * Incremental Java port of legacy trunk ANTLR2 csl.parser.g (17k+ lines with C++ actions).
- * Top shape follows legacy source_text / description; rules grow as the port proceeds.
- * Full semantic parity (CSLOM, sym tree, walker) remains C++ until ported separately.
+ * Small stub for smoke tests; legacy shape follows {@code source_text} / {@code description}.
+ * The mechanical trunk port is {@code CslParserTrunkPort.g4} (same Maven module). Full semantic
+ * parity (CSLOM, sym tree, walker) remains C++ until ported separately.
  */
 
 sourceFile

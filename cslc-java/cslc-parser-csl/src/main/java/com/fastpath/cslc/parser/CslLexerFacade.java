@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Lex-only helpers using generated {@link CslLexer}. For parse trees see {@link CslParserFacade} and {@code CslParser.g4}
- * (incremental port of legacy {@code csl.parser.g}).
+ * Lex-only helpers using generated {@link CslLexer}. For parse trees see {@link CslParserFacade} /
+ * {@link CslParserTrunkPortFacade} (stub vs mechanical trunk port).
  */
 public final class CslLexerFacade {
 

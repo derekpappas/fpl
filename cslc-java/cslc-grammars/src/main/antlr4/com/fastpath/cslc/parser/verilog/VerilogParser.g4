@@ -5,9 +5,9 @@ options { tokenVocab = VerilogLexer; }
 /*
  * Build-ready subset of legacy verilog.parser.g (entry + empty module).
  *
- * Full mechanical port of trunk (syntax-only, actions stripped) is generated into
- * VerilogParser.trunk-port.g4 by scripts/port_trunk_parser_g_to_g4.py — that file is not
- * wired into Maven until the remaining ANTLR2→4 edge cases are resolved.
+ * Full mechanical port of trunk (syntax-only, actions stripped) lives in
+ * {@code VerilogParserTrunkPort.g4} (regenerate with {@code scripts/port_trunk_parser_g_to_g4.py});
+ * the Maven {@code cslc-grammars} module generates both this stub and the trunk parser.
  */
 
 source_text

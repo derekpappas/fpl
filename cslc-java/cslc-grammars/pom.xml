@@ -39,6 +39,7 @@
               <includes>
                 <include>CslLexer.g4</include>
                 <include>CslParser.g4</include>
+                <include>CslParserTrunkPort.g4</include>
               </includes>
               <arguments>
                 <argument>-package</argument>
@@ -58,6 +59,7 @@
               <includes>
                 <include>VerilogLexer.g4</include>
                 <include>VerilogParser.g4</include>
+                <include>VerilogParserTrunkPort.g4</include>
               </includes>
               <arguments>
                 <argument>-package</argument>

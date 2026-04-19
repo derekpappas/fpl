@@ -1,0 +1,4 @@
+csl_unit parent {
+  # "f.csl" 42
+  csl_signal s;
+};

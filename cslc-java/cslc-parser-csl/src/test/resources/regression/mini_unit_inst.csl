@@ -1,0 +1,4 @@
+csl_unit parent {
+  child_unit c1;
+  child_unit c2;
+};

@@ -35,8 +35,16 @@ trunk/cslc/trunk (top level)
   src/gui_cslom/                 → cslc-gui-cslom
   src/ide/                       → cslc-ide
   src/license/                   → cslc-license
-  src/parser/csl + grammars      → cslc-grammars + cslc-parser-csl
+  src/parser/csl + grammars      → cslc-grammars + cslc-parser-csl (trunk parser/lexer .g paths: cslc-cslom legacy.LegacyAntlrParserSources; ANTLR port batches: cslc-java/ANTLR_PORT_BATCH_PLAN.txt)
+  src/parser/csl/csl.walker.g    → (ANTLR2 walker not ported — see cslc-cslom legacy.LegacyAntlrWalkerSources)
   src/parser/verilog             → cslc-parser-verilog
+  src/parser/verilog/verilog.walker.g → (ANTLR2 walker not ported — same)
+  ANTLR2→ANTLR4 Java grammars: cslc-grammars (default Maven antlr4 build generates CslLexer + CslParser stub + CslParserTrunkPort
+    and VerilogLexer + VerilogParser stub + VerilogParserTrunkPort). Trunk-port parsers are syntax-only slices of trunk *.parser.g
+    (legacy { } actions / AST / walkers not ported). Regenerate: cslc-java/scripts/port_trunk_parser_g_to_g4.py; lexer vs parser
+    token heuristic: cslc-java/scripts/audit_lexer_parser_token_refs.py; trunk lexer ``tokens{}`` vs ``.g4`` lexer names:
+    cslc-java/scripts/audit_trunk_lexer_tokens_vs_g4.py; combined checks: cslc-java/scripts/verify_antlr4_grammar_port_health.py
+    (also run from antlr_compile_trunk_ports.sh); legacy rule names: cslc-java/scripts/list_antlr2_rule_headers.py.
   src/preproc/                   → cslc-preproc
   src/support/                   → cslc-support
   trunk/include/ (boost fs)      → cslc-support LegacyBoostFilesystemNote

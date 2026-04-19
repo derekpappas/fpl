@@ -11,13 +11,28 @@ embedding the old C++ semantic actions. Re-run after trunk edits:
 
   python3 scripts/port_trunk_parser_g_to_g4.py \\
     --input ../trunk/cslc/trunk/src/parser/verilog/verilog.parser.g \\
-    --output cslc-grammars/src/main/antlr4/com/fastpath/cslc/parser/verilog/VerilogParser.trunk-port.g4 \\
-    --grammar-name VerilogParser \\
+    --output cslc-grammars/src/main/antlr4/com/fastpath/cslc/parser/verilog/VerilogParserTrunkPort.g4 \\
+    --grammar-name VerilogParserTrunkPort \\
     --token-vocab VerilogLexer \\
-    --first-rule-line 170
+    --first-rule-name unexpected
 
-  The Maven build uses ``VerilogParser.g4`` (small, compile-clean). Swap/rename when
-  ``VerilogParser.trunk-port.g4`` is brought to a compiling state.
+  CSL trunk port (``--grammar-name`` must match the ``.g4`` basename for ``org.antlr.v4.Tool``):
+
+  python3 scripts/port_trunk_parser_g_to_g4.py \\
+    --input ../trunk/cslc/trunk/src/parser/csl/csl.parser.g \\
+    --output cslc-grammars/src/main/antlr4/com/fastpath/cslc/parser/csl/CslParserTrunkPort.g4 \\
+    --grammar-name CslParserTrunkPort \\
+    --token-vocab CslLexer \\
+    --first-rule-name source_text
+
+  Use ``--first-rule-line N`` instead of ``--first-rule-name`` when you want a fixed slice (legacy behaviour).
+
+  The ``cslc-grammars`` Maven module generates lexer + stub parser + ``*TrunkPort`` parser grammars together.
+  Local ANTLR checks: ``scripts/antlr_compile_trunk_ports.sh`` (compiles trunk ports + runs ``verify_antlr4_grammar_port_health.py``),
+  or the per-language ``antlr_compile_*_trunk_port.sh`` scripts alone.
+  Heuristic lexer/parser token gap list: ``scripts/audit_lexer_parser_token_refs.py --parser ... --lexer ...``.
+  Trunk ``*.lexer.g`` ``tokens{}`` names vs ``*.g4`` lexer rules: ``scripts/audit_trunk_lexer_tokens_vs_g4.py``.
+  Rule inventory (parser or walker ``.g``): ``scripts/list_antlr2_rule_headers.py`` (e.g. ``csl.parser.g``, ``*.walker.g``).
 """
 from __future__ import annotations
 
@@ -29,6 +44,20 @@ from pathlib import Path
 
 def read_lines(p: Path) -> list[str]:
     return p.read_text(encoding="utf-8", errors="replace").splitlines(keepends=True)
+
+
+def discover_first_rule_line(lines: list[str], rule_name: str) -> int:
+    """
+    Return 1-based line index where legacy ANTLR2 rule ``rule_name`` starts.
+
+    Matches a line that is only ``rule_name`` (after strip), i.e. the usual ANTLR2 rule header line
+    before ``:`` / ``returns`` / ``{`` blocks.
+    """
+    pat = re.compile(rf"^{re.escape(rule_name)}\s*$")
+    for i, line in enumerate(lines, start=1):
+        if pat.match(line.strip()):
+            return i
+    raise ValueError(f"--first-rule-name {rule_name!r}: no sole-line rule header found")
 
 
 def strip_exception_and_catch(lines: list[str]) -> list[str]:
@@ -267,6 +296,21 @@ def strip_antlr2_syntactic_predicates(text: str) -> str:
     return "".join(out_parts)
 
 
+def strip_antlr2_options_ebnf_colon(text: str) -> str:
+    """
+    Remove ANTLR2 ``( options { ... } :`` EBNF prefixes after action stripping.
+
+    Legacy Verilog ``( options { warnWhenFollowAmbig = false; } : K_ELSE ... )?`` becomes
+    ``( options  :`` once ``{...}`` is removed; ``options`` is reserved in ANTLR4 and breaks parsing.
+    """
+    prev = None
+    t = text
+    while prev != t:
+        prev = t
+        t = re.sub(r"\(\s*options\s*:", "(", t)
+    return t
+
+
 def remove_bang_suffixes(text: str) -> str:
     """Remove ANTLR2 forced-backtrack suffix ! on identifiers / keyword tokens (not != or !==)."""
     prev = None
@@ -433,6 +477,36 @@ def strip_parser_return_clauses(text: str) -> str:
     return re.sub(r"\s+returns\s+\[[^\]]*\]", "", text)
 
 
+def collapse_double_optional_around_rule(text: str, inner_rule: str) -> str:
+    """Collapse ``( ( inner_rule )? )?`` left after stripping ``{pred}?`` (ANTLR4 warning 154)."""
+    return re.sub(
+        rf"\(\s*\(\s*{re.escape(inner_rule)}\s*\)\?\s*\)\?",
+        f"( {inner_rule} )?",
+        text,
+    )
+
+
+def patch_verilog_pulse_control_outer_optional(text: str) -> str:
+    """
+    Remove redundant outer ``( ... )?`` in ``pulse_control_specparam`` left after stripping
+    ``{pred}?`` (ANTLR4 warning 154: optional block can match empty string).
+    """
+    t = re.sub(
+        r"(pulse_control_specparam\s*\n\s*:\s*\n\s*pp=PATHPULSE)\s*\n\s*\(\s*\n\s*\(",
+        r"\1\n  (",
+        text,
+        count=1,
+        flags=re.MULTILINE,
+    )
+    return re.sub(
+        r"(\(\s*LBRACK\s*\n\s*cre2=constant_range_expression\s*\n\s*\n\s*RBRACK\s*\n\s*\)\?\s*\)\?)\s*\n\s*\)\?\s*\n\s*assn=ASSIGN",
+        r"\1\n  assn=ASSIGN",
+        t,
+        count=1,
+        flags=re.MULTILINE,
+    )
+
+
 def patch_empty_alternatives_in_gate_instantiation(text: str) -> str:
     """ANTLR2 ``( X | )`` / ``( X |)`` optional groups -> ANTLR4 ``( X )?``."""
     t = text
@@ -477,6 +551,7 @@ def port_body(raw_lines: list[str]) -> str:
     text = strip_line_comments(text)
     text = strip_fat_arrow_predicates(text)
     text = strip_antlr2_syntactic_predicates(text)
+    text = strip_antlr2_options_ebnf_colon(text)
     text = remove_bang_suffixes(text)
     text = remove_antlr2_negated_alternative_markers(text)
     text = cpp_types_to_java(text)
@@ -491,8 +566,14 @@ def port_body(raw_lines: list[str]) -> str:
     text = remove_orphan_optional_markers(text)
     text = strip_empty_optional_openers(text)
     text = patch_empty_alternatives_in_gate_instantiation(text)
+    text = patch_verilog_pulse_control_outer_optional(text)
+    text = collapse_double_optional_around_rule(text, "csl_unit_definition")
     text = patch_empty_port_rule(text)
     text = strip_parser_return_clauses(text)
+    # ANTLR2 ``rule[args]!`` becomes ``rule!`` only after ``strip_invocation_arguments``; strip ``!`` again.
+    text = remove_bang_suffixes(text)
+    # csl.parser.g labels this token K_DATA_GENERATION but csl.lexer.g only defines start_state_data_generation.
+    text = text.replace("K_DATA_GENERATION", "K_START_STATE_DATA_GENERATION")
     return text
 
 
@@ -516,7 +597,18 @@ def main() -> int:
     ap.add_argument("--output", type=Path, required=True)
     ap.add_argument("--grammar-name", required=True)
     ap.add_argument("--token-vocab", required=True)
-    ap.add_argument("--first-rule-line", type=int, required=True, help="1-based line number of first parser rule to keep")
+    start_group = ap.add_mutually_exclusive_group(required=True)
+    start_group.add_argument(
+        "--first-rule-line",
+        type=int,
+        metavar="N",
+        help="1-based line number of first parser rule to keep",
+    )
+    start_group.add_argument(
+        "--first-rule-name",
+        metavar="NAME",
+        help="Discover 1-based line of legacy rule header NAME (sole line, before ':' block)",
+    )
     args = ap.parse_args()
 
     if not args.input.is_file():
@@ -524,7 +616,16 @@ def main() -> int:
         return 1
 
     all_lines = read_lines(args.input)
-    start = max(1, args.first_rule_line) - 1
+    try:
+        if args.first_rule_name is not None:
+            first_line = discover_first_rule_line(all_lines, args.first_rule_name)
+            print(f"Discovered --first-rule-line {first_line} for rule {args.first_rule_name!r}", file=sys.stderr)
+        else:
+            first_line = args.first_rule_line
+    except ValueError as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    start = max(1, first_line) - 1
     if start >= len(all_lines):
         print("--first-rule-line past EOF", file=sys.stderr)
         return 1
@@ -534,7 +635,7 @@ def main() -> int:
         grammar_name=args.grammar_name,
         token_vocab=args.token_vocab,
         source=args.input.resolve(),
-        first_line=args.first_rule_line,
+        first_line=first_line,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(header + body, encoding="utf-8")

@@ -1,0 +1,97 @@
+ANTLR2 / trunk .g → ANTLR4 / Java port — batch plan (living document)
+================================================================
+
+Done (reference)
+----------------
+  Batch 0 — Grammar toolchain
+    Trunk-port Csl/Verilog parser .g4; lexers; Maven antlr4 executions; port_trunk_parser_g_to_g4.py;
+    antlr_compile_* scripts; audit_lexer_parser_token_refs.py; audit_trunk_lexer_tokens_vs_g4.py;
+    verify_antlr4_grammar_port_health.py; TRUNK_MODULE_MAP + LegacyAntlrParserSources paths.
+
+  Batch 1 — Parse / walk scaffolding
+    TrunkPort facades; ParseTreeWalker helpers; Csl/VerilogTrunkPortListenerSkeleton; metrics listeners;
+    rule hooks (csl_unit_declaration, module) with identifier extraction from parse tree.
+
+  Batch 2–3 — CSLOM stub bridge + declaration coverage + hierarchy (stub phase)
+    cslc-parser-csl → cslc-cslom dependency.
+    CslomParserDeclStub, CslomDesignStub; CslWalkerPortParserDeclStubBridgeListener maps all csl_*_declaration
+    exits to CslomNodeType stubs; flat sink unchanged.
+    Hierarchy: CslWalkerPortParserDeclStubBridgeListener(sink, designRoot) attaches inner declaration stubs
+    under the enclosing csl_unit_declaration scope and links the unit under design on first inner use; sink
+    still receives every stub (parity). Nested csl_unit under another unit is not modeled (inner unit still
+    attaches at design if encountered).
+    Test: CslWalkerPortParserDeclStubBridgeListenerTest.miniSignalHierarchyLinksSignalUnderUnitOnDesign.
+
+  Batch 4 — csl_unit_definition body (stub phase, partial)
+    CslWalkerPortParserDeclStubBridgeListener: exit csl_inst → one TYPE_UNIT_INSTANTIATION stub per instance
+    identifier; exit csl_inst_or_cstor when csl_cstor present → TYPE_INST_UNIT stub for the template identifier
+    (ctor subtree not otherwise modeled). Fixtures: mini_unit_inst.csl, mini_unit_ctor.csl; tests in
+    CslWalkerPortParserDeclStubBridgeListenerTest.
+    Preprocessor + csl_command stubs: exit preprocessor_directive → TYPE_STMT (unquoted STRING name);
+    exit csl_command → TYPE_COMMAND (first receiver IDENTIFIER or literal name "command"). csl_command is only
+    valid in source_text / description and in csl_cstor bodies, not in csl_unit_definition. Fixtures:
+    mini_unit_preproc_cmd.csl, mini_file_command.csl, mini_unit_ctor_command.csl; hierarchy tests updated.
+    Note: trunk csl_inst optional `( ... )` does not admit empty parentheses; use bare instance id or a real
+    param list / expression inside parens.
+
+  Batch 2 — CSLOM bridge (real types)
+    CslomNamedDecl base; CslomUnitDecl for csl_unit; package {@code com.fastpath.cslc.cslom.decl} with one final
+    class per trunk-port declaration / inst / preprocessor / command shape (fixed CslomNodeType each).
+    CslWalkerPortParserDeclStubBridgeListener emits those types (no generic ParserDeclStub in the bridge).
+    CslomParserDeclStub remains for arbitrary-type tests and non-bridge callers.
+
+  Batch 3 (started) — CSL declaration refinement
+    CslomNamedDecl.antlrRuleSimpleName / attachAntlrRuleSimpleName from originating ParserRuleContext class name;
+    antlrText / attachAntlrText from ParserRuleContext#getText (source slice incl. whitespace). Bridge attaches both.
+    Tests assert rule names and substring checks on fixtures.
+
+  Batch 5 — Walker command port (starter)
+    CslWalkerPortCommandVerbListener: on exit csl_command, counts exits; infers verb from first (alphabetically)
+    non-null param_list_* accessor on Csl_commandContext; labels assign-shaped commands as assign; records last
+    receiver IDENTIFIER(0). Tests: CslWalkerPortCommandVerbListenerTest.
+
+  Batch 6 — Verilog trunk → stubs (partial)
+    cslc-parser-verilog: sealed VerilogDesignElementStub (VerilogModuleDeclStub, VerilogUdpDeclStub,
+    VerilogModuleInstanceStub, VerilogPortDeclStub, VerilogSignalDeclStub, VerilogContinuousAssignStub);
+    VerilogWalkerPortDesignStubListener on exitModule (stacked enclosing name), exitPort_declaration,
+    exitList_of_port_declarations (ANSI comma-only identifiers), exitModule_item (comma-only ports in body),
+    exitNet_declaration, exitReg_declaration, exitInteger_declaration, exitTime_declaration, exitReal_declaration,
+    exitRealtime_declaration, exitEvent_declaration, exitGenvar_declaration, exitUdp_declaration,
+    exitModule_or_udp_instantiation, exitContinuous_assign (one stub per net_assignment; flat sink; no cslc-cslom).
+    Fixtures: mini_instance.v, mini_udp.v, mini_module_item_ports.v, mini_ansi_ports.v, mini_ansi_comma_ident.v,
+    mini_net_reg.v, mini_misc_decl.v, mini_continuous_assign.v; tests: VerilogWalkerPortDesignStubListenerTest.
+
+Remaining (ordered roughly by dependency)
+-------------------------------------------
+  Batch 2 — CSLOM bridge (remainder)  [next]
+    Map typed decl nodes into full trunk-parity CSLOm classes when ported; nested unit parentage if required by product.
+
+  Batch 3 — CSL declaration refinement  [next]
+    Structured fields (bit widths, port dirs, parsed exprs) instead of raw getText only; map antlrRuleSimpleName to
+    legacy csl.walker.g rule names where they differ; walker command rules (see Batch 5).
+
+  Batch 4 — csl_unit_definition body (remainder)
+    Mirror walker scope push/pop when CSLOm scope API exists; refine inst vs ctor / command stub semantics vs
+    legacy CSLOm; optional metrics for csl_command verb extraction beyond first IDENTIFIER.
+
+  Batch 5 — Walker commands (remainder)
+    Per-command CSLOm side effects beyond verb/receiver metrics; map remaining param_list_* shapes; port C++
+    walker actions incrementally; tighten verb inference if multiple param_list contexts could be non-null.
+
+  Batch 6 — Verilog trunk listener → CDOM or placeholder (remainder)
+    Gate / initial / always items; map design stubs into cslc-cdom when APIs exist; generate-block hierarchy; attrs
+    on port lists if needed for IR.
+
+  Batch 7 — Lexer behavioral parity
+    Beyond tokens{} name audit: trunk-only lexer paths (numbers, identifiers, modes) vs .g4 behavior;
+    targeted fixtures per discrepancy.
+
+  Batch 8 — Parser preamble / symtree (if still required)
+    Redesign Java-side equivalents of csl.parser.g globals (not a line-slice of .g4); likely orchestration
+    in cslc-core / driver, not grammar-only.
+
+  Batch 9 — Golden & error parity
+    Trunk sample corpus; compare parse success/failure and key diagnostics vs legacy (CI-gated).
+
+See also: scripts/list_antlr2_rule_headers.py (parser + walker rule lists), cslc-cslom legacy package
+for walker .g paths.

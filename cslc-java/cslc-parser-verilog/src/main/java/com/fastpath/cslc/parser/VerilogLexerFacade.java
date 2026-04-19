@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Lex-only helpers using generated {@link VerilogLexer}. For parse trees see {@link VerilogParserFacade}.
+ * Lex-only helpers using generated {@link VerilogLexer}. For parse trees see {@link VerilogParserFacade} /
+ * {@link VerilogParserTrunkPortFacade}.
  */
 public final class VerilogLexerFacade {
 

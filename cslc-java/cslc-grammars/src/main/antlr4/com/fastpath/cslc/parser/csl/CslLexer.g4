@@ -478,6 +478,7 @@ STARP      : '*)' ;
 PO_POS     : '+:' ;
 PO_NEG     : '-:' ;
 SUPERSTAR  : '(*)' ;
+PSTAR      : '(*' ;
 
 SYSTEM_TASK_NAME : '$' [a-zA-Z0-9_$]+ ;
 
@@ -492,7 +493,12 @@ fragment BIN_DIGIT : [01] ;
 fragment OCT_DIGIT : [0-7] ;
 fragment XZ_DIGIT : [xXzZ?] ;
 
-fragment UNSIGNED_NUMBER : DIGIT ( DIGIT | '_' )* ;
+fragment WHITE_SPACE_IN_BASED : [ \t] ;
+
+// Exposed token types (legacy csl.lexer.g / csl.parser.g); CslParserTrunkPort.unexpected references these.
+UNSIGNED_NUMBER : DIGIT ( DIGIT | '_' )* ;
+
+NZ_UNSIGNED_NUMBER : NZ_DIGIT ( DIGIT | '_' )* ;
 
 REAL_NUMBER
     : UNSIGNED_NUMBER '.' UNSIGNED_NUMBER
@@ -502,15 +508,23 @@ REAL_NUMBER_EXP
     : UNSIGNED_NUMBER ('.' UNSIGNED_NUMBER)? [eE] [+-]? UNSIGNED_NUMBER
     ;
 
-NUMBER
-    : REAL_NUMBER_EXP
-    | REAL_NUMBER
-    | UNSIGNED_NUMBER
+TICK : ['] ;
+
+BASED_NUMBER
+    : [0-9]* '\'' [sS]? [bB] ( WHITE_SPACE_IN_BASED* ( BIN_DIGIT | XZ_DIGIT | '_' ) )+
+    | [0-9]* '\'' [sS]? [oO] ( WHITE_SPACE_IN_BASED* ( OCT_DIGIT | XZ_DIGIT | '_' ) )+
+    | [0-9]* '\'' [sS]? [dD] ( WHITE_SPACE_IN_BASED* ( DIGIT | XZ_DIGIT | '_' ) )+
+    | [0-9]* '\'' [sS]? [hH] ( WHITE_SPACE_IN_BASED* ( HEX_DIGIT | XZ_DIGIT | '_' ) )+
     ;
 
 ESCAPED_IDENTIFIER
     : '\\' ~[.\r\n\t \u000B\f]+ (' ' | '\t' | [\u000B\f] | '\r' | '\n')?
     ;
+
+// Verilog port-direction keywords (csl.parser.g ports_trace_to / unexpected token set)
+K_INPUT : 'input' ;
+K_OUTPUT : 'output' ;
+K_INOUT : 'inout' ;
 
 IDENTIFIER : [a-zA-Z_] [a-zA-Z0-9_$]* ;
 

@@ -3,9 +3,11 @@
 Generate ANTLR4 VerilogLexer.g4 keyword rules from legacy trunk ANTLR2 verilog.lexer.g.
 Reads trunk only; writes under cslc-java. Does not modify trunk.
 
-K_TABLE / K_ENDTABLE are intentionally omitted from the literal table in the legacy lexer
-(they are synthesized from IDENTIFIER with UDP state). This generator only emits NAME = "lit"
-lines from tokens{}, so those two are skipped automatically.
+K_TABLE / K_ENDTABLE are not in verilog.lexer.g ``tokens{}`` (legacy maps spellings ``table`` /
+``endtable`` from IDENTIFIER with UDP state). The checked-in ``VerilogLexer.g4`` adds them plus
+mode ``UDP_TABLE`` by hand; this generator only emits ``NAME = "lit"`` lines from ``tokens{}``.
+UDP edge tokens ``UDP_Q0`` … ``UDP_XQ`` are also hand-maintained in ``UDP_TABLE`` (see trunk lexer comments);
+``scripts/audit_trunk_lexer_tokens_vs_g4.py`` checks every ``tokens{}`` name exists as a lexer rule.
 """
 from __future__ import annotations
 

@@ -13,8 +13,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
 /**
- * Parse entry for the incremental ANTLR4 {@link VerilogParser} port. Lexer is {@link VerilogLexer}; rules grow from
- * {@code VerilogParser.g4} toward legacy {@code verilog.parser.g} coverage.
+ * Parse entry for the small ANTLR4 {@link VerilogParser} stub. For the mechanical trunk grammar see
+ * {@link VerilogParserTrunkPortFacade}.
  */
 public final class VerilogParserFacade {
 

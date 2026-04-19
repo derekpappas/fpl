@@ -1,11 +1,11 @@
-// NOT ON THE MAVEN ANTLR INCLUDES LIST (work in progress). Build uses VerilogParser.g4.
+// Mechanical trunk port (syntax-only). Maven also generates {@code VerilogParser.g4} as the small stub entry.
 //
 // ANTLR4 Java port of legacy ANTLR2/C++ parser grammar.
 // Source: /Users/derekpappas/fpl/trunk/cslc/trunk/src/parser/verilog/verilog.parser.g (from first rule line 170).
 // C++ actions, AST construction, and exception/catch handlers were removed (syntax-only port).
 // Regenerate with: scripts/port_trunk_parser_g_to_g4.py
 
-parser grammar VerilogParser;
+parser grammar VerilogParserTrunkPort;
 
 options { tokenVocab = VerilogLexer; }
 
@@ -576,10 +576,7 @@ pulse_control_specparam
   
 : 
   pp=PATHPULSE
-
-  (
-    
-    ( LBRACK 
+  ( LBRACK 
       cre1=constant_range_expression
       
       RBRACK
@@ -594,7 +591,6 @@ pulse_control_specparam
         RBRACK
       )?
     )?
-  )?
   assn=ASSIGN
   
 
@@ -1107,7 +1103,7 @@ generate_conditional_statement
   constant_expression 
   RPAREN
   generate_item_or_null
-  ( options  :
+  (
     K_ELSE generate_item_or_null
   )?
 ;
@@ -1518,8 +1514,7 @@ conditional_statement
   RPAREN
   attrs_opt 
   statement_or_null
-  ( options  
-  : K_ELSE attrs_opt statement_or_null
+  ( K_ELSE attrs_opt statement_or_null
   )?
 ;
 

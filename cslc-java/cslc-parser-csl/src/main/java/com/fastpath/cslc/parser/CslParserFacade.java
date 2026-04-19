@@ -13,8 +13,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
 /**
- * Parse entry for the incremental ANTLR4 {@link CslParser} port. Lexer is {@link CslLexer}; grammar rules grow from
- * {@code CslParser.g4} toward legacy {@code csl.parser.g} coverage (no walker / CSLOM here yet).
+ * Parse entry for the small ANTLR4 {@link CslParser} stub. For the mechanical trunk grammar see
+ * {@link CslParserTrunkPortFacade} (no walker / CSLOM here yet).
  */
 public final class CslParserFacade {
 

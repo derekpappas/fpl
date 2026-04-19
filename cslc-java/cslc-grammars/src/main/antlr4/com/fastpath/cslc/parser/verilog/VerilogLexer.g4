@@ -1,7 +1,8 @@
 lexer grammar VerilogLexer;
 
 // Generated in part by scripts/gen_verilog_lexer_g4.py from legacy verilog.lexer.g tokens{}
-// Operators, numbers, identifiers: hand-aligned with legacy lexer (UDP/table modes not modeled).
+// Operators, numbers, identifiers: hand-aligned with legacy lexer.
+// UDP primitive ``table`` … ``endtable`` bodies use lexer mode UDP_TABLE (legacy udpTable() flag).
 
 K_PULSESTYLE_ONDETECT : 'pulsestyle_ondetect' ;
 K_PULSESTYLE_ONEVENT : 'pulsestyle_onevent' ;
@@ -184,6 +185,10 @@ PO_NEG     : '-:' ;
 
 EDGE_DESC : ( '0' | '1' ) ( 'x' | 'X' | 'z' | 'Z' ) ;
 
+// Reserved in primitives; legacy lexer maps identifier spellings to these types.
+K_ENDTABLE : 'endtable' ;
+K_TABLE : 'table' -> pushMode(UDP_TABLE) ;
+
 // Legacy treats PATHPULSE$... as a dedicated token
 PATHPULSE : 'PATHPULSE' '$' [a-zA-Z0-9_$]* ;
 
@@ -245,3 +250,48 @@ SL_COMMENT : '//' ~[\r\n]* -> channel(HIDDEN) ;
 ML_COMMENT : '/*' .*? '*/' -> channel(HIDDEN) ;
 
 WS : [ \t\u000B\f\r\n]+ -> channel(HIDDEN) ;
+
+// --- UDP table body (between K_TABLE and K_ENDTABLE) ---
+mode UDP_TABLE;
+
+WS_UDP : [ \t\u000B\f\r\n]+ -> channel(HIDDEN) ;
+
+K_ENDTABLE_UDP : 'endtable' -> type(K_ENDTABLE), popMode ;
+
+// Edge / transition tokens (legacy verilog.lexer.g ``tokens{}``; patterns from commented UDP_TABLE_ITEM)
+UDP_QQ : '(??)' ;
+UDP_Q0 : '(?0)' ;
+UDP_Q1 : '(?1)' ;
+UDP_QX : '(?x)' | '(?X)' ;
+UDP_01 : '(01)' ;
+UDP_0X : '(0x)' | '(0X)' ;
+UDP_0Q : '(0?)' ;
+UDP_10 : '(10)' ;
+UDP_1X : '(1x)' | '(1X)' ;
+UDP_1Q : '(1?)' ;
+UDP_BX : '(bx)' | '(bX)' ;
+UDP_X0 : '(x0)' | '(X0)' ;
+UDP_X1 : '(x1)' | '(X1)' ;
+UDP_XQ : '(x?)' | '(X?)' ;
+
+UDP_0 : '0' ;
+UDP_1 : '1' ;
+UDP_X : [xX] ;
+UDP_B : [bB] ;
+UDP_F : [fF] ;
+UDP_R : [rR] ;
+UDP_N : [nN] ;
+UDP_P : [pP] ;
+
+COLON_UDP : ':' -> type(COLON) ;
+SEMI_UDP : ';' -> type(SEMI) ;
+LPAREN_UDP : '(' -> type(LPAREN) ;
+RPAREN_UDP : ')' -> type(RPAREN) ;
+STAR_UDP : '*' -> type(STAR) ;
+QUEST_UDP : '?' -> type(QUESTION) ;
+MINUS_UDP : '-' -> type(MINUS) ;
+
+SL_COMMENT_UDP : '//' ~[\r\n]* -> channel(HIDDEN) ;
+ML_COMMENT_UDP : '/*' .*? '*/' -> channel(HIDDEN) ;
+
+IDENTIFIER_UDP : [a-zA-Z_] [a-zA-Z0-9_$]* -> type(IDENTIFIER) ;
