@@ -18,9 +18,10 @@ Done (reference)
     exits to CslomNodeType stubs; flat sink unchanged.
     Hierarchy: CslWalkerPortParserDeclStubBridgeListener(sink, designRoot) attaches inner declaration stubs
     under the enclosing csl_unit_declaration scope and links the unit under design on first inner use; sink
-    still receives every stub (parity). Nested csl_unit under another unit is not modeled (inner unit still
-    attaches at design if encountered).
-    Test: CslWalkerPortParserDeclStubBridgeListenerTest.miniSignalHierarchyLinksSignalUnderUnitOnDesign.
+    still receives every stub (parity). Nested csl_unit under another unit attaches under the outer unit's
+    scope (not directly under designRoot).
+    Tests: CslWalkerPortParserDeclStubBridgeListenerTest.miniSignalHierarchyLinksSignalUnderUnitOnDesign;
+    miniNestedUnitHierarchyNestsInnerUnitAndSignalUnderOuter (mini_nested_unit.csl).
 
   Batch 4 — csl_unit_definition body (stub phase, partial)
     CslWalkerPortParserDeclStubBridgeListener: exit csl_inst → one TYPE_UNIT_INSTANTIATION stub per instance
@@ -43,7 +44,9 @@ Done (reference)
   Batch 3 (started) — CSL declaration refinement
     CslomNamedDecl.antlrRuleSimpleName / attachAntlrRuleSimpleName from originating ParserRuleContext class name;
     antlrText / attachAntlrText from ParserRuleContext#getText (source slice incl. whitespace). Bridge attaches both.
-    Tests assert rule names and substring checks on fixtures.
+    legacyWalkerRuleSimpleName: CslTrunkPortAntlrToLegacyWalkerRuleNames maps csl_read_interface_declaration /
+    csl_write_interface_declaration → csl_interface_declaration (trunk csl.walker.g csl_declaration lists interface
+    only). CslomPortDecl / CslomSignalDecl: first declarator param_list subtree text. Tests: fixtures + bridge tests.
 
   Batch 5 — Walker command port (starter + continuation)
     CslWalkerPortCommandVerbListener: on exit csl_command, counts exits; infers verb from first (alphabetically)
@@ -57,14 +60,24 @@ Done (reference)
     VerilogDefparamAssignmentStub, VerilogTaskDeclStub, VerilogFunctionDeclStub, VerilogSpecparamAssignmentStub,
     VerilogParamDeclAssignmentStub, VerilogGenerateRegionStub, VerilogGenerateBlockStub,
     VerilogGenerateCaseStub, VerilogGenerateConditionalStub, VerilogSpecifyBlockStub);
+    VerilogSignalDeclStub.initializerText: {@code net_declaration} assign list; {@code reg_declaration} /
+    {@code integer_declaration} / {@code time_declaration} / {@code real_declaration} / {@code realtime_declaration}
+    {@code variable_type} {@code =} branch.
+    VerilogModuleInstanceStub: enclosingModuleName from listener stack; parameterValueAssignmentText: shared
+    {@code #( ... )} text for all {@code module_instance} in one {@code module_or_udp_instantiation};
+    portConnectionsText: per-instance {@code list_of_port_connections} getText when non-empty.
     VerilogWalkerPortDesignStubListener on exitModule (stacked enclosing name; VerilogModuleDeclStub.macromodule
-    from module_keyword), exitPort_declaration,
+    from module_keyword; module_parameter_port_list and ports list getText on module stub), exitPort_declaration,
     exitList_of_port_declarations (ANSI comma-only identifiers), exitList_of_ports (VerilogListOfPortsStub),
     exitModule_item (comma-only ports in body),
     exitNet_declaration, exitReg_declaration, exitInteger_declaration, exitTime_declaration, exitReal_declaration,
-    exitRealtime_declaration, exitEvent_declaration, exitGenvar_declaration, exitUdp_declaration,
-    exitModule_or_udp_instantiation, exitContinuous_assign (one stub per net_assignment), exitGate_instantiation,
-    exitInitial_construct, exitAlways_construct, exitParameter_override (one stub per defparam_assignment),
+    exitRealtime_declaration, exitEvent_declaration, exitGenvar_declaration,
+    exitUdp_declaration (VerilogUdpDeclStub.synopsis = full udp_declaration getText),
+    exitModule_or_udp_instantiation (VerilogModuleInstanceStub: shared param text, per-instance port list text),
+    exitContinuous_assign (one stub per net_assignment; shared statementSynopsis = full continuous_assign getText),
+    exitGate_instantiation (VerilogGateInstantiationStub.gateKind = matched switch/keyword alternative getText),
+    exitInitial_construct / exitAlways_construct (attrsOptText from attrs_opt when non-empty),
+    exitParameter_override (one stub per defparam_assignment),
     exitTask_declaration, exitFunction_declaration, exitSpecparam_declaration (one stub per specparam_assignment),
     exitParameter_declaration, exitLocal_parameter_declaration (one stub per param_assignment),
     exitModule_parameter_port_list (declarationKind module_parameter_port per param_assignment in #( ... )),
@@ -72,22 +85,77 @@ Done (reference)
     exitGenerate_block, exitGenerate_loop_statement (VerilogGenerateBlockStub),
     exitGenerate_conditional_statement (VerilogGenerateConditionalStub), exitGenerate_case_statement
     (VerilogGenerateCaseStub), exitSpecify_block (VerilogSpecifyBlockStub; flat sink; no cslc-cslom).
-    Fixtures: mini_instance.v, mini_udp.v, mini_module_item_ports.v, mini_ansi_ports.v, mini_ansi_comma_ident.v,
-    mini_net_reg.v, mini_misc_decl.v, mini_continuous_assign.v, mini_gate_initial_always.v, mini_defparam.v,
+    Fixtures: mini_instance.v, mini_instance_named_params.v, mini_instance_named_port_conns.v, mini_udp.v,
+    mini_module_item_ports.v, mini_ansi_ports.v,
+    mini_ansi_comma_ident.v,
+    mini_net_reg.v, mini_misc_decl.v, mini_continuous_assign.v, mini_gate_initial_always.v,
+    mini_initial_always_attrs.v, mini_defparam.v,
     mini_task_function.v, mini_specparam.v, mini_parameter_decl.v, mini_generate_region.v,
     mini_generate_labeled_block.v, mini_generate_for_loop.v, mini_generate_unlabeled_block.v,
     mini_generate_if_else.v, mini_generate_case.v, mini_specify_block.v, mini_macromodule.v,
-    mini_module_header_params.v, mini_non_ansi_ports.v;
+    mini_module_header_params.v, mini_non_ansi_ports.v, mini_net_decl_assign.v, mini_reg_initializer.v;
     tests: VerilogWalkerPortDesignStubListenerTest.
 
 Remaining (ordered roughly by dependency)
 -------------------------------------------
   Batch 2 — CSLOM bridge (remainder)  [next]
-    Map typed decl nodes into full trunk-parity CSLOm classes when ported; nested unit parentage if required by product.
+    Map typed decl nodes into full trunk-parity CSLOm classes when ported. (Nested csl_unit parentage in hierarchy
+    mode: implemented.)
 
   Batch 3 — CSL declaration refinement  [next]
-    Structured fields (bit widths, port dirs, parsed exprs) instead of raw getText only; map antlrRuleSimpleName to
-    legacy csl.walker.g rule names where they differ; walker command rules (see Batch 5).
+    Structured fields (bit widths, port dirs, parsed exprs) instead of raw / param-list text slices; extend
+    antlr→legacy walker rule map beyond read/write interface; walker command rules (see Batch 5).
+
+Next batch (concrete work items)
+--------------------------------
+  Batch 2 (remainder) — CSLOM bridge hardening  [next]
+    - Bridge attaches source + naming metadata on every emitted typed decl:
+      - antlrRuleSimpleName (from ParserRuleContext class)
+      - antlrText (from ParserRuleContext#getText)
+    - Legacy walker rule-name parity:
+      - Extend CslTrunkPortAntlrToLegacyWalkerRuleNames beyond read/write interface declarations as needed by any
+        tests that assert legacy walker rule identifiers.
+      - Keep the map minimal + explicit; add regression tests per mapping.
+    - Port/signal declarator parameter capture:
+      - For CslomPortDecl and CslomSignalDecl, capture the first declarator's param_list subtree text consistently
+        (and define/lock behavior for "no declarator", "no param_list", and multi-declarator cases).
+      - Ensure the bridge populates these fields (not just direct constructors).
+    - Tests/fixtures:
+      - Add/extend focused mini fixtures that exercise: port params, signal params, read/write interface, and
+        nested unit scenarios already covered by hierarchy tests.
+      - Prefer tests at the bridge listener level (ensures end-to-end parse→bridge wiring).
+
+  Batch 3 (next slice) — CSL decl refinement kickoff  [next]
+    - Identify which raw text fields are now relied upon by callers/tests and fence them with tests before refactor.
+    - Introduce structured fields incrementally (start with width/dir where grammar shape is stable), keeping the
+      raw text for parity until downstream consumers are migrated.
+    - Decide "source slice" contract for structured fields:
+      - exact getText() (no whitespace) vs token-interval slice (preserve whitespace/comments) when needed.
+
+Next batch (after Batch 2–3)
+----------------------------
+  Batch 4 (remainder) — csl_unit_definition body: scope + instantiation parity
+    - Mirror legacy walker scope behavior for unit bodies once CSLOM scope APIs exist:
+      - push/pop scope on unit enter/exit
+      - attach child decls/insts under correct unit scope
+    - Reconcile instantiation semantics:
+      - distinguish instance vs ctor-formed instance where possible
+      - define how csl_command inside csl_cstor affects the CSLOM (side-effects vs metrics-only)
+    - Expand fixtures/tests:
+      - unit body with multiple instantiations, mixed ctor/inst forms, nested scopes
+      - ensure hierarchy attachment remains stable vs Batch 2–3 hierarchy behavior
+
+  Batch 5 (remainder) — Walker commands: coverage + verb accuracy
+    - Map remaining param_list_* shapes for csl_command and lock them with focused fixtures.
+    - Tighten verb inference rules when multiple param_list contexts can be non-null:
+      - document tie-break rules and add regression tests
+    - Decide which commands have CSLOM side effects vs metrics-only, and port incrementally.
+
+  Batch 6 (remainder) — Verilog stubs → hierarchy + richer metadata
+    - Add generate-block hierarchy (regions/blocks/conditionals/cases) instead of flat-only sink.
+    - Enrich stubs where callers need it:
+      - gate/instance kinds, initial/always attributes, module header params/ports fidelity
+    - Prepare mapping layer into `cslc-cdom` (or placeholders) when the APIs are ready; keep stubs stable until then.
 
   Batch 4 — csl_unit_definition body (remainder)
     Mirror walker scope push/pop when CSLOm scope API exists; refine inst vs ctor / command stub semantics vs

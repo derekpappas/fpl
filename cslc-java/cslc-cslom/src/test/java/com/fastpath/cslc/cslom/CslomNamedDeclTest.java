@@ -38,4 +38,19 @@ class CslomNamedDeclTest {
         s.attachAntlrText("t1");
         assertThrows(IllegalStateException.class, () -> s.attachAntlrText("t2"));
     }
+
+    @Test
+    void attachLegacyWalkerRuleSimpleNameOnce() {
+        CslomSignalDecl s = new CslomSignalDecl("x", 1, 0, "f.csl");
+        assertTrue(s.legacyWalkerRuleSimpleName().isEmpty());
+        s.attachLegacyWalkerRuleSimpleName("csl_interface_declaration");
+        assertEquals("csl_interface_declaration", s.legacyWalkerRuleSimpleName().orElseThrow());
+    }
+
+    @Test
+    void attachLegacyWalkerRuleSimpleNameTwiceThrows() {
+        CslomSignalDecl s = new CslomSignalDecl("x", 1, 0, "f.csl");
+        s.attachLegacyWalkerRuleSimpleName("csl_interface_declaration");
+        assertThrows(IllegalStateException.class, () -> s.attachLegacyWalkerRuleSimpleName("other"));
+    }
 }

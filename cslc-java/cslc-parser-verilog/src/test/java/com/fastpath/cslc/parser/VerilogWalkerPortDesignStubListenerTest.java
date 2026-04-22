@@ -27,6 +27,8 @@ class VerilogWalkerPortDesignStubListenerTest {
         assertEquals("m", m.moduleName());
         assertEquals(1, m.line());
         assertFalse(m.macromodule());
+        assertNull(m.moduleParameterPortListText());
+        assertNull(m.portsListText());
     }
 
     @Test
@@ -58,13 +60,59 @@ class VerilogWalkerPortDesignStubListenerTest {
         VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
         assertEquals(4, sink.size());
         var i0 = assertInstanceOf(VerilogModuleInstanceStub.class, sink.get(0));
+        assertEquals("top", i0.enclosingModuleName());
         assertEquals("child", i0.moduleType());
         assertEquals("u1", i0.instanceName());
+        assertNull(i0.parameterValueAssignmentText());
+        assertNull(i0.portConnectionsText());
+        var i1 = assertInstanceOf(VerilogModuleInstanceStub.class, sink.get(1));
+        assertEquals("top", i1.enclosingModuleName());
+        assertEquals("u2", i1.instanceName());
+        assertNull(i1.parameterValueAssignmentText());
+        assertNull(i1.portConnectionsText());
+        var i2 = assertInstanceOf(VerilogModuleInstanceStub.class, sink.get(2));
+        assertEquals("top", i2.enclosingModuleName());
+        assertEquals("u3", i2.instanceName());
+        assertNull(i2.parameterValueAssignmentText());
+        assertNull(i2.portConnectionsText());
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
+    }
+
+    @Test
+    void miniInstanceNamedParamsRepeatsParameterTextOnEachInstanceStub() throws IOException {
+        String text = readResource("/regression/mini_instance_named_params.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(3, sink.size());
+        var i0 = assertInstanceOf(VerilogModuleInstanceStub.class, sink.get(0));
+        assertEquals("top", i0.enclosingModuleName());
+        assertEquals("child", i0.moduleType());
+        assertEquals("u1", i0.instanceName());
+        assertNotNull(i0.parameterValueAssignmentText());
+        assertTrue(i0.parameterValueAssignmentText().contains(".W"));
         var i1 = assertInstanceOf(VerilogModuleInstanceStub.class, sink.get(1));
         assertEquals("u2", i1.instanceName());
-        var i2 = assertInstanceOf(VerilogModuleInstanceStub.class, sink.get(2));
-        assertEquals("u3", i2.instanceName());
-        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
+        assertEquals(i0.parameterValueAssignmentText(), i1.parameterValueAssignmentText());
+        assertEquals("top", i1.enclosingModuleName());
+        assertNull(i0.portConnectionsText());
+        assertNull(i1.portConnectionsText());
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(2));
+    }
+
+    @Test
+    void miniInstanceNamedPortConnsCapturesPortListText() throws IOException {
+        String text = readResource("/regression/mini_instance_named_port_conns.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(2, sink.size());
+        var i0 = assertInstanceOf(VerilogModuleInstanceStub.class, sink.get(0));
+        assertEquals("top", i0.enclosingModuleName());
+        assertEquals("child", i0.moduleType());
+        assertNull(i0.parameterValueAssignmentText());
+        assertNotNull(i0.portConnectionsText());
+        assertTrue(i0.portConnectionsText().contains(".clk"));
+        assertTrue(i0.portConnectionsText().contains(".d"));
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(1));
     }
 
     @Test
@@ -75,6 +123,9 @@ class VerilogWalkerPortDesignStubListenerTest {
         assertEquals(1, sink.size());
         var u = assertInstanceOf(VerilogUdpDeclStub.class, sink.get(0));
         assertEquals("p", u.udpName());
+        assertTrue(u.synopsis().contains("primitive"));
+        assertTrue(u.synopsis().contains("endtable"));
+        assertTrue(u.synopsis().contains("endprimitive"));
     }
 
     @Test
@@ -84,8 +135,11 @@ class VerilogWalkerPortDesignStubListenerTest {
                 "module top;\n  child ();\nendmodule\n", new VerilogWalkerPortDesignStubListener(sink));
         assertEquals(2, sink.size());
         var inst = assertInstanceOf(VerilogModuleInstanceStub.class, sink.get(0));
+        assertEquals("top", inst.enclosingModuleName());
         assertEquals("child", inst.moduleType());
         assertNull(inst.instanceName());
+        assertNull(inst.parameterValueAssignmentText());
+        assertNull(inst.portConnectionsText());
     }
 
     @Test
@@ -115,7 +169,11 @@ class VerilogWalkerPortDesignStubListenerTest {
         var pb = assertInstanceOf(VerilogPortDeclStub.class, sink.get(1));
         assertEquals("b", pb.portName());
         assertEquals("output", pb.direction());
-        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(2));
+        var mod = assertInstanceOf(VerilogModuleDeclStub.class, sink.get(2));
+        assertNull(mod.moduleParameterPortListText());
+        assertNotNull(mod.portsListText());
+        assertTrue(mod.portsListText().contains("a"));
+        assertTrue(mod.portsListText().contains("b"));
     }
 
     @Test
@@ -133,7 +191,11 @@ class VerilogWalkerPortDesignStubListenerTest {
         assertEquals("input", pa.direction());
         var pb = assertInstanceOf(VerilogPortDeclStub.class, sink.get(2));
         assertEquals("b", pb.portName());
-        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
+        var mod = assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
+        assertNull(mod.moduleParameterPortListText());
+        assertNotNull(mod.portsListText());
+        assertTrue(mod.portsListText().contains("a"));
+        assertTrue(mod.portsListText().contains("b"));
     }
 
     @Test
@@ -167,12 +229,45 @@ class VerilogWalkerPortDesignStubListenerTest {
         assertEquals("w1", s0.signalName());
         assertEquals("net", s0.declarationKind());
         assertEquals("wire", s0.flavor());
+        assertNull(s0.initializerText());
         var s1 = assertInstanceOf(VerilogSignalDeclStub.class, sink.get(1));
         assertEquals("w2", s1.signalName());
         var s2 = assertInstanceOf(VerilogSignalDeclStub.class, sink.get(2));
         assertEquals("reg", s2.declarationKind());
         assertEquals("r1", s2.signalName());
         assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
+    }
+
+    @Test
+    void miniNetDeclAssignEmitsSignalStubPerNetIdentifierThenModule() throws IOException {
+        String text = readResource("/regression/mini_net_decl_assign.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(4, sink.size());
+        var s0 = assertInstanceOf(VerilogSignalDeclStub.class, sink.get(0));
+        assertEquals("wa", s0.signalName());
+        assertEquals("wire", s0.flavor());
+        assertEquals("1'b0", s0.initializerText());
+        var s1 = assertInstanceOf(VerilogSignalDeclStub.class, sink.get(1));
+        assertEquals("wb", s1.signalName());
+        assertEquals("1'b1", s1.initializerText());
+        var s2 = assertInstanceOf(VerilogSignalDeclStub.class, sink.get(2));
+        assertEquals("wc", s2.signalName());
+        assertEquals("1'b0", s2.initializerText());
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
+    }
+
+    @Test
+    void miniRegInitializerCapturesConstantExpressionText() throws IOException {
+        String text = readResource("/regression/mini_reg_initializer.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(2, sink.size());
+        var r = assertInstanceOf(VerilogSignalDeclStub.class, sink.get(0));
+        assertEquals("r", r.signalName());
+        assertEquals("reg", r.declarationKind());
+        assertEquals("1'b0", r.initializerText());
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(1));
     }
 
     @Test
@@ -183,12 +278,32 @@ class VerilogWalkerPortDesignStubListenerTest {
         assertEquals(4, sink.size());
         var g = assertInstanceOf(VerilogGateInstantiationStub.class, sink.get(0));
         assertEquals("top", g.enclosingModuleName());
+        assertEquals("buf", g.gateKind());
         assertTrue(g.gateText().contains("buf"));
         var ini = assertInstanceOf(VerilogInitialConstructStub.class, sink.get(1));
+        assertNull(ini.attrsOptText());
         assertTrue(ini.synopsis().contains("initial"));
         var alw = assertInstanceOf(VerilogAlwaysConstructStub.class, sink.get(2));
+        assertNull(alw.attrsOptText());
         assertTrue(alw.synopsis().contains("always"));
         assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
+    }
+
+    @Test
+    void miniInitialAlwaysAttrsCapturesAttrsOptText() throws IOException {
+        String text = readResource("/regression/mini_initial_always_attrs.v");
+        List<VerilogDesignElementStub> sink = new ArrayList<>();
+        VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
+        assertEquals(3, sink.size());
+        var ini = assertInstanceOf(VerilogInitialConstructStub.class, sink.get(0));
+        assertEquals("top", ini.enclosingModuleName());
+        assertNotNull(ini.attrsOptText());
+        assertTrue(ini.attrsOptText().contains("keep"));
+        var alw = assertInstanceOf(VerilogAlwaysConstructStub.class, sink.get(1));
+        assertNotNull(alw.attrsOptText());
+        assertTrue(alw.attrsOptText().contains("full_case"));
+        assertTrue(alw.synopsis().contains("@(*)"));
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(2));
     }
 
     @Test
@@ -240,7 +355,11 @@ class VerilogWalkerPortDesignStubListenerTest {
         var port = assertInstanceOf(VerilogPortDeclStub.class, sink.get(2));
         assertEquals("clk", port.portName());
         assertEquals("input", port.direction());
-        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
+        var mod = assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
+        assertNotNull(mod.moduleParameterPortListText());
+        assertTrue(mod.moduleParameterPortListText().contains("W"));
+        assertNotNull(mod.portsListText());
+        assertTrue(mod.portsListText().contains("clk"));
     }
 
     @Test
@@ -397,10 +516,14 @@ class VerilogWalkerPortDesignStubListenerTest {
         var c0 = assertInstanceOf(VerilogContinuousAssignStub.class, sink.get(0));
         assertEquals("top", c0.enclosingModuleName());
         assertEquals("x=y", c0.assignText());
+        assertTrue(c0.statementSynopsis().contains("x=y"));
         var c1 = assertInstanceOf(VerilogContinuousAssignStub.class, sink.get(1));
         assertEquals("a=1'b0", c1.assignText());
         var c2 = assertInstanceOf(VerilogContinuousAssignStub.class, sink.get(2));
         assertEquals("b=1'b1", c2.assignText());
+        assertEquals(c1.statementSynopsis(), c2.statementSynopsis());
+        assertTrue(c1.statementSynopsis().contains("a=1'b0"));
+        assertTrue(c1.statementSynopsis().contains("b=1'b1"));
         assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
     }
 

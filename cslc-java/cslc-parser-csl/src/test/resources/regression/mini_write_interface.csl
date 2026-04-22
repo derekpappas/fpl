@@ -1,0 +1,3 @@
+csl_unit u {
+  csl_write_interface wi;
+};

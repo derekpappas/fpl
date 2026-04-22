@@ -48,8 +48,8 @@ import java.util.Objects;
  * <p>Hierarchy mode: {@code new CslWalkerPortParserDeclStubBridgeListener(sink, designRoot)} — inner declaration
  * nodes are {@link CslomBase#addChild added} under their enclosing {@code csl_unit_declaration} scope; that
  * scope is linked under {@code designRoot} on first inner use. Each node is still appended to {@code sink} for
- * regression parity. Nested {@code csl_unit} inside another unit is not modeled yet (inner unit is still linked
- * directly under {@code designRoot}).
+ * regression parity. Nested {@code csl_unit} inside another unit is attached under the enclosing unit's
+ * {@link CslomUnitDecl} (or placeholder) scope rather than {@code designRoot} (batch 2 remainder).
  *
  * <p>Unit body (batch 4 stub phase): {@code csl_inst} → one {@link CslomNodeType#TYPE_UNIT_INSTANTIATION} stub
  * per instance identifier; {@code csl_inst_or_cstor} with {@code csl_cstor} → {@link CslomNodeType#TYPE_INST_UNIT}
@@ -63,7 +63,11 @@ import java.util.Objects;
  * and bare semicolons only).
  *
  * <p>Batch 3: every {@link CslomNamedDecl} (including {@link CslomUnitDecl}) gets
- * {@link CslomNamedDecl#attachAntlrRuleSimpleName} from the originating context (e.g. {@code csl_unit_declaration}).
+ * {@link CslomNamedDecl#attachAntlrRuleSimpleName} from the originating context (e.g. {@code csl_unit_declaration}),
+ * plus optional {@link CslomNamedDecl#legacyWalkerRuleSimpleName()} when {@link CslTrunkPortAntlrToLegacyWalkerRuleNames}
+ * maps an ANTLR4 rule to a different {@code csl.walker.g} label (e.g. read/write interface →
+ * {@code csl_interface_declaration}). {@link CslomPortDecl} / {@link CslomSignalDecl} also record the first declarator's
+ * {@code param_list_csl_port} / {@code param_list_csl_signal} subtree text (paren contents only) when present.
  */
 public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPortListenerSkeleton {
 
@@ -93,13 +97,12 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
                 String name = id != null ? id.getText() : null;
                 if (name != null) {
                     CslomUnitDecl u = new CslomUnitDecl(name, line, col, file);
-                    u.attachAntlrRuleSimpleName(antlrRuleSimpleName(ctx));
-                    u.attachAntlrText(antlrText(ctx));
-                    designRoot.addChild(u);
+                    attachAntlrCorrelation(u, ctx);
+                    parentForUnitScope(ctx).addChild(u);
                     sink.add(u);
                 } else {
                     CslomPlaceholder p = new CslomPlaceholder(CslomNodeType.TYPE_DECL_UNIT, line, col, file);
-                    designRoot.addChild(p);
+                    parentForUnitScope(ctx).addChild(p);
                     sink.add(p);
                 }
             } else {
@@ -115,8 +118,7 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
         String name = id != null ? id.getText() : null;
         if (name != null) {
             CslomUnitDecl u = new CslomUnitDecl(name, line, col, file);
-            u.attachAntlrRuleSimpleName(antlrRuleSimpleName(ctx));
-            u.attachAntlrText(antlrText(ctx));
+            attachAntlrCorrelation(u, ctx);
             sink.add(u);
         } else {
             sink.add(new CslomPlaceholder(CslomNodeType.TYPE_DECL_UNIT, line, col, file));
@@ -125,12 +127,46 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
 
     @Override
     public void exitCsl_signal_declaration(CslParserTrunkPort.Csl_signal_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomSignalDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var sig = new CslomSignalDecl(name, line, col, file);
+        CslParserTrunkPort.Param_list_csl_signalContext pls = ctx.param_list_csl_signal(0);
+        if (pls != null) {
+            sig.attachFirstSignalParamListText(antlrText(pls));
+        }
+        emitStub(sig, ctx);
     }
 
     @Override
     public void exitCsl_port_declaration(CslParserTrunkPort.Csl_port_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomPortDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var port = new CslomPortDecl(name, line, col, file);
+        CslParserTrunkPort.Param_list_csl_portContext plp = ctx.param_list_csl_port(0);
+        if (plp != null) {
+            port.attachFirstPortParamListText(antlrText(plp));
+        }
+        emitStub(port, ctx);
     }
 
     @Override
@@ -338,10 +374,17 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
         emitStub(ctor.create(name, line, col, file), ctx);
     }
 
+    private void attachAntlrCorrelation(CslomNamedDecl n, ParserRuleContext ctx) {
+        String antlrRule = antlrRuleSimpleName(ctx);
+        n.attachAntlrRuleSimpleName(antlrRule);
+        n.attachAntlrText(antlrText(ctx));
+        CslTrunkPortAntlrToLegacyWalkerRuleNames.legacyWalkerRuleSimpleNameForAntlrParserRule(antlrRule)
+                .ifPresent(n::attachLegacyWalkerRuleSimpleName);
+    }
+
     private void emitStub(CslomBase stub, ParserRuleContext ctx) {
         if (stub instanceof CslomNamedDecl n) {
-            n.attachAntlrRuleSimpleName(antlrRuleSimpleName(ctx));
-            n.attachAntlrText(antlrText(ctx));
+            attachAntlrCorrelation(n, ctx);
         }
         if (designRoot != null) {
             CslParserTrunkPort.Csl_unit_declarationContext unitCtx = ancestorUnitDeclaration(ctx);
@@ -379,15 +422,39 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
                     CslomBase scope;
                     if (name != null) {
                         CslomUnitDecl u = new CslomUnitDecl(name, line, col, file);
-                        u.attachAntlrRuleSimpleName(antlrRuleSimpleName(c));
-                        u.attachAntlrText(antlrText(c));
+                        attachAntlrCorrelation(u, c);
                         scope = u;
                     } else {
                         scope = new CslomPlaceholder(CslomNodeType.TYPE_DECL_UNIT, line, col, file);
                     }
-                    designRoot.addChild(scope);
+                    parentForUnitScope(c).addChild(scope);
                     return scope;
                 });
+    }
+
+    /**
+     * Parent node for a unit scope: enclosing {@code csl_unit_declaration}'s scope if nested, else the design stub.
+     */
+    private CslomBase parentForUnitScope(CslParserTrunkPort.Csl_unit_declarationContext unitCtx) {
+        Objects.requireNonNull(unitCtx, "unitCtx");
+        CslParserTrunkPort.Csl_unit_declarationContext outer = enclosingUnitDeclaration(unitCtx);
+        if (outer != null) {
+            return ensureUnitScope(outer);
+        }
+        return designRoot;
+    }
+
+    /** Nearest {@code csl_unit_declaration} strictly enclosing {@code unitCtx} in the parse tree, if any. */
+    private static CslParserTrunkPort.Csl_unit_declarationContext enclosingUnitDeclaration(
+            CslParserTrunkPort.Csl_unit_declarationContext unitCtx) {
+        ParserRuleContext p = unitCtx.getParent();
+        while (p != null) {
+            if (p instanceof CslParserTrunkPort.Csl_unit_declarationContext u) {
+                return u;
+            }
+            p = p.getParent();
+        }
+        return null;
     }
 
     private static CslParserTrunkPort.Csl_unit_declarationContext ancestorUnitDeclaration(ParserRuleContext ctx) {

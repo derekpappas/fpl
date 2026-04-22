@@ -22,13 +22,20 @@ import java.nio.file.Path;
  * For per-rule entry counts while porting {@code verilog.walker.g}, see {@link VerilogWalkerPortMetricsListener}.
  * First rule-specific hook: {@link VerilogWalkerPortModuleListener} ({@code module}). Design stub bridge:
  * {@link VerilogWalkerPortDesignStubListener} → {@link VerilogDesignElementStub} ({@code module} /
- * {@code macromodule},
+ * {@code macromodule}; see {@link VerilogModuleDeclStub#moduleParameterPortListText()} and
+ * {@link VerilogModuleDeclStub#portsListText()}),
  * {@code port_declaration}, {@code list_of_port_declarations}, {@code list_of_ports}, comma
  * {@code variable_port_identifier} in body
- * {@code module_item}, {@code net_declaration}, {@code reg_declaration}, {@code integer_declaration},
+ * {@code module_item}, {@code net_declaration} / {@code reg_declaration} / etc. (see
+ * {@link VerilogSignalDeclStub#initializerText()}), {@code integer_declaration},
  * {@code time_declaration}, {@code real_declaration}, {@code realtime_declaration}, {@code event_declaration},
- * {@code genvar_declaration}, {@code udp_declaration}, {@code module_or_udp_instantiation},
- * {@code continuous_assign}, {@code gate_instantiation}, {@code initial_construct}, {@code always_construct},
+ * {@code genvar_declaration}, {@code udp_declaration} (see {@link VerilogUdpDeclStub#synopsis()}),
+ * {@code module_or_udp_instantiation} (see
+ * {@link VerilogModuleInstanceStub#enclosingModuleName()}, {@link VerilogModuleInstanceStub#parameterValueAssignmentText()},
+ * {@link VerilogModuleInstanceStub#portConnectionsText()}),
+ * {@code continuous_assign}, {@code gate_instantiation} ({@link VerilogGateInstantiationStub#gateKind()}),
+ * {@code initial_construct} / {@code always_construct} ({@link VerilogInitialConstructStub#attrsOptText()} /
+ * {@link VerilogAlwaysConstructStub#attrsOptText()}),
  * {@code parameter_override} ({@code defparam}), {@code task_declaration}, {@code function_declaration},
  * {@code specparam_declaration}, {@code parameter_declaration}, {@code local_parameter_declaration},
  * {@code module_parameter_port_list},
