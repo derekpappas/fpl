@@ -1,0 +1,5 @@
+csl_unit u {
+  csl_isa_element ie {
+    csl_signal s;
+  };
+};

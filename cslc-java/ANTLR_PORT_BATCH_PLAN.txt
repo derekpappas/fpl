@@ -182,3 +182,5 @@ Next batch (after Batch 2–3)
 
 See also: scripts/list_antlr2_rule_headers.py (parser + walker rule lists), cslc-cslom legacy package
 for walker .g paths.
+
+See also: BATCHES.md — extended batch index (0–30+), slice guidance, and S/M/L sizing for planning.

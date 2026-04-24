@@ -1,0 +1,5 @@
+csl_unit u {
+  csl_register_file rf {
+    csl_signal s;
+  };
+};

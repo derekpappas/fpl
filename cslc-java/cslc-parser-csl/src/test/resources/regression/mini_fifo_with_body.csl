@@ -1,0 +1,5 @@
+csl_unit u {
+  csl_fifo f {
+    csl_signal s;
+  };
+};

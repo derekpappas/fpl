@@ -1,0 +1,5 @@
+csl_unit u {
+  csl_field fld {
+    csl_signal s;
+  };
+};

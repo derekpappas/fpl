@@ -1,0 +1,5 @@
+csl_unit u {
+  csl_memory_map mm {
+    csl_signal s;
+  };
+};

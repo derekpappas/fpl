@@ -1,0 +1,3 @@
+csl_unit u {
+  csl_enum e { a, b = 3 };
+};

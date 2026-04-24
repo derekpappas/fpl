@@ -10,6 +10,7 @@ import com.fastpath.cslc.cslom.decl.CslomBitrangeDecl;
 import com.fastpath.cslc.cslom.decl.CslomCommandDecl;
 import com.fastpath.cslc.cslom.decl.CslomContainerDecl;
 import com.fastpath.cslc.cslom.decl.CslomEnumDecl;
+import com.fastpath.cslc.cslom.decl.CslomFifoDecl;
 import com.fastpath.cslc.cslom.decl.CslomFieldDecl;
 import com.fastpath.cslc.cslom.decl.CslomIncludeDecl;
 import com.fastpath.cslc.cslom.decl.CslomInstUnitDecl;
@@ -26,6 +27,8 @@ import com.fastpath.cslc.cslom.decl.CslomPipelineDecl;
 import com.fastpath.cslc.cslom.decl.CslomPipestageDecl;
 import com.fastpath.cslc.cslom.decl.CslomPortDecl;
 import com.fastpath.cslc.cslom.decl.CslomPreprocessorStmtDecl;
+import com.fastpath.cslc.cslom.decl.CslomRegisterDecl;
+import com.fastpath.cslc.cslom.decl.CslomRegisterFileDecl;
 import com.fastpath.cslc.cslom.decl.CslomSignalDecl;
 import com.fastpath.cslc.cslom.decl.CslomSignalGroupDecl;
 import com.fastpath.cslc.cslom.decl.CslomStateDataDecl;
@@ -37,6 +40,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.IdentityHashMap;
 import java.util.List;
@@ -191,7 +195,23 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
 
     @Override
     public void exitCsl_interface_declaration(CslParserTrunkPort.Csl_interface_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomInterfaceDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var ifc = new CslomInterfaceDecl(name, line, col, file);
+        if (ctx.csl_unit_definition() != null) {
+            ifc.attachUnitDefinitionText(antlrText(ctx.csl_unit_definition()));
+        }
+        emitStub(ifc, ctx);
     }
 
     @Override
@@ -234,7 +254,23 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
 
     @Override
     public void exitCsl_register_file_declaration(CslParserTrunkPort.Csl_register_file_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomContainerDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var rf = new CslomRegisterFileDecl(name, line, col, file);
+        if (ctx.csl_unit_definition() != null) {
+            rf.attachUnitDefinitionText(antlrText(ctx.csl_unit_definition()));
+        }
+        emitStub(rf, ctx);
     }
 
     @Override
@@ -244,22 +280,86 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
 
     @Override
     public void exitCsl_fifo_declaration(CslParserTrunkPort.Csl_fifo_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomContainerDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var fifo = new CslomFifoDecl(name, line, col, file);
+        if (ctx.csl_unit_definition() != null) {
+            fifo.attachUnitDefinitionText(antlrText(ctx.csl_unit_definition()));
+        }
+        emitStub(fifo, ctx);
     }
 
     @Override
     public void exitCsl_memory_map_declaration(CslParserTrunkPort.Csl_memory_map_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomMemoryMapDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var mm = new CslomMemoryMapDecl(name, line, col, file);
+        if (ctx.csl_unit_definition() != null) {
+            mm.attachUnitDefinitionText(antlrText(ctx.csl_unit_definition()));
+        }
+        emitStub(mm, ctx);
     }
 
     @Override
     public void exitCsl_memory_map_page_declaration(CslParserTrunkPort.Csl_memory_map_page_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomMemoryMapPageDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var mmp = new CslomMemoryMapPageDecl(name, line, col, file);
+        if (ctx.csl_unit_definition() != null) {
+            mmp.attachUnitDefinitionText(antlrText(ctx.csl_unit_definition()));
+        }
+        emitStub(mmp, ctx);
     }
 
     @Override
     public void exitCsl_register_declaration(CslParserTrunkPort.Csl_register_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomContainerDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var reg = new CslomRegisterDecl(name, line, col, file);
+        if (ctx.csl_unit_definition() != null) {
+            reg.attachUnitDefinitionText(antlrText(ctx.csl_unit_definition()));
+        }
+        emitStub(reg, ctx);
     }
 
     @Override
@@ -327,37 +427,181 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
 
     @Override
     public void exitCsl_isa_field_declaration(CslParserTrunkPort.Csl_isa_field_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomIsaFieldDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var isf = new CslomIsaFieldDecl(name, line, col, file);
+        if (ctx.csl_unit_definition() != null) {
+            isf.attachUnitDefinitionText(antlrText(ctx.csl_unit_definition()));
+        }
+        emitStub(isf, ctx);
     }
 
     @Override
     public void exitCsl_isa_element_declaration(CslParserTrunkPort.Csl_isa_element_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomIsaElementDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var ise = new CslomIsaElementDecl(name, line, col, file);
+        if (ctx.csl_unit_definition() != null) {
+            ise.attachUnitDefinitionText(antlrText(ctx.csl_unit_definition()));
+        }
+        emitStub(ise, ctx);
     }
 
     @Override
     public void exitCsl_enum_declaration(CslParserTrunkPort.Csl_enum_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(), CslomEnumDecl::new);
+        TerminalNode id = ctx.IDENTIFIER();
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var en = new CslomEnumDecl(name, line, col, file);
+        List<CslParserTrunkPort.Csl_enum_declaration_itemContext> items = ctx.csl_enum_declaration_item();
+        if (items != null && !items.isEmpty()) {
+            en.attachEnumItemTexts(
+                    items.stream().map(CslWalkerPortParserDeclStubBridgeListener::antlrText).collect(Collectors.toList()));
+        }
+        emitStub(en, ctx);
     }
 
     @Override
     public void exitCsl_field_declaration(CslParserTrunkPort.Csl_field_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomFieldDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var fld = new CslomFieldDecl(name, line, col, file);
+        if (ctx.csl_unit_definition() != null) {
+            fld.attachUnitDefinitionText(antlrText(ctx.csl_unit_definition()));
+        }
+        emitStub(fld, ctx);
     }
 
     @Override
     public void exitCsl_include_declaration(CslParserTrunkPort.Csl_include_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(), CslomIncludeDecl::new);
+        TerminalNode id = ctx.IDENTIFIER();
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var inc = new CslomIncludeDecl(name, line, col, file);
+        if (ctx.expression() != null) {
+            inc.attachIncludeArgumentExpressionText(antlrText(ctx.expression()));
+        }
+        emitStub(inc, ctx);
     }
 
     @Override
     public void exitCsl_signal_group_declaration(CslParserTrunkPort.Csl_signal_group_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomSignalGroupDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var sg = new CslomSignalGroupDecl(name, line, col, file);
+        if (ctx.csl_unit_definition() != null) {
+            sg.attachUnitDefinitionText(antlrText(ctx.csl_unit_definition()));
+        }
+        emitStub(sg, ctx);
     }
 
     @Override
     public void exitCsl_list_declaration(CslParserTrunkPort.Csl_list_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomListDecl::new);
+        List<TerminalNode> idNodes = ctx.IDENTIFIER();
+        String name;
+        Token start;
+        if (idNodes != null && !idNodes.isEmpty()) {
+            TerminalNode id0 = idNodes.get(0);
+            name = id0.getText();
+            start = id0.getSymbol();
+        } else {
+            name = CslomListDecl.ANONYMOUS_LIST_DECL_NAME;
+            List<CslParserTrunkPort.Param_list_csl_listContext> plsForPos = ctx.param_list_csl_list();
+            if (plsForPos != null && !plsForPos.isEmpty()) {
+                TerminalNode lp = plsForPos.get(0).LPAREN();
+                start = lp != null ? lp.getSymbol() : ctx.getStart();
+            } else {
+                start = ctx.getStart();
+            }
+        }
+        if (name.isEmpty()) {
+            return;
+        }
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        var list = new CslomListDecl(name, line, col, file);
+        List<CslParserTrunkPort.Param_list_csl_listContext> pls = ctx.param_list_csl_list();
+        if (pls != null && !pls.isEmpty()) {
+            List<List<String>> segments = new ArrayList<>(pls.size());
+            for (CslParserTrunkPort.Param_list_csl_listContext pl : pls) {
+                List<CslParserTrunkPort.ExpressionContext> exprs = pl.expression();
+                if (exprs == null || exprs.isEmpty()) {
+                    segments.add(List.of());
+                } else {
+                    segments.add(
+                            exprs.stream()
+                                    .map(CslWalkerPortParserDeclStubBridgeListener::antlrText)
+                                    .collect(Collectors.toList()));
+                }
+            }
+            list.attachEachListParamExprTextLists(segments);
+        }
+        if (idNodes != null && idNodes.size() > 1) {
+            list.attachAdditionalListDeclaratorNames(
+                    idNodes.subList(1, idNodes.size()).stream()
+                            .map(TerminalNode::getText)
+                            .collect(Collectors.toList()));
+        }
+        emitStub(list, ctx);
     }
 
     @Override

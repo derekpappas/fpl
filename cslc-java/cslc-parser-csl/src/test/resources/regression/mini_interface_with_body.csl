@@ -1,0 +1,5 @@
+csl_unit u {
+  csl_interface ifc {
+    csl_signal s;
+  };
+};

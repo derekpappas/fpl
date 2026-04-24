@@ -6,9 +6,20 @@ import com.fastpath.cslc.cslom.CslomNamedDecl;
 import com.fastpath.cslc.cslom.CslomNodeType;
 import com.fastpath.cslc.cslom.CslomUnitDecl;
 import com.fastpath.cslc.cslom.decl.CslomCommandDecl;
+import com.fastpath.cslc.cslom.decl.CslomEnumDecl;
+import com.fastpath.cslc.cslom.decl.CslomIncludeDecl;
 import com.fastpath.cslc.cslom.decl.CslomInterfaceDecl;
+import com.fastpath.cslc.cslom.decl.CslomListDecl;
 import com.fastpath.cslc.cslom.decl.CslomPortDecl;
 import com.fastpath.cslc.cslom.decl.CslomSignalDecl;
+import com.fastpath.cslc.cslom.decl.CslomFieldDecl;
+import com.fastpath.cslc.cslom.decl.CslomIsaElementDecl;
+import com.fastpath.cslc.cslom.decl.CslomIsaFieldDecl;
+import com.fastpath.cslc.cslom.decl.CslomMemoryMapDecl;
+import com.fastpath.cslc.cslom.decl.CslomMemoryMapPageDecl;
+import com.fastpath.cslc.cslom.decl.CslomRegisterDecl;
+import com.fastpath.cslc.cslom.decl.CslomRegisterFileDecl;
+import com.fastpath.cslc.cslom.decl.CslomSignalGroupDecl;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -577,6 +588,248 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         var mem = assertInstanceOf(com.fastpath.cslc.cslom.decl.CslomMemoryDecl.class, sink.get(1));
         assertEquals("mem", mem.declaredName().orElseThrow());
         assertTrue(mem.unitDefinitionText().orElseThrow().contains("csl_signal"));
+    }
+
+    @Test
+    void miniInterfaceWithBodyCapturesUnitDefinitionText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_interface_with_body.csl")) {
+            assertNotNull(in, "missing /regression/mini_interface_with_body.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(3, sink.size());
+        var ifc = assertInstanceOf(com.fastpath.cslc.cslom.decl.CslomInterfaceDecl.class, sink.get(1));
+        assertEquals("ifc", ifc.declaredName().orElseThrow());
+        assertTrue(ifc.unitDefinitionText().orElseThrow().contains("csl_signal"));
+    }
+
+    @Test
+    void miniFifoWithBodyCapturesUnitDefinitionText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_fifo_with_body.csl")) {
+            assertNotNull(in, "missing /regression/mini_fifo_with_body.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(3, sink.size());
+        var fifo = assertInstanceOf(com.fastpath.cslc.cslom.decl.CslomFifoDecl.class, sink.get(1));
+        assertEquals("f", fifo.declaredName().orElseThrow());
+        assertTrue(fifo.unitDefinitionText().orElseThrow().contains("csl_signal"));
+    }
+
+    @Test
+    void miniRegisterFileWithBodyCapturesUnitDefinitionText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_register_file_with_body.csl")) {
+            assertNotNull(in, "missing /regression/mini_register_file_with_body.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(3, sink.size());
+        var rf = assertInstanceOf(CslomRegisterFileDecl.class, sink.get(1));
+        assertEquals("rf", rf.declaredName().orElseThrow());
+        assertTrue(rf.unitDefinitionText().orElseThrow().contains("csl_signal"));
+    }
+
+    @Test
+    void miniRegisterWithBodyCapturesUnitDefinitionText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_register_with_body.csl")) {
+            assertNotNull(in, "missing /regression/mini_register_with_body.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(3, sink.size());
+        var r = assertInstanceOf(CslomRegisterDecl.class, sink.get(1));
+        assertEquals("r", r.declaredName().orElseThrow());
+        assertTrue(r.unitDefinitionText().orElseThrow().contains("csl_signal"));
+    }
+
+    @Test
+    void miniMemoryMapWithBodyCapturesUnitDefinitionText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_memory_map_with_body.csl")) {
+            assertNotNull(in, "missing /regression/mini_memory_map_with_body.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(3, sink.size());
+        var mm = assertInstanceOf(CslomMemoryMapDecl.class, sink.get(1));
+        assertEquals("mm", mm.declaredName().orElseThrow());
+        assertTrue(mm.unitDefinitionText().orElseThrow().contains("csl_signal"));
+    }
+
+    @Test
+    void miniMemoryMapPageWithBodyCapturesUnitDefinitionText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_memory_map_page_with_body.csl")) {
+            assertNotNull(in, "missing /regression/mini_memory_map_page_with_body.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(3, sink.size());
+        var mmp = assertInstanceOf(CslomMemoryMapPageDecl.class, sink.get(1));
+        assertEquals("mmp", mmp.declaredName().orElseThrow());
+        assertTrue(mmp.unitDefinitionText().orElseThrow().contains("csl_signal"));
+    }
+
+    @Test
+    void miniIsaFieldWithBodyCapturesUnitDefinitionText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_isa_field_with_body.csl")) {
+            assertNotNull(in, "missing /regression/mini_isa_field_with_body.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(3, sink.size());
+        var isf = assertInstanceOf(CslomIsaFieldDecl.class, sink.get(1));
+        assertEquals("isf", isf.declaredName().orElseThrow());
+        assertTrue(isf.unitDefinitionText().orElseThrow().contains("csl_signal"));
+    }
+
+    @Test
+    void miniIsaElementWithBodyCapturesUnitDefinitionText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_isa_element_with_body.csl")) {
+            assertNotNull(in, "missing /regression/mini_isa_element_with_body.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(3, sink.size());
+        var ise = assertInstanceOf(CslomIsaElementDecl.class, sink.get(1));
+        assertEquals("ie", ise.declaredName().orElseThrow());
+        assertTrue(ise.unitDefinitionText().orElseThrow().contains("csl_signal"));
+    }
+
+    @Test
+    void miniFieldWithBodyCapturesUnitDefinitionText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_field_with_body.csl")) {
+            assertNotNull(in, "missing /regression/mini_field_with_body.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(3, sink.size());
+        var fld = assertInstanceOf(CslomFieldDecl.class, sink.get(1));
+        assertEquals("fld", fld.declaredName().orElseThrow());
+        assertTrue(fld.unitDefinitionText().orElseThrow().contains("csl_signal"));
+    }
+
+    @Test
+    void miniSignalGroupWithBodyCapturesUnitDefinitionText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_signal_group_with_body.csl")) {
+            assertNotNull(in, "missing /regression/mini_signal_group_with_body.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(3, sink.size());
+        var sg = assertInstanceOf(CslomSignalGroupDecl.class, sink.get(1));
+        assertEquals("sg", sg.declaredName().orElseThrow());
+        assertTrue(sg.unitDefinitionText().orElseThrow().contains("csl_signal"));
+    }
+
+    @Test
+    void miniEnumItemsCapturesEnumItemTextsInOrder() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_enum_items.csl")) {
+            assertNotNull(in, "missing /regression/mini_enum_items.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var en = assertInstanceOf(CslomEnumDecl.class, sink.get(0));
+        assertEquals("e", en.declaredName().orElseThrow());
+        assertEquals(List.of("a", "b=3"), en.enumItemTexts().orElseThrow());
+    }
+
+    @Test
+    void miniEnumEmptyLeavesEnumItemTextsUnset() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_enum_empty.csl")) {
+            assertNotNull(in, "missing /regression/mini_enum_empty.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var en = assertInstanceOf(CslomEnumDecl.class, sink.get(0));
+        assertEquals("e", en.declaredName().orElseThrow());
+        assertTrue(en.enumItemTexts().isEmpty());
+    }
+
+    @Test
+    void miniIncludeWithExprCapturesArgumentExpressionText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_include_with_expr.csl")) {
+            assertNotNull(in, "missing /regression/mini_include_with_expr.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var inc = assertInstanceOf(CslomIncludeDecl.class, sink.get(0));
+        assertEquals("inc_path", inc.declaredName().orElseThrow());
+        assertEquals("42", inc.includeArgumentExpressionText().orElseThrow());
+    }
+
+    @Test
+    void miniListNamedParamsCapturesFirstParamListExprTexts() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_list_named_params.csl")) {
+            assertNotNull(in, "missing /regression/mini_list_named_params.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var list = assertInstanceOf(CslomListDecl.class, sink.get(0));
+        assertEquals("L", list.declaredName().orElseThrow());
+        assertEquals(List.of(List.of("1", "2")), list.eachListParamExprTextLists().orElseThrow());
+        assertTrue(list.additionalListDeclaratorNames().isEmpty());
+    }
+
+    @Test
+    void miniListAnonParamsUsesSyntheticNameAndCapturesExprTexts() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_list_anon_params.csl")) {
+            assertNotNull(in, "missing /regression/mini_list_anon_params.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var list = assertInstanceOf(CslomListDecl.class, sink.get(0));
+        assertEquals(CslomListDecl.ANONYMOUS_LIST_DECL_NAME, list.declaredName().orElseThrow());
+        assertEquals(List.of(List.of("1", "2")), list.eachListParamExprTextLists().orElseThrow());
+    }
+
+    @Test
+    void miniListTwoSegmentsCapturesParamListsAndTrailingNames() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_list_two_segments.csl")) {
+            assertNotNull(in, "missing /regression/mini_list_two_segments.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var list = assertInstanceOf(CslomListDecl.class, sink.get(0));
+        assertEquals("L", list.declaredName().orElseThrow());
+        assertEquals(List.of(List.of("1"), List.of("2")), list.eachListParamExprTextLists().orElseThrow());
+        assertEquals(List.of("M"), list.additionalListDeclaratorNames().orElseThrow());
     }
 
     @Test

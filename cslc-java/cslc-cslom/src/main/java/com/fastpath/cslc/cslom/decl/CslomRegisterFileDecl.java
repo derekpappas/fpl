@@ -7,14 +7,14 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Syntax-only declaration node for {@code csl_isa_element_declaration} (batch 3 refinement).
+ * Syntax-only declaration node for {@code csl_register_file_declaration} (batch 3 refinement).
  */
-public final class CslomIsaElementDecl extends CslomNamedDecl {
+public final class CslomRegisterFileDecl extends CslomNamedDecl {
 
     private String unitDefinitionText;
 
-    public CslomIsaElementDecl(String name, int lineNumber, int columnNumber, String fileName) {
-        super(CslomNodeType.TYPE_ISA_ELEMENT, name, lineNumber, columnNumber, fileName);
+    public CslomRegisterFileDecl(String name, int lineNumber, int columnNumber, String fileName) {
+        super(CslomNodeType.TYPE_CONTAINER, name, lineNumber, columnNumber, fileName);
     }
 
     /** Raw {@code csl_unit_definition} subtree text when present (batch 3 refinement). */
@@ -31,3 +31,4 @@ public final class CslomIsaElementDecl extends CslomNamedDecl {
         this.unitDefinitionText = text;
     }
 }
+
