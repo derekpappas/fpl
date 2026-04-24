@@ -6,12 +6,15 @@ import com.fastpath.cslc.cslom.CslomNodeType;
 import java.util.Objects;
 import java.util.Optional;
 
-public final class CslomVectorDecl extends CslomNamedDecl {
+/**
+ * Syntax-only declaration node for {@code csl_memory_declaration} (batch 3 refinement).
+ */
+public final class CslomMemoryDecl extends CslomNamedDecl {
 
     private String unitDefinitionText;
 
-    public CslomVectorDecl(String name, int lineNumber, int columnNumber, String fileName) {
-        super(CslomNodeType.TYPE_VECTOR, name, lineNumber, columnNumber, fileName);
+    public CslomMemoryDecl(String name, int lineNumber, int columnNumber, String fileName) {
+        super(CslomNodeType.TYPE_CONTAINER, name, lineNumber, columnNumber, fileName);
     }
 
     /** Raw {@code csl_unit_definition} subtree text when present (batch 3 refinement). */
@@ -28,3 +31,4 @@ public final class CslomVectorDecl extends CslomNamedDecl {
         this.unitDefinitionText = text;
     }
 }
+

@@ -22,6 +22,15 @@ class CslTrunkPortAntlrToLegacyWalkerRuleNamesTest {
     }
 
     @Test
+    void constIntMapsToWalkerParameterDeclarationRule() {
+        assertEquals(
+                "csl_parameter_declaration",
+                CslTrunkPortAntlrToLegacyWalkerRuleNames.legacyWalkerRuleSimpleNameForAntlrParserRule(
+                                "csl_const_int_declaration")
+                        .orElseThrow());
+    }
+
+    @Test
     void unmappedRuleReturnsEmpty() {
         assertTrue(
                 CslTrunkPortAntlrToLegacyWalkerRuleNames.legacyWalkerRuleSimpleNameForAntlrParserRule(

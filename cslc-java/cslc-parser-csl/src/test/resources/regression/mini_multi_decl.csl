@@ -1,5 +1,5 @@
 csl_unit u {
-  csl_port p ();
+  csl_port p (0);
   csl_interface i;
   csl_bitrange b;
 };

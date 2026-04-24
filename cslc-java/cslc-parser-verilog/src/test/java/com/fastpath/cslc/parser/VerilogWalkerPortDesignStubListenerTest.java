@@ -311,13 +311,17 @@ class VerilogWalkerPortDesignStubListenerTest {
         String text = readResource("/regression/mini_task_function.v");
         List<VerilogDesignElementStub> sink = new ArrayList<>();
         VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
-        assertEquals(3, sink.size());
+        assertEquals(4, sink.size());
         var task = assertInstanceOf(VerilogTaskDeclStub.class, sink.get(0));
         assertEquals("top", task.enclosingModuleName());
         assertEquals("t", task.taskName());
-        var fn = assertInstanceOf(VerilogFunctionDeclStub.class, sink.get(1));
+        var local = assertInstanceOf(VerilogSignalDeclStub.class, sink.get(1));
+        assertEquals("top", local.enclosingModuleName());
+        assertEquals("integer", local.declarationKind());
+        assertEquals("i", local.signalName());
+        var fn = assertInstanceOf(VerilogFunctionDeclStub.class, sink.get(2));
         assertEquals("f", fn.functionName());
-        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(2));
+        assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));
     }
 
     @Test
@@ -417,10 +421,12 @@ class VerilogWalkerPortDesignStubListenerTest {
         assertInstanceOf(VerilogContinuousAssignStub.class, sink.get(1));
         var blk = assertInstanceOf(VerilogGenerateBlockStub.class, sink.get(2));
         assertEquals("m", blk.enclosingModuleName());
+        assertEquals("generate/block:gb", blk.generateScopePath());
         assertEquals("block", blk.blockKind());
         assertEquals("gb", blk.blockLabel());
         assertTrue(blk.synopsis().contains("begin"));
-        assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(3));
+        var gen = assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(3));
+        assertEquals("generate", gen.generateScopePath());
         assertInstanceOf(VerilogModuleDeclStub.class, sink.get(4));
     }
 
@@ -434,10 +440,11 @@ class VerilogWalkerPortDesignStubListenerTest {
         assertEquals("genvar", assertInstanceOf(VerilogSignalDeclStub.class, sink.get(1)).declarationKind());
         assertInstanceOf(VerilogContinuousAssignStub.class, sink.get(2));
         var loop = assertInstanceOf(VerilogGenerateBlockStub.class, sink.get(3));
+        assertEquals("generate/for_loop:gfor", loop.generateScopePath());
         assertEquals("for_loop", loop.blockKind());
         assertEquals("gfor", loop.blockLabel());
         assertTrue(loop.synopsis().contains("for"));
-        assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(4));
+        assertEquals("generate", assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(4)).generateScopePath());
         assertInstanceOf(VerilogModuleDeclStub.class, sink.get(5));
     }
 
@@ -448,9 +455,10 @@ class VerilogWalkerPortDesignStubListenerTest {
         VerilogParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new VerilogWalkerPortDesignStubListener(sink));
         assertEquals(5, sink.size());
         var blk = assertInstanceOf(VerilogGenerateBlockStub.class, sink.get(2));
+        assertEquals("generate/block", blk.generateScopePath());
         assertEquals("block", blk.blockKind());
         assertNull(blk.blockLabel());
-        assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(3));
+        assertEquals("generate", assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(3)).generateScopePath());
     }
 
     @Test
@@ -465,9 +473,10 @@ class VerilogWalkerPortDesignStubListenerTest {
         assertInstanceOf(VerilogContinuousAssignStub.class, sink.get(3));
         var cond = assertInstanceOf(VerilogGenerateConditionalStub.class, sink.get(4));
         assertEquals("m", cond.enclosingModuleName());
+        assertEquals("generate/if", cond.generateScopePath());
         assertTrue(cond.synopsis().contains("if"));
         assertTrue(cond.synopsis().contains("else"));
-        assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(5));
+        assertEquals("generate", assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(5)).generateScopePath());
         assertInstanceOf(VerilogModuleDeclStub.class, sink.get(6));
     }
 
@@ -483,9 +492,10 @@ class VerilogWalkerPortDesignStubListenerTest {
         assertInstanceOf(VerilogContinuousAssignStub.class, sink.get(3));
         var cs = assertInstanceOf(VerilogGenerateCaseStub.class, sink.get(4));
         assertEquals("m", cs.enclosingModuleName());
+        assertEquals("generate/case", cs.generateScopePath());
         assertTrue(cs.synopsis().contains("case"));
         assertTrue(cs.synopsis().contains("endcase"));
-        assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(5));
+        assertEquals("generate", assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(5)).generateScopePath());
         assertInstanceOf(VerilogModuleDeclStub.class, sink.get(6));
     }
 
@@ -502,6 +512,7 @@ class VerilogWalkerPortDesignStubListenerTest {
         assertTrue(ca.assignText().contains("x"));
         var gen = assertInstanceOf(VerilogGenerateRegionStub.class, sink.get(2));
         assertEquals("m", gen.enclosingModuleName());
+        assertEquals("generate", gen.generateScopePath());
         assertTrue(gen.synopsis().contains("generate"));
         assertTrue(gen.synopsis().contains("assign"));
         assertInstanceOf(VerilogModuleDeclStub.class, sink.get(3));

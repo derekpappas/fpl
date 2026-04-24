@@ -46,6 +46,7 @@ public final class VerilogWalkerPortDesignStubListener extends VerilogTrunkPortL
 
     private final Collection<? super VerilogDesignElementStub> sink;
     private final Deque<String> enclosingModuleNames = new ArrayDeque<>();
+    private final Deque<String> generateScope = new ArrayDeque<>();
 
     public VerilogWalkerPortDesignStubListener(Collection<? super VerilogDesignElementStub> sink) {
         this.sink = Objects.requireNonNull(sink, "sink");
@@ -315,55 +316,115 @@ public final class VerilogWalkerPortDesignStubListener extends VerilogTrunkPortL
     }
 
     @Override
+    public void enterGenerated_instantiation(VerilogParserTrunkPort.Generated_instantiationContext ctx) {
+        generateScope.push("generate");
+    }
+
+    @Override
     public void exitGenerated_instantiation(VerilogParserTrunkPort.Generated_instantiationContext ctx) {
-        String text = ctx.getText();
-        if (text == null || text.isEmpty()) {
-            return;
+        try {
+            String text = ctx.getText();
+            if (text == null || text.isEmpty()) {
+                return;
+            }
+            String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+            String scopePath = generateScopePath();
+            Token start = positionToken(ctx);
+            int line = start != null ? start.getLine() : 0;
+            int col = start != null ? start.getCharPositionInLine() : 0;
+            String file = start != null ? start.getTokenSource().getSourceName() : null;
+            sink.add(new VerilogGenerateRegionStub(module, scopePath, text, line, col, file));
+        } finally {
+            if (!generateScope.isEmpty()) {
+                generateScope.pop();
+            }
         }
-        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
-        Token start = positionToken(ctx);
-        int line = start != null ? start.getLine() : 0;
-        int col = start != null ? start.getCharPositionInLine() : 0;
-        String file = start != null ? start.getTokenSource().getSourceName() : null;
-        sink.add(new VerilogGenerateRegionStub(module, text, line, col, file));
+    }
+
+    @Override
+    public void enterGenerate_block(VerilogParserTrunkPort.Generate_blockContext ctx) {
+        String label = labelText(ctx.generate_block_identifier());
+        generateScope.push(label != null ? "block:" + label : "block");
     }
 
     @Override
     public void exitGenerate_block(VerilogParserTrunkPort.Generate_blockContext ctx) {
-        emitGenerateBlockStub("block", ctx.generate_block_identifier(), ctx);
+        try {
+            emitGenerateBlockStub("block", ctx.generate_block_identifier(), ctx);
+        } finally {
+            if (!generateScope.isEmpty()) {
+                generateScope.pop();
+            }
+        }
+    }
+
+    @Override
+    public void enterGenerate_loop_statement(VerilogParserTrunkPort.Generate_loop_statementContext ctx) {
+        String label = labelText(ctx.generate_block_identifier());
+        generateScope.push(label != null ? "for_loop:" + label : "for_loop");
     }
 
     @Override
     public void exitGenerate_loop_statement(VerilogParserTrunkPort.Generate_loop_statementContext ctx) {
-        emitGenerateBlockStub("for_loop", ctx.generate_block_identifier(), ctx);
+        try {
+            emitGenerateBlockStub("for_loop", ctx.generate_block_identifier(), ctx);
+        } finally {
+            if (!generateScope.isEmpty()) {
+                generateScope.pop();
+            }
+        }
+    }
+
+    @Override
+    public void enterGenerate_conditional_statement(VerilogParserTrunkPort.Generate_conditional_statementContext ctx) {
+        generateScope.push("if");
     }
 
     @Override
     public void exitGenerate_conditional_statement(VerilogParserTrunkPort.Generate_conditional_statementContext ctx) {
-        String text = ctx.getText();
-        if (text == null || text.isEmpty()) {
-            return;
+        try {
+            String text = ctx.getText();
+            if (text == null || text.isEmpty()) {
+                return;
+            }
+            String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+            String scopePath = generateScopePath();
+            Token start = positionToken(ctx);
+            int line = start != null ? start.getLine() : 0;
+            int col = start != null ? start.getCharPositionInLine() : 0;
+            String file = start != null ? start.getTokenSource().getSourceName() : null;
+            sink.add(new VerilogGenerateConditionalStub(module, scopePath, text, line, col, file));
+        } finally {
+            if (!generateScope.isEmpty()) {
+                generateScope.pop();
+            }
         }
-        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
-        Token start = positionToken(ctx);
-        int line = start != null ? start.getLine() : 0;
-        int col = start != null ? start.getCharPositionInLine() : 0;
-        String file = start != null ? start.getTokenSource().getSourceName() : null;
-        sink.add(new VerilogGenerateConditionalStub(module, text, line, col, file));
+    }
+
+    @Override
+    public void enterGenerate_case_statement(VerilogParserTrunkPort.Generate_case_statementContext ctx) {
+        generateScope.push("case");
     }
 
     @Override
     public void exitGenerate_case_statement(VerilogParserTrunkPort.Generate_case_statementContext ctx) {
-        String text = ctx.getText();
-        if (text == null || text.isEmpty()) {
-            return;
+        try {
+            String text = ctx.getText();
+            if (text == null || text.isEmpty()) {
+                return;
+            }
+            String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+            String scopePath = generateScopePath();
+            Token start = positionToken(ctx);
+            int line = start != null ? start.getLine() : 0;
+            int col = start != null ? start.getCharPositionInLine() : 0;
+            String file = start != null ? start.getTokenSource().getSourceName() : null;
+            sink.add(new VerilogGenerateCaseStub(module, scopePath, text, line, col, file));
+        } finally {
+            if (!generateScope.isEmpty()) {
+                generateScope.pop();
+            }
         }
-        String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
-        Token start = positionToken(ctx);
-        int line = start != null ? start.getLine() : 0;
-        int col = start != null ? start.getCharPositionInLine() : 0;
-        String file = start != null ? start.getTokenSource().getSourceName() : null;
-        sink.add(new VerilogGenerateCaseStub(module, text, line, col, file));
     }
 
     @Override
@@ -771,11 +832,38 @@ public final class VerilogWalkerPortDesignStubListener extends VerilogTrunkPortL
             }
         }
         String module = enclosingModuleNames.isEmpty() ? "" : enclosingModuleNames.peek();
+        String scopePath = generateScopePath();
         Token start = positionToken(ctx);
         int line = start != null ? start.getLine() : 0;
         int col = start != null ? start.getCharPositionInLine() : 0;
         String file = start != null ? start.getTokenSource().getSourceName() : null;
-        sink.add(new VerilogGenerateBlockStub(module, blockKind, label, text, line, col, file));
+        sink.add(new VerilogGenerateBlockStub(module, scopePath, blockKind, label, text, line, col, file));
+    }
+
+    private String generateScopePath() {
+        if (generateScope.isEmpty()) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (var it = generateScope.descendingIterator(); it.hasNext(); ) {
+            String seg = it.next();
+            if (seg == null || seg.isEmpty()) {
+                continue;
+            }
+            if (!sb.isEmpty()) {
+                sb.append('/');
+            }
+            sb.append(seg);
+        }
+        return sb.toString();
+    }
+
+    private static String labelText(VerilogParserTrunkPort.Generate_block_identifierContext labelCtx) {
+        if (labelCtx == null) {
+            return null;
+        }
+        String t = labelCtx.getText();
+        return t != null && !t.isEmpty() ? t : null;
     }
 
     private static Token positionToken(ParserRuleContext ctx) {

@@ -55,6 +55,20 @@ class CslWalkerPortCommandVerbListenerTest {
         assertTrue(listener.commandTextsInExitOrder().get(1).contains("b"));
     }
 
+    @Test
+    void assignAndOverrideParameterCommandsInferDifferentVerbs() throws IOException {
+        String text = read("/regression/mini_assign_override_command.csl");
+        var listener = new CslWalkerPortCommandVerbListener();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, listener);
+        assertEquals(2, listener.getCslCommandExitCount());
+        assertEquals("assign", listener.verbsInExitOrder().get(0));
+        assertEquals("override_parameter", listener.verbsInExitOrder().get(1));
+        assertEquals("u", listener.getLastReceiverIdentifier());
+        assertEquals(2, listener.commandTextsInExitOrder().size());
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("="));
+        assertTrue(listener.commandTextsInExitOrder().get(1).contains("override_parameter"));
+    }
+
     private static String read(String path) throws IOException {
         try (InputStream in = CslWalkerPortCommandVerbListenerTest.class.getResourceAsStream(path)) {
             assertNotNull(in, "missing resource " + path);

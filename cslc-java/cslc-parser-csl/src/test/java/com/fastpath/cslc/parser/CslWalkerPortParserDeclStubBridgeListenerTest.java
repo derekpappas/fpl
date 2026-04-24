@@ -54,7 +54,8 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertEquals(4, sink.size());
         assertStub(sink.get(0), CslomNodeType.TYPE_ALL_PORTS, "p");
         var port = assertInstanceOf(CslomPortDecl.class, sink.get(0));
-        assertEquals("", port.firstPortParamListText().orElseThrow());
+        assertEquals("0", port.firstPortParamListText().orElseThrow());
+        assertEquals(1, port.firstPortParamExprCount().orElseThrow());
         assertStub(sink.get(1), CslomNodeType.TYPE_ALL_INTERFACES, "i");
         assertStub(sink.get(2), CslomNodeType.TYPE_BIT_RANGE, "b");
         assertStub(sink.get(3), CslomNodeType.TYPE_DECL_UNIT, "u");
@@ -271,6 +272,73 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
     }
 
     @Test
+    void miniUnitBodyMixFlatEmitsCommandCtorInstsStmtSignalThenUnit() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_unit_body_mix.csl")) {
+            assertNotNull(in, "missing /regression/mini_unit_body_mix.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(7, sink.size());
+
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "command");
+        assertEquals(
+                "no_prefix",
+                assertInstanceOf(CslomCommandDecl.class, sink.get(0)).inferredVerb().orElseThrow());
+        assertStub(sink.get(1), CslomNodeType.TYPE_INST_UNIT, "sub_unit");
+        assertStub(sink.get(2), CslomNodeType.TYPE_UNIT_INSTANTIATION, "c1");
+        assertStub(sink.get(3), CslomNodeType.TYPE_UNIT_INSTANTIATION, "c2");
+        assertStub(sink.get(4), CslomNodeType.TYPE_STMT, "f.csl");
+        assertStub(sink.get(5), CslomNodeType.TYPE_ALL_SIGNALS, "s");
+        assertStub(sink.get(6), CslomNodeType.TYPE_DECL_UNIT, "parent");
+    }
+
+    @Test
+    void miniUnitBodyMixHierarchyLinksAllInnerNodesUnderUnitInExitOrder() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_unit_body_mix.csl")) {
+            assertNotNull(in);
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        var design = new CslomDesignStub(0, 0, "mini_unit_body_mix.csl");
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink, design));
+
+        assertEquals(1, design.getChildren().size());
+        var unit = assertInstanceOf(CslomUnitDecl.class, design.getChildren().get(0));
+        assertEquals("parent", unit.declaredName().orElseThrow());
+        assertEquals(6, unit.getChildren().size());
+        assertStub(unit.getChildren().get(0), CslomNodeType.TYPE_COMMAND, "command");
+        assertStub(unit.getChildren().get(1), CslomNodeType.TYPE_INST_UNIT, "sub_unit");
+        assertStub(unit.getChildren().get(2), CslomNodeType.TYPE_UNIT_INSTANTIATION, "c1");
+        assertStub(unit.getChildren().get(3), CslomNodeType.TYPE_UNIT_INSTANTIATION, "c2");
+        assertStub(unit.getChildren().get(4), CslomNodeType.TYPE_STMT, "f.csl");
+        assertStub(unit.getChildren().get(5), CslomNodeType.TYPE_ALL_SIGNALS, "s");
+
+        assertEquals(7, sink.size());
+    }
+
+    @Test
+    void miniAssignOverrideCommandEmitsCommandStubsWithAssignVerbAndReceiverName() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_assign_override_command.csl")) {
+            assertNotNull(in, "missing /regression/mini_assign_override_command.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var assign = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("u", assign.declaredName().orElseThrow());
+        assertEquals("assign", assign.inferredVerb().orElseThrow());
+        var override = assertInstanceOf(CslomCommandDecl.class, sink.get(1));
+        assertEquals("u", override.declaredName().orElseThrow());
+        assertEquals("override_parameter", override.inferredVerb().orElseThrow());
+    }
+
+    @Test
     void miniNestedUnitFlatEmitsSignalInnerOuterInExitOrder() throws IOException {
         String text;
         try (InputStream in = getClass().getResourceAsStream("/regression/mini_nested_unit.csl")) {
@@ -322,6 +390,8 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertEquals(2, sink.size());
         var port = assertInstanceOf(CslomPortDecl.class, sink.get(0));
         assertEquals("42", port.firstPortParamListText().orElseThrow());
+        assertEquals(1, port.firstPortParamExprCount().orElseThrow());
+        assertEquals(List.of("42"), port.firstPortParamExprTexts().orElseThrow());
     }
 
     @Test
@@ -336,6 +406,177 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertEquals(2, sink.size());
         var sig = assertInstanceOf(CslomSignalDecl.class, sink.get(0));
         assertEquals("7", sig.firstSignalParamListText().orElseThrow());
+        assertEquals(1, sig.firstSignalParamExprCount().orElseThrow());
+        assertEquals(List.of("7"), sig.firstSignalParamExprTexts().orElseThrow());
+    }
+
+    @Test
+    void miniSignalBitrangeParamCapturesBitrangePureTextAndExprCount() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_signal_bitrange_param.csl")) {
+            assertNotNull(in, "missing /regression/mini_signal_bitrange_param.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var sig = assertInstanceOf(CslomSignalDecl.class, sink.get(0));
+        assertEquals("7,[3:0]", sig.firstSignalParamListText().orElseThrow());
+        assertEquals(1, sig.firstSignalParamExprCount().orElseThrow());
+        assertEquals(List.of("7"), sig.firstSignalParamExprTexts().orElseThrow());
+        assertEquals("[3:0]", sig.firstSignalBitrangePureText().orElseThrow());
+    }
+
+    @Test
+    void miniPortParamMultiCapturesExprTextsInSourceOrder() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_port_param_multi.csl")) {
+            assertNotNull(in, "missing /regression/mini_port_param_multi.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var port = assertInstanceOf(CslomPortDecl.class, sink.get(0));
+        assertEquals("1,2,3,4", port.firstPortParamListText().orElseThrow());
+        assertEquals(4, port.firstPortParamExprCount().orElseThrow());
+        assertEquals(List.of("1", "2", "3", "4"), port.firstPortParamExprTexts().orElseThrow());
+    }
+
+    @Test
+    void miniSignalParamMultiCapturesExprTextsInSourceOrder() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_signal_param_multi.csl")) {
+            assertNotNull(in, "missing /regression/mini_signal_param_multi.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var sig = assertInstanceOf(CslomSignalDecl.class, sink.get(0));
+        assertEquals("1,2,3", sig.firstSignalParamListText().orElseThrow());
+        assertEquals(3, sig.firstSignalParamExprCount().orElseThrow());
+        assertEquals(List.of("1", "2", "3"), sig.firstSignalParamExprTexts().orElseThrow());
+    }
+
+    @Test
+    void miniBitrangeParamMultiCapturesFirstTwoExprTexts() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_bitrange_param_multi.csl")) {
+            assertNotNull(in, "missing /regression/mini_bitrange_param_multi.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var br = assertInstanceOf(com.fastpath.cslc.cslom.decl.CslomBitrangeDecl.class, sink.get(0));
+        assertEquals("b", br.declaredName().orElseThrow());
+        assertEquals(List.of("7", "0"), br.firstBitrangeParamExprTexts().orElseThrow());
+    }
+
+    @Test
+    void miniMultiDimBitrangeParamCapturesFirstExprText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_multi_dim_bitrange_param.csl")) {
+            assertNotNull(in, "missing /regression/mini_multi_dim_bitrange_param.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var br = assertInstanceOf(com.fastpath.cslc.cslom.decl.CslomMultiDimBitrangeDecl.class, sink.get(0));
+        assertEquals("mdb", br.declaredName().orElseThrow());
+        assertEquals(List.of("2"), br.firstMultiDimBitrangeParamExprTexts().orElseThrow());
+    }
+
+    @Test
+    void miniPipelineParamCapturesFirstExprText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_pipeline_param.csl")) {
+            assertNotNull(in, "missing /regression/mini_pipeline_param.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var p = assertInstanceOf(com.fastpath.cslc.cslom.decl.CslomPipelineDecl.class, sink.get(0));
+        assertEquals("p", p.declaredName().orElseThrow());
+        assertEquals(List.of("3"), p.firstPipelineParamExprTexts().orElseThrow());
+    }
+
+    @Test
+    void miniPipestageEmitsTypedPipestageDecl() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_pipestage.csl")) {
+            assertNotNull(in, "missing /regression/mini_pipestage.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var ps = assertInstanceOf(com.fastpath.cslc.cslom.decl.CslomPipestageDecl.class, sink.get(0));
+        assertEquals("ps", ps.declaredName().orElseThrow());
+        assertEquals("csl_pipestage_declaration", ps.antlrRuleSimpleName().orElseThrow());
+    }
+
+    @Test
+    void miniParameterParamMultiCapturesFirstTwoExprTexts() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_parameter_param_multi.csl")) {
+            assertNotNull(in, "missing /regression/mini_parameter_param_multi.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var p = assertInstanceOf(com.fastpath.cslc.cslom.decl.CslomParameterDecl.class, sink.get(0));
+        assertEquals("p", p.declaredName().orElseThrow());
+        assertEquals(List.of("1", "2"), p.firstParamExprTexts().orElseThrow());
+    }
+
+    @Test
+    void miniVectorWithBodyCapturesUnitDefinitionText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_vector_with_body.csl")) {
+            assertNotNull(in, "missing /regression/mini_vector_with_body.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(3, sink.size());
+        var vec = assertInstanceOf(com.fastpath.cslc.cslom.decl.CslomVectorDecl.class, sink.get(1));
+        assertEquals("v", vec.declaredName().orElseThrow());
+        assertTrue(vec.unitDefinitionText().orElseThrow().contains("csl_signal"));
+    }
+
+    @Test
+    void miniStateDataWithBodyCapturesUnitDefinitionText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_state_data_with_body.csl")) {
+            assertNotNull(in, "missing /regression/mini_state_data_with_body.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(3, sink.size());
+        var sd = assertInstanceOf(com.fastpath.cslc.cslom.decl.CslomStateDataDecl.class, sink.get(1));
+        assertEquals("sd", sd.declaredName().orElseThrow());
+        assertTrue(sd.unitDefinitionText().orElseThrow().contains("csl_signal"));
+    }
+
+    @Test
+    void miniMemoryWithBodyCapturesUnitDefinitionText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_memory_with_body.csl")) {
+            assertNotNull(in, "missing /regression/mini_memory_with_body.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(3, sink.size());
+        var mem = assertInstanceOf(com.fastpath.cslc.cslom.decl.CslomMemoryDecl.class, sink.get(1));
+        assertEquals("mem", mem.declaredName().orElseThrow());
+        assertTrue(mem.unitDefinitionText().orElseThrow().contains("csl_signal"));
     }
 
     @Test
@@ -368,6 +609,22 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertEquals("wi", ifc.declaredName().orElseThrow());
         assertEquals("csl_write_interface_declaration", ifc.antlrRuleSimpleName().orElseThrow());
         assertEquals("csl_interface_declaration", ifc.legacyWalkerRuleSimpleName().orElseThrow());
+    }
+
+    @Test
+    void miniConstIntMapsLegacyWalkerRuleToParameterDeclaration() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_const_int.csl")) {
+            assertNotNull(in, "missing /regression/mini_const_int.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var c = assertInstanceOf(com.fastpath.cslc.cslom.decl.CslomParameterDecl.class, sink.get(0));
+        assertEquals("x", c.declaredName().orElseThrow());
+        assertEquals("csl_const_int_declaration", c.antlrRuleSimpleName().orElseThrow());
+        assertEquals("csl_parameter_declaration", c.legacyWalkerRuleSimpleName().orElseThrow());
     }
 
     private static void assertStub(CslomBase node, CslomNodeType type, String name) {

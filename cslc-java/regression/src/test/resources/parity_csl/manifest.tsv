@@ -1,0 +1,5 @@
+# path (under classpath parity_csl/)<TAB>PASS|FAIL — Batch 9 golden gate (ANTLR4 trunk-port strict parse)
+ok_empty.csl	PASS
+ok_minimal.csl	PASS
+ok_signal.csl	PASS
+fail_unclosed_unit.csl	FAIL

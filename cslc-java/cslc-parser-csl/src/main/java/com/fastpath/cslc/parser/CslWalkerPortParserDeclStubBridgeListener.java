@@ -17,13 +17,18 @@ import com.fastpath.cslc.cslom.decl.CslomInterfaceDecl;
 import com.fastpath.cslc.cslom.decl.CslomIsaElementDecl;
 import com.fastpath.cslc.cslom.decl.CslomIsaFieldDecl;
 import com.fastpath.cslc.cslom.decl.CslomListDecl;
+import com.fastpath.cslc.cslom.decl.CslomMemoryDecl;
 import com.fastpath.cslc.cslom.decl.CslomMemoryMapDecl;
 import com.fastpath.cslc.cslom.decl.CslomMemoryMapPageDecl;
+import com.fastpath.cslc.cslom.decl.CslomMultiDimBitrangeDecl;
 import com.fastpath.cslc.cslom.decl.CslomParameterDecl;
+import com.fastpath.cslc.cslom.decl.CslomPipelineDecl;
+import com.fastpath.cslc.cslom.decl.CslomPipestageDecl;
 import com.fastpath.cslc.cslom.decl.CslomPortDecl;
 import com.fastpath.cslc.cslom.decl.CslomPreprocessorStmtDecl;
 import com.fastpath.cslc.cslom.decl.CslomSignalDecl;
 import com.fastpath.cslc.cslom.decl.CslomSignalGroupDecl;
+import com.fastpath.cslc.cslom.decl.CslomStateDataDecl;
 import com.fastpath.cslc.cslom.decl.CslomTestbenchDecl;
 import com.fastpath.cslc.cslom.decl.CslomUnitInstantiationDecl;
 import com.fastpath.cslc.cslom.decl.CslomVectorDecl;
@@ -36,6 +41,7 @@ import java.util.Collection;
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.Objects;
 
 /**
@@ -143,6 +149,15 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
         CslParserTrunkPort.Param_list_csl_signalContext pls = ctx.param_list_csl_signal(0);
         if (pls != null) {
             sig.attachFirstSignalParamListText(antlrText(pls));
+            sig.attachFirstSignalParamExprCount(pls.expression() != null ? pls.expression().size() : 0);
+            if (pls.expression() != null && !pls.expression().isEmpty()) {
+                sig.attachFirstSignalParamExprTexts(
+                        pls.expression().stream().map(CslWalkerPortParserDeclStubBridgeListener::antlrText).collect(Collectors.toList()));
+            }
+            CslParserTrunkPort.Bitrange_pureContext bp = pls.bitrange_pure();
+            if (bp != null) {
+                sig.attachFirstSignalBitrangePureText(antlrText(bp));
+            }
         }
         emitStub(sig, ctx);
     }
@@ -165,6 +180,11 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
         CslParserTrunkPort.Param_list_csl_portContext plp = ctx.param_list_csl_port(0);
         if (plp != null) {
             port.attachFirstPortParamListText(antlrText(plp));
+            port.attachFirstPortParamExprCount(plp.expression() != null ? plp.expression().size() : 0);
+            if (plp.expression() != null && !plp.expression().isEmpty()) {
+                port.attachFirstPortParamExprTexts(
+                        plp.expression().stream().map(CslWalkerPortParserDeclStubBridgeListener::antlrText).collect(Collectors.toList()));
+            }
         }
         emitStub(port, ctx);
     }
@@ -176,7 +196,30 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
 
     @Override
     public void exitCsl_bitrange_declaration(CslParserTrunkPort.Csl_bitrange_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomBitrangeDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var br = new CslomBitrangeDecl(name, line, col, file);
+        List<CslParserTrunkPort.ExpressionContext> exprs = ctx.expression();
+        if (exprs != null && !exprs.isEmpty()) {
+            // Grammar shape: first declarator uses exp/exp2 and later declarators use exp3/exp4.
+            // We record the first two expressions only (first declarator's optional ( ... ) list).
+            int take = Math.min(2, exprs.size());
+            br.attachFirstBitrangeParamExprTexts(
+                    exprs.subList(0, take).stream()
+                            .map(CslWalkerPortParserDeclStubBridgeListener::antlrText)
+                            .collect(Collectors.toList()));
+        }
+        emitStub(br, ctx);
     }
 
     @Override
@@ -221,17 +264,65 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
 
     @Override
     public void exitCsl_memory_declaration(CslParserTrunkPort.Csl_memory_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomContainerDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var m = new CslomMemoryDecl(name, line, col, file);
+        if (ctx.csl_unit_definition() != null) {
+            m.attachUnitDefinitionText(antlrText(ctx.csl_unit_definition()));
+        }
+        emitStub(m, ctx);
     }
 
     @Override
     public void exitCsl_state_data_declaration(CslParserTrunkPort.Csl_state_data_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomContainerDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var sd = new CslomStateDataDecl(name, line, col, file);
+        if (ctx.csl_unit_definition() != null) {
+            sd.attachUnitDefinitionText(antlrText(ctx.csl_unit_definition()));
+        }
+        emitStub(sd, ctx);
     }
 
     @Override
     public void exitCsl_vector_declaration(CslParserTrunkPort.Csl_vector_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomVectorDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var v = new CslomVectorDecl(name, line, col, file);
+        if (ctx.csl_unit_definition() != null) {
+            v.attachUnitDefinitionText(antlrText(ctx.csl_unit_definition()));
+        }
+        emitStub(v, ctx);
     }
 
     @Override
@@ -271,17 +362,54 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
 
     @Override
     public void exitCsl_multi_dim_bitrange_declaration(CslParserTrunkPort.Csl_multi_dim_bitrange_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomBitrangeDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var br = new CslomMultiDimBitrangeDecl(name, line, col, file);
+        List<CslParserTrunkPort.ExpressionContext> exprs = ctx.expression();
+        if (exprs != null && !exprs.isEmpty()) {
+            // Grammar shape: first declarator uses exp and later declarators use exp2.
+            br.attachFirstMultiDimBitrangeParamExprTexts(
+                    List.of(antlrText(exprs.get(0))));
+        }
+        emitStub(br, ctx);
     }
 
     @Override
     public void exitCsl_pipeline_declaration(CslParserTrunkPort.Csl_pipeline_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomContainerDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var p = new CslomPipelineDecl(name, line, col, file);
+        List<CslParserTrunkPort.ExpressionContext> exprs = ctx.expression();
+        if (exprs != null && !exprs.isEmpty()) {
+            // Grammar shape: first declarator uses exp and later declarators use exp2.
+            p.attachFirstPipelineParamExprTexts(List.of(antlrText(exprs.get(0))));
+        }
+        emitStub(p, ctx);
     }
 
     @Override
     public void exitCsl_pipestage_declaration(CslParserTrunkPort.Csl_pipestage_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomContainerDecl::new);
+        addNamed(ctx, ctx.IDENTIFIER(0), CslomPipestageDecl::new);
     }
 
     @Override
@@ -291,7 +419,29 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
 
     @Override
     public void exitCsl_parameter_declaration(CslParserTrunkPort.Csl_parameter_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomParameterDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var p = new CslomParameterDecl(name, line, col, file);
+        List<CslParserTrunkPort.ExpressionContext> exprs = ctx.expression();
+        if (exprs != null && !exprs.isEmpty()) {
+            // Grammar shape: first declarator uses exp1/exp2, then later declarators use exp3/exp4.
+            int take = Math.min(2, exprs.size());
+            p.attachFirstParamExprTexts(
+                    exprs.subList(0, take).stream()
+                            .map(CslWalkerPortParserDeclStubBridgeListener::antlrText)
+                            .collect(Collectors.toList()));
+        }
+        emitStub(p, ctx);
     }
 
     @Override

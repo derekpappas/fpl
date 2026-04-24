@@ -1,0 +1,5 @@
+csl_unit u {
+  csl_vector v {
+    csl_signal s;
+  };
+};

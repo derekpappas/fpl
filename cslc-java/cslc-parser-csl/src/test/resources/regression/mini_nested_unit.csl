@@ -1,5 +1,5 @@
 csl_unit outer {
   csl_unit inner {
     csl_signal s;
-  }
+  };
 };

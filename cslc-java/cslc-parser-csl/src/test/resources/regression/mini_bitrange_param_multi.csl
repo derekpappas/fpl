@@ -1,0 +1,3 @@
+csl_unit u {
+  csl_bitrange b ( 7, 0 );
+};

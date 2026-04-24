@@ -1,0 +1,7 @@
+csl_unit parent {
+  sub_unit () { no_prefix(); }
+  child_unit c1;
+  child_unit c2;
+  # "f.csl" 42
+  csl_signal s;
+};

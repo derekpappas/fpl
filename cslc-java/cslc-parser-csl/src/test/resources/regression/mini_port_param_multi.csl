@@ -1,0 +1,3 @@
+csl_unit u {
+  csl_port p ( 1, 2, 3, 4 );
+};

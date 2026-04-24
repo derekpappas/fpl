@@ -1,0 +1,5 @@
+csl_unit u {
+  csl_state_data sd {
+    csl_signal s;
+  };
+};

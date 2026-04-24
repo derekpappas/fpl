@@ -24,6 +24,7 @@ public final class CslTrunkPortAntlrToLegacyWalkerRuleNames {
         return switch (antlrParserRuleSimpleName) {
             case "csl_read_interface_declaration", "csl_write_interface_declaration" ->
                     Optional.of("csl_interface_declaration");
+            case "csl_const_int_declaration" -> Optional.of("csl_parameter_declaration");
             default -> Optional.empty();
         };
     }

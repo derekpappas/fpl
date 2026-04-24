@@ -1,0 +1,3 @@
+csl_unit u {
+  csl_signal s ( 7, [3:0] );
+};

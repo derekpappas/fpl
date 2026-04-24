@@ -1,0 +1,3 @@
+csl_unit u {
+  csl_multi_dim_bitrange mdb ( 2 );
+};
