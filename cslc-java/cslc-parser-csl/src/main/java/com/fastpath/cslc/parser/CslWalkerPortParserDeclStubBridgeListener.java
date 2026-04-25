@@ -3,6 +3,7 @@ package com.fastpath.cslc.parser;
 import com.fastpath.cslc.cslom.CslomBase;
 import com.fastpath.cslc.cslom.CslomDesignStub;
 import com.fastpath.cslc.cslom.CslomNamedDecl;
+import com.fastpath.cslc.cslom.CslomPlaceholder;
 import com.fastpath.cslc.cslom.CslomNodeType;
 import com.fastpath.cslc.cslom.CslomPlaceholder;
 import com.fastpath.cslc.cslom.CslomUnitDecl;
@@ -112,6 +113,7 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
                     sink.add(u);
                 } else {
                     CslomPlaceholder p = new CslomPlaceholder(CslomNodeType.TYPE_DECL_UNIT, line, col, file);
+                    attachPlaceholderAntlrCorrelation(p, ctx);
                     parentForUnitScope(ctx).addChild(p);
                     sink.add(p);
                 }
@@ -131,7 +133,9 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
             attachAntlrCorrelation(u, ctx);
             sink.add(u);
         } else {
-            sink.add(new CslomPlaceholder(CslomNodeType.TYPE_DECL_UNIT, line, col, file));
+            CslomPlaceholder p = new CslomPlaceholder(CslomNodeType.TYPE_DECL_UNIT, line, col, file);
+            attachPlaceholderAntlrCorrelation(p, ctx);
+            sink.add(p);
         }
     }
 
@@ -275,7 +279,23 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
 
     @Override
     public void exitCsl_testbench_declaration(CslParserTrunkPort.Csl_testbench_declarationContext ctx) {
-        addNamed(ctx, ctx.IDENTIFIER(0), CslomTestbenchDecl::new);
+        TerminalNode id = ctx.IDENTIFIER(0);
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String name = id.getText();
+        if (name.isEmpty()) {
+            return;
+        }
+        var tb = new CslomTestbenchDecl(name, line, col, file);
+        if (ctx.csl_unit_definition() != null) {
+            tb.attachUnitDefinitionText(antlrText(ctx.csl_unit_definition()));
+        }
+        emitStub(tb, ctx);
     }
 
     @Override
@@ -776,9 +796,16 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
                 .ifPresent(n::attachLegacyWalkerRuleSimpleName);
     }
 
+    private static void attachPlaceholderAntlrCorrelation(CslomPlaceholder p, ParserRuleContext ctx) {
+        p.attachAntlrRuleSimpleName(antlrRuleSimpleName(ctx));
+        p.attachAntlrText(antlrText(ctx));
+    }
+
     private void emitStub(CslomBase stub, ParserRuleContext ctx) {
         if (stub instanceof CslomNamedDecl n) {
             attachAntlrCorrelation(n, ctx);
+        } else if (stub instanceof CslomPlaceholder p) {
+            attachPlaceholderAntlrCorrelation(p, ctx);
         }
         if (designRoot != null) {
             CslParserTrunkPort.Csl_unit_declarationContext unitCtx = ancestorUnitDeclaration(ctx);
@@ -819,7 +846,9 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
                         attachAntlrCorrelation(u, c);
                         scope = u;
                     } else {
-                        scope = new CslomPlaceholder(CslomNodeType.TYPE_DECL_UNIT, line, col, file);
+                        CslomPlaceholder ph = new CslomPlaceholder(CslomNodeType.TYPE_DECL_UNIT, line, col, file);
+                        attachPlaceholderAntlrCorrelation(ph, c);
+                        scope = ph;
                     }
                     parentForUnitScope(c).addChild(scope);
                     return scope;

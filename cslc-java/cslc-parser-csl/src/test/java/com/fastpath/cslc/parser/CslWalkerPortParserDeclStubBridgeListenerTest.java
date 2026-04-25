@@ -12,6 +12,7 @@ import com.fastpath.cslc.cslom.decl.CslomInterfaceDecl;
 import com.fastpath.cslc.cslom.decl.CslomListDecl;
 import com.fastpath.cslc.cslom.decl.CslomPortDecl;
 import com.fastpath.cslc.cslom.decl.CslomSignalDecl;
+import com.fastpath.cslc.cslom.decl.CslomTestbenchDecl;
 import com.fastpath.cslc.cslom.decl.CslomFieldDecl;
 import com.fastpath.cslc.cslom.decl.CslomIsaElementDecl;
 import com.fastpath.cslc.cslom.decl.CslomIsaFieldDecl;
@@ -111,6 +112,23 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
     }
 
     @Test
+    void miniTestbenchWithBodyCapturesUnitDefinitionText() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_testbench_with_body.csl")) {
+            assertNotNull(in, "missing /regression/mini_testbench_with_body.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(3, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_ALL_SIGNALS, "s");
+        var tb = assertInstanceOf(CslomTestbenchDecl.class, sink.get(1));
+        assertEquals("tb", tb.declaredName().orElseThrow());
+        assertTrue(tb.unitDefinitionText().orElseThrow().contains("csl_signal"));
+        assertStub(sink.get(2), CslomNodeType.TYPE_DECL_UNIT, "u");
+    }
+
+    @Test
     void designStubAcceptsChildDeclStubs() {
         var design = new CslomDesignStub(1, 0, "virtual.csl");
         var unit = new CslomUnitDecl("u", 2, 0, "virtual.csl");
@@ -202,6 +220,490 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("no_prefix", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetWidthEmitsCommandStubWithSetWidthVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_width.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_width.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_width", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetDepthEmitsCommandStubWithSetDepthVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_depth.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_depth.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_depth", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandCreateRtlModuleEmitsCommandStubWithCreateRtlModuleVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_create_rtl_module.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_create_rtl_module.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("create_rtl_module", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetNameEmitsCommandStubWithSetNameVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_name.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_name.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_name", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetTypeEmitsCommandStubWithSetTypeVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_type.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_type.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_type", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandDirectiveEmitsCommandStubWithDirectiveVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_directive.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_directive.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("directive", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetDirectionEmitsCommandStubWithSetDirectionVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_direction.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_direction.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_direction", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetRadixEmitsCommandStubWithSetRadixVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_radix.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_radix.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_radix", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandExclusionListEmitsCommandStubWithExclusionListVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_exclusion_list.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_exclusion_list.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("exclusion_list", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandIncludeOnlyEmitsCommandStubWithIncludeOnlyVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_include_only.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_include_only.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("include_only", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandReverseEmitsCommandStubWithReverseVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_reverse.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_reverse.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("reverse", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetOffsetEmitsCommandStubWithSetOffsetVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_offset.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_offset.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_offset", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetPrefixEmitsCommandStubWithSetPrefixVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_prefix.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_prefix.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_prefix", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetSuffixEmitsCommandStubWithSetSuffixVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_suffix.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_suffix.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_suffix", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetTopUnitEmitsCommandStubWithSetTopUnitVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_top_unit.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_top_unit.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_top_unit", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetNumberOfDimensionsEmitsCommandStubWithSetNumberOfDimensionsVerb() throws IOException {
+        String text;
+        try (InputStream in =
+                getClass().getResourceAsStream("/regression/mini_command_set_number_of_dimensions.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_number_of_dimensions.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_number_of_dimensions", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetAlignmentEmitsCommandStubWithSetAlignmentVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_alignment.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_alignment.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_alignment", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetEndianessEmitsCommandStubWithSetEndianessVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_endianess.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_endianess.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_endianess", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetRangeEmitsCommandStubWithSetRangeVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_range.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_range.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_range", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetDimRangeEmitsCommandStubWithSetDimRangeVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_dim_range.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_dim_range.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_dim_range", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandAutoGenMemoryMapEmitsCommandStubWithAutoGenMemoryMapVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_auto_gen_memory_map.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_auto_gen_memory_map.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("auto_gen_memory_map", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandAddToMemoryMapEmitsCommandStubWithAddToMemoryMapVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_add_to_memory_map.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_add_to_memory_map.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("add_to_memory_map", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetMemInstanceNameEmitsCommandStubWithSetMemInstanceNameVerb() throws IOException {
+        String text;
+        try (InputStream in =
+                getClass().getResourceAsStream("/regression/mini_command_set_mem_instance_name.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_mem_instance_name.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_mem_instance_name", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetResetNameEmitsCommandStubWithSetResetNameVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_reset_name.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_reset_name.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_reset_name", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetUnitPrefixEmitsCommandStubWithSetUnitPrefixVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_unit_prefix.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_unit_prefix.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_unit_prefix", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetSignalPrefixEmitsCommandStubWithSetSignalPrefixVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_signal_prefix.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_signal_prefix.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_signal_prefix", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetSignalPrefixLocalEmitsCommandStubWithSetSignalPrefixLocalVerb() throws IOException {
+        String text;
+        try (InputStream in =
+                getClass().getResourceAsStream("/regression/mini_command_set_signal_prefix_local.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_signal_prefix_local.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_signal_prefix_local", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetDimOffsetEmitsCommandStubWithSetDimOffsetVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_dim_offset.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_dim_offset.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_dim_offset", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetDimWidthEmitsCommandStubWithSetDimWidthVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_dim_width.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_dim_width.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_dim_width", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetDimBitrangeEmitsCommandStubWithSetDimBitrangeVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_dim_bitrange.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_dim_bitrange.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_dim_bitrange", cmd.inferredVerb().orElseThrow());
+    }
+
+    @Test
+    void miniCommandSetBitrangeEmitsCommandStubWithSetBitrangeVerb() throws IOException {
+        String text;
+        try (InputStream in = getClass().getResourceAsStream("/regression/mini_command_set_bitrange.csl")) {
+            assertNotNull(in, "missing /regression/mini_command_set_bitrange.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(
+                text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(1, sink.size());
+        assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
+        var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
+        assertEquals("set_bitrange", cmd.inferredVerb().orElseThrow());
     }
 
     @Test

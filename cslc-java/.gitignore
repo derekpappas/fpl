@@ -1,4 +1,5 @@
 .m2/
+.m2-local/
 target/
 .idea/
 *.iml

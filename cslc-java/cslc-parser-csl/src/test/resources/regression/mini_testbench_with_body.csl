@@ -1,0 +1,5 @@
+csl_unit u {
+  csl_testbench tb {
+    csl_signal s;
+  };
+};
