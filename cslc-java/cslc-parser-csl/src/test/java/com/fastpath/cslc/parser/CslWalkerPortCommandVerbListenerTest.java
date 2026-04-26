@@ -589,6 +589,142 @@ class CslWalkerPortCommandVerbListenerTest {
         assertTrue(listener.commandTextsInExitOrder().get(0).contains("8"));
     }
 
+    @Test
+    void setNextCommandInfersParamListSetNextVerb() throws IOException {
+        String text = read("/regression/mini_command_set_next.csl");
+        var listener = new CslWalkerPortCommandVerbListener();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, listener);
+        assertEquals(1, listener.getCslCommandExitCount());
+        assertEquals("set_next", listener.verbsInExitOrder().get(0));
+        assertEquals("u", listener.getLastReceiverIdentifier());
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("set_next"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("1"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("2"));
+    }
+
+    @Test
+    void setPreviousCommandInfersParamListSetPreviousVerb() throws IOException {
+        String text = read("/regression/mini_command_set_previous.csl");
+        var listener = new CslWalkerPortCommandVerbListener();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, listener);
+        assertEquals(1, listener.getCslCommandExitCount());
+        assertEquals("set_previous", listener.verbsInExitOrder().get(0));
+        assertEquals("u", listener.getLastReceiverIdentifier());
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("set_previous"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("1"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("2"));
+    }
+
+    @Test
+    void setValidNameCommandInfersParamListSetValidNameVerb() throws IOException {
+        String text = read("/regression/mini_command_set_valid_name.csl");
+        var listener = new CslWalkerPortCommandVerbListener();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, listener);
+        assertEquals(1, listener.getCslCommandExitCount());
+        assertEquals("set_valid_name", listener.verbsInExitOrder().get(0));
+        assertEquals("u", listener.getLastReceiverIdentifier());
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("set_valid_name"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("\"valid\""));
+    }
+
+    @Test
+    void setSymbolMaxLengthCommandInfersParamListSetSymbolMaxLengthVerb() throws IOException {
+        String text = read("/regression/mini_command_set_symbol_max_length.csl");
+        var listener = new CslWalkerPortCommandVerbListener();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, listener);
+        assertEquals(1, listener.getCslCommandExitCount());
+        assertEquals("set_symbol_max_length", listener.verbsInExitOrder().get(0));
+        assertEquals("u", listener.getLastReceiverIdentifier());
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("set_symbol_max_length"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("12"));
+    }
+
+    @Test
+    void setEnumCommandInfersParamListSetEnumVerb() throws IOException {
+        String text = read("/regression/mini_command_set_enum.csl");
+        var listener = new CslWalkerPortCommandVerbListener();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, listener);
+        assertEquals(1, listener.getCslCommandExitCount());
+        assertEquals("set_enum", listener.verbsInExitOrder().get(0));
+        assertEquals("u", listener.getLastReceiverIdentifier());
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("set_enum"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("\"E\""));
+    }
+
+    @Test
+    void setWrAddrNameCommandInfersParamListSetWrAddrNameVerb() throws IOException {
+        String text = read("/regression/mini_command_set_wr_addr_name.csl");
+        var listener = new CslWalkerPortCommandVerbListener();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, listener);
+        assertEquals(1, listener.getCslCommandExitCount());
+        assertEquals("set_wr_addr_name", listener.verbsInExitOrder().get(0));
+        assertEquals("u", listener.getLastReceiverIdentifier());
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("set_wr_addr_name"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("\"wr_addr\""));
+    }
+
+    @Test
+    void setRdAddrNameCommandInfersParamListSetRdAddrNameVerb() throws IOException {
+        String text = read("/regression/mini_command_set_rd_addr_name.csl");
+        var listener = new CslWalkerPortCommandVerbListener();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, listener);
+        assertEquals(1, listener.getCslCommandExitCount());
+        assertEquals("set_rd_addr_name", listener.verbsInExitOrder().get(0));
+        assertEquals("u", listener.getLastReceiverIdentifier());
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("set_rd_addr_name"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("\"rd_addr\""));
+    }
+
+    @Test
+    void setWrEnNameCommandInfersParamListSetWrEnNameVerb() throws IOException {
+        String text = read("/regression/mini_command_set_wr_en_name.csl");
+        var listener = new CslWalkerPortCommandVerbListener();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, listener);
+        assertEquals(1, listener.getCslCommandExitCount());
+        assertEquals("set_wr_en_name", listener.verbsInExitOrder().get(0));
+        assertEquals("u", listener.getLastReceiverIdentifier());
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("set_wr_en_name"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("\"wr_en\""));
+    }
+
+    @Test
+    void setRdEnNameCommandInfersParamListSetRdEnNameVerb() throws IOException {
+        String text = read("/regression/mini_command_set_rd_en_name.csl");
+        var listener = new CslWalkerPortCommandVerbListener();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, listener);
+        assertEquals(1, listener.getCslCommandExitCount());
+        assertEquals("set_rd_en_name", listener.verbsInExitOrder().get(0));
+        assertEquals("u", listener.getLastReceiverIdentifier());
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("set_rd_en_name"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("\"rd_en\""));
+    }
+
+    @Test
+    void setAccessRightsCommandInfersParamListSetAccessRightsVerb() throws IOException {
+        String text = read("/regression/mini_command_set_access_rights.csl");
+        var listener = new CslWalkerPortCommandVerbListener();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, listener);
+        assertEquals(1, listener.getCslCommandExitCount());
+        assertEquals("set_access_rights", listener.verbsInExitOrder().get(0));
+        assertEquals("u", listener.getLastReceiverIdentifier());
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("set_access_rights"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("1"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("2"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("3"));
+    }
+
+    @Test
+    void setAccessRightsEnumCommandInfersParamListSetAccessRightsEnumVerb() throws IOException {
+        String text = read("/regression/mini_command_set_access_rights_enum.csl");
+        var listener = new CslWalkerPortCommandVerbListener();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, listener);
+        assertEquals(1, listener.getCslCommandExitCount());
+        assertEquals("set_access_rights_enum", listener.verbsInExitOrder().get(0));
+        assertEquals("u", listener.getLastReceiverIdentifier());
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("set_access_rights_enum"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("e"));
+    }
+
     private static String read(String path) throws IOException {
         try (InputStream in = CslWalkerPortCommandVerbListenerTest.class.getResourceAsStream(path)) {
             assertNotNull(in, "missing resource " + path);

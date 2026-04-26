@@ -1159,6 +1159,7 @@ param_list_directive
   
 
  )
+ RPAREN
 )
 ;
 

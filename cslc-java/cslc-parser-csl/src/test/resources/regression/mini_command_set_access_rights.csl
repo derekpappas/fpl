@@ -1,0 +1,2 @@
+u.set_access_rights(1, 2, 3);
+
