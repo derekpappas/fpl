@@ -31,6 +31,26 @@ public final class CslomCommandDecl extends CslomNamedDecl {
     private String setDirectionKeyword;
     private Long setRadixValue;
     private Long setWidthValue;
+    private Long setDepthValue;
+    private String setNameValue;
+    private String setTypeValue;
+    private Long setOffsetValue;
+    private String setPrefixValue;
+    private String setSuffixValue;
+    private String setEndianessValue;
+    private Long setAlignmentValue;
+    private Long setNumberOfDimensionsValue;
+    private Long setRangeLowValue;
+    private Long setRangeHighValue;
+    private Long setDimRangeLowValue;
+    private Long setDimRangeHighValue;
+    private String setTopUnitName;
+    private String setVcOutputFilenameValue;
+    private Long setVcMaxCyclesValue;
+    private Long setVcMaxNumberOfMismatchesValue;
+    private Long setVcMaxNumberOfValidTransactionsValue;
+    private String setUnitNameValue;
+    private String pipestageNamingConventionValue;
     private Long firstCommandFirstParamIntLiteral;
     private Long firstCommandSecondParamIntLiteral;
     private Long firstCommandThirdParamIntLiteral;
@@ -170,6 +190,131 @@ public final class CslomCommandDecl extends CslomNamedDecl {
         return setWidthValue == null ? OptionalLong.empty() : OptionalLong.of(setWidthValue);
     }
 
+    /** Structured depth value for {@code set_depth(<int>)} when first param is a decimal int (batch 3 refinement). */
+    public OptionalLong setDepthValue() {
+        return setDepthValue == null ? OptionalLong.empty() : OptionalLong.of(setDepthValue);
+    }
+
+    /** Structured name value for {@code set_name("...")} when first param is a string literal (batch 3 refinement). */
+    public Optional<String> setNameValue() {
+        return Optional.ofNullable(setNameValue);
+    }
+
+    /** Structured type value for {@code set_type("...")} when first param is a string literal (batch 3 refinement). */
+    public Optional<String> setTypeValue() {
+        return Optional.ofNullable(setTypeValue);
+    }
+
+    /** Structured offset value for {@code set_offset(<int>)} when first param is a decimal int (batch 3 refinement). */
+    public OptionalLong setOffsetValue() {
+        return setOffsetValue == null ? OptionalLong.empty() : OptionalLong.of(setOffsetValue);
+    }
+
+    /** Structured prefix value for {@code set_prefix("...")} when first param is a string literal (batch 3 refinement). */
+    public Optional<String> setPrefixValue() {
+        return Optional.ofNullable(setPrefixValue);
+    }
+
+    /** Structured suffix value for {@code set_suffix("...")} when first param is a string literal (batch 3 refinement). */
+    public Optional<String> setSuffixValue() {
+        return Optional.ofNullable(setSuffixValue);
+    }
+
+    /**
+     * Structured endianess value for {@code set_endianess("...")} when first param is a string literal
+     * (batch 3 refinement).
+     */
+    public Optional<String> setEndianessValue() {
+        return Optional.ofNullable(setEndianessValue);
+    }
+
+    /** Structured alignment value for {@code set_alignment(<int>)} when first param is a decimal int (batch 3 refinement). */
+    public OptionalLong setAlignmentValue() {
+        return setAlignmentValue == null ? OptionalLong.empty() : OptionalLong.of(setAlignmentValue);
+    }
+
+    /**
+     * Structured value for {@code set_number_of_dimensions(<int>)} when first param is a decimal int
+     * (batch 3 refinement).
+     */
+    public OptionalLong setNumberOfDimensionsValue() {
+        return setNumberOfDimensionsValue == null ? OptionalLong.empty() : OptionalLong.of(setNumberOfDimensionsValue);
+    }
+
+    /** Structured low range value for {@code set_range(<low>, <high>)} when both params are decimal ints. */
+    public OptionalLong setRangeLowValue() {
+        return setRangeLowValue == null ? OptionalLong.empty() : OptionalLong.of(setRangeLowValue);
+    }
+
+    /** Structured high range value for {@code set_range(<low>, <high>)} when both params are decimal ints. */
+    public OptionalLong setRangeHighValue() {
+        return setRangeHighValue == null ? OptionalLong.empty() : OptionalLong.of(setRangeHighValue);
+    }
+
+    /** Structured low value for {@code set_dim_range(<low>, <high>, <dim>)} when first two params are decimal ints. */
+    public OptionalLong setDimRangeLowValue() {
+        return setDimRangeLowValue == null ? OptionalLong.empty() : OptionalLong.of(setDimRangeLowValue);
+    }
+
+    /** Structured high value for {@code set_dim_range(<low>, <high>, <dim>)} when first two params are decimal ints. */
+    public OptionalLong setDimRangeHighValue() {
+        return setDimRangeHighValue == null ? OptionalLong.empty() : OptionalLong.of(setDimRangeHighValue);
+    }
+
+    /** Structured top-unit name for {@code set_top_unit(<id>)} when first param is a simple identifier (batch 3 refinement). */
+    public Optional<String> setTopUnitName() {
+        return Optional.ofNullable(setTopUnitName);
+    }
+
+    /**
+     * Structured output filename for {@code set_vc_output_filename("...")} when first param is a string literal
+     * (batch 3 refinement).
+     */
+    public Optional<String> setVcOutputFilenameValue() {
+        return Optional.ofNullable(setVcOutputFilenameValue);
+    }
+
+    /** Structured max-cycles value for {@code set_vc_max_cycles(<int>)} when first param is a decimal int (batch 3 refinement). */
+    public OptionalLong setVcMaxCyclesValue() {
+        return setVcMaxCyclesValue == null ? OptionalLong.empty() : OptionalLong.of(setVcMaxCyclesValue);
+    }
+
+    /**
+     * Structured value for {@code set_vc_max_number_of_mismatches(<int>)} when first param is a decimal int
+     * (batch 3 refinement).
+     */
+    public OptionalLong setVcMaxNumberOfMismatchesValue() {
+        return setVcMaxNumberOfMismatchesValue == null
+                ? OptionalLong.empty()
+                : OptionalLong.of(setVcMaxNumberOfMismatchesValue);
+    }
+
+    /**
+     * Structured value for {@code set_vc_max_number_of_valid_transactions(<int>)} when first param is a decimal int
+     * (batch 3 refinement).
+     */
+    public OptionalLong setVcMaxNumberOfValidTransactionsValue() {
+        return setVcMaxNumberOfValidTransactionsValue == null
+                ? OptionalLong.empty()
+                : OptionalLong.of(setVcMaxNumberOfValidTransactionsValue);
+    }
+
+    /**
+     * Structured unit name for {@code set_unit_name("...")} when first param is a string literal
+     * (batch 3 refinement).
+     */
+    public Optional<String> setUnitNameValue() {
+        return Optional.ofNullable(setUnitNameValue);
+    }
+
+    /**
+     * Structured naming convention value for {@code pipestage_naming_convention("...")} when first param is a string
+     * literal (batch 3 refinement).
+     */
+    public Optional<String> pipestageNamingConventionValue() {
+        return Optional.ofNullable(pipestageNamingConventionValue);
+    }
+
     /** Called once by the trunk-port decl bridge before the node is linked into the tree. */
     public void attachReceiverIdentifier(String receiverIdentifier) {
         Objects.requireNonNull(receiverIdentifier, "receiverIdentifier");
@@ -249,6 +394,164 @@ public final class CslomCommandDecl extends CslomNamedDecl {
             throw new IllegalStateException("set_width value already set");
         }
         this.setWidthValue = value;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_depth} param is recognized. */
+    public void attachSetDepthValue(long value) {
+        if (this.setDepthValue != null) {
+            throw new IllegalStateException("set_depth value already set");
+        }
+        this.setDepthValue = value;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_name} param is recognized. */
+    public void attachSetNameValue(String unquotedName) {
+        Objects.requireNonNull(unquotedName, "unquotedName");
+        if (this.setNameValue != null) {
+            throw new IllegalStateException("set_name value already set");
+        }
+        this.setNameValue = unquotedName;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_type} param is recognized. */
+    public void attachSetTypeValue(String unquotedType) {
+        Objects.requireNonNull(unquotedType, "unquotedType");
+        if (this.setTypeValue != null) {
+            throw new IllegalStateException("set_type value already set");
+        }
+        this.setTypeValue = unquotedType;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_offset} param is recognized. */
+    public void attachSetOffsetValue(long value) {
+        if (this.setOffsetValue != null) {
+            throw new IllegalStateException("set_offset value already set");
+        }
+        this.setOffsetValue = value;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_prefix} param is recognized. */
+    public void attachSetPrefixValue(String unquotedPrefix) {
+        Objects.requireNonNull(unquotedPrefix, "unquotedPrefix");
+        if (this.setPrefixValue != null) {
+            throw new IllegalStateException("set_prefix value already set");
+        }
+        this.setPrefixValue = unquotedPrefix;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_suffix} param is recognized. */
+    public void attachSetSuffixValue(String unquotedSuffix) {
+        Objects.requireNonNull(unquotedSuffix, "unquotedSuffix");
+        if (this.setSuffixValue != null) {
+            throw new IllegalStateException("set_suffix value already set");
+        }
+        this.setSuffixValue = unquotedSuffix;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_endianess} param is recognized. */
+    public void attachSetEndianessValue(String unquotedEndianess) {
+        Objects.requireNonNull(unquotedEndianess, "unquotedEndianess");
+        if (this.setEndianessValue != null) {
+            throw new IllegalStateException("set_endianess value already set");
+        }
+        this.setEndianessValue = unquotedEndianess;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_alignment} param is recognized. */
+    public void attachSetAlignmentValue(long value) {
+        if (this.setAlignmentValue != null) {
+            throw new IllegalStateException("set_alignment value already set");
+        }
+        this.setAlignmentValue = value;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_number_of_dimensions} param is recognized. */
+    public void attachSetNumberOfDimensionsValue(long value) {
+        if (this.setNumberOfDimensionsValue != null) {
+            throw new IllegalStateException("set_number_of_dimensions value already set");
+        }
+        this.setNumberOfDimensionsValue = value;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_range} low/high params are recognized. */
+    public void attachSetRangeLowHighValues(long low, long high) {
+        if (this.setRangeLowValue != null || this.setRangeHighValue != null) {
+            throw new IllegalStateException("set_range low/high already set");
+        }
+        this.setRangeLowValue = low;
+        this.setRangeHighValue = high;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_dim_range} low/high params are recognized. */
+    public void attachSetDimRangeLowHighValues(long low, long high) {
+        if (this.setDimRangeLowValue != null || this.setDimRangeHighValue != null) {
+            throw new IllegalStateException("set_dim_range low/high already set");
+        }
+        this.setDimRangeLowValue = low;
+        this.setDimRangeHighValue = high;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_top_unit} param is recognized. */
+    public void attachSetTopUnitName(String unitName) {
+        Objects.requireNonNull(unitName, "unitName");
+        if (unitName.isEmpty()) {
+            throw new IllegalArgumentException("unitName must be non-empty");
+        }
+        if (this.setTopUnitName != null) {
+            throw new IllegalStateException("set_top_unit name already set");
+        }
+        this.setTopUnitName = unitName;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_vc_output_filename} param is recognized. */
+    public void attachSetVcOutputFilenameValue(String unquotedValue) {
+        Objects.requireNonNull(unquotedValue, "unquotedValue");
+        if (this.setVcOutputFilenameValue != null) {
+            throw new IllegalStateException("set_vc_output_filename value already set");
+        }
+        this.setVcOutputFilenameValue = unquotedValue;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_vc_max_cycles} param is recognized. */
+    public void attachSetVcMaxCyclesValue(long value) {
+        if (this.setVcMaxCyclesValue != null) {
+            throw new IllegalStateException("set_vc_max_cycles value already set");
+        }
+        this.setVcMaxCyclesValue = value;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_vc_max_number_of_mismatches} param is recognized. */
+    public void attachSetVcMaxNumberOfMismatchesValue(long value) {
+        if (this.setVcMaxNumberOfMismatchesValue != null) {
+            throw new IllegalStateException("set_vc_max_number_of_mismatches value already set");
+        }
+        this.setVcMaxNumberOfMismatchesValue = value;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_vc_max_number_of_valid_transactions} param is recognized. */
+    public void attachSetVcMaxNumberOfValidTransactionsValue(long value) {
+        if (this.setVcMaxNumberOfValidTransactionsValue != null) {
+            throw new IllegalStateException("set_vc_max_number_of_valid_transactions value already set");
+        }
+        this.setVcMaxNumberOfValidTransactionsValue = value;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_unit_name} param is recognized. */
+    public void attachSetUnitNameValue(String unquotedValue) {
+        Objects.requireNonNull(unquotedValue, "unquotedValue");
+        if (this.setUnitNameValue != null) {
+            throw new IllegalStateException("set_unit_name value already set");
+        }
+        this.setUnitNameValue = unquotedValue;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code pipestage_naming_convention} param is recognized. */
+    public void attachPipestageNamingConventionValue(String unquotedValue) {
+        Objects.requireNonNull(unquotedValue, "unquotedValue");
+        if (this.pipestageNamingConventionValue != null) {
+            throw new IllegalStateException("pipestage_naming_convention value already set");
+        }
+        this.pipestageNamingConventionValue = unquotedValue;
     }
 
     /** Batch 3/4 refinement: first param as an integer literal when it's a simple base-10 digit sequence. */

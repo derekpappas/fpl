@@ -1016,6 +1016,101 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
                 if ("set_width".equals(verb)) {
                     cmd.firstCommandFirstParamIntLiteral().ifPresent(cmd::attachSetWidthValue);
                 }
+
+                // Batch 3 structured refinement: set_depth(<int>).
+                if ("set_depth".equals(verb)) {
+                    cmd.firstCommandFirstParamIntLiteral().ifPresent(cmd::attachSetDepthValue);
+                }
+
+                // Batch 3 structured refinement: set_name("...").
+                if ("set_name".equals(verb)) {
+                    cmd.firstCommandFirstParamStringLiteral().ifPresent(cmd::attachSetNameValue);
+                }
+
+                // Batch 3 structured refinement: set_type("...").
+                if ("set_type".equals(verb)) {
+                    cmd.firstCommandFirstParamStringLiteral().ifPresent(cmd::attachSetTypeValue);
+                }
+
+                // Batch 3 structured refinement: set_offset(<int>).
+                if ("set_offset".equals(verb)) {
+                    cmd.firstCommandFirstParamIntLiteral().ifPresent(cmd::attachSetOffsetValue);
+                }
+
+                // Batch 3 structured refinement: set_prefix("...").
+                if ("set_prefix".equals(verb)) {
+                    cmd.firstCommandFirstParamStringLiteral().ifPresent(cmd::attachSetPrefixValue);
+                }
+
+                // Batch 3 structured refinement: set_suffix("...").
+                if ("set_suffix".equals(verb)) {
+                    cmd.firstCommandFirstParamStringLiteral().ifPresent(cmd::attachSetSuffixValue);
+                }
+
+                // Batch 3 structured refinement: set_endianess("...").
+                if ("set_endianess".equals(verb)) {
+                    cmd.firstCommandFirstParamStringLiteral().ifPresent(cmd::attachSetEndianessValue);
+                }
+
+                // Batch 3 structured refinement: set_alignment(<int>).
+                if ("set_alignment".equals(verb)) {
+                    cmd.firstCommandFirstParamIntLiteral().ifPresent(cmd::attachSetAlignmentValue);
+                }
+
+                // Batch 3 structured refinement: set_number_of_dimensions(<int>).
+                if ("set_number_of_dimensions".equals(verb)) {
+                    cmd.firstCommandFirstParamIntLiteral().ifPresent(cmd::attachSetNumberOfDimensionsValue);
+                }
+
+                // Batch 3 structured refinement: set_range(<low>, <high>).
+                if ("set_range".equals(verb)) {
+                    if (cmd.firstCommandFirstParamIntLiteral().isPresent()
+                            && cmd.firstCommandSecondParamIntLiteral().isPresent()) {
+                        cmd.attachSetRangeLowHighValues(
+                                cmd.firstCommandFirstParamIntLiteral().getAsLong(),
+                                cmd.firstCommandSecondParamIntLiteral().getAsLong());
+                    }
+                }
+
+                // Batch 3 structured refinement: set_dim_range(<low>, <high>, <dim>).
+                if ("set_dim_range".equals(verb)) {
+                    if (cmd.firstCommandFirstParamIntLiteral().isPresent()
+                            && cmd.firstCommandSecondParamIntLiteral().isPresent()) {
+                        cmd.attachSetDimRangeLowHighValues(
+                                cmd.firstCommandFirstParamIntLiteral().getAsLong(),
+                                cmd.firstCommandSecondParamIntLiteral().getAsLong());
+                    }
+                }
+
+                // Batch 3 structured refinement: set_top_unit(<id>).
+                if ("set_top_unit".equals(verb)) {
+                    cmd.firstCommandFirstParamIdentifier().ifPresent(cmd::attachSetTopUnitName);
+                }
+
+                // Batch 3 structured refinement: set_vc_output_filename("...").
+                if ("set_vc_output_filename".equals(verb)) {
+                    cmd.firstCommandFirstParamStringLiteral().ifPresent(cmd::attachSetVcOutputFilenameValue);
+                }
+
+                // Batch 3 structured refinement: set_vc_max_cycles(<int>).
+                if ("set_vc_max_cycles".equals(verb)) {
+                    cmd.firstCommandFirstParamIntLiteral().ifPresent(cmd::attachSetVcMaxCyclesValue);
+                }
+
+                // Batch 3 structured refinement: set_vc_max_number_of_mismatches(<int>).
+                if ("set_vc_max_number_of_mismatches".equals(verb)) {
+                    cmd.firstCommandFirstParamIntLiteral().ifPresent(cmd::attachSetVcMaxNumberOfMismatchesValue);
+                }
+
+                // Batch 3 structured refinement: set_vc_max_number_of_valid_transactions(<int>).
+                if ("set_vc_max_number_of_valid_transactions".equals(verb)) {
+                    cmd.firstCommandFirstParamIntLiteral().ifPresent(cmd::attachSetVcMaxNumberOfValidTransactionsValue);
+                }
+
+                // Batch 3 structured refinement: set_unit_name("...").
+                if ("set_unit_name".equals(verb)) {
+                    cmd.firstCommandFirstParamStringLiteral().ifPresent(cmd::attachSetUnitNameValue);
+                }
             }
         } else {
             ParserRuleContext assign = firstAssignStmtChild(ctx);

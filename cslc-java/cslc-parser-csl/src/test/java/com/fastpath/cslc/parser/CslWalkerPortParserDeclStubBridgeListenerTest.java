@@ -298,6 +298,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_depth", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("9"), cmd.paramExprTexts().orElseThrow());
+        assertEquals(9L, cmd.firstCommandFirstParamIntLiteral().orElseThrow());
+        assertEquals(9L, cmd.setDepthValue().orElseThrow());
     }
 
     @Test
@@ -328,6 +331,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_name", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("\"foo\""), cmd.paramExprTexts().orElseThrow());
+        assertEquals("foo", cmd.firstCommandFirstParamStringLiteral().orElseThrow());
+        assertEquals("foo", cmd.setNameValue().orElseThrow());
     }
 
     @Test
@@ -343,6 +349,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_type", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("\"t\""), cmd.paramExprTexts().orElseThrow());
+        assertEquals("t", cmd.firstCommandFirstParamStringLiteral().orElseThrow());
+        assertEquals("t", cmd.setTypeValue().orElseThrow());
     }
 
     @Test
@@ -478,6 +487,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_offset", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("4"), cmd.paramExprTexts().orElseThrow());
+        assertEquals(4L, cmd.firstCommandFirstParamIntLiteral().orElseThrow());
+        assertEquals(4L, cmd.setOffsetValue().orElseThrow());
     }
 
     @Test
@@ -493,6 +505,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_prefix", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("\"p\""), cmd.paramExprTexts().orElseThrow());
+        assertEquals("p", cmd.firstCommandFirstParamStringLiteral().orElseThrow());
+        assertEquals("p", cmd.setPrefixValue().orElseThrow());
     }
 
     @Test
@@ -508,6 +523,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_suffix", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("\"s\""), cmd.paramExprTexts().orElseThrow());
+        assertEquals("s", cmd.firstCommandFirstParamStringLiteral().orElseThrow());
+        assertEquals("s", cmd.setSuffixValue().orElseThrow());
     }
 
     @Test
@@ -523,6 +541,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_top_unit", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("top"), cmd.paramExprTexts().orElseThrow());
+        assertEquals("top", cmd.firstCommandFirstParamIdentifier().orElseThrow());
+        assertEquals("top", cmd.setTopUnitName().orElseThrow());
     }
 
     @Test
@@ -540,6 +561,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_number_of_dimensions", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("2"), cmd.paramExprTexts().orElseThrow());
+        assertEquals(2L, cmd.firstCommandFirstParamIntLiteral().orElseThrow());
+        assertEquals(2L, cmd.setNumberOfDimensionsValue().orElseThrow());
     }
 
     @Test
@@ -556,6 +580,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_alignment", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("8"), cmd.paramExprTexts().orElseThrow());
+        assertEquals(8L, cmd.firstCommandFirstParamIntLiteral().orElseThrow());
+        assertEquals(8L, cmd.setAlignmentValue().orElseThrow());
     }
 
     @Test
@@ -575,6 +602,7 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertEquals("u", cmd.receiverIdentifier().orElseThrow());
         assertEquals(List.of("\"little\""), cmd.paramExprTexts().orElseThrow());
         assertEquals("little", cmd.firstCommandFirstParamStringLiteral().orElseThrow());
+        assertEquals("little", cmd.setEndianessValue().orElseThrow());
     }
 
     @Test
@@ -596,6 +624,8 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertEquals(2, cmd.paramExprCount().orElseThrow());
         assertEquals(1L, cmd.firstCommandFirstParamIntLiteral().orElseThrow());
         assertEquals(2L, cmd.firstCommandSecondParamIntLiteral().orElseThrow());
+        assertEquals(1L, cmd.setRangeLowValue().orElseThrow());
+        assertEquals(2L, cmd.setRangeHighValue().orElseThrow());
     }
 
     @Test
@@ -612,6 +642,13 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_dim_range", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("1", "2", "3"), cmd.paramExprTexts().orElseThrow());
+        assertEquals(3, cmd.paramExprCount().orElseThrow());
+        assertEquals(1L, cmd.firstCommandFirstParamIntLiteral().orElseThrow());
+        assertEquals(2L, cmd.firstCommandSecondParamIntLiteral().orElseThrow());
+        assertEquals(3L, cmd.firstCommandThirdParamIntLiteral().orElseThrow());
+        assertEquals(1L, cmd.setDimRangeLowValue().orElseThrow());
+        assertEquals(2L, cmd.setDimRangeHighValue().orElseThrow());
     }
 
     @Test
@@ -1349,6 +1386,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_vc_max_number_of_mismatches", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("10"), cmd.paramExprTexts().orElseThrow());
+        assertEquals(10L, cmd.firstCommandFirstParamIntLiteral().orElseThrow());
+        assertEquals(10L, cmd.setVcMaxNumberOfMismatchesValue().orElseThrow());
     }
 
     @Test
@@ -1368,6 +1408,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_vc_max_number_of_valid_transactions", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("20"), cmd.paramExprTexts().orElseThrow());
+        assertEquals(20L, cmd.firstCommandFirstParamIntLiteral().orElseThrow());
+        assertEquals(20L, cmd.setVcMaxNumberOfValidTransactionsValue().orElseThrow());
     }
 
     @Test
@@ -1403,6 +1446,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_vc_output_filename", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("\"out\""), cmd.paramExprTexts().orElseThrow());
+        assertEquals("out", cmd.firstCommandFirstParamStringLiteral().orElseThrow());
+        assertEquals("out", cmd.setVcOutputFilenameValue().orElseThrow());
     }
 
     @Test
@@ -1419,6 +1465,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_vc_max_cycles", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("100"), cmd.paramExprTexts().orElseThrow());
+        assertEquals(100L, cmd.firstCommandFirstParamIntLiteral().orElseThrow());
+        assertEquals(100L, cmd.setVcMaxCyclesValue().orElseThrow());
     }
 
     @Test
@@ -1435,6 +1484,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_unit_name", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("\"u1\""), cmd.paramExprTexts().orElseThrow());
+        assertEquals("u1", cmd.firstCommandFirstParamStringLiteral().orElseThrow());
+        assertEquals("u1", cmd.setUnitNameValue().orElseThrow());
     }
 
     @Test
