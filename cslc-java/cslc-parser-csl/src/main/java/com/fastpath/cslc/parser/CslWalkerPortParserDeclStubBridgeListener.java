@@ -5,7 +5,6 @@ import com.fastpath.cslc.cslom.CslomDesignStub;
 import com.fastpath.cslc.cslom.CslomNamedDecl;
 import com.fastpath.cslc.cslom.CslomPlaceholder;
 import com.fastpath.cslc.cslom.CslomNodeType;
-import com.fastpath.cslc.cslom.CslomPlaceholder;
 import com.fastpath.cslc.cslom.CslomUnitDecl;
 import com.fastpath.cslc.cslom.decl.CslomBitrangeDecl;
 import com.fastpath.cslc.cslom.decl.CslomCommandDecl;
@@ -37,6 +36,7 @@ import com.fastpath.cslc.cslom.decl.CslomTestbenchDecl;
 import com.fastpath.cslc.cslom.decl.CslomUnitInstantiationDecl;
 import com.fastpath.cslc.cslom.decl.CslomVectorDecl;
 import com.fastpath.cslc.parser.csl.CslParserTrunkPort;
+import com.fastpath.cslc.parser.csl.CslLexer;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -159,15 +159,120 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
             sig.attachFirstSignalParamListText(antlrText(pls));
             sig.attachFirstSignalParamExprCount(pls.expression() != null ? pls.expression().size() : 0);
             if (pls.expression() != null && !pls.expression().isEmpty()) {
-                sig.attachFirstSignalParamExprTexts(
-                        pls.expression().stream().map(CslWalkerPortParserDeclStubBridgeListener::antlrText).collect(Collectors.toList()));
+                List<String> exprTexts =
+                        pls.expression().stream()
+                                .map(CslWalkerPortParserDeclStubBridgeListener::antlrText)
+                                .collect(Collectors.toList());
+                sig.attachFirstSignalParamExprTexts(exprTexts);
+                maybeAttachFirstDecimalIntLiteral(exprTexts, sig::attachFirstSignalFirstParamIntLiteral);
+                maybeAttachFirstIdentifier(exprTexts, sig::attachFirstSignalFirstParamIdentifier);
+                maybeAttachFirstStringLiteral(exprTexts, sig::attachFirstSignalFirstParamStringLiteral);
             }
             CslParserTrunkPort.Bitrange_pureContext bp = pls.bitrange_pure();
             if (bp != null) {
                 sig.attachFirstSignalBitrangePureText(antlrText(bp));
             }
         }
+        List<TerminalNode> ids = ctx.IDENTIFIER();
+        if (ids != null && ids.size() > 1) {
+            sig.attachAdditionalSignalDeclaratorNames(
+                    ids.subList(1, ids.size()).stream().map(TerminalNode::getText).collect(Collectors.toList()));
+
+            // Signal declarator param lists are optional and ANTLR's param_list_csl_signal() list only contains
+            // present occurrences, so we associate by walking the direct children sequence:
+            // IDENTIFIER (LPAREN param_list RPAREN)? (COMMA IDENTIFIER (LPAREN ...)? )*
+            List<CslParserTrunkPort.Param_list_csl_signalContext> aligned = alignedSignalParamLists(ctx, ids.size());
+            if (aligned.size() == ids.size()) {
+                List<String> addParamListTexts = new ArrayList<>(ids.size() - 1);
+                List<List<String>> addExprLists = new ArrayList<>(ids.size() - 1);
+                List<Integer> addExprCounts = new ArrayList<>(ids.size() - 1);
+                for (int i = 1; i < ids.size(); i++) {
+                    CslParserTrunkPort.Param_list_csl_signalContext pl = aligned.get(i);
+                    addParamListTexts.add(pl != null ? antlrText(pl) : "");
+                    if (pl != null && pl.expression() != null && !pl.expression().isEmpty()) {
+                        addExprLists.add(
+                                pl.expression().stream()
+                                        .map(CslWalkerPortParserDeclStubBridgeListener::antlrText)
+                                        .collect(Collectors.toList()));
+                        addExprCounts.add(pl.expression().size());
+                    } else {
+                        addExprLists.add(List.of());
+                        addExprCounts.add(0);
+                    }
+                }
+                sig.attachAdditionalSignalParamListTexts(addParamListTexts);
+                sig.attachAdditionalSignalParamExprTextLists(addExprLists);
+                sig.attachAdditionalSignalParamExprCounts(addExprCounts);
+
+                List<Long> firstInts = new ArrayList<>(ids.size() - 1);
+                List<String> firstIds = new ArrayList<>(ids.size() - 1);
+                List<String> firstStrs = new ArrayList<>(ids.size() - 1);
+                List<String> bitranges = new ArrayList<>(ids.size() - 1);
+                for (List<String> exprs : addExprLists) {
+                    if (exprs == null || exprs.isEmpty() || exprs.get(0) == null) {
+                        firstInts.add(null);
+                        firstIds.add(null);
+                        firstStrs.add(null);
+                        bitranges.add("");
+                        continue;
+                    }
+                    String first = exprs.get(0);
+                    // reuse existing narrow parsing helpers
+                    final Long[] lit = new Long[1];
+                    maybeAttachFirstDecimalIntLiteral(List.of(first), v -> lit[0] = v);
+                    firstInts.add(lit[0]);
+                    final String[] idv = new String[1];
+                    maybeAttachFirstIdentifier(List.of(first), s -> idv[0] = s);
+                    firstIds.add(idv[0]);
+                    final String[] strv = new String[1];
+                    maybeAttachFirstStringLiteral(List.of(first), s -> strv[0] = s);
+                    firstStrs.add(strv[0]);
+                    bitranges.add("");
+                }
+                sig.attachAdditionalSignalFirstParamIntLiterals(firstInts);
+                sig.attachAdditionalSignalFirstParamIdentifiers(firstIds);
+                sig.attachAdditionalSignalFirstParamStringLiterals(firstStrs);
+
+                // bitrange_pure is on the param_list context, not in expression() list.
+                // Always attach the aligned list (empty string when absent) for structural parity.
+                for (int i = 1; i < ids.size(); i++) {
+                    CslParserTrunkPort.Param_list_csl_signalContext pl = aligned.get(i);
+                    if (pl != null && pl.bitrange_pure() != null) {
+                        bitranges.set(i - 1, antlrText(pl.bitrange_pure()));
+                    }
+                }
+                sig.attachAdditionalSignalBitrangePureTexts(bitranges);
+            }
+        }
         emitStub(sig, ctx);
+    }
+
+    private static List<CslParserTrunkPort.Param_list_csl_signalContext> alignedSignalParamLists(
+            CslParserTrunkPort.Csl_signal_declarationContext ctx, int declaratorCount) {
+        if (declaratorCount <= 0) {
+            return List.of();
+        }
+        List<CslParserTrunkPort.Param_list_csl_signalContext> out = new ArrayList<>(declaratorCount);
+        int i = 0;
+        while (i < ctx.getChildCount() && out.size() < declaratorCount) {
+            var ch = ctx.getChild(i);
+            if (ch instanceof TerminalNode tn && tn.getSymbol() != null && tn.getSymbol().getType() == CslLexer.IDENTIFIER) {
+                // Optional ( param_list_csl_signal )
+                CslParserTrunkPort.Param_list_csl_signalContext pl = null;
+                if (i + 2 < ctx.getChildCount()
+                        && "(".equals(ctx.getChild(i + 1).getText())
+                        && ctx.getChild(i + 2) instanceof CslParserTrunkPort.Param_list_csl_signalContext plCtx) {
+                    pl = plCtx;
+                }
+                out.add(pl);
+            }
+            i++;
+        }
+        // Ensure fixed length (pad nulls if parse-tree walk missed anything unexpectedly).
+        while (out.size() < declaratorCount) {
+            out.add(null);
+        }
+        return out;
     }
 
     @Override
@@ -190,8 +295,68 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
             port.attachFirstPortParamListText(antlrText(plp));
             port.attachFirstPortParamExprCount(plp.expression() != null ? plp.expression().size() : 0);
             if (plp.expression() != null && !plp.expression().isEmpty()) {
-                port.attachFirstPortParamExprTexts(
-                        plp.expression().stream().map(CslWalkerPortParserDeclStubBridgeListener::antlrText).collect(Collectors.toList()));
+                List<String> exprTexts =
+                        plp.expression().stream()
+                                .map(CslWalkerPortParserDeclStubBridgeListener::antlrText)
+                                .collect(Collectors.toList());
+                port.attachFirstPortParamExprTexts(exprTexts);
+                maybeAttachFirstDecimalIntLiteral(exprTexts, port::attachFirstPortFirstParamIntLiteral);
+                maybeAttachFirstIdentifier(exprTexts, port::attachFirstPortFirstParamIdentifier);
+                maybeAttachFirstStringLiteral(exprTexts, port::attachFirstPortFirstParamStringLiteral);
+            }
+        }
+        List<TerminalNode> ids = ctx.IDENTIFIER();
+        if (ids != null && ids.size() > 1) {
+            port.attachAdditionalPortDeclaratorNames(
+                    ids.subList(1, ids.size()).stream().map(TerminalNode::getText).collect(Collectors.toList()));
+
+            List<CslParserTrunkPort.Param_list_csl_portContext> plpsAll = ctx.param_list_csl_port();
+            if (plpsAll != null && plpsAll.size() >= ids.size()) {
+                List<String> addParamListTexts = new ArrayList<>(ids.size() - 1);
+                List<List<String>> addExprLists = new ArrayList<>(ids.size() - 1);
+                List<Integer> addExprCounts = new ArrayList<>(ids.size() - 1);
+                for (int i = 1; i < ids.size(); i++) {
+                    CslParserTrunkPort.Param_list_csl_portContext pl = plpsAll.get(i);
+                    addParamListTexts.add(pl != null ? antlrText(pl) : "");
+                    if (pl != null && pl.expression() != null && !pl.expression().isEmpty()) {
+                        addExprLists.add(
+                                pl.expression().stream()
+                                        .map(CslWalkerPortParserDeclStubBridgeListener::antlrText)
+                                        .collect(Collectors.toList()));
+                        addExprCounts.add(pl.expression().size());
+                    } else {
+                        addExprLists.add(List.of());
+                        addExprCounts.add(0);
+                    }
+                }
+                port.attachAdditionalPortParamListTexts(addParamListTexts);
+                port.attachAdditionalPortParamExprTextLists(addExprLists);
+                port.attachAdditionalPortParamExprCounts(addExprCounts);
+
+                List<Long> firstInts = new ArrayList<>(ids.size() - 1);
+                List<String> firstIds = new ArrayList<>(ids.size() - 1);
+                List<String> firstStrs = new ArrayList<>(ids.size() - 1);
+                for (List<String> exprs : addExprLists) {
+                    if (exprs == null || exprs.isEmpty() || exprs.get(0) == null) {
+                        firstInts.add(null);
+                        firstIds.add(null);
+                        firstStrs.add(null);
+                        continue;
+                    }
+                    String first = exprs.get(0);
+                    final Long[] lit = new Long[1];
+                    maybeAttachFirstDecimalIntLiteral(List.of(first), v -> lit[0] = v);
+                    firstInts.add(lit[0]);
+                    final String[] idv = new String[1];
+                    maybeAttachFirstIdentifier(List.of(first), s -> idv[0] = s);
+                    firstIds.add(idv[0]);
+                    final String[] strv = new String[1];
+                    maybeAttachFirstStringLiteral(List.of(first), s -> strv[0] = s);
+                    firstStrs.add(strv[0]);
+                }
+                port.attachAdditionalPortFirstParamIntLiterals(firstInts);
+                port.attachAdditionalPortFirstParamIdentifiers(firstIds);
+                port.attachAdditionalPortFirstParamStringLiterals(firstStrs);
             }
         }
         emitStub(port, ctx);
@@ -710,12 +875,25 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
 
     @Override
     public void exitCsl_inst(CslParserTrunkPort.Csl_instContext ctx) {
-        List<TerminalNode> ids = ctx.IDENTIFIER();
-        if (ids == null) {
+        List<TerminalNode> ids = directIdentifierTerminals(ctx);
+        if (ids.isEmpty()) {
             return;
         }
+        String template = enclosingInstTemplateUnitName(ctx);
         for (TerminalNode id : ids) {
-            addNamed(ctx, id, CslomUnitInstantiationDecl::new);
+            Token start = id.getSymbol();
+            int line = start != null ? start.getLine() : 0;
+            int col = start != null ? start.getCharPositionInLine() : 0;
+            String file = start != null ? start.getTokenSource().getSourceName() : null;
+            String name = id.getText();
+            if (name == null || name.isEmpty()) {
+                continue;
+            }
+            var inst = new CslomUnitInstantiationDecl(name, line, col, file);
+            if (template != null && !template.isEmpty()) {
+                inst.attachTemplateUnitName(template);
+            }
+            emitStub(inst, ctx);
         }
     }
 
@@ -724,7 +902,22 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
         if (ctx.csl_cstor() == null) {
             return;
         }
-        addNamed(ctx, ctx.IDENTIFIER(), CslomInstUnitDecl::new);
+        TerminalNode id = ctx.IDENTIFIER();
+        if (id == null) {
+            return;
+        }
+        Token start = id.getSymbol();
+        int line = start != null ? start.getLine() : 0;
+        int col = start != null ? start.getCharPositionInLine() : 0;
+        String file = start != null ? start.getTokenSource().getSourceName() : null;
+        String template = id.getText();
+        if (template == null || template.isEmpty()) {
+            return;
+        }
+        var ctor = new CslomInstUnitDecl(template, line, col, file);
+        ctor.attachTemplateUnitName(template);
+        ctor.attachCtorDeclaredInstanceNames(directIdentifierTerminals(ctx.csl_cstor()).stream().map(TerminalNode::getText).toList());
+        emitStub(ctor, ctx);
     }
 
     @Override
@@ -753,8 +946,9 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
             name = id.getText();
             pos = id.getSymbol();
         } else {
-            name = "command";
             pos = ctx.getStart();
+            String verb = CslCommandVerbInference.inferVerbLabelOrNull(ctx);
+            name = verb != null && !verb.isEmpty() ? verb : "command";
         }
         if (name.isEmpty()) {
             name = "command";
@@ -765,7 +959,173 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
         var cmd = new CslomCommandDecl(name, line, col, file);
         String verb = CslCommandVerbInference.inferVerbLabelOrNull(ctx);
         cmd.attachInferredVerb(verb != null ? verb : "unknown");
+        String raw = ctx.getText();
+        cmd.attachCommandText(raw != null ? raw : "");
+        if (raw != null) {
+            extractVerbTokenText(raw).ifPresent(cmd::attachVerbTokenText);
+        }
+        if (raw != null && verb != null && !verb.isEmpty()) {
+            int ix = raw.indexOf(verb);
+            if (ix > 0) {
+                String chain = raw.substring(0, ix);
+                cmd.attachReceiverChainText(chain);
+                extractFirstBracketContents(chain).ifPresent(
+                        s -> {
+                            cmd.attachReceiverFirstRangeExpressionText(s);
+                            maybeAttachDecimalIntLiteral(s, cmd::attachReceiverFirstRangeIntLiteral);
+                        });
+                extractReceiverChainSegments(chain).ifPresent(cmd::attachReceiverChainSegments);
+            }
+        }
+        if (id != null && id.getText() != null && !id.getText().isEmpty()) {
+            // If IDENTIFIER(0) is present, it's a receiver name, not a verb (verbs are K_* tokens).
+            // For receiver-less commands, IDENTIFIER(0) is null.
+            if (verb == null || !id.getText().equals(verb)) {
+                cmd.attachReceiverIdentifier(id.getText());
+            }
+        }
+        ParserRuleContext paramList = firstParamListChild(ctx);
+        if (paramList != null) {
+            cmd.attachParamListAntlrRuleSimpleName(antlrRuleSimpleName(paramList));
+            List<String> exprTexts = collectParamAtomTexts(paramList);
+            if (!exprTexts.isEmpty()) {
+                cmd.attachParamExprTexts(exprTexts);
+                maybeAttachFirstDecimalIntLiteral(exprTexts, cmd::attachFirstCommandFirstParamIntLiteral);
+                maybeAttachSecondDecimalIntLiteral(exprTexts, cmd::attachFirstCommandSecondParamIntLiteral);
+                maybeAttachThirdDecimalIntLiteral(exprTexts, cmd::attachFirstCommandThirdParamIntLiteral);
+                maybeAttachFirstIdentifier(exprTexts, cmd::attachFirstCommandFirstParamIdentifier);
+                maybeAttachFirstStringLiteral(exprTexts, cmd::attachFirstCommandFirstParamStringLiteral);
+                maybeAttachSecondIdentifier(exprTexts, cmd::attachFirstCommandSecondParamIdentifier);
+                maybeAttachSecondStringLiteral(exprTexts, cmd::attachFirstCommandSecondParamStringLiteral);
+                maybeAttachThirdIdentifier(exprTexts, cmd::attachFirstCommandThirdParamIdentifier);
+                maybeAttachThirdStringLiteral(exprTexts, cmd::attachFirstCommandThirdParamStringLiteral);
+            }
+        } else {
+            ParserRuleContext assign = firstAssignStmtChild(ctx);
+            if (assign != null) {
+                cmd.attachParamListAntlrRuleSimpleName(antlrRuleSimpleName(assign));
+                if (cmd.verbTokenText().isEmpty()) {
+                    cmd.attachVerbTokenText("=");
+                }
+                if (raw != null) {
+                    int eq = raw.indexOf('=');
+                    if (eq > 0) {
+                        String lhs = raw.substring(0, eq);
+                        // Match the existing convention: receiverChainText includes a trailing '.'.
+                        String chain = lhs.endsWith(".") ? lhs : lhs + ".";
+                        cmd.attachReceiverChainText(chain);
+                        extractFirstBracketContents(chain).ifPresent(
+                                s -> {
+                                    cmd.attachReceiverFirstRangeExpressionText(s);
+                                    maybeAttachDecimalIntLiteral(s, cmd::attachReceiverFirstRangeIntLiteral);
+                                });
+                        extractReceiverChainSegments(chain).ifPresent(cmd::attachReceiverChainSegments);
+                        if (cmd.receiverIdentifier().isEmpty()) {
+                            extractReceiverChainSegments(chain)
+                                    .filter(segs -> !segs.isEmpty())
+                                    .map(segs -> segs.get(0))
+                                    .ifPresent(cmd::attachReceiverIdentifier);
+                        }
+                    }
+                }
+                List<String> exprTexts = collectExpressionTexts(assign);
+                if (!exprTexts.isEmpty()) {
+                    // Assign form has exactly one expression (RHS).
+                    cmd.attachAssignRhsExpressionText(exprTexts.get(0));
+                    cmd.attachParamExprTexts(exprTexts);
+                    maybeAttachFirstDecimalIntLiteral(exprTexts, cmd::attachFirstCommandFirstParamIntLiteral);
+                    maybeAttachFirstIdentifier(exprTexts, cmd::attachFirstCommandFirstParamIdentifier);
+                    maybeAttachFirstStringLiteral(exprTexts, cmd::attachFirstCommandFirstParamStringLiteral);
+                }
+            }
+        }
         emitStub(cmd, ctx);
+    }
+
+    private static java.util.Optional<String> extractVerbTokenText(String rawCommandText) {
+        if (rawCommandText == null || rawCommandText.isEmpty()) {
+            return java.util.Optional.empty();
+        }
+        int lp = rawCommandText.indexOf('(');
+        if (lp < 0) {
+            return java.util.Optional.empty();
+        }
+        // Take the identifier immediately preceding '(' (raw has no whitespace because ctx.getText()).
+        int i = lp - 1;
+        while (i >= 0) {
+            char c = rawCommandText.charAt(i);
+            if ((c >= 'a' && c <= 'z')
+                    || (c >= 'A' && c <= 'Z')
+                    || (c >= '0' && c <= '9')
+                    || c == '_') {
+                i--;
+                continue;
+            }
+            break;
+        }
+        int start = i + 1;
+        if (start >= lp) {
+            return java.util.Optional.empty();
+        }
+        String token = rawCommandText.substring(start, lp);
+        if (token.isEmpty()) {
+            return java.util.Optional.empty();
+        }
+        char c0 = token.charAt(0);
+        if (!((c0 >= 'a' && c0 <= 'z') || (c0 >= 'A' && c0 <= 'Z') || c0 == '_')) {
+            return java.util.Optional.empty();
+        }
+        return java.util.Optional.of(token);
+    }
+
+    private static java.util.Optional<String> extractFirstBracketContents(String receiverChainText) {
+        if (receiverChainText == null || receiverChainText.isEmpty()) {
+            return java.util.Optional.empty();
+        }
+        int lb = receiverChainText.indexOf('[');
+        if (lb < 0) {
+            return java.util.Optional.empty();
+        }
+        int rb = receiverChainText.indexOf(']', lb + 1);
+        if (rb < 0) {
+            return java.util.Optional.empty();
+        }
+        if (rb <= lb + 1) {
+            return java.util.Optional.empty();
+        }
+        return java.util.Optional.of(receiverChainText.substring(lb + 1, rb));
+    }
+
+    private static void maybeAttachDecimalIntLiteral(String text, java.util.function.LongConsumer sink) {
+        if (text == null || text.isEmpty()) {
+            return;
+        }
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            if (c < '0' || c > '9') {
+                return;
+            }
+        }
+        try {
+            sink.accept(Long.parseLong(text));
+        } catch (NumberFormatException ignored) {
+        }
+    }
+
+    private static java.util.Optional<List<String>> extractReceiverChainSegments(String receiverChainText) {
+        if (receiverChainText == null || receiverChainText.isEmpty()) {
+            return java.util.Optional.empty();
+        }
+        // Chain always ends with '.' when present.
+        String[] parts = receiverChainText.split("\\.");
+        List<String> segs = new ArrayList<>();
+        for (String p : parts) {
+            if (p == null || p.isEmpty()) {
+                continue;
+            }
+            segs.add(p);
+        }
+        return segs.isEmpty() ? java.util.Optional.empty() : java.util.Optional.of(segs);
     }
 
     @FunctionalInterface
@@ -786,6 +1146,123 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
             return;
         }
         emitStub(ctor.create(name, line, col, file), ctx);
+    }
+
+    private static List<TerminalNode> directIdentifierTerminals(ParserRuleContext ctx) {
+        if (ctx == null || ctx.children == null || ctx.children.isEmpty()) {
+            return List.of();
+        }
+        List<TerminalNode> out = new ArrayList<>();
+        for (var ch : ctx.children) {
+            if (ch instanceof TerminalNode t) {
+                if (t.getSymbol() != null && t.getSymbol().getType() == CslLexer.IDENTIFIER) {
+                    out.add(t);
+                }
+            }
+        }
+        return out;
+    }
+
+    private static String enclosingInstTemplateUnitName(CslParserTrunkPort.Csl_instContext instCtx) {
+        if (instCtx == null) {
+            return null;
+        }
+        ParserRuleContext p = instCtx.getParent();
+        while (p != null) {
+            if (p instanceof CslParserTrunkPort.Csl_inst_or_cstorContext c) {
+                TerminalNode id = c.IDENTIFIER();
+                return id != null ? id.getText() : null;
+            }
+            p = p.getParent();
+        }
+        return null;
+    }
+
+    private static ParserRuleContext firstParamListChild(ParserRuleContext ctx) {
+        if (ctx == null) {
+            return null;
+        }
+        return firstParamListChildRec(ctx);
+    }
+
+    private static ParserRuleContext firstAssignStmtChild(ParserRuleContext ctx) {
+        if (ctx == null) {
+            return null;
+        }
+        return firstAssignStmtChildRec(ctx);
+    }
+
+    private static ParserRuleContext firstAssignStmtChildRec(org.antlr.v4.runtime.tree.ParseTree t) {
+        if (t instanceof ParserRuleContext prc) {
+            String s = prc.getClass().getSimpleName();
+            if (s.startsWith("Csl_statement_assign")) {
+                return prc;
+            }
+        }
+        int n = t.getChildCount();
+        for (int i = 0; i < n; i++) {
+            ParserRuleContext found = firstAssignStmtChildRec(t.getChild(i));
+            if (found != null) {
+                return found;
+            }
+        }
+        return null;
+    }
+
+    private static ParserRuleContext firstParamListChildRec(org.antlr.v4.runtime.tree.ParseTree t) {
+        if (t instanceof ParserRuleContext prc) {
+            String s = prc.getClass().getSimpleName();
+            if (s.startsWith("Param_list_")) {
+                return prc;
+            }
+        }
+        int n = t.getChildCount();
+        for (int i = 0; i < n; i++) {
+            ParserRuleContext found = firstParamListChildRec(t.getChild(i));
+            if (found != null) {
+                return found;
+            }
+        }
+        return null;
+    }
+
+    private static List<String> collectExpressionTexts(ParserRuleContext ctx) {
+        List<String> out = new ArrayList<>();
+        collectExpressionTextsRec(ctx, out);
+        return out;
+    }
+
+    private static List<String> collectParamAtomTexts(ParserRuleContext paramListCtx) {
+        List<String> exprs = collectExpressionTexts(paramListCtx);
+        if (!exprs.isEmpty()) {
+            return exprs;
+        }
+        // Some param_list_* shapes are IDENTIFIER-only (e.g. directive(d)).
+        List<String> ids = new ArrayList<>();
+        collectIdentifierTextsRec(paramListCtx, ids);
+        return ids;
+    }
+
+    private static void collectExpressionTextsRec(org.antlr.v4.runtime.tree.ParseTree t, List<String> out) {
+        if (t instanceof CslParserTrunkPort.ExpressionContext e) {
+            out.add(antlrText(e));
+        }
+        int n = t.getChildCount();
+        for (int i = 0; i < n; i++) {
+            collectExpressionTextsRec(t.getChild(i), out);
+        }
+    }
+
+    private static void collectIdentifierTextsRec(org.antlr.v4.runtime.tree.ParseTree t, List<String> out) {
+        if (t instanceof TerminalNode tn) {
+            if (tn.getSymbol() != null && tn.getSymbol().getType() == CslLexer.IDENTIFIER) {
+                out.add(tn.getText());
+            }
+        }
+        int n = t.getChildCount();
+        for (int i = 0; i < n; i++) {
+            collectIdentifierTextsRec(t.getChild(i), out);
+        }
     }
 
     private void attachAntlrCorrelation(CslomNamedDecl n, ParserRuleContext ctx) {
@@ -909,5 +1386,153 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
     static String antlrText(ParserRuleContext ctx) {
         String t = ctx.getText();
         return t == null ? "" : t;
+    }
+
+    private static void maybeAttachFirstDecimalIntLiteral(List<String> exprTexts, java.util.function.LongConsumer sink) {
+        if (exprTexts == null || exprTexts.isEmpty()) {
+            return;
+        }
+        String first = exprTexts.get(0);
+        if (first == null || first.isEmpty()) {
+            return;
+        }
+        for (int i = 0; i < first.length(); i++) {
+            char c = first.charAt(i);
+            if (c < '0' || c > '9') {
+                return;
+            }
+        }
+        try {
+            sink.accept(Long.parseLong(first));
+        } catch (NumberFormatException ignored) {
+        }
+    }
+
+    private static void maybeAttachSecondDecimalIntLiteral(List<String> exprTexts, java.util.function.LongConsumer sink) {
+        if (exprTexts == null || exprTexts.size() < 2) {
+            return;
+        }
+        String second = exprTexts.get(1);
+        if (second == null || second.isEmpty()) {
+            return;
+        }
+        for (int i = 0; i < second.length(); i++) {
+            char c = second.charAt(i);
+            if (c < '0' || c > '9') {
+                return;
+            }
+        }
+        try {
+            sink.accept(Long.parseLong(second));
+        } catch (NumberFormatException ignored) {
+        }
+    }
+
+    private static void maybeAttachThirdDecimalIntLiteral(List<String> exprTexts, java.util.function.LongConsumer sink) {
+        if (exprTexts == null || exprTexts.size() < 3) {
+            return;
+        }
+        String third = exprTexts.get(2);
+        if (third == null || third.isEmpty()) {
+            return;
+        }
+        for (int i = 0; i < third.length(); i++) {
+            char c = third.charAt(i);
+            if (c < '0' || c > '9') {
+                return;
+            }
+        }
+        try {
+            sink.accept(Long.parseLong(third));
+        } catch (NumberFormatException ignored) {
+        }
+    }
+
+    private static void maybeAttachSecondIdentifier(List<String> exprTexts, java.util.function.Consumer<String> sink) {
+        if (exprTexts == null || exprTexts.size() < 2) {
+            return;
+        }
+        String second = exprTexts.get(1);
+        if (second == null || second.isEmpty()) {
+            return;
+        }
+        // Reuse the same narrow contract as first-identifier capture.
+        List<String> one = List.of(second);
+        maybeAttachFirstIdentifier(one, sink);
+    }
+
+    private static void maybeAttachSecondStringLiteral(List<String> exprTexts, java.util.function.Consumer<String> sink) {
+        if (exprTexts == null || exprTexts.size() < 2) {
+            return;
+        }
+        String second = exprTexts.get(1);
+        if (second == null || second.isEmpty()) {
+            return;
+        }
+        List<String> one = List.of(second);
+        maybeAttachFirstStringLiteral(one, sink);
+    }
+
+    private static void maybeAttachThirdIdentifier(List<String> exprTexts, java.util.function.Consumer<String> sink) {
+        if (exprTexts == null || exprTexts.size() < 3) {
+            return;
+        }
+        String third = exprTexts.get(2);
+        if (third == null || third.isEmpty()) {
+            return;
+        }
+        List<String> one = List.of(third);
+        maybeAttachFirstIdentifier(one, sink);
+    }
+
+    private static void maybeAttachThirdStringLiteral(List<String> exprTexts, java.util.function.Consumer<String> sink) {
+        if (exprTexts == null || exprTexts.size() < 3) {
+            return;
+        }
+        String third = exprTexts.get(2);
+        if (third == null || third.isEmpty()) {
+            return;
+        }
+        List<String> one = List.of(third);
+        maybeAttachFirstStringLiteral(one, sink);
+    }
+
+    private static void maybeAttachFirstIdentifier(List<String> exprTexts, java.util.function.Consumer<String> sink) {
+        if (exprTexts == null || exprTexts.isEmpty()) {
+            return;
+        }
+        String first = exprTexts.get(0);
+        if (first == null || first.isEmpty()) {
+            return;
+        }
+        // Narrow contract for batch 3: a single identifier token.
+        // (We don't try to parse dotted names, function calls, etc.)
+        char c0 = first.charAt(0);
+        if (!(c0 == '_' || Character.isLetter(c0))) {
+            return;
+        }
+        for (int i = 1; i < first.length(); i++) {
+            char c = first.charAt(i);
+            if (!(c == '_' || Character.isLetterOrDigit(c))) {
+                return;
+            }
+        }
+        sink.accept(first);
+    }
+
+    private static void maybeAttachFirstStringLiteral(List<String> exprTexts, java.util.function.Consumer<String> sink) {
+        if (exprTexts == null || exprTexts.isEmpty()) {
+            return;
+        }
+        String first = exprTexts.get(0);
+        if (first == null || first.length() < 2) {
+            return;
+        }
+        char a = first.charAt(0);
+        char z = first.charAt(first.length() - 1);
+        if (!((a == '"' && z == '"') || (a == '\'' && z == '\''))) {
+            return;
+        }
+        sink.accept(unquoteCslString(first));
     }
 }

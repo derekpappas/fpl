@@ -1,0 +1,4 @@
+csl_unit u {
+  csl_signal s0(0), s1(1), s2(2);
+};
+

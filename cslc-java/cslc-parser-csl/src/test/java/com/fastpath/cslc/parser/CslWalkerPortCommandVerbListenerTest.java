@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -79,6 +80,50 @@ class CslWalkerPortCommandVerbListenerTest {
         assertEquals("u", listener.getLastReceiverIdentifier());
         assertTrue(listener.commandTextsInExitOrder().get(0).contains("set_width"));
         assertTrue(listener.commandTextsInExitOrder().get(0).contains("8"));
+    }
+
+    @Test
+    void receiverlessSetWidthCommandStillInfersVerbAndLeavesReceiverNull() throws IOException {
+        String text = read("/regression/mini_command_set_width_no_receiver.csl");
+        var listener = new CslWalkerPortCommandVerbListener();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, listener);
+        assertEquals(1, listener.getCslCommandExitCount());
+        assertEquals("set_width", listener.verbsInExitOrder().get(0));
+        assertEquals(null, listener.getLastReceiverIdentifier());
+        assertEquals("set_width", listener.verbTokenTextsInExitOrder().get(0));
+        assertEquals("", listener.receiverChainTextsInExitOrder().get(0));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("set_width"));
+        assertTrue(listener.commandTextsInExitOrder().get(0).contains("8"));
+    }
+
+    @Test
+    void receiverChainCommandCapturesPrefixSegmentsAndFirstRange() throws IOException {
+        String text = read("/regression/mini_command_receiver_chain.csl");
+        var listener = new CslWalkerPortCommandVerbListener();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, listener);
+        assertEquals(1, listener.getCslCommandExitCount());
+        assertEquals("set_width", listener.verbsInExitOrder().get(0));
+        assertEquals("set_width", listener.verbTokenTextsInExitOrder().get(0));
+        assertEquals("u", listener.getLastReceiverIdentifier());
+        assertEquals("u.a[3].b.", listener.receiverChainTextsInExitOrder().get(0));
+        assertEquals(List.of("u", "a[3]", "b"), listener.receiverChainSegmentsInExitOrder().get(0));
+        assertEquals("3", listener.receiverFirstRangeExpressionTextsInExitOrder().get(0));
+        assertEquals(3L, listener.receiverFirstRangeIntLiteralsInExitOrder().get(0));
+    }
+
+    @Test
+    void assignCommandCapturesLhsReceiverChainSegmentsAndRange() throws IOException {
+        String text = read("/regression/mini_assign_receiver_chain.csl");
+        var listener = new CslWalkerPortCommandVerbListener();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, listener);
+        assertEquals(1, listener.getCslCommandExitCount());
+        assertEquals("assign", listener.verbsInExitOrder().get(0));
+        assertEquals("=", listener.verbTokenTextsInExitOrder().get(0));
+        assertEquals("u", listener.getLastReceiverIdentifier());
+        assertEquals("u.a[3].", listener.receiverChainTextsInExitOrder().get(0));
+        assertEquals(List.of("u", "a[3]"), listener.receiverChainSegmentsInExitOrder().get(0));
+        assertEquals("3", listener.receiverFirstRangeExpressionTextsInExitOrder().get(0));
+        assertEquals(3L, listener.receiverFirstRangeIntLiteralsInExitOrder().get(0));
     }
 
     @Test
