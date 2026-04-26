@@ -1,0 +1,2 @@
+u.set_vc_max_number_of_valid_transactions(20);
+

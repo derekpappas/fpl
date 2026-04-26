@@ -1,0 +1,2 @@
+u.set_testbench_verilog_filename("tb.v");
+

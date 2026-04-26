@@ -1364,6 +1364,7 @@ param_list_add_logic
  
 
  )
+ RPAREN
 )
 ;
 
