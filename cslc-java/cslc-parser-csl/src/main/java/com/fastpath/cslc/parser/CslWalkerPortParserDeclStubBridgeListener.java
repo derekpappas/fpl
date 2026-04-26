@@ -999,6 +999,23 @@ public final class CslWalkerPortParserDeclStubBridgeListener extends CslTrunkPor
                 maybeAttachSecondStringLiteral(exprTexts, cmd::attachFirstCommandSecondParamStringLiteral);
                 maybeAttachThirdIdentifier(exprTexts, cmd::attachFirstCommandThirdParamIdentifier);
                 maybeAttachThirdStringLiteral(exprTexts, cmd::attachFirstCommandThirdParamStringLiteral);
+
+                // Batch 3 structured refinement: set_direction(in|out|inout).
+                if ("set_direction".equals(verb)) {
+                    cmd.firstCommandFirstParamIdentifier()
+                            .filter(s -> s.equals("in") || s.equals("out") || s.equals("inout"))
+                            .ifPresent(cmd::attachSetDirectionKeyword);
+                }
+
+                // Batch 3 structured refinement: set_radix(<int>).
+                if ("set_radix".equals(verb)) {
+                    cmd.firstCommandFirstParamIntLiteral().ifPresent(cmd::attachSetRadixValue);
+                }
+
+                // Batch 3 structured refinement: set_width(<int>).
+                if ("set_width".equals(verb)) {
+                    cmd.firstCommandFirstParamIntLiteral().ifPresent(cmd::attachSetWidthValue);
+                }
             }
         } else {
             ParserRuleContext assign = firstAssignStmtChild(ctx);

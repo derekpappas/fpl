@@ -28,6 +28,9 @@ public final class CslomCommandDecl extends CslomNamedDecl {
     private Integer paramExprCount;
     private String paramListAntlrRuleSimpleName;
     private String assignRhsExpressionText;
+    private String setDirectionKeyword;
+    private Long setRadixValue;
+    private Long setWidthValue;
     private Long firstCommandFirstParamIntLiteral;
     private Long firstCommandSecondParamIntLiteral;
     private Long firstCommandThirdParamIntLiteral;
@@ -149,6 +152,24 @@ public final class CslomCommandDecl extends CslomNamedDecl {
         return Optional.ofNullable(assignRhsExpressionText);
     }
 
+    /**
+     * Structured direction keyword for {@code set_direction(...)} when the first param is a simple identifier
+     * matching {@code in}, {@code out}, or {@code inout} (batch 3 refinement).
+     */
+    public Optional<String> setDirectionKeyword() {
+        return Optional.ofNullable(setDirectionKeyword);
+    }
+
+    /** Structured radix value for {@code set_radix(<int>)} when first param is a decimal int (batch 3 refinement). */
+    public OptionalLong setRadixValue() {
+        return setRadixValue == null ? OptionalLong.empty() : OptionalLong.of(setRadixValue);
+    }
+
+    /** Structured width value for {@code set_width(<int>)} when first param is a decimal int (batch 3 refinement). */
+    public OptionalLong setWidthValue() {
+        return setWidthValue == null ? OptionalLong.empty() : OptionalLong.of(setWidthValue);
+    }
+
     /** Called once by the trunk-port decl bridge before the node is linked into the tree. */
     public void attachReceiverIdentifier(String receiverIdentifier) {
         Objects.requireNonNull(receiverIdentifier, "receiverIdentifier");
@@ -200,6 +221,34 @@ public final class CslomCommandDecl extends CslomNamedDecl {
             throw new IllegalStateException("assign rhs expression text already set");
         }
         this.assignRhsExpressionText = text;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_direction} param is recognized. */
+    public void attachSetDirectionKeyword(String keyword) {
+        Objects.requireNonNull(keyword, "keyword");
+        if (keyword.isEmpty()) {
+            throw new IllegalArgumentException("keyword must be non-empty");
+        }
+        if (this.setDirectionKeyword != null) {
+            throw new IllegalStateException("set_direction keyword already set");
+        }
+        this.setDirectionKeyword = keyword;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_radix} param is recognized. */
+    public void attachSetRadixValue(long value) {
+        if (this.setRadixValue != null) {
+            throw new IllegalStateException("set_radix value already set");
+        }
+        this.setRadixValue = value;
+    }
+
+    /** Called once by the trunk-port decl bridge when {@code set_width} param is recognized. */
+    public void attachSetWidthValue(long value) {
+        if (this.setWidthValue != null) {
+            throw new IllegalStateException("set_width value already set");
+        }
+        this.setWidthValue = value;
     }
 
     /** Batch 3/4 refinement: first param as an integer literal when it's a simple base-10 digit sequence. */

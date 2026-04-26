@@ -258,6 +258,8 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertEquals("set_width", cmd.inferredVerb().orElseThrow());
         assertEquals("u", cmd.receiverIdentifier().orElseThrow());
         assertEquals(List.of("8"), cmd.paramExprTexts().orElseThrow());
+        assertEquals(8L, cmd.firstCommandFirstParamIntLiteral().orElseThrow());
+        assertEquals(8L, cmd.setWidthValue().orElseThrow());
         assertEquals("u.", cmd.receiverChainText().orElseThrow());
         assertEquals("param_list_set_width", cmd.paramListAntlrRuleSimpleName().orElseThrow());
     }
@@ -375,6 +377,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_direction", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("in"), cmd.paramExprTexts().orElseThrow());
+        assertEquals("in", cmd.firstCommandFirstParamIdentifier().orElseThrow());
+        assertEquals("in", cmd.setDirectionKeyword().orElseThrow());
     }
 
     @Test
@@ -390,6 +395,9 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertStub(sink.get(0), CslomNodeType.TYPE_COMMAND, "u");
         var cmd = assertInstanceOf(CslomCommandDecl.class, sink.get(0));
         assertEquals("set_radix", cmd.inferredVerb().orElseThrow());
+        assertEquals(List.of("16"), cmd.paramExprTexts().orElseThrow());
+        assertEquals(16L, cmd.firstCommandFirstParamIntLiteral().orElseThrow());
+        assertEquals(16L, cmd.setRadixValue().orElseThrow());
     }
 
     @Test
@@ -2377,6 +2385,28 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
     }
 
     @Test
+    void miniPortMultiDeclaratorMixedCountsCapturesPerAdditionalExprCounts() throws IOException {
+        String text;
+        try (InputStream in =
+                getClass().getResourceAsStream("/regression/mini_port_multi_declarator_mixed_counts.csl")) {
+            assertNotNull(in, "missing /regression/mini_port_multi_declarator_mixed_counts.csl");
+            text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        List<CslomBase> sink = new ArrayList<>();
+        CslParserTrunkPortFacade.parseSourceTextStrictAndWalk(text, new CslWalkerPortParserDeclStubBridgeListener(sink));
+        assertEquals(2, sink.size());
+        var port = assertInstanceOf(CslomPortDecl.class, sink.get(0));
+        assertEquals("p0", port.declaredName().orElseThrow());
+        assertEquals(List.of("p1", "p2"), port.additionalPortDeclaratorNames().orElseThrow());
+        assertEquals(List.of("1,2", "3"), port.additionalPortParamListTexts().orElseThrow());
+        assertEquals(List.of(List.of("1", "2"), List.of("3")), port.additionalPortParamExprTextLists().orElseThrow());
+        assertEquals(List.of(2, 1), port.additionalPortParamExprCounts().orElseThrow());
+        assertEquals(List.of(1L, 3L), port.additionalPortFirstParamIntLiterals().orElseThrow());
+        assertEquals(java.util.Arrays.asList(null, null), port.additionalPortFirstParamIdentifiers().orElseThrow());
+        assertEquals(java.util.Arrays.asList(null, null), port.additionalPortFirstParamStringLiterals().orElseThrow());
+    }
+
+    @Test
     void miniSignalParamCapturesFirstParamListText() throws IOException {
         String text;
         try (InputStream in = getClass().getResourceAsStream("/regression/mini_signal_param.csl")) {
@@ -2482,6 +2512,8 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertEquals(List.of(List.of(), List.of("2")), sig.additionalSignalParamExprTextLists().orElseThrow());
         assertEquals(List.of(0, 1), sig.additionalSignalParamExprCounts().orElseThrow());
         assertEquals(java.util.Arrays.asList(null, 2L), sig.additionalSignalFirstParamIntLiterals().orElseThrow());
+        assertEquals(java.util.Arrays.asList(null, null), sig.additionalSignalFirstParamIdentifiers().orElseThrow());
+        assertEquals(java.util.Arrays.asList(null, null), sig.additionalSignalFirstParamStringLiterals().orElseThrow());
         assertEquals(List.of("", ""), sig.additionalSignalBitrangePureTexts().orElseThrow());
     }
 
@@ -2499,6 +2531,11 @@ class CslWalkerPortParserDeclStubBridgeListenerTest {
         assertEquals("s0", sig.declaredName().orElseThrow());
         assertEquals(List.of("s1", "s2"), sig.additionalSignalDeclaratorNames().orElseThrow());
         assertEquals(List.of("1,[1:0]", "2"), sig.additionalSignalParamListTexts().orElseThrow());
+        assertEquals(List.of(List.of("1"), List.of("2")), sig.additionalSignalParamExprTextLists().orElseThrow());
+        assertEquals(List.of(1, 1), sig.additionalSignalParamExprCounts().orElseThrow());
+        assertEquals(List.of(1L, 2L), sig.additionalSignalFirstParamIntLiterals().orElseThrow());
+        assertEquals(java.util.Arrays.asList(null, null), sig.additionalSignalFirstParamIdentifiers().orElseThrow());
+        assertEquals(java.util.Arrays.asList(null, null), sig.additionalSignalFirstParamStringLiterals().orElseThrow());
         assertEquals(List.of("[1:0]", ""), sig.additionalSignalBitrangePureTexts().orElseThrow());
     }
 
